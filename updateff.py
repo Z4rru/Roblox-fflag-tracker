@@ -10,13 +10,16 @@ REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 2
 
-# --- Output Path (always relative to script location) ---
+# --- Output Path (always relative to script location, never cwd) ---
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = (SCRIPT_DIR / "output").resolve()
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-OUTPUT_MD = OUTPUT_DIR / "FFlag_Report.md"
-OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
+OUTPUT_MD = (OUTPUT_DIR / "FFlag_Report.md").resolve()
+OUTPUT_HTML = (OUTPUT_DIR / "FFlag_Report.html").resolve()
+
+print(f"[DEBUG] Script dir: {SCRIPT_DIR}")
+print(f"[DEBUG] Output dir: {OUTPUT_DIR}")
 
 # --- Categories ---
 CATEGORIES = {
@@ -165,8 +168,8 @@ def main():
     report, summary_counts = build_report(commits)
     export_reports(report, summary_counts)
     print("[SUCCESS] Reports generated!")
-    print(f"- Markdown: {OUTPUT_MD.resolve()}")
-    print(f"- HTML:     {OUTPUT_HTML.resolve()}")
+    print(f"- Markdown: {OUTPUT_MD}")
+    print(f"- HTML:     {OUTPUT_HTML}")
     print("Open the HTML report in your browser for a clean view.")
 
 if __name__ == "__main__":
