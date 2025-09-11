@@ -54,8 +54,9 @@ def analyze_flags():
     # Log the date being used for filtering
     log(f"Fetching commits since: {since_date}")
 
+    # Fetch all commits from the last 2 days (considering the exact time)
     commits = run_cmd(
-        f"git log --since='{since_date} 00:00:00' --pretty=format:%H -- ClientSettings/PCDesktopClient.json",
+        f"git log --since='{since_date} 00:00:00' --pretty=format:'%H|%an|%ar|%s|%cd' -- ClientSettings/PCDesktopClient.json",
         cwd=LOCAL_CLONE
     ).splitlines()
 
@@ -68,8 +69,10 @@ def analyze_flags():
 
     commit_details = []
     for commit in commits:
+        commit_hash, author, relative_time, message, commit_date = commit.split("|")
+        
         # Fetch diff for each commit
-        diff = run_cmd(f"git diff {commit}^ {commit} -- ClientSettings/PCDesktopClient.json", cwd=LOCAL_CLONE).splitlines()
+        diff = run_cmd(f"git diff {commit_hash}^ {commit_hash} -- ClientSettings/PCDesktopClient.json", cwd=LOCAL_CLONE).splitlines()
 
         added, removed = 0, 0
         for line in diff:
@@ -78,17 +81,12 @@ def analyze_flags():
             elif line.startswith("-") and not line.startswith("---"):
                 removed += 1
 
-        # Fetch commit metadata
-        metadata = run_cmd(
-            f'git log -1 --pretty=format:"%h|%an|%ar|%s" {commit} -- ClientSettings/PCDesktopClient.json',
-            cwd=LOCAL_CLONE
-        )
-        short_hash, author, rel_time, message = metadata.split("|")
         commit_info = {
-            "hash": short_hash,
+            "hash": commit_hash,
             "author": author,
-            "when": rel_time,
+            "when": relative_time,
             "message": message,
+            "commit_date": commit_date,
             "added": added,
             "removed": removed
         }
@@ -125,6 +123,7 @@ def generate_reports():
         for commit in commit_details:
             md_content += f"- `{commit['hash']}` by {commit['author']} ({commit['when']}) - {commit['message']}\n"
             md_content += f"  - **Added:** {commit['added']} | **Removed:** {commit['removed']}\n"
+            md_content += f"  - **Commit Date:** {commit['commit_date']}\n"
 
     md_report.write_text(md_content, encoding="utf-8")
 
@@ -139,6 +138,7 @@ def generate_reports():
               <p><strong>When:</strong> {commit['when']}</p>
               <p><strong>Message:</strong> {commit['message']}</p>
               <p><strong>Flags Added:</strong> {commit['added']} | <strong>Flags Removed:</strong> {commit['removed']}</p>
+              <p><strong>Commit Date:</strong> {commit['commit_date']}</p>
             </div>
             """
 
@@ -199,6 +199,7 @@ def ensure_landing_page(output_dir: Path, added, removed, last_run, commit_detai
               <p><strong>When:</strong> {commit['when']}</p>
               <p><strong>Message:</strong> {commit['message']}</p>
               <p><strong>Flags Added:</strong> {commit['added']} | <strong>Flags Removed:</strong> {commit['removed']}</p>
+              <p><strong>Commit Date:</strong> {commit['commit_date']}</p>
             </section>
             """
 
