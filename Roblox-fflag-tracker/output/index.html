@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roblox FFlag Tracker</title>
+  <style>
+    :root {
+      --primary: #0078d7;
+      --primary-dark: #005fa3;
+      --bg: #f9f9f9;
+      --text: #333;
+      --muted: #666;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--bg);
+    }
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      color: #e0e0e0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .card h2 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--primary-dark);
+    }
+    .card p {
+      margin: 0.4rem 0 0;
+      color: var(--muted);
+    }
+    .cta {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .cta a {
+      background: var(--primary);
+      color: white;
+      padding: 0.9rem 1.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: background 0.3s;
+    }
+    .cta a:hover {
+      background: var(--primary-dark);
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature {
+      background: white;
+      border-radius: 10px;
+      padding: 1.2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .feature h3 {
+      margin-top: 0;
+      color: var(--text);
+    }
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding: 1.5rem 0;
+      border-top: 1px solid #ddd;
+    }
+    footer a {
+      color: var(--primary-dark);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Roblox FFlag Tracker</h1>
+    <p>Daily insights into Roblox’s hidden feature flags.</p>
+  </header>
+
+  <div class="container">
+
+    <div class="stats">
+      <div class="card">
+        <h2 id="last-run">—</h2>
+        <p>Last Update</p>
+      </div>
+      <div class="card">
+        <h2 id="flags-added">—</h2>
+        <p>Flags Added</p>
+      </div>
+      <div class="card">
+        <h2 id="flags-removed">—</h2>
+        <p>Flags Removed</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a href="FFlag_Report.html">📊 View Latest Report</a>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <h3>🔍 Automated Tracking</h3>
+        <p>Monitors Roblox client feature flags daily and records changes automatically.</p>
+      </div>
+      <div class="feature">
+        <h3>📂 Organized Reports</h3>
+        <p>Reports are saved in both Markdown and HTML for flexibility.</p>
+      </div>
+      <div class="feature">
+        <h3>📈 Historical Archive</h3>
+        <p>Past reports are preserved so you can explore trends over time.</p>
+      </div>
+      <div class="feature">
+        <h3>⚡ Open Source</h3>
+        <p>Code and reports are publicly available on GitHub for transparency.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Made with ❤️ by <a href="https://github.com/Z4rru/Roblox-fflag-tracker">Z4rru</a> • Powered by GitHub Actions
+  </footer>
+
+  <script>
+    // These will be replaced by Python when generating the landing page
+    document.getElementById("last-run").textContent = "2025-09-12";
+    document.getElementById("flags-added").textContent = "5";
+    document.getElementById("flags-removed").textContent = "2";
+  </script>
+</body>
+</html>
