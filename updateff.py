@@ -2,7 +2,6 @@
 import os
 import subprocess
 import shutil
-import difflib
 import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -52,7 +51,7 @@ def analyze_flags():
 
     if len(commits) < 2:
         log("Not enough commits for PCDesktopClient.json", level="WARN")
-        return 0, 0
+        return 0, 0, None
 
     latest, previous = commits[0], commits[1]
     diff = run_cmd(f"git diff {previous} {latest} -- PCDesktopClient.json", cwd=LOCAL_CLONE).splitlines()
@@ -64,8 +63,21 @@ def analyze_flags():
         elif line.startswith("-") and not line.startswith("---"):
             removed += 1
 
+    # Fetch commit metadata for latest
+    metadata = run_cmd(
+        f'git log -1 --pretty=format:"%H|%an|%ad" --date=iso {latest}',
+        cwd=LOCAL_CLONE
+    )
+    commit_hash, author, date = metadata.split("|")
+    commit_info = {
+        "hash": commit_hash,
+        "author": author,
+        "date": date
+    }
+
     log(f"Detected {added} added flags, {removed} removed flags.")
-    return added, removed
+    log(f"Latest commit: {commit_hash} by {author} on {date}")
+    return added, removed, commit_info
 
 # ===============================
 # Report generation
@@ -78,7 +90,7 @@ def generate_reports():
     md_report = OUTPUT_DIR / "FFlag_Report.md"
     html_report = OUTPUT_DIR / "FFlag_Report.html"
 
-    added, removed = analyze_flags()
+    added, removed, commit_info = analyze_flags()
     last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
 
     # Markdown
@@ -86,10 +98,23 @@ def generate_reports():
     md_content += f"- **Last Run:** {last_run}\n"
     md_content += f"- **Flags Added:** {added}\n"
     md_content += f"- **Flags Removed:** {removed}\n"
+    if commit_info:
+        md_content += f"- **Latest Commit:** `{commit_info['hash']}` by {commit_info['author']} on {commit_info['date']}\n"
 
     md_report.write_text(md_content, encoding="utf-8")
 
     # HTML
+    commit_html = ""
+    if commit_info:
+        commit_html = f"""
+        <div class="commit">
+          <p><strong>Latest Commit:</strong></p>
+          <p>Hash: <code>{commit_info['hash']}</code></p>
+          <p>Author: {commit_info['author']}</p>
+          <p>Date: {commit_info['date']}</p>
+        </div>
+        """
+
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,6 +137,8 @@ def generate_reports():
     .added {{ color: #4caf50; }}
     .removed {{ color: #f44336; }}
     .last-run {{ margin-top: 10px; font-style: italic; color: #555; }}
+    .commit {{ margin-top: 20px; padding: 15px; background: #fff; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }}
+    code {{ background: #eee; padding: 2px 4px; border-radius: 4px; }}
   </style>
 </head>
 <body>
@@ -121,18 +148,30 @@ def generate_reports():
     <div class="card removed">Removed: {removed}</div>
   </div>
   <p class="last-run">Last Run: {last_run}</p>
+  {commit_html}
 </body>
 </html>
 """
     html_report.write_text(html_content, encoding="utf-8")
 
     log(f"Reports written:\n- {md_report}\n- {html_report}")
-    return added, removed, last_run
+    return added, removed, last_run, commit_info
 
 # ===============================
 # Landing page
 # ===============================
-def ensure_landing_page(output_dir: Path, added, removed, last_run):
+def ensure_landing_page(output_dir: Path, added, removed, last_run, commit_info):
+    commit_html = ""
+    if commit_info:
+        commit_html = f"""
+        <section class="commit">
+          <h3>🔗 Latest Commit</h3>
+          <p><strong>Hash:</strong> <code>{commit_info['hash']}</code></p>
+          <p><strong>Author:</strong> {commit_info['author']}</p>
+          <p><strong>Date:</strong> {commit_info['date']}</p>
+        </section>
+        """
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,8 +194,6 @@ def ensure_landing_page(output_dir: Path, added, removed, last_run):
       --radius: 12px;
     }}
 
-    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-
     body {{
       font-family: "Inter", sans-serif;
       background: var(--bg);
@@ -171,15 +208,8 @@ def ensure_landing_page(output_dir: Path, added, removed, last_run):
       text-align: center;
       box-shadow: var(--shadow);
     }}
-    header h1 {{
-      font-size: 2.5rem;
-      font-weight: 700;
-    }}
-    header p {{
-      margin-top: 10px;
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }}
+    header h1 {{ font-size: 2.5rem; font-weight: 700; }}
+    header p {{ margin-top: 10px; font-size: 1.1rem; opacity: 0.9; }}
 
     nav {{
       background: #fff;
@@ -193,9 +223,7 @@ def ensure_landing_page(output_dir: Path, added, removed, last_run):
       font-weight: 600;
       color: var(--primary);
     }}
-    nav a:hover {{
-      text-decoration: underline;
-    }}
+    nav a:hover {{ text-decoration: underline; }}
 
     .stats {{
       display: flex;
@@ -231,11 +259,7 @@ def ensure_landing_page(output_dir: Path, added, removed, last_run):
       margin: 40px auto;
       padding: 0 20px;
     }}
-    main h2 {{
-      text-align: center;
-      margin-bottom: 20px;
-      color: var(--primary);
-    }}
+    main h2 {{ text-align: center; margin-bottom: 20px; color: var(--primary); }}
     iframe {{
       width: 100%;
       height: 70vh;
@@ -243,6 +267,20 @@ def ensure_landing_page(output_dir: Path, added, removed, last_run):
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       background: var(--card-bg);
+    }}
+
+    .commit {{
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }}
+    .commit code {{
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
     }}
 
     footer {{
@@ -253,13 +291,8 @@ def ensure_landing_page(output_dir: Path, added, removed, last_run):
       color: white;
       font-size: 0.95em;
     }}
-    footer a {{
-      color: #ffd54f;
-      text-decoration: none;
-    }}
-    footer a:hover {{
-      text-decoration: underline;
-    }}
+    footer a {{ color: #ffd54f; text-decoration: none; }}
+    footer a:hover {{ text-decoration: underline; }}
   </style>
 </head>
 <body>
@@ -281,6 +314,8 @@ def ensure_landing_page(output_dir: Path, added, removed, last_run):
   </section>
 
   <p class="last-run">Last Run: <span>{last_run}</span></p>
+
+  {commit_html}
 
   <main>
     <h2>📊 Latest Report</h2>
@@ -306,8 +341,8 @@ def main():
     log("============================================================")
 
     clone_or_update_repo()
-    added, removed, last_run = generate_reports()
-    ensure_landing_page(OUTPUT_DIR, added, removed, last_run)
+    added, removed, last_run, commit_info = generate_reports()
+    ensure_landing_page(OUTPUT_DIR, added, removed, last_run, commit_info)
 
     log("All done!", level="SUCCESS")
 
