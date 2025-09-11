@@ -71,6 +71,9 @@ def analyze_flags():
     for commit in commits:
         commit_hash, author, relative_time, message, commit_date = commit.split("|")
         
+        # Log full commit details for debugging
+        log(f"Commit Details: {commit_hash} | {author} | {relative_time} | {message} | {commit_date}")
+
         # Fetch diff for each commit
         diff = run_cmd(f"git diff {commit_hash}^ {commit_hash} -- ClientSettings/PCDesktopClient.json", cwd=LOCAL_CLONE).splitlines()
 
