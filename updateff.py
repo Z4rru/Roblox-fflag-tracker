@@ -182,4 +182,21 @@ def main():
     print("Open the HTML report in your browser for a clean view.")
 
 if __name__ == "__main__":
+import re
+
+def update_landing_page(date_str, added, removed):
+    index_file = OUTPUT_DIR / "index.html"
+    if not index_file.exists():
+        print("[WARN] Landing page not found, skipping update.")
+        return
+    html = index_file.read_text(encoding="utf-8")
+    html = re.sub(r'document\.getElementById\("last-run"\).*?;', 
+                  f'document.getElementById("last-run").textContent = "{date_str}";', html)
+    html = re.sub(r'document\.getElementById\("flags-added"\).*?;', 
+                  f'document.getElementById("flags-added").textContent = "{added}";', html)
+    html = re.sub(r'document\.getElementById\("flags-removed"\).*?;', 
+                  f'document.getElementById("flags-removed").textContent = "{removed}";', html)
+    index_file.write_text(html, encoding="utf-8")
+    print(f"[DEBUG] Landing page updated with {added} added / {removed} removed.")
+
     main()
