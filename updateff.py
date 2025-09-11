@@ -11,12 +11,13 @@ TARGET_FILE = "PCDesktopClient.json"
 DAYS = 2
 
 # --- Output Path (for GitHub Pages) ---
-# --- Fixed Output Path ---
-OUTPUT_DIR = Path("output")  # relative folder for GitHub Pages
+SCRIPT_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = SCRIPT_DIR / "output"  # always relative to script location
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 OUTPUT_MD = OUTPUT_DIR / "FFlag_Report.md"
 OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
+
 
 
 # --- Categories ---
