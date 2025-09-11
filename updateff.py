@@ -10,16 +10,16 @@ REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 2
 
-# --- Output Path (always relative to script location, never cwd) ---
+# --- Output Path (absolute, based on script location) ---
 SCRIPT_DIR = Path(__file__).resolve().parent
-OUTPUT_DIR = (SCRIPT_DIR / "output").resolve()
+OUTPUT_DIR = SCRIPT_DIR / "output"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-OUTPUT_MD = (OUTPUT_DIR / "FFlag_Report.md").resolve()
-OUTPUT_HTML = (OUTPUT_DIR / "FFlag_Report.html").resolve()
+OUTPUT_MD = OUTPUT_DIR / "FFlag_Report.md"
+OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
 
-print(f"[DEBUG] Script dir: {SCRIPT_DIR}")
-print(f"[DEBUG] Output dir: {OUTPUT_DIR}")
+print(f"[DEBUG] Script directory: {SCRIPT_DIR}")
+print(f"[DEBUG] Output directory: {OUTPUT_DIR}")
 
 # --- Categories ---
 CATEGORIES = {
@@ -34,6 +34,7 @@ CATEGORIES = {
     "Interpolation": ["Interp", "Interpolation", "Tween", "Smooth", "Extrapolate"],
     "Other": []
 }
+
 
 def check_git():
     try:
