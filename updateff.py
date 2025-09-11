@@ -49,7 +49,7 @@ def analyze_flags():
     log("Analyzing PCDesktopClient.json for flag changes...")
 
     # Fetch commit hashes for PCDesktopClient.json from the last 2 days
-    since_date = (datetime.datetime.now() - datetime.timedelta(days=2)).strftime('%Y-%m-%d')
+    since_date = (datetime.datetime.now(ZoneInfo("UTC")) - datetime.timedelta(days=2)).strftime('%Y-%m-%d')
     
     # Log the date being used for filtering
     log(f"Fetching commits since: {since_date}")
