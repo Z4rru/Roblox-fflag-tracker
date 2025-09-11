@@ -113,9 +113,7 @@ def build_report(commits):
 # --- Landing page helpers ---
 def ensure_landing_page():
     index_file = OUTPUT_DIR / "index.html"
-    if index_file.exists():
-        return
-    print("[INFO] No landing page found. Creating default index.html...")
+    print("[INFO] (Re)generating landing page template...")
     index_file.write_text("""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -190,7 +188,7 @@ def update_landing_page(date_str, added, removed):
 # --- Export reports ---
 def export_reports(report, summary_counts):
     # Update landing page
-    date_str = datetime.now().strftime("%Y-%m-%d")
+    date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     added = sum(v for (c, a), v in summary_counts.items() if a == "Added")
     removed = sum(v for (c, a), v in summary_counts.items() if a == "Removed")
     update_landing_page(date_str, added, removed)
