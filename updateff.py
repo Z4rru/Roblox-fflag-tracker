@@ -10,15 +10,13 @@ REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 2
 
-# --- Output Path (for GitHub Pages) ---
+# --- Output Path (always relative to script location) ---
 SCRIPT_DIR = Path(__file__).resolve().parent
-OUTPUT_DIR = SCRIPT_DIR / "output"  # always relative to script location
+OUTPUT_DIR = (SCRIPT_DIR / "output").resolve()
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 OUTPUT_MD = OUTPUT_DIR / "FFlag_Report.md"
 OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
-
-
 
 # --- Categories ---
 CATEGORIES = {
@@ -143,6 +141,14 @@ def export_reports(report, summary_counts):
         md.append("")
     html.append("</body></html>")
 
+    # --- Ensure output dir exists ---
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    # --- Debug prints ---
+    print(f"[DEBUG] Writing Markdown report to: {OUTPUT_MD}")
+    print(f"[DEBUG] Writing HTML report to:     {OUTPUT_HTML}")
+
+    # --- Write reports ---
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
     OUTPUT_HTML.write_text("\n".join(html), encoding="utf-8")
 
@@ -159,8 +165,8 @@ def main():
     report, summary_counts = build_report(commits)
     export_reports(report, summary_counts)
     print("[SUCCESS] Reports generated!")
-    print(f"- Markdown: {OUTPUT_MD}")
-    print(f"- HTML:     {OUTPUT_HTML}")
+    print(f"- Markdown: {OUTPUT_MD.resolve()}")
+    print(f"- HTML:     {OUTPUT_HTML.resolve()}")
     print("Open the HTML report in your browser for a clean view.")
 
 if __name__ == "__main__":
