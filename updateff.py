@@ -35,8 +35,9 @@ if os.path.exists(REPO_DIR):
     shutil.rmtree(REPO_DIR)
 
 log("Cloning fresh Roblox-Client-Tracker repo...")
+# clone full history to avoid missing commits
 subprocess.run(
-    ["git", "clone", "--depth", "20", "https://github.com/MaximumADHD/Roblox-Client-Tracker.git", REPO_DIR],
+    ["git", "clone", "https://github.com/MaximumADHD/Roblox-Client-Tracker.git", REPO_DIR],
     check=True
 )
 
@@ -45,7 +46,7 @@ subprocess.run(
 # -------------------------------
 os.chdir(REPO_DIR)
 
-# Get latest commit hash for PCDesktopClient.json
+# Get latest 2 commits for PCDesktopClient.json
 result = subprocess.run(
     ["git", "log", "-n", "2", "--pretty=format:%H", "--", "PCDesktopClient.json"],
     capture_output=True,
@@ -54,9 +55,10 @@ result = subprocess.run(
 )
 
 commits = result.stdout.strip().splitlines()
+
+added, removed = 0, 0
 if len(commits) < 2:
-    log("Not enough commits found for PCDesktopClient.json", "ERROR")
-    added, removed = 0, 0
+    log("Only one commit found for PCDesktopClient.json, no diff available.", "WARN")
 else:
     latest, previous = commits[0], commits[1]
 
