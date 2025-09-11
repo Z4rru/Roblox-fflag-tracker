@@ -50,10 +50,17 @@ def analyze_flags():
 
     # Fetch commit hashes for PCDesktopClient.json from the last 2 days
     since_date = (datetime.datetime.now() - datetime.timedelta(days=2)).strftime('%Y-%m-%d')
+    
+    # Log the date being used for filtering
+    log(f"Fetching commits since: {since_date}")
+
     commits = run_cmd(
-        f"git log --since={since_date} --pretty=format:%H -- ClientSettings/PCDesktopClient.json",
+        f"git log --since='{since_date} 00:00:00' --pretty=format:%H -- ClientSettings/PCDesktopClient.json",
         cwd=LOCAL_CLONE
     ).splitlines()
+
+    # Debug log to confirm which commits are being fetched
+    log(f"Fetched commits: {commits}")
 
     if len(commits) < 1:
         log("No commits in the past 2 days for PCDesktopClient.json", level="WARN")
