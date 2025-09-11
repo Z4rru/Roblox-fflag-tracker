@@ -38,6 +38,7 @@ CATEGORIES = {
     "Other": []
 }
 
+
 # --- Utilities ---
 def check_git():
     try:
@@ -113,84 +114,123 @@ def build_report(commits):
 def ensure_landing_page():
     index_file = OUTPUT_DIR / "index.html"
     print("[INFO] (Re)generating landing page template...")
-
     index_file.write_text("""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Roblox FFlag Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --primary: #1e3c72;
+      --secondary: #2a5298;
+      --bg: #f4f6fb;
+      --card-bg: #fff;
+      --added: #4caf50;
+      --removed: #f44336;
+      --shadow: 0 4px 12px rgba(0,0,0,0.12);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      background: #f4f6fb;
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
       color: #333;
       line-height: 1.6;
     }
+
     header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
       padding: 40px 20px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      box-shadow: var(--shadow);
     }
     header h1 {
-      margin: 0;
-      font-size: 2.8em;
+      font-size: 2.5rem;
+      font-weight: 700;
     }
     header p {
       margin-top: 10px;
-      font-size: 1.2em;
+      font-size: 1.1rem;
       opacity: 0.9;
     }
+
+    nav {
+      background: #fff;
+      padding: 12px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
     .stats {
       display: flex;
       justify-content: center;
       gap: 20px;
       margin: 30px auto;
       flex-wrap: wrap;
+      max-width: 900px;
     }
     .badge {
-      padding: 20px 30px;
-      border-radius: 16px;
-      font-size: 1.3em;
-      font-weight: bold;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      flex: 1;
       min-width: 150px;
+      padding: 20px;
+      border-radius: var(--radius);
+      font-size: 1.3em;
+      font-weight: 600;
       text-align: center;
+      box-shadow: var(--shadow);
+      color: #fff;
     }
-    .added { background: #4caf50; color: #fff; }
-    .removed { background: #f44336; color: #fff; }
+    .added { background: var(--added); }
+    .removed { background: var(--removed); }
+
     .last-run {
       text-align: center;
       margin-top: 10px;
       font-style: italic;
       color: #555;
     }
+
     main {
       max-width: 1100px;
       margin: 40px auto;
       padding: 0 20px;
     }
-    h2 {
+    main h2 {
       text-align: center;
       margin-bottom: 20px;
-      color: #1e3c72;
+      color: var(--primary);
     }
     iframe {
       width: 100%;
       height: 70vh;
       border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--card-bg);
     }
+
     footer {
       text-align: center;
       padding: 25px;
       margin-top: 40px;
-      background: #1e3c72;
+      background: var(--primary);
       color: white;
       font-size: 0.95em;
     }
@@ -206,8 +246,15 @@ def ensure_landing_page():
 <body>
   <header>
     <h1>Roblox Client FFlag Tracker</h1>
-    <p>Automatic updates every 6 hours — monitor what changes under the hood</p>
+    <p>Automatic updates every 6 hours — track feature flag changes in real time</p>
   </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="FFlag_Report.html">HTML Report</a>
+    <a href="FFlag_Report.md">Markdown Report</a>
+    <a href="https://github.com/z4rru/Roblox-fflag-tracker" target="_blank">GitHub</a>
+  </nav>
 
   <section class="stats">
     <div class="badge added">Added: <span id="flags-added">0</span></div>
@@ -217,13 +264,13 @@ def ensure_landing_page():
   <p class="last-run">Last Run: <span id="last-run">Never</span></p>
 
   <main>
-    <h2>📊 Latest Full Report</h2>
+    <h2>📊 Latest Report</h2>
     <iframe src="FFlag_Report.html"></iframe>
   </main>
 
   <footer>
     <p>Generated automatically by <strong>Roblox FFlag Tracker</strong>. 
-    View raw reports: <a href="FFlag_Report.html">HTML</a> | <a href="FFlag_Report.md">Markdown</a></p>
+    Access reports: <a href="FFlag_Report.html">HTML</a> | <a href="FFlag_Report.md">Markdown</a></p>
   </footer>
 </body>
 </html>""", encoding="utf-8")
@@ -247,13 +294,11 @@ def update_landing_page(date_str, added, removed):
 
 # --- Export reports ---
 def export_reports(report, summary_counts):
-    # Update landing page
     date_str = datetime.now().strftime("%Y-%m-%d")
     added = sum(v for (c, a), v in summary_counts.items() if a == "Added")
     removed = sum(v for (c, a), v in summary_counts.items() if a == "Removed")
     update_landing_page(date_str, added, removed)
 
-    # Markdown + HTML report
     md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
     html = [
         "<html><head><title>Roblox FFlag Intel Report</title>",
@@ -263,7 +308,6 @@ def export_reports(report, summary_counts):
         f"<p>Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>"
     ]
 
-    # --- Summary Table ---
     md.append("## Summary of Changes\n")
     md.append("| Category | Added | Removed | Total |")
     md.append("|----------|-------|---------|-------|")
@@ -280,7 +324,6 @@ def export_reports(report, summary_counts):
     md.append("")
     html.append("</table>")
 
-    # --- Detailed Changes ---
     for header, changes in report:
         md.append(f"## {header}\n")
         html.append(f"<h2>{header}</h2>")
