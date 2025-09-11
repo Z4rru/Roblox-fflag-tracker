@@ -1,0 +1,32 @@
+name: Roblox FFlag Tracker
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # Run every 6 hours
+  workflow_dispatch:        # Allow manual run from Actions tab
+
+jobs:
+  run-tracker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt || true
+
+      - name: Run updateff
+        run: python updateff.py
+
+      - name: Publish reports to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: output
