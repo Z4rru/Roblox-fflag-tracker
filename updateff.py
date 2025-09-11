@@ -48,23 +48,20 @@ def clone_or_update_repo():
 def analyze_flags():
     log("Analyzing PCDesktopClient.json for flag changes...")
 
-    # Fetch commit hashes for PCDesktopClient.json from the last 2 days
-    since_date = (datetime.datetime.now() - datetime.timedelta(days=2)).strftime('%Y-%m-%d')
-    
-    # Log the date being used for filtering
+    # Fetch commits from the last 2 days (no file restriction)
+    since_date = '2 days ago'  # More flexible date range
     log(f"Fetching commits since: {since_date}")
 
-    # Fetch all commits from the last 2 days (considering the exact time)
+    # Fetch all commits from the last 2 days (across the whole repo)
     commits = run_cmd(
-        f"git log --since='{since_date} 00:00:00' --pretty=format:'%H|%an|%ar|%s|%cd' -- ClientSettings/PCDesktopClient.json",
+        f"git log --since='{since_date}' --pretty=format:'%H|%an|%ar|%s|%cd'",
         cwd=LOCAL_CLONE
     ).splitlines()
 
-    # Debug log to confirm which commits are being fetched
     log(f"Fetched commits: {commits}")
 
     if len(commits) < 1:
-        log("No commits in the past 2 days for PCDesktopClient.json", level="WARN")
+        log("No commits in the past 2 days", level="WARN")
         return 0, 0, []
 
     commit_details = []
@@ -74,7 +71,7 @@ def analyze_flags():
         # Log full commit details for debugging
         log(f"Commit Details: {commit_hash} | {author} | {relative_time} | {message} | {commit_date}")
 
-        # Fetch diff for each commit
+        # Fetch diff for each commit, specifically for PCDesktopClient.json
         diff = run_cmd(f"git diff {commit_hash}^ {commit_hash} -- ClientSettings/PCDesktopClient.json", cwd=LOCAL_CLONE).splitlines()
 
         added, removed = 0, 0
