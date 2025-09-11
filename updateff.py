@@ -37,7 +37,7 @@ def clone_or_update_repo():
     if LOCAL_CLONE.exists():
         log("Updating existing Roblox-Client-Tracker repo...")
         run_cmd("git fetch --all", cwd=LOCAL_CLONE)
-        run_cmd("git reset --hard origin/master", cwd=LOCAL_CLONE)
+        run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
     else:
         log("Cloning fresh Roblox-Client-Tracker repo...")
         run_cmd(f"git clone {FFLAG_REPO} {LOCAL_CLONE}")
@@ -48,7 +48,7 @@ def clone_or_update_repo():
 def analyze_flags():
     log("Analyzing PCDesktopClient.json for flag changes...")
 
-    # Fetch commit hashes for PCDesktopClient.json from the last 5 days (to capture more commits)
+    # Fetch commit hashes for PCDesktopClient.json from the last 5 days
     since_date = (datetime.datetime.now(ZoneInfo("UTC")) - datetime.timedelta(days=5)).strftime('%Y-%m-%d')
     
     # Log the date being used for filtering
