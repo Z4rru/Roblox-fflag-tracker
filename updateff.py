@@ -47,6 +47,7 @@ def check_git():
         print("Download Git: https://git-scm.com/downloads")
         sys.exit(1)
 
+
 def ensure_repo():
     if not TRACKER_DIR.exists():
         print("[INFO] Cloning fresh repo...")
@@ -55,6 +56,7 @@ def ensure_repo():
     subprocess.run(["git", "fetch", "--all"], check=True)
     subprocess.run(["git", "reset", "--hard", "origin/main"], check=True)
 
+
 def categorize_flag(flag_name):
     for cat, keywords in CATEGORIES.items():
         for word in keywords:
@@ -62,10 +64,12 @@ def categorize_flag(flag_name):
                 return cat
     return "Other"
 
+
 def get_commits():
     since_date = (datetime.now() - timedelta(days=DAYS)).strftime("%Y-%m-%d")
     log_cmd = ["git", "log", f"--since={since_date}", "--pretty=format:%H", "--", TARGET_FILE]
     return subprocess.check_output(log_cmd, text=True).splitlines()
+
 
 def build_report(commits):
     report = []
@@ -104,6 +108,7 @@ def build_report(commits):
 
     return report, summary_counts
 
+
 # --- Landing page helpers ---
 def ensure_landing_page():
     index_file = OUTPUT_DIR / "index.html"
@@ -114,81 +119,115 @@ def ensure_landing_page():
 <head>
   <meta charset="UTF-8">
   <title>Roblox FFlag Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f4f6fb;
+      color: #333;
+      line-height: 1.6;
     }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
+    header {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+    }
+    header p {
+      margin-top: 10px;
+      font-size: 1.2em;
+      opacity: 0.9;
     }
     .stats {
       display: flex;
+      justify-content: center;
       gap: 20px;
-      margin: 20px 0;
+      margin: 30px auto;
+      flex-wrap: wrap;
     }
     .badge {
-      padding: 15px 25px;
-      border-radius: 12px;
-      font-size: 1.2em;
+      padding: 20px 30px;
+      border-radius: 16px;
+      font-size: 1.3em;
       font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      min-width: 150px;
+      text-align: center;
     }
     .added { background: #4caf50; color: #fff; }
     .removed { background: #f44336; color: #fff; }
-    .last-run { font-style: italic; margin-top: 10px; }
+    .last-run {
+      text-align: center;
+      margin-top: 10px;
+      font-style: italic;
+      color: #555;
+    }
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1e3c72;
+    }
     iframe {
       width: 100%;
-      max-width: 1000px;
-      height: 75vh;
+      height: 70vh;
       border: none;
-      border-radius: 10px;
-      margin-top: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
       background: #fff;
     }
     footer {
-      margin-top: 30px;
-      font-size: 0.9em;
-      opacity: 0.8;
+      text-align: center;
+      padding: 25px;
+      margin-top: 40px;
+      background: #1e3c72;
+      color: white;
+      font-size: 0.95em;
     }
-    a { color: #ffd54f; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    footer a {
+      color: #ffd54f;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <h1>Roblox Client FFlag Tracker</h1>
+  <header>
+    <h1>Roblox Client FFlag Tracker</h1>
+    <p>Automatic updates every 6 hours — monitor what changes under the hood</p>
+  </header>
 
-  <div class="stats">
-    <div class="badge added">
-      Added: <span id="flags-added">0</span>
-    </div>
-    <div class="badge removed">
-      Removed: <span id="flags-removed">0</span>
-    </div>
-  </div>
+  <section class="stats">
+    <div class="badge added">Added: <span id="flags-added">0</span></div>
+    <div class="badge removed">Removed: <span id="flags-removed">0</span></div>
+  </section>
 
   <p class="last-run">Last Run: <span id="last-run">Never</span></p>
 
-  <h2>Latest Full Report</h2>
-  <iframe src="FFlag_Report.html"></iframe>
+  <main>
+    <h2>📊 Latest Full Report</h2>
+    <iframe src="FFlag_Report.html"></iframe>
+  </main>
 
   <footer>
-    <p>📊 Generated automatically. View raw reports: 
-      <a href="FFlag_Report.html">HTML</a> | 
-      <a href="FFlag_Report.md">Markdown</a>
-    </p>
+    <p>Generated automatically by <strong>Roblox FFlag Tracker</strong>. 
+    View raw reports: <a href="FFlag_Report.html">HTML</a> | <a href="FFlag_Report.md">Markdown</a></p>
   </footer>
 </body>
 </html>""", encoding="utf-8")
+
 
 def update_landing_page(date_str, added, removed):
     index_file = OUTPUT_DIR / "index.html"
@@ -204,6 +243,7 @@ def update_landing_page(date_str, added, removed):
                   f'<span id="flags-removed">{removed}</span>', html)
     index_file.write_text(html, encoding="utf-8")
     print(f"[DEBUG] Landing page updated with {added} added / {removed} removed.")
+
 
 # --- Export reports ---
 def export_reports(report, summary_counts):
@@ -263,6 +303,7 @@ def export_reports(report, summary_counts):
     print(f"[DEBUG] Writing HTML report: {OUTPUT_HTML}")
     OUTPUT_HTML.write_text("\n".join(html), encoding="utf-8")
 
+
 # --- Main ---
 def main():
     print("=" * 60)
@@ -285,6 +326,7 @@ def main():
     print(f"- Markdown: {OUTPUT_MD}")
     print(f"- HTML:     {OUTPUT_HTML}")
     print("Open the HTML report in your browser for a clean view.")
+
 
 if __name__ == "__main__":
     main()
