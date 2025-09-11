@@ -1,6 +1,7 @@
 import os
 import sys
 import subprocess
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -22,9 +23,6 @@ OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
 print(f"[DEBUG] Script directory: {SCRIPT_DIR}")
 print(f"[DEBUG] Workspace: {WORKSPACE}")
 print(f"[DEBUG] Output directory: {OUTPUT_DIR}")
-
-
-
 
 # --- Categories ---
 CATEGORIES = {
@@ -105,6 +103,21 @@ def build_report(commits):
 
     return report, summary_counts
 
+def update_landing_page(date_str, added, removed):
+    index_file = OUTPUT_DIR / "index.html"
+    if not index_file.exists():
+        print("[WARN] Landing page not found, skipping update.")
+        return
+    html = index_file.read_text(encoding="utf-8")
+    html = re.sub(r'document\.getElementById\("last-run"\).*?;', 
+                  f'document.getElementById("last-run").textContent = "{date_str}";', html)
+    html = re.sub(r'document\.getElementById\("flags-added"\).*?;', 
+                  f'document.getElementById("flags-added").textContent = "{added}";', html)
+    html = re.sub(r'document\.getElementById\("flags-removed"\).*?;', 
+                  f'document.getElementById("flags-removed").textContent = "{removed}";', html)
+    index_file.write_text(html, encoding="utf-8")
+    print(f"[DEBUG] Landing page updated with {added} added / {removed} removed.")
+
 def export_reports(report, summary_counts):
     # --- Update landing page ---
     date_str = datetime.now().strftime("%Y-%m-%d")
@@ -181,33 +194,4 @@ def main():
     print("Open the HTML report in your browser for a clean view.")
 
 if __name__ == "__main__":
-import re
-
-def update_landing_page(date_str, added, removed):
-    index_file = OUTPUT_DIR / "index.html"
-    if not index_file.exists():
-        print("[WARN] Landing page not found, skipping update.")
-        return
-
-    html = index_file.read_text(encoding="utf-8")
-
-    html = re.sub(
-        r'(<span id="last-run">)(.*?)(</span>)',
-        rf'\1{date_str}\3',
-        html
-    )
-    html = re.sub(
-        r'(<span id="flags-added">)(.*?)(</span>)',
-        rf'\1{added}\3',
-        html
-    )
-    html = re.sub(
-        r'(<span id="flags-removed">)(.*?)(</span>)',
-        rf'\1{removed}\3',
-        html
-    )
-
-    index_file.write_text(html, encoding="utf-8")
-    print(f"[DEBUG] Landing page updated → {added} added / {removed} removed.")
-
     main()
