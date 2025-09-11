@@ -1,7 +1,7 @@
 import os
-import re
 import sys
 import subprocess
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -24,7 +24,6 @@ print(f"[DEBUG] Script directory: {SCRIPT_DIR}")
 print(f"[DEBUG] Workspace: {WORKSPACE}")
 print(f"[DEBUG] Output directory: {OUTPUT_DIR}")
 
-
 # --- Categories ---
 CATEGORIES = {
     "Graphics": ["Graphics", "Lighting", "Render", "GPU", "VSync", "Shadow", "Texture"],
@@ -40,6 +39,7 @@ CATEGORIES = {
 }
 
 
+# --- Utilities ---
 def check_git():
     try:
         subprocess.check_output(["git", "--version"], stderr=subprocess.STDOUT)
@@ -110,30 +110,92 @@ def build_report(commits):
     return report, summary_counts
 
 
+# --- Landing page helpers ---
+def ensure_landing_page():
+    index_file = OUTPUT_DIR / "index.html"
+    if index_file.exists():
+        return
+    print("[INFO] No landing page found. Creating default index.html...")
+    index_file.write_text("""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roblox FFlag Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1 { color: #222; }
+    .stats { display: flex; gap: 20px; margin: 20px 0; }
+    .badge {
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 1.1em;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .added { background: #e6f9ec; color: #1b7a2e; }
+    .removed { background: #fde8e8; color: #b91c1c; }
+    .last-run { font-style: italic; margin-top: 15px; }
+    iframe {
+      width: 100%;
+      height: 75vh;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Roblox Client FFlag Tracker</h1>
+
+  <div class="stats">
+    <div class="badge added">
+      Added: <span id="flags-added">0</span>
+    </div>
+    <div class="badge removed">
+      Removed: <span id="flags-removed">0</span>
+    </div>
+  </div>
+
+  <p class="last-run">
+    Last Run: <span id="last-run">Never</span>
+  </p>
+
+  <h2>Latest Full Report</h2>
+  <iframe src="FFlag_Report.html"></iframe>
+</body>
+</html>""", encoding="utf-8")
+
+
 def update_landing_page(date_str, added, removed):
-    """Updates index.html placeholders with the latest run stats."""
     index_file = OUTPUT_DIR / "index.html"
     if not index_file.exists():
         print("[WARN] Landing page not found, skipping update.")
         return
     html = index_file.read_text(encoding="utf-8")
-    html = re.sub(r'document\.getElementById\("last-run"\).*?;',
-                  f'document.getElementById("last-run").textContent = "{date_str}";', html)
-    html = re.sub(r'document\.getElementById\("flags-added"\).*?;',
-                  f'document.getElementById("flags-added").textContent = "{added}";', html)
-    html = re.sub(r'document\.getElementById\("flags-removed"\).*?;',
-                  f'document.getElementById("flags-removed").textContent = "{removed}";', html)
+    html = re.sub(r'<span id="last-run">.*?</span>',
+                  f'<span id="last-run">{date_str}</span>', html)
+    html = re.sub(r'<span id="flags-added">.*?</span>',
+                  f'<span id="flags-added">{added}</span>', html)
+    html = re.sub(r'<span id="flags-removed">.*?</span>',
+                  f'<span id="flags-removed">{removed}</span>', html)
     index_file.write_text(html, encoding="utf-8")
     print(f"[DEBUG] Landing page updated with {added} added / {removed} removed.")
 
 
+# --- Export reports ---
 def export_reports(report, summary_counts):
-    # --- Update landing page ---
+    # Update landing page
     date_str = datetime.now().strftime("%Y-%m-%d")
     added = sum(v for (c, a), v in summary_counts.items() if a == "Added")
     removed = sum(v for (c, a), v in summary_counts.items() if a == "Removed")
     update_landing_page(date_str, added, removed)
 
+    # Markdown + HTML report
     md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
     html = [
         "<html><head><title>Roblox FFlag Intel Report</title>",
@@ -151,11 +213,11 @@ def export_reports(report, summary_counts):
     html.append("<table border='1' cellpadding='5'><tr><th>Category</th><th>Added</th><th>Removed</th><th>Total</th></tr>")
 
     for cat in CATEGORIES.keys():
-        added = summary_counts.get((cat, "Added"), 0)
-        removed = summary_counts.get((cat, "Removed"), 0)
-        total = added + removed
-        md.append(f"| {cat} | {added} | {removed} | {total} |")
-        html.append(f"<tr><td>{cat}</td><td style='color:green;'>{added}</td><td style='color:red;'>{removed}</td><td>{total}</td></tr>")
+        a = summary_counts.get((cat, "Added"), 0)
+        r = summary_counts.get((cat, "Removed"), 0)
+        total = a + r
+        md.append(f"| {cat} | {a} | {r} | {total} |")
+        html.append(f"<tr><td>{cat}</td><td style='color:green;'>{a}</td><td style='color:red;'>{r}</td><td>{total}</td></tr>")
 
     md.append("")
     html.append("</table>")
@@ -184,10 +246,14 @@ def export_reports(report, summary_counts):
     OUTPUT_HTML.write_text("\n".join(html), encoding="utf-8")
 
 
+# --- Main ---
 def main():
     print("=" * 60)
     print(" Roblox Client FFlag Intel Tracker ")
     print("=" * 60)
+
+    ensure_landing_page()
+
     check_git()
     ensure_repo()
     commits = get_commits()
