@@ -188,14 +188,26 @@ def update_landing_page(date_str, added, removed):
     if not index_file.exists():
         print("[WARN] Landing page not found, skipping update.")
         return
+
     html = index_file.read_text(encoding="utf-8")
-    html = re.sub(r'document\.getElementById\("last-run"\).*?;', 
-                  f'document.getElementById("last-run").textContent = "{date_str}";', html)
-    html = re.sub(r'document\.getElementById\("flags-added"\).*?;', 
-                  f'document.getElementById("flags-added").textContent = "{added}";', html)
-    html = re.sub(r'document\.getElementById\("flags-removed"\).*?;', 
-                  f'document.getElementById("flags-removed").textContent = "{removed}";', html)
+
+    html = re.sub(
+        r'(<span id="last-run">)(.*?)(</span>)',
+        rf'\1{date_str}\3',
+        html
+    )
+    html = re.sub(
+        r'(<span id="flags-added">)(.*?)(</span>)',
+        rf'\1{added}\3',
+        html
+    )
+    html = re.sub(
+        r'(<span id="flags-removed">)(.*?)(</span>)',
+        rf'\1{removed}\3',
+        html
+    )
+
     index_file.write_text(html, encoding="utf-8")
-    print(f"[DEBUG] Landing page updated with {added} added / {removed} removed.")
+    print(f"[DEBUG] Landing page updated → {added} added / {removed} removed.")
 
     main()
