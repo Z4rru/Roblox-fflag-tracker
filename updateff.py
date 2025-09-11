@@ -48,13 +48,13 @@ def clone_or_update_repo():
 def analyze_flags():
     log("Analyzing PCDesktopClient.json for flag changes...")
 
-    # Fetch commit hashes for PCDesktopClient.json from the last 5 days
-    since_date = (datetime.datetime.now(ZoneInfo("UTC")) - datetime.timedelta(days=5)).strftime('%Y-%m-%d')
+    # Fetch commit hashes for PCDesktopClient.json from the last 2 days
+    since_date = (datetime.datetime.now(ZoneInfo("UTC")) - datetime.timedelta(days=2)).strftime('%Y-%m-%d')
     
     # Log the date being used for filtering
     log(f"Fetching commits since: {since_date}")
 
-    # Fetch all commits from the last 5 days (extended date range for better accuracy)
+    # Fetch all commits from the last 2 days (extended date range for better accuracy)
     commits = run_cmd(
         f"git log --since='{since_date} 00:00:00' --pretty=format:'%H|%an|%ar|%s|%cd' -- ClientSettings/PCDesktopClient.json",
         cwd=LOCAL_CLONE
@@ -64,7 +64,7 @@ def analyze_flags():
     log(f"Fetched commits: {commits}")
 
     if len(commits) < 1:
-        log("No commits in the past 5 days for PCDesktopClient.json", level="WARN")
+        log("No commits in the past 2 days for PCDesktopClient.json", level="WARN")
         return 0, 0, []
 
     commit_details = []
@@ -99,7 +99,7 @@ def analyze_flags():
     total_added = sum(c["added"] for c in commit_details)
     total_removed = sum(c["removed"] for c in commit_details)
 
-    log(f"Detected {total_added} added flags, {total_removed} removed flags in the past 5 days.")
+    log(f"Detected {total_added} added flags, {total_removed} removed flags in the past 2 days.")
     return total_added, total_removed, commit_details
 
 # ===============================
@@ -117,7 +117,7 @@ def generate_reports():
     last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
 
     # Markdown Report
-    md_content = f"# Roblox Client FFlag Report (Last 5 Days)\n\n"
+    md_content = f"# Roblox Client FFlag Report (Last 2 Days)\n\n"
     md_content += f"- **Last Run:** {last_run}\n"
     md_content += f"- **Flags Added:** {added}\n"
     md_content += f"- **Flags Removed:** {removed}\n"
@@ -172,7 +172,7 @@ def generate_reports():
   </style>
 </head>
 <body>
-  <h1>Roblox Client FFlag Report (Last 5 Days)</h1>
+  <h1>Roblox Client FFlag Report (Last 2 Days)</h1>
   <div class="stats">
     <div class="card added">Added: {added}</div>
     <div class="card removed">Removed: {removed}</div>
@@ -273,7 +273,7 @@ def ensure_landing_page(output_dir: Path, added, removed, last_run, commit_detai
 <body>
   <header>
     <h1>Roblox Client FFlag Tracker</h1>
-    <p>Automatic updates — tracking changes in the last 5 days</p>
+    <p>Automatic updates — tracking changes in the last 2 days</p>
   </header>
 
   <section class="stats">
@@ -299,7 +299,7 @@ def ensure_landing_page(output_dir: Path, added, removed, last_run, commit_detai
 # ===============================
 def main():
     log("============================================================")
-    log(" Roblox Client FFlag Intel Tracker (Past 5 Days) ")
+    log(" Roblox Client FFlag Intel Tracker (Past 2 Days) ")
     log("============================================================")
 
     clone_or_update_repo()
