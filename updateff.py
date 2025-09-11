@@ -1,7 +1,7 @@
 import os
+import re
 import sys
 import subprocess
-import re
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -24,6 +24,7 @@ print(f"[DEBUG] Script directory: {SCRIPT_DIR}")
 print(f"[DEBUG] Workspace: {WORKSPACE}")
 print(f"[DEBUG] Output directory: {OUTPUT_DIR}")
 
+
 # --- Categories ---
 CATEGORIES = {
     "Graphics": ["Graphics", "Lighting", "Render", "GPU", "VSync", "Shadow", "Texture"],
@@ -38,6 +39,7 @@ CATEGORIES = {
     "Other": []
 }
 
+
 def check_git():
     try:
         subprocess.check_output(["git", "--version"], stderr=subprocess.STDOUT)
@@ -45,6 +47,7 @@ def check_git():
         print("[ERROR] Git is not installed or not in PATH.")
         print("Download Git: https://git-scm.com/downloads")
         sys.exit(1)
+
 
 def ensure_repo():
     if not TRACKER_DIR.exists():
@@ -54,6 +57,7 @@ def ensure_repo():
     subprocess.run(["git", "fetch", "--all"], check=True)
     subprocess.run(["git", "reset", "--hard", "origin/main"], check=True)
 
+
 def categorize_flag(flag_name):
     for cat, keywords in CATEGORIES.items():
         for word in keywords:
@@ -61,10 +65,12 @@ def categorize_flag(flag_name):
                 return cat
     return "Other"
 
+
 def get_commits():
     since_date = (datetime.now() - timedelta(days=DAYS)).strftime("%Y-%m-%d")
     log_cmd = ["git", "log", f"--since={since_date}", "--pretty=format:%H", "--", TARGET_FILE]
     return subprocess.check_output(log_cmd, text=True).splitlines()
+
 
 def build_report(commits):
     report = []
@@ -103,20 +109,23 @@ def build_report(commits):
 
     return report, summary_counts
 
+
 def update_landing_page(date_str, added, removed):
+    """Updates index.html placeholders with the latest run stats."""
     index_file = OUTPUT_DIR / "index.html"
     if not index_file.exists():
         print("[WARN] Landing page not found, skipping update.")
         return
     html = index_file.read_text(encoding="utf-8")
-    html = re.sub(r'document\.getElementById\("last-run"\).*?;', 
+    html = re.sub(r'document\.getElementById\("last-run"\).*?;',
                   f'document.getElementById("last-run").textContent = "{date_str}";', html)
-    html = re.sub(r'document\.getElementById\("flags-added"\).*?;', 
+    html = re.sub(r'document\.getElementById\("flags-added"\).*?;',
                   f'document.getElementById("flags-added").textContent = "{added}";', html)
-    html = re.sub(r'document\.getElementById\("flags-removed"\).*?;', 
+    html = re.sub(r'document\.getElementById\("flags-removed"\).*?;',
                   f'document.getElementById("flags-removed").textContent = "{removed}";', html)
     index_file.write_text(html, encoding="utf-8")
     print(f"[DEBUG] Landing page updated with {added} added / {removed} removed.")
+
 
 def export_reports(report, summary_counts):
     # --- Update landing page ---
@@ -174,10 +183,11 @@ def export_reports(report, summary_counts):
     print(f"[DEBUG] Writing HTML report: {OUTPUT_HTML}")
     OUTPUT_HTML.write_text("\n".join(html), encoding="utf-8")
 
+
 def main():
-    print("="*60)
+    print("=" * 60)
     print(" Roblox Client FFlag Intel Tracker ")
-    print("="*60)
+    print("=" * 60)
     check_git()
     ensure_repo()
     commits = get_commits()
@@ -192,6 +202,7 @@ def main():
     print(f"- Markdown: {OUTPUT_MD}")
     print(f"- HTML:     {OUTPUT_HTML}")
     print("Open the HTML report in your browser for a clean view.")
+
 
 if __name__ == "__main__":
     main()
