@@ -12,7 +12,7 @@ DAYS = 2
 
 # --- Paths ---
 SCRIPT_DIR = Path(__file__).resolve().parent
-WORKSPACE = Path(os.getenv("GITHUB_WORKSPACE", SCRIPT_DIR))
+WORKSPACE = Path(os.getenv("GITHUB_WORKSPACE", SCRIPT_DIR)).resolve()
 OUTPUT_DIR = WORKSPACE / "output"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -22,6 +22,8 @@ OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
 print(f"[DEBUG] Script directory: {SCRIPT_DIR}")
 print(f"[DEBUG] Workspace: {WORKSPACE}")
 print(f"[DEBUG] Output directory: {OUTPUT_DIR}")
+
+
 
 
 # --- Categories ---
