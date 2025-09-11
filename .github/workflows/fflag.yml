@@ -5,6 +5,11 @@ on:
     - cron: "0 */6 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write      # allow pushing to gh-pages
+  pages: write         # allow deploying to GitHub Pages
+  id-token: write      # required for OIDC auth (peaceiris supports it)
+
 jobs:
   run-tracker:
     runs-on: ubuntu-latest
