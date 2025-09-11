@@ -10,7 +10,7 @@ REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 2
 
-# --- Output Path (absolute, based on script location) ---
+# --- Output Path (absolute, always relative to this script) ---
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = SCRIPT_DIR / "output"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -34,7 +34,6 @@ CATEGORIES = {
     "Interpolation": ["Interp", "Interpolation", "Tween", "Smooth", "Extrapolate"],
     "Other": []
 }
-
 
 def check_git():
     try:
@@ -145,15 +144,10 @@ def export_reports(report, summary_counts):
         md.append("")
     html.append("</body></html>")
 
-    # --- Ensure output dir exists ---
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-    # --- Debug prints ---
-    print(f"[DEBUG] Writing Markdown report to: {OUTPUT_MD}")
-    print(f"[DEBUG] Writing HTML report to:     {OUTPUT_HTML}")
-
-    # --- Write reports ---
+    print(f"[DEBUG] Writing Markdown report: {OUTPUT_MD}")
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
+
+    print(f"[DEBUG] Writing HTML report: {OUTPUT_HTML}")
     OUTPUT_HTML.write_text("\n".join(html), encoding="utf-8")
 
 def main():
