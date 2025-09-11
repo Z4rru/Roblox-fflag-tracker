@@ -106,11 +106,11 @@ def build_report(commits):
     return report, summary_counts
 
 def export_reports(report, summary_counts):
-# --- Update landing page ---
-date_str = datetime.now().strftime("%Y-%m-%d")
-added = sum(v for (c, a), v in summary_counts.items() if a == "Added")
-removed = sum(v for (c, a), v in summary_counts.items() if a == "Removed")
-update_landing_page(date_str, added, removed)
+    # --- Update landing page ---
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    added = sum(v for (c, a), v in summary_counts.items() if a == "Added")
+    removed = sum(v for (c, a), v in summary_counts.items() if a == "Removed")
+    update_landing_page(date_str, added, removed)
 
     md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
     html = [
@@ -120,7 +120,6 @@ update_landing_page(date_str, added, removed)
         f"<h1>Roblox Client FFlag Intel Report ({DAYS} Days)</h1>",
         f"<p>Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>"
     ]
-
 
     # --- Summary Table ---
     md.append("## Summary of Changes\n")
