@@ -159,6 +159,8 @@ def main():
     commits = get_commits()
     if not commits:
         print(f"[INFO] No changes in the past {DAYS} days.")
+        OUTPUT_MD.write_text("# No FFlag changes detected.\n", encoding="utf-8")
+        OUTPUT_HTML.write_text("<html><body><h1>No FFlag changes detected.</h1></body></html>", encoding="utf-8")
         return
     report, summary_counts = build_report(commits)
     export_reports(report, summary_counts)
