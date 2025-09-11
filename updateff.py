@@ -10,7 +10,7 @@ REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 2
 
-# --- Output Path (absolute, always relative to this script) ---
+# --- Output Path (always relative to repo root) ---
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = SCRIPT_DIR / "output"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
