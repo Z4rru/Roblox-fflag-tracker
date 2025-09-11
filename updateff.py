@@ -10,8 +10,8 @@ REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 2
 
-# --- Fixed Output Path ---
-OUTPUT_DIR = Path(r"C:\Users\kurta\Downloads\tempwin11")
+# --- Output Path (for GitHub Pages) ---
+OUTPUT_DIR = Path("output")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_MD = OUTPUT_DIR / "FFlag_Report.md"
 OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
