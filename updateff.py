@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
 # ===============================
 def ensure_landing_page(added, removed, last_run):
     index_html = OUTPUT_DIR / "index.html"
-    html = f"""<!DOCTYPE html>
+    html = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -330,56 +330,62 @@ def ensure_landing_page(added, removed, last_run):
 
   <h2 style="text-align:center; color:#58a6ff;">Latest Report</h2>
   <iframe src="FFlag_Report.html"></iframe>
-<h2 style="text-align:center; color:#58a6ff;">Trends Over Time</h2>
-<canvas id="trendChart" style="max-width:900px; margin:20px auto; display:block;"></canvas>
+  <h2 style="text-align:center; color:#58a6ff;">Trends Over Time</h2>
+  <canvas id="trendChart" style="max-width:900px; margin:20px auto; display:block;"></canvas>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-fetch("history.json")
-  .then(response => response.json())
-  .then(data => {
-    const ctx = document.getElementById("trendChart").getContext("2d");
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: data.map(d => d.date),
-        datasets: [
-          {
-            label: "Flags Added",
-            data: data.map(d => d.added),
-            borderColor: "#4caf50",
-            fill: false
-          },
-          {
-            label: "Flags Removed",
-            data: data.map(d => d.removed),
-            borderColor: "#f44336",
-            fill: false
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { labels: { color: "#c9d1d9" } }
-        },
-        scales: {
-          x: { ticks: { color: "#c9d1d9" } },
-          y: { ticks: { color: "#c9d1d9" } }
-        }
-      }
-    });
-  });
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+  fetch("history.json")
+    .then(response => response.json())
+    .then(data => {{
+      const ctx = document.getElementById("trendChart").getContext("2d");
+      new Chart(ctx, {{
+        type: "line",
+        data: {{
+          labels: data.map(d => d.date),
+          datasets: [
+            {{
+              label: "Flags Added",
+              data: data.map(d => d.added),
+              borderColor: "#4caf50",
+              fill: false
+            }},
+            {{
+              label: "Flags Removed",
+              data: data.map(d => d.removed),
+              borderColor: "#f44336",
+              fill: false
+            }}
+          ]
+        }},
+        options: {{
+          responsive: true,
+          plugins: {{
+            legend: {{ labels: {{ color: "#c9d1d9" }} }}
+          }},
+          scales: {{
+            x: {{ ticks: {{ color: "#c9d1d9" }} }},
+            y: {{ ticks: {{ color: "#c9d1d9" }} }}
+          }}
+        }}
+      }});
+    }});
+  </script>
 
   <footer>
     <p>Generated automatically by <code>updateff.py</code> | Last Updated: {last_run}</p>
   </footer>
 </body>
-</html>"""
+</html>""".format(
+        added=added,
+        removed=removed,
+        last_run=last_run,
+        TARGET_FILE=TARGET_FILE,
+        DAYS=DAYS,
+    )
     index_html.write_text(html, encoding="utf-8")
     log(f"Landing page written: {index_html}")
+
 
 import json
 
