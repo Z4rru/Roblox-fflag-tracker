@@ -13,8 +13,10 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 WORKSPACE = SCRIPT_DIR
 OUTPUT_DIR = WORKSPACE / "output"
 
-FFLAG_REPO = "https://github.com/MaximumADHD/Roblox-Client-Tracker.git"
-LOCAL_CLONE = WORKSPACE / "Roblox-Client-Tracker"
+FFLAG_REPO = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker.git"
+LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
+
+TRACK_FILE = "PCDesktopClient.json"  # file to track
 
 # ===============================
 # Helpers
@@ -35,46 +37,46 @@ def run_cmd(cmd, cwd=None):
 # ===============================
 def clone_or_update_repo():
     if LOCAL_CLONE.exists():
-        log("Updating existing Roblox-Client-Tracker repo...")
+        log("Updating existing repo...")
         run_cmd("git fetch --all", cwd=LOCAL_CLONE)
         run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
     else:
-        log("Cloning fresh Roblox-Client-Tracker repo...")
+        log("Cloning fresh repo...")
         run_cmd(f"git clone {FFLAG_REPO} {LOCAL_CLONE}")
 
 # ===============================
 # Diffing logic
 # ===============================
-def analyze_flags():
-    log("Analyzing PCDesktopClient.json for flag changes...")
+def analyze_flags(days=5):
+    log(f"Analyzing {TRACK_FILE} for flag changes...")
 
-    since_date = (datetime.datetime.now(ZoneInfo("UTC")) - datetime.timedelta(days=5)).strftime('%Y-%m-%d')
-    log(f"Fetching commits since: {since_date}")
+    since_date = (datetime.datetime.now(ZoneInfo("UTC")) - datetime.timedelta(days=days)).strftime('%Y-%m-%d')
+    log(f"Fetching commits since: {since_date} (last {days} days)")
 
-    commits = run_cmd(
-        f"git log --since='{since_date} 00:00:00' --pretty=format:'%H|%an|%ar|%s|%cd' -- PCDesktopClient.json",
+    # Correct path: just TRACK_FILE in repo root
+    commits_raw = run_cmd(
+        f"git log --since='{since_date} 00:00:00' --pretty=format:'%H|%an|%ar|%s|%cd' -- {TRACK_FILE}",
         cwd=LOCAL_CLONE
-    ).splitlines()
+    )
+    commits = commits_raw.splitlines()
+    log(f"Fetched commits: {commits}")
 
-    if len(commits) < 1:
-        log("No commits in the past 5 days for PCDesktopClient.json", level="WARN")
+    if not commits:
+        log(f"No commits in the past {days} days for {TRACK_FILE}", level="WARN")
         return 0, 0, []
 
     commit_details = []
-    for commit in commits:
-        parts = commit.split("|")
-        if len(parts) < 5:
+    for entry in commits:
+        parts = entry.split("|", maxsplit=4)
+        if len(parts) != 5:
             continue
         commit_hash, author, relative_time, message, commit_date = parts
 
-        diff = run_cmd(f"git diff {commit_hash}^ {commit_hash} -- PCDesktopClient.json", cwd=LOCAL_CLONE).splitlines()
-
-        added, removed = 0, 0
-        for line in diff:
-            if line.startswith("+") and not line.startswith("+++"):
-                added += 1
-            elif line.startswith("-") and not line.startswith("---"):
-                removed += 1
+        # diff counting
+        diff_raw = run_cmd(f"git diff {commit_hash}^ {commit_hash} -- {TRACK_FILE}", cwd=LOCAL_CLONE)
+        diff_lines = diff_raw.splitlines()
+        added = sum(1 for l in diff_lines if l.startswith("+") and not l.startswith("+++"))
+        removed = sum(1 for l in diff_lines if l.startswith("-") and not l.startswith("---"))
 
         commit_info = {
             "hash": commit_hash,
@@ -85,12 +87,13 @@ def analyze_flags():
             "added": added,
             "removed": removed
         }
+        log(f"Commit Details: {commit_info}")
         commit_details.append(commit_info)
 
     total_added = sum(c["added"] for c in commit_details)
     total_removed = sum(c["removed"] for c in commit_details)
+    log(f"Detected {total_added} added flags, {total_removed} removed flags in the past {days} days.")
 
-    log(f"Detected {total_added} added flags, {total_removed} removed flags in the past 5 days.")
     return total_added, total_removed, commit_details
 
 # ===============================
@@ -104,67 +107,144 @@ def generate_reports():
     md_report = OUTPUT_DIR / "FFlag_Report.md"
     html_report = OUTPUT_DIR / "FFlag_Report.html"
 
-    added, removed, commit_details = analyze_flags()
+    added, removed, commit_details = analyze_flags(days=5)
     last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
 
-    # Markdown Report
-    md_content = f"# Roblox Client FFlag Report (Last 5 Days)\n\n"
-    md_content += f"- **Last Run:** {last_run}\n"
-    md_content += f"- **Flags Added:** {added}\n"
-    md_content += f"- **Flags Removed:** {removed}\n"
+    # Markdown
+    md = []
+    md.append(f"# Roblox Client FFlag Report — `{TRACK_FILE}` (Last 5 Days)\n")
+    md.append(f"- **Last Run:** {last_run}")
+    md.append(f"- **Flags Added:** {added}")
+    md.append(f"- **Flags Removed:** {removed}\n")
+
     if commit_details:
-        md_content += "\n## Commit History\n"
-        for commit in commit_details:
-            md_content += f"- `{commit['hash']}` by {commit['author']} ({commit['when']}) - {commit['message']}\n"
-            md_content += f"  - **Added:** {commit['added']} | **Removed:** {commit['removed']}\n"
-            md_content += f"  - **Commit Date:** {commit['commit_date']}\n"
+        md.append("## Commit History\n")
+        for c in commit_details:
+            md.append(f"- `{c['hash']}` by {c['author']} ({c['when']}) — {c['message']}")
+            md.append(f"  - Added: {c['added']} | Removed: {c['removed']}")
+            md.append(f"  - Commit Date: {c['commit_date']}\n")
 
-    md_report.write_text(md_content, encoding="utf-8")
+    md_report.write_text("\n".join(md), encoding="utf-8")
 
-    # HTML Report (Dark / DMZ Style)
+    # HTML Report — styled dark dashboard style
     commit_html = ""
-    if commit_details:
-        for commit in commit_details:
-            commit_html += f"""
-            <section class="commit">
-              <h3>🔗 Commit</h3>
-              <p><strong>Hash:</strong> <code>{commit['hash']}</code></p>
-              <p><strong>Author:</strong> {commit['author']}</p>
-              <p><strong>When:</strong> {commit['when']}</p>
-              <p><strong>Message:</strong> {commit['message']}</p>
-              <p><strong>Flags Added:</strong> {commit['added']} | <strong>Flags Removed:</strong> {commit['removed']}</p>
-              <p><strong>Commit Date:</strong> {commit['commit_date']}</p>
-            </section>
-            """
+    for c in commit_details:
+        commit_html += f"""
+        <section class="commit">
+          <h3>Commit <code>{c['hash']}</code></h3>
+          <p><strong>Author:</strong> {c['author']}</p>
+          <p><strong>When:</strong> {c['when']}</p>
+          <p><strong>Message:</strong> {c['message']}</p>
+          <p><strong>Added:</strong> {c['added']} &nbsp;|&nbsp; <strong>Removed:</strong> {c['removed']}</p>
+          <p><strong>Commit Date:</strong> {c['commit_date']}</p>
+        </section>
+        """
 
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FFlag Report</title>
+  <title>Roblox Client FFlag Report — {TRACK_FILE}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {{ font-family: "Segoe UI", Roboto, Arial, sans-serif; background: #0d1117; color: #c9d1d9; margin: 0; padding: 20px; }}
-    h1 {{ color: #58a6ff; }}
-    .stats {{ display: flex; gap: 20px; margin: 20px 0; flex-wrap: wrap; }}
-    .card {{ flex: 1; min-width: 150px; padding: 20px; border-radius: 12px; background: #161b22; text-align: center; font-size: 1.2em; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }}
+    body {{
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      margin: 0;
+      padding: 0;
+    }}
+    header {{
+      background: linear-gradient(135deg, #1f4068, #1b1b2f);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }}
+    header h1 {{
+      font-size: 2.5rem;
+      margin: 0;
+    }}
+    header p {{
+      color: #8b949e;
+      margin-top: 8px;
+    }}
+    .stats {{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px auto;
+      flex-wrap: wrap;
+      max-width: 900px;
+    }}
+    .card {{
+      flex: 1;
+      min-width: 150px;
+      padding: 25px;
+      border-radius: 12px;
+      font-size: 1.3em;
+      text-align: center;
+      font-weight: bold;
+      background: #161b22;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }}
     .added {{ color: #4caf50; }}
     .removed {{ color: #f44336; }}
-    .last-run {{ margin-top: 10px; font-style: italic; color: #8b949e; }}
-    .commit {{ margin-top: 20px; padding: 15px; background: #161b22; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }}
-    code {{ background: #21262d; padding: 2px 4px; border-radius: 4px; }}
+    .last-run {{
+      text-align: center;
+      margin-top: 10px;
+      font-style: italic;
+      color: #8b949e;
+    }}
+    section.commit {{
+      margin: 20px auto 40px auto;
+      max-width: 900px;
+      background: #161b22;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }}
+    section.commit h3 {{
+      margin-top: 0;
+      color: #58a6ff;
+    }}
+    code {{
+      background: #21262d;
+      color: #f0f6fc;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }}
+    footer {{
+      text-align: center;
+      padding: 20px;
+      background: #1b1b2f;
+      color: #8b949e;
+      margin-top: 40px;
+    }}
   </style>
 </head>
 <body>
-  <h1>Roblox Client FFlag Report (Last 5 Days)</h1>
+  <header>
+    <h1>Roblox Client FFlag Tracker</h1>
+    <p>Tracking `{TRACK_FILE}` changes (Last 5 Days)</p>
+  </header>
+
   <div class="stats">
-    <div class="card added">Added: {added}</div>
-    <div class="card removed">Removed: {removed}</div>
+    <div class="card added">Added: <span class="added">{added}</span></div>
+    <div class="card removed">Removed: <span class="removed">{removed}</span></div>
   </div>
-  <p class="last-run">Last Run: {last_run}</p>
+
+  <p class="last-run">Last Run: <span>{last_run}</span></p>
+
   {commit_html}
+
+  <footer>
+    <p>⚡ Generated via Roblox-FFlag-Tracker • Live updates on GitHub Pages</p>
+  </footer>
 </body>
 </html>
 """
+
     html_report.write_text(html_content, encoding="utf-8")
 
     log(f"Reports written:\n- {md_report}\n- {html_report}")
@@ -174,74 +254,140 @@ def generate_reports():
 # Landing page
 # ===============================
 def ensure_landing_page(output_dir: Path, added, removed, last_run, commit_details):
+    # Make landing page same design style
     commit_html = ""
     if commit_details:
-        for commit in commit_details:
+        for c in commit_details:
             commit_html += f"""
             <section class="commit">
-              <h3>🔗 Commit</h3>
-              <p><strong>Hash:</strong> <code>{commit['hash']}</code></p>
-              <p><strong>Author:</strong> {commit['author']}</p>
-              <p><strong>When:</strong> {commit['when']}</p>
-              <p><strong>Message:</strong> {commit['message']}</p>
-              <p><strong>Flags Added:</strong> {commit['added']} | <strong>Flags Removed:</strong> {commit['removed']}</p>
-              <p><strong>Commit Date:</strong> {commit['commit_date']}</p>
+              <h3>Commit <code>{c['hash']}</code></h3>
+              <p><strong>Author:</strong> {c['author']}</p>
+              <p><strong>Message:</strong> {c['message']}</p>
+              <p><strong>Added:</strong> {c['added']} &nbsp;|&nbsp; <strong>Removed:</strong> {c['removed']}</p>
             </section>
             """
 
-    html = f"""<!DOCTYPE html>
+    index_html = output_dir / "index.html"
+    content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Roblox FFlag Tracker</title>
+  <title>Roblox FFlag Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
-    body {{ font-family: "Segoe UI", Roboto, Arial, sans-serif; background: #0d1117; color: #c9d1d9; margin: 0; padding: 0; }}
-    header {{ background: linear-gradient(135deg, #1f4068, #1b1b2f); color: #fff; padding: 40px 20px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }}
-    header h1 {{ font-size: 2.5rem; font-weight: 700; margin: 0; }}
-    header p {{ margin-top: 10px; font-size: 1.1rem; color: #aaa; }}
-    .stats {{ display: flex; justify-content: center; gap: 20px; margin: 30px auto; flex-wrap: wrap; max-width: 900px; }}
-    .badge {{ flex: 1; min-width: 150px; padding: 20px; border-radius: 12px; font-size: 1.3em; text-align: center; background: #161b22; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }}
+    body {{
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      margin: 0;
+      padding: 0;
+    }}
+    header {{
+      background: linear-gradient(135deg, #1f4068, #1b1b2f);
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }}
+    header h1 {{
+      font-size: 2.5rem;
+      margin: 0;
+    }}
+    header p {{
+      color: #8b949e;
+      margin-top: 8px;
+    }}
+    .stats {{
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px auto;
+      flex-wrap: wrap;
+      max-width: 900px;
+    }}
+    .card {{
+      flex: 1;
+      min-width: 150px;
+      padding: 25px;
+      border-radius: 12px;
+      font-size: 1.3em;
+      text-align: center;
+      font-weight: bold;
+      background: #161b22;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }}
     .added {{ color: #4caf50; }}
     .removed {{ color: #f44336; }}
-    .last-run {{ text-align: center; margin-top: 10px; font-style: italic; color: #8b949e; }}
-    section.commit {{ margin: 20px auto; max-width: 900px; background: #161b22; padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }}
-    section.commit h3 {{ color: #58a6ff; }}
-    code {{ background: #21262d; color: #f0f6fc; padding: 2px 5px; border-radius: 4px; }}
-    footer {{ text-align: center; padding: 25px; margin-top: 40px; background: #1b1b2f; color: #8b949e; }}
+    .last-run {{
+      text-align: center;
+      margin-top: 10px;
+      font-style: italic;
+      color: #8b949e;
+    }}
+    section.commit {{
+      margin: 20px auto;
+      max-width: 900px;
+      background: #161b22;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }}
+    section.commit h3 {{
+      margin-top: 0;
+      color: #58a6ff;
+    }}
+    code {{
+      background: #21262d;
+      color: #f0f6fc;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }}
+    footer {{
+      text-align: center;
+      padding: 20px;
+      background: #1b1b2f;
+      color: #8b949e;
+      margin-top: 40px;
+    }}
+    a {{
+      color: #58a6ff;
+      text-decoration: none;
+    }}
+    a:hover {{
+      text-decoration: underline;
+    }}
   </style>
 </head>
 <body>
   <header>
-    <h1>Roblox Client FFlag Tracker</h1>
-    <p>Automatic updates — tracking changes in the last 5 days</p>
+    <h1>Roblox FFlag Dashboard</h1>
+    <p>Live: {TRACK_FILE} changes</p>
   </header>
 
-  <section class="stats">
-    <div class="badge added">Added: <span>{added}</span></div>
-    <div class="badge removed">Removed: <span>{removed}</span></div>
-  </section>
+  <div class="stats">
+    <div class="card added">Added: <span class="added">{added}</span></div>
+    <div class="card removed">Removed: <span class="removed">{removed}</span></div>
+  </div>
 
   <p class="last-run">Last Run: <span>{last_run}</span></p>
 
   {commit_html}
 
   <footer>
-    <p>⚡ Powered by Roblox FFlag Tracker | Generated Automatically</p>
+    <p>View full report: <a href="FFlag_Report.html">Report Page</a> | Markdown version available</p>
   </footer>
 </body>
 </html>
 """
-    (output_dir / "index.html").write_text(html, encoding="utf-8")
-    log(f"Landing page written: {output_dir/'index.html'}")
+    index_html.write_text(content, encoding="utf-8")
+    log(f"Landing page updated: {index_html}")
 
 # ===============================
 # Main
 # ===============================
 def main():
     log("============================================================")
-    log(" Roblox Client FFlag Intel Tracker (Past 5 Days) ")
+    log(" Roblox Client FFlag Tracker Dashboard ")
     log("============================================================")
 
     clone_or_update_repo()
