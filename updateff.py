@@ -129,7 +129,7 @@ def export_reports(report, summary_counts):
     added = sum(v for (c, a), v in summary_counts.items() if a == "Added")
     removed = sum(v for (c, a), v in summary_counts.items() if a == "Removed")
 
-    # Markdown
+    # Markdown (unchanged)
     md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
     md.append(f"- **Last Run:** {date_str}")
     md.append(f"- **Flags Added:** {added}")
@@ -158,7 +158,7 @@ def export_reports(report, summary_counts):
 
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
 
-    # HTML
+    # HTML with search/filter
     html = [f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -173,6 +173,17 @@ def export_reports(report, summary_counts):
     .removed {{ color: #f44336; }}
     code {{ background: #161b22; padding: 2px 5px; border-radius: 4px; }}
     .commit {{ background: #161b22; padding: 15px; margin: 15px 0; border-radius: 8px; }}
+    .search-container {{ text-align: center; margin: 20px 0; }}
+    #searchInput {{
+      width: 80%; max-width: 500px;
+      padding: 10px 14px; font-size: 1rem;
+      border-radius: 8px; border: 1px solid #30363d;
+      background: #161b22; color: #c9d1d9;
+    }}
+    #searchInput:focus {{
+      outline: none; border-color: #58a6ff;
+      box-shadow: 0 0 4px #58a6ff;
+    }}
   </style>
 </head>
 <body>
@@ -180,6 +191,11 @@ def export_reports(report, summary_counts):
   <p><strong>Last Run:</strong> {date_str}</p>
   <p><strong>Flags Added:</strong> <span class="added">{added}</span> |
      <strong>Removed:</strong> <span class="removed">{removed}</span></p>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="🔍 Search by category or flag name...">
+  </div>
+
   <h2>Summary of Changes</h2>
   <table>
     <tr><th>Category</th><th>Added</th><th>Removed</th><th>Total</th></tr>"""]
@@ -204,11 +220,28 @@ def export_reports(report, summary_counts):
             html.append("</ul>")
         html.append("</div>")
 
+    # Add JS filter logic
+    html.append("""<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("searchInput");
+  const commits = document.querySelectorAll(".commit");
+
+  input.addEventListener("keyup", () => {
+    const filter = input.value.toLowerCase();
+    commits.forEach(commit => {
+      const text = commit.textContent.toLowerCase();
+      commit.style.display = text.includes(filter) ? "" : "none";
+    });
+  });
+});
+</script>""")
+
     html.append("</body></html>")
     OUTPUT_HTML.write_text("\n".join(html), encoding="utf-8")
 
     log(f"Reports generated:\n- {OUTPUT_MD}\n- {OUTPUT_HTML}")
     return added, removed, date_str, report
+
 
 # ===============================
 # Landing Page
