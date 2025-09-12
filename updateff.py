@@ -219,32 +219,88 @@ def ensure_landing_page(added, removed, last_run):
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Roblox FFlag Tracker">
+  <meta property="og:description" content="Live tracking of Roblox Client FFlag changes (last {DAYS} days)">
+  <meta property="og:type" content="website">
   <title>Roblox FFlag Tracker Dashboard</title>
   <style>
-    body {{ font-family: Arial, sans-serif; background: #0d1117; color: #c9d1d9; text-align: center; }}
-    header {{ padding: 40px; background: #1b1b2f; }}
-    h1 {{ color: #58a6ff; }}
-    .stats {{ display: flex; justify-content: center; gap: 20px; margin: 30px auto; flex-wrap: wrap; }}
-    .card {{ padding: 20px; border-radius: 12px; background: #161b22; min-width: 150px; }}
+    body {{
+      margin: 0; font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0d1117; color: #c9d1d9;
+    }}
+    header {{
+      background: linear-gradient(135deg, #1f2937, #111827);
+      padding: 40px 20px; text-align: center;
+      border-bottom: 1px solid #30363d;
+    }}
+    header h1 {{
+      margin: 0; font-size: 2.2rem; color: #58a6ff;
+    }}
+    header p {{
+      margin-top: 8px; color: #8b949e;
+    }}
+    nav {{
+      margin-top: 20px;
+    }}
+    nav a {{
+      color: #58a6ff; margin: 0 10px; text-decoration: none;
+      font-weight: 500;
+    }}
+    nav a:hover {{ text-decoration: underline; }}
+    .stats {{
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px; margin: 40px auto; max-width: 900px;
+    }}
+    .card {{
+      padding: 20px; border-radius: 12px; background: #161b22;
+      text-align: center; font-size: 1.5rem; font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }}
+    .card:hover {{ transform: translateY(-4px); }}
     .added {{ color: #4caf50; }}
     .removed {{ color: #f44336; }}
-    iframe {{ width: 90%; height: 70vh; border: none; margin-top: 30px; border-radius: 8px; }}
-    footer {{ margin-top: 30px; color: #8b949e; }}
+    .last-run {{
+      text-align: center; font-style: italic; margin: 20px 0;
+      color: #8b949e;
+    }}
+    iframe {{
+      display: block; margin: 30px auto; width: 95%; height: 70vh;
+      border: 1px solid #30363d; border-radius: 8px;
+      background: #0d1117;
+    }}
+    footer {{
+      margin-top: 40px; padding: 20px;
+      text-align: center; background: #161b22; color: #8b949e;
+      font-size: 0.9rem;
+    }}
   </style>
 </head>
 <body>
   <header>
     <h1>Roblox Client FFlag Tracker</h1>
-    <p>Tracking changes for {TARGET_FILE}</p>
+    <p>Tracking changes in <code>{TARGET_FILE}</code></p>
+    <nav>
+      <a href="index.html">Dashboard</a> |
+      <a href="FFlag_Report.html">Full Report</a> |
+      <a href="https://github.com/MaximumADHD/Roblox-FFlag-Tracker" target="_blank">GitHub Repo</a>
+    </nav>
   </header>
+
   <section class="stats">
-    <div class="card">Added: <span class="added">{added}</span></div>
-    <div class="card">Removed: <span class="removed">{removed}</span></div>
+    <div class="card added">+ {added} <br><small>Flags Added</small></div>
+    <div class="card removed">- {removed} <br><small>Flags Removed</small></div>
   </section>
-  <p><em>Last Run: {last_run}</em></p>
-  <h2>Latest Full Report</h2>
+
+  <p class="last-run">Last Run: {last_run}</p>
+
+  <h2 style="text-align:center; color:#58a6ff;">Latest Report</h2>
   <iframe src="FFlag_Report.html"></iframe>
-  <footer>Generated automatically by updateff.py</footer>
+
+  <footer>
+    <p>Generated automatically by <code>updateff.py</code> | Last Updated: {last_run}</p>
+  </footer>
 </body>
 </html>"""
     index_html.write_text(html, encoding="utf-8")
