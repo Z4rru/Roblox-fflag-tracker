@@ -330,6 +330,48 @@ def ensure_landing_page(added, removed, last_run):
 
   <h2 style="text-align:center; color:#58a6ff;">Latest Report</h2>
   <iframe src="FFlag_Report.html"></iframe>
+<h2 style="text-align:center; color:#58a6ff;">Trends Over Time</h2>
+<canvas id="trendChart" style="max-width:900px; margin:20px auto; display:block;"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+fetch("history.json")
+  .then(response => response.json())
+  .then(data => {
+    const ctx = document.getElementById("trendChart").getContext("2d");
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: data.map(d => d.date),
+        datasets: [
+          {
+            label: "Flags Added",
+            data: data.map(d => d.added),
+            borderColor: "#4caf50",
+            fill: false
+          },
+          {
+            label: "Flags Removed",
+            data: data.map(d => d.removed),
+            borderColor: "#f44336",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { labels: { color: "#c9d1d9" } }
+        },
+        scales: {
+          x: { ticks: { color: "#c9d1d9" } },
+          y: { ticks: { color: "#c9d1d9" } }
+        }
+      }
+    });
+  });
+</script>
+
 
   <footer>
     <p>Generated automatically by <code>updateff.py</code> | Last Updated: {last_run}</p>
@@ -338,6 +380,18 @@ def ensure_landing_page(added, removed, last_run):
 </html>"""
     index_html.write_text(html, encoding="utf-8")
     log(f"Landing page written: {index_html}")
+
+import json
+
+def update_history(added, removed, last_run):
+    hist_file = OUTPUT_DIR / "history.json"
+    history = []
+    if hist_file.exists():
+        history = json.loads(hist_file.read_text(encoding="utf-8"))
+
+    history.append({"date": last_run, "added": added, "removed": removed})
+    hist_file.write_text(json.dumps(history, indent=2), encoding="utf-8")
+
 
 # ===============================
 # Main
@@ -356,6 +410,8 @@ def main():
     report, summary_counts = build_report(commits)
     added, removed, last_run, _ = export_reports(report, summary_counts)
     ensure_landing_page(added, removed, last_run)
+    update_history(added, removed, last_run)
+
     log("All done!", level="SUCCESS")
 
 if __name__ == "__main__":
