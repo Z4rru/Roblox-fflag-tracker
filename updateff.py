@@ -338,12 +338,12 @@ function animateParticles(){{
         ctx.fill();
     }}); 
     requestAnimationFrame(animateParticles);
-}}
+}} 
 animateParticles();
 window.addEventListener('resize',()=>{{canvas.width=window.innerWidth; canvas.height=window.innerHeight;}});
 
 // Trend chart
-fetch("history.json").then(r=>r.json()).then(data=>{{
+fetch("history.json").then(r=>r.json()).then(data=>{{ 
   const ctx=document.getElementById("trendChart").getContext("2d");
   new Chart(ctx,{{type:'line',data:{{labels:data.map(d=>d.date),datasets:[
     {{label:'Added',data:data.map(d=>d.added),borderColor:'#34d399',backgroundColor:'rgba(52,211,153,0.2)',fill:true,tension:0.4}},
@@ -368,7 +368,7 @@ iframe.onload=()=>{{
         h3.style.cursor='pointer'; 
         h3.addEventListener('click',()=>{{ul.style.display=ul.style.display==='none'?'block':'none';}});
     }}); 
-}};
+}}; 
 </script>
 </body>
 </html>
