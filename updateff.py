@@ -710,11 +710,10 @@ fetch('FFlag_Report.json')
   }});
 
 // Search with Debounced Input for Filtering
-document.getElementById('searchInput').addEventListener('input', function() {
+document.getElementById('searchInput').addEventListener('input', function() {{ 
   clearTimeout(window.searchTimeout);
   window.searchTimeout = setTimeout(() => filterFlags(this.value), 300);
-});
-
+}});
 function filterFlags(query) {
   const searchQuery = query.toLowerCase();
   
