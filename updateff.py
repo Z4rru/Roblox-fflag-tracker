@@ -22,15 +22,16 @@ OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
-DAYS = 8
-HISTORY_DAYS = 90
-AI_BATCH_SIZE = 10
+DAYS = 8  # Days to look back in commit history
+HISTORY_DAYS = 90  # How many days to keep in history for trends
+AI_BATCH_SIZE = 10  # Number of flags to send per AI batch
 
+# Load OpenAI key safely from environment
 openai.api_key = os.getenv("OPENAI_API_KEY")
 CACHE_FILE = OUTPUT_DIR / "fflag_cache.json"
 
 # ===============================
-# Categories
+# Categories for classification
 # ===============================
 CATEGORIES = {
     "Graphics": ["Graphics", "Lighting", "Render", "GPU", "VSync", "Shadow", "Texture"],
@@ -47,13 +48,14 @@ CATEGORIES = {
 }
 
 # ===============================
-# Helpers
+# Logging and helpers
 # ===============================
 def log(msg, level="INFO"):
     ts = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
     print(f"[{level}] {msg} ({ts})")
 
 def run_cmd(cmd, cwd=None):
+    """Run a shell command and capture output, logging errors if any."""
     result = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True, text=True)
     if result.returncode != 0:
         log(f"Command failed: {cmd}", level="ERROR")
@@ -61,6 +63,7 @@ def run_cmd(cmd, cwd=None):
     return result.stdout.strip()
 
 def categorize_flag(flag_name):
+    """Return the category of a flag based on keywords."""
     lower_flag = flag_name.lower()
     for cat, keywords in CATEGORIES.items():
         for word in keywords:
@@ -68,10 +71,15 @@ def categorize_flag(flag_name):
                 return cat
     return "Other"
 
+def escape_flag(flag_name):
+    """Escape flag names for HTML output."""
+    return html.escape(flag_name)
+
 # ===============================
-# Repo sync
+# Repository management
 # ===============================
 def ensure_repo():
+    """Clone or update the repository containing FFlags."""
     if LOCAL_CLONE.exists():
         log("Updating existing repo...")
         run_cmd("git fetch --all", cwd=LOCAL_CLONE)
@@ -81,9 +89,10 @@ def ensure_repo():
         run_cmd(f"git clone --depth=1 {REPO_URL} {LOCAL_CLONE}")
 
 # ===============================
-# Diffing
+# Commit diffing
 # ===============================
 def get_commits():
+    """Get commits affecting the target file within the last DAYS days."""
     since_date = (datetime.datetime.now() - datetime.timedelta(days=DAYS)).strftime("%Y-%m-%d")
     commits = run_cmd(
         f"git log --since='{since_date}' --pretty=format:'%H' -- {TARGET_FILE}",
@@ -92,6 +101,7 @@ def get_commits():
     return commits
 
 def build_diff_for_commit(commit_hash):
+    """Return the commit header, added flags, and removed flags."""
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=LOCAL_CLONE)
     added, removed = [], []
@@ -103,6 +113,7 @@ def build_diff_for_commit(commit_hash):
     return header, added, removed
 
 def build_report(commits):
+    """Construct a detailed report and summary counts from commits."""
     report = []
     summary_counts = {}
     for c in commits:
@@ -139,8 +150,9 @@ def update_history(added, removed, last_run):
     hist_file.write_text(json.dumps(history, indent=2), encoding="utf-8")
 
 # ===============================
-# AI Enrichment (Future-proof OpenAI 1.0+)
+# AI Enrichment
 # ===============================
+# Load cached flag info
 if CACHE_FILE.exists():
     with open(CACHE_FILE, "r", encoding="utf-8") as f:
         FLAG_INFO = json.load(f)
@@ -148,54 +160,62 @@ else:
     FLAG_INFO = {}
 
 async def generate_flag_info_batch(flags):
+    """Generate AI explanations for FFlags in parallel batches."""
     new_flags = [f for f in flags if f not in FLAG_INFO]
     if not new_flags or not openai.api_key:
         return
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    tasks = []
     for i in range(0, len(new_flags), AI_BATCH_SIZE):
         batch = new_flags[i:i + AI_BATCH_SIZE]
-        prompt = "Explain the Roblox FFlags in detail:\n"
-        for flag in batch:
-            prompt += f"- {flag}\n"
-        prompt += "\nProvide Mechanism and Purpose for each, 1-2 sentences each."
+        tasks.append(fetch_ai_batch(batch))
+    
+    # Run batches concurrently
+    await asyncio.gather(*tasks)
 
-        try:
-            response = await openai.chat.completions.acreate(
-                model="gpt-5-mini",
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.3
-            )
-
-            text = response.choices[0].message["content"].strip().split("\n")
-            for line in text:
-                if ":" in line:
-                    f, rest = line.split(":", 1)
-                    f = f.strip()
-                    if f in batch:
-                        FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
-
-        except Exception as e:
-            log(f"AI batch generation failed: {e}", level="ERROR")
-            for f in batch:
-                FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
-
-    # Save cache to disk
+    # Save updated cache
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(FLAG_INFO, f, indent=2)
 
+async def fetch_ai_batch(batch):
+    """Fetch AI explanations for a single batch of flags."""
+    prompt = "Explain the Roblox FFlags in detail:\n"
+    for flag in batch:
+        prompt += f"- {flag}\n"
+    prompt += "\nProvide Mechanism and Purpose for each, 1-2 sentences each."
+
+    try:
+        # Future-proof async call for OpenAI 1.0+
+        response = await openai.chat.completions.create(
+            model="gpt-5-mini",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3
+        )
+
+        text = response.choices[0].message["content"].strip().split("\n")
+        for line in text:
+            if ":" in line:
+                f, rest = line.split(":", 1)
+                f = f.strip()
+                if f in batch:
+                    FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
+
+    except Exception as e:
+        log(f"AI batch generation failed: {e}", level="ERROR")
+        for f in batch:
+            FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
+
 def generate_flag_info(flag_name):
+    """Return mechanism and purpose for a flag from cache."""
     return FLAG_INFO.get(flag_name, {"mechanism": "Unknown", "purpose": "Unknown"})
 
 # ===============================
 # Reporting
 # ===============================
-def escape_flag(flag_name):
-    return html.escape(flag_name)
-
-# Markdown + HTML export (unchanged)
 def export_reports(report, summary_counts):
+    """Generate Markdown and HTML reports."""
     if OUTPUT_DIR.exists():
         shutil.rmtree(OUTPUT_DIR)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -290,6 +310,7 @@ code {{ background: #161b22; padding: 2px 5px; border-radius: 4px; }}
 # Landing Page
 # ===============================
 def ensure_landing_page(added, removed, last_run):
+    """Create a dashboard landing page with embedded report and trends."""
     index_html = OUTPUT_DIR / "index.html"
     if not (OUTPUT_DIR / "history.json").exists():
         (OUTPUT_DIR / "history.json").write_text("[]")
@@ -324,7 +345,7 @@ fetch("history.json")
     log(f"Landing page written: {index_html}")
 
 # ===============================
-# Main
+# Main entry
 # ===============================
 def main():
     log("="*60)
