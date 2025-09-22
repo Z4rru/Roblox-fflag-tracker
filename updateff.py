@@ -260,7 +260,7 @@ def ensure_landing_page(added, removed, last_run):
     if not hist_file.exists():
         hist_file.write_text("[]", encoding="utf-8")
 
-    html_content = f"""<!DOCTYPE html>
+    html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -313,7 +313,7 @@ def ensure_landing_page(added, removed, last_run):
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 // Trend chart
-fetch("history.json").then(r=>r.json()).then(data=>{
+fetch("history.json").then(r=>r.json()).then(data=>{{
   const ctx = document.getElementById("trendChart").getContext("2d");
   new Chart(ctx, {{
     type:'line',
@@ -326,7 +326,7 @@ fetch("history.json").then(r=>r.json()).then(data=>{
     }},
     options: {{ responsive:true }}
   }});
-});
+}});
 
 // Search/filter functionality
 document.getElementById('searchInput').addEventListener('input', function() {{
