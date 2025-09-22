@@ -18,7 +18,7 @@ OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
-DAYS = 2
+DAYS = 8
 
 # ===============================
 # Categories
@@ -33,6 +33,7 @@ CATEGORIES = {
     "Input": ["Input", "Keyboard", "Mouse", "Controller", "Touch", "Gamepad"],
     "Hit": ["Hit", "Damage", "Projectile", "Bullet", "CollisionDetection"],
     "Interpolation": ["Interp", "Interpolation", "Tween", "Smooth", "Extrapolate"],
+    "Body": ["Body", "Ragdoll", "Torso", "Limb", "Character"],
     "Other": []
 }
 
