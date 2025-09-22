@@ -191,7 +191,14 @@ def build_report(commits: list[str]) -> tuple[list, dict]:
 # History Management
 # ===============================
 def update_history(added: int, removed: int, last_run: str) -> None:
-    history = json.loads(HISTORY_FILE.read_text(encoding="utf-8")) if HISTORY_FILE.exists() else []
+    if HISTORY_FILE.exists():
+        try:
+            history = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            log.warning("Corrupted history file. Starting new history.")
+            history = []
+    else:
+        history = []
     history.append({"date": last_run, "added": added, "removed": removed})
     history = history[-HISTORY_DAYS:]
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -260,7 +267,14 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     removed_total = sum(v for (cat, typ), v in summary.items() if typ == "Removed")
     
     # Load history.json to compute historical aggregates
-    history = json.loads(HISTORY_FILE.read_text(encoding="utf-8")) if HISTORY_FILE.exists() else []
+    if HISTORY_FILE.exists():
+        try:
+            history = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            log.warning("Corrupted history file. Using empty history for report.")
+            history = []
+    else:
+        history = []
     total_historical_added = sum(entry['added'] for entry in history)
     total_historical_removed = sum(entry['removed'] for entry in history)
     
@@ -279,6 +293,8 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     md.append("\n## History Summary Chart Counts\n")  # New history section in markdown
     md.append(f"- **Total Historical Added:** {total_historical_added}")
     md.append(f"- **Total Historical Removed:** {total_historical_removed}")
+    if len(history) == 1:
+        md.append("- **Note:** No prior history available yet")
     for header, changes in report:
         md.append(f"\n## {header}")
         grouped = {}
@@ -677,9 +693,12 @@ def main() -> None:
         all_flags = [f for _, changes in report for _, _, f in changes]
         if all_flags:
             asyncio.run(generate_flag_info_batch(all_flags))
-        added, removed, last_run, _ = export_reports(report, summary)
+        last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
+        added = sum(v for (cat, typ), v in summary.items() if typ == "Added")
+        removed = sum(v for (cat, typ), v in summary.items() if typ == "Removed")
+        update_history(added, removed, last_run)
+        export_reports(report, summary)
         ensure_landing_page(added, removed, last_run)
-        update_history(added, removed, last_run)  # Call after export to ensure history is updated last
         log.info("All done! Reports and dashboard ready.")
     except Exception as e:
         log.error(f"Main execution failed: {e}")
