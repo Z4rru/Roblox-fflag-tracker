@@ -203,6 +203,10 @@ def generate_flag_info(flag):
 # Report Generation (Markdown + HTML)
 # ===============================
 def ensure_landing_page(added, removed, last_run):
+    """
+    Generates the main landing page HTML for the Roblox FFlag Tracker.
+    Fully f-string safe with proper JS braces escaping.
+    """
     index_html = OUTPUT_DIR / "index.html"
     hist_file = OUTPUT_DIR / "history.json"
     if not hist_file.exists():
@@ -324,7 +328,7 @@ const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-const particles = Array.from({{length:80}}, () => {{x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)/2, dy:(Math.random()-0.5)/2}});
+const particles = Array.from({{length:80}}, () => ({{x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)/2, dy:(Math.random()-0.5)/2}}));
 
 function animateParticles() {{
     ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -334,36 +338,32 @@ function animateParticles() {{
         if(p.x < 0 || p.x > canvas.width) p.dx*=-1;
         if(p.y < 0 || p.y > canvas.height) p.dy*=-1;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
         ctx.fillStyle='rgba(255,255,255,0.15)';
         ctx.fill();
     }});
     requestAnimationFrame(animateParticles);
 }}
 animateParticles();
-window.addEventListener('resize', ()=>{{canvas.width=window.innerWidth; canvas.height=window.innerHeight;}});
+window.addEventListener('resize', () => {{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }});
 
 // Trend chart
 fetch("history.json").then(r => r.json()).then(data => {{
     const ctx = document.getElementById("trendChart").getContext("2d");
     new Chart(ctx, {{
         type:'line',
-        data: {{
+        data:{{
             labels: data.map(d => d.date),
-            datasets: [
-                {{label:'Added', data: data.map(d => d.added), borderColor:'#34d399', backgroundColor:'rgba(52,211,153,0.2)', fill:true, tension:0.4}},
-                {{label:'Removed', data: data.map(d => d.removed), borderColor:'#f87171', backgroundColor:'rgba(248,113,113,0.2)', fill:true, tension:0.4}}
+            datasets:[
+                {{ label:'Added', data: data.map(d => d.added), borderColor:'#34d399', backgroundColor:'rgba(52,211,153,0.2)', fill:true, tension:0.4 }},
+                {{ label:'Removed', data: data.map(d => d.removed), borderColor:'#f87171', backgroundColor:'rgba(248,113,113,0.2)', fill:true, tension:0.4 }}
             ]
         }},
-        options: {{
-            responsive:true,
-            plugins: {{legend: {{position:'top'}}}},
-            interaction: {{mode:'nearest', axis:'x', intersect:false}}
-        }}
+        options:{{ responsive:true, plugins:{{legend:{{position:'top'}}}}, interaction:{{mode:'nearest', axis:'x', intersect:false}} }}
     }});
 }});
 
-// Search/filter
+// Search/filter functionality
 document.getElementById('searchInput').addEventListener('input', function() {{
     const q = this.value.toLowerCase();
     const iframe = document.getElementById('reportFrame');
@@ -373,29 +373,22 @@ document.getElementById('searchInput').addEventListener('input', function() {{
 
 // Collapsible sections in iframe
 const iframe = document.getElementById('reportFrame');
-iframe.onload = function() {{
+iframe.onload = () => {{
     const doc = iframe.contentDocument || iframe.contentWindow.document;
     doc.querySelectorAll('h3').forEach(h3 => {{
         const ul = h3.nextElementSibling;
         h3.style.cursor = 'pointer';
-        h3.addEventListener('click', () => {{ ul.style.display = ul.style.display==='none' ? 'block' : 'none'; }});
+        h3.addEventListener('click', () => {{ ul.style.display = ul.style.display==='none'?'block':'none'; }});
     }});
 }};
 </script>
 </body>
 </html>
-"""
-
-    # Insert Python variables safely
-    html_content = html_content.format(added=added, removed=removed, last_run=last_run)
+""".format(added=added, removed=removed, last_run=last_run)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     index_html.write_text(html_content, encoding="utf-8")
     log(f"Landing page written: {index_html}")
-
-
-
-
 
 
 # ===============================
