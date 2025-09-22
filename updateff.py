@@ -28,7 +28,6 @@ TARGET_FILE = "PCDesktopClient.json"
 DAYS = 8
 HISTORY_DAYS = 90
 AI_BATCH_SIZE = 10
-
 DEBUG = True
 
 # ===============================
@@ -40,11 +39,10 @@ def log(msg, level="INFO"):
     print(f"{prefix} {msg} ({ts})")
 
 # ===============================
-# OpenAI API Key Management (Safe)
+# OpenAI API Key Management
 # ===============================
 keys_raw = os.getenv("OPENAI_API_KEYS", "")
 keys = [k.strip() for k in keys_raw.split(",") if k.strip()]
-
 if not keys:
     log("⚠ No OpenAI API keys found. AI enrichment will be skipped.", level="WARN")
     keys = []
@@ -202,7 +200,7 @@ def generate_flag_info(flag):
     return FLAG_INFO.get(flag, {"mechanism":"Unknown","purpose":"Unknown"})
 
 # ===============================
-# Report Generation
+# Report Generation (Markdown + HTML)
 # ===============================
 def export_reports(report, summary):
     if OUTPUT_DIR.exists(): shutil.rmtree(OUTPUT_DIR)
@@ -211,7 +209,7 @@ def export_reports(report, summary):
     added_count = sum(v for (c,a),v in summary.items() if a=="Added")
     removed_count = sum(v for (c,a),v in summary.items() if a=="Removed")
 
-    # Markdown Report
+    # Markdown
     md = [f"# Roblox FFlag Report ({DAYS} Days)\n","",f"- Last Run: {date_str}","- Added: {added_count}","- Removed: {removed_count}\n","## Summary\n"]
     md.append("| Category | Added | Removed | Total |")
     md.append("|----------|-------|---------|-------|")
@@ -222,7 +220,7 @@ def export_reports(report, summary):
     md.append("")
     for header, changes in report:
         md.append(f"## {header}")
-        grouped={}
+        grouped={}; 
         for action, cat, flag in changes:
             grouped.setdefault((action, cat),[]).append(flag)
         for (action, cat), flags in grouped.items():
@@ -235,7 +233,7 @@ def export_reports(report, summary):
         md.append("")
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
 
-    # HTML Report
+    # HTML
     html_lines = [f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>FFlag Report</title></head><body>
 <h1>Roblox FFlag Report ({DAYS} Days)</h1><p>Last Run: {date_str}</p><p>Added: {added_count} | Removed: {removed_count}</p>"""]
     for header, changes in report:
