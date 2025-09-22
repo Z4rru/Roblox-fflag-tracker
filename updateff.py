@@ -22,6 +22,7 @@ WORKSPACE = Path(os.getenv("GITHUB_WORKSPACE", str(SCRIPT_DIR))).resolve()
 OUTPUT_DIR = WORKSPACE / "output"
 OUTPUT_MD = OUTPUT_DIR / "FFlag_Report.md"
 OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
+OUTPUT_JSON = OUTPUT_DIR / "FFlag_Report.json"
 CACHE_FILE = OUTPUT_DIR / "fflag_cache.json"
 HISTORY_FILE = OUTPUT_DIR / "history.json"
 
@@ -121,7 +122,7 @@ def get_commits() -> list[str]:
     commits = run_cmd(f"git log --since='{since}' --pretty=format:'%H' -- {TARGET_FILE}", cwd=LOCAL_CLONE)
     return commits.splitlines() if commits else []
 
-def build_diff_for_commit(commit_hash: str) -> tuple[str, list[str], list[str]]:
+def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[str], list[str]]:
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=LOCAL_CLONE)
     added, removed = [], []
@@ -130,6 +131,22 @@ def build_diff_for_commit(commit_hash: str) -> tuple[str, list[str], list[str]]:
             added.append(line[1:].strip())
         elif line.startswith("-") and not line.startswith("---"):
             removed.append(line[1:].strip())
+    return header, added, removed
+
+def build_diff_for_commit(commit_hash: str) -> tuple[str, list[str], list[str]]:
+    header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
+    # Get file content at this commit and previous commit
+    curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=LOCAL_CLONE)
+    prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=LOCAL_CLONE)
+    try:
+        curr_json = json.loads(curr_content)
+        prev_json = json.loads(prev_content)
+    except json.JSONDecodeError:
+        # fallback to old line-based diff
+        return build_diff_for_commit_old(commit_hash)
+    
+    added = [k for k in curr_json if k not in prev_json or curr_json[k] != prev_json.get(k)]
+    removed = [k for k in prev_json if k not in curr_json]
     return header, added, removed
 
 def build_report(commits: list[str]) -> tuple[list, dict]:
@@ -169,8 +186,10 @@ async def fetch_ai_batch(batch: list[str]) -> None:
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
         return
-    prompt = "Explain the Roblox FFlags:\n" + "".join([f"- {f}\n" for f in batch])
-    prompt += "\nProvide Mechanism and Purpose, 1-2 sentences each."
+
+    prompt = "Explain the Roblox FFlags below. For each, provide Mechanism and Purpose in JSON format.\n"
+    prompt += json.dumps(batch)
+
     for attempt in range(MAX_RETRIES):
         try:
             openai.api_key = get_next_api_key()
@@ -179,22 +198,33 @@ async def fetch_ai_batch(batch: list[str]) -> None:
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.3
             )
-            text = response.choices[0].message.content.strip().split("\n")
-            for line in text:
-                if ":" in line:
-                    f, rest = line.split(":", 1)
-                    f = f.strip()
-                    if f in batch:
-                        FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
+            # Parse JSON safely
+            content = response.choices[0].message.content.strip()
+            try:
+                data = json.loads(content)
+                for f in batch:
+                    info = data.get(f, {})
+                    FLAG_INFO[f] = {
+                        "mechanism": info.get("mechanism", "Unknown"),
+                        "purpose": info.get("purpose", "Unknown")
+                    }
+            except json.JSONDecodeError:
+                # fallback: line-based parsing
+                for line in content.splitlines():
+                    if ":" in line:
+                        f, rest = line.split(":", 1)
+                        f = f.strip()
+                        if f in batch:
+                            FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
             break
         except openai.RateLimitError:
-            log.warning(f"Rate limit reached. Retrying attempt {attempt+1}/{MAX_RETRIES}.")
             await asyncio.sleep(2 ** attempt)
         except Exception as e:
             log.error(f"AI batch failed: {e}")
     else:
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
+
     CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
 
 async def generate_flag_info_batch(flags: list[str]) -> None:
@@ -238,7 +268,7 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
             md.append(f"**{typ} in {cat}:**")
             for f in flags:
                 info = generate_flag_info(f)
-                md.append(f"- {f} | Mechanism: {info['mechanism']}")
+                md.append(f"- {f} | Mechanism: {info['mechanism']} | Purpose: {info['purpose']}")
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
     
     # HTML with <h3><ul> for Collapsibles
@@ -252,12 +282,34 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
             html_lines.append(f"<h3>{typ} in {cat}</h3><ul>")
             for f in flags:
                 info = generate_flag_info(f)
-                html_lines.append(f"<li>{escape_flag(f)} - Mechanism: {info['mechanism']}</li>")
+                html_lines.append(f"<li>{escape_flag(f)} - Mechanism: {info['mechanism']} - Purpose: {info['purpose']}</li>")
             html_lines.append("</ul>")
     html_lines.append("</body></html>")
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
     
-    log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}")
+    # JSON for responsive landing page
+    json_data = {
+        "last_run": last_run,
+        "added_total": added_total,
+        "removed_total": removed_total,
+        "summary": {cat: {"added": summary.get((cat, "Added"), 0), "removed": summary.get((cat, "Removed"), 0)} for cat in CATEGORIES},
+        "report": []
+    }
+    for header, changes in report:
+        grouped = {}
+        for typ, cat, flag in changes:
+            grouped.setdefault(f"{typ}_{cat}", []).append({
+                "name": flag,
+                "mechanism": generate_flag_info(flag)['mechanism'],
+                "purpose": generate_flag_info(flag)['purpose']
+            })
+        json_data["report"].append({
+            "header": header,
+            "grouped": grouped
+        })
+    OUTPUT_JSON.write_text(json.dumps(json_data, indent=2), encoding="utf-8")
+    
+    log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}")
     return added_total, removed_total, last_run, "report_done"
 
 # ===============================
@@ -350,7 +402,7 @@ section {{ max-width:1200px; margin:0 auto; padding:20px; }}
   0% {{ transform: rotate(0deg); }}
   100% {{ transform: rotate(360deg); }}
 }}
-iframe {{ width:100%; height:75vh; border:none; border-radius:12px; }}
+#reportContent {{ width:100%; min-height:75vh; border-radius:12px; }}
 canvas#trendChart {{ display:block; max-width:850px; margin:40px auto; border-radius:12px; }}
 input#searchInput {{ 
   width:90%; padding:12px; margin:20px auto; display:block;
@@ -386,7 +438,7 @@ canvas#particleCanvas {{
   <h2>📊 Latest Full Report</h2>
   <div class="report-container">
     <div id="loadingSpinner"></div>
-    <iframe src="FFlag_Report.html" id="reportFrame" aria-label="Latest report"></iframe>
+    <div id="reportContent" aria-label="Latest report"></div>
   </div>
 
   <canvas id="trendChart" aria-label="Trend chart"></canvas>
@@ -416,17 +468,60 @@ fetch("history.json").then(r=>r.json()).then(data=>{{
   ]}},options:{{responsive:true,plugins:{{legend:{{position:'top'}}}},interaction:{{mode:'nearest',axis:'x',intersect:false}}}}}});
 }});
 
-// Search/filter
-document.getElementById('searchInput').addEventListener('input',function(){{
-  const q=this.value.toLowerCase();
-  const iframe=document.getElementById('reportFrame');
-  const doc=iframe.contentDocument||iframe.contentWindow.document;
-  doc.querySelectorAll('li').forEach(li=>{{li.style.display=li.textContent.toLowerCase().includes(q)?'':'none';}});
-}});
+// Load report from JSON and build DOM
+const loadingSpinner = document.getElementById('loadingSpinner');
+const reportContent = document.getElementById('reportContent');
+fetch('FFlag_Report.json')
+  .then(response => response.json())
+  .then(data => {{
+    document.getElementById('flags-added').textContent = data.added_total;
+    document.getElementById('flags-removed').textContent = data.removed_total;
+    document.getElementById('last-run').textContent = data.last_run;
+    
+    data.report.forEach(commit => {{
+      const h2 = document.createElement('h2');
+      h2.textContent = commit.header;
+      reportContent.appendChild(h2);
+      
+      Object.entries(commit.grouped).forEach(([groupKey, flags]) => {{
+        const [typ, cat] = groupKey.split('_');
+        const h3 = document.createElement('h3');
+        h3.textContent = `${{typ}} in ${{cat}}`;
+        h3.style.cursor = 'pointer';
+        h3.setAttribute('aria-expanded', 'true');
+        reportContent.appendChild(h3);
+        
+        const ul = document.createElement('ul');
+        ul.style.display = 'block';
+        flags.forEach(f => {{
+          const li = document.createElement('li');
+          li.textContent = `${{f.name}} - Mechanism: ${{f.mechanism}} - Purpose: ${{f.purpose}}`;
+          ul.appendChild(li);
+        }});
+        reportContent.appendChild(ul);
+        
+        h3.addEventListener('click', () => {{
+          const expanded = ul.style.display !== 'none';
+          ul.style.display = expanded ? 'none' : 'block';
+          h3.setAttribute('aria-expanded', !expanded);
+        }});
+      }});
+    }});
+    loadingSpinner.style.display = 'none';
+  }})
+  .catch(error => {{
+    console.error('Error loading report:', error);
+    loadingSpinner.style.display = 'none';
+    reportContent.innerHTML = '<p>Error loading report.</p>';
+  }});
 
-// Collapsible sections (enhanced to run on iframe load)
-const iframe=document.getElementById('reportFrame');
-iframe.onload=()=>{{const doc=iframe.contentDocument||iframe.contentWindow.document; doc.querySelectorAll('h3').forEach(h3=>{{const ul=h3.nextElementSibling; if(ul && ul.tagName==='UL'){{h3.style.cursor='pointer'; h3.setAttribute('aria-expanded','true'); ul.style.display='block'; h3.addEventListener('click',()=>{{const expanded=ul.style.display!=='none';ul.style.display=expanded?'none':'block';h3.setAttribute('aria-expanded',!expanded);}});}}}});}};
+// Search/filter
+document.getElementById('searchInput').addEventListener('input', function() {{
+  const q = this.value.toLowerCase();
+  reportContent.querySelectorAll('li').forEach(li => {{
+    li.style.display = li.textContent.toLowerCase().includes(q) ? '' : 'none';
+  }});
+}});
 </script>
 </body>
 </html>
