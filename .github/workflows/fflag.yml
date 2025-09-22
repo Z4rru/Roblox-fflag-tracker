@@ -2,8 +2,8 @@ name: Roblox FFlag Tracker
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
-  workflow_dispatch:
+    - cron: "0 */6 * * *"   # Runs every 6 hours
+  workflow_dispatch:         # Manual trigger
 
 permissions:
   contents: write      # allow pushing to gh-pages
@@ -13,25 +13,38 @@ permissions:
 jobs:
   run-tracker:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      # 1. Checkout your repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2. Setup Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          python-version: "3.11"
 
-      - name: Run updateff
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install openai
+
+      # 4. Set OpenAI API key from GitHub Secrets
+      - name: Set API Key
+        run: echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
+
+      # 5. Run your updateff.py script
+      - name: Run Roblox FFlag Tracker
         run: python updateff.py
 
+      # 6. Optional: Debug output folder
       - name: Debug output folder
         run: ls -R ${{ github.workspace }}/output || echo "No output folder found"
 
-      # ❌ Removed the "cp FFlag_Report.html index.html" step
-      # Your updateff.py already generates a styled index.html
-
-      - name: Publish reports to gh-pages
+      # 7. Publish reports to GitHub Pages
+      - name: Publish to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
