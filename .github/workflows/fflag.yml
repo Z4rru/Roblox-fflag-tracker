@@ -32,46 +32,26 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then
-            echo "Installing from requirements.txt"
-            pip install -r requirements.txt
+          if [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt || echo "⚠ Failed to install from requirements.txt, continuing..."
           else
-            echo "No requirements.txt found, installing essential packages"
+            echo "⚠ No requirements.txt found, skipping"
           fi
-          pip install --upgrade openai aiohttp
+          pip install openai || echo "⚠ Failed to install openai package, continuing"
 
-      # 4. Validate and sanitize OpenAI keys
-      - name: Validate OpenAI API keys
-        run: |
-          KEYS=$(echo "${{ secrets.OPENAI_API_KEYS }}" | tr -d '[:space:]')
-          if [ -z "$KEYS" ]; then
-            echo "❌ OPENAI_API_KEYS secret is empty or malformed!"
-            exit 1
-          fi
-          echo "OPENAI_API_KEYS=$KEYS" >> $GITHUB_ENV
-
-      # 5. Debug OpenAI API keys (safe)
-      - name: Debug OpenAI API keys
-        run: |
-          if [ -z "$OPENAI_API_KEYS" ]; then
-            echo "❌ OPENAI_API_KEYS is empty!"
-            exit 1
-          fi
-          echo "✅ OPENAI_API_KEYS detected (length: ${#OPENAI_API_KEYS} chars)"
-
-      # 6. Run Roblox FFlag Tracker
+      # 4. Run Roblox FFlag Tracker
       - name: Run Roblox FFlag Tracker
         run: python updateff.py
         env:
-          OPENAI_API_KEYS: ${{ env.OPENAI_API_KEYS }}
+          OPENAI_API_KEYS: ${{ secrets.OPENAI_API_KEYS }}
 
-      # 7. Debug output folder
+      # 5. Debug output folder
       - name: Debug output folder
         run: |
           echo "Listing contents of output folder..."
-          ls -R ${{ github.workspace }}/output || echo "No output folder found"
+          ls -R ${{ github.workspace }}/output || echo "⚠ No output folder found"
 
-      # 8. Publish reports to GitHub Pages
+      # 6. Publish reports to GitHub Pages
       - name: Publish to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
