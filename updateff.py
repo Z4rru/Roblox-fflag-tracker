@@ -24,6 +24,7 @@ OUTPUT_MD = OUTPUT_DIR / "FFlag_Report.md"
 OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
 OUTPUT_JSON = OUTPUT_DIR / "FFlag_Report.json"
 CACHE_FILE = OUTPUT_DIR / "fflag_cache.json"
+DIFF_CACHE_FILE = OUTPUT_DIR / "diff_cache.json"
 HISTORY_FILE = OUTPUT_DIR / "history.json"
 
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
@@ -137,7 +138,7 @@ def ensure_repo() -> None:
 
 def get_commits() -> list[str]:
     since = (datetime.datetime.now() - datetime.timedelta(days=DAYS)).strftime("%Y-%m-%d")
-    commits = run_cmd(f"git log --since='{since}' --pretty=format:'%H' -- {TARGET_FILE}", cwd=LOCAL_CLONE)
+    commits = run_cmd(f"git log --since='{since}' --pretty=format:%H -- {TARGET_FILE}", cwd=LOCAL_CLONE)
     return commits.splitlines() if commits else []
 
 # ===============================
@@ -154,7 +155,10 @@ def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[str], list[st
             removed.append(line[1:].strip())
     return header, added, removed
 
-def build_diff_for_commit(commit_hash: str) -> tuple[str, list[str], list[str]]:
+def build_diff_for_commit(commit_hash: str, diff_cache: dict) -> tuple[str, list[str], list[str]]:
+    if commit_hash in diff_cache:
+        cached = diff_cache[commit_hash]
+        return cached['header'], cached['added'], cached['removed']
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=LOCAL_CLONE)
     try:
@@ -165,15 +169,18 @@ def build_diff_for_commit(commit_hash: str) -> tuple[str, list[str], list[str]]:
     try:
         curr_json = json.loads(curr_content)
     except json.JSONDecodeError:
-        return build_diff_for_commit_old(commit_hash)
+        header, added, removed = build_diff_for_commit_old(commit_hash)
+        diff_cache[commit_hash] = {'header': header, 'added': added, 'removed': removed}
+        return header, added, removed
     added = [k for k in curr_json if k not in prev_json or curr_json[k] != prev_json.get(k)]
     removed = [k for k in prev_json if k not in curr_json]
+    diff_cache[commit_hash] = {'header': header, 'added': added, 'removed': removed}
     return header, added, removed
 
-def build_report(commits: list[str]) -> tuple[list, dict]:
+def build_report(commits: list[str], diff_cache: dict) -> tuple[list, dict]:
     report, summary = [], {}
     for c in commits:
-        header, added_flags, removed_flags = build_diff_for_commit(c)
+        header, added_flags, removed_flags = build_diff_for_commit(c, diff_cache)
         changes = []
         for flag in added_flags:
             cat = categorize_flag(flag)
@@ -678,18 +685,31 @@ fetch('FFlag_Report.json')
       reportContent.innerHTML = `<p>No recent flag changes in the last ${data.days} days.</p>`;
     } else {
       loadReportPage(data.report, currentPage);
+      const maxPages = Math.ceil(data.report.length / itemsPerPage);
+      if (1 < maxPages) {
+        const sentinel = document.createElement('div');
+        sentinel.id = 'sentinel';
+        reportContent.appendChild(sentinel);
+        const observer = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            const nextPage = currentPage + 1;
+            if (nextPage < maxPages) {
+              currentPage = nextPage;
+              loadReportPage(data.report, currentPage);
+              const stillMore = currentPage + 1 < maxPages;
+              if (stillMore) {
+                reportContent.appendChild(sentinel);
+              } else {
+                observer.unobserve(sentinel);
+                sentinel.remove();
+              }
+            }
+          }
+        }, { threshold: 0 });
+        observer.observe(sentinel);
+      }
     }
     loadingSpinner.style.display = 'none';
-    
-    // Infinite scrolling
-    window.addEventListener('scroll', () => {
-      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 500) {
-        if (currentPage < Math.ceil(data.report.length / itemsPerPage) - 1) {
-          currentPage++;
-          loadReportPage(data.report, currentPage);
-        }
-      }
-    });
 
     // Event delegation for collapsibles
     reportContent.addEventListener('click', e => {
@@ -792,12 +812,14 @@ def main() -> None:
         log.info("=" * 80)
         ensure_repo()
         commits = get_commits()
+        diff_cache = json.loads(DIFF_CACHE_FILE.read_text(encoding="utf-8")) if DIFF_CACHE_FILE.exists() else {}
         if not commits:
             log.warning(f"No commits in the last {DAYS} days.")
             report = []
             summary = {}
         else:
-            report, summary = build_report(commits)
+            report, summary = build_report(commits, diff_cache)
+        DIFF_CACHE_FILE.write_text(json.dumps(diff_cache, indent=2), encoding="utf-8")
         all_flags = [f for _, changes in report for _, _, f in changes]
         if all_flags:
             asyncio.run(generate_flag_info_batch(all_flags))
