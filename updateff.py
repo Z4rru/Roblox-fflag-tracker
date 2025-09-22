@@ -25,17 +25,16 @@ REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 
-DAYS = 8           # Look back this many days for commits
-HISTORY_DAYS = 90  # Keep this many days of history for trends
-AI_BATCH_SIZE = 10 # Number of flags processed per AI batch
+DAYS = 8
+HISTORY_DAYS = 90
+AI_BATCH_SIZE = 10
 
-DEBUG = True  # Set True for detailed logging including API key rotation
+DEBUG = True
 
 # ===============================
 # Logging Utility
 # ===============================
 def log(msg, level="INFO"):
-    """Print log messages with timestamp and optional debug control."""
     ts = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
     if DEBUG or level != "DEBUG":
         print(f"[{level}] {msg} ({ts})")
@@ -43,25 +42,24 @@ def log(msg, level="INFO"):
 # ===============================
 # OpenAI API Key Management
 # ===============================
-keys = os.getenv("OPENAI_API_KEYS", "").split(",")
-keys = [k.strip() for k in keys if k.strip()]
+keys_raw = os.getenv("OPENAI_API_KEYS", "")
+keys = [k.strip() for k in keys_raw.split(",") if k.strip()]
 if not keys:
     raise ValueError("No OpenAI API keys found in OPENAI_API_KEYS environment variable.")
 
-key_cycle = itertools.cycle(keys)
 key_index = -1
+key_cycle = itertools.cycle(keys)
 
 def get_next_api_key():
-    """Round-robin key rotation with logging of truncated key for safety."""
     global key_index
     key_index = (key_index + 1) % len(keys)
     key = keys[key_index]
     display_key = f"{key[:4]}...{key[-4:]}" if len(key) > 8 else "****"
-    log(f"Using OpenAI API key #{key_index + 1} ({display_key})", level="DEBUG")
+    log(f"Using OpenAI API key #{key_index+1} ({display_key})", level="DEBUG")
     return key
 
 # ===============================
-# Categories for FFlags Classification
+# FFlags Categories
 # ===============================
 CATEGORIES = {
     "Graphics": ["Graphics", "Lighting", "Render", "GPU", "VSync", "Shadow", "Texture"],
@@ -81,7 +79,6 @@ CATEGORIES = {
 # Utility Functions
 # ===============================
 def run_cmd(cmd, cwd=None):
-    """Run a shell command, capture output, and log errors."""
     result = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True, text=True)
     if result.returncode != 0:
         log(f"Command failed: {cmd}", level="ERROR")
@@ -89,42 +86,32 @@ def run_cmd(cmd, cwd=None):
     return result.stdout.strip()
 
 def categorize_flag(flag_name):
-    """Classify flag into a category based on keyword matching."""
-    lower_flag = flag_name.lower()
+    lower = flag_name.lower()
     for cat, keywords in CATEGORIES.items():
-        for word in keywords:
-            if word.lower() in lower_flag:
-                return cat
+        if any(k.lower() in lower for k in keywords):
+            return cat
     return "Other"
 
 def escape_flag(flag_name):
-    """Escape flag names for HTML safety."""
     return html.escape(flag_name)
 
 # ===============================
 # Repository Management
 # ===============================
 def ensure_repo():
-    """Clone the repo if missing, otherwise fetch latest changes."""
     if LOCAL_CLONE.exists():
         log("Updating existing repository...")
         run_cmd("git fetch --all", cwd=LOCAL_CLONE)
         run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
     else:
-        log("Cloning fresh repository...")
+        log("Cloning repository...")
         run_cmd(f"git clone --depth=1 {REPO_URL} {LOCAL_CLONE}")
 
 def get_commits():
-    """Retrieve commits for the target JSON file in the last DAYS."""
-    since_date = (datetime.datetime.now() - datetime.timedelta(days=DAYS)).strftime("%Y-%m-%d")
-    commits = run_cmd(
-        f"git log --since='{since_date}' --pretty=format:'%H' -- {TARGET_FILE}",
-        cwd=LOCAL_CLONE
-    ).splitlines()
-    return commits
+    since = (datetime.datetime.now() - datetime.timedelta(days=DAYS)).strftime("%Y-%m-%d")
+    return run_cmd(f"git log --since='{since}' --pretty=format:'%H' -- {TARGET_FILE}", cwd=LOCAL_CLONE).splitlines()
 
 def build_diff_for_commit(commit_hash):
-    """Extract added and removed flags from a commit diff."""
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=LOCAL_CLONE)
     added, removed = [], []
@@ -136,127 +123,97 @@ def build_diff_for_commit(commit_hash):
     return header, added, removed
 
 def build_report(commits):
-    """Aggregate all changes into structured report and summary counts."""
-    report = []
-    summary_counts = {}
+    report, summary = [], {}
     for c in commits:
         header, added_flags, removed_flags = build_diff_for_commit(c)
         changes = []
-
         for flag in added_flags:
             cat = categorize_flag(flag)
             changes.append(("Added", cat, flag))
-            summary_counts.setdefault((cat, "Added"), 0)
-            summary_counts[(cat, "Added")] += 1
-
+            summary[(cat,"Added")] = summary.get((cat,"Added"),0)+1
         for flag in removed_flags:
             cat = categorize_flag(flag)
             changes.append(("Removed", cat, flag))
-            summary_counts.setdefault((cat, "Removed"), 0)
-            summary_counts[(cat, "Removed")] += 1
-
+            summary[(cat,"Removed")] = summary.get((cat,"Removed"),0)+1
         if changes:
             report.append((header, changes))
-    return report, summary_counts
+    return report, summary
 
 # ===============================
 # History Management
 # ===============================
 def update_history(added, removed, last_run):
-    """Keep a running JSON history of daily added/removed flags."""
     hist_file = OUTPUT_DIR / "history.json"
-    history = []
-    if hist_file.exists():
-        history = json.loads(hist_file.read_text(encoding="utf-8"))
+    history = json.loads(hist_file.read_text(encoding="utf-8")) if hist_file.exists() else []
     history.append({"date": last_run, "added": added, "removed": removed})
     history = history[-HISTORY_DAYS:]
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     hist_file.write_text(json.dumps(history, indent=2), encoding="utf-8")
 
 # ===============================
-# AI Enrichment (Async, Multi-Key, Caching)
+# AI Enrichment
 # ===============================
-if CACHE_FILE.exists():
-    with open(CACHE_FILE, "r", encoding="utf-8") as f:
-        FLAG_INFO = json.load(f)
-else:
-    FLAG_INFO = {}
+FLAG_INFO = json.load(CACHE_FILE.open("r", encoding="utf-8")) if CACHE_FILE.exists() else {}
 
 async def fetch_ai_batch(batch):
-    """Query OpenAI for flag explanation using async batch processing."""
     prompt = "Explain the Roblox FFlags in detail:\n" + "".join([f"- {f}\n" for f in batch])
-    prompt += "\nProvide Mechanism and Purpose for each, 1-2 sentences."
-
+    prompt += "\nProvide Mechanism and Purpose, 1-2 sentences each."
     try:
         openai.api_key = get_next_api_key()
         response = await openai.chat.completions.create(
             model="gpt-5-mini",
-            messages=[{"role": "user", "content": prompt}],
+            messages=[{"role":"user","content":prompt}],
             temperature=0.3
         )
         text = response.choices[0].message["content"].strip().split("\n")
         for line in text:
             if ":" in line:
-                f, rest = line.split(":", 1)
-                f = f.strip()
+                f, rest = line.split(":",1)
+                f=f.strip()
                 if f in batch:
-                    FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
+                    FLAG_INFO[f]={"mechanism":rest.strip(),"purpose":"N/A"}
     except openai.error.RateLimitError:
-        log("Rate limit reached. Retrying batch with next key.", level="WARN")
+        log("Rate limit reached. Retrying batch.", level="WARN")
         await fetch_ai_batch(batch)
     except Exception as e:
-        log(f"AI batch generation failed: {e}", level="ERROR")
+        log(f"AI batch failed: {e}", level="ERROR")
         for f in batch:
-            FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
+            FLAG_INFO[f]={"mechanism":"Unknown","purpose":"Unknown"}
 
 async def generate_flag_info_batch(flags):
-    """Split flags into batches and fetch AI explanations asynchronously."""
     new_flags = [f for f in flags if f not in FLAG_INFO]
-    if not new_flags:
-        return
-
+    if not new_flags: return
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    tasks = [fetch_ai_batch(new_flags[i:i+AI_BATCH_SIZE]) for i in range(0, len(new_flags), AI_BATCH_SIZE)]
+    tasks = [fetch_ai_batch(new_flags[i:i+AI_BATCH_SIZE]) for i in range(0,len(new_flags),AI_BATCH_SIZE)]
     await asyncio.gather(*tasks)
+    CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
 
-    with open(CACHE_FILE, "w", encoding="utf-8") as f:
-        json.dump(FLAG_INFO, f, indent=2)
-
-def generate_flag_info(flag_name):
-    """Return mechanism and purpose from cache or default unknowns."""
-    return FLAG_INFO.get(flag_name, {"mechanism": "Unknown", "purpose": "Unknown"})
+def generate_flag_info(flag):
+    return FLAG_INFO.get(flag, {"mechanism":"Unknown","purpose":"Unknown"})
 
 # ===============================
 # Report Generation
 # ===============================
-def export_reports(report, summary_counts):
-    """Generate Markdown and HTML reports with enriched AI info."""
-    if OUTPUT_DIR.exists():
-        shutil.rmtree(OUTPUT_DIR)
+def export_reports(report, summary):
+    if OUTPUT_DIR.exists(): shutil.rmtree(OUTPUT_DIR)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
     date_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    added_count = sum(v for (c, a), v in summary_counts.items() if a == "Added")
-    removed_count = sum(v for (c, a), v in summary_counts.items() if a == "Removed")
+    added_count = sum(v for (c,a),v in summary.items() if a=="Added")
+    removed_count = sum(v for (c,a),v in summary.items() if a=="Removed")
 
-    # Markdown
-    md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
-    md.append(f"- **Last Run:** {date_str}")
-    md.append(f"- **Flags Added:** {added_count}")
-    md.append(f"- **Flags Removed:** {removed_count}\n")
-    md.append("## Summary of Changes\n")
+    md = [f"# Roblox FFlag Report ({DAYS} Days)\n","",f"- Last Run: {date_str}","- Added: {added_count}","- Removed: {removed_count}\n","## Summary\n"]
     md.append("| Category | Added | Removed | Total |")
     md.append("|----------|-------|---------|-------|")
     for cat in CATEGORIES.keys():
-        a = summary_counts.get((cat, "Added"), 0)
-        r = summary_counts.get((cat, "Removed"), 0)
+        a=summary.get((cat,"Added"),0)
+        r=summary.get((cat,"Removed"),0)
         md.append(f"| {cat} | {a} | {r} | {a+r} |")
     md.append("")
-
     for header, changes in report:
-        md.append(f"## {header}\n")
-        grouped = {}
+        md.append(f"## {header}")
+        grouped={}
         for action, cat, flag in changes:
-            grouped.setdefault((action, cat), []).append(flag)
+            grouped.setdefault((action, cat),[]).append(flag)
         for (action, cat), flags in grouped.items():
             md.append(f"**{action} in {cat}:**")
             for f in flags:
@@ -267,91 +224,39 @@ def export_reports(report, summary_counts):
         md.append("")
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
 
-    # HTML
-    html_lines = [f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Roblox FFlag Intel Report</title>
-<style>
-body {{ font-family: Arial, sans-serif; background: #0d1117; color: #c9d1d9; }}
-h1,h2,h3 {{ color: #58a6ff; }}
-table {{ border-collapse: collapse; margin: 20px 0; }}
-th,td {{ border: 1px solid #333; padding: 8px 12px; }}
-.added {{ color: #4caf50; }}
-.removed {{ color: #f44336; }}
-code {{ background: #161b22; padding: 2px 5px; border-radius: 4px; }}
-.commit {{ background: #161b22; padding: 15px; margin: 15px 0; border-radius: 8px; }}
-</style>
-</head>
-<body>
-<h1>Roblox Client FFlag Intel Report ({DAYS} Days)</h1>
-<p><strong>Last Run:</strong> {date_str}</p>
-<p><strong>Flags Added:</strong> <span class="added">{added_count}</span> |
-<strong>Removed:</strong> <span class="removed">{removed_count}</span></p>
-<h2>Summary of Changes</h2>
-<table>
-<tr><th>Category</th><th>Added</th><th>Removed</th><th>Total</th></tr>"""]
-
-    for cat in CATEGORIES.keys():
-        a = summary_counts.get((cat, "Added"), 0)
-        r = summary_counts.get((cat, "Removed"), 0)
-        html_lines.append(f"<tr><td>{cat}</td><td class='added'>{a}</td><td class='removed'>{r}</td><td>{a+r}</td></tr>")
-    html_lines.append("</table>")
-
+    html_lines = [f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>FFlag Report</title></head><body>
+<h1>Roblox FFlag Report ({DAYS} Days)</h1><p>Last Run: {date_str}</p><p>Added: {added_count} | Removed: {removed_count}</p>"""]
     for header, changes in report:
-        html_lines.append(f"<div class='commit'><h2>{header}</h2>")
-        grouped = {}
-        for action, cat, flag in changes:
-            grouped.setdefault((action, cat), []).append(flag)
-        for (action, cat), flags in grouped.items():
+        html_lines.append(f"<h2>{header}</h2>")
+        grouped={}
+        for action, cat, flag in changes: grouped.setdefault((action,cat),[]).append(flag)
+        for (action,cat),flags in grouped.items():
             html_lines.append(f"<h3>{action} in {cat}</h3><ul>")
             for f in flags:
                 info = generate_flag_info(f)
-                html_lines.append(f"<li class='{action.lower()}'><code>{escape_flag(f)}</code>")
-                html_lines.append(f"<p><strong>Mechanism:</strong> {info['mechanism']}</p>")
-                html_lines.append(f"<p><strong>Purpose:</strong> {info['purpose']}</p></li>")
+                html_lines.append(f"<li>{escape_flag(f)}<br>Mechanism: {info['mechanism']}<br>Purpose: {info['purpose']}</li>")
             html_lines.append("</ul>")
-        html_lines.append("</div>")
     html_lines.append("</body></html>")
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
-
-    log(f"Reports generated:\n- {OUTPUT_MD}\n- {OUTPUT_HTML}")
+    log(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}")
     return added_count, removed_count, date_str, report
 
 # ===============================
 # Dashboard Landing Page
 # ===============================
 def ensure_landing_page(added, removed, last_run):
-    """Generate index.html with embedded report and trend chart."""
     index_html = OUTPUT_DIR / "index.html"
-    if not (OUTPUT_DIR / "history.json").exists():
-        (OUTPUT_DIR / "history.json").write_text("[]")
-
-    html_content = f"""<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><title>Roblox FFlag Tracker Dashboard</title></head>
-<body>
-<h1>Roblox Client FFlag Tracker</h1>
-<p>Flags Added: {added} | Flags Removed: {removed}</p>
-<p>Last Run: {last_run}</p>
-<iframe src="FFlag_Report.html" style="width:95%; height:70vh;"></iframe>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<canvas id="trendChart" style="max-width:900px; margin:20px auto; display:block;"></canvas>
+    if not (OUTPUT_DIR / "history.json").exists(): (OUTPUT_DIR / "history.json").write_text("[]")
+    html_content = f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>FFlag Dashboard</title></head><body>
+<h1>Roblox FFlag Tracker</h1><p>Added: {added} | Removed: {removed}</p><p>Last Run: {last_run}</p>
+<iframe src="FFlag_Report.html" style="width:95%;height:70vh;"></iframe>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script><canvas id="trendChart"></canvas>
 <script>
-fetch("history.json")
-  .then(r=>r.json())
-  .then(data=>{{
-    new Chart(document.getElementById("trendChart").getContext("2d"), {{
-      type:'line',
-      data:{{
-        labels:data.map(d=>d.date),
-        datasets:[{{label:"Flags Added", data:data.map(d=>d.added), borderColor:"#4caf50", fill:false}},
-                  {{label:"Flags Removed", data:data.map(d=>d.removed), borderColor:"#f44336", fill:false}}]
-      }},
-      options:{{responsive:true}}
-    }});
-  }});
+fetch("history.json").then(r=>r.json()).then(data=>{{
+new Chart(document.getElementById("trendChart").getContext("2d"), {{
+type:'line', data:{{labels:data.map(d=>d.date),datasets:[{{label:'Added',data:data.map(d=>d.added),borderColor:'#4caf50',fill:false}},{{label:'Removed',data:data.map(d=>d.removed),borderColor:'#f44336',fill:false}}]}},options:{{responsive:true}}
+}});
+}});
 </script>
 </body></html>"""
     index_html.write_text(html_content, encoding="utf-8")
@@ -364,25 +269,19 @@ def main():
     log("="*60)
     log("Roblox Client FFlag Tracker (Daily Automation Ready)")
     log("="*60)
-
     ensure_repo()
     commits = get_commits()
     if not commits:
         log(f"No commits in the last {DAYS} days.", level="WARN")
         return
-
-    report, summary_counts = build_report(commits)
-
-    # AI enrichment for new flags
+    report, summary = build_report(commits)
     all_flags = [f for _, changes in report for _, _, f in changes]
     if all_flags:
         asyncio.run(generate_flag_info_batch(all_flags))
-
-    added, removed, last_run, _ = export_reports(report, summary_counts)
+    added, removed, last_run, _ = export_reports(report, summary)
     ensure_landing_page(added, removed, last_run)
     update_history(added, removed, last_run)
-
     log("All done!", level="SUCCESS")
 
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
