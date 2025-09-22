@@ -710,17 +710,25 @@ fetch('FFlag_Report.json')
   }});
 
 // Search with Debounced Input for Filtering
-document.getElementById('searchInput').addEventListener('input', function() {{
+document.getElementById('searchInput').addEventListener('input', function() {
   clearTimeout(window.searchTimeout);
   window.searchTimeout = setTimeout(() => filterFlags(this.value), 300);
-}});
+});
 
-function filterFlags(query) {{
+function filterFlags(query) {
   const searchQuery = query.toLowerCase();
-  reportContent.querySelectorAll('li').forEach(li => {{
-    li.style.display = li.textContent.toLowerCase().includes(searchQuery) ? '' : 'none';
-  }});
-}}
+  
+  // Loop through all li elements under reportContent
+  const allFlags = reportContent.querySelectorAll('li');
+  allFlags.forEach(li => {
+    const flagText = li.textContent.toLowerCase(); // Compare the flag text
+    if (flagText.includes(searchQuery)) {
+      li.style.display = ''; // Show the flag if it matches
+    } else {
+      li.style.display = 'none'; // Hide the flag if it doesn't match
+    }
+  });
+}
 </script>
 </body>
 </html>
