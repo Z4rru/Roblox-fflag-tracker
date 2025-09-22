@@ -324,7 +324,7 @@ const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-const particles = Array.from({{length:80}}, () => ({{x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)/2, dy:(Math.random()-0.5)/2}}));
+const particles = Array.from({{length:80}}, () => {{x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)/2, dy:(Math.random()-0.5)/2}});
 function animateParticles() {{
     ctx.clearRect(0,0,canvas.width,canvas.height);
     particles.forEach(p => {{
@@ -340,10 +340,10 @@ function animateParticles() {{
     requestAnimationFrame(animateParticles);
 }}
 animateParticles();
-window.addEventListener('resize',()=>{{canvas.width=window.innerWidth; canvas.height=window.innerHeight;}});
+window.addEventListener('resize', ()=>{{canvas.width=window.innerWidth; canvas.height=window.innerHeight;}});
 
 // Trend chart
-fetch("history.json").then(r=>r.json()).then(data => {{
+fetch("history.json").then(r => r.json()).then(data => {{
     const ctx = document.getElementById("trendChart").getContext("2d");
     new Chart(ctx, {{
         type:'line',
