@@ -107,6 +107,11 @@ def categorize_flag(flag_name: str) -> str:
 def escape_flag(flag_name: str) -> str:
     return html.escape(flag_name)
 
+def format_value(v: any) -> str:
+    if isinstance(v, bool):
+        return str(v).capitalize()
+    return str(v)
+
 # ===============================
 # Repository Management
 # ===============================
@@ -144,21 +149,54 @@ def get_commits() -> list[str]:
 # ===============================
 # Diff Utilities
 # ===============================
-def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[str], list[str]]:
+def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=LOCAL_CLONE)
-    added, removed = [], []
+    added_dict = {}
+    removed_dict = {}
     for line in diff.splitlines():
         if line.startswith("+") and not line.startswith("+++"):
-            added.append(line[1:].strip())
+            l = line[1:].strip()
+            if l.startswith('"') and ":" in l:
+                try:
+                    if l.endswith(","):
+                        l = l[:-1]
+                    d = json.loads("{" + l + "}")
+                    for k, v in d.items():
+                        added_dict[k] = v
+                except Exception as e:
+                    log.debug(f"Failed to parse added line: {l} {e}")
         elif line.startswith("-") and not line.startswith("---"):
-            removed.append(line[1:].strip())
-    return header, added, removed
+            l = line[1:].strip()
+            if l.startswith('"') and ":" in l:
+                try:
+                    if l.endswith(","):
+                        l = l[:-1]
+                    d = json.loads("{" + l + "}")
+                    for k, v in d.items():
+                        removed_dict[k] = v
+                except Exception as e:
+                    log.debug(f"Failed to parse removed line: {l} {e}")
+    added = []
+    changed = []
+    removed = []
+    for k in added_dict:
+        if k in removed_dict:
+            changed.append((k, removed_dict[k], added_dict[k]))
+        else:
+            added.append((k, added_dict[k]))
+    for k in removed_dict:
+        if k not in added_dict:
+            removed.append((k, removed_dict[k]))
+    return header, added, changed, removed
 
-def build_diff_for_commit(commit_hash: str, diff_cache: dict) -> tuple[str, list[str], list[str]]:
+def build_diff_for_commit(commit_hash: str, diff_cache: dict) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
     if commit_hash in diff_cache:
         cached = diff_cache[commit_hash]
-        return cached['header'], cached['added'], cached['removed']
+        added = [(f, v) for f, v in cached.get('added', [])]
+        changed = [(f, o, n) for f, o, n in cached.get('changed', [])]
+        removed = [(f, v) for f, v in cached.get('removed', [])]
+        return cached['header'], added, changed, removed
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=LOCAL_CLONE)
     try:
@@ -169,26 +207,42 @@ def build_diff_for_commit(commit_hash: str, diff_cache: dict) -> tuple[str, list
     try:
         curr_json = json.loads(curr_content)
     except json.JSONDecodeError:
-        header, added, removed = build_diff_for_commit_old(commit_hash)
-        diff_cache[commit_hash] = {'header': header, 'added': added, 'removed': removed}
-        return header, added, removed
-    added = [k for k in curr_json if k not in prev_json or curr_json[k] != prev_json.get(k)]
-    removed = [k for k in prev_json if k not in curr_json]
-    diff_cache[commit_hash] = {'header': header, 'added': added, 'removed': removed}
-    return header, added, removed
+        return build_diff_for_commit_old(commit_hash)
+    added = []
+    changed = []
+    removed = []
+    for k in curr_json:
+        if k not in prev_json:
+            added.append((k, curr_json[k]))
+        elif curr_json[k] != prev_json[k]:
+            changed.append((k, prev_json[k], curr_json[k]))
+    for k in prev_json:
+        if k not in curr_json:
+            removed.append((k, prev_json[k]))
+    diff_cache[commit_hash] = {
+        'header': header,
+        'added': [[f, v] for f, v in added],
+        'changed': [[f, o, n] for f, o, n in changed],
+        'removed': [[f, v] for f, v in removed]
+    }
+    return header, added, changed, removed
 
 def build_report(commits: list[str], diff_cache: dict) -> tuple[list, dict]:
     report, summary = [], {}
     for c in commits:
-        header, added_flags, removed_flags = build_diff_for_commit(c, diff_cache)
+        header, added, changed, removed = build_diff_for_commit(c, diff_cache)
         changes = []
-        for flag in added_flags:
+        for flag, value in added:
             cat = categorize_flag(flag)
-            changes.append(("Added", cat, flag))
+            changes.append(("Added", cat, flag, value))
             summary[(cat, "Added")] = summary.get((cat, "Added"), 0) + 1
-        for flag in removed_flags:
+        for flag, old, new in changed:
             cat = categorize_flag(flag)
-            changes.append(("Removed", cat, flag))
+            changes.append(("Changed", cat, flag, old, new))
+            summary[(cat, "Changed")] = summary.get((cat, "Changed"), 0) + 1
+        for flag, value in removed:
+            cat = categorize_flag(flag)
+            changes.append(("Removed", cat, flag, value))
             summary[(cat, "Removed")] = summary.get((cat, "Removed"), 0) + 1
         if changes:
             report.append((header, changes))
@@ -197,7 +251,7 @@ def build_report(commits: list[str], diff_cache: dict) -> tuple[list, dict]:
 # ===============================
 # History Management
 # ===============================
-def update_history(added: int, removed: int, last_run: str) -> None:
+def update_history(added: int, changed: int, removed: int, last_run: str) -> None:
     if HISTORY_FILE.exists():
         try:
             history = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
@@ -206,7 +260,7 @@ def update_history(added: int, removed: int, last_run: str) -> None:
             history = []
     else:
         history = []
-    history.append({"date": last_run, "added": added, "removed": removed})
+    history.append({"date": last_run, "added": added, "changed": changed, "removed": removed})
     history = history[-HISTORY_DAYS:]
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     HISTORY_FILE.write_text(json.dumps(history, indent=2), encoding="utf-8")
@@ -267,10 +321,11 @@ def generate_flag_info(flag: str) -> dict:
 # ===============================
 # Report Export (Enhanced with Grouping for Collapsibles and History Summary)
 # ===============================
-def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
+def export_reports(report: list, summary: dict) -> tuple[int, int, int, str, str]:
     last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
-    added_total = sum(v for (cat, typ), v in summary.items() if typ == "Added")
-    removed_total = sum(v for (cat, typ), v in summary.items() if typ == "Removed")
+    added_total = sum(summary.get((cat, "Added"), 0) for cat in CATEGORIES)
+    changed_total = sum(summary.get((cat, "Changed"), 0) for cat in CATEGORIES)
+    removed_total = sum(summary.get((cat, "Removed"), 0) for cat in CATEGORIES)
     
     # Load history.json to compute historical aggregates
     if HISTORY_FILE.exists():
@@ -281,8 +336,9 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
             history = []
     else:
         history = []
-    total_historical_added = sum(entry['added'] for entry in history)
-    total_historical_removed = sum(entry['removed'] for entry in history)
+    total_historical_added = sum(entry.get('added', 0) for entry in history)
+    total_historical_changed = sum(entry.get('changed', 0) for entry in history)
+    total_historical_removed = sum(entry.get('removed', 0) for entry in history)
     
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     
@@ -290,14 +346,17 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
     md.append(f"- **Last Run:** {last_run}")
     md.append(f"- **Flags Added:** {added_total}")
+    md.append(f"- **Flags Changed:** {changed_total}")
     md.append(f"- **Flags Removed:** {removed_total}\n")
-    md.append("## Summary\n| Category | Added | Removed | Total |\n|---|---|---|---|")
+    md.append("## Summary\n| Category | Added | Changed | Removed | Total |\n|---|---|---|---|---|")
     for cat in CATEGORIES:
         a = summary.get((cat, "Added"), 0)
+        c = summary.get((cat, "Changed"), 0)
         r = summary.get((cat, "Removed"), 0)
-        md.append(f"| {cat} | {a} | {r} | {a+r} |")
+        md.append(f"| {cat} | {a} | {c} | {r} | {a+c+r} |")
     md.append("\n## History Summary Chart Counts\n")  # New history section in markdown
     md.append(f"- **Total Historical Added:** {total_historical_added}")
+    md.append(f"- **Total Historical Changed:** {total_historical_changed}")
     md.append(f"- **Total Historical Removed:** {total_historical_removed}")
     if len(history) == 1:
         md.append("- **Note:** No prior history available yet")
@@ -307,13 +366,22 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
         for header, changes in report:
             md.append(f"\n## {header}")
             grouped = {}
-            for typ, cat, flag in changes:
-                grouped.setdefault((typ, cat), []).append(flag)
-            for (typ, cat), flags in grouped.items():
+            for typ, cat, flag, *values in changes:
+                grouped.setdefault((typ, cat), []).append((flag, *values))
+            for (typ, cat), items in grouped.items():
                 md.append(f"**{typ} in {cat}:**")
-                for f in flags:
-                    info = generate_flag_info(f)
-                    md.append(f"- {f} | Mechanism: {info['mechanism']} | Purpose: {info['purpose']}")
+                for item in items:
+                    flag = item[0]
+                    values = item[1:]
+                    info = generate_flag_info(flag)
+                    desc = ""
+                    if typ == "Added":
+                        desc = f"= {format_value(values[0])}"
+                    elif typ == "Changed":
+                        desc = f"changed from {format_value(values[0])} to {format_value(values[1])}"
+                    elif typ == "Removed":
+                        desc = f"removed (was {format_value(values[0])})"
+                    md.append(f"- {flag} {desc} | Mechanism: {info['mechanism']} | Purpose: {info['purpose']}")
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
     
     # HTML with <h3><ul> for Collapsibles
@@ -324,13 +392,22 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
         for header, changes in report:
             html_lines.append(f"<h2>{header}</h2>")
             grouped = {}
-            for typ, cat, flag in changes:
-                grouped.setdefault((typ, cat), []).append(flag)
-            for (typ, cat), flags in grouped.items():
+            for typ, cat, flag, *values in changes:
+                grouped.setdefault((typ, cat), []).append((flag, *values))
+            for (typ, cat), items in grouped.items():
                 html_lines.append(f"<h3>{typ} in {cat}</h3><ul>")
-                for f in flags:
-                    info = generate_flag_info(f)
-                    html_lines.append(f"<li>{escape_flag(f)} - Mechanism: {info['mechanism']} - Purpose: {info['purpose']}</li>")
+                for item in items:
+                    flag = item[0]
+                    values = item[1:]
+                    info = generate_flag_info(flag)
+                    desc = ""
+                    if typ == "Added":
+                        desc = f"= {html.escape(format_value(values[0]))}"
+                    elif typ == "Changed":
+                        desc = f"changed from {html.escape(format_value(values[0]))} to {html.escape(format_value(values[1]))}"
+                    elif typ == "Removed":
+                        desc = f"removed (was {html.escape(format_value(values[0]))})"
+                    html_lines.append(f"<li>{escape_flag(flag)} {desc} - Mechanism: {info['mechanism']} - Purpose: {info['purpose']}</li>")
                 html_lines.append("</ul>")
     html_lines.append("</body></html>")
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
@@ -339,21 +416,30 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     json_data = {
         "last_run": last_run,
         "added_total": added_total,
+        "changed_total": changed_total,
         "removed_total": removed_total,
         "total_historical_added": total_historical_added,  # New fields
+        "total_historical_changed": total_historical_changed,
         "total_historical_removed": total_historical_removed,
-        "summary": {cat: {"added": summary.get((cat, "Added"), 0), "removed": summary.get((cat, "Removed"), 0)} for cat in CATEGORIES},
+        "summary": {cat: {"added": summary.get((cat, "Added"), 0), "changed": summary.get((cat, "Changed"), 0), "removed": summary.get((cat, "Removed"), 0)} for cat in CATEGORIES},
         "report": [],
         "days": DAYS
     }
     for header, changes in report:
         grouped = {}
-        for typ, cat, flag in changes:
-            grouped.setdefault(f"{typ}_{cat}", []).append({
-                "name": flag,
-                "mechanism": generate_flag_info(flag)['mechanism'],
-                "purpose": generate_flag_info(flag)['purpose']
-            })
+        for typ, cat, flag, *values in changes:
+            info = generate_flag_info(flag)
+            entry = {"name": flag, "mechanism": info['mechanism'], "purpose": info['purpose']}
+            if typ == "Added":
+                entry["old_value"] = None
+                entry["new_value"] = format_value(values[0])
+            elif typ == "Changed":
+                entry["old_value"] = format_value(values[0])
+                entry["new_value"] = format_value(values[1])
+            elif typ == "Removed":
+                entry["old_value"] = format_value(values[0])
+                entry["new_value"] = None
+            grouped.setdefault(f"{typ}_{cat}", []).append(entry)
         json_data["report"].append({
             "header": header,
             "grouped": grouped
@@ -361,12 +447,12 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     OUTPUT_JSON.write_text(json.dumps(json_data, indent=2), encoding="utf-8")
     
     log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}")
-    return added_total, removed_total, last_run, "report_done"
+    return added_total, changed_total, removed_total, last_run, "report_done"
 
 # ===============================
 # Landing Page (Particles + Collapsibles JS)
 # ===============================
-def ensure_landing_page(added: int, removed: int, last_run: str) -> None:
+def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -> None:
     index_html = OUTPUT_DIR / "index.html"
     if not HISTORY_FILE.exists():
         HISTORY_FILE.write_text("[]", encoding="utf-8")
@@ -382,8 +468,10 @@ def ensure_landing_page(added: int, removed: int, last_run: str) -> None:
 <style>
 :root { 
   --primary-green: #34d399;
+  --primary-blue: #60a5fa;
   --primary-red: #f87171;
   --historical-green: #10b981;
+  --historical-blue: #3b82f6;
   --historical-red: #ef4444;
   --bg-opacity: 0.15;
   --text-color: #fff;
@@ -430,8 +518,10 @@ header h1 { font-size:3rem; font-weight:700; }
   border:2px solid var(--primary-green);
 }
 .added { border-left:6px solid var(--primary-green); }
+.changed { border-left:6px solid var(--primary-blue); }
 .removed { border-left:6px solid var(--primary-red); }
 .historical-added { border-left:6px solid var(--historical-green); }
+.historical-changed { border-left:6px solid var(--historical-blue); }
 .historical-removed { border-left:6px solid var(--historical-red); }
 .last-run { text-align:center; margin:20px 0; font-style:italic; color:#eee; }
 section { max-width:1200px; margin:0 auto; padding:20px; }
@@ -496,8 +586,10 @@ th {
 <section>
   <div class="stats">
     <div class="badge added">✅ Added: <span id="flags-added">0</span></div>
+    <div class="badge changed">🔄 Changed: <span id="flags-changed">0</span></div>
     <div class="badge removed">❌ Removed: <span id="flags-removed">0</span></div>
     <div class="badge historical-added">📈 Historical Added: <span id="historical-added">0</span></div>
+    <div class="badge historical-changed">📈 Historical Changed: <span id="historical-changed">0</span></div>
     <div class="badge historical-removed">📉 Historical Removed: <span id="historical-removed">0</span></div>
   </div>
 
@@ -597,6 +689,14 @@ fetch("history.json").then(r => r.json()).then(data => {
           tension: 0.4
         },
         {
+          label: 'Changed',
+          data: data.map(d => d.changed || 0),
+          borderColor: '#60a5fa',
+          backgroundColor: 'rgba(96,165,250,0.2)',
+          fill: true,
+          tension: 0.4
+        },
+        {
           label: 'Removed',
           data: data.map(d => d.removed),
           borderColor: '#f87171',
@@ -653,7 +753,15 @@ function loadReportPage(data, page = 0) {
       ul.style.display = 'block';
       flags.forEach(f => {
         const li = document.createElement('li');
-        li.textContent = `${f.name} - Mechanism: ${f.mechanism} - Purpose: ${f.purpose}`;
+        let desc = '';
+        if (f.old_value === null && f.new_value !== null) {
+          desc = `= ${f.new_value}`;
+        } else if (f.old_value !== null && f.new_value !== null) {
+          desc = `changed from ${f.old_value} to ${f.new_value}`;
+        } else if (f.old_value !== null && f.new_value === null) {
+          desc = `(was ${f.old_value})`;
+        }
+        li.textContent = `${f.name} ${desc} - Mechanism: ${f.mechanism} - Purpose: ${f.purpose}`;
         ul.appendChild(li);
       });
       reportContent.appendChild(ul);
@@ -665,17 +773,19 @@ fetch('FFlag_Report.json')
   .then(response => response.json())
   .then(data => {
     document.getElementById('flags-added').textContent = data.added_total;
+    document.getElementById('flags-changed').textContent = data.changed_total;
     document.getElementById('flags-removed').textContent = data.removed_total;
     document.getElementById('historical-added').textContent = data.total_historical_added;
+    document.getElementById('historical-changed').textContent = data.total_historical_changed;
     document.getElementById('historical-removed').textContent = data.total_historical_removed;
     document.getElementById('last-run').textContent = data.last_run;
 
     // Populate summary table
     const summaryTable = document.getElementById('summaryTable');
-    let tableHtml = '<thead><tr><th>Category</th><th>Added</th><th>Removed</th></tr></thead><tbody>';
+    let tableHtml = '<thead><tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th></tr></thead><tbody>';
     for (let cat in data.summary) {
       const s = data.summary[cat];
-      tableHtml += `<tr><td>${cat}</td><td>${s.added}</td><td>${s.removed}</td></tr>`;
+      tableHtml += `<tr><td>${cat}</td><td>${s.added}</td><td>${s.changed}</td><td>${s.removed}</td></tr>`;
     }
     tableHtml += '</tbody>';
     summaryTable.innerHTML = tableHtml;
@@ -820,15 +930,19 @@ def main() -> None:
         else:
             report, summary = build_report(commits, diff_cache)
         DIFF_CACHE_FILE.write_text(json.dumps(diff_cache, indent=2), encoding="utf-8")
-        all_flags = [f for _, changes in report for _, _, f in changes]
+        all_flags = set()
+        for _, changes in report:
+            for typ, _, flag, *_ in changes:
+                all_flags.add(flag)
         if all_flags:
-            asyncio.run(generate_flag_info_batch(all_flags))
+            asyncio.run(generate_flag_info_batch(list(all_flags)))
         last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
-        added = sum(v for (cat, typ), v in summary.items() if typ == "Added")
-        removed = sum(v for (cat, typ), v in summary.items() if typ == "Removed")
-        update_history(added, removed, last_run)
+        added = sum(summary.get((cat, "Added"), 0) for cat in CATEGORIES)
+        changed = sum(summary.get((cat, "Changed"), 0) for cat in CATEGORIES)
+        removed = sum(summary.get((cat, "Removed"), 0) for cat in CATEGORIES)
+        update_history(added, changed, removed, last_run)
         export_reports(report, summary)
-        ensure_landing_page(added, removed, last_run)
+        ensure_landing_page(added, changed, removed, last_run)
         log.info("All done! Reports and dashboard ready.")
     except Exception as e:
         log.error(f"Main execution failed: {e}")
