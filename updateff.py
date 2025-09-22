@@ -36,27 +36,32 @@ DEBUG = True
 # ===============================
 def log(msg, level="INFO"):
     ts = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
-    if DEBUG or level != "DEBUG":
-        print(f"[{level}] {msg} ({ts})")
+    prefix = f"[{level}]"
+    print(f"{prefix} {msg} ({ts})")
 
 # ===============================
-# OpenAI API Key Management
+# OpenAI API Key Management (Safe)
 # ===============================
 keys_raw = os.getenv("OPENAI_API_KEYS", "")
 keys = [k.strip() for k in keys_raw.split(",") if k.strip()]
+
 if not keys:
-    raise ValueError("No OpenAI API keys found in OPENAI_API_KEYS environment variable.")
+    log("⚠ No OpenAI API keys found. AI enrichment will be skipped.", level="WARN")
+    keys = []
 
-key_index = -1
-key_cycle = itertools.cycle(keys)
-
-def get_next_api_key():
-    global key_index
-    key_index = (key_index + 1) % len(keys)
-    key = keys[key_index]
-    display_key = f"{key[:4]}...{key[-4:]}" if len(key) > 8 else "****"
-    log(f"Using OpenAI API key #{key_index+1} ({display_key})", level="DEBUG")
-    return key
+if keys:
+    key_index = -1
+    key_cycle = itertools.cycle(keys)
+    def get_next_api_key():
+        global key_index
+        key_index = (key_index + 1) % len(keys)
+        key = keys[key_index]
+        display_key = f"{key[:4]}...{key[-4:]}" if len(key) > 8 else "****"
+        log(f"Using OpenAI API key #{key_index+1} ({display_key})", level="DEBUG")
+        return key
+else:
+    def get_next_api_key():
+        return None
 
 # ===============================
 # FFlags Categories
@@ -82,7 +87,7 @@ def run_cmd(cmd, cwd=None):
     result = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True, text=True)
     if result.returncode != 0:
         log(f"Command failed: {cmd}", level="ERROR")
-        log(result.stderr, level="ERROR")
+        log(result.stderr.strip(), level="ERROR")
     return result.stdout.strip()
 
 def categorize_flag(flag_name):
@@ -104,12 +109,13 @@ def ensure_repo():
         run_cmd("git fetch --all", cwd=LOCAL_CLONE)
         run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
     else:
-        log("Cloning repository...")
+        log("Cloning repository for the first time...")
         run_cmd(f"git clone --depth=1 {REPO_URL} {LOCAL_CLONE}")
 
 def get_commits():
     since = (datetime.datetime.now() - datetime.timedelta(days=DAYS)).strftime("%Y-%m-%d")
-    return run_cmd(f"git log --since='{since}' --pretty=format:'%H' -- {TARGET_FILE}", cwd=LOCAL_CLONE).splitlines()
+    commits = run_cmd(f"git log --since='{since}' --pretty=format:'%H' -- {TARGET_FILE}", cwd=LOCAL_CLONE)
+    return commits.splitlines() if commits else []
 
 def build_diff_for_commit(commit_hash):
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
@@ -156,6 +162,10 @@ def update_history(added, removed, last_run):
 FLAG_INFO = json.load(CACHE_FILE.open("r", encoding="utf-8")) if CACHE_FILE.exists() else {}
 
 async def fetch_ai_batch(batch):
+    if not keys:
+        for f in batch:
+            FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
+        return
     prompt = "Explain the Roblox FFlags in detail:\n" + "".join([f"- {f}\n" for f in batch])
     prompt += "\nProvide Mechanism and Purpose, 1-2 sentences each."
     try:
@@ -169,16 +179,16 @@ async def fetch_ai_batch(batch):
         for line in text:
             if ":" in line:
                 f, rest = line.split(":",1)
-                f=f.strip()
+                f = f.strip()
                 if f in batch:
-                    FLAG_INFO[f]={"mechanism":rest.strip(),"purpose":"N/A"}
+                    FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
     except openai.error.RateLimitError:
         log("Rate limit reached. Retrying batch.", level="WARN")
         await fetch_ai_batch(batch)
     except Exception as e:
         log(f"AI batch failed: {e}", level="ERROR")
         for f in batch:
-            FLAG_INFO[f]={"mechanism":"Unknown","purpose":"Unknown"}
+            FLAG_INFO[f] = {"mechanism":"Unknown","purpose":"Unknown"}
 
 async def generate_flag_info_batch(flags):
     new_flags = [f for f in flags if f not in FLAG_INFO]
@@ -201,6 +211,7 @@ def export_reports(report, summary):
     added_count = sum(v for (c,a),v in summary.items() if a=="Added")
     removed_count = sum(v for (c,a),v in summary.items() if a=="Removed")
 
+    # Markdown Report
     md = [f"# Roblox FFlag Report ({DAYS} Days)\n","",f"- Last Run: {date_str}","- Added: {added_count}","- Removed: {removed_count}\n","## Summary\n"]
     md.append("| Category | Added | Removed | Total |")
     md.append("|----------|-------|---------|-------|")
@@ -224,6 +235,7 @@ def export_reports(report, summary):
         md.append("")
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
 
+    # HTML Report
     html_lines = [f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>FFlag Report</title></head><body>
 <h1>Roblox FFlag Report ({DAYS} Days)</h1><p>Last Run: {date_str}</p><p>Added: {added_count} | Removed: {removed_count}</p>"""]
     for header, changes in report:
@@ -246,7 +258,8 @@ def export_reports(report, summary):
 # ===============================
 def ensure_landing_page(added, removed, last_run):
     index_html = OUTPUT_DIR / "index.html"
-    if not (OUTPUT_DIR / "history.json").exists(): (OUTPUT_DIR / "history.json").write_text("[]")
+    hist_file = OUTPUT_DIR / "history.json"
+    if not hist_file.exists(): hist_file.write_text("[]")
     html_content = f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>FFlag Dashboard</title></head><body>
 <h1>Roblox FFlag Tracker</h1><p>Added: {added} | Removed: {removed}</p><p>Last Run: {last_run}</p>
 <iframe src="FFlag_Report.html" style="width:95%;height:70vh;"></iframe>
@@ -266,9 +279,9 @@ type:'line', data:{{labels:data.map(d=>d.date),datasets:[{{label:'Added',data:da
 # Main Execution
 # ===============================
 def main():
-    log("="*60)
-    log("Roblox Client FFlag Tracker (Daily Automation Ready)")
-    log("="*60)
+    log("="*80)
+    log("Roblox Client FFlag Tracker (Safe & Resilient Version)")
+    log("="*80)
     ensure_repo()
     commits = get_commits()
     if not commits:
@@ -281,7 +294,7 @@ def main():
     added, removed, last_run, _ = export_reports(report, summary)
     ensure_landing_page(added, removed, last_run)
     update_history(added, removed, last_run)
-    log("All done!", level="SUCCESS")
+    log("All done! Reports generated successfully.", level="SUCCESS")
 
 if __name__=="__main__":
     main()
