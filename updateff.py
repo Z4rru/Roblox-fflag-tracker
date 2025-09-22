@@ -243,7 +243,7 @@ window.addEventListener('resize', () => {
 });
 """
 
-    # JavaScript for chart, search, and collapsible sections
+    # Other JS for charts, search, and collapsible sections
     js_others = r"""
 // Trend chart
 fetch("history.json").then(r => r.json()).then(data => {
@@ -289,7 +289,7 @@ iframe.onload = () => {
 };
 """
 
-    # HTML template
+    # Full HTML template
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -403,6 +403,7 @@ canvas#particleCanvas {{
 
     index_html.write_text(html_content, encoding="utf-8")
     log(f"Landing page written: {index_html}")
+
 
 
 
