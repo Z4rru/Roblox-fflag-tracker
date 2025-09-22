@@ -293,7 +293,7 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     md.append("\n## History Summary Chart Counts\n")  # New history section in markdown
     md.append(f"- **Total Historical Added:** {total_historical_added}")
     md.append(f"- **Total Historical Removed:** {total_historical_removed}")
-    if len(history) == 1:
+    if len(history) == 0:
         md.append("- **Note:** No prior history available yet")
     for header, changes in report:
         md.append(f"\n## {header}")
@@ -581,6 +581,8 @@ fetch("history.json").then(r => r.json()).then(data => {{
       }}
     }}
   }});
+}}).catch(error => {{
+  console.error('Error loading history:', error);
 }});
 
 // Lazy Loading of report data
@@ -688,16 +690,15 @@ def main() -> None:
         commits = get_commits()
         if not commits:
             log.warning(f"No commits in the last {DAYS} days.")
-            return
-        report, summary = build_report(commits)
+            report = []
+            summary = {}
+        else:
+            report, summary = build_report(commits)
         all_flags = [f for _, changes in report for _, _, f in changes]
         if all_flags:
             asyncio.run(generate_flag_info_batch(all_flags))
-        last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
-        added = sum(v for (cat, typ), v in summary.items() if typ == "Added")
-        removed = sum(v for (cat, typ), v in summary.items() if typ == "Removed")
+        added, removed, last_run, _ = export_reports(report, summary)
         update_history(added, removed, last_run)
-        export_reports(report, summary)
         ensure_landing_page(added, removed, last_run)
         log.info("All done! Reports and dashboard ready.")
     except Exception as e:
