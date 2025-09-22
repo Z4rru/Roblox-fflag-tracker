@@ -23,16 +23,17 @@ OUTPUT_DIR = WORKSPACE / "output"
 OUTPUT_MD = OUTPUT_DIR / "FFlag_Report.md"
 OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
 CACHE_FILE = OUTPUT_DIR / "fflag_cache.json"
+HISTORY_FILE = OUTPUT_DIR / "history.json"
 
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 
-DAYS: int = 8
-HISTORY_DAYS: int = 90
-AI_BATCH_SIZE: int = 10
-MAX_RETRIES: int = 3
-DEBUG: bool = True
+DAYS = 8
+HISTORY_DAYS = 90
+AI_BATCH_SIZE = 10
+MAX_RETRIES = 3
+DEBUG = True
 
 # ===============================
 # Logging Utility
@@ -47,20 +48,17 @@ keys_raw = os.getenv("OPENAI_API_KEYS", "")
 keys = [k.strip() for k in keys_raw.split(",") if k.strip()]
 if not keys:
     log.warning("⚠ No OpenAI API keys found. AI enrichment will be skipped.")
-    keys = []
 
-if keys:
-    key_index = -1
-    def get_next_api_key() -> str:
-        global key_index
-        key_index = (key_index + 1) % len(keys)
-        key = keys[key_index]
-        display_key = f"{key[:4]}...{key[-4:]}" if len(key) > 8 else "****"
-        log.debug(f"Using OpenAI API key #{key_index+1} ({display_key})")
-        return key
-else:
-    def get_next_api_key() -> None:
+key_index = -1
+def get_next_api_key():
+    global key_index
+    if not keys:
         return None
+    key_index = (key_index + 1) % len(keys)
+    key = keys[key_index]
+    display_key = f"{key[:4]}...{key[-4:]}" if len(key) > 8 else "****"
+    log.debug(f"Using OpenAI API key #{key_index+1} ({display_key})")
+    return key
 
 # ===============================
 # FFlags Categories
@@ -155,31 +153,29 @@ def build_report(commits: list[str]) -> tuple[list, dict]:
 # History Management
 # ===============================
 def update_history(added: int, removed: int, last_run: str) -> None:
-    hist_file = OUTPUT_DIR / "history.json"
-    history = json.loads(hist_file.read_text(encoding="utf-8")) if hist_file.exists() else []
+    history = json.loads(HISTORY_FILE.read_text(encoding="utf-8")) if HISTORY_FILE.exists() else []
     history.append({"date": last_run, "added": added, "removed": removed})
     history = history[-HISTORY_DAYS:]
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    hist_file.write_text(json.dumps(history, indent=2), encoding="utf-8")
+    HISTORY_FILE.write_text(json.dumps(history, indent=2), encoding="utf-8")
 
 # ===============================
 # AI Enrichment
 # ===============================
-FLAG_INFO: dict = json.loads(CACHE_FILE.read_text(encoding="utf-8")) if CACHE_FILE.exists() else {}
+FLAG_INFO = json.loads(CACHE_FILE.read_text(encoding="utf-8")) if CACHE_FILE.exists() else {}
 
 async def fetch_ai_batch(batch: list[str]) -> None:
     if not keys or not openai:
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
         return
-    prompt = "Explain the Roblox FFlags in detail:\n" + "".join([f"- {f}\n" for f in batch])
+    prompt = "Explain the Roblox FFlags:\n" + "".join([f"- {f}\n" for f in batch])
     prompt += "\nProvide Mechanism and Purpose, 1-2 sentences each."
-    backoff = 1
-    while True:
+    for attempt in range(MAX_RETRIES):
         try:
             openai.api_key = get_next_api_key()
             response = await openai.chat.completions.create(
-                model="gpt-5-mini",  # Updated for 2025
+                model="gpt-5-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.3
             )
@@ -192,14 +188,14 @@ async def fetch_ai_batch(batch: list[str]) -> None:
                         FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
             break
         except openai.RateLimitError:
-            log.warning(f"Rate limit reached. Retrying in {backoff}s.")
-            await asyncio.sleep(backoff)
-            backoff *= 2
+            log.warning(f"Rate limit reached. Retrying attempt {attempt+1}/{MAX_RETRIES}.")
+            await asyncio.sleep(2 ** attempt)
         except Exception as e:
             log.error(f"AI batch failed: {e}")
-            for f in batch:
-                FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
-            break
+    else:
+        for f in batch:
+            FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
+    CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
 
 async def generate_flag_info_batch(flags: list[str]) -> None:
     new_flags = [f for f in flags if f not in FLAG_INFO]
@@ -207,50 +203,70 @@ async def generate_flag_info_batch(flags: list[str]) -> None:
         return
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     tasks = [fetch_ai_batch(new_flags[i:i + AI_BATCH_SIZE]) for i in range(0, len(new_flags), AI_BATCH_SIZE)]
-    await asyncio.gather(*tasks)
-    CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
+    if tasks:
+        await asyncio.gather(*tasks)
 
 def generate_flag_info(flag: str) -> dict:
     return FLAG_INFO.get(flag, {"mechanism": "Unknown", "purpose": "Unknown"})
 
 # ===============================
-# Report Generation (Markdown + HTML)
+# Report Export (Enhanced with Grouping for Collapsibles)
 # ===============================
 def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
     added_total = sum(v for (cat, typ), v in summary.items() if typ == "Added")
     removed_total = sum(v for (cat, typ), v in summary.items() if typ == "Removed")
     
-    # Basic MD report
-    md_content = "# Roblox FFlag Report\n"
-    for header, changes in report:
-        md_content += f"## {header}\n"
-        for typ, cat, flag in changes:
-            info = generate_flag_info(flag)
-            md_content += f"- {typ} ({cat}): {flag} - Mechanism: {info['mechanism']}\n"
-    OUTPUT_MD.write_text(md_content, encoding="utf-8")
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     
-    # Basic HTML report (mirroring MD for completeness)
-    html_content = "<html><body><h1>Roblox FFlag Report</h1>"
+    # Markdown with Summary
+    md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
+    md.append(f"- **Last Run:** {last_run}")
+    md.append(f"- **Flags Added:** {added_total}")
+    md.append(f"- **Flags Removed:** {removed_total}\n")
+    md.append("## Summary\n| Category | Added | Removed | Total |\n|---|---|---|---|")
+    for cat in CATEGORIES:
+        a = summary.get((cat, "Added"), 0)
+        r = summary.get((cat, "Removed"), 0)
+        md.append(f"| {cat} | {a} | {r} | {a+r} |")
     for header, changes in report:
-        html_content += f"<h2>{header}</h2><ul>"
+        md.append(f"\n## {header}")
+        grouped = {}
         for typ, cat, flag in changes:
-            info = generate_flag_info(flag)
-            html_content += f"<li>{typ} ({cat}): {escape_flag(flag)} - Mechanism: {info['mechanism']}</li>"
-    html_content += "</ul></body></html>"
-    OUTPUT_HTML.write_text(html_content, encoding="utf-8")
+            grouped.setdefault((typ, cat), []).append(flag)
+        for (typ, cat), flags in grouped.items():
+            md.append(f"**{typ} in {cat}:**")
+            for f in flags:
+                info = generate_flag_info(f)
+                md.append(f"- {f} | Mechanism: {info['mechanism']}")
+    OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
     
-    log.info(f"Reports exported: {OUTPUT_MD} and {OUTPUT_HTML}")
-    return added_total, removed_total, last_run, "reports_generated"  # Dummy fourth return for unpack
+    # HTML with <h3><ul> for Collapsibles
+    html_lines = ["<html><body><h1>Roblox FFlag Report</h1>"]
+    for header, changes in report:
+        html_lines.append(f"<h2>{header}</h2>")
+        grouped = {}
+        for typ, cat, flag in changes:
+            grouped.setdefault((typ, cat), []).append(flag)
+        for (typ, cat), flags in grouped.items():
+            html_lines.append(f"<h3>{typ} in {cat}</h3><ul>")
+            for f in flags:
+                info = generate_flag_info(f)
+                html_lines.append(f"<li>{escape_flag(f)} - Mechanism: {info['mechanism']}</li>")
+            html_lines.append("</ul>")
+    html_lines.append("</body></html>")
+    OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
+    
+    log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}")
+    return added_total, removed_total, last_run, "report_done"
 
 # ===============================
-# Landing Page with Full Features
+# Landing Page (Particles + Collapsibles JS)
 # ===============================
 def ensure_landing_page(added: int, removed: int, last_run: str) -> None:
-    index_html: Path = OUTPUT_DIR / "index.html"
-    hist_file: Path = OUTPUT_DIR / "history.json"
-    if not hist_file.exists():
-        hist_file.write_text("[]", encoding="utf-8")
+    index_html = OUTPUT_DIR / "index.html"
+    if not HISTORY_FILE.exists():
+        HISTORY_FILE.write_text("[]", encoding="utf-8")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     html_content = f"""<!DOCTYPE html>
@@ -408,9 +424,9 @@ document.getElementById('searchInput').addEventListener('input',function(){{
   doc.querySelectorAll('li').forEach(li=>{{li.style.display=li.textContent.toLowerCase().includes(q)?'':'none';}});
 }});
 
-// Collapsible sections
+// Collapsible sections (enhanced to run on iframe load)
 const iframe=document.getElementById('reportFrame');
-iframe.onload=()=>{{const doc=iframe.contentDocument||iframe.contentWindow.document; doc.querySelectorAll('h3').forEach(h3=>{{const ul=h3.nextElementSibling; h3.style.cursor='pointer'; h3.setAttribute('aria-expanded','true'); ul.style.display='block'; h3.addEventListener('click',()=>{{const expanded=ul.style.display!=='none';ul.style.display=expanded?'none':'block';h3.setAttribute('aria-expanded',!expanded);}});}});}};
+iframe.onload=()=>{{const doc=iframe.contentDocument||iframe.contentWindow.document; doc.querySelectorAll('h3').forEach(h3=>{{const ul=h3.nextElementSibling; if(ul && ul.tagName==='UL'){{h3.style.cursor='pointer'; h3.setAttribute('aria-expanded','true'); ul.style.display='block'; h3.addEventListener('click',()=>{{const expanded=ul.style.display!=='none';ul.style.display=expanded?'none':'block';h3.setAttribute('aria-expanded',!expanded);}});}}}});}};
 </script>
 </body>
 </html>
@@ -424,7 +440,7 @@ iframe.onload=()=>{{const doc=iframe.contentDocument||iframe.contentWindow.docum
 def main() -> None:
     try:
         log.info("=" * 80)
-        log.info("Roblox Client FFlag Tracker (Safe & Resilient Version)")
+        log.info("Roblox Client FFlag Tracker (Integrated Categories + Interpolation)")
         log.info("=" * 80)
         ensure_repo()
         commits = get_commits()
@@ -438,7 +454,7 @@ def main() -> None:
         added, removed, last_run, _ = export_reports(report, summary)
         ensure_landing_page(added, removed, last_run)
         update_history(added, removed, last_run)
-        log.info("All done! Reports generated successfully.")
+        log.info("All done! Reports and dashboard ready.")
     except Exception as e:
         log.error(f"Main execution failed: {e}")
 
