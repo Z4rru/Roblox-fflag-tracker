@@ -124,29 +124,35 @@
     const categoryList = document.getElementById("category-list");
     const summary = data.summary;
 
-    // Create a list item for each category
+    // Loop through the summary object and create list items for each category
     for (let category in summary) {
       const added = summary[category].added;
       const removed = summary[category].removed;
       const total = added + removed;
 
+      // Create a list item for each category and append it to the category list
       const listItem = document.createElement("li");
       listItem.innerHTML = `<strong>${category}:</strong> Added: ${added}, Removed: ${removed}, Total: ${total}`;
       categoryList.appendChild(listItem);
     }
+
+    // Optionally: Update other fields like total flags added/removed and last run time
+    document.getElementById('flags-added').innerText = data.added_total;
+    document.getElementById('flags-removed').innerText = data.removed_total;
+    document.getElementById('last-run').innerText = data.last_run;
   });
 
-  // Existing trend chart population logic
+  // Existing trend chart population logic using the history.json data
   fetch("history.json").then(r => r.json()).then(data => {
     const ctx = document.getElementById("trendChart").getContext("2d");
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: data.map(d => d.date),
+        labels: data.map(d => d.date), // Map dates for the x-axis
         datasets: [
           {
             label: 'Added',
-            data: data.map(d => d.added),
+            data: data.map(d => d.added), // Map added counts for the y-axis
             borderColor: '#34d399',
             backgroundColor: 'rgba(52,211,153,0.2)',
             fill: true,
@@ -154,7 +160,7 @@
           },
           {
             label: 'Removed',
-            data: data.map(d => d.removed),
+            data: data.map(d => d.removed), // Map removed counts for the y-axis
             borderColor: '#f87171',
             backgroundColor: 'rgba(248,113,113,0.2)',
             fill: true,
@@ -165,7 +171,7 @@
       options: {
         responsive: true,
         plugins: {
-          legend: { position: 'top' }
+          legend: { position: 'top' } // Position the legend at the top
         },
         interaction: {
           mode: 'nearest',
@@ -176,10 +182,13 @@
     });
   });
 
+  // Implementing search functionality for filtering flags within the iframe report
   document.getElementById('searchInput').addEventListener('input', function () {
-    const q = this.value.toLowerCase();
+    const q = this.value.toLowerCase(); // Convert search query to lowercase
     const iframe = document.getElementById('reportFrame');
     const doc = iframe.contentDocument || iframe.contentWindow.document;
+
+    // Filter the list of flags in the iframe based on the search query
     doc.querySelectorAll('li').forEach(li => {
       li.style.display = li.textContent.toLowerCase().includes(q) ? '' : 'none';
     });
