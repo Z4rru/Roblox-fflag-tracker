@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import itertools
 import subprocess
 import shutil
 import datetime
@@ -11,7 +12,7 @@ import asyncio
 import openai
 
 # ===============================
-# Settings
+# Settings and Paths
 # ===============================
 SCRIPT_DIR = Path(__file__).resolve().parent
 WORKSPACE = Path(os.getenv("GITHUB_WORKSPACE", SCRIPT_DIR)).resolve()
@@ -22,13 +23,24 @@ OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
-DAYS = 8  # Days to look back in commit history
-HISTORY_DAYS = 90  # How many days to keep in history for trends
-AI_BATCH_SIZE = 10  # Number of flags to send per AI batch
+DAYS = 8  # How many days to look back for commits
+HISTORY_DAYS = 90  # Keep history for trend analysis
+AI_BATCH_SIZE = 10  # Number of flags per AI batch
 
-# Load OpenAI key safely from environment
-openai.api_key = os.getenv("OPENAI_API_KEY")
 CACHE_FILE = OUTPUT_DIR / "fflag_cache.json"
+
+# ===============================
+# OpenAI API Key Rotation Setup
+# ===============================
+keys = os.getenv("OPENAI_API_KEYS", "").split(",")
+if not keys or keys == [""]:
+    raise ValueError("No OpenAI API keys found in OPENAI_API_KEYS environment variable.")
+
+key_cycle = itertools.cycle(keys)
+
+def get_next_api_key():
+    """Return the next API key from the round-robin rotation."""
+    return next(key_cycle)
 
 # ===============================
 # Categories for classification
@@ -48,14 +60,14 @@ CATEGORIES = {
 }
 
 # ===============================
-# Logging and helpers
+# Logging and Utility Functions
 # ===============================
 def log(msg, level="INFO"):
     ts = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
     print(f"[{level}] {msg} ({ts})")
 
 def run_cmd(cmd, cwd=None):
-    """Run a shell command and capture output, logging errors if any."""
+    """Run shell command and return output, log errors if any."""
     result = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True, text=True)
     if result.returncode != 0:
         log(f"Command failed: {cmd}", level="ERROR")
@@ -63,7 +75,7 @@ def run_cmd(cmd, cwd=None):
     return result.stdout.strip()
 
 def categorize_flag(flag_name):
-    """Return the category of a flag based on keywords."""
+    """Return category based on keywords."""
     lower_flag = flag_name.lower()
     for cat, keywords in CATEGORIES.items():
         for word in keywords:
@@ -76,10 +88,10 @@ def escape_flag(flag_name):
     return html.escape(flag_name)
 
 # ===============================
-# Repository management
+# Repository Management
 # ===============================
 def ensure_repo():
-    """Clone or update the repository containing FFlags."""
+    """Clone or update the FFlag repository."""
     if LOCAL_CLONE.exists():
         log("Updating existing repo...")
         run_cmd("git fetch --all", cwd=LOCAL_CLONE)
@@ -88,11 +100,8 @@ def ensure_repo():
         log("Cloning fresh repo...")
         run_cmd(f"git clone --depth=1 {REPO_URL} {LOCAL_CLONE}")
 
-# ===============================
-# Commit diffing
-# ===============================
 def get_commits():
-    """Get commits affecting the target file within the last DAYS days."""
+    """Get commits for target file in last DAYS."""
     since_date = (datetime.datetime.now() - datetime.timedelta(days=DAYS)).strftime("%Y-%m-%d")
     commits = run_cmd(
         f"git log --since='{since_date}' --pretty=format:'%H' -- {TARGET_FILE}",
@@ -101,7 +110,7 @@ def get_commits():
     return commits
 
 def build_diff_for_commit(commit_hash):
-    """Return the commit header, added flags, and removed flags."""
+    """Return header, added, and removed flags for a commit."""
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=LOCAL_CLONE)
     added, removed = [], []
@@ -113,7 +122,7 @@ def build_diff_for_commit(commit_hash):
     return header, added, removed
 
 def build_report(commits):
-    """Construct a detailed report and summary counts from commits."""
+    """Build report and summary from commits."""
     report = []
     summary_counts = {}
     for c in commits:
@@ -144,56 +153,31 @@ def update_history(added, removed, last_run):
     history = []
     if hist_file.exists():
         history = json.loads(hist_file.read_text(encoding="utf-8"))
-
     history.append({"date": last_run, "added": added, "removed": removed})
     history = history[-HISTORY_DAYS:]
     hist_file.write_text(json.dumps(history, indent=2), encoding="utf-8")
 
 # ===============================
-# AI Enrichment
+# AI Enrichment with Multi-Key Rotation, Async, and Caching
 # ===============================
-# Load cached flag info
 if CACHE_FILE.exists():
     with open(CACHE_FILE, "r", encoding="utf-8") as f:
         FLAG_INFO = json.load(f)
 else:
     FLAG_INFO = {}
 
-async def generate_flag_info_batch(flags):
-    """Generate AI explanations for FFlags in parallel batches."""
-    new_flags = [f for f in flags if f not in FLAG_INFO]
-    if not new_flags or not openai.api_key:
-        return
-
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-    tasks = []
-    for i in range(0, len(new_flags), AI_BATCH_SIZE):
-        batch = new_flags[i:i + AI_BATCH_SIZE]
-        tasks.append(fetch_ai_batch(batch))
-    
-    # Run batches concurrently
-    await asyncio.gather(*tasks)
-
-    # Save updated cache
-    with open(CACHE_FILE, "w", encoding="utf-8") as f:
-        json.dump(FLAG_INFO, f, indent=2)
-
 async def fetch_ai_batch(batch):
-    """Fetch AI explanations for a single batch of flags."""
-    prompt = "Explain the Roblox FFlags in detail:\n"
-    for flag in batch:
-        prompt += f"- {flag}\n"
+    """Fetch AI explanation for a batch of flags with retries and key rotation."""
+    prompt = "Explain the Roblox FFlags in detail:\n" + "".join([f"- {f}\n" for f in batch])
     prompt += "\nProvide Mechanism and Purpose for each, 1-2 sentences each."
 
     try:
-        # Future-proof async call for OpenAI 1.0+
+        openai.api_key = get_next_api_key()
         response = await openai.chat.completions.create(
             model="gpt-5-mini",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3
         )
-
         text = response.choices[0].message["content"].strip().split("\n")
         for line in text:
             if ":" in line:
@@ -201,21 +185,35 @@ async def fetch_ai_batch(batch):
                 f = f.strip()
                 if f in batch:
                     FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
-
+    except openai.error.RateLimitError:
+        log("Rate limit reached. Retrying batch with next key.", level="WARN")
+        await fetch_ai_batch(batch)
     except Exception as e:
         log(f"AI batch generation failed: {e}", level="ERROR")
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
 
+async def generate_flag_info_batch(flags):
+    """Generate AI explanations in batches asynchronously."""
+    new_flags = [f for f in flags if f not in FLAG_INFO]
+    if not new_flags:
+        return
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    tasks = [fetch_ai_batch(new_flags[i:i+AI_BATCH_SIZE]) for i in range(0, len(new_flags), AI_BATCH_SIZE)]
+    await asyncio.gather(*tasks)
+
+    with open(CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(FLAG_INFO, f, indent=2)
+
 def generate_flag_info(flag_name):
-    """Return mechanism and purpose for a flag from cache."""
     return FLAG_INFO.get(flag_name, {"mechanism": "Unknown", "purpose": "Unknown"})
 
 # ===============================
-# Reporting
+# Report Generation
 # ===============================
 def export_reports(report, summary_counts):
-    """Generate Markdown and HTML reports."""
+    """Generate Markdown and HTML reports with enriched AI info."""
     if OUTPUT_DIR.exists():
         shutil.rmtree(OUTPUT_DIR)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -307,10 +305,9 @@ code {{ background: #161b22; padding: 2px 5px; border-radius: 4px; }}
     return added_count, removed_count, date_str, report
 
 # ===============================
-# Landing Page
+# Landing Page Dashboard
 # ===============================
 def ensure_landing_page(added, removed, last_run):
-    """Create a dashboard landing page with embedded report and trends."""
     index_html = OUTPUT_DIR / "index.html"
     if not (OUTPUT_DIR / "history.json").exists():
         (OUTPUT_DIR / "history.json").write_text("[]")
@@ -345,7 +342,7 @@ fetch("history.json")
     log(f"Landing page written: {index_html}")
 
 # ===============================
-# Main entry
+# Main Entry Point
 # ===============================
 def main():
     log("="*60)
@@ -360,9 +357,9 @@ def main():
 
     report, summary_counts = build_report(commits)
 
-    # AI enrichment
+    # AI enrichment with async and multi-key rotation
     all_flags = [f for _, changes in report for _, _, f in changes]
-    if all_flags and openai.api_key:
+    if all_flags:
         asyncio.run(generate_flag_info_batch(all_flags))
 
     added, removed, last_run, _ = export_reports(report, summary_counts)
