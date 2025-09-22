@@ -86,6 +86,11 @@
       border: none;
       border-radius: 8px;
     }
+    canvas#trendChart {
+      display: block;
+      max-width: 800px;
+      margin: 30px auto;
+    }
     footer {
       margin-top: 40px;
       padding: 20px;
@@ -114,6 +119,8 @@
       Last Run: <span id="last-run">Never</span>
     </p>
 
+    <canvas id="trendChart"></canvas>
+
     <h2>📊 Latest Full Report</h2>
     <div class="report-container">
       <iframe src="FFlag_Report.html"></iframe>
@@ -123,5 +130,46 @@
   <footer>
     Built with ❤️ by FFlag Tracker • Updated automatically
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Load history.json and update trend chart
+    fetch("history.json")
+      .then(r => r.json())
+      .then(data => {
+        if(data.length === 0) return;
+
+        // Update dynamic counters and last run
+        const last = data[data.length - 1];
+        document.getElementById("flags-added").textContent = last.added;
+        document.getElementById("flags-removed").textContent = last.removed;
+        document.getElementById("last-run").textContent = last.date;
+
+        // Draw trend chart
+        const ctx = document.getElementById("trendChart").getContext("2d");
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: data.map(d => d.date),
+            datasets: [
+              { label: "Added", data: data.map(d => d.added), borderColor: "#34d399", fill: false },
+              { label: "Removed", data: data.map(d => d.removed), borderColor: "#f87171", fill: false }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'top' },
+              tooltip: { mode: 'index', intersect: false }
+            },
+            interaction: { mode: 'nearest', axis: 'x', intersect: false },
+            scales: {
+              x: { display: true, title: { display: true, text: 'Date' } },
+              y: { display: true, title: { display: true, text: 'Number of Flags' }, beginAtZero: true }
+            }
+          }
+        });
+      });
+  </script>
 </body>
 </html>
