@@ -6,16 +6,16 @@ on:
   workflow_dispatch:         # Manual trigger
 
 permissions:
-  contents: write      # allow pushing to gh-pages
-  pages: write         # allow deploying to GitHub Pages
-  id-token: write      # required for OIDC auth (peaceiris supports it)
+  contents: write      # Allow pushing to gh-pages
+  pages: write         # Allow deploying to GitHub Pages
+  id-token: write      # Required for OIDC auth (peaceiris supports it)
 
 jobs:
   run-tracker:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout your repo
+      # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -31,15 +31,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install openai
 
-      # 4. Set OpenAI API key from GitHub Secrets
-      - name: Set API Key
-        run: echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
+      # 4. Setup OpenAI API keys (supports multiple keys)
+      # You can store comma-separated keys in a GitHub Secret: OPENAI_API_KEYS
+      - name: Setup OpenAI Keys
+        run: echo "OPENAI_API_KEYS=${{ secrets.OPENAI_API_KEYS }}" >> $GITHUB_ENV
 
-      # 5. Run your updateff.py script
+      # 5. Run Roblox FFlag Tracker
       - name: Run Roblox FFlag Tracker
         run: python updateff.py
 
-      # 6. Optional: Debug output folder
+      # 6. Debug output folder
       - name: Debug output folder
         run: ls -R ${{ github.workspace }}/output || echo "No output folder found"
 
