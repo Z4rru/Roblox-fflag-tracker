@@ -330,12 +330,12 @@ function animateParticles(){{
     particles.forEach(p=>{{ 
         p.x+=p.dx; 
         p.y+=p.dy; 
-        if(p.x<0||p.x>canvas.width)p.dx*=-1; 
-        if(p.y<0||p.y>canvas.height)p.dy*=-1; 
+        if(p.x<0||p.x>canvas.width) p.dx*=-1; 
+        if(p.y<0||p.y>canvas.height) p.dy*=-1; 
         ctx.beginPath(); 
         ctx.arc(p.x,p.y,p.r,0,Math.PI*2); 
         ctx.fillStyle='rgba(255,255,255,0.15)'; 
-        ctx.fill();
+        ctx.fill(); 
     }}); 
     requestAnimationFrame(animateParticles);
 }} 
@@ -351,12 +351,12 @@ fetch("history.json").then(r=>r.json()).then(data=>{{
   ]}},options:{{responsive:true,plugins:{{legend:{{position:'top'}}}},interaction:{{mode:'nearest',axis:'x',intersect:false}}}});
 }});
 
-// Search/filter functionality
+// Search/filter
 document.getElementById('searchInput').addEventListener('input',function(){{
   const q=this.value.toLowerCase();
   const iframe=document.getElementById('reportFrame');
   const doc=iframe.contentDocument||iframe.contentWindow.document;
-  doc.querySelectorAll('li').forEach(li=>{{ li.style.display=li.textContent.toLowerCase().includes(q)?'':'none'; }});
+  doc.querySelectorAll('li').forEach(li=>{{ li.style.display = li.textContent.toLowerCase().includes(q) ? '' : 'none'; }});
 }});
 
 // Collapsible sections in iframe
@@ -366,7 +366,7 @@ iframe.onload=()=>{{
     doc.querySelectorAll('h3').forEach(h3=>{{ 
         const ul=h3.nextElementSibling; 
         h3.style.cursor='pointer'; 
-        h3.addEventListener('click',()=>{{ul.style.display=ul.style.display==='none'?'block':'none';}});
+        h3.addEventListener('click',()=>{{ul.style.display = ul.style.display==='none'?'block':'none';}});
     }}); 
 }}; 
 </script>
@@ -376,6 +376,7 @@ iframe.onload=()=>{{
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     index_html.write_text(html_content, encoding="utf-8")
     log(f"Landing page written: {index_html}")
+
 
 
 
