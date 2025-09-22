@@ -5,105 +5,86 @@
 <title>Roblox FFlag Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ===== Body & Fonts ===== */
   body {
     font-family: 'Inter', sans-serif;
     margin: 0;
-    background: linear-gradient(135deg, #f0f4ff, #e5f2fb);
-    color: #111;
-    line-height: 1.6;
-  }
-  h1, h2, h3 { margin:0; }
-
-  /* ===== Header ===== */
-  header {
-    background: linear-gradient(135deg,#4f46e5,#3b82f6);
+    background: linear-gradient(135deg,#4f46e5,#3b82f6,#06b6d4,#14b8a6);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     color: #fff;
-    padding: 60px 20px;
-    text-align: center;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   }
-  header h1 { font-size: 3rem; font-weight: 700; }
 
-  /* ===== Stats Badges ===== */
+  @keyframes gradientBG {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+  }
+
+  header {
+    text-align:center;
+    padding:60px 20px;
+    text-shadow:0 0 12px rgba(0,0,0,0.3);
+  }
+  header h1 { font-size:3rem; font-weight:700; }
+
   .stats {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin: -40px auto 30px;
-    flex-wrap: wrap;
-    max-width: 900px;
-    position: relative;
-    z-index: 2;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    max-width:900px;
+    margin:-40px auto 40px;
+    position:relative; z-index:2;
   }
+
   .badge {
-    flex: 1;
-    min-width: 220px;
-    text-align: center;
-    padding: 25px;
-    border-radius: 20px;
-    font-size: 1.4rem;
-    font-weight: 700;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: #fff;
+    flex:1; min-width:220px;
+    text-align:center;
+    padding:25px;
+    border-radius:16px;
+    font-weight:700;
+    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,0.15);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
   }
+
   .badge:hover {
-    transform: translateY(-6px) rotateZ(-1deg);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
-  }
-  .added { color: #047857; border-left:6px solid #34d399; }
-  .removed { color: #b91c1c; border-left:6px solid #f87171; }
-
-  /* ===== Last Run ===== */
-  .last-run {
-    text-align: center;
-    margin: 10px 0 30px;
-    font-style: italic;
-    color: #555;
+    transform:translateY(-8px);
+    box-shadow:0 14px 40px rgba(0,0,0,0.4);
+    border:2px solid #34d399;
   }
 
-  /* ===== Section / Report ===== */
+  .added { border-left:6px solid #34d399; }
+  .removed { border-left:6px solid #f87171; }
+
+  .last-run { text-align:center; margin:20px 0; font-style:italic; color:#eee; }
+
   section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width:1200px; margin:0 auto; padding:20px;
   }
-  section h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 2rem;
-    color: #222;
-  }
+
   .report-container {
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
-    padding: 15px;
-  }
-  iframe {
-    width: 100%;
-    height: 75vh;
-    border: none;
-    border-radius: 12px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius:16px;
+    box-shadow:0 12px 36px rgba(0,0,0,0.25);
+    padding:15px;
   }
 
-  /* ===== Chart ===== */
-  canvas#trendChart {
-    display: block;
-    max-width: 850px;
-    margin: 40px auto;
-    border-radius: 12px;
+  iframe { width:100%; height:75vh; border:none; border-radius:12px; }
+
+  canvas#trendChart { display:block; max-width:850px; margin:40px auto; border-radius:12px; }
+
+  input#searchInput {
+    width:90%; padding:12px; margin:20px auto; display:block;
+    border-radius:12px; border:1px solid rgba(255,255,255,0.3);
+    background:rgba(0,0,0,0.2); color:#fff; font-size:1rem;
+    backdrop-filter:blur(5px);
   }
 
-  /* ===== Footer ===== */
-  footer {
-    margin-top: 60px;
-    padding: 25px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #777;
-  }
+  footer { text-align:center; margin-top:60px; padding:25px; font-size:0.9rem; color:#eee; }
+
 </style>
 </head>
 <body>
@@ -113,59 +94,47 @@
 
 <section>
   <div class="stats">
-    <div class="badge added">✅ Added: <span id="flags-added">0</span></div>
-    <div class="badge removed">❌ Removed: <span id="flags-removed">0</span></div>
+    <div class="badge added">✅ Added: <span id="flags-added">{added}</span></div>
+    <div class="badge removed">❌ Removed: <span id="flags-removed">{removed}</span></div>
   </div>
 
-  <p class="last-run">Last Run: <span id="last-run">Never</span></p>
+  <p class="last-run">Last Run: <span id="last-run">{last_run}</span></p>
 
-  <canvas id="trendChart"></canvas>
+  <input type="text" id="searchInput" placeholder="Search flags...">
 
   <h2>📊 Latest Full Report</h2>
   <div class="report-container">
     <iframe src="FFlag_Report.html" id="reportFrame"></iframe>
   </div>
+
+  <canvas id="trendChart"></canvas>
 </section>
 
 <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  // ===== Load history.json & update counters =====
-  fetch("history.json")
-    .then(r => r.json())
-    .then(data => {
-      if(data.length === 0) return;
+fetch("history.json").then(r=>r.json()).then(data=>{
+  const ctx=document.getElementById("trendChart").getContext("2d");
+  new Chart(ctx,{
+    type:'line',
+    data:{
+      labels:data.map(d=>d.date),
+      datasets:[
+        { label:'Added', data:data.map(d=>d.added), borderColor:'#34d399', backgroundColor:'rgba(52,211,153,0.2)', fill:true, tension:0.4 },
+        { label:'Removed', data:data.map(d=>d.removed), borderColor:'#f87171', backgroundColor:'rgba(248,113,113,0.2)', fill:true, tension:0.4 }
+      ]
+    },
+    options:{ responsive:true, plugins:{legend:{position:'top'}}, interaction:{mode:'nearest', axis:'x', intersect:false} }
+  });
+});
 
-      const last = data[data.length - 1];
-      document.getElementById("flags-added").textContent = last.added;
-      document.getElementById("flags-removed").textContent = last.removed;
-      document.getElementById("last-run").textContent = last.date;
-
-      const ctx = document.getElementById("trendChart").getContext("2d");
-      new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: data.map(d => d.date),
-          datasets: [
-            { label: "Added", data: data.map(d => d.added), borderColor: "#34d399", backgroundColor: "rgba(52,211,153,0.1)", fill:true, tension:0.3 },
-            { label: "Removed", data: data.map(d => d.removed), borderColor: "#f87171", backgroundColor: "rgba(248,113,113,0.1)", fill:true, tension:0.3 }
-          ]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { position: 'top' },
-            tooltip: { mode: 'index', intersect: false }
-          },
-          interaction: { mode: 'nearest', axis: 'x', intersect: false },
-          scales: {
-            x: { display: true, title: { display: true, text: 'Date' } },
-            y: { display: true, title: { display: true, text: 'Number of Flags' }, beginAtZero: true }
-          }
-        }
-      });
-    });
+document.getElementById('searchInput').addEventListener('input',function(){
+  const q=this.value.toLowerCase();
+  const iframe=document.getElementById('reportFrame');
+  const doc=iframe.contentDocument||iframe.contentWindow.document;
+  doc.querySelectorAll('li').forEach(li=>{ li.style.display=li.textContent.toLowerCase().includes(q)?'':'none'; });
+});
 </script>
 </body>
 </html>
