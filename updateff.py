@@ -30,7 +30,7 @@ REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 
-DAYS = 8
+DAYS = 365
 HISTORY_DAYS = 90
 AI_BATCH_SIZE = 20  # Increased for better scalability
 MAX_RETRIES = 3
