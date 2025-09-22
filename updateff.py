@@ -243,7 +243,7 @@ window.addEventListener('resize', () => {
 });
 """
 
-    # Other JS for charts, search, and collapsible sections
+    # Other JS (charts, search, collapsibles)
     js_others = r"""
 // Trend chart
 fetch("history.json").then(r => r.json()).then(data => {
@@ -289,7 +289,7 @@ iframe.onload = () => {
 };
 """
 
-    # Full HTML template
+    # HTML template
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
