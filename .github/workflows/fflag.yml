@@ -6,16 +6,16 @@ on:
   workflow_dispatch:         # Manual trigger
 
 permissions:
-  contents: write      # Allow pushing to gh-pages
-  pages: write         # Allow deploying to GitHub Pages
-  id-token: write      # Required for OIDC auth (peaceiris supports it)
+  contents: write      # allow pushing to gh-pages
+  pages: write         # allow deploying to GitHub Pages
+  id-token: write      # required for OIDC auth (peaceiris supports it)
 
 jobs:
   run-tracker:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
+      # 1. Checkout your repo
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -31,20 +31,30 @@ jobs:
           python -m pip install --upgrade pip
           pip install openai
 
-      # 4. Setup OpenAI API keys (supports multiple keys)
-      # You can store comma-separated keys in a GitHub Secret: OPENAI_API_KEYS
-      - name: Setup OpenAI Keys
+      # 4. Set OpenAI API keys from GitHub Secrets
+      - name: Set OpenAI API keys
         run: echo "OPENAI_API_KEYS=${{ secrets.OPENAI_API_KEYS }}" >> $GITHUB_ENV
 
-      # 5. Run Roblox FFlag Tracker
+      # 5. Optional debug: verify keys
+      - name: Debug OpenAI API keys
+        run: |
+          if [ -z "$OPENAI_API_KEYS" ]; then
+            echo "❌ OPENAI_API_KEYS is empty!"
+            exit 1
+          fi
+          echo "✅ OPENAI_API_KEYS is set (hidden for security)"
+
+      # 6. Run the Roblox FFlag Tracker script
       - name: Run Roblox FFlag Tracker
         run: python updateff.py
 
-      # 6. Debug output folder
+      # 7. Optional: Debug output folder
       - name: Debug output folder
-        run: ls -R ${{ github.workspace }}/output || echo "No output folder found"
+        run: |
+          echo "Listing contents of output folder..."
+          ls -R ${{ github.workspace }}/output || echo "No output folder found"
 
-      # 7. Publish reports to GitHub Pages
+      # 8. Publish reports to GitHub Pages
       - name: Publish to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
