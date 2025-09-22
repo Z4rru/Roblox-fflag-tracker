@@ -81,16 +81,20 @@ CATEGORIES = {
 # ===============================
 # Utility Functions
 # ===============================
-def run_cmd(cmd: str, cwd: Path | None = None) -> str:
+def run_cmd(cmd: str, cwd: Path | None = None, timeout: int = 120) -> str:
     try:
-        result = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True, text=True, timeout=30)
+        result = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True, text=True, timeout=timeout)
         if result.returncode != 0:
-            log.error(f"Command failed: {cmd}")
+            log.error(f"Command failed (return code {result.returncode}): {cmd}")
             log.error(result.stderr.strip())
+            raise subprocess.CalledProcessError(result.returncode, cmd, output=result.stdout, stderr=result.stderr)
         return result.stdout.strip()
+    except subprocess.TimeoutExpired:
+        log.error(f"Command timed out after {timeout} seconds: {cmd}")
+        raise
     except Exception as e:
         log.error(f"Cmd error: {e}")
-        return ""
+        raise
 
 def categorize_flag(flag_name: str) -> str:
     lower = flag_name.lower()
@@ -109,22 +113,36 @@ def ensure_repo() -> None:
     try:
         if LOCAL_CLONE.exists():
             log.info("Updating existing repository...")
-            run_cmd("git fetch --all", cwd=LOCAL_CLONE)
-            # Ensure unshallow fetch if previous clone was shallow
-            run_cmd("git fetch --unshallow", cwd=LOCAL_CLONE)
+            run_cmd("git fetch --all", cwd=LOCAL_CLONE, timeout=300)
+            run_cmd("git fetch --unshallow", cwd=LOCAL_CLONE, timeout=300)  # Increased timeout for unshallow
             run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
         else:
-            log.info("Cloning repository for the first time...")
-            # Remove --depth=1 to avoid shallow clone issues
-            run_cmd(f"git clone {REPO_URL} {LOCAL_CLONE}")
+            LOCAL_CLONE.parent.mkdir(parents=True, exist_ok=True)  # Ensure nested paths
+            success = False
+            for attempt in range(1, MAX_RETRIES + 1):
+                log.info(f"Cloning repository (attempt {attempt}/{MAX_RETRIES})...")
+                try:
+                    run_cmd(f"git clone {REPO_URL} {LOCAL_CLONE.name}", cwd=LOCAL_CLONE.parent, timeout=600)  # High timeout for clone
+                    success = True
+                    break
+                except Exception as e:
+                    log.warning(f"Clone attempt {attempt} failed: {e}")
+                    time.sleep(5)  # Brief backoff
+            if not success:
+                raise RuntimeError("Failed to clone repository after maximum retries.")
+            log.info("Clone successful.")
     except Exception as e:
         log.error(f"Repo ensure failed: {e}")
+        raise
 
 def get_commits() -> list[str]:
     since = (datetime.datetime.now() - datetime.timedelta(days=DAYS)).strftime("%Y-%m-%d")
     commits = run_cmd(f"git log --since='{since}' --pretty=format:'%H' -- {TARGET_FILE}", cwd=LOCAL_CLONE)
     return commits.splitlines() if commits else []
 
+# ===============================
+# Diff Utilities
+# ===============================
 def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[str], list[str]]:
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=LOCAL_CLONE)
@@ -139,20 +157,15 @@ def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[str], list[st
 def build_diff_for_commit(commit_hash: str) -> tuple[str, list[str], list[str]]:
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=LOCAL_CLONE)
-    
-    # Try getting previous commit content; fallback to empty dict if unavailable
     try:
         prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=LOCAL_CLONE)
         prev_json = json.loads(prev_content)
     except Exception:
         prev_json = {}
-
     try:
         curr_json = json.loads(curr_content)
     except json.JSONDecodeError:
-        # fallback to old line-based diff
         return build_diff_for_commit_old(commit_hash)
-
     added = [k for k in curr_json if k not in prev_json or curr_json[k] != prev_json.get(k)]
     removed = [k for k in prev_json if k not in curr_json]
     return header, added, removed
@@ -194,10 +207,7 @@ async def fetch_ai_batch(batch: list[str]) -> None:
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
         return
-
-    prompt = "Explain the Roblox FFlags below. For each, provide Mechanism and Purpose in JSON format.\n"
-    prompt += json.dumps(batch)
-
+    prompt = "Explain the Roblox FFlags below. For each, provide Mechanism and Purpose in JSON format.\n" + json.dumps(batch)
     for attempt in range(MAX_RETRIES):
         try:
             openai.api_key = get_next_api_key()
@@ -206,18 +216,13 @@ async def fetch_ai_batch(batch: list[str]) -> None:
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.3
             )
-            # Parse JSON safely
             content = response.choices[0].message.content.strip()
             try:
                 data = json.loads(content)
                 for f in batch:
                     info = data.get(f, {})
-                    FLAG_INFO[f] = {
-                        "mechanism": info.get("mechanism", "Unknown"),
-                        "purpose": info.get("purpose", "Unknown")
-                    }
+                    FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
             except json.JSONDecodeError:
-                # fallback: line-based parsing
                 for line in content.splitlines():
                     if ":" in line:
                         f, rest = line.split(":", 1)
@@ -228,11 +233,10 @@ async def fetch_ai_batch(batch: list[str]) -> None:
         except openai.RateLimitError:
             await asyncio.sleep(2 ** attempt)
         except Exception as e:
-            log.error(f"AI batch failed: {e}")
+            log.error(f"AI batch failed (attempt {attempt+1}): {e}")
     else:
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
-
     CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
 
 async def generate_flag_info_batch(flags: list[str]) -> None:
