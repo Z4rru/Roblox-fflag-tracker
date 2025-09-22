@@ -347,6 +347,7 @@ document.getElementById('searchInput').addEventListener('input', function() {{
     log(f"Landing page written: {index_html}")
 
 
+
 # ===============================
 # Main Execution
 # ===============================
