@@ -252,16 +252,21 @@ def generate_flag_info(flag: str) -> dict:
     return FLAG_INFO.get(flag, {"mechanism": "Unknown", "purpose": "Unknown"})
 
 # ===============================
-# Report Export (Enhanced with Grouping for Collapsibles)
+# Report Export (Enhanced with Grouping for Collapsibles and History Summary)
 # ===============================
 def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
     added_total = sum(v for (cat, typ), v in summary.items() if typ == "Added")
     removed_total = sum(v for (cat, typ), v in summary.items() if typ == "Removed")
     
+    # Load history.json to compute historical aggregates
+    history = json.loads(HISTORY_FILE.read_text(encoding="utf-8")) if HISTORY_FILE.exists() else []
+    total_historical_added = sum(entry['added'] for entry in history)
+    total_historical_removed = sum(entry['removed'] for entry in history)
+    
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     
-    # Markdown with Summary
+    # Markdown with Summary and History Chart Counts
     md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
     md.append(f"- **Last Run:** {last_run}")
     md.append(f"- **Flags Added:** {added_total}")
@@ -271,6 +276,9 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
         a = summary.get((cat, "Added"), 0)
         r = summary.get((cat, "Removed"), 0)
         md.append(f"| {cat} | {a} | {r} | {a+r} |")
+    md.append("\n## History Summary Chart Counts\n")  # New history section in markdown
+    md.append(f"- **Total Historical Added:** {total_historical_added}")
+    md.append(f"- **Total Historical Removed:** {total_historical_removed}")
     for header, changes in report:
         md.append(f"\n## {header}")
         grouped = {}
@@ -299,11 +307,13 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     html_lines.append("</body></html>")
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
     
-    # JSON for responsive landing page
+    # JSON for responsive landing page, now with historical counts
     json_data = {
         "last_run": last_run,
         "added_total": added_total,
         "removed_total": removed_total,
+        "total_historical_added": total_historical_added,  # New fields
+        "total_historical_removed": total_historical_removed,
         "summary": {cat: {"added": summary.get((cat, "Added"), 0), "removed": summary.get((cat, "Removed"), 0)} for cat in CATEGORIES},
         "report": []
     }
@@ -669,7 +679,7 @@ def main() -> None:
             asyncio.run(generate_flag_info_batch(all_flags))
         added, removed, last_run, _ = export_reports(report, summary)
         ensure_landing_page(added, removed, last_run)
-        update_history(added, removed, last_run)
+        update_history(added, removed, last_run)  # Call after export to ensure history is updated last
         log.info("All done! Reports and dashboard ready.")
     except Exception as e:
         log.error(f"Main execution failed: {e}")
