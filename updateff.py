@@ -32,7 +32,7 @@ TARGET_FILE = "PCDesktopClient.json"
 
 DAYS = 8
 HISTORY_DAYS = 90
-AI_BATCH_SIZE = 10
+AI_BATCH_SIZE = 20  # Increased for better scalability
 MAX_RETRIES = 3
 DEBUG = True
 
@@ -293,33 +293,39 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     md.append("\n## History Summary Chart Counts\n")  # New history section in markdown
     md.append(f"- **Total Historical Added:** {total_historical_added}")
     md.append(f"- **Total Historical Removed:** {total_historical_removed}")
-    if len(history) == 0:
+    if len(history) == 1:
         md.append("- **Note:** No prior history available yet")
-    for header, changes in report:
-        md.append(f"\n## {header}")
-        grouped = {}
-        for typ, cat, flag in changes:
-            grouped.setdefault((typ, cat), []).append(flag)
-        for (typ, cat), flags in grouped.items():
-            md.append(f"**{typ} in {cat}:**")
-            for f in flags:
-                info = generate_flag_info(f)
-                md.append(f"- {f} | Mechanism: {info['mechanism']} | Purpose: {info['purpose']}")
+    if not report:
+        md.append("\n## No Recent Changes\nNo flag changes in the last {DAYS} days.")
+    else:
+        for header, changes in report:
+            md.append(f"\n## {header}")
+            grouped = {}
+            for typ, cat, flag in changes:
+                grouped.setdefault((typ, cat), []).append(flag)
+            for (typ, cat), flags in grouped.items():
+                md.append(f"**{typ} in {cat}:**")
+                for f in flags:
+                    info = generate_flag_info(f)
+                    md.append(f"- {f} | Mechanism: {info['mechanism']} | Purpose: {info['purpose']}")
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
     
     # HTML with <h3><ul> for Collapsibles
     html_lines = ["<html><body><h1>Roblox FFlag Report</h1>"]
-    for header, changes in report:
-        html_lines.append(f"<h2>{header}</h2>")
-        grouped = {}
-        for typ, cat, flag in changes:
-            grouped.setdefault((typ, cat), []).append(flag)
-        for (typ, cat), flags in grouped.items():
-            html_lines.append(f"<h3>{typ} in {cat}</h3><ul>")
-            for f in flags:
-                info = generate_flag_info(f)
-                html_lines.append(f"<li>{escape_flag(f)} - Mechanism: {info['mechanism']} - Purpose: {info['purpose']}</li>")
-            html_lines.append("</ul>")
+    if not report:
+        html_lines.append("<h2>No Recent Changes</h2><p>No flag changes in the last {DAYS} days.</p>")
+    else:
+        for header, changes in report:
+            html_lines.append(f"<h2>{header}</h2>")
+            grouped = {}
+            for typ, cat, flag in changes:
+                grouped.setdefault((typ, cat), []).append(flag)
+            for (typ, cat), flags in grouped.items():
+                html_lines.append(f"<h3>{typ} in {cat}</h3><ul>")
+                for f in flags:
+                    info = generate_flag_info(f)
+                    html_lines.append(f"<li>{escape_flag(f)} - Mechanism: {info['mechanism']} - Purpose: {info['purpose']}</li>")
+                html_lines.append("</ul>")
     html_lines.append("</body></html>")
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
     
@@ -331,7 +337,8 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
         "total_historical_added": total_historical_added,  # New fields
         "total_historical_removed": total_historical_removed,
         "summary": {cat: {"added": summary.get((cat, "Added"), 0), "removed": summary.get((cat, "Removed"), 0)} for cat in CATEGORIES},
-        "report": []
+        "report": [],
+        "days": DAYS
     }
     for header, changes in report:
         grouped = {}
@@ -370,6 +377,8 @@ def ensure_landing_page(added: int, removed: int, last_run: str) -> None:
 :root {{ 
   --primary-green: #34d399;
   --primary-red: #f87171;
+  --historical-green: #10b981;
+  --historical-red: #ef4444;
   --bg-opacity: 0.15;
   --text-color: #fff;
 }}
@@ -394,7 +403,7 @@ header h1 {{ font-size:3rem; font-weight:700; }}
   justify-content:center;
   gap:30px;
   flex-wrap:wrap;
-  max-width:900px;
+  max-width:1200px;
   margin:-40px auto 40px;
   position:relative; z-index:2;
 }}
@@ -416,6 +425,8 @@ header h1 {{ font-size:3rem; font-weight:700; }}
 }}
 .added {{ border-left:6px solid var(--primary-green); }}
 .removed {{ border-left:6px solid var(--primary-red); }}
+.historical-added {{ border-left:6px solid var(--historical-green); }}
+.historical-removed {{ border-left:6px solid var(--historical-red); }}
 .last-run {{ text-align:center; margin:20px 0; font-style:italic; color:#eee; }}
 section {{ max-width:1200px; margin:0 auto; padding:20px; }}
 .report-container {{ 
@@ -455,6 +466,19 @@ canvas#particleCanvas {{
   pointer-events:none;
   z-index:0;
 }}
+table {{ 
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}}
+th, td {{ 
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 12px;
+  text-align: left;
+}}
+th {{ 
+  background: rgba(0,0,0,0.2);
+}}
 </style>
 </head>
 <body>
@@ -465,13 +489,18 @@ canvas#particleCanvas {{
 
 <section>
   <div class="stats">
-    <div class="badge added">✅ Added: <span id="flags-added">{added}</span></div>
-    <div class="badge removed">❌ Removed: <span id="flags-removed">{removed}</span></div>
+    <div class="badge added">✅ Added: <span id="flags-added">0</span></div>
+    <div class="badge removed">❌ Removed: <span id="flags-removed">0</span></div>
+    <div class="badge historical-added">📈 Historical Added: <span id="historical-added">0</span></div>
+    <div class="badge historical-removed">📉 Historical Removed: <span id="historical-removed">0</span></div>
   </div>
 
-  <p class="last-run">Last Run: <span id="last-run">{last_run}</span></p>
+  <p class="last-run">Last Run: <span id="last-run"></span></p>
 
   <input type="text" id="searchInput" placeholder="Search flags..." aria-label="Search flags">
+
+  <h2>Summary</h2>
+  <table id="summaryTable"></table>
 
   <h2>📊 Latest Full Report</h2>
   <div class="report-container">
@@ -543,6 +572,10 @@ document.addEventListener('visibilitychange', () => {{
 
 // Trend chart using Chart.js with limited data points
 fetch("history.json").then(r => r.json()).then(data => {{
+  if (data.length === 0) {{
+    document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
+    return;
+  }}
   const ctx = document.getElementById("trendChart").getContext("2d");
   new Chart(ctx, {{
     type: 'line',
@@ -583,6 +616,7 @@ fetch("history.json").then(r => r.json()).then(data => {{
   }});
 }}).catch(error => {{
   console.error('Error loading history:', error);
+  document.getElementById("trendChart").parentNode.innerHTML = '<p>Error loading history data.</p>';
 }});
 
 // Lazy Loading of report data
@@ -626,9 +660,25 @@ fetch('FFlag_Report.json')
   .then(data => {{
     document.getElementById('flags-added').textContent = data.added_total;
     document.getElementById('flags-removed').textContent = data.removed_total;
+    document.getElementById('historical-added').textContent = data.total_historical_added;
+    document.getElementById('historical-removed').textContent = data.total_historical_removed;
     document.getElementById('last-run').textContent = data.last_run;
 
-    loadReportPage(data.report, currentPage);
+    // Populate summary table
+    const summaryTable = document.getElementById('summaryTable');
+    let tableHtml = '<thead><tr><th>Category</th><th>Added</th><th>Removed</th></tr></thead><tbody>';
+    for (let cat in data.summary) {{
+      const s = data.summary[cat];
+      tableHtml += `<tr><td>${{cat}}</td><td>${{s.added}}</td><td>${{s.removed}}</td></tr>`;
+    }}
+    tableHtml += '</tbody>';
+    summaryTable.innerHTML = tableHtml;
+
+    if (data.report.length === 0) {{
+      reportContent.innerHTML = `<p>No recent flag changes in the last ${{data.days}} days.</p>`;
+    }} else {{
+      loadReportPage(data.report, currentPage);
+    }}
     loadingSpinner.style.display = 'none';
     
     // Infinite scrolling
@@ -697,8 +747,11 @@ def main() -> None:
         all_flags = [f for _, changes in report for _, _, f in changes]
         if all_flags:
             asyncio.run(generate_flag_info_batch(all_flags))
-        added, removed, last_run, _ = export_reports(report, summary)
+        last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
+        added = sum(v for (cat, typ), v in summary.items() if typ == "Added")
+        removed = sum(v for (cat, typ), v in summary.items() if typ == "Removed")
         update_history(added, removed, last_run)
+        export_reports(report, summary)
         ensure_landing_page(added, removed, last_run)
         log.info("All done! Reports and dashboard ready.")
     except Exception as e:
