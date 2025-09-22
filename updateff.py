@@ -7,10 +7,8 @@ import json
 import html
 from pathlib import Path
 from zoneinfo import ZoneInfo
-
-# Optional: Async AI batching
-import openai
 import asyncio
+import openai
 
 # ===============================
 # Settings
@@ -78,8 +76,6 @@ def ensure_repo():
         log("Updating existing repo...")
         run_cmd("git fetch --all", cwd=LOCAL_CLONE)
         run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
-        # Alternative safe rebase:
-        # run_cmd("git pull --rebase", cwd=LOCAL_CLONE)
     else:
         log("Cloning fresh repo...")
         run_cmd(f"git clone --depth=1 {REPO_URL} {LOCAL_CLONE}")
@@ -143,7 +139,7 @@ def update_history(added, removed, last_run):
     hist_file.write_text(json.dumps(history, indent=2), encoding="utf-8")
 
 # ===============================
-# AI Enrichment
+# AI Enrichment (Future-proof OpenAI 1.0+)
 # ===============================
 if CACHE_FILE.exists():
     with open(CACHE_FILE, "r", encoding="utf-8") as f:
@@ -156,6 +152,8 @@ async def generate_flag_info_batch(flags):
     if not new_flags or not openai.api_key:
         return
 
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
     for i in range(0, len(new_flags), AI_BATCH_SIZE):
         batch = new_flags[i:i + AI_BATCH_SIZE]
         prompt = "Explain the Roblox FFlags in detail:\n"
@@ -164,23 +162,26 @@ async def generate_flag_info_batch(flags):
         prompt += "\nProvide Mechanism and Purpose for each, 1-2 sentences each."
 
         try:
-            response = await openai.ChatCompletion.acreate(
+            response = await openai.chat.completions.acreate(
                 model="gpt-5-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.3
             )
-            text = response.choices[0].message.content.strip().split("\n")
+
+            text = response.choices[0].message["content"].strip().split("\n")
             for line in text:
                 if ":" in line:
                     f, rest = line.split(":", 1)
+                    f = f.strip()
                     if f in batch:
                         FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
+
         except Exception as e:
             log(f"AI batch generation failed: {e}", level="ERROR")
             for f in batch:
                 FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    # Save cache to disk
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(FLAG_INFO, f, indent=2)
 
@@ -193,6 +194,7 @@ def generate_flag_info(flag_name):
 def escape_flag(flag_name):
     return html.escape(flag_name)
 
+# Markdown + HTML export (unchanged)
 def export_reports(report, summary_counts):
     if OUTPUT_DIR.exists():
         shutil.rmtree(OUTPUT_DIR)
