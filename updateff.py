@@ -19,31 +19,49 @@ WORKSPACE = Path(os.getenv("GITHUB_WORKSPACE", SCRIPT_DIR)).resolve()
 OUTPUT_DIR = WORKSPACE / "output"
 OUTPUT_MD = OUTPUT_DIR / "FFlag_Report.md"
 OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
+CACHE_FILE = OUTPUT_DIR / "fflag_cache.json"
 
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
-DAYS = 8  # How many days to look back for commits
-HISTORY_DAYS = 90  # Keep history for trend analysis
-AI_BATCH_SIZE = 10  # Number of flags per AI batch
 
-CACHE_FILE = OUTPUT_DIR / "fflag_cache.json"
+DAYS = 8           # Look back this many days for commits
+HISTORY_DAYS = 90  # Keep this many days of history for trends
+AI_BATCH_SIZE = 10 # Number of flags processed per AI batch
+
+DEBUG = True  # Set True for detailed logging including API key rotation
 
 # ===============================
-# OpenAI API Key Rotation Setup
+# Logging Utility
+# ===============================
+def log(msg, level="INFO"):
+    """Print log messages with timestamp and optional debug control."""
+    ts = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
+    if DEBUG or level != "DEBUG":
+        print(f"[{level}] {msg} ({ts})")
+
+# ===============================
+# OpenAI API Key Management
 # ===============================
 keys = os.getenv("OPENAI_API_KEYS", "").split(",")
-if not keys or keys == [""]:
+keys = [k.strip() for k in keys if k.strip()]
+if not keys:
     raise ValueError("No OpenAI API keys found in OPENAI_API_KEYS environment variable.")
 
 key_cycle = itertools.cycle(keys)
+key_index = -1
 
 def get_next_api_key():
-    """Return the next API key from the round-robin rotation."""
-    return next(key_cycle)
+    """Round-robin key rotation with logging of truncated key for safety."""
+    global key_index
+    key_index = (key_index + 1) % len(keys)
+    key = keys[key_index]
+    display_key = f"{key[:4]}...{key[-4:]}" if len(key) > 8 else "****"
+    log(f"Using OpenAI API key #{key_index + 1} ({display_key})", level="DEBUG")
+    return key
 
 # ===============================
-# Categories for classification
+# Categories for FFlags Classification
 # ===============================
 CATEGORIES = {
     "Graphics": ["Graphics", "Lighting", "Render", "GPU", "VSync", "Shadow", "Texture"],
@@ -60,14 +78,10 @@ CATEGORIES = {
 }
 
 # ===============================
-# Logging and Utility Functions
+# Utility Functions
 # ===============================
-def log(msg, level="INFO"):
-    ts = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
-    print(f"[{level}] {msg} ({ts})")
-
 def run_cmd(cmd, cwd=None):
-    """Run shell command and return output, log errors if any."""
+    """Run a shell command, capture output, and log errors."""
     result = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True, text=True)
     if result.returncode != 0:
         log(f"Command failed: {cmd}", level="ERROR")
@@ -75,7 +89,7 @@ def run_cmd(cmd, cwd=None):
     return result.stdout.strip()
 
 def categorize_flag(flag_name):
-    """Return category based on keywords."""
+    """Classify flag into a category based on keyword matching."""
     lower_flag = flag_name.lower()
     for cat, keywords in CATEGORIES.items():
         for word in keywords:
@@ -84,24 +98,24 @@ def categorize_flag(flag_name):
     return "Other"
 
 def escape_flag(flag_name):
-    """Escape flag names for HTML output."""
+    """Escape flag names for HTML safety."""
     return html.escape(flag_name)
 
 # ===============================
 # Repository Management
 # ===============================
 def ensure_repo():
-    """Clone or update the FFlag repository."""
+    """Clone the repo if missing, otherwise fetch latest changes."""
     if LOCAL_CLONE.exists():
-        log("Updating existing repo...")
+        log("Updating existing repository...")
         run_cmd("git fetch --all", cwd=LOCAL_CLONE)
         run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
     else:
-        log("Cloning fresh repo...")
+        log("Cloning fresh repository...")
         run_cmd(f"git clone --depth=1 {REPO_URL} {LOCAL_CLONE}")
 
 def get_commits():
-    """Get commits for target file in last DAYS."""
+    """Retrieve commits for the target JSON file in the last DAYS."""
     since_date = (datetime.datetime.now() - datetime.timedelta(days=DAYS)).strftime("%Y-%m-%d")
     commits = run_cmd(
         f"git log --since='{since_date}' --pretty=format:'%H' -- {TARGET_FILE}",
@@ -110,7 +124,7 @@ def get_commits():
     return commits
 
 def build_diff_for_commit(commit_hash):
-    """Return header, added, and removed flags for a commit."""
+    """Extract added and removed flags from a commit diff."""
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=LOCAL_CLONE)
     added, removed = [], []
@@ -122,7 +136,7 @@ def build_diff_for_commit(commit_hash):
     return header, added, removed
 
 def build_report(commits):
-    """Build report and summary from commits."""
+    """Aggregate all changes into structured report and summary counts."""
     report = []
     summary_counts = {}
     for c in commits:
@@ -146,9 +160,10 @@ def build_report(commits):
     return report, summary_counts
 
 # ===============================
-# History Tracking
+# History Management
 # ===============================
 def update_history(added, removed, last_run):
+    """Keep a running JSON history of daily added/removed flags."""
     hist_file = OUTPUT_DIR / "history.json"
     history = []
     if hist_file.exists():
@@ -158,7 +173,7 @@ def update_history(added, removed, last_run):
     hist_file.write_text(json.dumps(history, indent=2), encoding="utf-8")
 
 # ===============================
-# AI Enrichment with Multi-Key Rotation, Async, and Caching
+# AI Enrichment (Async, Multi-Key, Caching)
 # ===============================
 if CACHE_FILE.exists():
     with open(CACHE_FILE, "r", encoding="utf-8") as f:
@@ -167,9 +182,9 @@ else:
     FLAG_INFO = {}
 
 async def fetch_ai_batch(batch):
-    """Fetch AI explanation for a batch of flags with retries and key rotation."""
+    """Query OpenAI for flag explanation using async batch processing."""
     prompt = "Explain the Roblox FFlags in detail:\n" + "".join([f"- {f}\n" for f in batch])
-    prompt += "\nProvide Mechanism and Purpose for each, 1-2 sentences each."
+    prompt += "\nProvide Mechanism and Purpose for each, 1-2 sentences."
 
     try:
         openai.api_key = get_next_api_key()
@@ -194,7 +209,7 @@ async def fetch_ai_batch(batch):
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
 
 async def generate_flag_info_batch(flags):
-    """Generate AI explanations in batches asynchronously."""
+    """Split flags into batches and fetch AI explanations asynchronously."""
     new_flags = [f for f in flags if f not in FLAG_INFO]
     if not new_flags:
         return
@@ -207,6 +222,7 @@ async def generate_flag_info_batch(flags):
         json.dump(FLAG_INFO, f, indent=2)
 
 def generate_flag_info(flag_name):
+    """Return mechanism and purpose from cache or default unknowns."""
     return FLAG_INFO.get(flag_name, {"mechanism": "Unknown", "purpose": "Unknown"})
 
 # ===============================
@@ -227,7 +243,6 @@ def export_reports(report, summary_counts):
     md.append(f"- **Last Run:** {date_str}")
     md.append(f"- **Flags Added:** {added_count}")
     md.append(f"- **Flags Removed:** {removed_count}\n")
-
     md.append("## Summary of Changes\n")
     md.append("| Category | Added | Removed | Total |")
     md.append("|----------|-------|---------|-------|")
@@ -305,9 +320,10 @@ code {{ background: #161b22; padding: 2px 5px; border-radius: 4px; }}
     return added_count, removed_count, date_str, report
 
 # ===============================
-# Landing Page Dashboard
+# Dashboard Landing Page
 # ===============================
 def ensure_landing_page(added, removed, last_run):
+    """Generate index.html with embedded report and trend chart."""
     index_html = OUTPUT_DIR / "index.html"
     if not (OUTPUT_DIR / "history.json").exists():
         (OUTPUT_DIR / "history.json").write_text("[]")
@@ -342,7 +358,7 @@ fetch("history.json")
     log(f"Landing page written: {index_html}")
 
 # ===============================
-# Main Entry Point
+# Main Execution
 # ===============================
 def main():
     log("="*60)
@@ -357,7 +373,7 @@ def main():
 
     report, summary_counts = build_report(commits)
 
-    # AI enrichment with async and multi-key rotation
+    # AI enrichment for new flags
     all_flags = [f for _, changes in report for _, _, f in changes]
     if all_flags:
         asyncio.run(generate_flag_info_batch(all_flags))
