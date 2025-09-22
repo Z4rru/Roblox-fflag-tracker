@@ -203,53 +203,85 @@ def generate_flag_info(flag):
 # Report Generation (Markdown + HTML)
 # ===============================
 def export_reports(report, summary):
-    if OUTPUT_DIR.exists(): shutil.rmtree(OUTPUT_DIR)
+    if OUTPUT_DIR.exists():
+        shutil.rmtree(OUTPUT_DIR)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
     date_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     added_count = sum(v for (c,a),v in summary.items() if a=="Added")
     removed_count = sum(v for (c,a),v in summary.items() if a=="Removed")
 
-    # Markdown
-    md = [f"# Roblox FFlag Report ({DAYS} Days)\n","",f"- Last Run: {date_str}","- Added: {added_count}","- Removed: {removed_count}\n","## Summary\n"]
+    # Markdown (unchanged)
+    md = [f"# Roblox FFlag Report ({DAYS} Days)\n","",
+          f"- Last Run: {date_str}",
+          f"- Added: {added_count}",
+          f"- Removed: {removed_count}\n",
+          "## Summary\n"]
     md.append("| Category | Added | Removed | Total |")
     md.append("|----------|-------|---------|-------|")
     for cat in CATEGORIES.keys():
-        a=summary.get((cat,"Added"),0)
-        r=summary.get((cat,"Removed"),0)
+        a = summary.get((cat,"Added"),0)
+        r = summary.get((cat,"Removed"),0)
         md.append(f"| {cat} | {a} | {r} | {a+r} |")
     md.append("")
     for header, changes in report:
         md.append(f"## {header}")
-        grouped={}; 
+        grouped = {}
         for action, cat, flag in changes:
-            grouped.setdefault((action, cat),[]).append(flag)
+            grouped.setdefault((action, cat), []).append(flag)
         for (action, cat), flags in grouped.items():
             md.append(f"**{action} in {cat}:**")
+            md.append("<ul>")
             for f in flags:
                 info = generate_flag_info(f)
-                md.append(f"- {escape_flag(f)}")
-                md.append(f"  - Mechanism: {info['mechanism']}")
-                md.append(f"  - Purpose: {info['purpose']}")
+                md.append(f"<li class='flag-item'>{escape_flag(f)}<br>"
+                          f"<span class='mechanism'>Mechanism: {info['mechanism']}</span><br>"
+                          f"<span class='purpose'>Purpose: {info['purpose']}</span></li>")
+            md.append("</ul>")
         md.append("")
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
 
     # HTML
-    html_lines = [f"""<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>FFlag Report</title></head><body>
-<h1>Roblox FFlag Report ({DAYS} Days)</h1><p>Last Run: {date_str}</p><p>Added: {added_count} | Removed: {removed_count}</p>"""]
+    html_lines = [f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FFlag Report</title>
+<style>
+  body {{ font-family:'Inter',sans-serif; background:#f9fafb; color:#333; padding:20px; }}
+  h1,h2,h3 {{ color:#1f2937; }}
+  ul {{ padding-left:20px; }}
+  li.flag-item {{ margin-bottom:8px; }}
+  span.mechanism {{ font-style:italic; color:#555; }}
+  span.purpose {{ font-style:italic; color:#555; }}
+</style>
+</head>
+<body>
+<h1>Roblox FFlag Report ({DAYS} Days)</h1>
+<p>Last Run: {date_str}</p>
+<p>Added: {added_count} | Removed: {removed_count}</p>
+"""]
+
     for header, changes in report:
         html_lines.append(f"<h2>{header}</h2>")
-        grouped={}
-        for action, cat, flag in changes: grouped.setdefault((action,cat),[]).append(flag)
-        for (action,cat),flags in grouped.items():
-            html_lines.append(f"<h3>{action} in {cat}</h3><ul>")
+        grouped = {}
+        for action, cat, flag in changes:
+            grouped.setdefault((action, cat), []).append(flag)
+        for (action, cat), flags in grouped.items():
+            html_lines.append(f"<h3>{action} in {cat}</h3>")
+            html_lines.append("<ul>")
             for f in flags:
                 info = generate_flag_info(f)
-                html_lines.append(f"<li>{escape_flag(f)}<br>Mechanism: {info['mechanism']}<br>Purpose: {info['purpose']}</li>")
+                html_lines.append(f"<li class='flag-item'>{escape_flag(f)}<br>"
+                                  f"<span class='mechanism'>Mechanism: {info['mechanism']}</span><br>"
+                                  f"<span class='purpose'>Purpose: {info['purpose']}</span></li>")
             html_lines.append("</ul>")
+
     html_lines.append("</body></html>")
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
     log(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}")
     return added_count, removed_count, date_str, report
+
 
 # ===============================
 # Dashboard Landing Page
