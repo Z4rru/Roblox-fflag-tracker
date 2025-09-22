@@ -10,9 +10,9 @@ import asyncio
 import logging
 import time
 try:
-    import openai
+    from openai import AsyncOpenAI
 except ImportError:
-    openai = None  # Graceful degrade if not available
+    AsyncOpenAI = None  # Graceful degrade if not available
 
 # ===============================
 # Settings and Paths
@@ -217,16 +217,16 @@ def update_history(added: int, removed: int, last_run: str) -> None:
 FLAG_INFO = json.loads(CACHE_FILE.read_text(encoding="utf-8")) if CACHE_FILE.exists() else {}
 
 async def fetch_ai_batch(batch: list[str]) -> None:
-    if not keys or not openai:
+    if not keys or not AsyncOpenAI:
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
         return
     prompt = "Explain the Roblox FFlags below. For each, provide Mechanism and Purpose in JSON format.\n" + json.dumps(batch)
     for attempt in range(MAX_RETRIES):
         try:
-            openai.api_key = get_next_api_key()
-            response = await openai.chat.completions.create(
-                model="gpt-5-mini",
+            client = AsyncOpenAI(api_key=get_next_api_key())
+            response = await client.chat.completions.create(
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.3
             )
@@ -244,10 +244,9 @@ async def fetch_ai_batch(batch: list[str]) -> None:
                         if f in batch:
                             FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
             break
-        except openai.RateLimitError:
-            await asyncio.sleep(2 ** attempt)
-        except Exception as e:
+        except Exception as e:  # Broader catch for rate limits, auth, etc.
             log.error(f"AI batch failed (attempt {attempt+1}): {e}")
+            await asyncio.sleep(2 ** attempt)
     else:
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
@@ -813,6 +812,7 @@ def main() -> None:
         ensure_repo()
         commits = get_commits()
         diff_cache = json.loads(DIFF_CACHE_FILE.read_text(encoding="utf-8")) if DIFF_CACHE_FILE.exists() else {}
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)  # Fix: Create output dir early to avoid write errors
         if not commits:
             log.warning(f"No commits in the last {DAYS} days.")
             report = []
@@ -832,6 +832,7 @@ def main() -> None:
         log.info("All done! Reports and dashboard ready.")
     except Exception as e:
         log.error(f"Main execution failed: {e}")
+        raise
 
 if __name__ == "__main__":
     main()
