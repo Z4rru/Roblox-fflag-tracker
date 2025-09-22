@@ -110,10 +110,13 @@ def ensure_repo() -> None:
         if LOCAL_CLONE.exists():
             log.info("Updating existing repository...")
             run_cmd("git fetch --all", cwd=LOCAL_CLONE)
+            # Ensure unshallow fetch if previous clone was shallow
+            run_cmd("git fetch --unshallow", cwd=LOCAL_CLONE)
             run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
         else:
             log.info("Cloning repository for the first time...")
-            run_cmd(f"git clone --depth=1 {REPO_URL} {LOCAL_CLONE}")
+            # Remove --depth=1 to avoid shallow clone issues
+            run_cmd(f"git clone {REPO_URL} {LOCAL_CLONE}")
     except Exception as e:
         log.error(f"Repo ensure failed: {e}")
 
@@ -135,16 +138,21 @@ def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[str], list[st
 
 def build_diff_for_commit(commit_hash: str) -> tuple[str, list[str], list[str]]:
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
-    # Get file content at this commit and previous commit
     curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=LOCAL_CLONE)
-    prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=LOCAL_CLONE)
+    
+    # Try getting previous commit content; fallback to empty dict if unavailable
+    try:
+        prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=LOCAL_CLONE)
+        prev_json = json.loads(prev_content)
+    except Exception:
+        prev_json = {}
+
     try:
         curr_json = json.loads(curr_content)
-        prev_json = json.loads(prev_content)
     except json.JSONDecodeError:
         # fallback to old line-based diff
         return build_diff_for_commit_old(commit_hash)
-    
+
     added = [k for k in curr_json if k not in prev_json or curr_json[k] != prev_json.get(k)]
     removed = [k for k in prev_json if k not in curr_json]
     return header, added, removed
