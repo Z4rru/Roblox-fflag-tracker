@@ -716,16 +716,63 @@ document.getElementById('searchInput').addEventListener('input', function() {
 });
 function filterFlags(query) {
   const searchQuery = query.toLowerCase();
-  
-  // Loop through all li elements under reportContent
-  const allFlags = reportContent.querySelectorAll('li');
-  allFlags.forEach(li => {
-    const flagText = li.textContent.toLowerCase(); // Compare the flag text
-    if (flagText.includes(searchQuery)) {
-      li.style.display = ''; // Show the flag if it matches
-    } else {
-      li.style.display = 'none'; // Hide the flag if it doesn't match
+  if (!searchQuery) {
+    // Show all
+    reportContent.querySelectorAll('h2, h3, ul, li').forEach(el => {
+      el.style.display = '';
+      if (el.tagName === 'H3') {
+        el.setAttribute('aria-expanded', 'true');
+      }
+      if (el.tagName === 'UL') {
+        el.style.display = 'block';
+      }
+    });
+    return;
+  }
+
+  // Loop through commits (h2)
+  const commits = reportContent.querySelectorAll('h2');
+  commits.forEach(h2 => {
+    let commitVisible = false;
+    let sibling = h2.nextElementSibling;
+    while (sibling && sibling.tagName !== 'H2') {
+      if (sibling.tagName === 'H3') {
+        const catText = sibling.textContent.toLowerCase();
+        const ul = sibling.nextElementSibling;
+        if (ul && ul.tagName === 'UL') {
+          let groupVisible = false;
+          if (catText.includes(searchQuery)) {
+            // Match category, show all in group
+            sibling.style.display = '';
+            ul.style.display = 'block';
+            sibling.setAttribute('aria-expanded', 'true');
+            ul.querySelectorAll('li').forEach(li => li.style.display = '');
+            groupVisible = true;
+          } else {
+            // Check each li
+            ul.querySelectorAll('li').forEach(li => {
+              if (li.textContent.toLowerCase().includes(searchQuery)) {
+                li.style.display = '';
+                groupVisible = true;
+              } else {
+                li.style.display = 'none';
+              }
+            });
+            if (groupVisible) {
+              sibling.style.display = '';
+              ul.style.display = 'block';
+              sibling.setAttribute('aria-expanded', 'true');
+            } else {
+              sibling.style.display = 'none';
+              ul.style.display = 'none';
+            }
+          }
+          if (groupVisible) commitVisible = true;
+        }
+      }
+      sibling = sibling.nextElementSibling;
     }
+    h2.style.display = commitVisible ? '' : 'none';
   });
 }
 </script>
