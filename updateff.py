@@ -296,7 +296,7 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     if len(history) == 1:
         md.append("- **Note:** No prior history available yet")
     if not report:
-        md.append("\n## No Recent Changes\nNo flag changes in the last {DAYS} days.")
+        md.append(f"\n## No Recent Changes\nNo flag changes in the last {DAYS} days.")
     else:
         for header, changes in report:
             md.append(f"\n## {header}")
@@ -313,7 +313,7 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, str, str]:
     # HTML with <h3><ul> for Collapsibles
     html_lines = ["<html><body><h1>Roblox FFlag Report</h1>"]
     if not report:
-        html_lines.append("<h2>No Recent Changes</h2><p>No flag changes in the last {DAYS} days.</p>")
+        html_lines.append(f"<h2>No Recent Changes</h2><p>No flag changes in the last {DAYS} days.</p>")
     else:
         for header, changes in report:
             html_lines.append(f"<h2>{header}</h2>")
@@ -366,7 +366,7 @@ def ensure_landing_page(added: int, removed: int, last_run: str) -> None:
         HISTORY_FILE.write_text("[]", encoding="utf-8")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    html_content = f"""<!DOCTYPE html>
+    html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -374,15 +374,15 @@ def ensure_landing_page(added: int, removed: int, last_run: str) -> None:
 <title>Roblox FFlag Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {{ 
+:root { 
   --primary-green: #34d399;
   --primary-red: #f87171;
   --historical-green: #10b981;
   --historical-red: #ef4444;
   --bg-opacity: 0.15;
   --text-color: #fff;
-}}
-body {{ 
+}
+body { 
   font-family:'Inter',sans-serif;
   margin:0;
   background: linear-gradient(135deg,#4f46e5,#3b82f6,#06b6d4,#14b8a6);
@@ -390,15 +390,15 @@ body {{
   animation: gradientBG 15s ease infinite;
   color: var(--text-color);
   overflow-x: hidden;
-}}
-@keyframes gradientBG {{ 
-  0% {{background-position:0% 50%;}}
-  50% {{background-position:100% 50%;}}
-  100% {{background-position:0% 50%;}}
-}}
-header {{ text-align:center; padding:60px 20px; text-shadow:0 0 12px rgba(0,0,0,0.3); }}
-header h1 {{ font-size:3rem; font-weight:700; }}
-.stats {{ 
+}
+@keyframes gradientBG { 
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+header { text-align:center; padding:60px 20px; text-shadow:0 0 12px rgba(0,0,0,0.3); }
+header h1 { font-size:3rem; font-weight:700; }
+.stats { 
   display:flex;
   justify-content:center;
   gap:30px;
@@ -406,8 +406,8 @@ header h1 {{ font-size:3rem; font-weight:700; }}
   max-width:1200px;
   margin:-40px auto 40px;
   position:relative; z-index:2;
-}}
-.badge {{ 
+}
+.badge { 
   flex:1; min-width:220px;
   text-align:center;
   padding:25px;
@@ -417,27 +417,27 @@ header h1 {{ font-size:3rem; font-weight:700; }}
   background:rgba(255,255,255,var(--bg-opacity));
   box-shadow:0 10px 30px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-}}
-.badge:hover {{ 
+}
+.badge:hover { 
   transform:translateY(-8px);
   box-shadow:0 14px 40px rgba(0,0,0,0.4);
   border:2px solid var(--primary-green);
-}}
-.added {{ border-left:6px solid var(--primary-green); }}
-.removed {{ border-left:6px solid var(--primary-red); }}
-.historical-added {{ border-left:6px solid var(--historical-green); }}
-.historical-removed {{ border-left:6px solid var(--historical-red); }}
-.last-run {{ text-align:center; margin:20px 0; font-style:italic; color:#eee; }}
-section {{ max-width:1200px; margin:0 auto; padding:20px; }}
-.report-container {{ 
+}
+.added { border-left:6px solid var(--primary-green); }
+.removed { border-left:6px solid var(--primary-red); }
+.historical-added { border-left:6px solid var(--historical-green); }
+.historical-removed { border-left:6px solid var(--historical-red); }
+.last-run { text-align:center; margin:20px 0; font-style:italic; color:#eee; }
+section { max-width:1200px; margin:0 auto; padding:20px; }
+.report-container { 
   background: rgba(255,255,255,var(--bg-opacity));
   backdrop-filter: blur(10px);
   border-radius:16px;
   box-shadow:0 12px 36px rgba(0,0,0,0.25);
   padding:15px;
   position: relative;
-}}
-#loadingSpinner {{ 
+}
+#loadingSpinner { 
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -446,39 +446,39 @@ section {{ max-width:1200px; margin:0 auto; padding:20px; }}
   border-radius: 50%;
   width: 40px; height: 40px;
   animation: spin 1s linear infinite;
-}}
-@keyframes spin {{ 
-  0% {{ transform: rotate(0deg); }}
-  100% {{ transform: rotate(360deg); }}
-}}
-#reportContent {{ width:100%; min-height:75vh; border-radius:12px; }}
-canvas#trendChart {{ display:block; max-width:850px; margin:40px auto; border-radius:12px; }}
-input#searchInput {{ 
+}
+@keyframes spin { 
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#reportContent { width:100%; min-height:75vh; border-radius:12px; }
+canvas#trendChart { display:block; max-width:850px; margin:40px auto; border-radius:12px; }
+input#searchInput { 
   width:90%; padding:12px; margin:20px auto; display:block;
   border-radius:12px; border:1px solid rgba(255,255,255,0.3);
   background:rgba(0,0,0,0.2); color: var(--text-color); font-size:1rem;
   backdrop-filter:blur(5px);
-}}
-footer {{ text-align:center; margin-top:60px; padding:25px; font-size:0.9rem; color:#eee; }}
-canvas#particleCanvas {{ 
+}
+footer { text-align:center; margin-top:60px; padding:25px; font-size:0.9rem; color:#eee; }
+canvas#particleCanvas { 
   position: fixed;
   top:0; left:0; width:100%; height:100%;
   pointer-events:none;
   z-index:0;
-}}
-table {{ 
+}
+table { 
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 40px;
-}}
-th, td {{ 
+}
+th, td { 
   border: 1px solid rgba(255,255,255,0.3);
   padding: 12px;
   text-align: left;
-}}
-th {{ 
+}
+th { 
   background: rgba(0,0,0,0.2);
-}}
+}
 </style>
 </head>
 <body>
@@ -521,25 +521,25 @@ const ctx = canvas.getContext('2d');
 let resizeTimeout;
 let animationId;
 let particles = [];
-function resizeCanvas() {{
+function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-}}
+}
 
-function generateParticles() {{
-  particles = Array.from({{ length: 30 }}, () => ({{
+function generateParticles() {
+  particles = Array.from({ length: 30 }, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     r: Math.random() * 2 + 1,
     dx: (Math.random() - 0.5) / 2,
     dy: (Math.random() - 0.5) / 2,
-    color: `rgba(${{Math.floor(Math.random() * 50 + 200)}}, 255, 255, 0.15)`,
-  }}));
-}}
+    color: `rgba(${Math.floor(Math.random() * 50 + 200)}, 255, 255, 0.15)`,
+  }));
+}
 
-function animateParticles() {{
+function animateParticles() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => {{
+  particles.forEach(p => {
     p.x += p.dx;
     p.y += p.dy;
     if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
@@ -548,76 +548,76 @@ function animateParticles() {{
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
     ctx.fillStyle = p.color;
     ctx.fill();
-  }});
+  });
   animationId = requestAnimationFrame(animateParticles);
-}}
+}
 
-function stopAnimation() {{
+function stopAnimation() {
   cancelAnimationFrame(animationId);
-}}
+}
 
 resizeCanvas();
 generateParticles();
 animateParticles();
 
-window.addEventListener('resize', () => {{
+window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(resizeCanvas, 200);
-}});
+});
 
-document.addEventListener('visibilitychange', () => {{
+document.addEventListener('visibilitychange', () => {
   if (document.hidden) stopAnimation();
   else animateParticles();
-}});
+});
 
 // Trend chart using Chart.js with limited data points
-fetch("history.json").then(r => r.json()).then(data => {{
-  if (data.length === 0) {{
+fetch("history.json").then(r => r.json()).then(data => {
+  if (data.length === 0) {
     document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
     return;
-  }}
+  }
   const ctx = document.getElementById("trendChart").getContext("2d");
-  new Chart(ctx, {{
+  new Chart(ctx, {
     type: 'line',
-    data: {{
+    data: {
       labels: data.map(d => d.date),
       datasets: [
-        {{
+        {
           label: 'Added',
           data: data.map(d => d.added),
           borderColor: '#34d399',
           backgroundColor: 'rgba(52,211,153,0.2)',
           fill: true,
           tension: 0.4
-        }},
-        {{
+        },
+        {
           label: 'Removed',
           data: data.map(d => d.removed),
           borderColor: '#f87171',
           backgroundColor: 'rgba(248,113,113,0.2)',
           fill: true,
           tension: 0.4
-        }}
+        }
       ]
-    }},
-    options: {{
+    },
+    options: {
       responsive: true,
-      plugins: {{
-        legend: {{
+      plugins: {
+        legend: {
           position: 'top'
-        }}
-      }},
-      interaction: {{
+        }
+      },
+      interaction: {
         mode: 'nearest',
         axis: 'x',
         intersect: false
-      }}
-    }}
-  }});
-}}).catch(error => {{
+      }
+    }
+  });
+}).catch(error => {
   console.error('Error loading history:', error);
   document.getElementById("trendChart").parentNode.innerHTML = '<p>Error loading history data.</p>';
-}});
+});
 
 // Lazy Loading of report data
 const reportContent = document.getElementById('reportContent');
@@ -625,39 +625,39 @@ const loadingSpinner = document.getElementById('loadingSpinner');
 let currentPage = 0;
 const itemsPerPage = 10;
 
-function loadReportPage(data, page = 0) {{
+function loadReportPage(data, page = 0) {
   const startIndex = page * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const reportPage = data.slice(startIndex, endIndex);
   
-  reportPage.forEach(commit => {{
+  reportPage.forEach(commit => {
     const h2 = document.createElement('h2');
     h2.textContent = commit.header;
     reportContent.appendChild(h2);
 
-    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {{
+    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
       const [typ, cat] = groupKey.split('_');
       const h3 = document.createElement('h3');
-      h3.textContent = `${{typ}} in ${{cat}}`;
+      h3.textContent = `${typ} in ${cat}`;
       h3.style.cursor = 'pointer';
       h3.setAttribute('aria-expanded', 'true');
       reportContent.appendChild(h3);
 
       const ul = document.createElement('ul');
       ul.style.display = 'block';
-      flags.forEach(f => {{
+      flags.forEach(f => {
         const li = document.createElement('li');
-        li.textContent = `${{f.name}} - Mechanism: ${{f.mechanism}} - Purpose: ${{f.purpose}}`;
+        li.textContent = `${f.name} - Mechanism: ${f.mechanism} - Purpose: ${f.purpose}`;
         ul.appendChild(li);
-      }});
+      });
       reportContent.appendChild(ul);
-    }});
-  }});
-}}
+    });
+  });
+}
 
 fetch('FFlag_Report.json')
   .then(response => response.json())
-  .then(data => {{
+  .then(data => {
     document.getElementById('flags-added').textContent = data.added_total;
     document.getElementById('flags-removed').textContent = data.removed_total;
     document.getElementById('historical-added').textContent = data.total_historical_added;
@@ -667,53 +667,53 @@ fetch('FFlag_Report.json')
     // Populate summary table
     const summaryTable = document.getElementById('summaryTable');
     let tableHtml = '<thead><tr><th>Category</th><th>Added</th><th>Removed</th></tr></thead><tbody>';
-    for (let cat in data.summary) {{
+    for (let cat in data.summary) {
       const s = data.summary[cat];
-      tableHtml += `<tr><td>${{cat}}</td><td>${{s.added}}</td><td>${{s.removed}}</td></tr>`;
-    }}
+      tableHtml += `<tr><td>${cat}</td><td>${s.added}</td><td>${s.removed}</td></tr>`;
+    }
     tableHtml += '</tbody>';
     summaryTable.innerHTML = tableHtml;
 
-    if (data.report.length === 0) {{
-      reportContent.innerHTML = `<p>No recent flag changes in the last ${{data.days}} days.</p>`;
-    }} else {{
+    if (data.report.length === 0) {
+      reportContent.innerHTML = `<p>No recent flag changes in the last ${data.days} days.</p>`;
+    } else {
       loadReportPage(data.report, currentPage);
-    }}
+    }
     loadingSpinner.style.display = 'none';
     
     // Infinite scrolling
-    window.addEventListener('scroll', () => {{
-      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 500) {{
-        if (currentPage < Math.ceil(data.report.length / itemsPerPage) - 1) {{
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 500) {
+        if (currentPage < Math.ceil(data.report.length / itemsPerPage) - 1) {
           currentPage++;
           loadReportPage(data.report, currentPage);
-        }}
-      }}
-    }});
+        }
+      }
+    });
 
     // Event delegation for collapsibles
-    reportContent.addEventListener('click', e => {{
-      if (e.target.tagName === 'H3') {{
+    reportContent.addEventListener('click', e => {
+      if (e.target.tagName === 'H3') {
         const ul = e.target.nextElementSibling;
-        if (ul && ul.tagName === 'UL') {{
+        if (ul && ul.tagName === 'UL') {
           const expanded = ul.style.display !== 'none';
           ul.style.display = expanded ? 'none' : 'block';
           e.target.setAttribute('aria-expanded', !expanded);
-        }}
-      }}
-    }});
-  }})
-  .catch(error => {{
+        }
+      }
+    });
+  })
+  .catch(error => {
     console.error('Error loading report:', error);
     loadingSpinner.style.display = 'none';
     reportContent.innerHTML = '<p>Error loading report.</p>';
-  }});
+  });
 
 // Search with Debounced Input for Filtering
-document.getElementById('searchInput').addEventListener('input', function() {{ 
+document.getElementById('searchInput').addEventListener('input', function() { 
   clearTimeout(window.searchTimeout);
   window.searchTimeout = setTimeout(() => filterFlags(this.value), 300);
-}});
+});
 function filterFlags(query) {
   const searchQuery = query.toLowerCase();
   
