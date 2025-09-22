@@ -460,66 +460,170 @@ canvas#particleCanvas {{
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// Particle animation
+// Particle animation - reduced particle count and added visibility check
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let resizeTimeout;
-function resizeCanvas(){{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }}
-resizeCanvas();
-const particles=Array.from({{length:100}},()=>({{x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)/2,dy:(Math.random()-0.5)/2,color:`rgba(${{Math.floor(Math.random()*50+200)}},255,255,0.15)`}}));
-function animateParticles(){{ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{{p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color;ctx.fill();}});requestAnimationFrame(animateParticles);}}
-animateParticles();
-window.addEventListener('resize',()=>{{clearTimeout(resizeTimeout);resizeTimeout=setTimeout(resizeCanvas,200);}});
+let animationId;
+let particles = [];
+function resizeCanvas() {{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}}
 
-// Trend chart
-fetch("history.json").then(r=>r.json()).then(data=>{{
-  const ctx=document.getElementById("trendChart").getContext("2d");
-  new Chart(ctx,{{type:'line',data:{{labels:data.map(d=>d.date),datasets:[
-    {{label:'Added',data:data.map(d=>d.added),borderColor:'#34d399',backgroundColor:'rgba(52,211,153,0.2)',fill:true,tension:0.4}},
-    {{label:'Removed',data:data.map(d=>d.removed),borderColor:'#f87171',backgroundColor:'rgba(248,113,113,0.2)',fill:true,tension:0.4}}
-  ]}},options:{{responsive:true,plugins:{{legend:{{position:'top'}}}},interaction:{{mode:'nearest',axis:'x',intersect:false}}}}}});
+function generateParticles() {{
+  particles = Array.from({{ length: 30 }}, () => ({{
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2 + 1,
+    dx: (Math.random() - 0.5) / 2,
+    dy: (Math.random() - 0.5) / 2,
+    color: `rgba(${{Math.floor(Math.random() * 50 + 200)}}, 255, 255, 0.15)`,
+  }}));
+}}
+
+function animateParticles() {{
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {{
+    p.x += p.dx;
+    p.y += p.dy;
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+  }});
+  animationId = requestAnimationFrame(animateParticles);
+}}
+
+function stopAnimation() {{
+  cancelAnimationFrame(animationId);
+}}
+
+resizeCanvas();
+generateParticles();
+animateParticles();
+
+window.addEventListener('resize', () => {{
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(resizeCanvas, 200);
 }});
 
-// Load report from JSON and build DOM
-const loadingSpinner = document.getElementById('loadingSpinner');
+document.addEventListener('visibilitychange', () => {{
+  if (document.hidden) stopAnimation();
+  else animateParticles();
+}});
+
+// Trend chart using Chart.js with limited data points
+fetch("history.json").then(r => r.json()).then(data => {{
+  const ctx = document.getElementById("trendChart").getContext("2d");
+  new Chart(ctx, {{
+    type: 'line',
+    data: {{
+      labels: data.map(d => d.date),
+      datasets: [
+        {{
+          label: 'Added',
+          data: data.map(d => d.added),
+          borderColor: '#34d399',
+          backgroundColor: 'rgba(52,211,153,0.2)',
+          fill: true,
+          tension: 0.4
+        }},
+        {{
+          label: 'Removed',
+          data: data.map(d => d.removed),
+          borderColor: '#f87171',
+          backgroundColor: 'rgba(248,113,113,0.2)',
+          fill: true,
+          tension: 0.4
+        }}
+      ]
+    }},
+    options: {{
+      responsive: true,
+      plugins: {{
+        legend: {{
+          position: 'top'
+        }}
+      }},
+      interaction: {{
+        mode: 'nearest',
+        axis: 'x',
+        intersect: false
+      }}
+    }}
+  }});
+}});
+
+// Lazy Loading of report data
 const reportContent = document.getElementById('reportContent');
+const loadingSpinner = document.getElementById('loadingSpinner');
+let currentPage = 0;
+const itemsPerPage = 10;
+
+function loadReportPage(data, page = 0) {{
+  const startIndex = page * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const reportPage = data.slice(startIndex, endIndex);
+  
+  reportPage.forEach(commit => {{
+    const h2 = document.createElement('h2');
+    h2.textContent = commit.header;
+    reportContent.appendChild(h2);
+
+    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {{
+      const [typ, cat] = groupKey.split('_');
+      const h3 = document.createElement('h3');
+      h3.textContent = `${{typ}} in ${{cat}}`;
+      h3.style.cursor = 'pointer';
+      h3.setAttribute('aria-expanded', 'true');
+      reportContent.appendChild(h3);
+
+      const ul = document.createElement('ul');
+      ul.style.display = 'block';
+      flags.forEach(f => {{
+        const li = document.createElement('li');
+        li.textContent = `${{f.name}} - Mechanism: ${{f.mechanism}} - Purpose: ${{f.purpose}}`;
+        ul.appendChild(li);
+      }});
+      reportContent.appendChild(ul);
+    }});
+  }});
+}}
+
 fetch('FFlag_Report.json')
   .then(response => response.json())
   .then(data => {{
     document.getElementById('flags-added').textContent = data.added_total;
     document.getElementById('flags-removed').textContent = data.removed_total;
     document.getElementById('last-run').textContent = data.last_run;
+
+    loadReportPage(data.report, currentPage);
+    loadingSpinner.style.display = 'none';
     
-    data.report.forEach(commit => {{
-      const h2 = document.createElement('h2');
-      h2.textContent = commit.header;
-      reportContent.appendChild(h2);
-      
-      Object.entries(commit.grouped).forEach(([groupKey, flags]) => {{
-        const [typ, cat] = groupKey.split('_');
-        const h3 = document.createElement('h3');
-        h3.textContent = `${{typ}} in ${{cat}}`;
-        h3.style.cursor = 'pointer';
-        h3.setAttribute('aria-expanded', 'true');
-        reportContent.appendChild(h3);
-        
-        const ul = document.createElement('ul');
-        ul.style.display = 'block';
-        flags.forEach(f => {{
-          const li = document.createElement('li');
-          li.textContent = `${{f.name}} - Mechanism: ${{f.mechanism}} - Purpose: ${{f.purpose}}`;
-          ul.appendChild(li);
-        }});
-        reportContent.appendChild(ul);
-        
-        h3.addEventListener('click', () => {{
+    // Infinite scrolling
+    window.addEventListener('scroll', () => {{
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 500) {{
+        if (currentPage < Math.ceil(data.report.length / itemsPerPage) - 1) {{
+          currentPage++;
+          loadReportPage(data.report, currentPage);
+        }}
+      }}
+    }});
+
+    // Event delegation for collapsibles
+    reportContent.addEventListener('click', e => {{
+      if (e.target.tagName === 'H3') {{
+        const ul = e.target.nextElementSibling;
+        if (ul && ul.tagName === 'UL') {{
           const expanded = ul.style.display !== 'none';
           ul.style.display = expanded ? 'none' : 'block';
-          h3.setAttribute('aria-expanded', !expanded);
-        }});
-      }});
+          e.target.setAttribute('aria-expanded', !expanded);
+        }}
+      }}
     }});
-    loadingSpinner.style.display = 'none';
   }})
   .catch(error => {{
     console.error('Error loading report:', error);
@@ -527,13 +631,18 @@ fetch('FFlag_Report.json')
     reportContent.innerHTML = '<p>Error loading report.</p>';
   }});
 
-// Search/filter
+// Search with Debounced Input for Filtering
 document.getElementById('searchInput').addEventListener('input', function() {{
-  const q = this.value.toLowerCase();
-  reportContent.querySelectorAll('li').forEach(li => {{
-    li.style.display = li.textContent.toLowerCase().includes(q) ? '' : 'none';
-  }});
+  clearTimeout(window.searchTimeout);
+  window.searchTimeout = setTimeout(() => filterFlags(this.value), 300);
 }});
+
+function filterFlags(query) {{
+  const searchQuery = query.toLowerCase();
+  reportContent.querySelectorAll('li').forEach(li => {{
+    li.style.display = li.textContent.toLowerCase().includes(searchQuery) ? '' : 'none';
+  }});
+}}
 </script>
 </body>
 </html>
