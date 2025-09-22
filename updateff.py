@@ -18,7 +18,7 @@ OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
-DAYS = 8
+DAYS = 2
 
 # ===============================
 # Categories
