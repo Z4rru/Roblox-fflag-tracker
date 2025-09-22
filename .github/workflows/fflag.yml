@@ -3,23 +3,23 @@ name: Roblox FFlag Tracker
 on:
   schedule:
     - cron: "0 */6 * * *"   # Runs every 6 hours
-  workflow_dispatch:         # Manual trigger
+  workflow_dispatch:         # Allows manual trigger
 
 permissions:
-  contents: write      # allow pushing to gh-pages
-  pages: write         # allow deploying to GitHub Pages
-  id-token: write      # required for OIDC auth (peaceiris supports it)
+  contents: write      # Allow pushing to gh-pages
+  pages: write         # Allow deploying to GitHub Pages
+  id-token: write      # Required for OIDC auth (peaceiris supports it)
 
 jobs:
   run-tracker:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout your repo
+      # 1. Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Setup Python
+      # 2. Setup Python 3.11
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -33,20 +33,30 @@ jobs:
 
       # 4. Set OpenAI API keys from GitHub Secrets
       - name: Set OpenAI API keys
-        run: echo "OPENAI_API_KEYS=${{ secrets.OPENAI_API_KEYS }}" >> $GITHUB_ENV
+        run: |
+          # Strip any trailing whitespace/newlines
+          KEYS=$(echo "${{ secrets.OPENAI_API_KEYS }}" | tr -d '[:space:]')
+          if [ -z "$KEYS" ]; then
+            echo "❌ OPENAI_API_KEYS secret is empty or malformed!"
+            exit 1
+          fi
+          echo "OPENAI_API_KEYS=$KEYS" >> $GITHUB_ENV
 
-      # 5. Optional debug: verify keys
+      # 5. Optional safe debug: verify keys length without exposing them
       - name: Debug OpenAI API keys
         run: |
           if [ -z "$OPENAI_API_KEYS" ]; then
             echo "❌ OPENAI_API_KEYS is empty!"
             exit 1
           fi
-          echo "✅ OPENAI_API_KEYS is set (hidden for security)"
+          # Print length only for verification
+          echo "✅ OPENAI_API_KEYS detected (length: ${#OPENAI_API_KEYS} chars)"
 
-      # 6. Run the Roblox FFlag Tracker script
+      # 6. Run the Roblox FFlag Tracker Python script
       - name: Run Roblox FFlag Tracker
         run: python updateff.py
+        env:
+          OPENAI_API_KEYS: ${{ env.OPENAI_API_KEYS }}
 
       # 7. Optional: Debug output folder
       - name: Debug output folder
