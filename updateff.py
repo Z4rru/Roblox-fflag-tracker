@@ -840,8 +840,10 @@ const loadingSpinner = document.getElementById('loadingSpinner');
 let currentPage = 0;
 const itemsPerPage = 10;
 let globalData;
+let currentData;
+let observer;
 
-function loadReportPage(data, page = 0) {
+function loadReportPage(data, page) {
   const startIndex = page * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const reportPage = data.slice(startIndex, endIndex);
@@ -884,6 +886,83 @@ function loadReportPage(data, page = 0) {
   });
 }
 
+function setupObserver() {
+  if (observer) {
+    observer.disconnect();
+  }
+  const maxPages = Math.ceil(currentData.length / itemsPerPage);
+  if (currentPage + 1 < maxPages) {
+    const sentinel = document.createElement('div');
+    sentinel.id = 'sentinel';
+    reportContent.appendChild(sentinel);
+    observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        currentPage++;
+        loadReportPage(currentData, currentPage);
+        if (currentPage + 1 >= maxPages) {
+          observer.unobserve(sentinel);
+          sentinel.remove();
+        }
+      }
+    }, { threshold: 0 });
+    observer.observe(sentinel);
+  }
+}
+
+function debounce(func, delay) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), delay);
+  };
+}
+
+function applyFilters() {
+  let filtered = globalData.report;
+  const cat = document.getElementById('categoryFilter').value;
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const sortBy = document.getElementById('sortSelect').value;
+
+  if (cat || query) {
+    filtered = globalData.report.map(commit => {
+      const grouped = {};
+      Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+        const [typ, category] = groupKey.split('_');
+        if (cat && category !== cat) return;
+        let matches = flags;
+        if (query) {
+          matches = flags.filter(f =>
+            f.name.toLowerCase().includes(query) ||
+            f.mechanism.toLowerCase().includes(query) ||
+            f.purpose.toLowerCase().includes(query)
+          );
+        }
+        if (matches.length > 0) grouped[groupKey] = matches;
+      });
+      return Object.keys(grouped).length ? { ...commit, grouped } : null;
+    }).filter(Boolean);
+  }
+
+  filtered.forEach(commit => {
+    Object.values(commit.grouped).forEach(flags => {
+      flags.sort((a, b) => {
+        if (sortBy === 'freq') return b.freq - a.freq;
+        return a.name.localeCompare(b.name);
+      });
+    });
+  });
+
+  reportContent.innerHTML = '';
+  currentPage = 0;
+  currentData = filtered;
+  if (currentData.length === 0) {
+    reportContent.innerHTML = `<p>No recent flag changes in the last ${globalData.days} days.</p>`;
+  } else {
+    loadReportPage(currentData, currentPage);
+    setupObserver();
+  }
+}
+
 fetch('FFlag_Report.json')
   .then(response => response.json())
   .then(data => {
@@ -912,35 +991,8 @@ fetch('FFlag_Report.json')
     tableHtml += '</tbody>';
     summaryTable.innerHTML = tableHtml;
 
-    if (data.report.length === 0) {
-      reportContent.innerHTML = `<p>No recent flag changes in the last ${data.days} days.</p>`;
-    } else {
-      loadReportPage(data.report, currentPage);
-      const maxPages = Math.ceil(data.report.length / itemsPerPage);
-      if (1 < maxPages) {
-        const sentinel = document.createElement('div');
-        sentinel.id = 'sentinel';
-        reportContent.appendChild(sentinel);
-        const observer = new IntersectionObserver(entries => {
-          if (entries[0].isIntersecting) {
-            const nextPage = currentPage + 1;
-            if (nextPage < maxPages) {
-              currentPage = nextPage;
-              loadReportPage(data.report, currentPage);
-              const stillMore = currentPage + 1 < maxPages;
-              if (stillMore) {
-                reportContent.appendChild(sentinel);
-              } else {
-                observer.unobserve(sentinel);
-                sentinel.remove();
-              }
-            }
-          }
-        }, { threshold: 0 });
-        observer.observe(sentinel);
-      }
-    }
     loadingSpinner.style.display = 'none';
+    applyFilters();
 
     // Event delegation for collapsibles and copy
     reportContent.addEventListener('click', e => {
@@ -965,122 +1017,10 @@ fetch('FFlag_Report.json')
     reportContent.innerHTML = '<p>Error loading report.</p>';
   });
 
-// Search with Debounced Input for Filtering
-document.getElementById('searchInput').addEventListener('input', function() { 
-  clearTimeout(window.searchTimeout);
-  window.searchTimeout = setTimeout(() => filterFlags(this.value), 300);
-});
-function filterFlags(query) {
-  const searchQuery = query.toLowerCase();
-  if (!searchQuery) {
-    // Show all
-    reportContent.querySelectorAll('.commit-card, h2, h3, ul, li').forEach(el => {
-      el.style.display = '';
-      if (el.tagName === 'H3') {
-        el.setAttribute('aria-expanded', 'true');
-      }
-      if (el.tagName === 'UL') {
-        el.style.maxHeight = el.scrollHeight + 'px';
-      }
-    });
-    return;
-  }
-
-  // Loop through commit cards
-  const cards = reportContent.querySelectorAll('.commit-card');
-  cards.forEach(card => {
-    let cardVisible = false;
-    const h3s = card.querySelectorAll('h3');
-    h3s.forEach(h3 => {
-      const catText = h3.textContent.toLowerCase();
-      const ul = h3.nextElementSibling;
-      if (ul && ul.tagName === 'UL') {
-        let groupVisible = false;
-        if (catText.includes(searchQuery)) {
-          // Match category, show all in group
-          h3.style.display = '';
-          ul.style.maxHeight = ul.scrollHeight + 'px';
-          h3.setAttribute('aria-expanded', 'true');
-          ul.querySelectorAll('li').forEach(li => li.style.display = '');
-          groupVisible = true;
-        } else {
-          // Check each li
-          ul.querySelectorAll('li').forEach(li => {
-            if (li.textContent.toLowerCase().includes(searchQuery)) {
-              li.style.display = '';
-              groupVisible = true;
-            } else {
-              li.style.display = 'none';
-            }
-          });
-          if (groupVisible) {
-            h3.style.display = '';
-            ul.style.maxHeight = ul.scrollHeight + 'px';
-            h3.setAttribute('aria-expanded', 'true');
-          } else {
-            h3.style.display = 'none';
-            ul.style.maxHeight = '0px';
-          }
-        }
-        if (groupVisible) cardVisible = true;
-      }
-    });
-    card.style.display = cardVisible ? '' : 'none';
-  });
-}
-
-// Category filter
-document.getElementById('categoryFilter').addEventListener('change', function() {
-  filterByCategory(this.value);
-});
-function filterByCategory(cat) {
-  if (!cat) {
-    reportContent.querySelectorAll('.commit-card, h2, h3, ul, li').forEach(el => {
-      el.style.display = '';
-      if (el.tagName === 'UL') el.style.maxHeight = el.scrollHeight + 'px';
-      if (el.tagName === 'H3') el.setAttribute('aria-expanded', 'true');
-    });
-    return;
-  }
-  const cards = reportContent.querySelectorAll('.commit-card');
-  cards.forEach(card => {
-    let cardVisible = false;
-    const h3s = card.querySelectorAll('h3');
-    h3s.forEach(h3 => {
-      const ul = h3.nextElementSibling;
-      if (h3.textContent.includes(` in ${cat}`)) {
-        h3.style.display = '';
-        ul.style.maxHeight = ul.scrollHeight + 'px';
-        h3.setAttribute('aria-expanded', 'true');
-        ul.querySelectorAll('li').forEach(li => li.style.display = '');
-        cardVisible = true;
-      } else {
-        h3.style.display = 'none';
-        ul.style.maxHeight = '0px';
-      }
-    });
-    card.style.display = cardVisible ? '' : 'none';
-  });
-}
-
-// Sort
-document.getElementById('sortSelect').addEventListener('change', function() {
-  sortLists(this.value);
-});
-function sortLists(by) {
-  const uls = reportContent.querySelectorAll('ul');
-  uls.forEach(ul => {
-    const lis = Array.from(ul.querySelectorAll('li'));
-    lis.sort((a, b) => {
-      if (by === 'freq') {
-        return b.dataset.freq - a.dataset.freq;
-      } else {
-        return a.textContent.localeCompare(b.textContent);
-      }
-    });
-    lis.forEach(li => ul.appendChild(li));
-  });
-}
+// Filters
+document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
+document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+document.getElementById('sortSelect').addEventListener('change', applyFilters);
 
 // Export
 document.getElementById('exportCSV').addEventListener('click', () => {
