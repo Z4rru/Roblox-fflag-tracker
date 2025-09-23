@@ -9,8 +9,9 @@ from zoneinfo import ZoneInfo
 import asyncio
 import logging
 import time
+from collections import defaultdict
 try:
-    from openai import AsyncOpenAI
+    from openai import AsyncOpenAI, RateLimitError
 except ImportError:
     AsyncOpenAI = None  # Graceful degrade if not available
 
@@ -190,35 +191,41 @@ def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[tuple[str, an
             removed.append((k, removed_dict[k]))
     return header, added, changed, removed
 
-def build_diff_for_commit(commit_hash: str, diff_cache: dict) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
+async def async_build_diff_for_commit(commit_hash: str, diff_cache: dict) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
     if commit_hash in diff_cache:
         cached = diff_cache[commit_hash]
         added = [(f, v) for f, v in cached.get('added', [])]
         changed = [(f, o, n) for f, o, n in cached.get('changed', [])]
         removed = [(f, v) for f, v in cached.get('removed', [])]
         return cached['header'], added, changed, removed
-    header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
-    curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=LOCAL_CLONE)
-    try:
-        prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=LOCAL_CLONE)
-        prev_json = json.loads(prev_content)
-    except Exception:
-        prev_json = {}
-    try:
-        curr_json = json.loads(curr_content)
-    except json.JSONDecodeError:
-        return build_diff_for_commit_old(commit_hash)
-    added = []
-    changed = []
-    removed = []
-    for k in curr_json:
-        if k not in prev_json:
-            added.append((k, curr_json[k]))
-        elif curr_json[k] != prev_json[k]:
-            changed.append((k, prev_json[k], curr_json[k]))
-    for k in prev_json:
-        if k not in curr_json:
-            removed.append((k, prev_json[k]))
+
+    def sync_compute():
+        try:
+            prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=LOCAL_CLONE)
+            prev_json = json.loads(prev_content)
+        except Exception:
+            prev_json = {}
+        curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=LOCAL_CLONE)
+        try:
+            curr_json = json.loads(curr_content)
+        except json.JSONDecodeError:
+            return build_diff_for_commit_old(commit_hash)
+        header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
+        added = []
+        changed = []
+        removed = []
+        for k in curr_json:
+            if k not in prev_json:
+                added.append((k, curr_json[k]))
+            elif curr_json[k] != prev_json[k]:
+                changed.append((k, prev_json[k], curr_json[k]))
+        for k in prev_json:
+            if k not in curr_json:
+                removed.append((k, prev_json[k]))
+        return header, added, changed, removed
+
+    loop = asyncio.get_event_loop()
+    header, added, changed, removed = await loop.run_in_executor(None, sync_compute)
     diff_cache[commit_hash] = {
         'header': header,
         'added': [[f, v] for f, v in added],
@@ -227,26 +234,32 @@ def build_diff_for_commit(commit_hash: str, diff_cache: dict) -> tuple[str, list
     }
     return header, added, changed, removed
 
-def build_report(commits: list[str], diff_cache: dict) -> tuple[list, dict]:
-    report, summary = [], {}
-    for c in commits:
-        header, added, changed, removed = build_diff_for_commit(c, diff_cache)
+async def build_report(commits: list[str], diff_cache: dict) -> tuple[list, dict, dict]:
+    tasks = [async_build_diff_for_commit(c, diff_cache) for c in commits]
+    results = await asyncio.gather(*tasks)
+    report = []
+    summary = {}
+    flag_changes = defaultdict(int)
+    for header, added, changed, removed in results:
         changes = []
         for flag, value in added:
             cat = categorize_flag(flag)
             changes.append(("Added", cat, flag, value))
             summary[(cat, "Added")] = summary.get((cat, "Added"), 0) + 1
+            flag_changes[flag] += 1
         for flag, old, new in changed:
             cat = categorize_flag(flag)
             changes.append(("Changed", cat, flag, old, new))
             summary[(cat, "Changed")] = summary.get((cat, "Changed"), 0) + 1
+            flag_changes[flag] += 1
         for flag, value in removed:
             cat = categorize_flag(flag)
             changes.append(("Removed", cat, flag, value))
             summary[(cat, "Removed")] = summary.get((cat, "Removed"), 0) + 1
+            flag_changes[flag] += 1
         if changes:
             report.append((header, changes))
-    return report, summary
+    return report, summary, flag_changes
 
 # ===============================
 # History Management
@@ -297,14 +310,20 @@ async def fetch_ai_batch(batch: list[str]) -> None:
                         f = f.strip()
                         if f in batch:
                             FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
+            CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
             break
-        except Exception as e:  # Broader catch for rate limits, auth, etc.
+        except RateLimitError as e:
+            retry_after = e.response.headers.get('Retry-After')
+            sleep_time = int(retry_after) if retry_after else 2 ** attempt
+            log.warning(f"Rate limit hit. Sleeping for {sleep_time} seconds.")
+            await asyncio.sleep(sleep_time)
+        except Exception as e:  # Broader catch for other errors
             log.error(f"AI batch failed (attempt {attempt+1}): {e}")
             await asyncio.sleep(2 ** attempt)
     else:
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
-    CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
+        CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
 
 async def generate_flag_info_batch(flags: list[str]) -> None:
     new_flags = [f for f in flags if f not in FLAG_INFO]
@@ -321,11 +340,12 @@ def generate_flag_info(flag: str) -> dict:
 # ===============================
 # Report Export (Enhanced with Grouping for Collapsibles and History Summary)
 # ===============================
-def export_reports(report: list, summary: dict) -> tuple[int, int, int, str, str]:
+def export_reports(report: list, summary: dict, flag_changes: dict) -> tuple[int, int, int, str, str]:
     last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
     added_total = sum(summary.get((cat, "Added"), 0) for cat in CATEGORIES)
     changed_total = sum(summary.get((cat, "Changed"), 0) for cat in CATEGORIES)
     removed_total = sum(summary.get((cat, "Removed"), 0) for cat in CATEGORIES)
+    net_changes = added_total - removed_total
     
     # Load history.json to compute historical aggregates
     if HISTORY_FILE.exists():
@@ -339,6 +359,20 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, int, str, str
     total_historical_added = sum(entry.get('added', 0) for entry in history)
     total_historical_changed = sum(entry.get('changed', 0) for entry in history)
     total_historical_removed = sum(entry.get('removed', 0) for entry in history)
+    
+    percent_change = 0.0
+    historical_avg_added = 0.0
+    historical_avg_changed = 0.0
+    historical_avg_removed = 0.0
+    if len(history) > 0:
+        historical_avg_added = total_historical_added / len(history)
+        historical_avg_changed = total_historical_changed / len(history)
+        historical_avg_removed = total_historical_removed / len(history)
+    if len(history) > 1:
+        prev = history[-2]
+        prev_total = prev['added'] + prev['changed'] + prev['removed']
+        curr_total = added_total + changed_total + removed_total
+        percent_change = ((curr_total - prev_total) / prev_total * 100) if prev_total > 0 else 0.0
     
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     
@@ -418,7 +452,12 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, int, str, str
         "added_total": added_total,
         "changed_total": changed_total,
         "removed_total": removed_total,
-        "total_historical_added": total_historical_added,  # New fields
+        "net_changes": net_changes,
+        "percent_change": percent_change,
+        "historical_avg_added": historical_avg_added,
+        "historical_avg_changed": historical_avg_changed,
+        "historical_avg_removed": historical_avg_removed,
+        "total_historical_added": total_historical_added,
         "total_historical_changed": total_historical_changed,
         "total_historical_removed": total_historical_removed,
         "summary": {cat: {"added": summary.get((cat, "Added"), 0), "changed": summary.get((cat, "Changed"), 0), "removed": summary.get((cat, "Removed"), 0)} for cat in CATEGORIES},
@@ -429,7 +468,7 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, int, str, str
         grouped = {}
         for typ, cat, flag, *values in changes:
             info = generate_flag_info(flag)
-            entry = {"name": flag, "mechanism": info['mechanism'], "purpose": info['purpose']}
+            entry = {"name": flag, "mechanism": info['mechanism'], "purpose": info['purpose'], "freq": flag_changes.get(flag, 0)}
             if typ == "Added":
                 entry["old_value"] = None
                 entry["new_value"] = format_value(values[0])
@@ -454,6 +493,7 @@ def export_reports(report: list, summary: dict) -> tuple[int, int, int, str, str
 # ===============================
 def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -> None:
     index_html = OUTPUT_DIR / "index.html"
+    sw_js = OUTPUT_DIR / "sw.js"
     if not HISTORY_FILE.exists():
         HISTORY_FILE.write_text("[]", encoding="utf-8")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -470,20 +510,27 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
   --primary-green: #34d399;
   --primary-blue: #60a5fa;
   --primary-red: #f87171;
+  --primary-yellow: #fbbf24;
   --historical-green: #10b981;
   --historical-blue: #3b82f6;
   --historical-red: #ef4444;
   --bg-opacity: 0.15;
   --text-color: #fff;
+  --bg-color: linear-gradient(135deg,#4f46e5,#3b82f6,#06b6d4,#14b8a6);
 }
 body { 
   font-family:'Inter',sans-serif;
   margin:0;
-  background: linear-gradient(135deg,#4f46e5,#3b82f6,#06b6d4,#14b8a6);
+  background: var(--bg-color);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
   color: var(--text-color);
   overflow-x: hidden;
+}
+body.light {
+  --text-color: #333;
+  --bg-opacity: 0.05;
+  --bg-color: linear-gradient(135deg,#e0f2fe,#bfdbfe,#a5f3fc,#99f6e4);
 }
 @keyframes gradientBG { 
   0% {background-position:0% 50%;}
@@ -520,6 +567,10 @@ header h1 { font-size:3rem; font-weight:700; }
 .added { border-left:6px solid var(--primary-green); }
 .changed { border-left:6px solid var(--primary-blue); }
 .removed { border-left:6px solid var(--primary-red); }
+.net { border-left:6px solid var(--primary-yellow); }
+.percent { border-left:6px solid var(--primary-blue); }
+.percent.positive { border-left-color: var(--primary-green); }
+.percent.negative { border-left-color: var(--primary-red); }
 .historical-added { border-left:6px solid var(--historical-green); }
 .historical-changed { border-left:6px solid var(--historical-blue); }
 .historical-removed { border-left:6px solid var(--historical-red); }
@@ -555,6 +606,29 @@ input#searchInput {
   background:rgba(0,0,0,0.2); color: var(--text-color); font-size:1rem;
   backdrop-filter:blur(5px);
 }
+select { 
+  padding:12px; margin:10px; border-radius:12px; background:rgba(0,0,0,0.2); color: var(--text-color);
+}
+button { 
+  padding:10px 20px; border-radius:8px; background:var(--primary-blue); color:white; border:none; cursor:pointer;
+}
+button:hover { background:var(--primary-green); }
+.copy-btn { 
+  margin-left:10px; padding:5px 10px; font-size:0.8rem; background:var(--primary-yellow);
+}
+.commit-card {
+  background: rgba(255,255,255,0.2);
+  border-radius:8px;
+  padding:15px;
+  margin-bottom:20px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+h3 { cursor:pointer; }
+ul { 
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  list-style-type: none;
+}
 footer { text-align:center; margin-top:60px; padding:25px; font-size:0.9rem; color:#eee; }
 canvas#particleCanvas { 
   position: fixed;
@@ -581,6 +655,7 @@ th {
 <canvas id="particleCanvas"></canvas>
 <header>
   <h1>Roblox Client FFlag Tracker</h1>
+  <button id="themeToggle">Toggle Theme</button>
 </header>
 
 <section>
@@ -588,6 +663,8 @@ th {
     <div class="badge added">✅ Added: <span id="flags-added">0</span></div>
     <div class="badge changed">🔄 Changed: <span id="flags-changed">0</span></div>
     <div class="badge removed">❌ Removed: <span id="flags-removed">0</span></div>
+    <div class="badge net">Net Changes: <span id="net-changes">0</span></div>
+    <div class="badge percent">% Change: <span id="percent-change">0</span>%</div>
     <div class="badge historical-added">📈 Historical Added: <span id="historical-added">0</span></div>
     <div class="badge historical-changed">📈 Historical Changed: <span id="historical-changed">0</span></div>
     <div class="badge historical-removed">📉 Historical Removed: <span id="historical-removed">0</span></div>
@@ -596,6 +673,14 @@ th {
   <p class="last-run">Last Run: <span id="last-run"></span></p>
 
   <input type="text" id="searchInput" placeholder="Search flags..." aria-label="Search flags">
+  <select id="categoryFilter">
+    <option value="">All Categories</option>
+""" + "\n".join([f'    <option value="{cat}">{cat}</option>' for cat in CATEGORIES]) + """
+  </select>
+  <select id="sortSelect">
+    <option value="">Sort by Name</option>
+    <option value="freq">Sort by Frequency</option>
+  </select>
 
   <h2>Summary</h2>
   <table id="summaryTable"></table>
@@ -605,6 +690,8 @@ th {
     <div id="loadingSpinner"></div>
     <div id="reportContent" aria-label="Latest report"></div>
   </div>
+  <button id="exportCSV">Export CSV</button>
+  <button id="exportJSON">Export JSON</button>
 
   <canvas id="trendChart" aria-label="Trend chart"></canvas>
 </section>
@@ -612,6 +699,7 @@ th {
 <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
 <script>
 // Particle animation - reduced particle count and added visibility check
 const canvas = document.getElementById('particleCanvas');
@@ -668,6 +756,11 @@ document.addEventListener('visibilitychange', () => {
   else animateParticles();
 });
 
+// Theme toggle
+document.getElementById('themeToggle').addEventListener('click', () => {
+  document.body.classList.toggle('light');
+});
+
 // Trend chart using Chart.js with limited data points
 fetch("history.json").then(r => r.json()).then(data => {
   if (data.length === 0) {
@@ -711,6 +804,22 @@ fetch("history.json").then(r => r.json()).then(data => {
       plugins: {
         legend: {
           position: 'top'
+        },
+        zoom: {
+          zoom: {
+            wheel: {enabled: true},
+            pinch: {enabled: true},
+            mode: 'x'
+          },
+          pan: {
+            enabled: true,
+            mode: 'x'
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}`
+          }
         }
       },
       interaction: {
@@ -730,6 +839,7 @@ const reportContent = document.getElementById('reportContent');
 const loadingSpinner = document.getElementById('loadingSpinner');
 let currentPage = 0;
 const itemsPerPage = 10;
+let globalData;
 
 function loadReportPage(data, page = 0) {
   const startIndex = page * itemsPerPage;
@@ -737,9 +847,12 @@ function loadReportPage(data, page = 0) {
   const reportPage = data.slice(startIndex, endIndex);
   
   reportPage.forEach(commit => {
+    const card = document.createElement('div');
+    card.classList.add('commit-card');
+    
     const h2 = document.createElement('h2');
     h2.textContent = commit.header;
-    reportContent.appendChild(h2);
+    card.appendChild(h2);
 
     Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
       const [typ, cat] = groupKey.split('_');
@@ -747,12 +860,12 @@ function loadReportPage(data, page = 0) {
       h3.textContent = `${typ} in ${cat}`;
       h3.style.cursor = 'pointer';
       h3.setAttribute('aria-expanded', 'true');
-      reportContent.appendChild(h3);
+      card.appendChild(h3);
 
       const ul = document.createElement('ul');
-      ul.style.display = 'block';
       flags.forEach(f => {
         const li = document.createElement('li');
+        li.dataset.freq = f.freq;
         let desc = '';
         if (f.old_value === null && f.new_value !== null) {
           desc = `= ${f.new_value}`;
@@ -761,20 +874,29 @@ function loadReportPage(data, page = 0) {
         } else if (f.old_value !== null && f.new_value === null) {
           desc = `(was ${f.old_value})`;
         }
-        li.textContent = `${f.name} ${desc} - Mechanism: ${f.mechanism} - Purpose: ${f.purpose}`;
+        li.innerHTML = `${f.name} ${desc} - Mechanism: ${f.mechanism} - Purpose: ${f.purpose} <button class="copy-btn" data-copy="${f.mechanism} - ${f.purpose}">Copy</button>`;
         ul.appendChild(li);
       });
-      reportContent.appendChild(ul);
+      ul.style.maxHeight = ul.scrollHeight + 'px';
+      card.appendChild(ul);
     });
+    reportContent.appendChild(card);
   });
 }
 
 fetch('FFlag_Report.json')
   .then(response => response.json())
   .then(data => {
+    globalData = data;
     document.getElementById('flags-added').textContent = data.added_total;
     document.getElementById('flags-changed').textContent = data.changed_total;
     document.getElementById('flags-removed').textContent = data.removed_total;
+    document.getElementById('net-changes').textContent = data.net_changes;
+    const percent = data.percent_change.toFixed(1);
+    document.getElementById('percent-change').textContent = percent;
+    const percentBadge = document.querySelector('.percent');
+    if (percent > 0) percentBadge.classList.add('positive');
+    else if (percent < 0) percentBadge.classList.add('negative');
     document.getElementById('historical-added').textContent = data.total_historical_added;
     document.getElementById('historical-changed').textContent = data.total_historical_changed;
     document.getElementById('historical-removed').textContent = data.total_historical_removed;
@@ -820,15 +942,20 @@ fetch('FFlag_Report.json')
     }
     loadingSpinner.style.display = 'none';
 
-    // Event delegation for collapsibles
+    // Event delegation for collapsibles and copy
     reportContent.addEventListener('click', e => {
       if (e.target.tagName === 'H3') {
         const ul = e.target.nextElementSibling;
         if (ul && ul.tagName === 'UL') {
-          const expanded = ul.style.display !== 'none';
-          ul.style.display = expanded ? 'none' : 'block';
+          const expanded = e.target.getAttribute('aria-expanded') === 'true';
+          ul.style.maxHeight = expanded ? '0px' : ul.scrollHeight + 'px';
           e.target.setAttribute('aria-expanded', !expanded);
         }
+      } else if (e.target.classList.contains('copy-btn')) {
+        navigator.clipboard.writeText(e.target.dataset.copy).then(() => {
+          e.target.textContent = 'Copied!';
+          setTimeout(() => e.target.textContent = 'Copy', 2000);
+        });
       }
     });
   })
@@ -847,74 +974,190 @@ function filterFlags(query) {
   const searchQuery = query.toLowerCase();
   if (!searchQuery) {
     // Show all
-    reportContent.querySelectorAll('h2, h3, ul, li').forEach(el => {
+    reportContent.querySelectorAll('.commit-card, h2, h3, ul, li').forEach(el => {
       el.style.display = '';
       if (el.tagName === 'H3') {
         el.setAttribute('aria-expanded', 'true');
       }
       if (el.tagName === 'UL') {
-        el.style.display = 'block';
+        el.style.maxHeight = el.scrollHeight + 'px';
       }
     });
     return;
   }
 
-  // Loop through commits (h2)
-  const commits = reportContent.querySelectorAll('h2');
-  commits.forEach(h2 => {
-    let commitVisible = false;
-    let sibling = h2.nextElementSibling;
-    while (sibling && sibling.tagName !== 'H2') {
-      if (sibling.tagName === 'H3') {
-        const catText = sibling.textContent.toLowerCase();
-        const ul = sibling.nextElementSibling;
-        if (ul && ul.tagName === 'UL') {
-          let groupVisible = false;
-          if (catText.includes(searchQuery)) {
-            // Match category, show all in group
-            sibling.style.display = '';
-            ul.style.display = 'block';
-            sibling.setAttribute('aria-expanded', 'true');
-            ul.querySelectorAll('li').forEach(li => li.style.display = '');
-            groupVisible = true;
-          } else {
-            // Check each li
-            ul.querySelectorAll('li').forEach(li => {
-              if (li.textContent.toLowerCase().includes(searchQuery)) {
-                li.style.display = '';
-                groupVisible = true;
-              } else {
-                li.style.display = 'none';
-              }
-            });
-            if (groupVisible) {
-              sibling.style.display = '';
-              ul.style.display = 'block';
-              sibling.setAttribute('aria-expanded', 'true');
+  // Loop through commit cards
+  const cards = reportContent.querySelectorAll('.commit-card');
+  cards.forEach(card => {
+    let cardVisible = false;
+    const h3s = card.querySelectorAll('h3');
+    h3s.forEach(h3 => {
+      const catText = h3.textContent.toLowerCase();
+      const ul = h3.nextElementSibling;
+      if (ul && ul.tagName === 'UL') {
+        let groupVisible = false;
+        if (catText.includes(searchQuery)) {
+          // Match category, show all in group
+          h3.style.display = '';
+          ul.style.maxHeight = ul.scrollHeight + 'px';
+          h3.setAttribute('aria-expanded', 'true');
+          ul.querySelectorAll('li').forEach(li => li.style.display = '');
+          groupVisible = true;
+        } else {
+          // Check each li
+          ul.querySelectorAll('li').forEach(li => {
+            if (li.textContent.toLowerCase().includes(searchQuery)) {
+              li.style.display = '';
+              groupVisible = true;
             } else {
-              sibling.style.display = 'none';
-              ul.style.display = 'none';
+              li.style.display = 'none';
             }
+          });
+          if (groupVisible) {
+            h3.style.display = '';
+            ul.style.maxHeight = ul.scrollHeight + 'px';
+            h3.setAttribute('aria-expanded', 'true');
+          } else {
+            h3.style.display = 'none';
+            ul.style.maxHeight = '0px';
           }
-          if (groupVisible) commitVisible = true;
         }
+        if (groupVisible) cardVisible = true;
       }
-      sibling = sibling.nextElementSibling;
-    }
-    h2.style.display = commitVisible ? '' : 'none';
+    });
+    card.style.display = cardVisible ? '' : 'none';
   });
+}
+
+// Category filter
+document.getElementById('categoryFilter').addEventListener('change', function() {
+  filterByCategory(this.value);
+});
+function filterByCategory(cat) {
+  if (!cat) {
+    reportContent.querySelectorAll('.commit-card, h2, h3, ul, li').forEach(el => {
+      el.style.display = '';
+      if (el.tagName === 'UL') el.style.maxHeight = el.scrollHeight + 'px';
+      if (el.tagName === 'H3') el.setAttribute('aria-expanded', 'true');
+    });
+    return;
+  }
+  const cards = reportContent.querySelectorAll('.commit-card');
+  cards.forEach(card => {
+    let cardVisible = false;
+    const h3s = card.querySelectorAll('h3');
+    h3s.forEach(h3 => {
+      const ul = h3.nextElementSibling;
+      if (h3.textContent.includes(` in ${cat}`)) {
+        h3.style.display = '';
+        ul.style.maxHeight = ul.scrollHeight + 'px';
+        h3.setAttribute('aria-expanded', 'true');
+        ul.querySelectorAll('li').forEach(li => li.style.display = '');
+        cardVisible = true;
+      } else {
+        h3.style.display = 'none';
+        ul.style.maxHeight = '0px';
+      }
+    });
+    card.style.display = cardVisible ? '' : 'none';
+  });
+}
+
+// Sort
+document.getElementById('sortSelect').addEventListener('change', function() {
+  sortLists(this.value);
+});
+function sortLists(by) {
+  const uls = reportContent.querySelectorAll('ul');
+  uls.forEach(ul => {
+    const lis = Array.from(ul.querySelectorAll('li'));
+    lis.sort((a, b) => {
+      if (by === 'freq') {
+        return b.dataset.freq - a.dataset.freq;
+      } else {
+        return a.textContent.localeCompare(b.textContent);
+      }
+    });
+    lis.forEach(li => ul.appendChild(li));
+  });
+}
+
+// Export
+document.getElementById('exportCSV').addEventListener('click', () => {
+  if (!globalData) return;
+  let csv = 'Commit,Type,Category,Flag,Old Value,New Value,Mechanism,Purpose,Frequency\\n';
+  globalData.report.forEach(commit => {
+    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+      const [typ, cat] = groupKey.split('_');
+      flags.forEach(f => {
+        csv += `"${commit.header}","${typ}","${cat}","${f.name}","${f.old_value || ''}","${f.new_value || ''}","${f.mechanism}","${f.purpose}","${f.freq}"\\n`;
+      });
+    });
+  });
+  download('fflag_report.csv', csv);
+});
+
+document.getElementById('exportJSON').addEventListener('click', () => {
+  if (!globalData) return;
+  download('fflag_report.json', JSON.stringify(globalData));
+});
+
+function download(filename, text) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], {type: 'text/plain'}));
+  a.download = filename;
+  a.click();
+}
+
+// Polling for updates
+setInterval(() => {
+  fetch('FFlag_Report.json?ts=' + Date.now()).then(r => r.json()).then(newData => {
+    if (newData.last_run !== globalData?.last_run) {
+      location.reload();
+    }
+  }).catch(() => {});
+}, 60000);
+
+// Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
 }
 </script>
 </body>
 </html>
 """
     index_html.write_text(html_content, encoding="utf-8")
+
+    sw_content = """
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open('fflag-cache').then(cache => {
+      return cache.addAll([
+        '/',
+        '/index.html',
+        '/FFlag_Report.json',
+        '/history.json'
+      ]);
+    })
+  );
+});
+
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(response => {
+      return response || fetch(e.request);
+    })
+  );
+});
+"""
+    sw_js.write_text(sw_content, encoding="utf-8")
     log.info(f"Landing page written: {index_html}")
+    log.info(f"Service worker written: {sw_js}")
 
 # ===============================
 # Main Execution
 # ===============================
-def main() -> None:
+async def main() -> None:
     try:
         log.info("=" * 80)
         log.info("Roblox Client FFlag Tracker (Integrated Categories + Interpolation)")
@@ -927,21 +1170,22 @@ def main() -> None:
             log.warning(f"No commits in the last {DAYS} days.")
             report = []
             summary = {}
+            flag_changes = {}
         else:
-            report, summary = build_report(commits, diff_cache)
+            report, summary, flag_changes = await build_report(commits, diff_cache)
         DIFF_CACHE_FILE.write_text(json.dumps(diff_cache, indent=2), encoding="utf-8")
         all_flags = set()
         for _, changes in report:
             for typ, _, flag, *_ in changes:
                 all_flags.add(flag)
         if all_flags:
-            asyncio.run(generate_flag_info_batch(list(all_flags)))
+            await generate_flag_info_batch(list(all_flags))
         last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
         added = sum(summary.get((cat, "Added"), 0) for cat in CATEGORIES)
         changed = sum(summary.get((cat, "Changed"), 0) for cat in CATEGORIES)
         removed = sum(summary.get((cat, "Removed"), 0) for cat in CATEGORIES)
         update_history(added, changed, removed, last_run)
-        export_reports(report, summary)
+        export_reports(report, summary, flag_changes)
         ensure_landing_page(added, changed, removed, last_run)
         log.info("All done! Reports and dashboard ready.")
     except Exception as e:
@@ -949,4 +1193,4 @@ def main() -> None:
         raise
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
