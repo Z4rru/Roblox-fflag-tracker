@@ -145,7 +145,7 @@ def ensure_manifest_repo(repo_url="https://github.com/MaximumADHD/Roblox-FFlag-T
     # Clone fresh if cache missing/broken
     log.info("Cloning fresh manifest repo...")
     subprocess.run(
-        ["git", "clone", "--depth=1", repo_url, str(cache_path)],
+        ["git", "clone", repo_url, str(cache_path)],
         check=True
     )
     return cache_path
@@ -210,9 +210,10 @@ async def async_build_diff_for_commit(commit_hash: str, diff_cache: dict, manife
     def sync_compute():
         try:
             prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=manifest_repo)
-            prev_json = json.loads(prev_content)
-        except Exception:
-            prev_json = {}
+        except subprocess.CalledProcessError:
+            # No parent commit, assume empty previous JSON
+            prev_content = "{}"
+        prev_json = json.loads(prev_content)
         curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=manifest_repo)
         try:
             curr_json = json.loads(curr_content)
