@@ -47,7 +47,7 @@ log = logging.getLogger(__name__)
 # ===============================
 # OpenAI API Key Management
 # ===============================
-keys_raw = os.getenv("OPENAI_API_KEYS", "")
+keys_raw = os.getenv("OPENAI_API_KEYS", "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")
 keys = [k.strip() for k in keys_raw.split(",") if k.strip()]
 if not keys:
     log.warning("⚠ No OpenAI API keys found. AI enrichment will be skipped.")
