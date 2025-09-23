@@ -1078,7 +1078,7 @@ function applyFilters() {{
   }});
 
   reportContent.innerHTML = '';
-  currentPage = 0;
+  currentPage = 0
   currentData = filtered;
   if (currentData.length === 0) {{
     reportContent.innerHTML = `No recent flag changes in the last ${{globalData.days}} days.`;
