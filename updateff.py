@@ -30,9 +30,9 @@ HISTORY_FILE = OUTPUT_DIR / "history.json"
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
-DAYS = 60
+DAYS = 30
 HISTORY_DAYS = 90
-AI_BATCH_SIZE = 3  # Lowered for better rate limit handling
+AI_BATCH_SIZE = 25  # Lowered for better rate limit handling
 MAX_RETRIES = 3
 DEBUG = True
 
@@ -116,12 +116,14 @@ def format_value(v: any) -> str:
 # ============================
 def ensure_repo() -> None:
     try:
-        shallow_since = (datetime.datetime.now() - datetime.timedelta(days=DAYS + 30)).strftime("%Y-%m-%d")  # Buffer for safety
+        shallow_since = (datetime.datetime.now() - datetime.timedelta(days=DAYS + 15)).strftime("%Y-%m-%d")  # Buffer for safety
         if LOCAL_CLONE.exists():
             log.info("Updating existing repository...")
-            run_cmd("git fetch --all", cwd=LOCAL_CLONE, timeout=300)
-            run_cmd("git fetch --unshallow", cwd=LOCAL_CLONE, timeout=300)  # Increased timeout for unshallow
-            run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
+            try:
+                run_cmd("git fetch --all", cwd=LOCAL_CLONE, timeout=300)
+                run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
+            except Exception as e:
+                log.warning(f"⚠ Warning: fetch failed, skipping update. Error: {e}")
         else:
             LOCAL_CLONE.parent.mkdir(parents=True, exist_ok=True)  # Ensure nested paths
             success = False
@@ -288,7 +290,13 @@ async def fetch_ai_batch(batch: list[str]) -> None:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
         return
     system_prompt = "You are a JSON generator. Always output valid JSON only."
-    user_prompt = f'Return a JSON object where each key is a flag name from the list, and the value is an object with "mechanism" (brief technical explanation) and "purpose" (what it aims to achieve in Roblox) keys.\nFlags: {json.dumps(batch)}'
+    user_prompt = (
+        "Explain these Roblox FFlags in simple layman's terms. "
+        "For each flag, return a JSON object with:\n"
+        "- mechanism: how it technically works (short)\n"
+        "- purpose: what benefit or change it brings for Roblox players.\n\n"
+        f"Flags: {json.dumps(batch)}"
+    )
     for attempt in range(MAX_RETRIES):
         try:
             client = AsyncOpenAI(api_key=get_next_api_key())
@@ -307,16 +315,10 @@ async def fetch_ai_batch(batch: list[str]) -> None:
             if json_start == -1 or json_end == 0:
                 raise json.JSONDecodeError("No JSON block found", text, 0)
             json_str = text[json_start:json_end]
-            try:
-                data = json.loads(json_str)
-                for f in batch:
-                    info = data.get(f, {})
-                    FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
-            except json.JSONDecodeError as je:
-                log.error(f"Failed to parse AI response as JSON: {je}")
-                log.error(f"Response content (first 200 chars): {text[:200]}")
-                for f in batch:
-                    FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
+            data = json.loads(json_str)
+            for f in batch:
+                info = data.get(f, {})
+                FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
             CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
             break
         except RateLimitError as e:
@@ -325,6 +327,11 @@ async def fetch_ai_batch(batch: list[str]) -> None:
             sleep_time = int(retry_after) if retry_after and retry_after.isdigit() else 2 ** attempt
             log.warning(f"Rate limit hit. Sleeping for {sleep_time} seconds.")
             await asyncio.sleep(sleep_time)
+        except json.JSONDecodeError as je:
+            log.error(f"Failed to parse AI response as JSON: {je}")
+            log.error(f"Response content (first 200 chars): {text[:200]}")
+            system_prompt += " Respond strictly in JSON only, no extra text or explanation."
+            await asyncio.sleep(1)
         except Exception as e:  # Broader catch for other errors
             log.error(f"AI batch failed (attempt {attempt+1}): {e}")
             await asyncio.sleep(2 ** attempt)
@@ -1123,7 +1130,8 @@ async def main() -> None:
         all_flags = set()
         for _, changes in report:
             for typ, cat, flag, *_ in changes:
-                all_flags.add(flag)
+                if typ == "Added":
+                    all_flags.add(flag)
         if all_flags:
             await generate_flag_info_batch(list(all_flags))
         last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
