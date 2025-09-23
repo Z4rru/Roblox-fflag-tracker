@@ -39,28 +39,40 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Ensure output folder exists
+        run: |
+          mkdir -p output
+          echo "Output folder checked/created."
+
       - name: Run Roblox FFlag Tracker with key rotation
         run: |
-          #!/bin/bash
           export FFLAG_REPO_CACHE=./.fflag-repo-cache
 
-          # Pick random keys for this run
-          OPENAI_KEY=$(echo $OPENAI_API_KEYS | tr ',' '\n' | shuf -n1)
-          GEMINI_KEY=$(echo $GEMINI_API_KEYS | tr ',' '\n' | shuf -n1)
+          # Pick random keys for this run (trim spaces)
+          OPENAI_KEY=$(echo $OPENAI_API_KEYS | tr ',' '\n' | shuf -n1 | xargs)
+          GEMINI_KEY=$(echo $GEMINI_API_KEYS | tr ',' '\n' | shuf -n1 | xargs)
 
-          echo "Using OpenAI key: $OPENAI_KEY"
-          echo "Using Gemini key: $GEMINI_KEY"
+          # Masked logging for security
+          echo "Using OpenAI key: ${OPENAI_KEY:0:4}****"
+          echo "Using Gemini key: ${GEMINI_KEY:0:4}****"
 
+          # Export keys for Python
           export OPENAI_API_KEY=$OPENAI_KEY
           export GEMINI_API_KEY=$GEMINI_KEY
 
+          # Run tracker (fail workflow if it errors)
           python updateff.py
-        continue-on-error: true
 
       - name: List output folder
         run: |
           echo "Contents of output folder:"
-          ls -R output || echo "No output folder found"
+          ls -R output
+
+      - name: Upload output as artifact (backup)
+        uses: actions/upload-artifact@v3
+        with:
+          name: fflag-output
+          path: ./output
 
       - name: Publish to gh-pages
         uses: peaceiris/actions-gh-pages@v3
@@ -68,4 +80,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./output
-          force_orphan: true
