@@ -29,13 +29,32 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Cache Roblox manifest repo
+        uses: actions/cache@v3
+        with:
+          path: ./.fflag-repo-cache
+          key: ${{ runner.os }}-fflag-repo-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-fflag-repo-
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run Roblox FFlag Tracker
-        run: python updateff.py
+        run: |
+          # Point updateff.py to use the cached repo if it exists
+          export FFLAG_REPO_CACHE=./.fflag-repo-cache
+          python updateff.py
 
       - name: List output folder
         run: |
