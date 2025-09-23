@@ -55,6 +55,7 @@ jobs:
           # Point updateff.py to use the cached repo if it exists
           export FFLAG_REPO_CACHE=./.fflag-repo-cache
           python updateff.py
+        continue-on-error: true   # ← Allows workflow to continue even if batch enrichment fails
 
       - name: List output folder
         run: |
