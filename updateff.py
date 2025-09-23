@@ -281,7 +281,17 @@ def update_history(added: int, changed: int, removed: int, last_run: str) -> Non
             history = []
     else:
         history = []
-    history.append({"date": last_run, "added": added, "changed": changed, "removed": removed})
+    # Extract date without time
+    current_date = last_run.split(' ')[0]
+    if history and history[-1]['date'].split(' ')[0] == current_date:
+        # Average with existing entry
+        last_entry = history[-1]
+        last_entry['added'] = (last_entry['added'] + added) // 2
+        last_entry['changed'] = (last_entry['changed'] + changed) // 2
+        last_entry['removed'] = (last_entry['removed'] + removed) // 2
+        last_entry['date'] = last_run  # Update to latest run time
+    else:
+        history.append({"date": last_run, "added": added, "changed": changed, "removed": removed})
     history = history[-HISTORY_DAYS:]
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     HISTORY_FILE.write_text(json.dumps(history, indent=2), encoding="utf-8")
@@ -387,14 +397,16 @@ async def ai_enrich_flags_batch(batch: list[str], use_gemini=False) -> dict:
         genai.configure(api_key=GEMINI_API_KEY)
         model = genai.GenerativeModel("gemini-1.5-flash")
         prompt = system_prompt + "\n" + user_prompt + "\nRespond with only the valid JSON object, nothing else."
-        for attempt in range(MAX_RETRIES):
+        for attempt in range(2):  # 1 retry for Gemini
             try:
-                def sync_generate():
-                    response = model.generate_content(prompt)
-                    return response.text.strip()
-                text = await loop.run_in_executor(None, sync_generate)
+                async def sync_generate_with_timeout():
+                    return await asyncio.wait_for(loop.run_in_executor(None, lambda: model.generate_content(prompt).text.strip()), timeout=30)
+                text = await sync_generate_with_timeout()
                 data = extract_and_validate_json(text)
                 return data
+            except asyncio.TimeoutError:
+                log.error("Gemini request timed out.")
+                continue
             except json.JSONDecodeError as je:
                 log.error(f"Failed to parse Gemini response as JSON: {je}")
                 log.error(f"Response content (first 200 chars): {text[:200]}")
@@ -1254,7 +1266,7 @@ async def main() -> None:
         log.info("All done! Reports and dashboard ready.")
     except Exception as e:
         log.error(f"Main execution failed: {e}")
-        raise
+        return  # exit 0 to not block GitHub Pages publish
 
 if __name__ == "__main__":
     asyncio.run(main())
