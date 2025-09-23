@@ -9,11 +9,16 @@ from zoneinfo import ZoneInfo
 import asyncio
 import logging
 import time
+import random
 from collections import defaultdict
 try:
     from openai import AsyncOpenAI, RateLimitError
 except ImportError:
     AsyncOpenAI = None  # Graceful degrade if not available
+try:
+    import google.generativeai as genai
+except ImportError:
+    genai = None
 
 # ============================
 # Settings and Paths
@@ -32,7 +37,8 @@ LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 30
 HISTORY_DAYS = 90
-AI_BATCH_SIZE = 25  # Lowered for better rate limit handling
+AI_BATCH_SIZE = 10  # Lowered for better rate limit handling
+AI_BATCH_DELAY = 5.0  # seconds
 MAX_RETRIES = 3
 DEBUG = True
 
@@ -60,6 +66,11 @@ def get_next_api_key():
     display_key = f"{key[:4]}...{key[-4:]}" if len(key) > 8 else "****"
     log.debug(f"Using OpenAI API key #{key_index+1} ({display_key})")
     return key
+
+# Gemini API Key
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+if not GEMINI_API_KEY:
+    log.warning("⚠ No Gemini API key found. No fallback available.")
 
 # ============================
 # FFlags Categories
@@ -143,8 +154,8 @@ def ensure_repo() -> None:
         log.error(f"Repo ensure failed: {e}")
         raise
 
-def get_commits() -> list[str]:
-    since = (datetime.datetime.now() - datetime.timedelta(days=DAYS)).strftime("%Y-%m-%d")
+def get_commits(days=DAYS) -> list[str]:
+    since = (datetime.datetime.now() - datetime.timedelta(days=days)).strftime("%Y-%m-%d")
     commits = run_cmd(f"git log --since='{since}' --pretty=format:%H -- {TARGET_FILE}", cwd=LOCAL_CLONE)
     return commits.splitlines() if commits else []
 
@@ -284,11 +295,7 @@ def update_history(added: int, changed: int, removed: int, last_run: str) -> Non
 # ============================
 FLAG_INFO = json.loads(CACHE_FILE.read_text(encoding="utf-8")) if CACHE_FILE.exists() else {}
 
-async def fetch_ai_batch(batch: list[str]) -> None:
-    if not keys or not AsyncOpenAI:
-        for f in batch:
-            FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
-        return
+async def ai_enrich_flags_batch(batch: list[str], use_gemini=False) -> dict:
     system_prompt = "You are a JSON generator. Always output valid JSON only."
     user_prompt = (
         "Explain these Roblox FFlags in simple layman's terms. "
@@ -297,57 +304,124 @@ async def fetch_ai_batch(batch: list[str]) -> None:
         "- purpose: what benefit or change it brings for Roblox players.\n\n"
         f"Flags: {json.dumps(batch)}"
     )
-    for attempt in range(MAX_RETRIES):
-        try:
-            client = AsyncOpenAI(api_key=get_next_api_key())
-            response = await client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt}
-                ],
-                temperature=0.3
-            )
-            text = response.choices[0].message.content.strip()
-            # Extract JSON block
-            json_start = text.find("{")
-            json_end = text.rfind("}") + 1
-            if json_start == -1 or json_end == 0:
-                raise json.JSONDecodeError("No JSON block found", text, 0)
-            json_str = text[json_start:json_end]
-            data = json.loads(json_str)
-            for f in batch:
-                info = data.get(f, {})
-                FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
-            CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
-            break
-        except RateLimitError as e:
-            response = getattr(e, 'response', None)
-            retry_after = response.headers.get('Retry-After') if response else None
-            sleep_time = int(retry_after) if retry_after and retry_after.isdigit() else 2 ** attempt
-            log.warning(f"Rate limit hit. Sleeping for {sleep_time} seconds.")
-            await asyncio.sleep(sleep_time)
-        except json.JSONDecodeError as je:
-            log.error(f"Failed to parse AI response as JSON: {je}")
-            log.error(f"Response content (first 200 chars): {text[:200]}")
-            system_prompt += " Respond strictly in JSON only, no extra text or explanation."
-            await asyncio.sleep(1)
-        except Exception as e:  # Broader catch for other errors
-            log.error(f"AI batch failed (attempt {attempt+1}): {e}")
-            await asyncio.sleep(2 ** attempt)
+    loop = asyncio.get_event_loop()
+    if not use_gemini:
+        if not keys or not AsyncOpenAI:
+            raise Exception("No OpenAI API keys or client available.")
+        temp_system_prompt = system_prompt
+        for attempt in range(MAX_RETRIES):
+            try:
+                client = AsyncOpenAI(api_key=get_next_api_key())
+                response = await client.chat.completions.create(
+                    model="gpt-4o-mini",
+                    messages=[
+                        {"role": "system", "content": temp_system_prompt},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    temperature=0.3
+                )
+                text = response.choices[0].message.content.strip()
+                json_start = text.find("{")
+                json_end = text.rfind("}") + 1
+                if json_start == -1 or json_end == 0:
+                    raise json.JSONDecodeError("No JSON block found", text, 0)
+                json_str = text[json_start:json_end]
+                data = json.loads(json_str)
+                return data
+            except RateLimitError as e:
+                sleep_time = 2 ** attempt
+                if hasattr(e, 'response') and e.response:
+                    retry_after = e.response.headers.get('Retry-After')
+                    if retry_after and retry_after.isdigit():
+                        sleep_time = int(retry_after) + 1
+                log.warning(f"Rate limit hit on attempt {attempt+1}. Sleeping for {sleep_time} seconds. Retrying...")
+                await asyncio.sleep(sleep_time)
+                continue
+            except json.JSONDecodeError as je:
+                log.error(f"Failed to parse AI response as JSON: {je}")
+                log.error(f"Response content (first 200 chars): {text[:200]}")
+                temp_system_prompt += " Respond strictly in JSON only, no extra text or explanation."
+                await asyncio.sleep(1)
+                continue
+            except Exception as e:
+                log.error(f"AI batch failed (attempt {attempt+1}): {e}")
+                await asyncio.sleep(2 ** attempt)
+                continue
+        if genai and GEMINI_API_KEY:
+            log.info("Falling back to Gemini for this batch.")
+            return await ai_enrich_flags_batch(batch, use_gemini=True)
+        raise Exception("Failed to enrich batch after max retries with OpenAI.")
     else:
-        for f in batch:
-            FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
-        CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
+        if not genai or not GEMINI_API_KEY:
+            raise Exception("No Gemini available.")
+        genai.configure(api_key=GEMINI_API_KEY)
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        prompt = system_prompt + "\n" + user_prompt + "\nRespond with only the valid JSON object, nothing else."
+        for attempt in range(MAX_RETRIES):
+            try:
+                def sync_generate():
+                    response = model.generate_content(prompt)
+                    return response.text.strip()
+                text = await loop.run_in_executor(None, sync_generate)
+                json_start = text.find("{")
+                json_end = text.rfind("}") + 1
+                if json_start == -1 or json_end == 0:
+                    raise json.JSONDecodeError("No JSON block found", text, 0)
+                json_str = text[json_start:json_end]
+                data = json.loads(json_str)
+                return data
+            except json.JSONDecodeError as je:
+                log.error(f"Failed to parse Gemini response as JSON: {je}")
+                log.error(f"Response content (first 200 chars): {text[:200]}")
+                await asyncio.sleep(1)
+                continue
+            except Exception as e:
+                log.error(f"Gemini batch failed (attempt {attempt+1}): {e}")
+                await asyncio.sleep(2 ** attempt)
+                continue
+        raise Exception("Failed to enrich batch after max retries with Gemini.")
+
+def should_enrich_flag(flag: str) -> bool:
+    if flag not in FLAG_INFO:
+        return True
+    mechanism = FLAG_INFO[flag].get("mechanism", "")
+    return mechanism.startswith("N/A")
 
 async def generate_flag_info_batch(flags: list[str]) -> None:
-    new_flags = [f for f in flags if f not in FLAG_INFO]
+    new_flags = [f for f in flags if should_enrich_flag(f)]
     if not new_flags:
         return
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     for i in range(0, len(new_flags), AI_BATCH_SIZE):
-        await fetch_ai_batch(new_flags[i:i + AI_BATCH_SIZE])
-        await asyncio.sleep(2)  # small buffer
+        batch = new_flags[i:i + AI_BATCH_SIZE]
+        try:
+            batch_result = await ai_enrich_flags_batch(batch)
+            for f in batch:
+                info = batch_result.get(f, {})
+                FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
+        except RateLimitError:
+            logging.warning("⚠ Rate limit hit. Skipping enrichment this run.")
+            for flag in batch:
+                FLAG_INFO[flag] = {
+                    "mechanism": "N/A (rate-limited)",
+                    "purpose": "N/A (try again next run)"
+                }
+        except Exception as e:
+            logging.error(f"AI enrichment failed for batch {batch}: {e}")
+            # Fall back to individual
+            for flag in batch:
+                try:
+                    single_result = await ai_enrich_flags_batch([flag])
+                    info = single_result.get(flag, {})
+                    FLAG_INFO[flag] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
+                except Exception as se:
+                    logging.error(f"Individual enrichment failed for {flag}: {se}")
+                    FLAG_INFO[flag] = {
+                        "mechanism": "N/A (error)",
+                        "purpose": "N/A (error)"
+                    }
+        await asyncio.sleep(AI_BATCH_DELAY)
+    CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
 
 def generate_flag_info(flag: str) -> dict:
     return FLAG_INFO.get(flag, {"mechanism": "Unknown", "purpose": "Unknown"})
@@ -385,7 +459,7 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
         prev = history[-2]
         prev_total = prev['added'] + prev['changed'] + prev['removed']
         curr_total = added_total + changed_total + removed_total
-        percent_change = ((curr_total - prev_total) / prev_total * 100) if prev_total > 0 else 0.0
+        percent_change = round(((curr_total - prev_total) / prev_total * 100), 2) if prev_total > 0 else 0.0
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     # Markdown with Summary and History Chart Counts
     md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
@@ -451,7 +525,7 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
                         desc = f"changed from {html.escape(format_value(values[0]))} to {html.escape(format_value(values[1]))}"
                     elif typ == "Removed":
                         desc = f"removed (was {html.escape(format_value(values[0]))})"
-                    html_lines.append(f"<li>{escape_flag(flag)} {desc} - Mechanism: {info['mechanism']} - Purpose: {info['purpose']}</li>")
+                    html_lines.append(f"<li>{escape_flag(flag)} {desc} - Mechanism: {html.escape(info['mechanism'])} - Purpose: {html.escape(info['purpose'])}</li>")
                 html_lines.append("</ul></details>")
     html_lines.append('</body></html>')
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
@@ -987,7 +1061,7 @@ fetch('FFlag_Report.json')
     document.getElementById('flags-changed').textContent = data.changed_total;
     document.getElementById('flags-removed').textContent = data.removed_total;
     document.getElementById('net-changes').textContent = data.net_changes;
-    const percent = data.percent_change.toFixed(1);
+    const percent = data.percent_change.toFixed(2);
     document.getElementById('percent-change').textContent = percent;
     const percentBadge = document.querySelector('.percent');
     if (percent > 0) percentBadge.classList.add('positive');
@@ -1112,11 +1186,12 @@ return response || fetch(e.request);
 # ============================
 async def main() -> None:
     try:
+        await asyncio.sleep(random.uniform(0, 300))  # Random delay 0-5 minutes to stagger runs
         log.info("=" * 80)
         log.info("Roblox Client FFlag Tracker (Integrated Categories + Interpolation)")
         log.info("=" * 80)
         ensure_repo()
-        commits = get_commits()
+        commits = get_commits(DAYS)
         diff_cache = json.loads(DIFF_CACHE_FILE.read_text(encoding="utf-8")) if DIFF_CACHE_FILE.exists() else {}
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)  # Fix: Create output dir early to avoid write errors
         if not commits:
@@ -1127,13 +1202,19 @@ async def main() -> None:
         else:
             report, summary, flag_changes = await build_report(commits, diff_cache)
         DIFF_CACHE_FILE.write_text(json.dumps(diff_cache, indent=2), encoding="utf-8")
-        all_flags = set()
-        for _, changes in report:
-            for typ, cat, flag, *_ in changes:
-                if typ == "Added":
-                    all_flags.add(flag)
+        all_flags = set(flag for _, changes in report for _, _, flag, *_ in changes)
         if all_flags:
             await generate_flag_info_batch(list(all_flags))
+        # Prune cache
+        history_commits = get_commits(HISTORY_DAYS)
+        _, _, flag_changes_history = await build_report(history_commits, diff_cache)
+        recent_flags = set(flag_changes_history.keys())
+        prune_list = [f for f in list(FLAG_INFO.keys()) if f not in recent_flags]
+        for f in prune_list:
+            del FLAG_INFO[f]
+        if prune_list:
+            log.info(f"Pruned {len(prune_list)} old flags from cache.")
+        CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
         last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
         added = sum(summary.get((cat, "Added"), 0) for cat in CATEGORIES)
         changed = sum(summary.get((cat, "Changed"), 0) for cat in CATEGORIES)
