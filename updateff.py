@@ -10,7 +10,9 @@ import asyncio
 import logging
 import time
 import random
+import re
 from collections import defaultdict
+from jsonschema import validate as json_validate, ValidationError
 try:
     from openai import AsyncOpenAI, RateLimitError
 except ImportError:
@@ -295,6 +297,38 @@ def update_history(added: int, changed: int, removed: int, last_run: str) -> Non
 # ============================
 FLAG_INFO = json.loads(CACHE_FILE.read_text(encoding="utf-8")) if CACHE_FILE.exists() else {}
 
+FLAG_SCHEMA = {
+    "type": "object",
+    "patternProperties": {
+        "^FFlag[A-Za-z0-9_]+$": {
+            "type": "object",
+            "properties": {
+                "mechanism": {"type": "string"},
+                "purpose": {"type": "string"}
+            },
+            "required": ["mechanism", "purpose"]
+        }
+    },
+    "additionalProperties": False
+}
+
+def extract_and_validate_json(text: str) -> dict:
+    """Extract JSON block and validate against schema."""
+    # Extract first {...} block
+    match = re.search(r"\{.*\}", text, re.DOTALL)
+    if not match:
+        raise json.JSONDecodeError("No JSON object found", text, 0)
+
+    data = json.loads(match.group(0))
+
+    # Validate schema
+    try:
+        json_validate(instance=data, schema=FLAG_SCHEMA)
+    except ValidationError as ve:
+        raise json.JSONDecodeError(f"Schema validation failed: {ve}", text, 0)
+
+    return data
+
 async def ai_enrich_flags_batch(batch: list[str], use_gemini=False) -> dict:
     system_prompt = "You are a JSON generator. Always output valid JSON only."
     user_prompt = (
@@ -321,14 +355,15 @@ async def ai_enrich_flags_batch(batch: list[str], use_gemini=False) -> dict:
                     temperature=0.3
                 )
                 text = response.choices[0].message.content.strip()
-                json_start = text.find("{")
-                json_end = text.rfind("}") + 1
-                if json_start == -1 or json_end == 0:
-                    raise json.JSONDecodeError("No JSON block found", text, 0)
-                json_str = text[json_start:json_end]
-                data = json.loads(json_str)
+                data = extract_and_validate_json(text)
                 return data
             except RateLimitError as e:
+                if e.response and e.response.headers.get('x-ratelimit-remaining-requests') == '0':
+                    if genai and GEMINI_API_KEY:
+                        log.info("OpenAI request limit reached. Falling back to Gemini immediately.")
+                        return await ai_enrich_flags_batch(batch, use_gemini=True)
+                    else:
+                        raise Exception("OpenAI request limit reached, no Gemini fallback available.")
                 sleep_time = 2 ** attempt
                 if hasattr(e, 'response') and e.response:
                     retry_after = e.response.headers.get('Retry-After')
@@ -363,12 +398,7 @@ async def ai_enrich_flags_batch(batch: list[str], use_gemini=False) -> dict:
                     response = model.generate_content(prompt)
                     return response.text.strip()
                 text = await loop.run_in_executor(None, sync_generate)
-                json_start = text.find("{")
-                json_end = text.rfind("}") + 1
-                if json_start == -1 or json_end == 0:
-                    raise json.JSONDecodeError("No JSON block found", text, 0)
-                json_str = text[json_start:json_end]
-                data = json.loads(json_str)
+                data = extract_and_validate_json(text)
                 return data
             except json.JSONDecodeError as je:
                 log.error(f"Failed to parse Gemini response as JSON: {je}")
