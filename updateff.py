@@ -826,23 +826,23 @@ th {{
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let resizeTimeout, animationId, particles = [];
-function resizeCanvas() {
+function resizeCanvas() {{
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-}
-function generateParticles() {
-  particles = Array.from({length: 30}, () => ({
+}}
+function generateParticles() {{
+  particles = Array.from({{length: 30}}, () => ({{
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     r: Math.random() * 2 + 1,
     dx: (Math.random() - 0.5) / 2,
     dy: (Math.random() - 0.5) / 2,
-    color: `rgba(${Math.floor(Math.random() * 50 + 200)}, 255, 255, 0.15)`,
-  }));
-}
-function animateParticles() {
+    color: `rgba(${{Math.floor(Math.random() * 50 + 200)}}, 255, 255, 0.15)`,
+  }}));
+}}
+function animateParticles() {{
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => {
+  particles.forEach(p => {{
     p.x += p.dx;
     p.y += p.dy;
     if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
@@ -851,56 +851,56 @@ function animateParticles() {
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
     ctx.fillStyle = p.color;
     ctx.fill();
-  });
+  }});
   animationId = requestAnimationFrame(animateParticles);
-}
-function stopAnimation() {
+}}
+function stopAnimation() {{
   cancelAnimationFrame(animationId);
-}
+}}
 resizeCanvas();
 generateParticles();
 animateParticles();
-window.addEventListener('resize', () => {
+window.addEventListener('resize', () => {{
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(resizeCanvas, 200);
-});
-document.addEventListener('visibilitychange', () => {
+}});
+document.addEventListener('visibilitychange', () => {{
   if (document.hidden) stopAnimation();
   else animateParticles();
-});
-document.getElementById('themeToggle').addEventListener('click', () => {
+}});
+document.getElementById('themeToggle').addEventListener('click', () => {{
   document.body.classList.toggle('light');
-});
-fetch("history.json").then(r => r.json()).then(data => {
-  if (data.length === 0) {
+}});
+fetch("history.json").then(r => r.json()).then(data => {{
+  if (data.length === 0) {{
     document.getElementById("trendChart").parentNode.innerHTML = 'No history data yet.';
     return;
-  }
+  }}
   const ctx = document.getElementById("trendChart").getContext("2d");
-  new Chart(ctx, {
+  new Chart(ctx, {{
     type: 'line',
-    data: {
+    data: {{
       labels: data.map(d => d.date),
       datasets: [
-        {label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4},
-        {label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4},
-        {label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4}
+        {{label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4}},
+        {{label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4}},
+        {{label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4}}
       ]
-    },
-    options: {
+    }},
+    options: {{
       responsive: true,
-      plugins: {
-        legend: {position: 'top'},
-        zoom: {zoom: {wheel: {enabled: true}, pinch: {enabled: true}, mode: 'x'}, pan: {enabled: true, mode: 'x'}},
-        tooltip: {callbacks: {label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}`}}
-      },
-      interaction: {mode: 'nearest', axis: 'x', intersect: false}
-    }
-  });
-}).catch(error => {
+      plugins: {{
+        legend: {{position: 'top'}},
+        zoom: {{zoom: {{wheel: {{enabled: true}}, pinch: {{enabled: true}}, mode: 'x'}}, pan: {{enabled: true, mode: 'x'}}}},
+        tooltip: {{callbacks: {{label: (ctx) => `${{ctx.dataset.label}}: ${{ctx.raw}}`}}}}
+      }},
+      interaction: {{mode: 'nearest', axis: 'x', intersect: false}}
+    }}
+  }});
+}}).catch(error => {{
   console.error('Error loading history:', error);
   document.getElementById("trendChart").parentNode.innerHTML = 'Error loading history data.';
-});
+}});
 const reportContent = document.getElementById('reportContent');
 const loadingSpinner = document.getElementById('loadingSpinner');
 let currentPage = 0;
@@ -908,123 +908,123 @@ const itemsPerPage = 10;
 let globalData = null;
 let currentData = [];
 let observer;
-function loadReportPage(data, page) {
-  if (!data) {
+function loadReportPage(data, page) {{
+  if (!data) {{
     reportContent.innerHTML = 'Error: Report data not loaded.';
     return;
-  }
+  }}
   const startIndex = page * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const reportPage = data.slice(startIndex, endIndex);
-  reportPage.forEach(commit => {
+  reportPage.forEach(commit => {{
     const card = document.createElement('div');
     card.classList.add('commit-card');
     const h2 = document.createElement('h2');
     h2.textContent = commit.header;
     card.appendChild(h2);
-    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {{
       const [typ, cat] = groupKey.split('_');
       const h3 = document.createElement('h3');
-      h3.textContent = `${typ} in ${cat}`;
+      h3.textContent = `${{typ}} in ${{cat}}`;
       h3.style.cursor = 'pointer';
       h3.setAttribute('aria-expanded', 'true');
       card.appendChild(h3);
       const ul = document.createElement('ul');
-      flags.forEach(f => {
+      flags.forEach(f => {{
         const li = document.createElement('li');
         li.dataset.freq = f.freq;
         let desc = '';
-        if (f.old_value === null && f.new_value !== null) {
-          desc = `= ${f.new_value}`;
-        } else if (f.old_value !== null && f.new_value !== null) {
-          desc = `changed from ${f.old_value} to ${f.new_value}`;
-        } else if (f.old_value !== null && f.new_value === null) {
-          desc = `(was ${f.old_value})`;
-        }
-        li.innerHTML = `${f.name} ${desc} - Mechanism: ${f.mechanism} - Purpose: ${f.purpose} <button class="copy-btn" data-copy="${f.mechanism} - ${f.purpose}">Copy</button>`;
+        if (f.old_value === null && f.new_value !== null) {{
+          desc = `= ${{f.new_value}}`;
+        }} else if (f.old_value !== null && f.new_value !== null) {{
+          desc = `changed from ${{f.old_value}} to ${{f.new_value}}`;
+        }} else if (f.old_value !== null && f.new_value === null) {{
+          desc = `(was ${{f.old_value}})`;
+        }}
+        li.innerHTML = `${{f.name}} ${{desc}} - Mechanism: ${{f.mechanism}} - Purpose: ${{f.purpose}} <button class="copy-btn" data-copy="${{f.mechanism}} - ${{f.purpose}}">Copy</button>`;
         ul.appendChild(li);
-      });
+      }});
       ul.style.maxHeight = ul.scrollHeight + 'px';
       card.appendChild(ul);
-    });
+    }});
     reportContent.appendChild(card);
-  });
-}
-function setupObserver() {
+  }});
+}}
+function setupObserver() {{
   if (observer) observer.disconnect();
   const maxPages = Math.ceil(currentData.length / itemsPerPage);
-  if (currentPage + 1 < maxPages) {
+  if (currentPage + 1 < maxPages) {{
     const sentinel = document.createElement('div');
     sentinel.id = 'sentinel';
     reportContent.appendChild(sentinel);
-    observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
+    observer = new IntersectionObserver(entries => {{
+      if (entries[0].isIntersecting) {{
         currentPage++;
         loadReportPage(currentData, currentPage);
-        if (currentPage + 1 >= maxPages) {
+        if (currentPage + 1 >= maxPages) {{
           observer.unobserve(sentinel);
           sentinel.remove();
-        }
-      }
-    }, {threshold: 0});
+        }}
+      }}
+    }}, {{threshold: 0}});
     observer.observe(sentinel);
-  }
-}
-function debounce(func, delay) {
+  }}
+}}
+function debounce(func, delay) {{
   let timeout;
-  return (...args) => {
+  return (...args) => {{
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), delay);
-  };
-}
-function applyFilters() {
-  if (!globalData) {
+  }};
+}}
+function applyFilters() {{
+  if (!globalData) {{
     reportContent.innerHTML = 'Error: Data not loaded.';
     return;
-  }
+  }}
   let filtered = globalData.report;
   const cat = document.getElementById('categoryFilter').value;
   const query = document.getElementById('searchInput').value.toLowerCase();
   const sortBy = document.getElementById('sortSelect').value;
-  if (cat || query) {
-    filtered = globalData.report.map(commit => {
-      const grouped = {};
-      Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+  if (cat || query) {{
+    filtered = globalData.report.map(commit => {{
+      const grouped = {{}};
+      Object.entries(commit.grouped).forEach(([groupKey, flags]) => {{
         const [typ, category] = groupKey.split('_');
         if (cat && category !== cat) return;
         let matches = flags;
-        if (query) {
+        if (query) {{
           matches = flags.filter(f =>
             f.name.toLowerCase().includes(query) ||
             f.mechanism.toLowerCase().includes(query) ||
             f.purpose.toLowerCase().includes(query)
           );
-        }
+        }}
         if (matches.length > 0) grouped[groupKey] = matches;
-      });
-      return Object.keys(grouped).length ? {...commit, grouped} : null;
-    }).filter(Boolean);
-  }
-  filtered.forEach(commit => {
-    Object.values(commit.grouped).forEach(flags => {
-      flags.sort((a, b) => {
+      }});
+      return Object.keys(grouped).length ? {{...commit, grouped}} : null;
+    }}).filter(Boolean);
+  }}
+  filtered.forEach(commit => {{
+    Object.values(commit.grouped).forEach(flags => {{
+      flags.sort((a, b) => {{
         if (sortBy === 'freq') return b.freq - a.freq;
         return a.name.localeCompare(b.name);
-      });
-    });
-  });
+      }});
+    }});
+  }});
   reportContent.innerHTML = '';
   currentPage = 0;
   currentData = filtered;
-  if (currentData.length === 0) {
-    reportContent.innerHTML = `No recent flag changes in the last ${globalData.days} days.`;
-  } else {
+  if (currentData.length === 0) {{
+    reportContent.innerHTML = `No recent flag changes in the last ${{globalData.days}} days.`;
+  }} else {{
     loadReportPage(currentData, currentPage);
     setupObserver();
-  }
-}
-async function loadReportData() {
-  try {
+  }}
+}}
+async function loadReportData() {{
+  try {{
     const summaryResponse = await fetch('summary.json');
     if (!summaryResponse.ok) throw new Error('Failed to load summary.json');
     const data = await summaryResponse.json();
@@ -1044,84 +1044,84 @@ async function loadReportData() {
     document.getElementById('last-run').textContent = data.last_run;
     const summaryTable = document.getElementById('summaryTable');
     let tableHtml = '<tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th></tr>';
-    for (let cat in data.summary) {
+    for (let cat in data.summary) {{
       const s = data.summary[cat];
-      tableHtml += `<tr><td>${cat}</td><td>${s.added}</td><td>${s.changed}</td><td>${s.removed}</td></tr>`;
-    }
+      tableHtml += `<tr><td>${{cat}}</td><td>${{s.added}}</td><td>${{s.changed}}</td><td>${{s.removed}}</td></tr>`;
+    }}
     summaryTable.innerHTML = tableHtml;
     const commitsResponse = await fetch('commits.json');
     if (!commitsResponse.ok) throw new Error('Failed to load commits.json');
     globalData.report = await commitsResponse.json();
     loadingSpinner.style.display = 'none';
     applyFilters();
-    reportContent.addEventListener('click', e => {
-      if (e.target.tagName === 'H3') {
+    reportContent.addEventListener('click', e => {{
+      if (e.target.tagName === 'H3') {{
         const ul = e.target.nextElementSibling;
-        if (ul && ul.tagName === 'UL') {
+        if (ul && ul.tagName === 'UL') {{
           const expanded = e.target.getAttribute('aria-expanded') === 'true';
           ul.style.maxHeight = expanded ? '0px' : ul.scrollHeight + 'px';
           e.target.setAttribute('aria-expanded', !expanded);
-        }
-      } else if (e.target.classList.contains('copy-btn')) {
-        navigator.clipboard.writeText(e.target.dataset.copy).then(() => {
+        }}
+      }} else if (e.target.classList.contains('copy-btn')) {{
+        navigator.clipboard.writeText(e.target.dataset.copy).then(() => {{
           e.target.textContent = 'Copied!';
           setTimeout(() => e.target.textContent = 'Copy', 2000);
-        });
-      }
-    });
-  } catch (error) {
+        }});
+      }}
+    }});
+  }} catch (error) {{
     console.error('Error loading report:', error);
     loadingSpinner.style.display = 'none';
     reportContent.innerHTML = 'Error loading report data. Please try again later.';
-  }
-}
+  }}
+}}
 loadReportData();
 document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
 document.getElementById('categoryFilter').addEventListener('change', applyFilters);
 document.getElementById('sortSelect').addEventListener('change', applyFilters);
-document.getElementById('exportCSV').addEventListener('click', () => {
+document.getElementById('exportCSV').addEventListener('click', () => {{
   if (!globalData) return;
   let csv = 'Commit,Type,Category,Flag,Old Value,New Value,Mechanism,Purpose,Frequency\n';
-  globalData.report.forEach(commit => {
-    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+  globalData.report.forEach(commit => {{
+    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {{
       const [typ, cat] = groupKey.split('_');
-      flags.forEach(f => {
-        csv += `"${commit.header}","${typ}","${cat}","${f.name}","${f.old_value || ''}","${f.new_value || ''}","${f.mechanism}","${f.purpose}","${f.freq}"\n`;
-      });
-    });
-  });
+      flags.forEach(f => {{
+        csv += `"${{commit.header}}","${{typ}}","${{cat}}","${{f.name}}","${{f.old_value || ''}}","${{f.new_value || ''}}","${{f.mechanism}}","${{f.purpose}}","${{f.freq}}"\n`;
+      }});
+    }});
+  }});
   download('fflag_report.csv', csv);
-});
-document.getElementById('exportJSON').addEventListener('click', () => {
+}});
+document.getElementById('exportJSON').addEventListener('click', () => {{
   if (!globalData) return;
-  const fullData = {...globalData, report: globalData.report};
+  const fullData = {{...globalData, report: globalData.report}};
   download('fflag_report.json', JSON.stringify(fullData, null, 2));
-});
-function download(filename, text) {
+}});
+function download(filename, text) {{
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([text], {type: 'text/plain'}));
+  a.href = URL.createObjectURL(new Blob([text], {{type: 'text/plain'}}));
   a.download = filename;
   a.click();
-}
-setInterval(() => {
-  fetch('summary.json?ts=' + Date.now()).then(r => r.json()).then(newData => {
-    if (globalData && newData.last_run !== globalData.last_run) {
+}}
+setInterval(() => {{
+  fetch('summary.json?ts=' + Date.now()).then(r => r.json()).then(newData => {{
+    if (globalData && newData.last_run !== globalData.last_run) {{
       location.reload();
-    }
-  }).catch(() => {});
-}, 60000);
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(error => {
+    }}
+  }}).catch(() => {{}});
+}}, 60000);
+if ('serviceWorker' in navigator) {{
+  navigator.serviceWorker.register('/sw.js').catch(error => {{
     console.error('Service Worker registration failed:', error);
-  });
-}
+  }});
+}}
 </script>
 </body>
 </html>"""
     index_html.write_text(html_content, encoding="utf-8")
-    sw_content = """self.addEventListener('install', e => {
+    sw_content = """self.addEventListener('install', e => {{
   e.waitUntil(
-    caches.open('fflag-cache').then(cache => {
+    caches.open('fflag-cache').then(cache => {{
       return cache.addAll([
         '/',
         '/index.html',
@@ -1129,16 +1129,16 @@ if ('serviceWorker' in navigator) {
         '/commits.json',
         '/history.json'
       ]);
-    })
+    }})
   );
-});
-self.addEventListener('fetch', e => {
+}});
+self.addEventListener('fetch', e => {{
   e.respondWith(
-    caches.match(e.request).then(response => {
+    caches.match(e.request).then(response => {{
       return response || fetch(e.request);
-    })
+    }})
   );
-});
+}});
 """
     sw_js.write_text(sw_content, encoding="utf-8")
     log.info(f"Landing page written: {index_html}")
