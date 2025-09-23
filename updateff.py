@@ -15,9 +15,9 @@ try:
 except ImportError:
     AsyncOpenAI = None  # Graceful degrade if not available
 
-# ===============================
+# ============================
 # Settings and Paths
-# ===============================
+# ============================
 SCRIPT_DIR = Path(__file__).resolve().parent
 WORKSPACE = Path(os.getenv("GITHUB_WORKSPACE", str(SCRIPT_DIR))).resolve()
 OUTPUT_DIR = WORKSPACE / "output"
@@ -27,32 +27,30 @@ OUTPUT_JSON = OUTPUT_DIR / "FFlag_Report.json"
 CACHE_FILE = OUTPUT_DIR / "fflag_cache.json"
 DIFF_CACHE_FILE = OUTPUT_DIR / "diff_cache.json"
 HISTORY_FILE = OUTPUT_DIR / "history.json"
-
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
 LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
-
 DAYS = 60
 HISTORY_DAYS = 90
-AI_BATCH_SIZE = 20  # Increased for better scalability
+AI_BATCH_SIZE = 5  # Lowered for better rate limit handling
 MAX_RETRIES = 3
 DEBUG = True
 
-# ===============================
+# ============================
 # Logging Utility
-# ===============================
+# ============================
 logging.basicConfig(level=logging.INFO if not DEBUG else logging.DEBUG, format="[%(levelname)s] %(message)s (%(asctime)s)")
 log = logging.getLogger(__name__)
 
-# ===============================
+# ============================
 # OpenAI API Key Management
-# ===============================
+# ============================
 keys_raw = os.getenv("OPENAI_API_KEYS", "")
 keys = [k.strip() for k in keys_raw.split(",") if k.strip()]
 if not keys:
     log.warning("⚠ No OpenAI API keys found. AI enrichment will be skipped.")
-
 key_index = -1
+
 def get_next_api_key():
     global key_index
     if not keys:
@@ -63,9 +61,9 @@ def get_next_api_key():
     log.debug(f"Using OpenAI API key #{key_index+1} ({display_key})")
     return key
 
-# ===============================
+# ============================
 # FFlags Categories
-# ===============================
+# ============================
 CATEGORIES = {
     "Graphics": ["Graphics", "Lighting", "Render", "GPU", "VSync", "Shadow", "Texture"],
     "Physics": ["Physics", "Solver", "Collision", "Humanoid", "Constraint", "Ragdoll"],
@@ -80,9 +78,9 @@ CATEGORIES = {
     "Other": []
 }
 
-# ===============================
+# ============================
 # Utility Functions
-# ===============================
+# ============================
 def run_cmd(cmd: str, cwd: Path | None = None, timeout: int = 120) -> str:
     try:
         result = subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True, text=True, timeout=timeout)
@@ -113,11 +111,12 @@ def format_value(v: any) -> str:
         return str(v).capitalize()
     return str(v)
 
-# ===============================
+# ============================
 # Repository Management
-# ===============================
+# ============================
 def ensure_repo() -> None:
     try:
+        shallow_since = (datetime.datetime.now() - datetime.timedelta(days=DAYS + 30)).strftime("%Y-%m-%d")  # Buffer for safety
         if LOCAL_CLONE.exists():
             log.info("Updating existing repository...")
             run_cmd("git fetch --all", cwd=LOCAL_CLONE, timeout=300)
@@ -129,7 +128,7 @@ def ensure_repo() -> None:
             for attempt in range(1, MAX_RETRIES + 1):
                 log.info(f"Cloning repository (attempt {attempt}/{MAX_RETRIES})...")
                 try:
-                    run_cmd(f"git clone {REPO_URL} {LOCAL_CLONE.name}", cwd=LOCAL_CLONE.parent, timeout=600)  # High timeout for clone
+                    run_cmd(f"git clone --shallow-since='{shallow_since}' {REPO_URL} {LOCAL_CLONE.name}", cwd=LOCAL_CLONE.parent, timeout=600)  # High timeout for clone
                     success = True
                     break
                 except Exception as e:
@@ -147,9 +146,9 @@ def get_commits() -> list[str]:
     commits = run_cmd(f"git log --since='{since}' --pretty=format:%H -- {TARGET_FILE}", cwd=LOCAL_CLONE)
     return commits.splitlines() if commits else []
 
-# ===============================
+# ============================
 # Diff Utilities
-# ===============================
+# ============================
 def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
     header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=LOCAL_CLONE)
@@ -261,9 +260,9 @@ async def build_report(commits: list[str], diff_cache: dict) -> tuple[list, dict
             report.append((header, changes))
     return report, summary, flag_changes
 
-# ===============================
+# ============================
 # History Management
-# ===============================
+# ============================
 def update_history(added: int, changed: int, removed: int, last_run: str) -> None:
     if HISTORY_FILE.exists():
         try:
@@ -278,9 +277,9 @@ def update_history(added: int, changed: int, removed: int, last_run: str) -> Non
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     HISTORY_FILE.write_text(json.dumps(history, indent=2), encoding="utf-8")
 
-# ===============================
+# ============================
 # AI Enrichment
-# ===============================
+# ============================
 FLAG_INFO = json.loads(CACHE_FILE.read_text(encoding="utf-8")) if CACHE_FILE.exists() else {}
 
 async def fetch_ai_batch(batch: list[str]) -> None:
@@ -288,7 +287,7 @@ async def fetch_ai_batch(batch: list[str]) -> None:
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
         return
-    prompt = "Explain the Roblox FFlags below. For each, provide Mechanism and Purpose in JSON format.\n" + json.dumps(batch)
+    prompt = f'Explain the following Roblox FFlags. Respond only with a JSON object where each key is a flag name from the list, and the value is an object with "mechanism" (brief technical explanation) and "purpose" (what it aims to achieve in Roblox) keys.\nFlags: {json.dumps(batch)}'
     for attempt in range(MAX_RETRIES):
         try:
             client = AsyncOpenAI(api_key=get_next_api_key())
@@ -303,18 +302,16 @@ async def fetch_ai_batch(batch: list[str]) -> None:
                 for f in batch:
                     info = data.get(f, {})
                     FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
-            except json.JSONDecodeError:
-                for line in content.splitlines():
-                    if ":" in line:
-                        f, rest = line.split(":", 1)
-                        f = f.strip()
-                        if f in batch:
-                            FLAG_INFO[f] = {"mechanism": rest.strip(), "purpose": "N/A"}
+            except json.JSONDecodeError as je:
+                log.error(f"Failed to parse AI response as JSON: {je}")
+                for f in batch:
+                    FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
             CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
             break
         except RateLimitError as e:
-            retry_after = e.response.headers.get('Retry-After')
-            sleep_time = int(retry_after) if retry_after else 2 ** attempt
+            response = getattr(e, 'response', None)
+            retry_after = response.headers.get('Retry-After') if response else None
+            sleep_time = int(retry_after) if retry_after and retry_after.isdigit() else 2 ** attempt
             log.warning(f"Rate limit hit. Sleeping for {sleep_time} seconds.")
             await asyncio.sleep(sleep_time)
         except Exception as e:  # Broader catch for other errors
@@ -330,23 +327,22 @@ async def generate_flag_info_batch(flags: list[str]) -> None:
     if not new_flags:
         return
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    tasks = [fetch_ai_batch(new_flags[i:i + AI_BATCH_SIZE]) for i in range(0, len(new_flags), AI_BATCH_SIZE)]
-    if tasks:
-        await asyncio.gather(*tasks)
+    for i in range(0, len(new_flags), AI_BATCH_SIZE):
+        await fetch_ai_batch(new_flags[i:i + AI_BATCH_SIZE])
+        await asyncio.sleep(2)  # small buffer
 
 def generate_flag_info(flag: str) -> dict:
     return FLAG_INFO.get(flag, {"mechanism": "Unknown", "purpose": "Unknown"})
 
-# ===============================
+# ============================
 # Report Export (Enhanced with Grouping for Collapsibles and History Summary)
-# ===============================
-def export_reports(report: list, summary: dict, flag_changes: dict) -> tuple[int, int, int, str, str]:
+# ============================
+def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
     last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
     added_total = sum(summary.get((cat, "Added"), 0) for cat in CATEGORIES)
     changed_total = sum(summary.get((cat, "Changed"), 0) for cat in CATEGORIES)
     removed_total = sum(summary.get((cat, "Removed"), 0) for cat in CATEGORIES)
     net_changes = added_total - removed_total
-    
     # Load history.json to compute historical aggregates
     if HISTORY_FILE.exists():
         try:
@@ -359,7 +355,6 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> tuple[int
     total_historical_added = sum(entry.get('added', 0) for entry in history)
     total_historical_changed = sum(entry.get('changed', 0) for entry in history)
     total_historical_removed = sum(entry.get('removed', 0) for entry in history)
-    
     percent_change = 0.0
     historical_avg_added = 0.0
     historical_avg_changed = 0.0
@@ -373,15 +368,13 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> tuple[int
         prev_total = prev['added'] + prev['changed'] + prev['removed']
         curr_total = added_total + changed_total + removed_total
         percent_change = ((curr_total - prev_total) / prev_total * 100) if prev_total > 0 else 0.0
-    
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    
     # Markdown with Summary and History Chart Counts
     md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
-    md.append(f"- **Last Run:** {last_run}")
-    md.append(f"- **Flags Added:** {added_total}")
-    md.append(f"- **Flags Changed:** {changed_total}")
-    md.append(f"- **Flags Removed:** {removed_total}\n")
+    md.append(f"- Last Run: {last_run}")
+    md.append(f"- Flags Added: {added_total}")
+    md.append(f"- Flags Changed: {changed_total}")
+    md.append(f"- Flags Removed: {removed_total}\n")
     md.append("## Summary\n| Category | Added | Changed | Removed | Total |\n|---|---|---|---|---|")
     for cat in CATEGORIES:
         a = summary.get((cat, "Added"), 0)
@@ -389,11 +382,11 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> tuple[int
         r = summary.get((cat, "Removed"), 0)
         md.append(f"| {cat} | {a} | {c} | {r} | {a+c+r} |")
     md.append("\n## History Summary Chart Counts\n")  # New history section in markdown
-    md.append(f"- **Total Historical Added:** {total_historical_added}")
-    md.append(f"- **Total Historical Changed:** {total_historical_changed}")
-    md.append(f"- **Total Historical Removed:** {total_historical_removed}")
+    md.append(f"- Total Historical Added: {total_historical_added}")
+    md.append(f"- Total Historical Changed: {total_historical_changed}")
+    md.append(f"- Total Historical Removed: {total_historical_removed}")
     if len(history) == 1:
-        md.append("- **Note:** No prior history available yet")
+        md.append("- Note: No prior history available yet")
     if not report:
         md.append(f"\n## No Recent Changes\nNo flag changes in the last {DAYS} days.")
     else:
@@ -403,7 +396,7 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> tuple[int
             for typ, cat, flag, *values in changes:
                 grouped.setdefault((typ, cat), []).append((flag, *values))
             for (typ, cat), items in grouped.items():
-                md.append(f"**{typ} in {cat}:**")
+                md.append(f"{typ} in {cat}:")
                 for item in items:
                     flag = item[0]
                     values = item[1:]
@@ -417,11 +410,10 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> tuple[int
                         desc = f"removed (was {format_value(values[0])})"
                     md.append(f"- {flag} {desc} | Mechanism: {info['mechanism']} | Purpose: {info['purpose']}")
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
-    
-    # HTML with <h3><ul> for Collapsibles
-    html_lines = ["<html><body><h1>Roblox FFlag Report</h1>"]
+    # HTML with <details> for Collapsibles
+    html_lines = ['<html>', '<head><title>Roblox FFlag Report</title></head>', '<body>', '<h1>Roblox FFlag Report</h1>']
     if not report:
-        html_lines.append(f"<h2>No Recent Changes</h2><p>No flag changes in the last {DAYS} days.</p>")
+        html_lines.append(f"<p>No Recent Changes</p><p>No flag changes in the last {DAYS} days.</p>")
     else:
         for header, changes in report:
             html_lines.append(f"<h2>{header}</h2>")
@@ -429,7 +421,7 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> tuple[int
             for typ, cat, flag, *values in changes:
                 grouped.setdefault((typ, cat), []).append((flag, *values))
             for (typ, cat), items in grouped.items():
-                html_lines.append(f"<h3>{typ} in {cat}</h3><ul>")
+                html_lines.append(f"<details><summary>{typ} in {cat}</summary><ul>")
                 for item in items:
                     flag = item[0]
                     values = item[1:]
@@ -442,10 +434,9 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> tuple[int
                     elif typ == "Removed":
                         desc = f"removed (was {html.escape(format_value(values[0]))})"
                     html_lines.append(f"<li>{escape_flag(flag)} {desc} - Mechanism: {info['mechanism']} - Purpose: {info['purpose']}</li>")
-                html_lines.append("</ul>")
-    html_lines.append("</body></html>")
+                html_lines.append("</ul></details>")
+    html_lines.append('</body></html>')
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
-    
     # JSON for responsive landing page, now with historical counts
     json_data = {
         "last_run": last_run,
@@ -484,21 +475,20 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> tuple[int
             "grouped": grouped
         })
     OUTPUT_JSON.write_text(json.dumps(json_data, indent=2), encoding="utf-8")
-    
     log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}")
-    return added_total, changed_total, removed_total, last_run, "report_done"
 
-# ===============================
+# ============================
 # Landing Page (Particles + Collapsibles JS)
-# ===============================
+# ============================
 def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -> None:
     index_html = OUTPUT_DIR / "index.html"
     sw_js = OUTPUT_DIR / "sw.js"
     if not HISTORY_FILE.exists():
         HISTORY_FILE.write_text("[]", encoding="utf-8")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-    html_content = """<!DOCTYPE html>
+    category_options = "\n".join([f'    <option value="{cat}">{cat}</option>' for cat in CATEGORIES])
+    html_content = f"""
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -506,7 +496,7 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
 <title>Roblox FFlag Tracker</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root { 
+:root {{ 
   --primary-green: #34d399;
   --primary-blue: #60a5fa;
   --primary-red: #f87171;
@@ -517,8 +507,8 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
   --bg-opacity: 0.15;
   --text-color: #fff;
   --bg-color: linear-gradient(135deg,#4f46e5,#3b82f6,#06b6d4,#14b8a6);
-}
-body { 
+}}
+body {{ 
   font-family:'Inter',sans-serif;
   margin:0;
   background: var(--bg-color);
@@ -526,20 +516,20 @@ body {
   animation: gradientBG 15s ease infinite;
   color: var(--text-color);
   overflow-x: hidden;
-}
-body.light {
+}}
+body.light {{
   --text-color: #333;
   --bg-opacity: 0.05;
   --bg-color: linear-gradient(135deg,#e0f2fe,#bfdbfe,#a5f3fc,#99f6e4);
-}
-@keyframes gradientBG { 
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
-}
-header { text-align:center; padding:60px 20px; text-shadow:0 0 12px rgba(0,0,0,0.3); }
-header h1 { font-size:3rem; font-weight:700; }
-.stats { 
+}}
+@keyframes gradientBG {{ 
+  0% {{background-position:0% 50%;}}
+  50% {{background-position:100% 50%;}}
+  100% {{background-position:0% 50%;}}
+}}
+header {{ text-align:center; padding:60px 20px; text-shadow:0 0 12px rgba(0,0,0,0.3); }}
+header h1 {{ font-size:3rem; font-weight:700; }}
+.stats {{ 
   display:flex;
   justify-content:center;
   gap:30px;
@@ -547,8 +537,8 @@ header h1 { font-size:3rem; font-weight:700; }
   max-width:1200px;
   margin:-40px auto 40px;
   position:relative; z-index:2;
-}
-.badge { 
+}}
+.badge {{ 
   flex:1; min-width:220px;
   text-align:center;
   padding:25px;
@@ -558,33 +548,33 @@ header h1 { font-size:3rem; font-weight:700; }
   background:rgba(255,255,255,var(--bg-opacity));
   box-shadow:0 10px 30px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-}
-.badge:hover { 
+}}
+.badge:hover {{ 
   transform:translateY(-8px);
   box-shadow:0 14px 40px rgba(0,0,0,0.4);
   border:2px solid var(--primary-green);
-}
-.added { border-left:6px solid var(--primary-green); }
-.changed { border-left:6px solid var(--primary-blue); }
-.removed { border-left:6px solid var(--primary-red); }
-.net { border-left:6px solid var(--primary-yellow); }
-.percent { border-left:6px solid var(--primary-blue); }
-.percent.positive { border-left-color: var(--primary-green); }
-.percent.negative { border-left-color: var(--primary-red); }
-.historical-added { border-left:6px solid var(--historical-green); }
-.historical-changed { border-left:6px solid var(--historical-blue); }
-.historical-removed { border-left:6px solid var(--historical-red); }
-.last-run { text-align:center; margin:20px 0; font-style:italic; color:#eee; }
-section { max-width:1200px; margin:0 auto; padding:20px; }
-.report-container { 
+}}
+.added {{ border-left:6px solid var(--primary-green); }}
+.changed {{ border-left:6px solid var(--primary-blue); }}
+.removed {{ border-left:6px solid var(--primary-red); }}
+.net {{ border-left:6px solid var(--primary-yellow); }}
+.percent {{ border-left:6px solid var(--primary-blue); }}
+.percent.positive {{ border-left-color: var(--primary-green); }}
+.percent.negative {{ border-left-color: var(--primary-red); }}
+.historical-added {{ border-left:6px solid var(--historical-green); }}
+.historical-changed {{ border-left:6px solid var(--historical-blue); }}
+.historical-removed {{ border-left:6px solid var(--historical-red); }}
+.last-run {{ text-align:center; margin:20px 0; font-style:italic; color:#eee; }}
+section {{ max-width:1200px; margin:0 auto; padding:20px; }}
+.report-container {{ 
   background: rgba(255,255,255,var(--bg-opacity));
   backdrop-filter: blur(10px);
   border-radius:16px;
   box-shadow:0 12px 36px rgba(0,0,0,0.25);
   padding:15px;
   position: relative;
-}
-#loadingSpinner { 
+}}
+#loadingSpinner {{ 
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -593,62 +583,62 @@ section { max-width:1200px; margin:0 auto; padding:20px; }
   border-radius: 50%;
   width: 40px; height: 40px;
   animation: spin 1s linear infinite;
-}
-@keyframes spin { 
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-#reportContent { width:100%; min-height:75vh; border-radius:12px; }
-canvas#trendChart { display:block; max-width:850px; margin:40px auto; border-radius:12px; }
-input#searchInput { 
+}}
+@keyframes spin {{ 
+  0% {{ transform: rotate(0deg); }}
+  100% {{ transform: rotate(360deg); }}
+}}
+#reportContent {{ width:100%; min-height:75vh; border-radius:12px; }}
+canvas#trendChart {{ display:block; max-width:850px; margin:40px auto; border-radius:12px; }}
+input#searchInput {{ 
   width:90%; padding:12px; margin:20px auto; display:block;
   border-radius:12px; border:1px solid rgba(255,255,255,0.3);
   background:rgba(0,0,0,0.2); color: var(--text-color); font-size:1rem;
   backdrop-filter:blur(5px);
-}
-select { 
+}}
+select {{ 
   padding:12px; margin:10px; border-radius:12px; background:rgba(0,0,0,0.2); color: var(--text-color);
-}
-button { 
+}}
+button {{ 
   padding:10px 20px; border-radius:8px; background:var(--primary-blue); color:white; border:none; cursor:pointer;
-}
-button:hover { background:var(--primary-green); }
-.copy-btn { 
+}}
+button:hover {{ background:var(--primary-green); }}
+.copy-btn {{ 
   margin-left:10px; padding:5px 10px; font-size:0.8rem; background:var(--primary-yellow);
-}
-.commit-card {
+}}
+.commit-card {{
   background: rgba(255,255,255,0.2);
   border-radius:8px;
   padding:15px;
   margin-bottom:20px;
   box-shadow:0 4px 12px rgba(0,0,0,0.2);
-}
-h3 { cursor:pointer; }
-ul { 
+}}
+h3 {{ cursor:pointer; }}
+ul {{ 
   overflow: hidden;
   transition: max-height 0.3s ease;
   list-style-type: none;
-}
-footer { text-align:center; margin-top:60px; padding:25px; font-size:0.9rem; color:#eee; }
-canvas#particleCanvas { 
+}}
+footer {{ text-align:center; margin-top:60px; padding:25px; font-size:0.9rem; color:#eee; }}
+canvas#particleCanvas {{ 
   position: fixed;
   top:0; left:0; width:100%; height:100%;
   pointer-events:none;
   z-index:0;
-}
-table { 
+}}
+table {{ 
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 40px;
-}
-th, td { 
+}}
+th, td {{ 
   border: 1px solid rgba(255,255,255,0.3);
   padding: 12px;
   text-align: left;
-}
-th { 
+}}
+th {{ 
   background: rgba(0,0,0,0.2);
-}
+}}
 </style>
 </head>
 <body>
@@ -657,48 +647,56 @@ th {
   <h1>Roblox Client FFlag Tracker</h1>
   <button id="themeToggle">Toggle Theme</button>
 </header>
-
-<section>
-  <div class="stats">
-    <div class="badge added">✅ Added: <span id="flags-added">0</span></div>
-    <div class="badge changed">🔄 Changed: <span id="flags-changed">0</span></div>
-    <div class="badge removed">❌ Removed: <span id="flags-removed">0</span></div>
-    <div class="badge net">Net Changes: <span id="net-changes">0</span></div>
-    <div class="badge percent">% Change: <span id="percent-change">0</span>%</div>
-    <div class="badge historical-added">📈 Historical Added: <span id="historical-added">0</span></div>
-    <div class="badge historical-changed">📈 Historical Changed: <span id="historical-changed">0</span></div>
-    <div class="badge historical-removed">📉 Historical Removed: <span id="historical-removed">0</span></div>
+<div class="stats">
+  <div class="badge added">
+    ✅ Added: <span id="flags-added">0</span>
   </div>
-
-  <p class="last-run">Last Run: <span id="last-run"></span></p>
-
-  <input type="text" id="searchInput" placeholder="Search flags..." aria-label="Search flags">
+  <div class="badge changed">
+    🔄 Changed: <span id="flags-changed">0</span>
+  </div>
+  <div class="badge removed">
+    ❌ Removed: <span id="flags-removed">0</span>
+  </div>
+  <div class="badge net">
+    Net Changes: <span id="net-changes">0</span>
+  </div>
+  <div class="badge percent">
+    % Change: <span id="percent-change">0</span>%
+  </div>
+  <div class="badge historical-added">
+    📈 Historical Added: <span id="historical-added">0</span>
+  </div>
+  <div class="badge historical-changed">
+    📈 Historical Changed: <span id="historical-changed">0</span>
+  </div>
+  <div class="badge historical-removed">
+    📉 Historical Removed: <span id="historical-removed">0</span>
+  </div>
+</div>
+<p class="last-run">Last Run: <span id="last-run"></span></p>
+<section>
+  <input type="text" id="searchInput" placeholder="Search flags...">
   <select id="categoryFilter">
     <option value="">All Categories</option>
-""" + "\n".join([f'    <option value="{cat}">{cat}</option>' for cat in CATEGORIES]) + """
+{category_options}
   </select>
   <select id="sortSelect">
     <option value="">Sort by Name</option>
     <option value="freq">Sort by Frequency</option>
   </select>
-
   <h2>Summary</h2>
   <table id="summaryTable"></table>
-
   <h2>📊 Latest Full Report</h2>
   <div class="report-container">
     <div id="loadingSpinner"></div>
-    <div id="reportContent" aria-label="Latest report"></div>
+    <div id="reportContent"></div>
   </div>
   <button id="exportCSV">Export CSV</button>
   <button id="exportJSON">Export JSON</button>
-
-  <canvas id="trendChart" aria-label="Trend chart"></canvas>
+<canvas id="trendChart" aria-label="Trend chart"></canvas>
 </section>
-
 <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
 <script>
 // Particle animation - reduced particle count and added visibility check
@@ -707,25 +705,25 @@ const ctx = canvas.getContext('2d');
 let resizeTimeout;
 let animationId;
 let particles = [];
-function resizeCanvas() {
+function resizeCanvas() {{
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-}
+}}
 
-function generateParticles() {
-  particles = Array.from({ length: 30 }, () => ({
+function generateParticles() {{
+  particles = Array.from({{ length: 30 }}, () => ({{
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     r: Math.random() * 2 + 1,
     dx: (Math.random() - 0.5) / 2,
     dy: (Math.random() - 0.5) / 2,
-    color: `rgba(${Math.floor(Math.random() * 50 + 200)}, 255, 255, 0.15)`,
-  }));
-}
+    color: `rgba(${{Math.floor(Math.random() * 50 + 200)}}, 255, 255, 0.15)`,
+  }}));
+}}
 
-function animateParticles() {
+function animateParticles() {{
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => {
+  particles.forEach(p => {{
     p.x += p.dx;
     p.y += p.dy;
     if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
@@ -734,105 +732,105 @@ function animateParticles() {
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
     ctx.fillStyle = p.color;
     ctx.fill();
-  });
+  }});
   animationId = requestAnimationFrame(animateParticles);
-}
+}}
 
-function stopAnimation() {
+function stopAnimation() {{
   cancelAnimationFrame(animationId);
-}
+}}
 
 resizeCanvas();
 generateParticles();
 animateParticles();
 
-window.addEventListener('resize', () => {
+window.addEventListener('resize', () => {{
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(resizeCanvas, 200);
-});
+}});
 
-document.addEventListener('visibilitychange', () => {
+document.addEventListener('visibilitychange', () => {{
   if (document.hidden) stopAnimation();
   else animateParticles();
-});
+}});
 
 // Theme toggle
-document.getElementById('themeToggle').addEventListener('click', () => {
+document.getElementById('themeToggle').addEventListener('click', () => {{
   document.body.classList.toggle('light');
-});
+}});
 
 // Trend chart using Chart.js with limited data points
-fetch("history.json").then(r => r.json()).then(data => {
-  if (data.length === 0) {
-    document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
+fetch("history.json").then(r => r.json()).then(data => {{
+  if (data.length === 0) {{
+    document.getElementById("trendChart").parentNode.innerHTML = 'No history data yet.';
     return;
-  }
+  }}
   const ctx = document.getElementById("trendChart").getContext("2d");
-  new Chart(ctx, {
+  new Chart(ctx, {{
     type: 'line',
-    data: {
+    data: {{
       labels: data.map(d => d.date),
       datasets: [
-        {
+        {{
           label: 'Added',
           data: data.map(d => d.added),
           borderColor: '#34d399',
           backgroundColor: 'rgba(52,211,153,0.2)',
           fill: true,
           tension: 0.4
-        },
-        {
+        }},
+        {{
           label: 'Changed',
           data: data.map(d => d.changed || 0),
           borderColor: '#60a5fa',
           backgroundColor: 'rgba(96,165,250,0.2)',
           fill: true,
           tension: 0.4
-        },
-        {
+        }},
+        {{
           label: 'Removed',
           data: data.map(d => d.removed),
           borderColor: '#f87171',
           backgroundColor: 'rgba(248,113,113,0.2)',
           fill: true,
           tension: 0.4
-        }
+        }}
       ]
-    },
-    options: {
+    }},
+    options: {{
       responsive: true,
-      plugins: {
-        legend: {
+      plugins: {{
+        legend: {{
           position: 'top'
-        },
-        zoom: {
-          zoom: {
-            wheel: {enabled: true},
-            pinch: {enabled: true},
+        }},
+        zoom: {{
+          zoom: {{
+            wheel: {{enabled: true}},
+            pinch: {{enabled: true}},
             mode: 'x'
-          },
-          pan: {
+          }},
+          pan: {{
             enabled: true,
             mode: 'x'
-          }
-        },
-        tooltip: {
-          callbacks: {
-            label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}`
-          }
-        }
-      },
-      interaction: {
+          }}
+        }},
+        tooltip: {{
+          callbacks: {{
+            label: (ctx) => `${{ctx.dataset.label}}: ${{ctx.raw}}`
+          }}
+        }}
+      }},
+      interaction: {{
         mode: 'nearest',
         axis: 'x',
         intersect: false
-      }
-    }
-  });
-}).catch(error => {
+      }}
+    }}
+  }});
+}}).catch(error => {{
   console.error('Error loading history:', error);
-  document.getElementById("trendChart").parentNode.innerHTML = '<p>Error loading history data.</p>';
-});
+  document.getElementById("trendChart").parentNode.innerHTML = 'Error loading history data.';
+}});
 
 // Lazy Loading of report data
 const reportContent = document.getElementById('reportContent');
@@ -843,12 +841,12 @@ let globalData;
 let currentData;
 let observer;
 
-function loadReportPage(data, page) {
+function loadReportPage(data, page) {{
   const startIndex = page * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const reportPage = data.slice(startIndex, endIndex);
   
-  reportPage.forEach(commit => {
+  reportPage.forEach(commit => {{
     const card = document.createElement('div');
     card.classList.add('commit-card');
     
@@ -856,116 +854,116 @@ function loadReportPage(data, page) {
     h2.textContent = commit.header;
     card.appendChild(h2);
 
-    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {{
       const [typ, cat] = groupKey.split('_');
       const h3 = document.createElement('h3');
-      h3.textContent = `${typ} in ${cat}`;
+      h3.textContent = `${{typ}} in ${{cat}}`;
       h3.style.cursor = 'pointer';
       h3.setAttribute('aria-expanded', 'true');
       card.appendChild(h3);
 
       const ul = document.createElement('ul');
-      flags.forEach(f => {
+      flags.forEach(f => {{
         const li = document.createElement('li');
         li.dataset.freq = f.freq;
         let desc = '';
-        if (f.old_value === null && f.new_value !== null) {
-          desc = `= ${f.new_value}`;
-        } else if (f.old_value !== null && f.new_value !== null) {
-          desc = `changed from ${f.old_value} to ${f.new_value}`;
-        } else if (f.old_value !== null && f.new_value === null) {
-          desc = `(was ${f.old_value})`;
-        }
-        li.innerHTML = `${f.name} ${desc} - Mechanism: ${f.mechanism} - Purpose: ${f.purpose} <button class="copy-btn" data-copy="${f.mechanism} - ${f.purpose}">Copy</button>`;
+        if (f.old_value === null && f.new_value !== null) {{
+          desc = `= ${{f.new_value}}`;
+        }} else if (f.old_value !== null && f.new_value !== null) {{
+          desc = `changed from ${{f.old_value}} to ${{f.new_value}}`;
+        }} else if (f.old_value !== null && f.new_value === null) {{
+          desc = `(was ${{f.old_value}})`;
+        }}
+        li.innerHTML = `${{f.name}} ${{desc}} - Mechanism: ${{f.mechanism}} - Purpose: ${{f.purpose}} <button class="copy-btn" data-copy="${{f.mechanism}} - ${{f.purpose}}">Copy</button>`;
         ul.appendChild(li);
-      });
+      }});
       ul.style.maxHeight = ul.scrollHeight + 'px';
       card.appendChild(ul);
-    });
+    }});
     reportContent.appendChild(card);
-  });
-}
+  }});
+}}
 
-function setupObserver() {
-  if (observer) {
+function setupObserver() {{
+  if (observer) {{
     observer.disconnect();
-  }
+  }}
   const maxPages = Math.ceil(currentData.length / itemsPerPage);
-  if (currentPage + 1 < maxPages) {
+  if (currentPage + 1 < maxPages) {{
     const sentinel = document.createElement('div');
     sentinel.id = 'sentinel';
     reportContent.appendChild(sentinel);
-    observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
+    observer = new IntersectionObserver(entries => {{
+      if (entries[0].isIntersecting) {{
         currentPage++;
         loadReportPage(currentData, currentPage);
-        if (currentPage + 1 >= maxPages) {
+        if (currentPage + 1 >= maxPages) {{
           observer.unobserve(sentinel);
           sentinel.remove();
-        }
-      }
-    }, { threshold: 0 });
+        }}
+      }}
+    }}, {{ threshold: 0 }});
     observer.observe(sentinel);
-  }
-}
+  }}
+}}
 
-function debounce(func, delay) {
+function debounce(func, delay) {{
   let timeout;
-  return (...args) => {
+  return (...args) => {{
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), delay);
-  };
-}
+  }};
+}}
 
-function applyFilters() {
+function applyFilters() {{
   let filtered = globalData.report;
   const cat = document.getElementById('categoryFilter').value;
   const query = document.getElementById('searchInput').value.toLowerCase();
   const sortBy = document.getElementById('sortSelect').value;
 
-  if (cat || query) {
-    filtered = globalData.report.map(commit => {
-      const grouped = {};
-      Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+  if (cat || query) {{
+    filtered = globalData.report.map(commit => {{
+      const grouped = {{}};
+      Object.entries(commit.grouped).forEach(([groupKey, flags]) => {{
         const [typ, category] = groupKey.split('_');
         if (cat && category !== cat) return;
         let matches = flags;
-        if (query) {
+        if (query) {{
           matches = flags.filter(f =>
             f.name.toLowerCase().includes(query) ||
             f.mechanism.toLowerCase().includes(query) ||
             f.purpose.toLowerCase().includes(query)
           );
-        }
+        }}
         if (matches.length > 0) grouped[groupKey] = matches;
-      });
-      return Object.keys(grouped).length ? { ...commit, grouped } : null;
-    }).filter(Boolean);
-  }
+      }});
+      return Object.keys(grouped).length ? {{ ...commit, grouped }} : null;
+    }}).filter(Boolean);
+  }}
 
-  filtered.forEach(commit => {
-    Object.values(commit.grouped).forEach(flags => {
-      flags.sort((a, b) => {
+  filtered.forEach(commit => {{
+    Object.values(commit.grouped).forEach(flags => {{
+      flags.sort((a, b) => {{
         if (sortBy === 'freq') return b.freq - a.freq;
         return a.name.localeCompare(b.name);
-      });
-    });
-  });
+      }});
+    }});
+  }});
 
   reportContent.innerHTML = '';
   currentPage = 0;
   currentData = filtered;
-  if (currentData.length === 0) {
-    reportContent.innerHTML = `<p>No recent flag changes in the last ${globalData.days} days.</p>`;
-  } else {
+  if (currentData.length === 0) {{
+    reportContent.innerHTML = `No recent flag changes in the last ${{globalData.days}} days.`;
+  }} else {{
     loadReportPage(currentData, currentPage);
     setupObserver();
-  }
-}
+  }}
+}}
 
 fetch('FFlag_Report.json')
   .then(response => response.json())
-  .then(data => {
+  .then(data => {{
     globalData = data;
     document.getElementById('flags-added').textContent = data.added_total;
     document.getElementById('flags-changed').textContent = data.changed_total;
@@ -983,39 +981,38 @@ fetch('FFlag_Report.json')
 
     // Populate summary table
     const summaryTable = document.getElementById('summaryTable');
-    let tableHtml = '<thead><tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th></tr></thead><tbody>';
-    for (let cat in data.summary) {
+    let tableHtml = '<tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th></tr>';
+    for (let cat in data.summary) {{
       const s = data.summary[cat];
-      tableHtml += `<tr><td>${cat}</td><td>${s.added}</td><td>${s.changed}</td><td>${s.removed}</td></tr>`;
-    }
-    tableHtml += '</tbody>';
+      tableHtml += `<tr><td>${{cat}}</td><td>${{s.added}}</td><td>${{s.changed}}</td><td>${{s.removed}}</td></tr>`;
+    }}
     summaryTable.innerHTML = tableHtml;
 
     loadingSpinner.style.display = 'none';
     applyFilters();
 
     // Event delegation for collapsibles and copy
-    reportContent.addEventListener('click', e => {
-      if (e.target.tagName === 'H3') {
+    reportContent.addEventListener('click', e => {{
+      if (e.target.tagName === 'H3') {{
         const ul = e.target.nextElementSibling;
-        if (ul && ul.tagName === 'UL') {
+        if (ul && ul.tagName === 'UL') {{
           const expanded = e.target.getAttribute('aria-expanded') === 'true';
           ul.style.maxHeight = expanded ? '0px' : ul.scrollHeight + 'px';
           e.target.setAttribute('aria-expanded', !expanded);
-        }
-      } else if (e.target.classList.contains('copy-btn')) {
-        navigator.clipboard.writeText(e.target.dataset.copy).then(() => {
+        }}
+      }} else if (e.target.classList.contains('copy-btn')) {{
+        navigator.clipboard.writeText(e.target.dataset.copy).then(() => {{
           e.target.textContent = 'Copied!';
           setTimeout(() => e.target.textContent = 'Copy', 2000);
-        });
-      }
-    });
-  })
-  .catch(error => {
+        }});
+      }}
+    }});
+  }})
+  .catch(error => {{
     console.error('Error loading report:', error);
     loadingSpinner.style.display = 'none';
-    reportContent.innerHTML = '<p>Error loading report.</p>';
-  });
+    reportContent.innerHTML = 'Error loading report.';
+  }});
 
 // Filters
 document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
@@ -1023,80 +1020,78 @@ document.getElementById('categoryFilter').addEventListener('change', applyFilter
 document.getElementById('sortSelect').addEventListener('change', applyFilters);
 
 // Export
-document.getElementById('exportCSV').addEventListener('click', () => {
+document.getElementById('exportCSV').addEventListener('click', () => {{
   if (!globalData) return;
   let csv = 'Commit,Type,Category,Flag,Old Value,New Value,Mechanism,Purpose,Frequency\\n';
-  globalData.report.forEach(commit => {
-    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+  globalData.report.forEach(commit => {{
+    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {{
       const [typ, cat] = groupKey.split('_');
-      flags.forEach(f => {
-        csv += `"${commit.header}","${typ}","${cat}","${f.name}","${f.old_value || ''}","${f.new_value || ''}","${f.mechanism}","${f.purpose}","${f.freq}"\\n`;
-      });
-    });
-  });
+      flags.forEach(f => {{
+        csv += `"${{commit.header}}","${{typ}}","${{cat}}","${{f.name}}","${{f.old_value || ''}}","${{f.new_value || ''}}","${{f.mechanism}}","${{f.purpose}}","${{f.freq}}"\\n`;
+      }});
+    }});
+  }});
   download('fflag_report.csv', csv);
-});
+}});
 
-document.getElementById('exportJSON').addEventListener('click', () => {
+document.getElementById('exportJSON').addEventListener('click', () => {{
   if (!globalData) return;
   download('fflag_report.json', JSON.stringify(globalData));
-});
+}});
 
-function download(filename, text) {
+function download(filename, text) {{
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([text], {type: 'text/plain'}));
+  a.href = URL.createObjectURL(new Blob([text], {{type: 'text/plain'}}));
   a.download = filename;
   a.click();
-}
+}}
 
 // Polling for updates
-setInterval(() => {
-  fetch('FFlag_Report.json?ts=' + Date.now()).then(r => r.json()).then(newData => {
-    if (newData.last_run !== globalData?.last_run) {
+setInterval(() => {{
+  fetch('FFlag_Report.json?ts=' + Date.now()).then(r => r.json()).then(newData => {{
+    if (newData.last_run !== globalData?.last_run) {{
       location.reload();
-    }
-  }).catch(() => {});
-}, 60000);
+    }}
+  }}).catch(() => {{}});
+}}, 60000);
 
 // Service Worker
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator) {{
   navigator.serviceWorker.register('/sw.js');
-}
+}}
 </script>
 </body>
 </html>
 """
     index_html.write_text(html_content, encoding="utf-8")
-
     sw_content = """
 self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open('fflag-cache').then(cache => {
-      return cache.addAll([
-        '/',
-        '/index.html',
-        '/FFlag_Report.json',
-        '/history.json'
-      ]);
-    })
-  );
+e.waitUntil(
+caches.open('fflag-cache').then(cache => {
+return cache.addAll([
+'/',
+'/index.html',
+'/FFlag_Report.json',
+'/history.json'
+]);
+})
+);
 });
-
 self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request).then(response => {
-      return response || fetch(e.request);
-    })
-  );
+e.respondWith(
+caches.match(e.request).then(response => {
+return response || fetch(e.request);
+})
+);
 });
 """
     sw_js.write_text(sw_content, encoding="utf-8")
     log.info(f"Landing page written: {index_html}")
     log.info(f"Service worker written: {sw_js}")
 
-# ===============================
+# ============================
 # Main Execution
-# ===============================
+# ============================
 async def main() -> None:
     try:
         log.info("=" * 80)
@@ -1116,7 +1111,7 @@ async def main() -> None:
         DIFF_CACHE_FILE.write_text(json.dumps(diff_cache, indent=2), encoding="utf-8")
         all_flags = set()
         for _, changes in report:
-            for typ, _, flag, *_ in changes:
+            for typ, cat, flag, *_ in changes:
                 all_flags.add(flag)
         if all_flags:
             await generate_flag_info_batch(list(all_flags))
