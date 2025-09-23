@@ -4,6 +4,7 @@ import subprocess
 import datetime
 import json
 import html
+import shutil
 from pathlib import Path
 from zoneinfo import ZoneInfo
 import asyncio
@@ -35,13 +36,13 @@ CACHE_FILE = OUTPUT_DIR / "fflag_cache.json"
 DIFF_CACHE_FILE = OUTPUT_DIR / "diff_cache.json"
 HISTORY_FILE = OUTPUT_DIR / "history.json"
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker"
-LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 30
 HISTORY_DAYS = 90
 AI_BATCH_SIZE = 10  # Lowered for better rate limit handling
 AI_BATCH_DELAY = 5.0  # seconds
 MAX_RETRIES = 3
+MAX_REPORT_COMMITS = 50
 DEBUG = True
 
 # ============================
@@ -124,49 +125,42 @@ def format_value(v: any) -> str:
         return str(v).capitalize()
     return str(v)
 
-# ============================
-# Repository Management
-# ============================
-def ensure_repo() -> None:
-    try:
-        shallow_since = (datetime.datetime.now() - datetime.timedelta(days=DAYS + 15)).strftime("%Y-%m-%d")  # Buffer for safety
-        if LOCAL_CLONE.exists():
-            log.info("Updating existing repository...")
-            try:
-                run_cmd("git fetch --all", cwd=LOCAL_CLONE, timeout=300)
-                run_cmd("git reset --hard origin/main", cwd=LOCAL_CLONE)
-            except Exception as e:
-                log.warning(f"⚠ Warning: fetch failed, skipping update. Error: {e}")
-        else:
-            LOCAL_CLONE.parent.mkdir(parents=True, exist_ok=True)  # Ensure nested paths
-            success = False
-            for attempt in range(1, MAX_RETRIES + 1):
-                log.info(f"Cloning repository (attempt {attempt}/{MAX_RETRIES})...")
-                try:
-                    run_cmd(f"git clone --shallow-since='{shallow_since}' {REPO_URL} {LOCAL_CLONE.name}", cwd=LOCAL_CLONE.parent, timeout=600)  # High timeout for clone
-                    success = True
-                    break
-                except Exception as e:
-                    log.warning(f"Clone attempt {attempt} failed: {e}")
-                    time.sleep(5)  # Brief backoff
-            if not success:
-                raise RuntimeError("Failed to clone repository after maximum retries.")
-            log.info("Clone successful.")
-    except Exception as e:
-        log.error(f"Repo ensure failed: {e}")
-        raise
+# Check if cache path is provided via env
+cache_path = Path(os.environ.get("FFLAG_REPO_CACHE", ".fflag-repo-cache"))
 
-def get_commits(days=DAYS) -> list[str]:
+def ensure_manifest_repo(repo_url="https://github.com/MaximumADHD/Roblox-FFlag-Tracker.git"):
+    if cache_path.exists() and (cache_path / ".git").exists():
+        log.info(f"Using cached manifest repo at {cache_path}")
+        # Try pulling latest changes
+        try:
+            subprocess.run(
+                ["git", "-C", str(cache_path), "pull", "--ff-only"],
+                check=True
+            )
+            return cache_path
+        except subprocess.CalledProcessError:
+            log.warning("Cached repo pull failed, recloning...")
+            shutil.rmtree(cache_path)
+
+    # Clone fresh if cache missing/broken
+    log.info("Cloning fresh manifest repo...")
+    subprocess.run(
+        ["git", "clone", "--depth=1", repo_url, str(cache_path)],
+        check=True
+    )
+    return cache_path
+
+def get_commits(days=DAYS, manifest_repo=None) -> list[str]:
     since = (datetime.datetime.now() - datetime.timedelta(days=days)).strftime("%Y-%m-%d")
-    commits = run_cmd(f"git log --since='{since}' --pretty=format:%H -- {TARGET_FILE}", cwd=LOCAL_CLONE)
+    commits = run_cmd(f"git log --since='{since}' --pretty=format:%H -- {TARGET_FILE}", cwd=manifest_repo)
     return commits.splitlines() if commits else []
 
 # ============================
 # Diff Utilities
 # ============================
-def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
-    header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
-    diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=LOCAL_CLONE)
+def build_diff_for_commit_old(commit_hash: str, manifest_repo=None) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
+    header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=manifest_repo)
+    diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=manifest_repo)
     added_dict = {}
     removed_dict = {}
     for line in diff.splitlines():
@@ -205,7 +199,7 @@ def build_diff_for_commit_old(commit_hash: str) -> tuple[str, list[tuple[str, an
             removed.append((k, removed_dict[k]))
     return header, added, changed, removed
 
-async def async_build_diff_for_commit(commit_hash: str, diff_cache: dict) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
+async def async_build_diff_for_commit(commit_hash: str, diff_cache: dict, manifest_repo=None) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
     if commit_hash in diff_cache:
         cached = diff_cache[commit_hash]
         added = [(f, v) for f, v in cached.get('added', [])]
@@ -215,16 +209,16 @@ async def async_build_diff_for_commit(commit_hash: str, diff_cache: dict) -> tup
 
     def sync_compute():
         try:
-            prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=LOCAL_CLONE)
+            prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=manifest_repo)
             prev_json = json.loads(prev_content)
         except Exception:
             prev_json = {}
-        curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=LOCAL_CLONE)
+        curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=manifest_repo)
         try:
             curr_json = json.loads(curr_content)
         except json.JSONDecodeError:
-            return build_diff_for_commit_old(commit_hash)
-        header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=LOCAL_CLONE)
+            return build_diff_for_commit_old(commit_hash, manifest_repo)
+        header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=manifest_repo)
         added = []
         changed = []
         removed = []
@@ -248,8 +242,8 @@ async def async_build_diff_for_commit(commit_hash: str, diff_cache: dict) -> tup
     }
     return header, added, changed, removed
 
-async def build_report(commits: list[str], diff_cache: dict) -> tuple[list, dict, dict]:
-    tasks = [async_build_diff_for_commit(c, diff_cache) for c in commits]
+async def build_report(commits: list[str], diff_cache: dict, manifest_repo=None) -> tuple[list, dict, dict]:
+    tasks = [async_build_diff_for_commit(c, diff_cache, manifest_repo) for c in commits]
     results = await asyncio.gather(*tasks)
     report = []
     summary = {}
@@ -300,7 +294,7 @@ FLAG_INFO = json.loads(CACHE_FILE.read_text(encoding="utf-8")) if CACHE_FILE.exi
 FLAG_SCHEMA = {
     "type": "object",
     "patternProperties": {
-        "^FFlag[A-Za-z0-9_]+$": {
+        "^(FFlag|DFFlag|DFInt|DFLog|SFFlag)[A-Za-z0-9_]+$": {
             "type": "object",
             "properties": {
                 "mechanism": {"type": "string"},
@@ -325,7 +319,8 @@ def extract_and_validate_json(text: str) -> dict:
     try:
         json_validate(instance=data, schema=FLAG_SCHEMA)
     except ValidationError as ve:
-        raise json.JSONDecodeError(f"Schema validation failed: {ve}", text, 0)
+        log.warning(f"Schema issue: {ve}. Skipping bad keys.")
+        data = {k:v for k,v in data.items() if re.match(r"^(FFlag|DFFlag|DFInt|DFLog|SFFlag)[A-Za-z0-9_]+$", k)}
 
     return data
 
@@ -422,34 +417,21 @@ async def generate_flag_info_batch(flags: list[str]) -> None:
     if not new_flags:
         return
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    for i in range(0, len(new_flags), AI_BATCH_SIZE):
-        batch = new_flags[i:i + AI_BATCH_SIZE]
-        try:
-            batch_result = await ai_enrich_flags_batch(batch)
-            for f in batch:
-                info = batch_result.get(f, {})
-                FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
-        except RateLimitError:
-            logging.warning("⚠ Rate limit hit. Skipping enrichment this run.")
+    batches = [new_flags[i:i + AI_BATCH_SIZE] for i in range(0, len(new_flags), AI_BATCH_SIZE)]
+    tasks = [ai_enrich_flags_batch(batch) for batch in batches]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    for batch, result in zip(batches, results):
+        if isinstance(result, Exception):
+            log.error(f"Batch enrichment failed: {result}")
             for flag in batch:
                 FLAG_INFO[flag] = {
-                    "mechanism": "N/A (rate-limited)",
-                    "purpose": "N/A (try again next run)"
+                    "mechanism": "N/A (error)",
+                    "purpose": "N/A (error)"
                 }
-        except Exception as e:
-            logging.error(f"AI enrichment failed for batch {batch}: {e}")
-            # Fall back to individual
-            for flag in batch:
-                try:
-                    single_result = await ai_enrich_flags_batch([flag])
-                    info = single_result.get(flag, {})
-                    FLAG_INFO[flag] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
-                except Exception as se:
-                    logging.error(f"Individual enrichment failed for {flag}: {se}")
-                    FLAG_INFO[flag] = {
-                        "mechanism": "N/A (error)",
-                        "purpose": "N/A (error)"
-                    }
+        else:
+            for f in batch:
+                info = result.get(f, {})
+                FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
         await asyncio.sleep(AI_BATCH_DELAY)
     CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
 
@@ -596,8 +578,18 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
             "header": header,
             "grouped": grouped
         })
+    # Limit report to last MAX_REPORT_COMMITS
+    json_data["report"] = json_data["report"][-MAX_REPORT_COMMITS:]
+    # Save full for backward compatibility
     OUTPUT_JSON.write_text(json.dumps(json_data, indent=2), encoding="utf-8")
-    log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}")
+    # Save summary and commits separately
+    summary_data = json_data.copy()
+    commits_data = summary_data.pop("report")
+    SUMMARY_JSON = OUTPUT_DIR / "summary.json"
+    SUMMARY_JSON.write_text(json.dumps(summary_data, indent=2), encoding="utf-8")
+    COMMITS_JSON = OUTPUT_DIR / "commits.json"
+    COMMITS_JSON.write_text(json.dumps(commits_data, indent=2), encoding="utf-8")
+    log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}, {SUMMARY_JSON}, {COMMITS_JSON}")
 
 # ============================
 # Landing Page (Particles + Collapsibles JS)
@@ -1083,7 +1075,7 @@ function applyFilters() {{
   }}
 }}
 
-fetch('FFlag_Report.json')
+fetch('summary.json')
   .then(response => response.json())
   .then(data => {{
     globalData = data;
@@ -1110,6 +1102,11 @@ fetch('FFlag_Report.json')
     }}
     summaryTable.innerHTML = tableHtml;
 
+    return fetch('commits.json');
+  }})
+  .then(response => response.json())
+  .then(commits => {{
+    globalData.report = commits;
     loadingSpinner.style.display = 'none';
     applyFilters();
 
@@ -1158,7 +1155,8 @@ document.getElementById('exportCSV').addEventListener('click', () => {{
 
 document.getElementById('exportJSON').addEventListener('click', () => {{
   if (!globalData) return;
-  download('fflag_report.json', JSON.stringify(globalData));
+  const fullData = {{...globalData, report: globalData.report}};
+  download('fflag_report.json', JSON.stringify(fullData));
 }});
 
 function download(filename, text) {{
@@ -1170,7 +1168,7 @@ function download(filename, text) {{
 
 // Polling for updates
 setInterval(() => {{
-  fetch('FFlag_Report.json?ts=' + Date.now()).then(r => r.json()).then(newData => {{
+  fetch('summary.json?ts=' + Date.now()).then(r => r.json()).then(newData => {{
     if (newData.last_run !== globalData?.last_run) {{
       location.reload();
     }}
@@ -1193,7 +1191,8 @@ caches.open('fflag-cache').then(cache => {
 return cache.addAll([
 '/',
 '/index.html',
-'/FFlag_Report.json',
+'/summary.json',
+'/commits.json',
 '/history.json'
 ]);
 })
@@ -1220,8 +1219,8 @@ async def main() -> None:
         log.info("=" * 80)
         log.info("Roblox Client FFlag Tracker (Integrated Categories + Interpolation)")
         log.info("=" * 80)
-        ensure_repo()
-        commits = get_commits(DAYS)
+        manifest_repo = ensure_manifest_repo()
+        commits = get_commits(DAYS, manifest_repo)
         diff_cache = json.loads(DIFF_CACHE_FILE.read_text(encoding="utf-8")) if DIFF_CACHE_FILE.exists() else {}
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)  # Fix: Create output dir early to avoid write errors
         if not commits:
@@ -1230,14 +1229,14 @@ async def main() -> None:
             summary = {}
             flag_changes = {}
         else:
-            report, summary, flag_changes = await build_report(commits, diff_cache)
+            report, summary, flag_changes = await build_report(commits, diff_cache, manifest_repo)
         DIFF_CACHE_FILE.write_text(json.dumps(diff_cache, indent=2), encoding="utf-8")
         all_flags = set(flag for _, changes in report for _, _, flag, *_ in changes)
         if all_flags:
             await generate_flag_info_batch(list(all_flags))
         # Prune cache
-        history_commits = get_commits(HISTORY_DAYS)
-        _, _, flag_changes_history = await build_report(history_commits, diff_cache)
+        history_commits = get_commits(HISTORY_DAYS, manifest_repo)
+        _, _, flag_changes_history = await build_report(history_commits, diff_cache, manifest_repo)
         recent_flags = set(flag_changes_history.keys())
         prune_list = [f for f in list(FLAG_INFO.keys()) if f not in recent_flags]
         for f in prune_list:
