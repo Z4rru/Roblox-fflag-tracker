@@ -32,7 +32,7 @@ LOCAL_CLONE = WORKSPACE / "Roblox-FFlag-Tracker"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 60
 HISTORY_DAYS = 90
-AI_BATCH_SIZE = 5  # Lowered for better rate limit handling
+AI_BATCH_SIZE = 3  # Lowered for better rate limit handling
 MAX_RETRIES = 3
 DEBUG = True
 
@@ -287,23 +287,34 @@ async def fetch_ai_batch(batch: list[str]) -> None:
         for f in batch:
             FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
         return
-    prompt = f'Explain the following Roblox FFlags. Respond only with a JSON object where each key is a flag name from the list, and the value is an object with "mechanism" (brief technical explanation) and "purpose" (what it aims to achieve in Roblox) keys.\nFlags: {json.dumps(batch)}'
+    system_prompt = "You are a JSON generator. Always output valid JSON only."
+    user_prompt = f'Return a JSON object where each key is a flag name from the list, and the value is an object with "mechanism" (brief technical explanation) and "purpose" (what it aims to achieve in Roblox) keys.\nFlags: {json.dumps(batch)}'
     for attempt in range(MAX_RETRIES):
         try:
             client = AsyncOpenAI(api_key=get_next_api_key())
             response = await client.chat.completions.create(
                 model="gpt-4o-mini",
-                messages=[{"role": "user", "content": prompt}],
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
                 temperature=0.3
             )
-            content = response.choices[0].message.content.strip()
+            text = response.choices[0].message.content.strip()
+            # Extract JSON block
+            json_start = text.find("{")
+            json_end = text.rfind("}") + 1
+            if json_start == -1 or json_end == 0:
+                raise json.JSONDecodeError("No JSON block found", text, 0)
+            json_str = text[json_start:json_end]
             try:
-                data = json.loads(content)
+                data = json.loads(json_str)
                 for f in batch:
                     info = data.get(f, {})
                     FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
             except json.JSONDecodeError as je:
                 log.error(f"Failed to parse AI response as JSON: {je}")
+                log.error(f"Response content (first 200 chars): {text[:200]}")
                 for f in batch:
                     FLAG_INFO[f] = {"mechanism": "Unknown", "purpose": "Unknown"}
             CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
