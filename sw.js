@@ -1,28 +1,22 @@
-const CACHE_NAME = 'fflag-cache-v1';
-self.addEventListener('install', e => {
-    e.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-            return cache.addAll([
-                '/',
-                '/index.html',
-                '/summary.json',
-                '/commits.json',
-                '/history.json'
-            ]);
-        })
+
+const CACHE_NAME = "fflag-cache-v1";
+const URLS_TO_CACHE = [
+    "./",
+    "index.html",
+    "summary.json",
+    "commits.json",
+    "history.json",
+    "assets/app.js"
+];
+
+self.addEventListener("install", event => {
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(cache => cache.addAll(URLS_TO_CACHE))
     );
 });
-self.addEventListener('activate', e => {
-    e.waitUntil(
-        caches.keys().then(keys => Promise.all(
-            keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
-        ))
-    );
-});
-self.addEventListener('fetch', e => {
-    e.respondWith(
-        caches.match(e.request).then(response => {
-            return response || fetch(e.request);
-        })
+
+self.addEventListener("fetch", event => {
+    event.respondWith(
+        caches.match(event.request).then(response => response || fetch(event.request))
     );
 });

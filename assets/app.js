@@ -1,10 +1,12 @@
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let resizeTimeout, animationId, particles = [];
+
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
+
 function generateParticles() {
     particles = Array.from({length: 30}, () => ({
         x: Math.random() * canvas.width,
@@ -12,9 +14,10 @@ function generateParticles() {
         r: Math.random() * 2 + 1,
         dx: (Math.random() - 0.5) / 2,
         dy: (Math.random() - 0.5) / 2,
-        color: `rgba(${Math.floor(Math.random() * 50 + 200)}, 255, 255, 0.15)`,
+        color: `rgba(${Math.floor(Math.random() * 50 + 200)}, 255, 255, 0.15)`
     }));
 }
+
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => {
@@ -29,28 +32,34 @@ function animateParticles() {
     });
     animationId = requestAnimationFrame(animateParticles);
 }
+
 function stopAnimation() {
     cancelAnimationFrame(animationId);
 }
+
 resizeCanvas();
 generateParticles();
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     animateParticles();
 }
+
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(resizeCanvas, 200);
 });
+
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) stopAnimation();
     else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animateParticles();
 });
+
 document.getElementById('themeToggle').addEventListener('click', () => {
     document.body.classList.toggle('light');
     if (document.body.classList.contains('high-contrast')) {
         document.body.classList.remove('high-contrast');
     }
 });
+
 document.getElementById('contrastToggle').addEventListener('click', () => {
     document.body.classList.toggle('high-contrast');
     if (document.body.classList.contains('light')) {
@@ -64,6 +73,7 @@ document.getElementById('contrastToggle').addEventListener('click', () => {
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animateParticles();
     }
 });
+
 fetch("history.json").then(r => r.json()).then(data => {
     if (data.length === 0) {
         document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
@@ -94,12 +104,14 @@ fetch("history.json").then(r => r.json()).then(data => {
     console.error('Error loading history:', error);
     document.getElementById("trendChart").parentNode.innerHTML = '<p class="error-message">Error loading history data.</p>';
 });
+
 const reportContent = document.getElementById('reportContent');
 const loadingSpinner = document.getElementById('loadingSpinner');
 let globalData = null;
 let currentData = [];
 let virtualItems = [];
 const itemsPerPage = 10;
+
 function createCommitCard(commit) {
     const card = document.createElement('div');
     card.classList.add('commit-card');
@@ -148,6 +160,7 @@ function createCommitCard(commit) {
     });
     return card;
 }
+
 function loadVirtualItems(startIndex, endIndex) {
     const fragment = document.createDocumentFragment();
     const itemsToRender = virtualItems.slice(startIndex, endIndex);
@@ -159,10 +172,11 @@ function loadVirtualItems(startIndex, endIndex) {
     });
     reportContent.appendChild(fragment);
 }
+
 function updateVirtualScroll() {
     const scrollTop = reportContent.scrollTop;
     const containerHeight = reportContent.clientHeight;
-    const totalHeight = virtualItems.length * 100;
+    const totalHeight = virtualItems.length * 100; // Estimate item height
     reportContent.style.height = `${totalHeight}px`;
     const startIndex = Math.floor(scrollTop / 100);
     const endIndex = Math.min(startIndex + Math.ceil(containerHeight / 100) + 1, virtualItems.length);
@@ -171,6 +185,7 @@ function updateVirtualScroll() {
     const paddingTop = startIndex * 100;
     reportContent.style.paddingTop = `${paddingTop}px`;
 }
+
 function setupVirtualScroll(data) {
     virtualItems = data.map(commit => ({ commit, element: null }));
     reportContent.innerHTML = '';
@@ -179,6 +194,7 @@ function setupVirtualScroll(data) {
     updateVirtualScroll();
     reportContent.addEventListener('scroll', updateVirtualScroll);
 }
+
 function debounce(func, delay) {
     let timeout;
     return (...args) => {
@@ -186,6 +202,7 @@ function debounce(func, delay) {
         timeout = setTimeout(() => func(...args), delay);
     };
 }
+
 function applyFilters() {
     if (!globalData) {
         reportContent.innerHTML = '<p class="error-message">Error: Data not loaded.</p>';
@@ -232,6 +249,7 @@ function applyFilters() {
         setupVirtualScroll(currentData);
     }
 }
+
 async function loadReportData() {
     try {
         const summaryResponse = await fetch('summary.json');
@@ -290,6 +308,7 @@ async function loadReportData() {
         reportContent.innerHTML = '<p class="error-message">Error loading report data. Please try again later.</p>';
     }
 }
+
 loadReportData();
 document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
 document.getElementById('categoryFilter').addEventListener('change', applyFilters);
@@ -328,7 +347,7 @@ setInterval(() => {
     }).catch(() => {});
 }, 60000);
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(error => {
+    navigator.serviceWorker.register('sw.js').catch(error => {
         console.error('Service Worker registration failed:', error);
     });
 }
