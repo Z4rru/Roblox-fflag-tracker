@@ -1311,17 +1311,49 @@ function loadVirtualItems(startIndex, endIndex) {
     reportContent.appendChild(fragment);
 }
 
+function measureCardHeight(card) {
+    // Temporarily append to DOM to measure height
+    card.style.position = 'absolute';
+    card.style.visibility = 'hidden';
+    document.body.appendChild(card);
+    const height = card.offsetHeight;
+    document.body.removeChild(card);
+    card.style.position = '';
+    card.style.visibility = '';
+    return height;
+}
+
 function updateVirtualScroll() {
     const scrollTop = reportContent.scrollTop;
     const containerHeight = reportContent.clientHeight;
-    const totalHeight = virtualItems.length * 100; // Estimate item height
+    // Calculate total height by measuring each card
+    let totalHeight = 0;
+    const cardHeights = virtualItems.map(item => {
+        if (!item.element) {
+            item.element = createCommitCard(item.commit);
+        }
+        const height = measureCardHeight(item.element);
+        item.height = height; // Store height for reuse
+        return height;
+    });
+    totalHeight = cardHeights.reduce((sum, h) => sum + h, 0);
     reportContent.style.height = `${totalHeight}px`;
-    const startIndex = Math.floor(scrollTop / 100);
-    const endIndex = Math.min(startIndex + Math.ceil(containerHeight / 100) + 1, virtualItems.length);
+    let startIndex = 0;
+    let accumulatedHeight = 0;
+    for (let i = 0; i < cardHeights.length; i++) {
+        if (accumulatedHeight + cardHeights[i] > scrollTop) {
+            startIndex = i;
+            break;
+        }
+        accumulatedHeight += cardHeights[i];
+    }
+    const endIndex = Math.min(
+        startIndex + Math.ceil(containerHeight / Math.min(...cardHeights)) + 1,
+        virtualItems.length
+    );
     reportContent.innerHTML = '';
     loadVirtualItems(startIndex, endIndex);
-    const paddingTop = startIndex * 100;
-    reportContent.style.paddingTop = `${paddingTop}px`;
+    reportContent.style.paddingTop = `${accumulatedHeight}px`;
 }
 
 function setupVirtualScroll(data) {
