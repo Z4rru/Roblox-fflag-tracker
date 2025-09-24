@@ -1448,7 +1448,7 @@ async function loadReportData() {
         summaryTable.innerHTML = tableHtml;
         const commitsResponse = await fetch('commits.json');
         if (!commitsResponse.ok) throw new Error('Failed to load commits.json');
-        globalData.report = await commitsResponse.json();
+        globalData.report = (await commitsResponse.json()) || [];
         loadingSpinner.style.display = 'none';
         applyFilters();
         reportContent.addEventListener('click', e => {
