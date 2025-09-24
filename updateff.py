@@ -160,6 +160,17 @@ def format_value(v: any) -> str:
     return str(v)
 
 cache_path = Path(os.environ.get("FFLAG_REPO_CACHE", ".fflag-repo-cache"))
+def ensure_assets():
+    """Copy the assets folder into output/assets so it gets published to GitHub Pages."""
+    src = "assets"
+    dst = os.path.join("output", "assets")
+    if os.path.exists(dst):
+        shutil.rmtree(dst)
+    if os.path.exists(src):
+        shutil.copytree(src, dst)
+        print(f"[INFO] Copied assets/ → {dst}")
+    else:
+        print("[WARN] assets/ folder not found, skipping copy")
 
 def ensure_manifest_repo(repo_url: str = REPO_URL) -> Path:
     if not re.match(r"^https://github\.com/[A-Za-z0-9_-]+/[A-Za-z0-9_-]+\.git$", repo_url):
@@ -1222,6 +1233,7 @@ async def main() -> None:
         update_history(added, changed, removed, last_run)
         export_reports(report, summary, flag_changes)
         ensure_landing_page(added, changed, removed, last_run)
+        ensure_assets()
         if os.getenv('PUBLISH_GH', 'false').lower() == 'true':
             publish_output_to_github()
         log.info("All done! Reports and dashboard ready.")
