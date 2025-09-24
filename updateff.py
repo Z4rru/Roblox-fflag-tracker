@@ -16,6 +16,7 @@ import random
 import re
 from collections import defaultdict
 from filelock import FileLock
+import requests
 
 try:
     from jsonschema import validate as json_validate, ValidationError
@@ -84,13 +85,13 @@ def load_api_keys(env_var: str) -> list[str]:
         log.warning(f"⚠ No {env_var} found.")
     return keys
 
-OPENAI_KEYS = load_api_keys("OPENAI_API_KEYS")
+OPENAI_API_KEY = load_api_keys("OPENAI_API_KEYS")
 GEMINI_KEYS = load_api_keys("GEMINI_API_KEYS")
-if not OPENAI_KEYS and not GEMINI_KEYS and not args.dry_run:
+if not OPENAI_API_KEY and not GEMINI_KEYS and not args.dry_run:
     log.warning("⚠ No API keys found. AI enrichment will be skipped.")
 
 def get_next_api_key(service: str) -> str | None:
-    keys = OPENAI_KEYS if service == "openai" else GEMINI_KEYS
+    keys = OPENAI_API_KEY if service == "openai" else GEMINI_KEYS
     if not keys:
         return None
     lock = FileLock(str(KEY_INDEX_FILE) + ".lock", timeout=10)
@@ -307,6 +308,46 @@ def update_history(added: int, changed: int, removed: int, last_run: str) -> Non
     HISTORY_FILE.write_text(json.dumps(history, indent=2), encoding="utf-8")
 
 # ============================
+# JSON Parsing and API Call Utilities
+# ============================
+def safe_json_parse(raw: str):
+    """Try parsing JSON, attempt simple repairs if invalid."""
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        # Remove markdown fences/backticks
+        cleaned = re.sub(r"^```(?:json)?|```$", "", raw.strip(), flags=re.MULTILINE).strip()
+        # Remove trailing commas before ] or }
+        cleaned = re.sub(r",\s*([}\]])", r"\1", cleaned)
+        try:
+            return json.loads(cleaned)
+        except json.JSONDecodeError as e:
+            print(f"[WARN] JSON still invalid after cleanup: {e}")
+            return None
+
+def call_openai_with_backoff(payload, max_retries=3):
+    url = "https://api.openai.com/v1/chat/completions"
+    headers = {"Authorization": f"Bearer {OPENAI_API_KEY}"}
+    for attempt in range(max_retries):
+        r = requests.post(url, headers=headers, json=payload)
+        if r.status_code == 200:
+            data = r.json()
+            return data["choices"][0]["message"]["content"]
+        if r.status_code == 429:
+            retry_after = int(r.headers.get("retry-after", "5"))
+            # Don’t stall for ridiculous retry-after values
+            if retry_after > 60:
+                print(f"[ERROR] Rate limited. Retry-after={retry_after}s too long. Aborting.")
+                return None
+            wait = min(2 ** attempt, retry_after)
+            print(f"[WARN] 429 Too Many Requests. Backing off {wait}s (attempt {attempt+1})...")
+            time.sleep(wait)
+            continue
+        print(f"[ERROR] OpenAI call failed: {r.status_code} {r.text}")
+        return None
+    return None
+
+# ============================
 # AI Enrichment
 # ============================
 try:
@@ -339,7 +380,9 @@ def extract_and_validate_json(text: str) -> dict:
     if not match:
         raise json.JSONDecodeError("No valid JSON object found", text, 0)
     try:
-        data = json.loads(match.group(0))
+        data = safe_json_parse(match.group(0))
+        if data is None:
+            raise json.JSONDecodeError("Failed to parse JSON after cleanup", text, 0)
     except json.JSONDecodeError as e:
         log.error(f"Failed to parse JSON: {e}")
         raise
@@ -365,7 +408,7 @@ async def ai_enrich_flags_batch(batch: list[str], use_gemini: bool = False) -> d
     )
     loop = asyncio.get_running_loop()
     if not use_gemini:
-        if not OPENAI_KEYS or not AsyncOpenAI:
+        if not OPENAI_API_KEY or not AsyncOpenAI:
             if GEMINI_KEYS and genai:
                 log.info("No OpenAI available. Falling back to Gemini.")
                 return await ai_enrich_flags_batch(batch, use_gemini=True)
@@ -386,19 +429,16 @@ async def ai_enrich_flags_batch(batch: list[str], use_gemini: bool = False) -> d
                 text = response.choices[0].message.content.strip()
                 return extract_and_validate_json(text)
             except RateLimitError as e:
-                if e.response and e.response.headers.get('x-ratelimit-remaining-requests') == '0':
+                retry_after = int(e.response.headers.get('retry-after', '5')) if e.response else 5
+                if retry_after > 60 or e.response.headers.get('x-ratelimit-remaining-requests') == '0':
                     if GEMINI_KEYS and genai:
-                        log.info("OpenAI request limit reached. Falling back to Gemini.")
+                        log.info("OpenAI rate limit exceeded or retry-after too long. Falling back to Gemini.")
                         return await ai_enrich_flags_batch(batch, use_gemini=True)
-                    log.error("OpenAI request limit reached, no Gemini fallback.")
+                    log.error("OpenAI rate limit reached, no Gemini fallback.")
                     return {f: {"mechanism": "N/A (rate limit)", "purpose": "N/A (rate limit)"} for f in batch}
-                sleep_time = 2 ** attempt
-                if hasattr(e, 'response') and e.response:
-                    retry_after = e.response.headers.get('Retry-After')
-                    if retry_after and retry_after.isdigit():
-                        sleep_time = int(retry_after) + 1
-                log.warning(f"OpenAI rate limit hit on attempt {attempt+1}. Sleeping for {sleep_time}s.")
-                await asyncio.sleep(sleep_time)
+                wait = min(2 ** attempt, retry_after)
+                log.warning(f"OpenAI rate limit hit on attempt {attempt+1}. Sleeping for {wait}s.")
+                await asyncio.sleep(wait)
                 continue
             except json.JSONDecodeError as je:
                 log.error(f"Failed to parse OpenAI response: {je}")
