@@ -1284,7 +1284,7 @@ function createCommitCard(commit) {
                                   " - Purpose: " + JSON.stringify(f.purpose || "N/A").slice(1, -1);
                 const copyBtn = document.createElement('button');
                 copyBtn.classList.add('copy-btn');
-                copyBtn.dataset.copy = JSON.stringify((f.mechanism || "N/A") + " - " + (f.purpose || "N/A")).slice(1, -1);
+                copyBtn.dataset.copy = `${f.mechanism || "N/A"} - ${f.purpose || "N/A"}`;
                 copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
                 copyBtn.textContent = 'Copy';
                 li.appendChild(copyBtn);
