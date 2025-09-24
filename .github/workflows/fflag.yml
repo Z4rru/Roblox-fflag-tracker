@@ -39,9 +39,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: .fflag-repo-cache
-          key: ${{ runner.os }}-manifest-${{ hashFiles('updateff.py') }}
+          key: ${{ runner.os }}-manifest
           restore-keys: |
-            ${{ runner.os }}-manifest-
+            ${{ runner.os }}-manifest
 
       - name: Install dependencies
         run: |
