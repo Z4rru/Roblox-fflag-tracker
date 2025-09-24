@@ -652,7 +652,7 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self';">
     <title>Roblox FFlag Tracker</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -1059,6 +1059,8 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
         </select>
         <h2>Summary</h2>
         <table id="summaryTable" aria-label="Summary of flag changes by category"></table>
+        <h2>📄 Full Markdown Report</h2>
+        <a href="FFlag_Report.md" target="_blank">View Markdown Report</a>
         <h2>📊 Latest Full Report</h2>
         <div class="report-container">
             <div id="loadingSpinner" aria-label="Loading report"></div>
@@ -1250,7 +1252,7 @@ function createCommitCard(commit) {
                 copyBtn.classList.add('copy-btn');
                 copyBtn.dataset.copy = (f.mechanism + " - " + f.purpose).replace(/\\n/g," ").replace(/"/g,"'");
 
-                copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
+copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
                 copyBtn.textContent = 'Copy';
                 li.appendChild(copyBtn);
             } else {
