@@ -904,23 +904,23 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
             background: rgba(0,0,0,0.2);
             color: var(--text-color);
         }}
-        body.high-contrast select {
+        body.high-contrast select {{
             background: var(--high-contrast-bg);
             border: 1px solid var(--high-contrast-text);
             color: var(--high-contrast-text);
-        }
+        }}
         body.light input#searchInput,
         body.light select,
-        body.light button {
+        body.light button {{
             background: #fff !important;
             color: #111 !important;
             border: 1px solid #ccc !important;
-        }
+        }}
 
-        body.light .copy-btn {
+        body.light .copy-btn {{
             background: #fbbf24 !important; /* keep yellow accent */
             color: #111 !important;
-        }
+        }}
 
         button {{
             padding: 10px 20px;
