@@ -904,7 +904,7 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
             background: rgba(0,0,0,0.2);
             color: var(--text-color);
         }}
-        body.high-contrast select {{
+        body.high-contrast select {
             background: var(--high-contrast-bg);
             border: 1px solid var(--high-contrast-text);
             color: var(--high-contrast-text);
@@ -922,7 +922,6 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
             color: #111 !important;
         }
 
-        }
         button {{
             padding: 10px 20px;
             border-radius: 8px;
