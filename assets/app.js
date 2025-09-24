@@ -251,7 +251,7 @@ function applyFilters() {
 }
 
 async function loadReportData() {
-    try {
+    try:
         const summaryResponse = await fetch('summary.json');
         if (!summaryResponse.ok) throw new Error('Failed to load summary.json');
         const data = await summaryResponse.json();
