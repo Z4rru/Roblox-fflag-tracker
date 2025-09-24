@@ -67,7 +67,10 @@ args = parser.parse_args()
 # ============================
 # Logging Utility
 # ============================
-logging.basicConfig(level=logging.INFO if not DEBUG else logging.DEBUG, format="[%(levelname)s] %(message)s (%(asctime)s)")
+logging.basicConfig(
+    level=logging.INFO if not DEBUG else logging.DEBUG,
+    format="[%(levelname)s] %(message)s (%(asctime)s)"
+)
 log = logging.getLogger(__name__)
 
 # ============================
@@ -131,7 +134,9 @@ def run_cmd(cmd: str, cwd: Path | None = None) -> str:
         if result.returncode != 0:
             log.error(f"Command failed (return code {result.returncode}): {cmd}")
             log.error(result.stderr.strip())
-            raise subprocess.CalledProcessError(result.returncode, cmd, output=result.stdout, stderr=result.stderr)
+            raise subprocess.CalledProcessError(
+                result.returncode, cmd, output=result.stdout, stderr=result.stderr
+            )
         return result.stdout.strip()
     except subprocess.TimeoutExpired:
         log.error(f"Command timed out after {SUBPROCESS_TIMEOUT} seconds: {cmd}")
@@ -164,9 +169,16 @@ def ensure_manifest_repo(repo_url: str = REPO_URL) -> Path:
         try:
             if not (cache_path / TARGET_FILE).exists():
                 raise FileNotFoundError(f"{TARGET_FILE} not found in repo")
-            subprocess.run(["git", "-C", str(cache_path), "stash", "save", "--include-untracked"], check=True)
+            subprocess.run(
+                ["git", "-C", str(cache_path), "stash", "save", "--include-untracked"], check=True
+            )
             subprocess.run(["git", "-C", str(cache_path), "pull", "--ff-only"], check=True)
-            subprocess.run(["git", "-C", str(cache_path), "stash", "pop"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.run(
+                ["git", "-C", str(cache_path), "stash", "pop"],
+                check=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
             return cache_path
         except (subprocess.CalledProcessError, FileNotFoundError):
             log.warning("Cached repo pull or file check failed, recloning...")
@@ -185,8 +197,12 @@ def get_commits(days: int = DAYS, manifest_repo: Path | None = None) -> list[str
 # ============================
 # Diff Utilities
 # ============================
-def build_diff_for_commit_old(commit_hash: str, manifest_repo: Path | None = None) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
-    header = run_cmd(f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=manifest_repo)
+def build_diff_for_commit_old(
+    commit_hash: str, manifest_repo: Path | None = None
+) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
+    header = run_cmd(
+        f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=manifest_repo
+    )
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=manifest_repo)
     try:
         prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=manifest_repo)
@@ -229,14 +245,18 @@ def build_diff_for_commit_old(commit_hash: str, manifest_repo: Path | None = Non
         removed = [(k, v) for k, v in removed_dict.items() if k not in added_dict]
         return header, added, changed, removed
 
-async def async_build_diff_for_commit(commit_hash: str, diff_cache: dict, manifest_repo: Path | None = None) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
+async def async_build_diff_for_commit(
+    commit_hash: str, diff_cache: dict, manifest_repo: Path | None = None
+) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
     if commit_hash in diff_cache:
         cached = diff_cache[commit_hash]
         added = [(f, v) for f, v in cached.get('added', [])]
         changed = [(f, o, n) for f, o, n in cached.get('changed', [])]
         removed = [(f, v) for f, v in cached.get('removed', [])]
         return cached['header'], added, changed, removed
-    header, added, changed, removed = await asyncio.get_running_loop().run_in_executor(None, lambda: build_diff_for_commit_old(commit_hash, manifest_repo))
+    header, added, changed, removed = await asyncio.get_running_loop().run_in_executor(
+        None, lambda: build_diff_for_commit_old(commit_hash, manifest_repo)
+    )
     diff_cache[commit_hash] = {
         'header': header,
         'added': [[f, v] for f, v in added],
@@ -245,7 +265,9 @@ async def async_build_diff_for_commit(commit_hash: str, diff_cache: dict, manife
     }
     return header, added, changed, removed
 
-async def build_report(commits: list[str], diff_cache: dict, manifest_repo: Path | None = None) -> tuple[list, dict, dict]:
+async def build_report(
+    commits: list[str], diff_cache: dict, manifest_repo: Path | None = None
+) -> tuple[list, dict, dict]:
     report = []
     summary = {}
     flag_changes = defaultdict(int)
@@ -346,7 +368,10 @@ def extract_and_validate_json(text: str) -> dict:
             json_validate(instance=data, schema=FLAG_SCHEMA)
         except ValidationError as ve:
             log.warning(f"Schema issue: {ve}. Filtering invalid keys.")
-            data = {k: v for k, v in data.items() if re.match(r"^(FFlag|DFFlag|DFInt|DFLog|SFFlag|FString|FInt|DFString)[A-Za-z0-9_]+$", k)}
+            data = {k: v for k, v in data.items() if re.match(
+                r"^(FFlag|DFFlag|DFInt|DFLog|SFFlag|FString|FInt|DFString)[A-Za-z0-9_]+$",
+                k
+            )}
     return data
 
 async def ai_enrich_flags_batch(batch: list[str]) -> dict:
@@ -426,7 +451,8 @@ async def generate_flag_info_batch(flags: list[str]) -> None:
             for f in batch:
                 info = result.get(f, {})
                 if info and "mechanism" in info and "purpose" in info:
-                    FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
+                    FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"),
+                                  "purpose": info.get("purpose", "Unknown")}
                 else:
                     log.warning(f"Skipping invalid or missing info for flag {f}")
                     FLAG_INFO[f] = {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"}
@@ -533,7 +559,9 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
                         desc = f"changed from {html.escape(format_value(values[0]))} to {html.escape(format_value(values[1]))}"
                     elif typ == "Removed":
                         desc = f"removed (was {html.escape(format_value(values[0]))})"
-                    html_lines.append(f"<li>{html.escape(flag)} {desc} - Mechanism: {html.escape(info['mechanism'])} - Purpose: {html.escape(info['purpose'])}</li>")
+                    html_lines.append(
+                        f"<li>{html.escape(flag)} {desc} - Mechanism: {html.escape(info['mechanism'])} - Purpose: {html.escape(info['purpose'])}</li>"
+                    )
                 html_lines.append("</ul></details>")
     html_lines.append('</body></html>')
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
@@ -550,7 +578,13 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
         "total_historical_added": total_historical_added,
         "total_historical_changed": total_historical_changed,
         "total_historical_removed": total_historical_removed,
-        "summary": {cat: {"added": summary.get((cat, "Added"), 0), "changed": summary.get((cat, "Changed"), 0), "removed": summary.get((cat, "Removed"), 0)} for cat in CATEGORIES},
+        "summary": {
+            cat: {
+                "added": summary.get((cat, "Added"), 0),
+                "changed": summary.get((cat, "Changed"), 0),
+                "removed": summary.get((cat, "Removed"), 0)
+            } for cat in CATEGORIES
+        },
         "report": [],
         "days": DAYS
     }
@@ -558,7 +592,12 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
         grouped = {}
         for typ, cat, flag, *values in changes:
             info = generate_flag_info(flag)
-            entry = {"name": flag, "mechanism": info['mechanism'], "purpose": info['purpose'], "freq": flag_changes.get(flag, 0)}
+            entry = {
+                "name": flag,
+                "mechanism": info['mechanism'],
+                "purpose": info['purpose'],
+                "freq": flag_changes.get(flag, 0)
+            }
             if typ == "Added":
                 entry["old_value"] = None
                 entry["new_value"] = format_value(values[0])
@@ -1032,36 +1071,30 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
     <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4" integrity="sha384-w5iFMLtknujk3yppKql3oLhN7/VA4Wkg0TB1o4uS3uOuw1sL5v2S3b9gTc1F8t+8" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js" integrity="sha384-3BNo7pO/t4n+kn6DHRjKep3uSUrXwe3uAUVr2o3niKN/W9o3A0rL2zQ==" crossorigin="anonymous" defer></script>
-    <script src="/assets/app.js" defer></script>
+    <script src="assets/app.js" defer></script>
 </body>
 </html>"""
     index_html.write_text(html_content, encoding="utf-8")
-    sw_content = """const CACHE_NAME = 'fflag-cache-v1';
-self.addEventListener('install', e => {
-    e.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-            return cache.addAll([
-                '/',
-                '/index.html',
-                '/summary.json',
-                '/commits.json',
-                '/history.json'
-            ]);
-        })
+    sw_content = """
+const CACHE_NAME = "fflag-cache-v1";
+const URLS_TO_CACHE = [
+    "./",
+    "index.html",
+    "summary.json",
+    "commits.json",
+    "history.json",
+    "assets/app.js"
+];
+
+self.addEventListener("install", event => {
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(cache => cache.addAll(URLS_TO_CACHE))
     );
 });
-self.addEventListener('activate', e => {
-    e.waitUntil(
-        caches.keys().then(keys => Promise.all(
-            keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
-        ))
-    );
-});
-self.addEventListener('fetch', e => {
-    e.respondWith(
-        caches.match(e.request).then(response => {
-            return response || fetch(e.request);
-        })
+
+self.addEventListener("fetch", event => {
+    event.respondWith(
+        caches.match(event.request).then(response => response || fetch(event.request))
     );
 });
 """
@@ -1069,10 +1102,12 @@ self.addEventListener('fetch', e => {
     app_js_content = """const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let resizeTimeout, animationId, particles = [];
+
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
+
 function generateParticles() {
     particles = Array.from({length: 30}, () => ({
         x: Math.random() * canvas.width,
@@ -1080,9 +1115,10 @@ function generateParticles() {
         r: Math.random() * 2 + 1,
         dx: (Math.random() - 0.5) / 2,
         dy: (Math.random() - 0.5) / 2,
-        color: `rgba(${Math.floor(Math.random() * 50 + 200)}, 255, 255, 0.15)`,
+        color: `rgba(${Math.floor(Math.random() * 50 + 200)}, 255, 255, 0.15)`
     }));
 }
+
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => {
@@ -1097,28 +1133,34 @@ function animateParticles() {
     });
     animationId = requestAnimationFrame(animateParticles);
 }
+
 function stopAnimation() {
     cancelAnimationFrame(animationId);
 }
+
 resizeCanvas();
 generateParticles();
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     animateParticles();
 }
+
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(resizeCanvas, 200);
 });
+
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) stopAnimation();
     else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animateParticles();
 });
+
 document.getElementById('themeToggle').addEventListener('click', () => {
     document.body.classList.toggle('light');
     if (document.body.classList.contains('high-contrast')) {
         document.body.classList.remove('high-contrast');
     }
 });
+
 document.getElementById('contrastToggle').addEventListener('click', () => {
     document.body.classList.toggle('high-contrast');
     if (document.body.classList.contains('light')) {
@@ -1132,6 +1174,7 @@ document.getElementById('contrastToggle').addEventListener('click', () => {
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animateParticles();
     }
 });
+
 fetch("history.json").then(r => r.json()).then(data => {
     if (data.length === 0) {
         document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
@@ -1162,12 +1205,14 @@ fetch("history.json").then(r => r.json()).then(data => {
     console.error('Error loading history:', error);
     document.getElementById("trendChart").parentNode.innerHTML = '<p class="error-message">Error loading history data.</p>';
 });
+
 const reportContent = document.getElementById('reportContent');
 const loadingSpinner = document.getElementById('loadingSpinner');
 let globalData = null;
 let currentData = [];
 let virtualItems = [];
 const itemsPerPage = 10;
+
 function createCommitCard(commit) {
     const card = document.createElement('div');
     card.classList.add('commit-card');
@@ -1216,6 +1261,7 @@ function createCommitCard(commit) {
     });
     return card;
 }
+
 function loadVirtualItems(startIndex, endIndex) {
     const fragment = document.createDocumentFragment();
     const itemsToRender = virtualItems.slice(startIndex, endIndex);
@@ -1227,10 +1273,11 @@ function loadVirtualItems(startIndex, endIndex) {
     });
     reportContent.appendChild(fragment);
 }
+
 function updateVirtualScroll() {
     const scrollTop = reportContent.scrollTop;
     const containerHeight = reportContent.clientHeight;
-    const totalHeight = virtualItems.length * 100;
+    const totalHeight = virtualItems.length * 100; // Estimate item height
     reportContent.style.height = `${totalHeight}px`;
     const startIndex = Math.floor(scrollTop / 100);
     const endIndex = Math.min(startIndex + Math.ceil(containerHeight / 100) + 1, virtualItems.length);
@@ -1239,6 +1286,7 @@ function updateVirtualScroll() {
     const paddingTop = startIndex * 100;
     reportContent.style.paddingTop = `${paddingTop}px`;
 }
+
 function setupVirtualScroll(data) {
     virtualItems = data.map(commit => ({ commit, element: null }));
     reportContent.innerHTML = '';
@@ -1247,6 +1295,7 @@ function setupVirtualScroll(data) {
     updateVirtualScroll();
     reportContent.addEventListener('scroll', updateVirtualScroll);
 }
+
 function debounce(func, delay) {
     let timeout;
     return (...args) => {
@@ -1254,6 +1303,7 @@ function debounce(func, delay) {
         timeout = setTimeout(() => func(...args), delay);
     };
 }
+
 function applyFilters() {
     if (!globalData) {
         reportContent.innerHTML = '<p class="error-message">Error: Data not loaded.</p>';
@@ -1300,6 +1350,7 @@ function applyFilters() {
         setupVirtualScroll(currentData);
     }
 }
+
 async function loadReportData() {
     try {
         const summaryResponse = await fetch('summary.json');
@@ -1358,6 +1409,7 @@ async function loadReportData() {
         reportContent.innerHTML = '<p class="error-message">Error loading report data. Please try again later.</p>';
     }
 }
+
 loadReportData();
 document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
 document.getElementById('categoryFilter').addEventListener('change', applyFilters);
@@ -1394,7 +1446,7 @@ setInterval(() => {
     }).catch(() => {});
 }, 60000);
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(error => {
+    navigator.serviceWorker.register('sw.js').catch(error => {
         console.error('Service Worker registration failed:', error);
     });
 }
