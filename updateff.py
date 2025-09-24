@@ -1265,11 +1265,11 @@ function createCommitCard(commit) {
             }
             li.textContent = `${f.name} ${desc}`;
             if (f.mechanism && f.purpose && !f.mechanism.startsWith('N/A')) {
-                li.textContent += " - Mechanism: " + (f.mechanism || "N/A").replace(/\\n/g," ").replace(/"/g,"'") +
-                                  " - Purpose: " + (f.purpose || "N/A").replace(/\\n/g," ").replace(/"/g,"'");
+                li.textContent += " - Mechanism: " + JSON.stringify(f.mechanism || "N/A").slice(1, -1) +
+                                  " - Purpose: " + JSON.stringify(f.purpose || "N/A").slice(1, -1);
                 const copyBtn = document.createElement('button');
                 copyBtn.classList.add('copy-btn');
-                copyBtn.dataset.copy = (f.mechanism + " - " + f.purpose).replace(/\\n/g," ").replace(/"/g,"'");
+                copyBtn.dataset.copy = JSON.stringify((f.mechanism || "N/A") + " - " + (f.purpose || "N/A")).slice(1, -1);
                 copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
                 copyBtn.textContent = 'Copy';
                 li.appendChild(copyBtn);
