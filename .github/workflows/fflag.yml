@@ -34,6 +34,15 @@ jobs:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
 
+      # ✅ New step: cache manifest repo so we don’t reclone it every run
+      - name: Cache manifest repo
+        uses: actions/cache@v3
+        with:
+          path: .fflag-repo-cache
+          key: ${{ runner.os }}-manifest-${{ hashFiles('updateff.py') }}
+          restore-keys: |
+            ${{ runner.os }}-manifest-
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
