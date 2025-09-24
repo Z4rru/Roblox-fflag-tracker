@@ -1490,7 +1490,9 @@ document.getElementById('exportCSV').addEventListener('click', () => {
         Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
             const [typ, cat] = groupKey.split('_');
             flags.forEach(f => {
-                csv += `"${commit.header}","${typ}","${cat}","${f.name}","${f.old_value || ''}","${f.new_value || ''}","${f.mechanism || 'N/A'}","${f.purpose || 'N/A'}","${f.freq}"\n`;
+                // Escape quotes and commas in fields to prevent CSV issues
+                const escapeCsvField = (str) => `"${(str || '').toString().replace(/"/g, '""')}"`;
+                csv += `${escapeCsvField(commit.header)},${escapeCsvField(typ)},${escapeCsvField(cat)},${escapeCsvField(f.name)},${escapeCsvField(f.old_value)},${escapeCsvField(f.new_value)},${escapeCsvField(f.mechanism || 'N/A')},${escapeCsvField(f.purpose || 'N/A')},${escapeCsvField(f.freq)}\n`;
             });
         });
     });
