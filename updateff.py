@@ -170,15 +170,17 @@ def ensure_manifest_repo(repo_url: str = REPO_URL) -> Path:
             if not (cache_path / TARGET_FILE).exists():
                 raise FileNotFoundError(f"{TARGET_FILE} not found in repo")
             subprocess.run(
-                ["git", "-C", str(cache_path), "stash", "save", "--include-untracked"], check=True
+                ["git", "-C", str(cache_path), "stash", "push", "--include-untracked", "--quiet"],
+                check=False
             )
             subprocess.run(["git", "-C", str(cache_path), "pull", "--ff-only"], check=True)
             subprocess.run(
                 ["git", "-C", str(cache_path), "stash", "pop"],
-                check=True,
+                check=False,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL
             )
+
             return cache_path
         except (subprocess.CalledProcessError, FileNotFoundError):
             log.warning("Cached repo pull or file check failed, recloning...")
@@ -906,7 +908,21 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
             background: var(--high-contrast-bg);
             border: 1px solid var(--high-contrast-text);
             color: var(--high-contrast-text);
-        }}
+        }
+        body.light input#searchInput,
+        body.light select,
+        body.light button {
+            background: #fff !important;
+            color: #111 !important;
+            border: 1px solid #ccc !important;
+        }
+
+        body.light .copy-btn {
+            background: #fbbf24 !important; /* keep yellow accent */
+            color: #111 !important;
+        }
+
+        }
         button {{
             padding: 10px 20px;
             border-radius: 8px;
