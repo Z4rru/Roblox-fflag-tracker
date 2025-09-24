@@ -1244,10 +1244,12 @@ function createCommitCard(commit) {
             }
             li.textContent = `${f.name} ${desc}`;
             if (f.mechanism && f.purpose && !f.mechanism.startsWith('N/A')) {
-                li.textContent += ` - Mechanism: ${f.mechanism} - Purpose: ${f.purpose}`;
+                li.textContent += " - Mechanism: " + (f.mechanism || "N/A").replace(/\\n/g," ").replace(/"/g,"'") +
+                                  " - Purpose: " + (f.purpose || "N/A").replace(/\\n/g," ").replace(/"/g,"'");
                 const copyBtn = document.createElement('button');
                 copyBtn.classList.add('copy-btn');
-                copyBtn.dataset.copy = `${f.mechanism} - ${f.purpose}`;
+                copyBtn.dataset.copy = (f.mechanism + " - " + f.purpose).replace(/\\n/g," ").replace(/"/g,"'");
+
                 copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
                 copyBtn.textContent = 'Copy';
                 li.appendChild(copyBtn);
