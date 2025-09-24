@@ -1264,7 +1264,7 @@ function createCommitCard(commit) {
         h3.setAttribute('aria-expanded', 'true');
         h3.setAttribute('aria-label', `${typ} flags in ${cat}`);
         h3.tabIndex = 0;
-        h3.role = 'button';
+        h3.setAttribute('role', 'button'); // Fixed line
         card.appendChild(h3);
         const ul = document.createElement('ul');
         flags.forEach(f => {
