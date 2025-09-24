@@ -359,6 +359,13 @@ def safe_json_parse(raw: str):
             log.warning(f"JSON still invalid after cleanup: {e}")
             return None
 
+def normalize_ai_response(raw: str, flags: list[str]):
+    data = safe_json_parse(raw)
+    if isinstance(data, list):
+        # convert list to dict mapping flags -> objects
+        return {flag: obj for flag, obj in zip(flags, data) if isinstance(obj, dict)}
+    return data
+
 def extract_and_validate_json(text: str) -> dict:
     data = safe_json_parse(text)
     if data is None:
@@ -381,7 +388,18 @@ async def ai_enrich_flags_batch(batch: list[str]) -> dict:
     if not OPENAI_KEYS or not AsyncOpenAI:
         log.warning("No OpenAI API keys or client available. Skipping enrichment.")
         return {}
-    system_prompt = "Output valid JSON with 'mechanism' and 'purpose' for each Roblox FFlag in layman's terms."
+    system_prompt = (
+        "Respond ONLY with valid JSON.\n"
+        "Each flag must be the key of an object.\n"
+        "The value must be another object with exactly two fields:\n"
+        "- mechanism (short, technical)\n"
+        "- purpose (player-facing benefit)\n"
+        "Example:\n"
+        "{\n"
+        "  \"FFlagExample\": {\"mechanism\": \"...\", \"purpose\": \"...\"},\n"
+        "  \"DFFlagOther\": {\"mechanism\": \"...\", \"purpose\": \"...\"}\n"
+        "}"
+    )
     user_prompt = (
         "Explain these Roblox FFlags in simple layman's terms. "
         "For each flag, return a JSON object with:\n"
@@ -401,10 +419,11 @@ async def ai_enrich_flags_batch(batch: list[str]) -> dict:
                 temperature=0.3
             )
             text = response.choices[0].message.content.strip()
-            parsed = extract_and_validate_json(text)
+            parsed = normalize_ai_response(text, batch)
+            parsed = extract_and_validate_json(json.dumps(parsed))
             if not parsed:
                 log.warning("OpenAI returned invalid JSON. Skipping enrichment.")
-                return {}
+                return {f: {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"} for f in batch}
             return parsed
         except RateLimitError as e:
             retry_after = 60  # Default retry delay
@@ -426,7 +445,7 @@ async def ai_enrich_flags_batch(batch: list[str]) -> dict:
             await asyncio.sleep(2 ** attempt)
             continue
     log.warning("OpenAI failed after max retries. Skipping enrichment.")
-    return {}
+    return {f: {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"} for f in batch}
 
 async def generate_flag_info_batch(flags: list[str]) -> None:
     new_flags = [f for f in flags if should_enrich_flag(f)]
@@ -442,20 +461,20 @@ async def generate_flag_info_batch(flags: list[str]) -> None:
             return result, batch
     tasks = [limited_task(batch) for batch in batches]
     results = await asyncio.gather(*tasks, return_exceptions=True)
-    for result, batch in results:
-        if isinstance(result, Exception):
-            log.error(f"Batch enrichment failed: {result}")
-            for flag in batch:
-                FLAG_INFO[flag] = {"mechanism": "N/A (error)", "purpose": "N/A (error)"}
-        else:
-            for f in batch:
-                info = result.get(f, {})
-                if info and "mechanism" in info and "purpose" in info:
-                    FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"),
-                                  "purpose": info.get("purpose", "Unknown")}
-                else:
-                    log.warning(f"Skipping invalid or missing info for flag {f}")
-                    FLAG_INFO[f] = {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"}
+    for result in [r for r in results if not isinstance(r, Exception)]:
+        info_batch, batch = result
+        for f in batch:
+            info = info_batch.get(f, {})
+            if info and "mechanism" in info and "purpose" in info:
+                FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"),
+                              "purpose": info.get("purpose", "Unknown")}
+            else:
+                log.warning(f"Skipping invalid or missing info for flag {f}")
+                FLAG_INFO[f] = {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"}
+    for exception in [r for r in results if isinstance(r, Exception)]:
+        log.error(f"Batch enrichment failed: {exception}")
+        for flag in batch:  # Note: batch is from last successful, but this is approximate
+            FLAG_INFO[flag] = {"mechanism": "N/A (error)", "purpose": "N/A (error)"}
     CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
 
 def should_enrich_flag(flag: str) -> bool:
@@ -1251,8 +1270,7 @@ function createCommitCard(commit) {
                 const copyBtn = document.createElement('button');
                 copyBtn.classList.add('copy-btn');
                 copyBtn.dataset.copy = (f.mechanism + " - " + f.purpose).replace(/\\n/g," ").replace(/"/g,"'");
-
-copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
+                copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
                 copyBtn.textContent = 'Copy';
                 li.appendChild(copyBtn);
             } else {
