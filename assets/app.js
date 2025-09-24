@@ -149,7 +149,7 @@ function createCommitCard(commit) {
                 copyBtn.classList.add('copy-btn');
                 copyBtn.dataset.copy = (f.mechanism + " - " + f.purpose).replace(/\n/g," ").replace(/"/g,"'");
 
-                copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
+copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
                 copyBtn.textContent = 'Copy';
                 li.appendChild(copyBtn);
             } else {
