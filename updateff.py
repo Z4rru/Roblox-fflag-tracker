@@ -1071,7 +1071,7 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
             <span id="net-changes">{html.escape(str(net_changes))}</span>
         </div>
         <div class="badge percent" aria-label="Percent change">
-            <span id="percent-change">{html.escape(str(percent_change)):.2f}</span>%
+            <span id="percent-change">{percent_change:.2f}</span>%
         </div>
         <div class="badge historical-added" aria-label="Historical added">
             <span id="historical-added">{html.escape(str(total_historical_added))}</span>
