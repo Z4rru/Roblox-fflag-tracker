@@ -1,194 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roblox FFlag Tracker</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root { 
-  --primary-green: #34d399;
-  --primary-blue: #60a5fa;
-  --primary-red: #f87171;
-  --primary-yellow: #fbbf24;
-  --historical-green: #10b981;
-  --historical-blue: #3b82f6;
-  --historical-red: #ef4444;
-  --bg-opacity: 0.15;
-  --text-color: #fff;
-  --bg-color: linear-gradient(135deg,#4f46e5,#3b82f6,#06b6d4,#14b8a6);
-}
-body { 
-  font-family:'Inter',sans-serif;
-  margin:0;
-  background: var(--bg-color);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  color: var(--text-color);
-  overflow-x: hidden;
-}
-body.light {
-  --text-color: #333;
-  --bg-opacity: 0.05;
-  --bg-color: linear-gradient(135deg,#e0f2fe,#bfdbfe,#a5f3fc,#99f6e4);
-}
-@keyframes gradientBG { 
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
-}
-header { text-align:center; padding:60px 20px; text-shadow:0 0 12px rgba(0,0,0,0.3); }
-header h1 { font-size:3rem; font-weight:700; }
-.stats { 
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  flex-wrap:wrap;
-  max-width:1200px;
-  margin:-40px auto 40px;
-  position:relative; z-index:2;
-}
-.badge { 
-  flex:1; min-width:220px;
-  text-align:center;
-  padding:25px;
-  border-radius:16px;
-  font-weight:700;
-  backdrop-filter:blur(10px);
-  background:rgba(255,255,255,var(--bg-opacity));
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-}
-.badge:hover { 
-  transform:translateY(-8px);
-  box-shadow:0 14px 40px rgba(0,0,0,0.4);
-  border:2px solid var(--primary-green);
-}
-.added { border-left:6px solid var(--primary-green); }
-.changed { border-left:6px solid var(--primary-blue); }
-.removed { border-left:6px solid var(--primary-red); }
-.net { border-left:6px solid var(--primary-yellow); }
-.percent { border-left:6px solid var(--primary-blue); }
-.percent.positive { border-left-color: var(--primary-green); }
-.percent.negative { border-left-color: var(--primary-red); }
-.historical-added { border-left:6px solid var(--historical-green); }
-.historical-changed { border-left:6px solid var(--historical-blue); }
-.historical-removed { border-left:6px solid var(--historical-red); }
-.last-run { text-align:center; margin:20px 0; font-style:italic; color:#eee; }
-section { max-width:1200px; margin:0 auto; padding:20px; }
-.report-container { 
-  background: rgba(255,255,255,var(--bg-opacity));
-  backdrop-filter: blur(10px);
-  border-radius:16px;
-  box-shadow:0 12px 36px rgba(0,0,0,0.25);
-  padding:15px;
-  position: relative;
-}
-#loadingSpinner { 
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  border: 4px solid rgba(255,255,255,0.3);
-  border-top: 4px solid var(--primary-green);
-  border-radius: 50%;
-  width: 40px; height: 40px;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { 
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-#reportContent { width:100%; min-height:75vh; border-radius:12px; }
-canvas#trendChart { display:block; max-width:850px; margin:40px auto; border-radius:12px; }
-input#searchInput { 
-  width:90%; padding:12px; margin:20px auto; display:block;
-  border-radius:12px; border:1px solid rgba(255,255,255,0.3);
-  background:rgba(0,0,0,0.2); color: var(--text-color); font-size:1rem;
-  backdrop-filter:blur(5px);
-}
-select { 
-  padding:12px; margin:10px; border-radius:12px; background:rgba(0,0,0,0.2); color: var(--text-color);
-}
-button { 
-  padding:10px 20px; border-radius:8px; background:var(--primary-blue); color:white; border:none; cursor:pointer;
-}
-button:hover { background:var(--primary-green); }
-.copy-btn { 
-  margin-left:10px; padding:5px 10px; font-size:0.8rem; background:var(--primary-yellow);
-}
-.commit-card {
-  background: rgba(255,255,255,0.2);
-  border-radius:8px;
-  padding:15px;
-  margin-bottom:20px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.2);
-}
-h3 { cursor:pointer; }
-ul { 
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  list-style-type: none;
-}
-footer { text-align:center; margin-top:60px; padding:25px; font-size:0.9rem; color:#eee; }
-canvas#particleCanvas { 
-  position: fixed;
-  top:0; left:0; width:100%; height:100%;
-  pointer-events:none;
-  z-index:0;
-}
-table { 
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 40px;
-}
-th, td { 
-  border: 1px solid rgba(255,255,255,0.3);
-  padding: 12px;
-  text-align: left;
-}
-th { 
-  background: rgba(0,0,0,0.2);
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'sha384-/Y6pD6FV/Vv2HJnA6t+vsl1S6vZU5rV+LE2Ro/ve4F2C8LhL0Om9k5gYaxvZfm1'; connect-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none';">
+    <title>Roblox FFlag Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #34d399;
+            --primary-blue: #60a5fa;
+            --primary-red: #f87171;
+            --primary-yellow: #fbbf24;
+            --historical-green: #10b981;
+            --historical-blue: #3b82f6;
+            --historical-red: #ef4444;
+            --bg-opacity: 0.15;
+            --text-color: #fff;
+            --bg-color: linear-gradient(135deg,#4f46e5,#3b82f6,#06b6d4,#14b8a6);
+            --high-contrast-bg: #000;
+            --high-contrast-text: #fff;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: var(--bg-color);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        body.light {
+            --text-color: #333;
+            --bg-opacity: 0.05;
+            --bg-color: linear-gradient(135deg,#e0f2fe,#bfdbfe,#a5f3fc,#99f6e4);
+        }
+        body.high-contrast {
+            --bg-color: var(--high-contrast-bg);
+            --text-color: var(--high-contrast-text);
+            --bg-opacity: 1;
+            background: var(--high-contrast-bg);
+        }
+        @keyframes gradientBG {
+            0% {background-position:0% 50%;}
+            50% {background-position:100% 50%;}
+            100% {background-position:0% 50%;}
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0s !important;
+                transition-duration: 0s !important;
+            }
+            #particleCanvas { display: none; }
+        }
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            text-shadow: 0 0 12px rgba(0,0,0,0.3);
+        }
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: -40px auto 40px;
+            position: relative;
+            z-index: 2;
+        }
+        .badge {
+            flex: 1;
+            min-width: 220px;
+            text-align: center;
+            padding: 25px;
+            border-radius: 16px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            background: #ffffff; /* Solid background for contrast */
+            color: #0b1220; /* High contrast text */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+        }
+        body.high-contrast .badge {
+            background: var(--high-contrast-bg);
+            border: 2px solid var(--high-contrast-text);
+        }
+        .badge:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.4);
+            border: 2px solid var(--primary-green);
+        }
+        .added {
+            border-left: 6px solid var(--primary-green);
+        }
+        .added::before {
+            content: "✅ Added: ";
+            font-size: 0.9rem;
+        }
+        .changed {
+            border-left: 6px solid var(--primary-blue);
+        }
+        .changed::before {
+            content: "🔄 Changed: ";
+            font-size: 0.9rem;
+        }
+        .removed {
+            border-left: 6px solid var(--primary-red);
+        }
+        .removed::before {
+            content: "❌ Removed: ";
+            font-size: 0.9rem;
+        }
+        .net {
+            border-left: 6px solid var(--primary-yellow);
+        }
+        .net::before {
+            content: "Net Changes: ";
+            font-size: 0.9rem;
+        }
+        .percent {
+            border-left: 6px solid var(--primary-blue);
+        }
+        .percent::before {
+            content: "% Change: ";
+            font-size: 0.9rem;
+        }
+        .percent.positive {
+            border-left-color: var(--primary-green);
+        }
+        .percent.negative {
+            border-left-color: var(--primary-red);
+        }
+        .historical-added {
+            border-left: 6px solid var(--historical-green);
+        }
+        .historical-added::before {
+            content: "📈 Historical Added: ";
+            font-size: 0.9rem;
+        }
+        .historical-changed {
+            border-left: 6px solid var(--historical-blue);
+        }
+        .historical-changed::before {
+            content: "📈 Historical Changed: ";
+            font-size: 0.9rem;
+        }
+        .historical-removed {
+            border-left: 6px solid var(--historical-red);
+        }
+        .historical-removed::before {
+            content: "📉 Historical Removed: ";
+            font-size: 0.9rem;
+        }
+        .last-run {
+            text-align: center;
+            margin: 20px 0;
+            font-style: italic;
+            color: #eee;
+        }
+        body.high-contrast .last-run {
+            color: var(--high-contrast-text);
+        }
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .report-container {
+            background: rgba(255,255,255,var(--bg-opacity));
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+            padding: 15px;
+            position: relative;
+            min-height: 75vh;
+        }
+        body.high-contrast .report-container {
+            background: var(--high-contrast-bg);
+            border: 2px solid var(--high-contrast-text);
+        }
+        #loadingSpinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid var(--primary-green);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #reportContent {
+            width: 100%;
+            min-height: 75vh;
+            border-radius: 12px;
+        }
+        canvas#trendChart {
+            display: block;
+            max-width: 850px;
+            margin: 40px auto;
+            border-radius: 12px;
+        }
+        input#searchInput {
+            width: 90%;
+            padding: 12px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.2);
+            color: var(--text-color);
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+        body.high-contrast input#searchInput {
+            background: var(--high-contrast-bg);
+            border: 1px solid var(--high-contrast-text);
+            color: var(--high-contrast-text);
+        }
+        select {
+            padding: 12px;
+            margin: 10px;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.2);
+            color: var(--text-color);
+        }
+        body.high-contrast select {
+            background: var(--high-contrast-bg);
+            border: 1px solid var(--high-contrast-text);
+            color: var(--high-contrast-text);
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        body.high-contrast button {
+            background: var(--high-contrast-text);
+            color: var(--high-contrast-bg);
+            border: 1px solid var(--high-contrast-text);
+        }
+        button:hover {
+            background: var(--primary-green);
+        }
+        body.high-contrast button:hover {
+            background: var(--primary-green);
+            color: var(--high-contrast-text);
+        }
+        .copy-btn {
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            background: var(--primary-yellow);
+        }
+        body.high-contrast .copy-btn {
+            background: var(--high-contrast-text);
+            color: var(--high-contrast-bg);
+        }
+        .commit-card {
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        body.high-contrast .commit-card {
+            background: var(--high-contrast-bg);
+            border: 2px solid var(--high-contrast-text);
+        }
+        h3 {
+            cursor: pointer;
+        }
+        ul {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 25px;
+            font-size: 0.9rem;
+            color: #eee;
+        }
+        body.high-contrast footer {
+            color: var(--high-contrast-text);
+        }
+        canvas#particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        body.high-contrast canvas#particleCanvas {
+            display: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        th, td {
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 12px;
+            text-align: left;
+        }
+        body.high-contrast th, body.high-contrast td {
+            border: 1px solid var(--high-contrast-text);
+        }
+        th {
+            background: rgba(0,0,0,0.2);
+        }
+        body.high-contrast th {
+            background: var(--high-contrast-bg);
+            color: var(--high-contrast-text);
+        }
+        :focus {
+            outline: 3px solid #ffbf47;
+            outline-offset: 3px;
+        }
+        button:focus, a:focus {
+            box-shadow: 0 0 0 3px rgba(96,165,250,0.3);
+        }
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .skip-link:focus {
+            left: 10px;
+            top: 10px;
+            width: auto;
+            height: auto;
+            z-index: 9999;
+        }
+    </style>
 </head>
 <body>
-<canvas id="particleCanvas"></canvas>
-<header>
-  <h1>Roblox Client FFlag Tracker</h1>
-  <button id="themeToggle">Toggle Theme</button>
-</header>
-<div class="stats">
-  <div class="badge added">
-    ✅ Added: <span id="flags-added">43</span>
-  </div>
-  <div class="badge changed">
-    🔄 Changed: <span id="flags-changed">218</span>
-  </div>
-  <div class="badge removed">
-    ❌ Removed: <span id="flags-removed">26</span>
-  </div>
-  <div class="badge net">
-    Net Changes: <span id="net-changes">17</span>
-  </div>
-  <div class="badge percent">
-    % Change: <span id="percent-change">0.00</span>%
-  </div>
-  <div class="badge historical-added">
-    📈 Historical Added: <span id="historical-added">43</span>
-  </div>
-  <div class="badge historical-changed">
-    📈 Historical Changed: <span id="historical-changed">218</span>
-  </div>
-  <div class="badge historical-removed">
-    📉 Historical Removed: <span id="historical-removed">26</span>
-  </div>
-</div>
-<p class="last-run">Last Run: <span id="last-run">2025-09-24 06:25:38 AM PST</span></p>
-<section>
-  <input type="text" id="searchInput" placeholder="Search flags...">
-  <select id="categoryFilter">
-    <option value="">All Categories</option>
-    <option value="Graphics">Graphics</option>
+    <a class="skip-link" href="#reportContent">Skip to report</a>
+    <canvas id="particleCanvas"></canvas>
+    <header>
+        <h1>Roblox Client FFlag Tracker</h1>
+        <button id="themeToggle">Toggle Theme</button>
+        <button id="contrastToggle">High Contrast</button>
+    </header>
+    <div class="stats">
+        <div class="badge added" aria-label="Added flags">
+            <span id="flags-added">171</span>
+        </div>
+        <div class="badge changed" aria-label="Changed flags">
+            <span id="flags-changed">233</span>
+        </div>
+        <div class="badge removed" aria-label="Removed flags">
+            <span id="flags-removed">33</span>
+        </div>
+        <div class="badge net" aria-label="Net changes">
+            <span id="net-changes">138</span>
+        </div>
+        <div class="badge percent" aria-label="Percent change">
+            <span id="percent-change">0.00</span>%
+        </div>
+        <div class="badge historical-added" aria-label="Historical added">
+            <span id="historical-added">171</span>
+        </div>
+        <div class="badge historical-changed" aria-label="Historical changed">
+            <span id="historical-changed">233</span>
+        </div>
+        <div class="badge historical-removed" aria-label="Historical removed">
+            <span id="historical-removed">33</span>
+        </div>
+    </div>
+    <p class="last-run">Last Run: <span id="last-run">2025-09-24 12:21:31 PM PST</span></p>
+    <section>
+        <label for="searchInput" class="sr-only">Search flags</label>
+        <input type="text" id="searchInput" placeholder="Search flags..." aria-label="Search flags">
+        <label for="categoryFilter" class="sr-only">Filter by category</label>
+        <select id="categoryFilter" aria-label="Filter by category">
+            <option value="">All Categories</option>
+                <option value="Graphics">Graphics</option>
     <option value="Physics">Physics</option>
     <option value="Network">Network</option>
     <option value="Camera/UI">Camera/UI</option>
@@ -199,320 +407,26 @@ th {
     <option value="Interpolation">Interpolation</option>
     <option value="Body">Body</option>
     <option value="Other">Other</option>
-  </select>
-  <select id="sortSelect">
-    <option value="">Sort by Name</option>
-    <option value="freq">Sort by Frequency</option>
-  </select>
-  <h2>Summary</h2>
-  <table id="summaryTable"></table>
-  <h2>📊 Latest Full Report</h2>
-  <div class="report-container">
-    <div id="loadingSpinner"></div>
-    <div id="reportContent"></div>
-  </div>
-  <button id="exportCSV">Export CSV</button>
-  <button id="exportJSON">Export JSON</button>
-  <canvas id="trendChart" aria-label="Trend chart"></canvas>
-</section>
-<footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
-<script>
-const canvas = document.getElementById('particleCanvas');
-const ctx = canvas.getContext('2d');
-let resizeTimeout, animationId, particles = [];
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-function generateParticles() {
-  particles = Array.from({length: 30}, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2 + 1,
-    dx: (Math.random() - 0.5) / 2,
-    dy: (Math.random() - 0.5) / 2,
-    color: `rgba(${Math.floor(Math.random() * 50 + 200)}, 255, 255, 0.15)`,
-  }));
-}
-function animateParticles() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  particles.forEach(p => {
-    p.x += p.dx;
-    p.y += p.dy;
-    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = p.color;
-    ctx.fill();
-  });
-  animationId = requestAnimationFrame(animateParticles);
-}
-function stopAnimation() {
-  cancelAnimationFrame(animationId);
-}
-resizeCanvas();
-generateParticles();
-animateParticles();
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(resizeCanvas, 200);
-});
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) stopAnimation();
-  else animateParticles();
-});
-document.getElementById('themeToggle').addEventListener('click', () => {
-  document.body.classList.toggle('light');
-});
-fetch("history.json").then(r => r.json()).then(data => {
-  if (data.length === 0) {
-    document.getElementById("trendChart").parentNode.innerHTML = 'No history data yet.';
-    return;
-  }
-  const ctx = document.getElementById("trendChart").getContext("2d");
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: data.map(d => d.date),
-      datasets: [
-        {label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4},
-        {label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4},
-        {label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4}
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {position: 'top'},
-        zoom: {zoom: {wheel: {enabled: true}, pinch: {enabled: true}, mode: 'x'}, pan: {enabled: true, mode: 'x'}},
-        tooltip: {callbacks: {label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}`}}
-      },
-      interaction: {mode: 'nearest', axis: 'x', intersect: false}
-    }
-  });
-}).catch(error => {
-  console.error('Error loading history:', error);
-  document.getElementById("trendChart").parentNode.innerHTML = 'Error loading history data.';
-});
-const reportContent = document.getElementById('reportContent');
-const loadingSpinner = document.getElementById('loadingSpinner');
-let currentPage = 0;
-const itemsPerPage = 10;
-let globalData = null;
-let currentData = [];
-let observer;
-function loadReportPage(data, page) {
-  if (!data) {
-    reportContent.innerHTML = 'Error: Report data not loaded.';
-    return;
-  }
-  const startIndex = page * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const reportPage = data.slice(startIndex, endIndex);
-  reportPage.forEach(commit => {
-    const card = document.createElement('div');
-    card.classList.add('commit-card');
-    const h2 = document.createElement('h2');
-    h2.textContent = commit.header;
-    card.appendChild(h2);
-    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
-      const [typ, cat] = groupKey.split('_');
-      const h3 = document.createElement('h3');
-      h3.textContent = `${typ} in ${cat}`;
-      h3.style.cursor = 'pointer';
-      h3.setAttribute('aria-expanded', 'true');
-      card.appendChild(h3);
-      const ul = document.createElement('ul');
-      flags.forEach(f => {
-        const li = document.createElement('li');
-        li.dataset.freq = f.freq;
-        let desc = '';
-        if (f.old_value === null && f.new_value !== null) {
-          desc = `= ${f.new_value}`;
-        } else if (f.old_value !== null && f.new_value !== null) {
-          desc = `changed from ${f.old_value} to ${f.new_value}`;
-        } else if (f.old_value !== null && f.new_value === null) {
-          desc = `(was ${f.old_value})`;
-        }
-        li.innerHTML = `${f.name} ${desc} - Mechanism: ${f.mechanism} - Purpose: ${f.purpose} <button class="copy-btn" data-copy="${f.mechanism} - ${f.purpose}">Copy</button>`;
-        ul.appendChild(li);
-      });
-      ul.style.maxHeight = ul.scrollHeight + 'px';
-      card.appendChild(ul);
-    });
-    reportContent.appendChild(card);
-  });
-}
-function setupObserver() {
-  if (observer) observer.disconnect();
-  const maxPages = Math.ceil(currentData.length / itemsPerPage);
-  if (currentPage + 1 < maxPages) {
-    const sentinel = document.createElement('div');
-    sentinel.id = 'sentinel';
-    reportContent.appendChild(sentinel);
-    observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        currentPage++;
-        loadReportPage(currentData, currentPage);
-        if (currentPage + 1 >= maxPages) {
-          observer.unobserve(sentinel);
-          sentinel.remove();
-        }
-      }
-    }, {threshold: 0});
-    observer.observe(sentinel);
-  }
-}
-function debounce(func, delay) {
-  let timeout;
-  return (...args) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), delay);
-  };
-}
-function applyFilters() {
-  if (!globalData) {
-    reportContent.innerHTML = 'Error: Data not loaded.';
-    return;
-  }
-  let filtered = globalData.report;
-  const cat = document.getElementById('categoryFilter').value;
-  const query = document.getElementById('searchInput').value.toLowerCase();
-  const sortBy = document.getElementById('sortSelect').value;
-  if (cat || query) {
-    filtered = globalData.report.map(commit => {
-      const grouped = {};
-      Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
-        const [typ, category] = groupKey.split('_');
-        if (cat && category !== cat) return;
-        let matches = flags;
-        if (query) {
-          matches = flags.filter(f =>
-            f.name.toLowerCase().includes(query) ||
-            f.mechanism.toLowerCase().includes(query) ||
-            f.purpose.toLowerCase().includes(query)
-          );
-        }
-        if (matches.length > 0) grouped[groupKey] = matches;
-      });
-      return Object.keys(grouped).length ? {...commit, grouped} : null;
-    }).filter(Boolean);
-  }
-  filtered.forEach(commit => {
-    Object.values(commit.grouped).forEach(flags => {
-      flags.sort((a, b) => {
-        if (sortBy === 'freq') return b.freq - a.freq;
-        return a.name.localeCompare(b.name);
-      });
-    });
-  });
-  reportContent.innerHTML = '';
-  currentPage = 0;
-  currentData = filtered;
-  if (currentData.length === 0) {
-    reportContent.innerHTML = `No recent flag changes in the last ${globalData.days} days.`;
-  } else {
-    loadReportPage(currentData, currentPage);
-    setupObserver();
-  }
-}
-async function loadReportData() {
-  try {
-    const summaryResponse = await fetch('summary.json');
-    if (!summaryResponse.ok) throw new Error('Failed to load summary.json');
-    const data = await summaryResponse.json();
-    globalData = data;
-    document.getElementById('flags-added').textContent = data.added_total;
-    document.getElementById('flags-changed').textContent = data.changed_total;
-    document.getElementById('flags-removed').textContent = data.removed_total;
-    document.getElementById('net-changes').textContent = data.net_changes;
-    const percent = data.percent_change.toFixed(2);
-    document.getElementById('percent-change').textContent = percent;
-    const percentBadge = document.querySelector('.percent');
-    if (percent > 0) percentBadge.classList.add('positive');
-    else if (percent < 0) percentBadge.classList.add('negative');
-    document.getElementById('historical-added').textContent = data.total_historical_added;
-    document.getElementById('historical-changed').textContent = data.total_historical_changed;
-    document.getElementById('historical-removed').textContent = data.total_historical_removed;
-    document.getElementById('last-run').textContent = data.last_run;
-    const summaryTable = document.getElementById('summaryTable');
-    let tableHtml = '<tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th></tr>';
-    for (let cat in data.summary) {
-      const s = data.summary[cat];
-      tableHtml += `<tr><td>${cat}</td><td>${s.added}</td><td>${s.changed}</td><td>${s.removed}</td></tr>`;
-    }
-    summaryTable.innerHTML = tableHtml;
-    const commitsResponse = await fetch('commits.json');
-    if (!commitsResponse.ok) throw new Error('Failed to load commits.json');
-    globalData.report = await commitsResponse.json();
-    loadingSpinner.style.display = 'none';
-    applyFilters();
-    reportContent.addEventListener('click', e => {
-      if (e.target.tagName === 'H3') {
-        const ul = e.target.nextElementSibling;
-        if (ul && ul.tagName === 'UL') {
-          const expanded = e.target.getAttribute('aria-expanded') === 'true';
-          ul.style.maxHeight = expanded ? '0px' : ul.scrollHeight + 'px';
-          e.target.setAttribute('aria-expanded', !expanded);
-        }
-      } else if (e.target.classList.contains('copy-btn')) {
-        navigator.clipboard.writeText(e.target.dataset.copy).then(() => {
-          e.target.textContent = 'Copied!';
-          setTimeout(() => e.target.textContent = 'Copy', 2000);
-        });
-      }
-    });
-  } catch (error) {
-    console.error('Error loading report:', error);
-    loadingSpinner.style.display = 'none';
-    reportContent.innerHTML = 'Error loading report data. Please try again later.';
-  }
-}
-loadReportData();
-document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
-document.getElementById('categoryFilter').addEventListener('change', applyFilters);
-document.getElementById('sortSelect').addEventListener('change', applyFilters);
-document.getElementById('exportCSV').addEventListener('click', () => {
-  if (!globalData) return;
-  let csv = 'Commit,Type,Category,Flag,Old Value,New Value,Mechanism,Purpose,Frequency
-';
-  globalData.report.forEach(commit => {
-    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
-      const [typ, cat] = groupKey.split('_');
-      flags.forEach(f => {
-        csv += `"${commit.header}","${typ}","${cat}","${f.name}","${f.old_value || ''}","${f.new_value || ''}","${f.mechanism}","${f.purpose}","${f.freq}"
-`;
-      });
-    });
-  });
-  download('fflag_report.csv', csv);
-});
-document.getElementById('exportJSON').addEventListener('click', () => {
-  if (!globalData) return;
-  const fullData = {...globalData, report: globalData.report};
-  download('fflag_report.json', JSON.stringify(fullData, null, 2));
-});
-function download(filename, text) {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([text], {type: 'text/plain'}));
-  a.download = filename;
-  a.click();
-}
-setInterval(() => {
-  fetch('summary.json?ts=' + Date.now()).then(r => r.json()).then(newData => {
-    if (globalData && newData.last_run !== globalData.last_run) {
-      location.reload();
-    }
-  }).catch(() => {});
-}, 60000);
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(error => {
-    console.error('Service Worker registration failed:', error);
-  });
-}
-</script>
+        </select>
+        <label for="sortSelect" class="sr-only">Sort options</label>
+        <select id="sortSelect" aria-label="Sort options">
+            <option value="">Sort by Name</option>
+            <option value="freq">Sort by Frequency</option>
+        </select>
+        <h2>Summary</h2>
+        <table id="summaryTable" aria-label="Summary of flag changes by category"></table>
+        <h2>📊 Latest Full Report</h2>
+        <div class="report-container">
+            <div id="loadingSpinner" aria-label="Loading report"></div>
+            <div id="reportContent" role="region" aria-live="polite"></div>
+        </div>
+        <button id="exportCSV" aria-label="Export report as CSV">Export CSV</button>
+        <button id="exportJSON" aria-label="Export report as JSON">Export JSON</button>
+        <canvas id="trendChart" aria-label="Trend chart of flag changes"></canvas>
+    </section>
+    <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4" integrity="sha384-w5iFMLtknujk3yppKql3oLhN7/VA4Wkg0TB1o4uS3uOuw1sL5v2S3b9gTc1F8t+8" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js" integrity="sha384-3BNo7pO/t4n+kn6DHRjKep3uSUrXwe3uAUVr2o3niKN/W9o3A0rL2zQ==" crossorigin="anonymous" defer></script>
+    <script src="/assets/app.js" defer></script>
 </body>
 </html>
