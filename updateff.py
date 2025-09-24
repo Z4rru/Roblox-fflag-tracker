@@ -652,7 +652,7 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self';">
     <title>Roblox FFlag Tracker</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -1069,8 +1069,8 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
         <canvas id="trendChart" aria-label="Trend chart of flag changes"></canvas>
     </section>
     <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4" integrity="sha384-w5iFMLtknujk3yppKql3oLhN7/VA4Wkg0TB1o4uS3uOuw1sL5v2S3b9gTc1F8t+8" crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js" integrity="sha384-3BNo7pO/t4n+kn6DHRjKep3uSUrXwe3uAUVr2o3niKN/W9o3A0rL2zQ==" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js" integrity="sha384-zPzbVRXfR492Sd5D+HydTYCxxgHAfgVO8KERbLlpeH5unsmbAEXrscGUUqLZG9BM" crossorigin="anonymous" defer></script>
     <script src="assets/app.js" defer></script>
 </body>
 </html>"""
@@ -1352,7 +1352,7 @@ function applyFilters() {
 }
 
 async function loadReportData() {
-    try:
+    try {
         const summaryResponse = await fetch('summary.json');
         if (!summaryResponse.ok) throw new Error('Failed to load summary.json');
         const data = await summaryResponse.json();
