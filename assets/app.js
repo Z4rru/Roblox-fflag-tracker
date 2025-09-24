@@ -92,7 +92,7 @@ fetch("history.json").then(r => r.json()).then(data => {
     });
 }).catch(error => {
     console.error('Error loading history:', error);
-    document.getElementById("trendChart").parentNode.innerHTML = '<p>Error loading history data.</p>';
+    document.getElementById("trendChart").parentNode.innerHTML = '<p class="error-message">Error loading history data.</p>';
 });
 const reportContent = document.getElementById('reportContent');
 const loadingSpinner = document.getElementById('loadingSpinner');
@@ -100,7 +100,6 @@ let globalData = null;
 let currentData = [];
 let virtualItems = [];
 const itemsPerPage = 10;
-let observer;
 function createCommitCard(commit) {
     const card = document.createElement('div');
     card.classList.add('commit-card');
@@ -130,13 +129,18 @@ function createCommitCard(commit) {
             } else if (f.old_value !== null && f.new_value === null) {
                 desc = `(was ${f.old_value})`;
             }
-            li.textContent = `${f.name} ${desc} - Mechanism: ${f.mechanism} - Purpose: ${f.purpose}`;
-            const copyBtn = document.createElement('button');
-            copyBtn.classList.add('copy-btn');
-            copyBtn.dataset.copy = `${f.mechanism} - ${f.purpose}`;
-            copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
-            copyBtn.textContent = 'Copy';
-            li.appendChild(copyBtn);
+            li.textContent = `${f.name} ${desc}`;
+            if (f.mechanism && f.purpose && !f.mechanism.startsWith('N/A')) {
+                li.textContent += ` - Mechanism: ${f.mechanism} - Purpose: ${f.purpose}`;
+                const copyBtn = document.createElement('button');
+                copyBtn.classList.add('copy-btn');
+                copyBtn.dataset.copy = `${f.mechanism} - ${f.purpose}`;
+                copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
+                copyBtn.textContent = 'Copy';
+                li.appendChild(copyBtn);
+            } else {
+                li.textContent += ` - Mechanism: N/A - Purpose: N/A`;
+            }
             ul.appendChild(li);
         });
         ul.style.maxHeight = ul.scrollHeight + 'px';
@@ -158,7 +162,7 @@ function loadVirtualItems(startIndex, endIndex) {
 function updateVirtualScroll() {
     const scrollTop = reportContent.scrollTop;
     const containerHeight = reportContent.clientHeight;
-    const totalHeight = virtualItems.length * 100; // Estimate item height
+    const totalHeight = virtualItems.length * 100;
     reportContent.style.height = `${totalHeight}px`;
     const startIndex = Math.floor(scrollTop / 100);
     const endIndex = Math.min(startIndex + Math.ceil(containerHeight / 100) + 1, virtualItems.length);
@@ -184,7 +188,7 @@ function debounce(func, delay) {
 }
 function applyFilters() {
     if (!globalData) {
-        reportContent.innerHTML = '<p>Error: Data not loaded.</p>';
+        reportContent.innerHTML = '<p class="error-message">Error: Data not loaded.</p>';
         return;
     }
     let filtered = globalData.report;
@@ -201,8 +205,8 @@ function applyFilters() {
                 if (query) {
                     matches = flags.filter(f =>
                         f.name.toLowerCase().includes(query) ||
-                        f.mechanism.toLowerCase().includes(query) ||
-                        f.purpose.toLowerCase().includes(query)
+                        (f.mechanism && f.mechanism.toLowerCase().includes(query)) ||
+                        (f.purpose && f.purpose.toLowerCase().includes(query))
                     );
                 }
                 if (matches.length > 0) grouped[groupKey] = matches;
@@ -283,7 +287,7 @@ async function loadReportData() {
     } catch (error) {
         console.error('Error loading report:', error);
         loadingSpinner.style.display = 'none';
-        reportContent.innerHTML = '<p>Error loading report data. Please try again later.</p>';
+        reportContent.innerHTML = '<p class="error-message">Error loading report data. Please try again later.</p>';
     }
 }
 loadReportData();
@@ -298,7 +302,7 @@ document.getElementById('exportCSV').addEventListener('click', () => {
         Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
             const [typ, cat] = groupKey.split('_');
             flags.forEach(f => {
-                csv += `"${commit.header}","${typ}","${cat}","${f.name}","${f.old_value || ''}","${f.new_value || ''}","${f.mechanism}","${f.purpose}","${f.freq}"
+                csv += `"${commit.header}","${typ}","${cat}","${f.name}","${f.old_value || ''}","${f.new_value || ''}","${f.mechanism || 'N/A'}","${f.purpose || 'N/A'}","${f.freq}"
 `;
             });
         });
