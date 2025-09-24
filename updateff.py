@@ -1105,8 +1105,6 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
         <canvas id="trendChart" aria-label="Trend chart of flag changes"></canvas>
     </section>
     <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4" integrity="sha384-NrKB+u6Ts6AtkIhwPixiKTzgSKNblyhlk0Sohlgar9UHUBzai/sgnNNWWd291xqt" crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js" integrity="sha384-zPzbVRXfR492Sd5D+HydTYCxxgHAfgVO8KERbLlpeH5unsmbAEXrscGUUqLZG9BM" crossorigin="anonymous" defer></script>
     <script src="assets/app.js" defer></script>
 </body>
 </html>"""
