@@ -1352,7 +1352,7 @@ function applyFilters() {
 }
 
 async function loadReportData() {
-    try {
+    try:
         const summaryResponse = await fetch('summary.json');
         if (!summaryResponse.ok) throw new Error('Failed to load summary.json');
         const data = await summaryResponse.json();
@@ -1457,11 +1457,58 @@ if ('serviceWorker' in navigator) {
     log.info(f"App script written: {app_js}")
 
 # ============================
+# Publish Helper
+# ============================
+def publish_output_to_github():
+    token = os.getenv('GITHUB_TOKEN')
+    repo = os.getenv('GITHUB_REPO')  # e.g., 'z4rru/Roblox-fflag-tracker'
+    branch = os.getenv('GITHUB_PAGES_BRANCH', 'gh-pages')
+    if not token or not repo:
+        log.warning("GITHUB_TOKEN or GITHUB_REPO not set. Skipping publish.")
+        return
+    remote = f"https://x-access-token:{token}@github.com/{repo}.git"
+    try:
+        # Checkout or create orphan branch
+        try:
+            run_cmd(f"git checkout {branch}")
+        except subprocess.CalledProcessError:
+            run_cmd(f"git checkout --orphan {branch}")
+        # Clear existing files (except .git)
+        for item in os.listdir(WORKSPACE):
+            if item != '.git':
+                path = WORKSPACE / item
+                if path.is_dir():
+                    shutil.rmtree(path)
+                else:
+                    os.remove(path)
+        # Copy output/ contents to workspace root
+        for item in OUTPUT_DIR.iterdir():
+            dest = WORKSPACE / item.name
+            if item.is_dir():
+                shutil.copytree(item, dest)
+            else:
+                shutil.copy(item, dest)
+        # Commit and push
+        run_cmd("git add .")
+        try:
+            run_cmd('git commit -m "Publish FFlag Tracker output"')
+            run_cmd(f"git push {remote} {branch}")
+            log.info(f"Successfully published to {branch} branch.")
+        except subprocess.CalledProcessError as e:
+            if "nothing to commit" in e.stderr:
+                log.info("No changes to publish.")
+            else:
+                raise
+    except Exception as e:
+        log.error(f"Publish failed: {e}")
+
+# ============================
 # Main Execution
 # ============================
 async def main() -> None:
     try:
-        await asyncio.sleep(random.uniform(0, 300))
+        startup_delay = int(os.getenv('STARTUP_DELAY_SECONDS', '0'))
+        await asyncio.sleep(startup_delay)
         log.info("=" * 80)
         log.info("Roblox Client FFlag Tracker (Integrated Categories + Interpolation)")
         log.info("=" * 80)
@@ -1500,6 +1547,8 @@ async def main() -> None:
         update_history(added, changed, removed, last_run)
         export_reports(report, summary, flag_changes)
         ensure_landing_page(added, changed, removed, last_run)
+        if os.getenv('PUBLISH_GH', 'false').lower() == 'true':
+            publish_output_to_github()
         log.info("All done! Reports and dashboard ready.")
     except Exception as e:
         log.error(f"Main execution failed: {e}")
