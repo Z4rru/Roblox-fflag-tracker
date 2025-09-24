@@ -30,11 +30,6 @@ try:
 except ImportError:
     AsyncOpenAI = None
 
-try:
-    import google.generativeai as genai
-except ImportError:
-    genai = None
-
 # ============================
 # Settings and Paths
 # ============================
@@ -53,8 +48,8 @@ REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker.git"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 30
 HISTORY_DAYS = 90
-AI_BATCH_SIZE = 5
-AI_CONCURRENT_LIMIT = 2  # Reduced from 3 to mitigate rate limits
+AI_BATCH_SIZE = 2  # Reduced to 2 to lower token usage
+AI_CONCURRENT_LIMIT = 2
 AI_BATCH_DELAY = 5.0
 MAX_RETRIES = 3
 MAX_REPORT_COMMITS = 50
@@ -85,29 +80,27 @@ def load_api_keys(env_var: str) -> list[str]:
         log.warning(f"⚠ No {env_var} found.")
     return keys
 
-OPENAI_API_KEY = load_api_keys("OPENAI_API_KEYS")
-GEMINI_KEYS = load_api_keys("GEMINI_API_KEYS")
-if not OPENAI_API_KEY and not GEMINI_KEYS and not args.dry_run:
-    log.warning("⚠ No API keys found. AI enrichment will be skipped.")
+OPENAI_KEYS = load_api_keys("OPENAI_API_KEYS")
+if not OPENAI_KEYS and not args.dry_run:
+    log.warning("⚠ No OpenAI API keys found. AI enrichment will be skipped.")
 
-def get_next_api_key(service: str) -> str | None:
-    keys = OPENAI_API_KEY if service == "openai" else GEMINI_KEYS
-    if not keys:
+def get_next_api_key() -> str | None:
+    if not OPENAI_KEYS:
         return None
     lock = FileLock(str(KEY_INDEX_FILE) + ".lock", timeout=10)
     with lock:
-        index_data = {"openai_idx": 0, "gemini_idx": 0}
+        index_data = {"openai_idx": 0}
         if KEY_INDEX_FILE.exists():
             try:
                 index_data = json.loads(KEY_INDEX_FILE.read_text(encoding="utf-8"))
             except json.JSONDecodeError:
-                log.warning(f"Corrupted {KEY_INDEX_FILE}. Resetting indices.")
-        idx = index_data.get(f"{service}_idx", 0)
-        key = keys[idx % len(keys)]
-        index_data[f"{service}_idx"] = idx + 1
+                log.warning(f"Corrupted {KEY_INDEX_FILE}. Resetting index.")
+        idx = index_data.get("openai_idx", 0)
+        key = OPENAI_KEYS[idx % len(OPENAI_KEYS)]
+        index_data["openai_idx"] = idx + 1
         KEY_INDEX_FILE.write_text(json.dumps(index_data, indent=2), encoding="utf-8")
     display_key = f"{key[:4]}...{key[-4:]}" if len(key) > 8 else "****"
-    log.debug(f"Using {service} API key #{idx % len(keys) + 1} ({display_key})")
+    log.debug(f"Using OpenAI API key #{idx % len(OPENAI_KEYS) + 1} ({display_key})")
     return key
 
 # ============================
@@ -308,46 +301,6 @@ def update_history(added: int, changed: int, removed: int, last_run: str) -> Non
     HISTORY_FILE.write_text(json.dumps(history, indent=2), encoding="utf-8")
 
 # ============================
-# JSON Parsing and API Call Utilities
-# ============================
-def safe_json_parse(raw: str):
-    """Try parsing JSON, attempt simple repairs if invalid."""
-    try:
-        return json.loads(raw)
-    except json.JSONDecodeError:
-        # Remove markdown fences/backticks
-        cleaned = re.sub(r"^```(?:json)?|```$", "", raw.strip(), flags=re.MULTILINE).strip()
-        # Remove trailing commas before ] or }
-        cleaned = re.sub(r",\s*([}\]])", r"\1", cleaned)
-        try:
-            return json.loads(cleaned)
-        except json.JSONDecodeError as e:
-            print(f"[WARN] JSON still invalid after cleanup: {e}")
-            return None
-
-def call_openai_with_backoff(payload, max_retries=3):
-    url = "https://api.openai.com/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {OPENAI_API_KEY}"}
-    for attempt in range(max_retries):
-        r = requests.post(url, headers=headers, json=payload)
-        if r.status_code == 200:
-            data = r.json()
-            return data["choices"][0]["message"]["content"]
-        if r.status_code == 429:
-            retry_after = int(r.headers.get("retry-after", "5"))
-            # Don’t stall for ridiculous retry-after values
-            if retry_after > 60:
-                print(f"[ERROR] Rate limited. Retry-after={retry_after}s too long. Aborting.")
-                return None
-            wait = min(2 ** attempt, retry_after)
-            print(f"[WARN] 429 Too Many Requests. Backing off {wait}s (attempt {attempt+1})...")
-            time.sleep(wait)
-            continue
-        print(f"[ERROR] OpenAI call failed: {r.status_code} {r.text}")
-        return None
-    return None
-
-# ============================
 # AI Enrichment
 # ============================
 try:
@@ -371,21 +324,23 @@ FLAG_SCHEMA = {
     "additionalProperties": False
 }
 
-def extract_and_validate_json(text: str) -> dict:
-    # Strip Markdown fences if present
-    if text.startswith("```"):
-        text = re.sub(r"^```(?:json)?", "", text, flags=re.MULTILINE)
-        text = re.sub(r"```$", "", text, flags=re.MULTILINE).strip()
-    match = re.search(r"(\{(?:.|\n)*?\})", text, re.DOTALL)
-    if not match:
-        raise json.JSONDecodeError("No valid JSON object found", text, 0)
+def safe_json_parse(raw: str):
+    """Try parsing JSON, attempt simple repairs if invalid."""
     try:
-        data = safe_json_parse(match.group(0))
-        if data is None:
-            raise json.JSONDecodeError("Failed to parse JSON after cleanup", text, 0)
-    except json.JSONDecodeError as e:
-        log.error(f"Failed to parse JSON: {e}")
-        raise
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        cleaned = re.sub(r"^```(?:json)?|```$", "", raw.strip(), flags=re.MULTILINE).strip()
+        cleaned = re.sub(r",\s*([}\]])", r"\1", cleaned)
+        try:
+            return json.loads(cleaned)
+        except json.JSONDecodeError as e:
+            log.warning(f"JSON still invalid after cleanup: {e}")
+            return None
+
+def extract_and_validate_json(text: str) -> dict:
+    data = safe_json_parse(text)
+    if data is None:
+        raise json.JSONDecodeError("Invalid JSON after repair", text, 0)
     if json_validate:
         try:
             json_validate(instance=data, schema=FLAG_SCHEMA)
@@ -394,11 +349,14 @@ def extract_and_validate_json(text: str) -> dict:
             data = {k: v for k, v in data.items() if re.match(r"^(FFlag|DFFlag|DFInt|DFLog|SFFlag|FString|FInt|DFString)[A-Za-z0-9_]+$", k)}
     return data
 
-async def ai_enrich_flags_batch(batch: list[str], use_gemini: bool = False) -> dict:
+async def ai_enrich_flags_batch(batch: list[str]) -> dict:
     if args.dry_run:
         log.info("Dry run: Skipping AI enrichment")
         return {f: {"mechanism": "N/A (dry run)", "purpose": "N/A (dry run)"} for f in batch}
-    system_prompt = "You are a JSON generator. Always output valid JSON only."
+    if not OPENAI_KEYS or not AsyncOpenAI:
+        log.warning("No OpenAI API keys or client available. Skipping enrichment.")
+        return {}
+    system_prompt = "Output valid JSON with 'mechanism' and 'purpose' for each Roblox FFlag in layman's terms."
     user_prompt = (
         "Explain these Roblox FFlags in simple layman's terms. "
         "For each flag, return a JSON object with:\n"
@@ -406,91 +364,44 @@ async def ai_enrich_flags_batch(batch: list[str], use_gemini: bool = False) -> d
         "- purpose: what benefit or change it brings for Roblox players.\n\n"
         f"Flags: {json.dumps(batch)}"
     )
-    loop = asyncio.get_running_loop()
-    if not use_gemini:
-        if not OPENAI_API_KEY or not AsyncOpenAI:
-            if GEMINI_KEYS and genai:
-                log.info("No OpenAI available. Falling back to Gemini.")
-                return await ai_enrich_flags_batch(batch, use_gemini=True)
-            log.error("No OpenAI API keys or client available.")
-            return {f: {"mechanism": "N/A (no OpenAI)", "purpose": "N/A (no OpenAI)"} for f in batch}
-        temp_system_prompt = system_prompt
-        for attempt in range(MAX_RETRIES):
-            try:
-                client = AsyncOpenAI(api_key=get_next_api_key("openai"))
-                response = await client.chat.completions.create(
-                    model="gpt-4o-mini",
-                    messages=[
-                        {"role": "system", "content": temp_system_prompt},
-                        {"role": "user", "content": user_prompt}
-                    ],
-                    temperature=0.3
-                )
-                text = response.choices[0].message.content.strip()
-                return extract_and_validate_json(text)
-            except RateLimitError as e:
-                retry_after = int(e.response.headers.get('retry-after', '5')) if e.response else 5
-                if retry_after > 60 or e.response.headers.get('x-ratelimit-remaining-requests') == '0':
-                    if GEMINI_KEYS and genai:
-                        log.info("OpenAI rate limit exceeded or retry-after too long. Falling back to Gemini.")
-                        return await ai_enrich_flags_batch(batch, use_gemini=True)
-                    log.error("OpenAI rate limit reached, no Gemini fallback.")
-                    return {f: {"mechanism": "N/A (rate limit)", "purpose": "N/A (rate limit)"} for f in batch}
-                wait = min(2 ** attempt, retry_after)
-                log.warning(f"OpenAI rate limit hit on attempt {attempt+1}. Sleeping for {wait}s.")
-                await asyncio.sleep(wait)
-                continue
-            except json.JSONDecodeError as je:
-                log.error(f"Failed to parse OpenAI response: {je}")
-                temp_system_prompt += " Respond strictly in JSON only, no extra text."
-                await asyncio.sleep(1)
-                continue
-            except Exception as e:
-                log.error(f"OpenAI batch failed (attempt {attempt+1}): {e}")
-                await asyncio.sleep(2 ** attempt)
-                continue
-        if GEMINI_KEYS and genai:
-            log.info("Falling back to Gemini after OpenAI retries.")
-            return await ai_enrich_flags_batch(batch, use_gemini=True)
-        log.error("Failed to enrich batch after max retries with OpenAI.")
-        return {f: {"mechanism": "N/A (retry failed)", "purpose": "N/A (retry failed)"} for f in batch}
-    else:
-        if not GEMINI_KEYS or not genai:
-            log.error("No Gemini available.")
-            return {f: {"mechanism": "N/A (no Gemini)", "purpose": "N/A (no Gemini)"} for f in batch}
-        genai.configure(api_key=get_next_api_key("gemini"))
-        model = genai.GenerativeModel("gemini-1.5-flash")
-        strict_prompt = system_prompt + "\n" + user_prompt + "\nOutput ONLY valid JSON, no markdown, no text."
-        prompt = system_prompt + "\n" + user_prompt + "\nRespond with only the valid JSON object, nothing else."
-        for attempt in range(2):  # Try twice: first with standard prompt, then with strict prompt
-            try:
-                async def sync_generate_with_timeout():
-                    response = await asyncio.wait_for(
-                        loop.run_in_executor(None, lambda: model.generate_content(prompt)),
-                        timeout=30
-                    )
-                    return response.candidates[0].content.parts[0].text.strip()
-                text = await sync_generate_with_timeout()
+    for attempt in range(MAX_RETRIES):
+        try:
+            client = AsyncOpenAI(api_key=get_next_api_key())
+            response = await client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                temperature=0.3
+            )
+            text = response.choices[0].message.content.strip()
+            parsed = extract_and_validate_json(text)
+            if not parsed:
+                log.warning("OpenAI returned invalid JSON. Skipping enrichment.")
+                return {}
+            return parsed
+        except RateLimitError as e:
+            retry_after = 60  # Default retry delay
+            if hasattr(e, 'response') and e.response and e.response.headers.get('Retry-After'):
                 try:
-                    return extract_and_validate_json(text)
-                except json.JSONDecodeError as je:
-                    # Save raw output to debug file
-                    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
-                    debug_file = DEBUG_DIR / f"gemini_debug_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
-                    debug_file.write_text(text, encoding="utf-8")
-                    log.error(f"Failed to parse Gemini JSON on attempt {attempt+1}: {je}. Saved raw output to {debug_file}")
-                    if attempt == 0:
-                        log.info("Retrying Gemini with stricter JSON-only prompt")
-                        prompt = strict_prompt
-                        continue
-                    return {f: {"mechanism": "N/A (parse failed)", "purpose": "N/A (parse failed)"} for f in batch}
-            except Exception as e:
-                log.warning(f"Gemini enrichment failed on attempt {attempt+1}: {e}")
-                if attempt == 0:
-                    log.info("Retrying Gemini with stricter JSON-only prompt")
-                    prompt = strict_prompt
-                    continue
-                return {f: {"mechanism": "N/A (Gemini skipped)", "purpose": "N/A (Gemini skipped)"} for f in batch}
+                    retry_after = min(int(e.response.headers.get('Retry-After')), 60)
+                except ValueError:
+                    pass
+            log.warning(f"OpenAI rate limit hit on attempt {attempt+1}. Waiting {retry_after}s.")
+            await asyncio.sleep(retry_after)
+            continue
+        except json.JSONDecodeError as je:
+            log.warning(f"Failed to parse OpenAI response: {je}. Retrying with stricter prompt.")
+            system_prompt = "Respond strictly in valid JSON with 'mechanism' and 'purpose' for each Roblox FFlag."
+            await asyncio.sleep(1)
+            continue
+        except Exception as e:
+            log.error(f"OpenAI batch failed (attempt {attempt+1}): {e}")
+            await asyncio.sleep(2 ** attempt)
+            continue
+    log.warning("OpenAI failed after max retries. Skipping enrichment.")
+    return {}
 
 async def generate_flag_info_batch(flags: list[str]) -> None:
     new_flags = [f for f in flags if should_enrich_flag(f)]
@@ -514,18 +425,23 @@ async def generate_flag_info_batch(flags: list[str]) -> None:
         else:
             for f in batch:
                 info = result.get(f, {})
-                FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
+                if info and "mechanism" in info and "purpose" in info:
+                    FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"), "purpose": info.get("purpose", "Unknown")}
+                else:
+                    log.warning(f"Skipping invalid or missing info for flag {f}")
+                    FLAG_INFO[f] = {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"}
+    CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
 
 def should_enrich_flag(flag: str) -> bool:
     if args.dry_run:
         return False
     if flag not in FLAG_INFO:
         return True
-    mechanism = FLAG_INFO[flag].get("mechanism", "")
-    return mechanism.startswith("N/A")
+    info = FLAG_INFO[flag]
+    return not (info.get("mechanism") and info.get("purpose") and not info["mechanism"].startswith("N/A"))
 
 def generate_flag_info(flag: str) -> dict:
-    return FLAG_INFO.get(flag, {"mechanism": "Unknown", "purpose": "Unknown"})
+    return FLAG_INFO.get(flag, {"mechanism": "N/A", "purpose": "N/A"})
 
 # ============================
 # Report Export
@@ -774,8 +690,8 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
             border-radius: 16px;
             font-weight: 700;
             backdrop-filter: blur(10px);
-            background: #ffffff; /* Solid background for contrast */
-            color: #0b1220; /* High contrast text */
+            background: #ffffff;
+            color: #0b1220;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
         }}
@@ -1047,6 +963,11 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -
             height: auto;
             z-index: 9999;
         }}
+        .error-message {{
+            color: var(--primary-red);
+            text-align: center;
+            padding: 20px;
+        }}
     </style>
 </head>
 <body>
@@ -1239,7 +1160,7 @@ fetch("history.json").then(r => r.json()).then(data => {
     });
 }).catch(error => {
     console.error('Error loading history:', error);
-    document.getElementById("trendChart").parentNode.innerHTML = '<p>Error loading history data.</p>';
+    document.getElementById("trendChart").parentNode.innerHTML = '<p class="error-message">Error loading history data.</p>';
 });
 const reportContent = document.getElementById('reportContent');
 const loadingSpinner = document.getElementById('loadingSpinner');
@@ -1247,7 +1168,6 @@ let globalData = null;
 let currentData = [];
 let virtualItems = [];
 const itemsPerPage = 10;
-let observer;
 function createCommitCard(commit) {
     const card = document.createElement('div');
     card.classList.add('commit-card');
@@ -1277,13 +1197,18 @@ function createCommitCard(commit) {
             } else if (f.old_value !== null && f.new_value === null) {
                 desc = `(was ${f.old_value})`;
             }
-            li.textContent = `${f.name} ${desc} - Mechanism: ${f.mechanism} - Purpose: ${f.purpose}`;
-            const copyBtn = document.createElement('button');
-            copyBtn.classList.add('copy-btn');
-            copyBtn.dataset.copy = `${f.mechanism} - ${f.purpose}`;
-            copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
-            copyBtn.textContent = 'Copy';
-            li.appendChild(copyBtn);
+            li.textContent = `${f.name} ${desc}`;
+            if (f.mechanism && f.purpose && !f.mechanism.startsWith('N/A')) {
+                li.textContent += ` - Mechanism: ${f.mechanism} - Purpose: ${f.purpose}`;
+                const copyBtn = document.createElement('button');
+                copyBtn.classList.add('copy-btn');
+                copyBtn.dataset.copy = `${f.mechanism} - ${f.purpose}`;
+                copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
+                copyBtn.textContent = 'Copy';
+                li.appendChild(copyBtn);
+            } else {
+                li.textContent += ` - Mechanism: N/A - Purpose: N/A`;
+            }
             ul.appendChild(li);
         });
         ul.style.maxHeight = ul.scrollHeight + 'px';
@@ -1305,7 +1230,7 @@ function loadVirtualItems(startIndex, endIndex) {
 function updateVirtualScroll() {
     const scrollTop = reportContent.scrollTop;
     const containerHeight = reportContent.clientHeight;
-    const totalHeight = virtualItems.length * 100; // Estimate item height
+    const totalHeight = virtualItems.length * 100;
     reportContent.style.height = `${totalHeight}px`;
     const startIndex = Math.floor(scrollTop / 100);
     const endIndex = Math.min(startIndex + Math.ceil(containerHeight / 100) + 1, virtualItems.length);
@@ -1331,7 +1256,7 @@ function debounce(func, delay) {
 }
 function applyFilters() {
     if (!globalData) {
-        reportContent.innerHTML = '<p>Error: Data not loaded.</p>';
+        reportContent.innerHTML = '<p class="error-message">Error: Data not loaded.</p>';
         return;
     }
     let filtered = globalData.report;
@@ -1348,8 +1273,8 @@ function applyFilters() {
                 if (query) {
                     matches = flags.filter(f =>
                         f.name.toLowerCase().includes(query) ||
-                        f.mechanism.toLowerCase().includes(query) ||
-                        f.purpose.toLowerCase().includes(query)
+                        (f.mechanism && f.mechanism.toLowerCase().includes(query)) ||
+                        (f.purpose && f.purpose.toLowerCase().includes(query))
                     );
                 }
                 if (matches.length > 0) grouped[groupKey] = matches;
@@ -1430,7 +1355,7 @@ async function loadReportData() {
     } catch (error) {
         console.error('Error loading report:', error);
         loadingSpinner.style.display = 'none';
-        reportContent.innerHTML = '<p>Error loading report data. Please try again later.</p>';
+        reportContent.innerHTML = '<p class="error-message">Error loading report data. Please try again later.</p>';
     }
 }
 loadReportData();
@@ -1444,7 +1369,7 @@ document.getElementById('exportCSV').addEventListener('click', () => {
         Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
             const [typ, cat] = groupKey.split('_');
             flags.forEach(f => {
-                csv += `"${commit.header}","${typ}","${cat}","${f.name}","${f.old_value || ''}","${f.new_value || ''}","${f.mechanism}","${f.purpose}","${f.freq}"\n`;
+                csv += `"${commit.header}","${typ}","${cat}","${f.name}","${f.old_value || ''}","${f.new_value || ''}","${f.mechanism || 'N/A'}","${f.purpose || 'N/A'}","${f.freq}"\n`;
             });
         });
     });
