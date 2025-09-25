@@ -2,13 +2,16 @@ const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let resizeTimeout, animationId, particles = [];
 
+// =============================
+// Particle Background
+// =============================
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
 
 function generateParticles() {
-    particles = Array.from({length: 30}, () => ({
+    particles = Array.from({ length: 30 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         r: Math.random() * 2 + 1,
@@ -53,50 +56,70 @@ document.addEventListener('visibilitychange', () => {
     else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animateParticles();
 });
 
-document.getElementById('themeToggle').addEventListener('click', () => {
-    document.body.classList.toggle('light');
-    if (document.body.classList.contains('high-contrast')) {
-        document.body.classList.remove('high-contrast');
-    }
-});
-
-document.getElementById('contrastToggle').addEventListener('click', () => {
-    document.body.classList.toggle('high-contrast');
-    if (document.body.classList.contains('light')) {
-        document.body.classList.remove('light');
-    }
-    if (document.body.classList.contains('high-contrast')) {
+// =============================
+// Theme & Contrast Toggle (with persistence)
+// =============================
+function applyTheme() {
+    const theme = localStorage.getItem('theme');
+    document.body.classList.remove('light', 'high-contrast');
+    if (theme === 'light') {
+        document.body.classList.add('light');
+    } else if (theme === 'high-contrast') {
+        document.body.classList.add('high-contrast');
         stopAnimation();
         canvas.style.display = 'none';
     } else {
         canvas.style.display = 'block';
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animateParticles();
     }
+}
+applyTheme();
+
+document.getElementById('themeToggle').addEventListener('click', () => {
+    if (document.body.classList.contains('light')) {
+        localStorage.removeItem('theme');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+    applyTheme();
 });
 
+document.getElementById('contrastToggle').addEventListener('click', () => {
+    if (document.body.classList.contains('high-contrast')) {
+        localStorage.removeItem('theme');
+    } else {
+        localStorage.setItem('theme', 'high-contrast');
+    }
+    applyTheme();
+});
+
+// =============================
+// Chart.js Trend Chart
+// =============================
 async function loadChart(data) {
     const { default: Chart } = await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.4');
     const { default: zoomPlugin } = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js');
     Chart.register(zoomPlugin);
     const ctx = document.getElementById("trendChart").getContext("2d");
+    ctx.canvas.setAttribute("aria-label", "Trend chart of flag changes");
     new Chart(ctx, {
         type: 'line',
         data: {
             labels: data.map(d => d.date),
             datasets: [
-                {label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4},
-                {label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4},
-                {label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4}
+                { label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4 },
+                { label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4 },
+                { label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4 }
             ]
         },
         options: {
             responsive: true,
             plugins: {
-                legend: {position: 'top'},
-                zoom: {zoom: {wheel: {enabled: true}, pinch: {enabled: true}, mode: 'x'}, pan: {enabled: true, mode: 'x'}},
-                tooltip: {callbacks: {label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}`}}
+                legend: { position: 'top' },
+                zoom: { zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' }, pan: { enabled: true, mode: 'x' } },
+                tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}` } }
             },
-            interaction: {mode: 'nearest', axis: 'x', intersect: false}
+            interaction: { mode: 'nearest', axis: 'x', intersect: false }
         }
     });
 }
@@ -112,12 +135,14 @@ fetch("history.json").then(r => r.json()).then(data => {
     document.getElementById("trendChart").parentNode.innerHTML = '<p class="error-message">Error loading history data.</p>';
 });
 
+// =============================
+// Report Rendering (Virtual Scroll)
+// =============================
 const reportContent = document.getElementById('reportContent');
 const loadingSpinner = document.getElementById('loadingSpinner');
 let globalData = null;
 let currentData = [];
 let virtualItems = [];
-const itemsPerPage = 10;
 
 function createCommitCard(commit) {
     const card = document.createElement('div');
@@ -126,29 +151,27 @@ function createCommitCard(commit) {
     const h2 = document.createElement('h2');
     h2.textContent = commit.header;
     card.appendChild(h2);
+
     Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
         const [typ, cat] = groupKey.split('_');
         const h3 = document.createElement('h3');
         h3.textContent = `${typ} in ${cat}`;
-        h3.style.cursor = 'pointer';
         h3.setAttribute('aria-expanded', 'true');
         h3.setAttribute('aria-label', `${typ} flags in ${cat}`);
         h3.tabIndex = 0;
         h3.setAttribute('role', 'button');
         card.appendChild(h3);
+
         const ul = document.createElement('ul');
         flags.forEach(f => {
             const li = document.createElement('li');
             li.dataset.freq = f.freq;
             let desc = '';
-            if (f.old_value === null && f.new_value !== null) {
-                desc = `= ${f.new_value}`;
-            } else if (f.old_value !== null && f.new_value !== null) {
-                desc = `changed from ${f.old_value} to ${f.new_value}`;
-            } else if (f.old_value !== null && f.new_value === null) {
-                desc = `(was ${f.old_value})`;
-            }
+            if (f.old_value === null && f.new_value !== null) desc = `= ${f.new_value}`;
+            else if (f.old_value !== null && f.new_value !== null) desc = `changed from ${f.old_value} to ${f.new_value}`;
+            else if (f.old_value !== null && f.new_value === null) desc = `(was ${f.old_value})`;
             li.textContent = `${f.name} ${desc} - Mechanism: ${f.mechanism || "N/A"} - Purpose: ${f.purpose || "N/A"}`;
+
             if (f.mechanism && f.purpose && !f.mechanism.startsWith('N/A')) {
                 const copyBtn = document.createElement('button');
                 copyBtn.classList.add('copy-btn');
@@ -165,43 +188,25 @@ function createCommitCard(commit) {
     return card;
 }
 
-function loadVirtualItems(startIndex, endIndex) {
-    const fragment = document.createDocumentFragment();
-    const itemsToRender = virtualItems.slice(startIndex, endIndex);
-    itemsToRender.forEach(item => {
-        if (!item.element) {
-            item.element = createCommitCard(item.commit);
-        }
-        fragment.appendChild(item.element);
-    });
-    reportContent.appendChild(fragment);
-}
-
 function measureCardHeight(card) {
     card.style.position = 'absolute';
     card.style.visibility = 'hidden';
     document.body.appendChild(card);
     const height = card.offsetHeight;
     document.body.removeChild(card);
-    card.style.position = '';
-    card.style.visibility = '';
     return height;
 }
 
 function updateVirtualScroll() {
     const scrollTop = reportContent.scrollTop;
     const containerHeight = reportContent.clientHeight;
-    let totalHeight = 0;
     const cardHeights = virtualItems.map(item => {
-        if (!item.element) {
-            item.element = createCommitCard(item.commit);
-        }
-        const height = measureCardHeight(item.element);
-        item.height = height;
-        return height;
+        if (!item.element) item.element = createCommitCard(item.commit);
+        item.height = measureCardHeight(item.element);
+        return item.height;
     });
-    totalHeight = cardHeights.reduce((sum, h) => sum + h, 0);
-    reportContent.style.height = `${totalHeight}px`;
+
+    const totalHeight = cardHeights.reduce((sum, h) => sum + h, 0);
     let startIndex = 0;
     let accumulatedHeight = 0;
     for (let i = 0; i < cardHeights.length; i++) {
@@ -211,20 +216,25 @@ function updateVirtualScroll() {
         }
         accumulatedHeight += cardHeights[i];
     }
-    const endIndex = Math.min(
-        startIndex + Math.ceil(containerHeight / Math.min(...cardHeights)) + 1,
-        virtualItems.length
-    );
+    const endIndex = Math.min(startIndex + Math.ceil(containerHeight / Math.min(...cardHeights)) + 1, virtualItems.length);
+
     reportContent.innerHTML = '';
-    loadVirtualItems(startIndex, endIndex);
+    const fragment = document.createDocumentFragment();
+    virtualItems.slice(startIndex, endIndex).forEach(item => {
+        if (!item.element) item.element = createCommitCard(item.commit);
+        fragment.appendChild(item.element);
+    });
+    reportContent.appendChild(fragment);
+
     reportContent.style.paddingTop = `${accumulatedHeight}px`;
+    const bottomPadding = totalHeight - (accumulatedHeight + cardHeights.slice(startIndex, endIndex).reduce((s, h) => s + h, 0));
+    reportContent.style.paddingBottom = `${Math.max(bottomPadding, 0)}px`;
 }
 
 function setupVirtualScroll(data) {
     virtualItems = data.map(commit => ({ commit, element: null }));
     reportContent.innerHTML = '';
     reportContent.style.overflowY = 'auto';
-    reportContent.style.position = 'relative';
     updateVirtualScroll();
 }
 
@@ -235,10 +245,12 @@ function debounce(func, delay) {
         timeout = setTimeout(() => func(...args), delay);
     };
 }
-
 const debouncedUpdateVirtualScroll = debounce(updateVirtualScroll, 100);
 reportContent.addEventListener('scroll', debouncedUpdateVirtualScroll);
 
+// =============================
+// Filters & Data Loader
+// =============================
 function applyFilters() {
     if (!globalData) {
         reportContent.innerHTML = '<p class="error-message">Error: Data not loaded.</p>';
@@ -248,6 +260,7 @@ function applyFilters() {
     const cat = document.getElementById('categoryFilter').value;
     const query = document.getElementById('searchInput').value.toLowerCase();
     const sortBy = document.getElementById('sortSelect').value;
+
     if (cat || query) {
         filtered = globalData.report.map(commit => {
             const grouped = {};
@@ -264,9 +277,10 @@ function applyFilters() {
                 }
                 if (matches.length > 0) grouped[groupKey] = matches;
             });
-            return Object.keys(grouped).length ? {...commit, grouped} : null;
+            return Object.keys(grouped).length ? { ...commit, grouped } : null;
         }).filter(Boolean);
     }
+
     filtered.forEach(commit => {
         Object.values(commit.grouped).forEach(flags => {
             flags.sort((a, b) => {
@@ -275,11 +289,13 @@ function applyFilters() {
             });
         });
     });
+
     currentData = filtered;
     if (currentData.length === 0) {
         reportContent.innerHTML = `<p>No recent flag changes in the last ${globalData.days} days.</p>`;
         reportContent.style.height = 'auto';
         reportContent.style.paddingTop = '0';
+        reportContent.style.paddingBottom = '0';
         reportContent.removeEventListener('scroll', debouncedUpdateVirtualScroll);
     } else {
         setupVirtualScroll(currentData);
@@ -292,6 +308,7 @@ async function loadReportData() {
         if (!summaryResponse.ok) throw new Error('Failed to load summary.json');
         const data = await summaryResponse.json();
         globalData = data;
+
         document.getElementById('flags-added').textContent = data.added_total;
         document.getElementById('flags-changed').textContent = data.changed_total;
         document.getElementById('flags-removed').textContent = data.removed_total;
@@ -299,24 +316,29 @@ async function loadReportData() {
         const percent = data.percent_change.toFixed(2);
         document.getElementById('percent-change').textContent = percent;
         const percentBadge = document.querySelector('.percent');
+        percentBadge.classList.remove('positive', 'negative');
         if (percent > 0) percentBadge.classList.add('positive');
         else if (percent < 0) percentBadge.classList.add('negative');
+
         document.getElementById('historical-added').textContent = data.total_historical_added;
         document.getElementById('historical-changed').textContent = data.total_historical_changed;
         document.getElementById('historical-removed').textContent = data.total_historical_removed;
         document.getElementById('last-run').textContent = data.last_run;
-        const summaryTable = document.getElementById('summaryTable');
-        let tableHtml = '<tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th></tr>';
+
+        const summaryTableBody = document.querySelector('#summaryTable tbody');
+        summaryTableBody.innerHTML = '';
         for (let cat in data.summary) {
             const s = data.summary[cat];
-            tableHtml += `<tr><td>${cat}</td><td>${s.added}</td><td>${s.changed}</td><td>${s.removed}</td></tr>`;
+            summaryTableBody.innerHTML += `<tr><td>${cat}</td><td>${s.added}</td><td>${s.changed}</td><td>${s.removed}</td><td>${s.added + s.changed + s.removed}</td></tr>`;
         }
-        summaryTable.innerHTML = tableHtml;
+
         const commitsResponse = await fetch('commits.json');
         if (!commitsResponse.ok) throw new Error('Failed to load commits.json');
         globalData.report = (await commitsResponse.json()) || [];
+
         loadingSpinner.style.display = 'none';
         applyFilters();
+
         reportContent.addEventListener('click', e => {
             if (e.target.tagName === 'H3') {
                 const ul = e.target.nextElementSibling;
@@ -332,12 +354,14 @@ async function loadReportData() {
                 });
             }
         });
+
         reportContent.addEventListener('keydown', e => {
             if (e.key === 'Enter' || e.key === ' ') {
                 const h = e.target;
                 if (h.tagName === 'H3') h.click();
             }
         });
+
     } catch (error) {
         console.error('Error loading report:', error);
         loadingSpinner.style.display = 'none';
@@ -349,6 +373,10 @@ loadReportData();
 document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
 document.getElementById('categoryFilter').addEventListener('change', applyFilters);
 document.getElementById('sortSelect').addEventListener('change', applyFilters);
+
+// =============================
+// Export + Auto-refresh + SW
+// =============================
 document.getElementById('exportCSV').addEventListener('click', () => {
     if (!globalData) return;
     let csv = 'Commit,Type,Category,Flag,Old Value,New Value,Mechanism,Purpose,Frequency\n';
@@ -363,29 +391,34 @@ document.getElementById('exportCSV').addEventListener('click', () => {
     });
     download('fflag_report.csv', csv);
 });
+
 document.getElementById('exportJSON').addEventListener('click', () => {
     if (!globalData) return;
-    const fullData = {...globalData, report: globalData.report};
+    const fullData = { ...globalData, report: globalData.report };
     download('fflag_report.json', JSON.stringify(fullData, null, 2));
 });
+
 function download(filename, text) {
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([text], {type: 'text/plain'}));
+    a.href = URL.createObjectURL(new Blob([text], { type: 'text/plain' }));
     a.download = filename;
     a.click();
 }
+
 setInterval(() => {
     fetch('summary.json?ts=' + Date.now()).then(r => r.json()).then(newData => {
         if (globalData && newData.last_run !== globalData.last_run) {
             location.reload();
         }
-    }).catch(() => {});
+    }).catch(() => { });
 }, 60000);
+
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(error => {
         console.error('Service Worker registration failed:', error);
     });
 }
+
 window.onerror = function (message, source, lineno, colno, error) {
     if (/ERR_BLOCKED_BY_CLIENT/.test(error?.message)) {
         localStorage.setItem('errorLog', JSON.stringify({
