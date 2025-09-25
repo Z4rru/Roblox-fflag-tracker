@@ -53,8 +53,11 @@ jobs:
           echo "Output folder checked/created."
 
       - name: Run Roblox FFlag Tracker with key rotation
+        env:
+          SKIP_ASSETS: "true" 
         run: |
           export FFLAG_REPO_CACHE=./.fflag-repo-cache
+          
 
           # Pick random keys for this run (trim spaces)
           OPENAI_KEY=$(echo $OPENAI_API_KEYS | tr ',' '\n' | shuf -n1 | xargs)
