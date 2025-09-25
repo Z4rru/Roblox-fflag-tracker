@@ -227,7 +227,7 @@ def build_diff_for_commit_old(
         prev_json = json.loads(prev_content) if prev_content else {}
         curr_json = json.loads(curr_content)
         added = [(k, v) for k, v in curr_json.items() if k not in prev_json]
-        changed = [(k, prev_json[k], curr_json[k]) for k in curr_json if k in prev_json and curr_json[k] != prev_json[k]]
+        changed = [(k, v_old, v_new) for k, v_new in curr_json.items() if k in prev_json and (v_old := prev_json[k]) != v_new]
         removed = [(k, v) for k in prev_json.items() if k not in curr_json]
         return header, added, changed, removed
     except (json.JSONDecodeError, subprocess.CalledProcessError):
