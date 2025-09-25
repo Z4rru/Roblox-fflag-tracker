@@ -96,12 +96,18 @@ document.getElementById('contrastToggle').addEventListener('click', () => {
 // =============================
 // Chart.js Trend Chart
 // =============================
+<script type="module">
 async function loadChart(data) {
-    const { default: Chart } = await import { Chart, registerables } from 'https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.esm.js';
-    const { default: zoomPlugin } = await import zoomPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.js';
+    // Correct dynamic imports
+    const { Chart, registerables } = await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.esm.js');
+    const { default: zoomPlugin } = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.js');
+
+    // Register Chart.js components
     Chart.register(...registerables, zoomPlugin);
+
     const ctx = document.getElementById("trendChart").getContext("2d");
     ctx.canvas.setAttribute("aria-label", "Trend chart of flag changes");
+
     new Chart(ctx, {
         type: 'line',
         data: {
@@ -116,7 +122,10 @@ async function loadChart(data) {
             responsive: true,
             plugins: {
                 legend: { position: 'top' },
-                zoom: { zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' }, pan: { enabled: true, mode: 'x' } },
+                zoom: { 
+                    zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' },
+                    pan: { enabled: true, mode: 'x' }
+                },
                 tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}` } }
             },
             interaction: { mode: 'nearest', axis: 'x', intersect: false }
@@ -124,16 +133,21 @@ async function loadChart(data) {
     });
 }
 
-fetch("history.json").then(r => r.json()).then(data => {
-    if (data.length === 0) {
-        document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
-        return;
-    }
-    loadChart(data);
-}).catch(error => {
-    console.error('Error loading history:', error);
-    document.getElementById("trendChart").parentNode.innerHTML = '<p class="error-message">Error loading history data.</p>';
-});
+// Load JSON and call the chart
+fetch("history.json")
+    .then(r => r.json())
+    .then(data => {
+        if (data.length === 0) {
+            document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
+            return;
+        }
+        loadChart(data);
+    })
+    .catch(error => {
+        console.error('Error loading history:', error);
+        document.getElementById("trendChart").parentNode.innerHTML = '<p class="error-message">Error loading history data.</p>';
+    });
+</script>
 
 // =============================
 // Report Rendering (Virtual Scroll)
