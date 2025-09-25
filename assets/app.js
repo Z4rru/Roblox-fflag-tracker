@@ -97,9 +97,9 @@ document.getElementById('contrastToggle').addEventListener('click', () => {
 // Chart.js Trend Chart
 // =============================
 async function loadChart(data) {
-    const { default: Chart } = await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.4');
-    const { default: zoomPlugin } = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js');
-    Chart.register(zoomPlugin);
+    const { default: Chart } = await import { Chart, registerables } from 'https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.esm.js';
+    const { default: zoomPlugin } = await import zoomPlugin from 'https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.js';
+    Chart.register(...registerables, zoomPlugin);
     const ctx = document.getElementById("trendChart").getContext("2d");
     ctx.canvas.setAttribute("aria-label", "Trend chart of flag changes");
     new Chart(ctx, {
