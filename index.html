@@ -405,7 +405,7 @@
             <span id="historical-removed">113</span>
         </div>
     </div>
-    <p class="last-run">Last Run: <span id="last-run">2025-09-25 01:09:01 PM PST</span></p>
+    <p class="last-run">Last Run: <span id="last-run">2025-09-25 02:04:26 PM PST</span></p>
     <section>
         <label for="searchInput" class="sr-only">Search flags</label>
         <input type="text" id="searchInput" placeholder="Search flags..." aria-label="Search flags">
@@ -429,12 +429,30 @@
             <option value="">Sort by Name</option>
             <option value="freq">Sort by Frequency</option>
         </select>
-        <h2>Summary</h2>
-        <table id="summaryTable" aria-label="Summary of flag changes by category"></table>
+       <h2>Summary</h2>
+        <table id="summaryTable" aria-label="Summary of flag changes by category">
+          <thead>
+            <tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th><th>Total</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Graphics</td><td>6</td><td>4</td><td>3</td><td>13</td></tr>
+<tr><td>Physics</td><td>4</td><td>0</td><td>1</td><td>5</td></tr>
+<tr><td>Network</td><td>18</td><td>10</td><td>12</td><td>40</td></tr>
+<tr><td>Camera/UI</td><td>26</td><td>2</td><td>8</td><td>36</td></tr>
+<tr><td>Security</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>World</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>Input</td><td>6</td><td>0</td><td>2</td><td>8</td></tr>
+<tr><td>Hit</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Interpolation</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Body</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Other</td><td>240</td><td>849</td><td>87</td><td>1176</td></tr>
+
+          </tbody>
+        </table>
         <h2>📄 Full Markdown Report</h2>
         <a href="FFlag_Report.md" target="_blank">View Markdown Report</a>
         <h2>📊 Latest Full Report</h2>
-        <div class="report-container">
+        <div class="report-container"> 
             <div id="loadingSpinner" aria-label="Loading report"></div>
             <div id="reportContent" role="region" aria-live="polite"></div>
         </div>
