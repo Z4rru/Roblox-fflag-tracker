@@ -244,7 +244,7 @@ function applyFilters() {
     if (cat || query) {
         filtered = globalData.report.map(commit => {
             const grouped = {};
-            Object.entries(commit.grouped).forEach(([groupKey, flags] => {
+            Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
                 const [typ, category] = groupKey.split('_');
                 if (cat && category !== cat) return;
                 let matches = flags;
