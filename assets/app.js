@@ -119,9 +119,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
-            const ChartModule = await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.esm.js');
+            const ChartModule = await import('https://esm.sh/chart.js@4.4.4');
             const { Chart, registerables } = ChartModule;
-            const zoomModule = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.js');
+            const zoomModule = await import('https://esm.sh/chartjs-plugin-zoom@2.0.1');
             const zoomPlugin = zoomModule.default;
 
             Chart.register(...registerables, zoomPlugin);
@@ -180,7 +180,7 @@ function createCommitCard(commit) {
     h2.textContent = commit.header;
     card.appendChild(h2);
 
-    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+    Object.entries(commit.grouped).forEach(([groupKey, flags] => {
         const [typ, cat] = groupKey.split('_');
         const h3 = document.createElement('h3');
         h3.textContent = `${typ} in ${cat}`;
@@ -216,7 +216,7 @@ function createCommitCard(commit) {
     return card;
 }
 
-function loadCommits() {
+async function loadCommits(offset=0, limit=20) {
     const dataToUse = currentData.length > 0 ? currentData : globalData.report;
     const slice = dataToUse.slice(offset, offset + limit);
     if (slice.length === 0) return false;
@@ -225,7 +225,6 @@ function loadCommits() {
         fragment.appendChild(createCommitCard(commit));
     });
     reportContent.appendChild(fragment);
-    offset += limit;
     return true;
 }
 
@@ -245,7 +244,7 @@ function applyFilters() {
     if (cat || query) {
         filtered = globalData.report.map(commit => {
             const grouped = {};
-            Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+            Object.entries(commit.grouped).forEach(([groupKey, flags] => {
                 const [typ, category] = groupKey.split('_');
                 if (cat && category !== cat) return;
                 let matches = flags;
@@ -260,6 +259,13 @@ function applyFilters() {
             });
             return Object.keys(grouped).length ? { ...commit, grouped } : null;
         }).filter(Boolean);
+    } else {
+        // Merge all items for "All Categories"
+        const allItems = [];
+        globalData.report.forEach(commit => {
+            Object.values(commit.grouped).forEach(arr => allItems.push(...arr));
+        });
+        filtered = [{ header: 'All Changes', grouped: {'All_All': allItems} }]; // Wrap in a single "commit" for rendering
     }
 
     filtered.forEach(commit => {
@@ -277,7 +283,8 @@ function applyFilters() {
     if (currentData.length === 0) {
         reportContent.innerHTML = `<p>No recent flag changes in the last ${globalData.days} days.</p>`;
     } else {
-        loadCommits();
+        loadCommits(offset, limit);
+        offset += limit;
     }
 }
 
@@ -311,9 +318,15 @@ async function loadReportData() {
             summaryTableBody.innerHTML += `<tr><td>${cat}</td><td>${s.added}</td><td>${s.changed}</td><td>${s.removed}</td><td>${s.added + s.changed + s.removed}</td></tr>`;
         }
 
-        const commitsResponse = await fetch('commits.json');
-        if (!commitsResponse.ok) throw new Error('Failed to load commits.json');
-        globalData.report = await commitsResponse.json() || [];
+        globalData.report = [];
+        let chunkIndex = 0;
+        while (true) {
+            const res = await fetch(`commits_${chunkIndex}.json`);
+            if (!res.ok) break;
+            const chunk = await res.json();
+            globalData.report = globalData.report.concat(chunk);
+            chunkIndex++;
+        }
 
         loadingSpinner.style.display = 'none';
         applyFilters();
@@ -361,9 +374,10 @@ document.getElementById('searchInput').addEventListener('input', debounce(applyF
 document.getElementById('categoryFilter').addEventListener('change', applyFilters);
 document.getElementById('sortSelect').addEventListener('change', applyFilters);
 
-window.addEventListener("scroll", debounce(() => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-        loadCommits();
+reportContent.addEventListener("scroll", debounce(() => {
+    if (reportContent.scrollHeight - reportContent.scrollTop - reportContent.clientHeight < 200) {
+        loadCommits(offset, limit);
+        offset += limit;
     }
 }, 100));
 
