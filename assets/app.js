@@ -97,56 +97,56 @@ document.getElementById('contrastToggle').addEventListener('click', () => {
 // Chart.js Trend Chart
 // =============================
 <script type="module">
-async function loadChart(data) {
-    // Correct dynamic imports
-    const { Chart, registerables } = await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.esm.js');
-    const { default: zoomPlugin } = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.js');
+window.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch("history.json");
+        const data = await response.json();
 
-    // Register Chart.js components
-    Chart.register(...registerables, zoomPlugin);
-
-    const ctx = document.getElementById("trendChart").getContext("2d");
-    ctx.canvas.setAttribute("aria-label", "Trend chart of flag changes");
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: data.map(d => d.date),
-            datasets: [
-                { label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4 },
-                { label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4 },
-                { label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4 }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { position: 'top' },
-                zoom: { 
-                    zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' },
-                    pan: { enabled: true, mode: 'x' }
-                },
-                tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}` } }
-            },
-            interaction: { mode: 'nearest', axis: 'x', intersect: false }
-        }
-    });
-}
-
-// Load JSON and call the chart
-fetch("history.json")
-    .then(r => r.json())
-    .then(data => {
-        if (data.length === 0) {
+        if (!data || data.length === 0) {
             document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
             return;
         }
-        loadChart(data);
-    })
-    .catch(error => {
+
+        // Only now import Chart.js modules dynamically
+        const ChartModule = await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.esm.js');
+        const { Chart, registerables } = ChartModule;
+        const zoomModule = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.js');
+        const zoomPlugin = zoomModule.default;
+
+        Chart.register(...registerables, zoomPlugin);
+
+        const ctx = document.getElementById("trendChart").getContext("2d");
+        ctx.canvas.setAttribute("aria-label", "Trend chart of flag changes");
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.map(d => d.date),
+                datasets: [
+                    { label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4 },
+                    { label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4 },
+                    { label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4 }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    zoom: { 
+                        zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' },
+                        pan: { enabled: true, mode: 'x' }
+                    },
+                    tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}` } }
+                },
+                interaction: { mode: 'nearest', axis: 'x', intersect: false }
+            }
+        });
+
+    } catch (error) {
         console.error('Error loading history:', error);
         document.getElementById("trendChart").parentNode.innerHTML = '<p class="error-message">Error loading history data.</p>';
-    });
+    }
+});
 </script>
 
 // =============================
