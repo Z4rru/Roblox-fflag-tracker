@@ -267,9 +267,10 @@ async def async_build_diff_for_commit(
 ) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
     if commit_hash in diff_cache:
         cached = diff_cache[commit_hash]
-        added = [(f, v) for entry in cached.get("added", []) if len(entry) == 2 for f, v in [entry]]
-        changed = [(f, o, n) for entry in cached.get("changed", []) if len(entry) == 3 for f, o, n in [entry]]
-        removed = [(f, v) for entry in cached.get("removed", []) if len(entry) == 2 for f, v in [entry]]
+        cached = diff_cache[commit_hash]
+        added   = [tuple(entry) for entry in cached.get("added", []) if len(entry) == 2]
+        changed = [tuple(entry) for entry in cached.get("changed", []) if len(entry) == 3]
+        removed = [tuple(entry) for entry in cached.get("removed", []) if len(entry) == 2]
         return cached['header'], added, changed, removed
     header, added, changed, removed = await asyncio.get_running_loop().run_in_executor(
         None, lambda: build_diff_for_commit_old(commit_hash, manifest_repo)
