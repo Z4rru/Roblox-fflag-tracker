@@ -42,6 +42,7 @@ OUTPUT_JSON = OUTPUT_DIR / "FFlag_Report.json"
 CACHE_FILE = OUTPUT_DIR / "fflag_cache.json"
 DIFF_CACHE_FILE = OUTPUT_DIR / "diff_cache.json"
 HISTORY_FILE = OUTPUT_DIR / "history.json"
+FAILED_FLAGS_FILE = OUTPUT_DIR / "failed_flags.json"
 KEY_INDEX_FILE = OUTPUT_DIR / ".key_index.json"
 DEBUG_DIR = OUTPUT_DIR / "debug"
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker.git"
@@ -54,6 +55,7 @@ AI_BATCH_DELAY = 1.0
 MAX_RETRIES = 3
 MAX_REPORT_COMMITS = 200
 COMMIT_BATCH_SIZE = 30
+COMMIT_CHUNK_SIZE = 20  # For pre-paginating commits.json
 DEBUG = True
 SUBPROCESS_TIMEOUT = 120
 
@@ -111,7 +113,7 @@ def get_next_api_key() -> str | None:
 # ============================
 CATEGORIES = {
     "Graphics": ["Graphics", "Lighting", "Render", "GPU", "VSync", "Shadow", "Texture"],
-    "Physics": ["Physics", "Solver", "Collision", "Humanoid", "Constraint", "Ragdoll"],
+    "Physics": ["Physics", "Solver", "Collision", "Humanoid", "Constraint", "Ragdoll", "Mass", "Gravity", "Force"],
     "Network": ["Network", "Replication", "Packet", "Ping", "Server", "Client"],
     "Camera/UI": ["Camera", "Mouse", "Input", "FOV", "ShiftLock", "UI", "Menu", "Cursor"],
     "Security": ["Exploit", "AntiCheat", "Safe", "Encryption", "Bypass"],
@@ -226,7 +228,7 @@ def build_diff_for_commit_old(
         curr_json = json.loads(curr_content)
         added = [(k, v) for k, v in curr_json.items() if k not in prev_json]
         changed = [(k, prev_json[k], curr_json[k]) for k in curr_json if k in prev_json and curr_json[k] != prev_json[k]]
-        removed = [(k, v) for k, v in prev_json.items() if k not in curr_json]
+        removed = [(k, v) for k in prev_json.items() if k not in curr_json]
         return header, added, changed, removed
     except (json.JSONDecodeError, subprocess.CalledProcessError):
         log.debug("Falling back to line-by-line diff parsing")
@@ -346,6 +348,12 @@ except json.JSONDecodeError:
     log.warning("Corrupted fflag_cache.json. Using empty cache.")
     FLAG_INFO = {}
 
+try:
+    FAILED_FLAGS = json.loads(FAILED_FLAGS_FILE.read_text(encoding="utf-8")) if FAILED_FLAGS_FILE.exists() else []
+except json.JSONDecodeError:
+    log.warning("Corrupted failed_flags.json. Using empty list.")
+    FAILED_FLAGS = []
+
 FLAG_SCHEMA = {
     "type": "object",
     "patternProperties": {
@@ -460,13 +468,31 @@ async def ai_enrich_flags_batch(batch: list[str]) -> dict:
     log.warning("OpenAI failed after max retries. Skipping enrichment.")
     return {f: {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"} for f in batch}
 
-async def generate_flag_info_batch(flags: list[str]) -> None:
+async def generate_flag_info_batch(flags: list[str]) -> list[str]:
+    # Retry failed flags first
+    failed_flags = list(set(FAILED_FLAGS))
+    if failed_flags:
+        log.info(f"Retrying {len(failed_flags)} failed flags.")
+        batches = [failed_flags[i:i + AI_BATCH_SIZE] for i in range(0, len(failed_flags), AI_BATCH_SIZE)]
+        failed_this_run = await process_batches(batches)
+        FAILED_FLAGS[:] = failed_this_run
+    else:
+        failed_this_run = []
+
     new_flags = [f for f in flags if should_enrich_flag(f)]
     if not new_flags:
-        return
+        return failed_this_run
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     batches = [new_flags[i:i + AI_BATCH_SIZE] for i in range(0, len(new_flags), AI_BATCH_SIZE)]
+    failed_this_run += await process_batches(batches)
+    FAILED_FLAGS[:] = list(set(FAILED_FLAGS + failed_this_run))
+    FAILED_FLAGS_FILE.write_text(json.dumps(FAILED_FLAGS, indent=2), encoding="utf-8")
+    CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
+    return failed_this_run
+
+async def process_batches(batches: list[list[str]]) -> list[str]:
     semaphore = asyncio.Semaphore(AI_CONCURRENT_LIMIT)
+    failed_flags = []
     async def limited_task(batch):
         async with semaphore:
             result = await ai_enrich_flags_batch(batch)
@@ -480,15 +506,17 @@ async def generate_flag_info_batch(flags: list[str]) -> None:
             info = info_batch.get(f, {})
             if info and "mechanism" in info and "purpose" in info:
                 FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"),
-                              "purpose": info.get("purpose", "Unknown")}
+                                "purpose": info.get("purpose", "Unknown")}
+                if f in FAILED_FLAGS:
+                    FAILED_FLAGS.remove(f)
             else:
                 log.warning(f"Skipping invalid or missing info for flag {f}")
                 FLAG_INFO[f] = {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"}
+                failed_flags.append(f)
     for exception in [r for r in results if isinstance(r, Exception)]:
         log.error(f"Batch enrichment failed: {exception}")
-        for flag in batch:
-            FLAG_INFO[flag] = {"mechanism": "N/A (error)", "purpose": "N/A (error)"}
-    CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
+        failed_flags.extend(batch)
+    return failed_flags
 
 def should_enrich_flag(flag: str) -> bool:
     if args.dry_run:
@@ -648,8 +676,13 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
     SUMMARY_JSON = OUTPUT_DIR / "summary.json"
     COMMITS_JSON = OUTPUT_DIR / "commits.json"
     SUMMARY_JSON.write_text(json.dumps(summary_data, indent=2), encoding="utf-8")
-    COMMITS_JSON.write_text(json.dumps(commits_data, indent=2), encoding="utf-8")
-    log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}, {SUMMARY_JSON}, {COMMITS_JSON}")
+
+    # Pre-paginate commits.json into chunks
+    for i in range(0, len(commits_data), COMMIT_CHUNK_SIZE):
+        chunk = commits_data[i:i + COMMIT_CHUNK_SIZE]
+        chunk_file = OUTPUT_DIR / f"commits_{i // COMMIT_CHUNK_SIZE}.json"
+        chunk_file.write_text(json.dumps(chunk, indent=2), encoding="utf-8")
+    log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}, {SUMMARY_JSON}, commits_*.json")
 
 # ============================
 # Landing Page
@@ -1139,7 +1172,7 @@ const URLS_TO_CACHE = [
     "./",
     "index.html",
     "summary.json",
-    "commits.json",
+    "commits_0.json",
     "history.json",
     "assets/app.js"
 ];
