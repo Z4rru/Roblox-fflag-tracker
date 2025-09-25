@@ -162,15 +162,18 @@ def format_value(v: any) -> str:
 cache_path = Path(os.environ.get("FFLAG_REPO_CACHE", ".fflag-repo-cache"))
 def ensure_assets():
     """Copy the assets folder into output/assets so it gets published to GitHub Pages."""
-    src = "assets"
-    dst = os.path.join("output", "assets")
-    if os.path.exists(dst):
+    base_dir = Path(__file__).parent
+    src = base_dir / "assets"
+    dst = base_dir / "output" / "assets"
+
+    if dst.exists():
         shutil.rmtree(dst)
-    if os.path.exists(src):
+
+    if src.exists():
         shutil.copytree(src, dst)
-        print(f"[INFO] Copied assets/ → {dst}")
+        log.info(f"Copied assets/ → {dst}")
     else:
-        print("[WARN] assets/ folder not found, skipping copy")
+        log.warning("assets/ folder not found, skipping copy")
 
 def ensure_manifest_repo(repo_url: str = REPO_URL) -> Path:
     if not re.match(r"^https://github\.com/[A-Za-z0-9_-]+/[A-Za-z0-9_-]+\.git$", repo_url):
