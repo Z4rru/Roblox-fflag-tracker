@@ -1231,7 +1231,7 @@ async def main() -> None:
         removed = sum(summary.get((cat, "Removed"), 0) for cat in CATEGORIES)
         update_history(added, changed, removed, last_run)
         export_reports(report, summary, flag_changes)
-        ensure_landing_page(added, changed, removed, last_run)
+        ensure_landing_page(added, changed, removed, last_run, summary)
         if os.getenv('SKIP_ASSETS', 'false').lower() != 'true':
             loop = asyncio.get_running_loop()
             await loop.run_in_executor(None, ensure_assets)
