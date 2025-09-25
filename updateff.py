@@ -1141,11 +1141,8 @@ self.addEventListener("fetch", event => {
 });
 """
     sw_js.write_text(sw_content, encoding="utf-8")
-    app_js_content = open(app_js, 'r', encoding="utf-8").read()
-    app_js.write_text(app_js_content, encoding="utf-8")
     log.info(f"Landing page written: {index_html}")
     log.info(f"Service worker written: {sw_js}")
-    log.info(f"App script written: {app_js}")
 
 # ============================
 # Publish Helper
