@@ -52,7 +52,7 @@ AI_BATCH_SIZE = 5
 AI_CONCURRENT_LIMIT = 5
 AI_BATCH_DELAY = 1.0
 MAX_RETRIES = 3
-MAX_REPORT_COMMITS = 50
+MAX_REPORT_COMMITS = 200
 COMMIT_BATCH_SIZE = 30
 DEBUG = True
 SUBPROCESS_TIMEOUT = 120
@@ -199,7 +199,7 @@ def ensure_manifest_repo(repo_url: str = REPO_URL) -> Path:
             log.warning("Cached repo pull or file check failed, recloning...")
             shutil.rmtree(cache_path, ignore_errors=True)
     log.info("Cloning fresh manifest repo...")
-    subprocess.run(["git", "clone", "--depth=200", repo_url, str(cache_path)], check=True)
+    subprocess.run(["git", "clone", "--depth=1000", repo_url, str(cache_path)], check=True)
     if not (cache_path / TARGET_FILE).exists():
         raise FileNotFoundError(f"{TARGET_FILE} not found in cloned repo")
     return cache_path
