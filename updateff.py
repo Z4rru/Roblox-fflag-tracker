@@ -678,6 +678,15 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str, s
         curr_total = added + changed + removed
         percent_change = round(((curr_total - prev_total) / prev_total * 100), 2) if prev_total > 0 else 0.0
     category_options = "\n".join([f'    <option value="{html.escape(cat)}">{html.escape(cat)}</option>' for cat in CATEGORIES])
+    summary_rows = ""
+    if summary:
+        for cat in CATEGORIES:
+            a = summary.get((cat, "Added"), 0)
+            c = summary.get((cat, "Changed"), 0)
+            r = summary.get((cat, "Removed"), 0)
+            summary_rows += f"<tr><td>{html.escape(cat)}</td><td>{a}</td><td>{c}</td><td>{r}</td><td>{a+c+r}</td></tr>\n"
+    else:
+        summary_rows = "<tr><td colspan='5'>No summary available</td></tr>"
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1099,12 +1108,19 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str, s
             <option value="">Sort by Name</option>
             <option value="freq">Sort by Frequency</option>
         </select>
-        <h2>Summary</h2>
-        <table id="summaryTable" aria-label="Summary of flag changes by category"></table>
+       <h2>Summary</h2>
+        <table id="summaryTable" aria-label="Summary of flag changes by category">
+          <thead>
+            <tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th><th>Total</th></tr>
+          </thead>
+          <tbody>
+            {summary_rows}
+          </tbody>
+        </table>
         <h2>📄 Full Markdown Report</h2>
         <a href="FFlag_Report.md" target="_blank">View Markdown Report</a>
         <h2>📊 Latest Full Report</h2>
-        <div class="report-container">
+        <div class="report-container"> 
             <div id="loadingSpinner" aria-label="Loading report"></div>
             <div id="reportContent" role="region" aria-live="polite"></div>
         </div>
