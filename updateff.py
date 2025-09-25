@@ -1233,7 +1233,8 @@ async def main() -> None:
         update_history(added, changed, removed, last_run)
         export_reports(report, summary, flag_changes)
         ensure_landing_page(added, changed, removed, last_run)
-        ensure_assets()
+        loop = asyncio.get_running_loop()
+        await loop.run_in_executor(None, ensure_assets)
         if os.getenv('PUBLISH_GH', 'false').lower() == 'true':
             publish_output_to_github()
         log.info("All done! Reports and dashboard ready.")
