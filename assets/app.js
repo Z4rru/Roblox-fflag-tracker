@@ -40,12 +40,6 @@ function stopAnimation() {
     cancelAnimationFrame(animationId);
 }
 
-resizeCanvas();
-generateParticles();
-if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    animateParticles();
-}
-
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(resizeCanvas, 200);
@@ -54,6 +48,14 @@ window.addEventListener('resize', () => {
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) stopAnimation();
     else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animateParticles();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    resizeCanvas();
+    generateParticles();
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        animateParticles();
+    }
 });
 
 // =============================
@@ -73,90 +75,102 @@ function applyTheme() {
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animateParticles();
     }
 }
-applyTheme();
 
-document.getElementById('themeToggle').addEventListener('click', () => {
-    if (document.body.classList.contains('light')) {
-        localStorage.removeItem('theme');
-    } else {
-        localStorage.setItem('theme', 'light');
-    }
+document.addEventListener('DOMContentLoaded', () => {
     applyTheme();
-});
 
-document.getElementById('contrastToggle').addEventListener('click', () => {
-    if (document.body.classList.contains('high-contrast')) {
-        localStorage.removeItem('theme');
-    } else {
-        localStorage.setItem('theme', 'high-contrast');
-    }
-    applyTheme();
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        if (document.body.classList.contains('light')) {
+            localStorage.removeItem('theme');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+        applyTheme();
+    });
+
+    document.getElementById('contrastToggle').addEventListener('click', () => {
+        if (document.body.classList.contains('high-contrast')) {
+            localStorage.removeItem('theme');
+        } else {
+            localStorage.setItem('theme', 'high-contrast');
+        }
+        applyTheme();
+    });
 });
 
 // =============================
 // Chart.js Trend Chart
 // =============================
-<script type="module">
-window.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const response = await fetch("history.json");
-        const data = await response.json();
+document.addEventListener('DOMContentLoaded', async () => {
+    const trendChart = document.getElementById("trendChart");
+    if (trendChart) {
+        trendChart.style.display = 'none';
+        const loadingP = document.createElement('p');
+        loadingP.textContent = 'Loading...';
+        trendChart.parentNode.insertBefore(loadingP, trendChart);
 
-        if (!data || data.length === 0) {
-            document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
-            return;
-        }
+        try {
+            const response = await fetch("history.json");
+            const data = await response.json();
 
-        // Only now import Chart.js modules dynamically
-        const ChartModule = await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.esm.js');
-        const { Chart, registerables } = ChartModule;
-        const zoomModule = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.js');
-        const zoomPlugin = zoomModule.default;
-
-        Chart.register(...registerables, zoomPlugin);
-
-        const ctx = document.getElementById("trendChart").getContext("2d");
-        ctx.canvas.setAttribute("aria-label", "Trend chart of flag changes");
-
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: data.map(d => d.date),
-                datasets: [
-                    { label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4 },
-                    { label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4 },
-                    { label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4 }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'top' },
-                    zoom: { 
-                        zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' },
-                        pan: { enabled: true, mode: 'x' }
-                    },
-                    tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}` } }
-                },
-                interaction: { mode: 'nearest', axis: 'x', intersect: false }
+            if (!data || data.length === 0) {
+                loadingP.textContent = 'No history data yet.';
+                trendChart.remove();
+                return;
             }
-        });
 
-    } catch (error) {
-        console.error('Error loading history:', error);
-        document.getElementById("trendChart").parentNode.innerHTML = '<p class="error-message">Error loading history data.</p>';
+            const ChartModule = await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.esm.js');
+            const { Chart, registerables } = ChartModule;
+            const zoomModule = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.js');
+            const zoomPlugin = zoomModule.default;
+
+            Chart.register(...registerables, zoomPlugin);
+
+            const ctx = trendChart.getContext("2d");
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.map(d => d.date),
+                    datasets: [
+                        { label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4 },
+                        { label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4 },
+                        { label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' },
+                        zoom: { 
+                            zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' },
+                            pan: { enabled: true, mode: 'x' }
+                        },
+                        tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.raw}` } }
+                    },
+                    interaction: { mode: 'nearest', axis: 'x', intersect: false }
+                }
+            });
+
+            loadingP.remove();
+            trendChart.style.display = '';
+
+        } catch (error) {
+            console.error('Error loading chart:', error);
+            loadingP.textContent = 'Error loading chart.';
+            if (trendChart) trendChart.remove();
+        }
     }
 });
-</script>
 
 // =============================
-// Report Rendering (Virtual Scroll)
+// Report Rendering
 // =============================
 const reportContent = document.getElementById('reportContent');
 const loadingSpinner = document.getElementById('loadingSpinner');
 let globalData = null;
 let currentData = [];
-let virtualItems = [];
+let offset = 0;
+const limit = 20;
 
 function createCommitCard(commit) {
     const card = document.createElement('div');
@@ -202,65 +216,18 @@ function createCommitCard(commit) {
     return card;
 }
 
-function measureCardHeight(card) {
-    card.style.position = 'absolute';
-    card.style.visibility = 'hidden';
-    document.body.appendChild(card);
-    const height = card.offsetHeight;
-    document.body.removeChild(card);
-    return height;
-}
-
-function updateVirtualScroll() {
-    const scrollTop = reportContent.scrollTop;
-    const containerHeight = reportContent.clientHeight;
-    const cardHeights = virtualItems.map(item => {
-        if (!item.element) item.element = createCommitCard(item.commit);
-        item.height = measureCardHeight(item.element);
-        return item.height;
-    });
-
-    const totalHeight = cardHeights.reduce((sum, h) => sum + h, 0);
-    let startIndex = 0;
-    let accumulatedHeight = 0;
-    for (let i = 0; i < cardHeights.length; i++) {
-        if (accumulatedHeight + cardHeights[i] > scrollTop) {
-            startIndex = i;
-            break;
-        }
-        accumulatedHeight += cardHeights[i];
-    }
-    const endIndex = Math.min(startIndex + Math.ceil(containerHeight / Math.min(...cardHeights)) + 1, virtualItems.length);
-
-    reportContent.innerHTML = '';
+function loadCommits() {
+    const dataToUse = currentData.length > 0 ? currentData : globalData.report;
+    const slice = dataToUse.slice(offset, offset + limit);
+    if (slice.length === 0) return false;
     const fragment = document.createDocumentFragment();
-    virtualItems.slice(startIndex, endIndex).forEach(item => {
-        if (!item.element) item.element = createCommitCard(item.commit);
-        fragment.appendChild(item.element);
+    slice.forEach(commit => {
+        fragment.appendChild(createCommitCard(commit));
     });
     reportContent.appendChild(fragment);
-
-    reportContent.style.paddingTop = `${accumulatedHeight}px`;
-    const bottomPadding = totalHeight - (accumulatedHeight + cardHeights.slice(startIndex, endIndex).reduce((s, h) => s + h, 0));
-    reportContent.style.paddingBottom = `${Math.max(bottomPadding, 0)}px`;
+    offset += limit;
+    return true;
 }
-
-function setupVirtualScroll(data) {
-    virtualItems = data.map(commit => ({ commit, element: null }));
-    reportContent.innerHTML = '';
-    reportContent.style.overflowY = 'auto';
-    updateVirtualScroll();
-}
-
-function debounce(func, delay) {
-    let timeout;
-    return (...args) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func(...args), delay);
-    };
-}
-const debouncedUpdateVirtualScroll = debounce(updateVirtualScroll, 100);
-reportContent.addEventListener('scroll', debouncedUpdateVirtualScroll);
 
 // =============================
 // Filters & Data Loader
@@ -270,11 +237,11 @@ function applyFilters() {
         reportContent.innerHTML = '<p class="error-message">Error: Data not loaded.</p>';
         return;
     }
-    let filtered = globalData.report;
     const cat = document.getElementById('categoryFilter').value;
     const query = document.getElementById('searchInput').value.toLowerCase();
     const sortBy = document.getElementById('sortSelect').value;
 
+    let filtered = globalData.report;
     if (cat || query) {
         filtered = globalData.report.map(commit => {
             const grouped = {};
@@ -305,14 +272,12 @@ function applyFilters() {
     });
 
     currentData = filtered;
+    reportContent.innerHTML = '';
+    offset = 0;
     if (currentData.length === 0) {
         reportContent.innerHTML = `<p>No recent flag changes in the last ${globalData.days} days.</p>`;
-        reportContent.style.height = 'auto';
-        reportContent.style.paddingTop = '0';
-        reportContent.style.paddingBottom = '0';
-        reportContent.removeEventListener('scroll', debouncedUpdateVirtualScroll);
     } else {
-        setupVirtualScroll(currentData);
+        loadCommits();
     }
 }
 
@@ -348,7 +313,7 @@ async function loadReportData() {
 
         const commitsResponse = await fetch('commits.json');
         if (!commitsResponse.ok) throw new Error('Failed to load commits.json');
-        globalData.report = (await commitsResponse.json()) || [];
+        globalData.report = await commitsResponse.json() || [];
 
         loadingSpinner.style.display = 'none';
         applyFilters();
@@ -383,10 +348,24 @@ async function loadReportData() {
     }
 }
 
+function debounce(func, delay) {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func(...args), delay);
+    };
+}
+
 loadReportData();
 document.getElementById('searchInput').addEventListener('input', debounce(applyFilters, 300));
 document.getElementById('categoryFilter').addEventListener('change', applyFilters);
 document.getElementById('sortSelect').addEventListener('change', applyFilters);
+
+window.addEventListener("scroll", debounce(() => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        loadCommits();
+    }
+}, 100));
 
 // =============================
 // Export + Auto-refresh + SW
