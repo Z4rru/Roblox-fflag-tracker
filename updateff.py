@@ -654,7 +654,7 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
 # ============================
 # Landing Page
 # ============================
-def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -> None:
+def ensure_landing_page(added: int, changed: int, removed: int, last_run: str, summary: dict = None) -> None:
     index_html = OUTPUT_DIR / "index.html"
     sw_js = OUTPUT_DIR / "sw.js"
     if not HISTORY_FILE.exists():
