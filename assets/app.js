@@ -119,9 +119,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
-            const ChartModule = await import('https://esm.sh/chart.js@4.4.4');
+            const ChartModule = await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.esm.js');
             const { Chart, registerables } = ChartModule;
-            const zoomModule = await import('https://esm.sh/chartjs-plugin-zoom@2.0.1');
+            const zoomModule = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.js');
             const zoomPlugin = zoomModule.default;
 
             Chart.register(...registerables, zoomPlugin);
@@ -260,12 +260,12 @@ function applyFilters() {
             return Object.keys(grouped).length ? { ...commit, grouped } : null;
         }).filter(Boolean);
     } else {
-        // Merge all items for "All Categories"
+        // merge all items for "All Categories"
         const allItems = [];
         globalData.report.forEach(commit => {
             Object.values(commit.grouped).forEach(arr => allItems.push(...arr));
         });
-        filtered = [{ header: 'All Changes', grouped: {'All_All': allItems} }]; // Wrap in a single "commit" for rendering
+        filtered = [{ header: 'All Changes', grouped: {'All_All': allItems} }];
     }
 
     filtered.forEach(commit => {
