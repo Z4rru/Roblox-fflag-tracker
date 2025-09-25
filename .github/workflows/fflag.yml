@@ -34,7 +34,6 @@ jobs:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
 
-      # ✅ New step: cache manifest repo so we don’t reclone it every run
       - name: Cache manifest repo
         uses: actions/cache@v3
         with:
@@ -71,6 +70,17 @@ jobs:
 
           # Run tracker (fail workflow if it errors)
           python updateff.py
+
+      # ✅ New step to always copy assets into output
+      - name: Copy static assets
+        run: |
+          rm -rf output/assets
+          if [ -d assets ]; then
+            cp -r assets output/
+            echo "✅ Copied assets/ → output/assets"
+          else
+            echo "⚠️ Warning: assets/ folder not found"
+          fi
 
       - name: List output folder
         run: |
