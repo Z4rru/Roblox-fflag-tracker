@@ -74,11 +74,10 @@ document.getElementById('contrastToggle').addEventListener('click', () => {
     }
 });
 
-fetch("history.json").then(r => r.json()).then(data => {
-    if (data.length === 0) {
-        document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
-        return;
-    }
+async function loadChart(data) {
+    const { default: Chart } = await import('https://cdn.jsdelivr.net/npm/chart.js@4.4.4');
+    const { default: zoomPlugin } = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js');
+    Chart.register(zoomPlugin);
     const ctx = document.getElementById("trendChart").getContext("2d");
     new Chart(ctx, {
         type: 'line',
@@ -100,6 +99,14 @@ fetch("history.json").then(r => r.json()).then(data => {
             interaction: {mode: 'nearest', axis: 'x', intersect: false}
         }
     });
+}
+
+fetch("history.json").then(r => r.json()).then(data => {
+    if (data.length === 0) {
+        document.getElementById("trendChart").parentNode.innerHTML = '<p>No history data yet.</p>';
+        return;
+    }
+    loadChart(data);
 }).catch(error => {
     console.error('Error loading history:', error);
     document.getElementById("trendChart").parentNode.innerHTML = '<p class="error-message">Error loading history data.</p>';
@@ -127,7 +134,7 @@ function createCommitCard(commit) {
         h3.setAttribute('aria-expanded', 'true');
         h3.setAttribute('aria-label', `${typ} flags in ${cat}`);
         h3.tabIndex = 0;
-        h3.role = 'button';
+        h3.setAttribute('role', 'button');
         card.appendChild(h3);
         const ul = document.createElement('ul');
         flags.forEach(f => {
@@ -141,18 +148,14 @@ function createCommitCard(commit) {
             } else if (f.old_value !== null && f.new_value === null) {
                 desc = `(was ${f.old_value})`;
             }
-            li.textContent = `${f.name} ${desc}`;
+            li.textContent = `${f.name} ${desc} - Mechanism: ${f.mechanism || "N/A"} - Purpose: ${f.purpose || "N/A"}`;
             if (f.mechanism && f.purpose && !f.mechanism.startsWith('N/A')) {
-                li.textContent += " - Mechanism: " + JSON.stringify(f.mechanism || "N/A").slice(1, -1) +
-                                  " - Purpose: " + JSON.stringify(f.purpose || "N/A").slice(1, -1);
                 const copyBtn = document.createElement('button');
                 copyBtn.classList.add('copy-btn');
-                copyBtn.dataset.copy = JSON.stringify((f.mechanism || "N/A") + " - " + (f.purpose || "N/A")).slice(1, -1);
+                copyBtn.dataset.copy = `${f.mechanism || "N/A"} - ${f.purpose || "N/A"}`;
                 copyBtn.setAttribute('aria-label', `Copy mechanism and purpose for ${f.name}`);
                 copyBtn.textContent = 'Copy';
                 li.appendChild(copyBtn);
-            } else {
-                li.textContent += ` - Mechanism: N/A - Purpose: N/A`;
             }
             ul.appendChild(li);
         });
@@ -174,17 +177,47 @@ function loadVirtualItems(startIndex, endIndex) {
     reportContent.appendChild(fragment);
 }
 
+function measureCardHeight(card) {
+    card.style.position = 'absolute';
+    card.style.visibility = 'hidden';
+    document.body.appendChild(card);
+    const height = card.offsetHeight;
+    document.body.removeChild(card);
+    card.style.position = '';
+    card.style.visibility = '';
+    return height;
+}
+
 function updateVirtualScroll() {
     const scrollTop = reportContent.scrollTop;
     const containerHeight = reportContent.clientHeight;
-    const totalHeight = virtualItems.length * 100; // Estimate item height
+    let totalHeight = 0;
+    const cardHeights = virtualItems.map(item => {
+        if (!item.element) {
+            item.element = createCommitCard(item.commit);
+        }
+        const height = measureCardHeight(item.element);
+        item.height = height;
+        return height;
+    });
+    totalHeight = cardHeights.reduce((sum, h) => sum + h, 0);
     reportContent.style.height = `${totalHeight}px`;
-    const startIndex = Math.floor(scrollTop / 100);
-    const endIndex = Math.min(startIndex + Math.ceil(containerHeight / 100) + 1, virtualItems.length);
+    let startIndex = 0;
+    let accumulatedHeight = 0;
+    for (let i = 0; i < cardHeights.length; i++) {
+        if (accumulatedHeight + cardHeights[i] > scrollTop) {
+            startIndex = i;
+            break;
+        }
+        accumulatedHeight += cardHeights[i];
+    }
+    const endIndex = Math.min(
+        startIndex + Math.ceil(containerHeight / Math.min(...cardHeights)) + 1,
+        virtualItems.length
+    );
     reportContent.innerHTML = '';
     loadVirtualItems(startIndex, endIndex);
-    const paddingTop = startIndex * 100;
-    reportContent.style.paddingTop = `${paddingTop}px`;
+    reportContent.style.paddingTop = `${accumulatedHeight}px`;
 }
 
 function setupVirtualScroll(data) {
@@ -193,7 +226,6 @@ function setupVirtualScroll(data) {
     reportContent.style.overflowY = 'auto';
     reportContent.style.position = 'relative';
     updateVirtualScroll();
-    reportContent.addEventListener('scroll', updateVirtualScroll);
 }
 
 function debounce(func, delay) {
@@ -203,6 +235,9 @@ function debounce(func, delay) {
         timeout = setTimeout(() => func(...args), delay);
     };
 }
+
+const debouncedUpdateVirtualScroll = debounce(updateVirtualScroll, 100);
+reportContent.addEventListener('scroll', debouncedUpdateVirtualScroll);
 
 function applyFilters() {
     if (!globalData) {
@@ -245,7 +280,7 @@ function applyFilters() {
         reportContent.innerHTML = `<p>No recent flag changes in the last ${globalData.days} days.</p>`;
         reportContent.style.height = 'auto';
         reportContent.style.paddingTop = '0';
-        reportContent.removeEventListener('scroll', updateVirtualScroll);
+        reportContent.removeEventListener('scroll', debouncedUpdateVirtualScroll);
     } else {
         setupVirtualScroll(currentData);
     }
@@ -279,7 +314,7 @@ async function loadReportData() {
         summaryTable.innerHTML = tableHtml;
         const commitsResponse = await fetch('commits.json');
         if (!commitsResponse.ok) throw new Error('Failed to load commits.json');
-        globalData.report = await commitsResponse.json();
+        globalData.report = (await commitsResponse.json()) || [];
         loadingSpinner.style.display = 'none';
         applyFilters();
         reportContent.addEventListener('click', e => {
@@ -316,14 +351,13 @@ document.getElementById('categoryFilter').addEventListener('change', applyFilter
 document.getElementById('sortSelect').addEventListener('change', applyFilters);
 document.getElementById('exportCSV').addEventListener('click', () => {
     if (!globalData) return;
-    let csv = 'Commit,Type,Category,Flag,Old Value,New Value,Mechanism,Purpose,Frequency
-';
+    let csv = 'Commit,Type,Category,Flag,Old Value,New Value,Mechanism,Purpose,Frequency\n';
     globalData.report.forEach(commit => {
         Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
             const [typ, cat] = groupKey.split('_');
             flags.forEach(f => {
-                csv += `"${commit.header}","${typ}","${cat}","${f.name}","${f.old_value || ''}","${f.new_value || ''}","${f.mechanism || 'N/A'}","${f.purpose || 'N/A'}","${f.freq}"
-`;
+                const escapeCsvField = (str) => `"${(str || '').toString().replace(/"/g, '""')}"`;
+                csv += `${escapeCsvField(commit.header)},${escapeCsvField(typ)},${escapeCsvField(cat)},${escapeCsvField(f.name)},${escapeCsvField(f.old_value)},${escapeCsvField(f.new_value)},${escapeCsvField(f.mechanism || 'N/A')},${escapeCsvField(f.purpose || 'N/A')},${escapeCsvField(f.freq)}\n`;
             });
         });
     });
@@ -352,3 +386,10 @@ if ('serviceWorker' in navigator) {
         console.error('Service Worker registration failed:', error);
     });
 }
+window.onerror = function (message, source, lineno, colno, error) {
+    if (/ERR_BLOCKED_BY_CLIENT/.test(error?.message)) {
+        localStorage.setItem('errorLog', JSON.stringify({
+            message, source, lineno, colno, timestamp: new Date().toISOString()
+        }));
+    }
+};
