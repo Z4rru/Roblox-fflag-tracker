@@ -217,50 +217,113 @@ def get_commits(days: int = DAYS, manifest_repo: Path | None = None) -> list[str
 def build_diff_for_commit_old(
     commit_hash: str, manifest_repo: Path | None = None
 ) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
+    """Robust reimplementation of the original build_diff_for_commit_old.
+
+    - Avoids tricky comprehensions that can reference variables outside their
+      comprehension scope (problematic on Python >= 3.12).
+    - Uses explicit for-loops and safe unpacking.
+    - Falls back to line-by-line parsing if JSON load fails.
+    """
     header = run_cmd(
         f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=manifest_repo
     )
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=manifest_repo)
+
     try:
         prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=manifest_repo)
         curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=manifest_repo)
+
         prev_json = json.loads(prev_content) if prev_content else {}
         curr_json = json.loads(curr_content)
-        added = [(k, v) for k, v in curr_json.items() if k not in prev_json]
-        changed = [(k, v_old, v_new) for k, v_new in curr_json.items() if k in prev_json and (v_old := prev_json[k]) != v_new]
-        removed = [(k, v) for k in prev_json.items() if k not in curr_json]
+
+        added: list[tuple[str, any]] = []
+        changed: list[tuple[str, any, any]] = []
+        removed: list[tuple[str, any]] = []
+
+        # Build added and changed lists using explicit loops and local variables
+        for key, new_val in curr_json.items():
+            if key not in prev_json:
+                # New key
+                added.append((key, new_val))
+            else:
+                old_val = prev_json.get(key)
+                if old_val != new_val:
+                    changed.append((key, old_val, new_val))
+
+        # Build removed list explicitly
+        for key, old_val in prev_json.items():
+            if key not in curr_json:
+                removed.append((key, old_val))
+
         return header, added, changed, removed
-    except (json.JSONDecodeError, subprocess.CalledProcessError):
-        log.debug("Falling back to line-by-line diff parsing")
-        added_dict = {}
-        removed_dict = {}
+
+    except (json.JSONDecodeError, subprocess.CalledProcessError) as exc:
+        # Fall back to line-by-line diff parsing. Be conservative and explicit
+        log.debug(f"Falling back to line-by-line diff parsing: {exc}")
+        added_dict: dict[str, any] = {}
+        removed_dict: dict[str, any] = {}
+
         for line in diff.splitlines():
+            # Skip file header lines
+            if line.startswith("+++") or line.startswith("---"):
+                continue
+
+            # Added lines
             if line.startswith("+") and not line.startswith("+++"):
-                l = line[1:].strip()
-                if l.startswith('"') and ":" in l:
+                snippet = line[1:].strip()
+                if snippet.startswith('"') and ":" in snippet:
                     try:
-                        if l.endswith(","):
-                            l = l[:-1]
-                        d = json.loads("{" + l + "}")
-                        for k, v in d.items():
-                            added_dict[k] = v
+                        # Remove trailing comma if present and parse a one-line object
+                        if snippet.endswith(","):
+                            snippet = snippet[:-1]
+                        parsed = json.loads("{" + snippet + "}")
+                        if isinstance(parsed, dict):
+                            for k, v in parsed.items():
+                                # Only set if key appears valid
+                                added_dict[k] = v
                     except Exception as e:
-                        log.debug(f"Failed to parse added line: {l} {e}")
+                        log.debug(f"Failed to parse added line: {snippet!r} ({e})")
+
+            # Removed lines
             elif line.startswith("-") and not line.startswith("---"):
-                l = line[1:].strip()
-                if l.startswith('"') and ":" in l:
+                snippet = line[1:].strip()
+                if snippet.startswith('"') and ":" in snippet:
                     try:
-                        if l.endswith(","):
-                            l = l[:-1]
-                        d = json.loads("{" + l + "}")
-                        for k, v in d.items():
-                            removed_dict[k] = v
+                        if snippet.endswith(","):
+                            snippet = snippet[:-1]
+                        parsed = json.loads("{" + snippet + "}")
+                        if isinstance(parsed, dict):
+                            for k, v in parsed.items():
+                                removed_dict[k] = v
                     except Exception as e:
-                        log.debug(f"Failed to parse removed line: {l} {e}")
-        added = [(k, v) for k, v in added_dict.items() if k not in removed_dict]
-        changed = [(k, removed_dict[k], added_dict[k]) for k in added_dict if k in removed_dict]
-        removed = [(k, v) for k, v in removed_dict.items() if k not in added_dict]
-        return header, added, changed, removed
+                        log.debug(f"Failed to parse removed line: {snippet!r} ({e})")
+
+        # Convert dicts to final lists with explicit loops (no comprehensions)
+        final_added: list[tuple[str, any]] = []
+        final_changed: list[tuple[str, any, any]] = []
+        final_removed: list[tuple[str, any]] = []
+
+        # Keys present in both removed_dict and added_dict are treated as changes
+        for k, new_v in added_dict.items():
+            if k in removed_dict:
+                old_v = removed_dict.get(k)
+                # Only include if values actually differ
+                if old_v != new_v:
+                    final_changed.append((k, old_v, new_v))
+                # Remove from removed_dict to avoid double-counting
+                removed_dict.pop(k, None)
+            else:
+                # Only keep explicit non-None values
+                if new_v is not None:
+                    final_added.append((k, new_v))
+
+        # Remaining keys in removed_dict are true removals
+        for k, old_v in removed_dict.items():
+            if old_v is not None:
+                final_removed.append((k, old_v))
+
+        return header, final_added, final_changed, final_removed
+
 
 async def async_build_diff_for_commit(
     commit_hash: str, diff_cache: dict, manifest_repo: Path | None = None
