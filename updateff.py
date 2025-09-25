@@ -657,13 +657,6 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
 def ensure_landing_page(added: int, changed: int, removed: int, last_run: str) -> None:
     index_html = OUTPUT_DIR / "index.html"
     sw_js = OUTPUT_DIR / "sw.js"
-    try:
-        source_app_js = SCRIPT_DIR / "assets" / "app.js"
-        app_js = OUTPUT_DIR / "assets" / "app.js"
-        app_js_content = open(source_app_js, 'r', encoding="utf-8").read()
-        app_js.write_text(app_js_content, encoding="utf-8")
-    except FileNotFoundError:
-        log.warning(f"Source app.js not found at {SCRIPT_DIR}/assets/app.js. Skipping copy.")
     if not HISTORY_FILE.exists():
         HISTORY_FILE.write_text("[]", encoding="utf-8")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
