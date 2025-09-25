@@ -180,7 +180,7 @@ function createCommitCard(commit) {
     h2.textContent = commit.header;
     card.appendChild(h2);
 
-    Object.entries(commit.grouped).forEach(([groupKey, flags] => {
+    Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
         const [typ, cat] = groupKey.split('_');
         const h3 = document.createElement('h3');
         h3.textContent = `${typ} in ${cat}`;
