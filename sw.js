@@ -4,7 +4,7 @@ const URLS_TO_CACHE = [
     "./",
     "index.html",
     "summary.json",
-    "commits.json",
+    "commits_0.json",
     "history.json",
     "assets/app.js"
 ];
