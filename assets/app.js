@@ -98,6 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+import Chart from './assets/chart.js';
+import zoomPlugin from './assets/chartjs-plugin-zoom.min.js'; // <- put the downloaded file here
+
+// Register the plugin before creating any chart
+Chart.register(zoomPlugin);
 // =============================
 // Chart.js Trend Chart
 // =============================
@@ -110,9 +115,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadingP.textContent = 'Loading...';
     trendChart.parentNode.insertBefore(loadingP, trendChart);
 
+    let retries = 0;
+    const maxRetries = 3;
     const loadChartData = async () => {
         try {
-            const response = await fetch("output/history.json");
+            const response = await fetch("history.json");
+            if (!response.ok) throw new Error('Failed to load history.json');
             const data = await response.json();
 
             if (!data || data.length === 0) {
@@ -120,9 +128,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 trendChart.remove();
                 return;
             }
-
-            // Register the zoom plugin using UMD global
-            Chart.register(window['chartjs-plugin-zoom']);
 
             const ctx = trendChart.getContext("2d");
             new Chart(ctx, {
@@ -154,8 +159,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         } catch (error) {
             console.error('Error loading chart:', error);
-            loadingP.textContent = 'Error loading chart. Retrying in 5 seconds...';
-            setTimeout(loadChartData, 5000);  // Retry optimization
+            if (retries < maxRetries) {
+                retries++;
+                loadingP.textContent = `Error loading chart. Retrying (${retries}/${maxRetries}) in 5 seconds...`;
+                setTimeout(loadChartData, 5000);
+            } else {
+                loadingP.textContent = 'Failed to load chart after retries.';
+            }
         }
     };
 
@@ -290,7 +300,7 @@ function applyFilters() {
 
 async function loadReportData() {
     try {
-        const summaryResponse = await fetch('output/summary.json');
+        const summaryResponse = await fetch('summary.json');
         if (!summaryResponse.ok) throw new Error('Failed to load summary.json');
         const data = await summaryResponse.json();
         globalData = data;
@@ -319,10 +329,11 @@ async function loadReportData() {
         }
 
         globalData.report = [];
-        const indexRes = await fetch("output/commits_index.json");
+        const indexRes = await fetch("commits_index.json");
         if (!indexRes.ok) throw new Error('Failed to load commits_index.json');
         const commitFiles = await indexRes.json();
-        for (const file of commitFiles) {
+        for (let file of commitFiles) {
+            file = file.replace("output/", ""); // Remove prefix to match root location
             const res = await fetch(file);
             if (!res.ok) {
                 console.error(`Failed to load ${file}`);
@@ -418,14 +429,14 @@ function download(filename, text) {
 }
 
 setInterval(() => {
-    fetch('output/summary.json?ts=' + Date.now()).then(r => r.json()).then(newData => {
+    fetch('summary.json?ts=' + Date.now()).then(r => r.json()).then(newData => {
         if (globalData && newData.last_run !== globalData.last_run) {
             location.reload();
         }
     }).catch(() => { });
 }, 60000);
 
-// Temporarily comment out ServiceWorker registration to bypass interception errors
+// Comment out to avoid interception errors; debug sw.js if needed
 // if ('serviceWorker' in navigator) {
 //     navigator.serviceWorker.register('sw.js').catch(error => {
 //         console.error('Service Worker registration failed:', error);
