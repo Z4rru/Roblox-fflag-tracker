@@ -317,11 +317,26 @@ async function loadReportData() {
         globalData.report = [];
         let chunkIndex = 0;
         while (true) {
-            const res = await fetch(`commits_${chunkIndex}.json`);
-            if (!res.ok) break;
-            const chunk = await res.json();
-            globalData.report = globalData.report.concat(chunk);
-            chunkIndex++;
+            try {
+                const res = await fetch(`commits_${chunkIndex}.json`);
+                if (!res.ok) {
+                    if (res.status === 404) {
+                        console.log(`Commits chunk commits_${chunkIndex}.json not found, stopping fetch.`);
+                        break;
+                    }
+                    throw new Error(`Failed to load commits_${chunkIndex}.json`);
+                }
+                const chunk = await res.json();
+                globalData.report = globalData.report.concat(chunk);
+                chunkIndex++;
+            } catch (error) {
+                console.error(`Error fetching commits_${chunkIndex}.json:`, error);
+                break;
+            }
+        }
+
+        if (globalData.report.length === 0) {
+            console.warn("No commit data loaded.");
         }
 
         loadingSpinner.style.display = 'none';
