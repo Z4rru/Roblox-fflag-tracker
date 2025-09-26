@@ -121,8 +121,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Register zoom plugin (global Chart + ChartZoom available)
-        Chart.register(window['chartjs-plugin-zoom']);
-
         const ctx = trendChart.getContext("2d");
         new Chart(ctx, {
             type: 'line',
@@ -315,28 +313,19 @@ async function loadReportData() {
         }
 
         globalData.report = [];
-        let chunkIndex = 0;
-        while (true) {
+        for (let chunkIndex = 0; chunkIndex < data.num_chunks; chunkIndex++) {
             try {
                 const res = await fetch(`commits_${chunkIndex}.json`);
                 if (!res.ok) {
-                    if (res.status === 404) {
-                        console.log(`Commits chunk commits_${chunkIndex}.json not found, stopping fetch.`);
-                        break;
-                    }
-                    throw new Error(`Failed to load commits_${chunkIndex}.json`);
+                    console.warn(`Commits_${chunkIndex}.json not found, stopping fetch`);
+                    break; // Stop if file is missing
                 }
                 const chunk = await res.json();
                 globalData.report = globalData.report.concat(chunk);
-                chunkIndex++;
             } catch (error) {
-                console.error(`Error fetching commits_${chunkIndex}.json:`, error);
-                break;
+                console.warn(`Error fetching commits_${chunkIndex}.json:`, error);
+                break; // Stop on any fetch error
             }
-        }
-
-        if (globalData.report.length === 0) {
-            console.warn("No commit data loaded.");
         }
 
         loadingSpinner.style.display = 'none';
