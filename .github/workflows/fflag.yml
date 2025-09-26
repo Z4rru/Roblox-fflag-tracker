@@ -76,9 +76,13 @@ jobs:
 
       - name: Inject report into index.html
         run: |
-          REPORT_HTML=$(<output/FFlag_Report.html)
-          perl -0777 -i -pe "s|<div id=\"reportContent\"></div>|<div id=\"reportContent\">$REPORT_HTML</div>|s" output/index.html
+          sed -e '/<div id="reportContent"><\/div>/{ 
+            r output/FFlag_Report.html
+            d
+          }' output/index.html > output/index.tmp
+          mv output/index.tmp output/index.html
           echo "✅ Injected FFlag_Report.html into index.html"
+
 
       - name: Copy static assets
         run: |
