@@ -69,16 +69,17 @@ jobs:
 
           python updateff.py
 
-      # Inject FFlag_Report.html into index.html
+      - name: Debug working directory
+        run: |
+          pwd
+          ls -R
+
       - name: Inject report into index.html
         run: |
-          REPORT_HTML=$(<FFlag_Report.html)
-          perl -0777 -i -pe "s|<div id=\"reportContent\"></div>|<div id=\"reportContent\">$REPORT_HTML</div>|s" Roblox-fflag-tracker/output/index.html
+          REPORT_HTML=$(<output/FFlag_Report.html)
+          perl -0777 -i -pe "s|<div id=\"reportContent\"></div>|<div id=\"reportContent\">$REPORT_HTML</div>|s" output/index.html
           echo "✅ Injected FFlag_Report.html into index.html"
 
-
-
-      # Copy static assets
       - name: Copy static assets
         run: |
           rm -rf output/assets
