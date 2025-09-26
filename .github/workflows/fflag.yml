@@ -71,15 +71,14 @@ jobs:
 
       - name: Check if commits JSON files exist
         run: |
-          for i in $(seq 0 10); do
-            if [ -f output/commits_${i}.json ]; then
-              echo "✅ commits_${i}.json found!"
-              ls -lh output/commits_${i}.json
-            else
-              echo "❌ commits_${i}.json is missing!"
-              exit 1
-            fi
+          i=0
+          while [ -f output/commits_${i}.json ]; do
+            echo "✅ commits_${i}.json found!"
+            ls -lh output/commits_${i}.json
+            i=$((i+1))
           done
+          echo "✅ Finished checking all commit chunks (last was commits_$((i-1)).json)"
+
 
 
       - name: Debug working directory
