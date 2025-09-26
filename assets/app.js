@@ -292,20 +292,22 @@ async function loadReportData() {
         }
 
         globalData.report = [];
-        for (let chunkIndex = 0; chunkIndex < data.num_chunks; chunkIndex++) {
-            try {
-                const res = await fetch(`commits_${chunkIndex}.json`);
-                if (!res.ok) {
-                    console.warn(`Commits_${chunkIndex}.json not found, stopping fetch`);
-                    break; // Stop if file is missing
-                }
+        // Load actual list of commit files instead of guessing
+        try {
+            const indexRes = await fetch("commits_index.json");
+            if (!indexRes.ok) throw new Error("commits_index.json missing");
+            const commitFiles = await indexRes.json();
+        
+            for (const file of commitFiles) {
+                const res = await fetch(file);
+                if (!res.ok) continue;
                 const chunk = await res.json();
                 globalData.report = globalData.report.concat(chunk);
-            } catch (error) {
-                console.warn(`Error fetching commits_${chunkIndex}.json:`, error);
-                break; // Stop on any fetch error
             }
+        } catch (err) {
+            console.warn("Error loading commit files:", err);
         }
+
 
         loadingSpinner.style.display = 'none';
         applyFilters();
