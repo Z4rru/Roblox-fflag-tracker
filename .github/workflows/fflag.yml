@@ -48,7 +48,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Ensure output folder exists
-        run: mkdir -p output
+        run: |
+          mkdir -p output
+          echo "✅ Output folder checked/created."
 
       - name: Run Roblox FFlag Tracker with key rotation
         env:
@@ -77,18 +79,43 @@ jobs:
           fi
       
           i=0
+          found_any=false
           while [ -f "output/commits_${i}.json" ]; do
             echo "✅ commits_${i}.json found!"
             ls -lh "output/commits_${i}.json"
+            found_any=true
             i=$((i+1))
           done
-          echo "✅ Finished checking commit chunks"
-          
+      
+          if [ "$found_any" = true ]; then
+            echo "✅ Finished checking all commit chunks (last was commits_$((i-1)).json)"
+          else
+            echo "⚠️ No sequential commits found, but other commits_*.json may exist:"
+            ls -lh output/commits_*.json || true
+          fi
+
       - name: Generate commits_index.json
         run: |
+          echo "📝 Generating commits_index.json"
           ls output/commits_*.json | jq -R -s -c 'split("\n")[:-1]' > output/commits_index.json
-          echo "✅ Generated commits_index.json"
+          cat output/commits_index.json
+          echo "✅ commits_index.json generated"
 
+      - name: Add favicon.ico if missing
+        run: |
+          if [ ! -f output/favicon.ico ]; then
+            echo "🌐 Downloading default favicon.ico"
+            curl -sL -o output/favicon.ico https://www.roblox.com/favicon.ico
+          fi
+          echo "✅ Favicon ensured"
+
+      - name: Verify index.html exists
+        run: |
+          if [ ! -f output/index.html ]; then
+            echo "❌ output/index.html is missing! Cannot continue."
+            exit 1
+          fi
+          echo "✅ Found output/index.html"
 
       - name: Inject report into index.html
         run: |
@@ -110,7 +137,9 @@ jobs:
           fi
 
       - name: List output folder
-        run: ls -R output
+        run: |
+          echo "📂 Contents of output folder:"
+          ls -R output
 
       - name: Upload output as artifact (backup)
         uses: actions/upload-artifact@v4
