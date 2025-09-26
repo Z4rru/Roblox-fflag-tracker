@@ -1,3 +1,6 @@
+import Chart from './assets/chart.js';
+import zoomPlugin from './assets/chartjs-plugin-zoom.js';
+
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let resizeTimeout, animationId, particles = [];
@@ -120,8 +123,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        // Register zoom plugin (global Chart + ChartZoom available)
-        Chart.register(window['chartjs-plugin-zoom']);
+        // Register zoom plugin
+        Chart.register(zoomPlugin);
 
         const ctx = trendChart.getContext("2d");
         new Chart(ctx, {
