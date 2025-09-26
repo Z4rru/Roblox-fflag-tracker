@@ -69,6 +69,16 @@ jobs:
 
           python updateff.py
 
+      - name: Check if commits_0.json exists
+        run: |
+          if [ -f output/commits_0.json ]; then
+            echo "✅ commits_0.json found!"
+            ls -lh output/commits_0.json
+          else
+            echo "❌ commits_0.json is missing!"
+            exit 1
+          fi
+
       - name: Debug working directory
         run: |
           pwd
@@ -82,7 +92,6 @@ jobs:
           }' output/index.html > output/index.tmp
           mv output/index.tmp output/index.html
           echo "✅ Injected FFlag_Report.html into index.html"
-
 
       - name: Copy static assets
         run: |
