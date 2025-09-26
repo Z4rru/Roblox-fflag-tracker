@@ -330,7 +330,6 @@ async def async_build_diff_for_commit(
 ) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
     if commit_hash in diff_cache:
         cached = diff_cache[commit_hash]
-        cached = diff_cache[commit_hash]
         added   = [tuple(entry) for entry in cached.get("added", []) if len(entry) == 2]
         changed = [tuple(entry) for entry in cached.get("changed", []) if len(entry) == 3]
         removed = [tuple(entry) for entry in cached.get("removed", []) if len(entry) == 2]
@@ -742,17 +741,14 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
     SUMMARY_JSON.write_text(json.dumps(summary_data, indent=2), encoding="utf-8")
 
     # Pre-paginate commits.json into chunks
-    commits_data = json_data["report"]
-    if not commits_data:
-        # Create an empty commits_0.json to avoid 404
-        chunk_file = OUTPUT_DIR / "commits_0.json"
-        chunk_file.write_text(json.dumps([], indent=2), encoding="utf-8")
-        log.info("Created empty commits_0.json due to no report data")
-    else:
-        for i in range(0, max(len(commits_data), COMMIT_CHUNK_SIZE), COMMIT_CHUNK_SIZE):
-            chunk = commits_data[i:i + COMMIT_CHUNK_SIZE]
-            chunk_file = OUTPUT_DIR / f"commits_{i // COMMIT_CHUNK_SIZE}.json"
-            chunk_file.write_text(json.dumps(chunk, indent=2), encoding="utf-8")
+    chunk_files = []
+    for i in range(0, len(commits_data), COMMIT_CHUNK_SIZE):
+        chunk = commits_data[i:i + COMMIT_CHUNK_SIZE]
+        chunk_file = OUTPUT_DIR / f"commits_{i // COMMIT_CHUNK_SIZE}.json"
+        chunk_file.write_text(json.dumps(chunk, indent=2), encoding="utf-8")
+        chunk_files.append(chunk_file.name)
+    summary_data['num_chunks'] = (len(commits_data) + COMMIT_CHUNK_SIZE - 1) // COMMIT_CHUNK_SIZE
+    SUMMARY_JSON.write_text(json.dumps(summary_data, indent=2), encoding="utf-8")
     log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}, {SUMMARY_JSON}, commits_*.json")
 
 # ============================
@@ -798,7 +794,9 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str, s
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self';">
     <title>Roblox FFlag Tracker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚩</text></svg>">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
     <style>
         :root {{
             --primary-green: #34d399;
@@ -1233,6 +1231,8 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str, s
         <canvas id="trendChart" aria-label="Trend chart of flag changes"></canvas>
     </section>
     <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.umd.min.js"></script>
     <script src="assets/app.js" defer></script>
 </body>
 </html>"""
@@ -1243,7 +1243,7 @@ const URLS_TO_CACHE = [
     "./",
     "index.html",
     "summary.json",
-    "commits_0.json",
+    "commits_index.json",
     "history.json",
     "assets/app.js"
 ];
