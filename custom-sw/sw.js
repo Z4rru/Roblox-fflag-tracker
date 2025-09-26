@@ -5,7 +5,9 @@ const URLS_TO_CACHE = [
     "summary.json",
     "commits_index.json",
     "history.json",
-    "assets/app.js"
+    "assets/app.js",
+    "assets/chart.js",
+    "assets/chartjs-plugin-zoom.js"
 ];
 
 // Install: cache local files
@@ -32,18 +34,17 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
     const url = event.request.url;
 
-    // Bypass external CDNs and Google Fonts
+    // Bypass external Google Fonts
     if (
-        url.startsWith("https://cdn.jsdelivr.net") ||
         url.startsWith("https://fonts.googleapis.com") ||
         url.startsWith("https://fonts.gstatic.com")
     ) {
-        event.respondWith(fetch(event.request));
+        event.respondWith(fetch(event.request, { redirect: 'follow' }));
         return;
     }
 
     // For local assets, use cache first
     event.respondWith(
-        caches.match(event.request).then(response => response || fetch(event.request))
+        caches.match(event.request).then(response => response || fetch(event.request, { redirect: 'follow' }))
     );
 });
