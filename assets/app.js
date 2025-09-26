@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // =============================
- // Theme & Contrast Toggle (with persistence)
+// Theme & Contrast Toggle (with persistence)
 // =============================
 function applyTheme() {
     const theme = localStorage.getItem('theme');
@@ -97,13 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme();
     });
 });
-    import Chart from './assets/chart.js';
-    import zoomPlugin from './assets/chartjs-plugin-zoom.min.js'; // <- put the downloaded file here
 
-    // Register the plugin before creating any chart
-    Chart.register(zoomPlugin);
 // =============================
- // Chart.js Trend Chart
+// Chart.js Trend Chart
 // =============================
 document.addEventListener('DOMContentLoaded', async () => {
     const trendChart = document.getElementById("trendChart");
@@ -124,6 +120,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 trendChart.remove();
                 return;
             }
+
+            // Register the zoom plugin using UMD global
+            Chart.register(window['chartjs-plugin-zoom']);
 
             const ctx = trendChart.getContext("2d");
             new Chart(ctx, {
@@ -164,7 +163,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // =============================
- // Report Rendering
+// Report Rendering
 // =============================
 const reportContent = document.getElementById('reportContent');
 const loadingSpinner = document.getElementById('loadingSpinner');
@@ -245,7 +244,7 @@ function applyFilters() {
     if (cat || query) {
         filtered = globalData.report.map(commit => {
             const grouped = {};
-            Object.entries(commit.grouped).forEach(([groupKey, flags] ) => {
+            Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
                 const [typ, category] = groupKey.split('_');
                 if (cat && category !== cat) return;
                 let matches = flags;
@@ -426,11 +425,12 @@ setInterval(() => {
     }).catch(() => { });
 }, 60000);
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(error => {
-        console.error('Service Worker registration failed:', error);
-    });
-}
+// Temporarily comment out ServiceWorker registration to bypass interception errors
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('sw.js').catch(error => {
+//         console.error('Service Worker registration failed:', error);
+//     });
+// }
 
 window.onerror = function (message, source, lineno, colno, error) {
     if (/ERR_BLOCKED_BY_CLIENT/.test(error?.message)) {
