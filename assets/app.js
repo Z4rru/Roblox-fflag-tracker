@@ -97,7 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme();
     });
 });
+    import Chart from './assets/chart.js';
+    import zoomPlugin from './assets/chartjs-plugin-zoom.min.js'; // <- put the downloaded file here
 
+    // Register the plugin before creating any chart
+    Chart.register(zoomPlugin);
 // =============================
  // Chart.js Trend Chart
 // =============================
