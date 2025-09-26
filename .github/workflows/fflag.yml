@@ -83,6 +83,12 @@ jobs:
             i=$((i+1))
           done
           echo "✅ Finished checking commit chunks"
+          
+      - name: Generate commits_index.json
+        run: |
+          ls output/commits_*.json | jq -R -s -c 'split("\n")[:-1]' > output/commits_index.json
+          echo "✅ Generated commits_index.json"
+
 
       - name: Inject report into index.html
         run: |
