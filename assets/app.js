@@ -11,7 +11,7 @@ function resizeCanvas() {
 }
 
 function generateParticles() {
-    particles = Array.from({ length: 20 }, () => ({  // Reduced to 20 for optimization
+    particles = Array.from({ length: 20 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         r: Math.random() * 2 + 1,
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // =============================
-// Theme & Contrast Toggle (with persistence)
+ // Theme & Contrast Toggle (with persistence)
 // =============================
 function applyTheme() {
     const theme = localStorage.getItem('theme');
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // =============================
-// Chart.js Trend Chart
+ // Chart.js Trend Chart
 // =============================
 document.addEventListener('DOMContentLoaded', async () => {
     const trendChart = document.getElementById("trendChart");
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const loadChartData = async () => {
         try {
-            const response = await fetch("history.json");
+            const response = await fetch("output/history.json");
             const data = await response.json();
 
             if (!data || data.length === 0) {
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // =============================
-// Report Rendering
+ // Report Rendering
 // =============================
 const reportContent = document.getElementById('reportContent');
 const loadingSpinner = document.getElementById('loadingSpinner');
@@ -241,7 +241,7 @@ function applyFilters() {
     if (cat || query) {
         filtered = globalData.report.map(commit => {
             const grouped = {};
-            Object.entries(commit.grouped).forEach(([groupKey, flags]) => {
+            Object.entries(commit.grouped).forEach(([groupKey, flags] ) => {
                 const [typ, category] = groupKey.split('_');
                 if (cat && category !== cat) return;
                 let matches = flags;
@@ -287,7 +287,7 @@ function applyFilters() {
 
 async function loadReportData() {
     try {
-        const summaryResponse = await fetch('summary.json');
+        const summaryResponse = await fetch('output/summary.json');
         if (!summaryResponse.ok) throw new Error('Failed to load summary.json');
         const data = await summaryResponse.json();
         globalData = data;
@@ -316,12 +316,14 @@ async function loadReportData() {
         }
 
         globalData.report = [];
-        const indexRes = await fetch("commits_index.json");
+        const indexRes = await fetch("output/commits_index.json");
+        if (!indexRes.ok) throw new Error('Failed to load commits_index.json');
         const commitFiles = await indexRes.json();
         for (const file of commitFiles) {
             const res = await fetch(file);
             if (!res.ok) {
                 console.error(`Failed to load ${file}`);
+                reportContent.innerHTML += '<p class="error-message">Failed to load some report data. Check console for details.</p>';
                 break;
             }
             const chunk = await res.json();
@@ -357,7 +359,7 @@ async function loadReportData() {
     } catch (error) {
         console.error('Error loading report:', error);
         loadingSpinner.style.display = 'none';
-        reportContent.innerHTML = '<p class="error-message">Error loading report data. Please try again later.</p>';
+        reportContent.innerHTML = '<p class="error-message">Error loading report data. Please try again later or run updateff.py to generate files.</p>';
     }
 }
 
@@ -413,7 +415,7 @@ function download(filename, text) {
 }
 
 setInterval(() => {
-    fetch('summary.json?ts=' + Date.now()).then(r => r.json()).then(newData => {
+    fetch('output/summary.json?ts=' + Date.now()).then(r => r.json()).then(newData => {
         if (globalData && newData.last_run !== globalData.last_run) {
             location.reload();
         }
