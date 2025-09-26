@@ -121,9 +121,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Register zoom plugin (global Chart + ChartZoom available)
-        const ctx = document.getElementById("myChart");
-        new Chart(ctx, { type: "bar", data, options });
+        Chart.register(window['chartjs-plugin-zoom']);
 
+        const ctx = trendChart.getContext("2d");
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.map(d => d.date),
+                datasets: [
+                    { label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4 },
+                    { label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4 },
+                    { label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4 }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    zoom: { 
+                        zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' },
+                        pan: { enabled: true, mode: 'x' }
+                    },
+                    tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw}` } }
+                },
+                interaction: { mode: 'nearest', axis: 'x', intersect: false }
+            }
+        });
 
         loadingP.remove();
         trendChart.style.display = '';
@@ -292,22 +315,17 @@ async function loadReportData() {
         }
 
         globalData.report = [];
-        // Load actual list of commit files instead of guessing
-        try {
-            const indexRes = await fetch("commits_index.json");
-            if (!indexRes.ok) throw new Error("commits_index.json missing");
-            const commitFiles = await indexRes.json();
-        
-            for (const file of commitFiles) {
-                const res = await fetch(file);
-                if (!res.ok) continue;
-                const chunk = await res.json();
-                globalData.report = globalData.report.concat(chunk);
+        const indexRes = await fetch("commits_index.json");
+        const commitFiles = await indexRes.json();
+        for (const file of commitFiles) {
+            const res = await fetch(file);
+            if (!res.ok) {
+                console.error(`Failed to load ${file}`);
+                break;
             }
-        } catch (err) {
-            console.warn("Error loading commit files:", err);
+            const chunk = await res.json();
+            globalData.report = globalData.report.concat(chunk);
         }
-
 
         loadingSpinner.style.display = 'none';
         applyFilters();
