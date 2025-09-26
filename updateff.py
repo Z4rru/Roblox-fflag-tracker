@@ -742,10 +742,17 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
     SUMMARY_JSON.write_text(json.dumps(summary_data, indent=2), encoding="utf-8")
 
     # Pre-paginate commits.json into chunks
-    for i in range(0, len(commits_data), COMMIT_CHUNK_SIZE):
-        chunk = commits_data[i:i + COMMIT_CHUNK_SIZE]
-        chunk_file = OUTPUT_DIR / f"commits_{i // COMMIT_CHUNK_SIZE}.json"
-        chunk_file.write_text(json.dumps(chunk, indent=2), encoding="utf-8")
+    commits_data = json_data["report"]
+    if not commits_data:
+        # Create an empty commits_0.json to avoid 404
+        chunk_file = OUTPUT_DIR / "commits_0.json"
+        chunk_file.write_text(json.dumps([], indent=2), encoding="utf-8")
+        log.info("Created empty commits_0.json due to no report data")
+    else:
+        for i in range(0, max(len(commits_data), COMMIT_CHUNK_SIZE), COMMIT_CHUNK_SIZE):
+            chunk = commits_data[i:i + COMMIT_CHUNK_SIZE]
+            chunk_file = OUTPUT_DIR / f"commits_{i // COMMIT_CHUNK_SIZE}.json"
+            chunk_file.write_text(json.dumps(chunk, indent=2), encoding="utf-8")
     log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}, {SUMMARY_JSON}, commits_*.json")
 
 # ============================
