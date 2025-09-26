@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self';">
     <title>Roblox FFlag Tracker</title>
     <link rel="icon" href="assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-green: #34d399;
@@ -373,7 +374,7 @@
 </head>
 <body>
     <a class="skip-link" href="#reportContent">Skip to report</a>
-    <canvas id="particleCanvas"></canvas>
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
     <header>
         <h1>Roblox Client FFlag Tracker</h1>
         <button id="themeToggle">Toggle Theme</button>
@@ -412,17 +413,17 @@
         <label for="categoryFilter" class="sr-only">Filter by category</label>
         <select id="categoryFilter" aria-label="Filter by category">
             <option value="">All Categories</option>
-                <option value="Graphics">Graphics</option>
-    <option value="Physics">Physics</option>
-    <option value="Network">Network</option>
-    <option value="Camera/UI">Camera/UI</option>
-    <option value="Security">Security</option>
-    <option value="World">World</option>
-    <option value="Input">Input</option>
-    <option value="Hit">Hit</option>
-    <option value="Interpolation">Interpolation</option>
-    <option value="Body">Body</option>
-    <option value="Other">Other</option>
+            <option value="Graphics">Graphics</option>
+            <option value="Physics">Physics</option>
+            <option value="Network">Network</option>
+            <option value="Camera/UI">Camera/UI</option>
+            <option value="Security">Security</option>
+            <option value="World">World</option>
+            <option value="Input">Input</option>
+            <option value="Hit">Hit</option>
+            <option value="Interpolation">Interpolation</option>
+            <option value="Body">Body</option>
+            <option value="Other">Other</option>
         </select>
         <label for="sortSelect" class="sr-only">Sort options</label>
         <select id="sortSelect" aria-label="Sort options">
@@ -434,20 +435,7 @@
           <thead>
             <tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th><th>Total</th></tr>
           </thead>
-          <tbody>
-            <tr><td>Graphics</td><td>6</td><td>4</td><td>3</td><td>13</td></tr>
-<tr><td>Physics</td><td>4</td><td>0</td><td>1</td><td>5</td></tr>
-<tr><td>Network</td><td>18</td><td>10</td><td>12</td><td>40</td></tr>
-<tr><td>Camera/UI</td><td>26</td><td>2</td><td>8</td><td>36</td></tr>
-<tr><td>Security</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><td>World</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
-<tr><td>Input</td><td>6</td><td>0</td><td>2</td><td>8</td></tr>
-<tr><td>Hit</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><td>Interpolation</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><td>Body</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><td>Other</td><td>240</td><td>849</td><td>87</td><td>1176</td></tr>
-
-          </tbody>
+          <tbody></tbody>
         </table>
         <h2>📄 Full Markdown Report</h2>
         <a href="FFlag_Report.md" target="_blank">View Markdown Report</a>
@@ -461,6 +449,9 @@
         <canvas id="trendChart" aria-label="Trend chart of flag changes"></canvas>
     </section>
     <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="assets/chart.umd.min.js"></script>
+    <script src="assets/chartjs-plugin-zoom.umd.min.js"></script>
     <script type="module" src="assets/app.js"></script>
 </body>
 </html>
