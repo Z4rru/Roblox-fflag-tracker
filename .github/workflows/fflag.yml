@@ -69,15 +69,31 @@ jobs:
 
           python updateff.py
 
-      - name: Check if commits JSON files exist
+      - name: Check commits JSON files (hybrid)
         run: |
+          echo "🔍 Checking for commits_*.json files in output/"
+          files=(output/commits_*.json)
+          if [ ! -e "${files[0]}" ]; then
+            echo "❌ No commits_*.json files found!"
+            exit 1
+          fi
+      
           i=0
-          while [ -f output/commits_${i}.json ]; do
+          found_any=false
+          while [ -f "output/commits_${i}.json" ]; do
             echo "✅ commits_${i}.json found!"
-            ls -lh output/commits_${i}.json
+            ls -lh "output/commits_${i}.json"
+            found_any=true
             i=$((i+1))
           done
-          echo "✅ Finished checking all commit chunks (last was commits_$((i-1)).json)"
+      
+          if [ "$found_any" = true ]; then
+            echo "✅ Finished checking all commit chunks (last was commits_$((i-1)).json)"
+          else
+            echo "⚠️ No sequential commits found, but other commits_*.json may exist:"
+            ls -lh output/commits_*.json || true
+          fi
+
 
 
 
