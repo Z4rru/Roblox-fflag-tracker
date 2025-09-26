@@ -120,8 +120,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        // Register zoom plugin
-        Chart.register(ChartZoom);
+        // Register zoom plugin (global Chart + ChartZoom available)
+        Chart.register(window['chartjs-plugin-zoom']);
 
         const ctx = trendChart.getContext("2d");
         new Chart(ctx, {
