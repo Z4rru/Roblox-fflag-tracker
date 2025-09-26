@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 loadingP.textContent = `Error loading chart. Retrying (${retries}/${maxRetries}) in 5 seconds...`;
                 setTimeout(loadChartData, 5000);
             } else {
-                loadingP.textContent = 'Failed to load chart after retries. Check if history.json exists.';
+                loadingP.textContent = 'Failed to load chart after retries.';
             }
         }
     };
@@ -436,7 +436,7 @@ setInterval(() => {
     }).catch(() => { });
 }, 60000);
 
-// Comment out SW to avoid errors
+// Comment out to avoid interception errors
 // if ('serviceWorker' in navigator) {
 //     navigator.serviceWorker.register('sw.js').catch(error => {
 //         console.error('Service Worker registration failed:', error);
