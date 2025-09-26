@@ -136,6 +136,12 @@ jobs:
             echo "⚠️ Warning: assets/ folder not found"
           fi
 
+      # ✅ NEW STEP: Copy custom ServiceWorker last
+      - name: Copy custom ServiceWorker
+        run: |
+          cp custom-sw/sw.js output/sw.js
+          echo "✅ Custom sw.js copied to output/ (won't be overwritten by updateff)"
+
       - name: List output folder
         run: |
           echo "📂 Contents of output folder:"
