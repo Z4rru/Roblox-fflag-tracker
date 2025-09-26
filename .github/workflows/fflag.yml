@@ -69,15 +69,18 @@ jobs:
 
           python updateff.py
 
-      - name: Check if commits_0.json exists
+      - name: Check if commits JSON files exist
         run: |
-          if [ -f output/commits_0.json ]; then
-            echo "✅ commits_0.json found!"
-            ls -lh output/commits_0.json
-          else
-            echo "❌ commits_0.json is missing!"
-            exit 1
-          fi
+          for i in $(seq 0 10); do
+            if [ -f output/commits_${i}.json ]; then
+              echo "✅ commits_${i}.json found!"
+              ls -lh output/commits_${i}.json
+            else
+              echo "❌ commits_${i}.json is missing!"
+              exit 1
+            fi
+          done
+
 
       - name: Debug working directory
         run: |
