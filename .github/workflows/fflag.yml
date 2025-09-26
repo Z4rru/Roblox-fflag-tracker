@@ -7,15 +7,15 @@ on:
   workflow_dispatch:        # Manual trigger
 
 permissions:
-  contents: write   # Needed to push updates
-  pages: write      # Needed to publish to GitHub Pages
+  contents: write
+  pages: write
 
 jobs:
   run-tracker:
     runs-on: ubuntu-latest
     env:
-      OPENAI_API_KEYS: ${{ secrets.OPENAI_API_KEYS }}    # Comma-separated
-      GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS }}    # Comma-separated
+      OPENAI_API_KEYS: ${{ secrets.OPENAI_API_KEYS }}
+      GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS }}
 
     steps:
       - name: Checkout repository
@@ -54,27 +54,32 @@ jobs:
 
       - name: Run Roblox FFlag Tracker with key rotation
         env:
-          SKIP_ASSETS: "true" 
+          SKIP_ASSETS: "true"
         run: |
           export FFLAG_REPO_CACHE=./.fflag-repo-cache
           
-
-          # Pick random keys for this run (trim spaces)
           OPENAI_KEY=$(echo $OPENAI_API_KEYS | tr ',' '\n' | shuf -n1 | xargs)
           GEMINI_KEY=$(echo $GEMINI_API_KEYS | tr ',' '\n' | shuf -n1 | xargs)
 
-          # Masked logging for security
           echo "Using OpenAI key: ${OPENAI_KEY:0:4}****"
           echo "Using Gemini key: ${GEMINI_KEY:0:4}****"
 
-          # Export keys for Python
           export OPENAI_API_KEY=$OPENAI_KEY
           export GEMINI_API_KEY=$GEMINI_KEY
 
-          # Run tracker (fail workflow if it errors)
           python updateff.py
 
-      # ✅ New step to always copy assets into output
+      # Inject FFlag_Report.html into index.html
+      - name: Inject report into index.html
+        run: |
+          mkdir -p output
+          cp index.html output/index.html
+          REPORT_HTML=$(<FFlag_Report.html)
+          # Use Perl to replace placeholder <div id="reportContent"></div>
+          perl -0777 -i -pe 's|<div id="reportContent"></div>|<div id="reportContent">${REPORT_HTML}</div>|s' output/index.html
+          echo "✅ Injected FFlag_Report.html into index.html"
+
+      # Copy static assets
       - name: Copy static assets
         run: |
           rm -rf output/assets
