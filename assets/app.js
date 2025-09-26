@@ -1,6 +1,3 @@
-import Chart from './assets/chart.js';
-import zoomPlugin from './assets/chartjs-plugin-zoom.js';
-
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let resizeTimeout, animationId, particles = [];
@@ -14,7 +11,7 @@ function resizeCanvas() {
 }
 
 function generateParticles() {
-    particles = Array.from({ length: 30 }, () => ({
+    particles = Array.from({ length: 20 }, () => ({  // Reduced to 20 for optimization
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         r: Math.random() * 2 + 1,
@@ -36,7 +33,7 @@ function animateParticles() {
         ctx.fillStyle = p.color;
         ctx.fill();
     });
-    animationId = requestAnimationFrame(animateParticles);
+    animationId = requestAnimationFrame(() => setTimeout(animateParticles, 16));  // Throttled to ~60fps
 }
 
 function stopAnimation() {
@@ -113,52 +110,53 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadingP.textContent = 'Loading...';
     trendChart.parentNode.insertBefore(loadingP, trendChart);
 
-    try {
-        const response = await fetch("history.json");
-        const data = await response.json();
+    const loadChartData = async () => {
+        try {
+            const response = await fetch("history.json");
+            const data = await response.json();
 
-        if (!data || data.length === 0) {
-            loadingP.textContent = 'No history data yet.';
-            trendChart.remove();
-            return;
-        }
-
-        // Register zoom plugin
-        Chart.register(zoomPlugin);
-
-        const ctx = trendChart.getContext("2d");
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: data.map(d => d.date),
-                datasets: [
-                    { label: 'Added', data: data.map(d => d.added), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4 },
-                    { label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4 },
-                    { label: 'Removed', data: data.map(d => d.removed), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4 }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'top' },
-                    zoom: { 
-                        zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' },
-                        pan: { enabled: true, mode: 'x' }
-                    },
-                    tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw}` } }
-                },
-                interaction: { mode: 'nearest', axis: 'x', intersect: false }
+            if (!data || data.length === 0) {
+                loadingP.textContent = 'No history data yet.';
+                trendChart.remove();
+                return;
             }
-        });
 
-        loadingP.remove();
-        trendChart.style.display = '';
+            const ctx = trendChart.getContext("2d");
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.map(d => d.date),
+                    datasets: [
+                        { label: 'Added', data: data.map(d => d.added || 0), borderColor: '#34d399', backgroundColor: 'rgba(52,211,153,0.2)', fill: true, tension: 0.4 },
+                        { label: 'Changed', data: data.map(d => d.changed || 0), borderColor: '#60a5fa', backgroundColor: 'rgba(96,165,250,0.2)', fill: true, tension: 0.4 },
+                        { label: 'Removed', data: data.map(d => d.removed || 0), borderColor: '#f87171', backgroundColor: 'rgba(248,113,113,0.2)', fill: true, tension: 0.4 }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' },
+                        zoom: { 
+                            zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'x' },
+                            pan: { enabled: true, mode: 'x' }
+                        },
+                        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw}` } }
+                    },
+                    interaction: { mode: 'nearest', axis: 'x', intersect: false }
+                }
+            });
 
-    } catch (error) {
-        console.error('Error loading chart:', error);
-        loadingP.textContent = 'Error loading chart.';
-        trendChart.remove();
-    }
+            loadingP.remove();
+            trendChart.style.display = '';
+
+        } catch (error) {
+            console.error('Error loading chart:', error);
+            loadingP.textContent = 'Error loading chart. Retrying in 5 seconds...';
+            setTimeout(loadChartData, 5000);  // Retry optimization
+        }
+    };
+
+    loadChartData();
 });
 
 // =============================
