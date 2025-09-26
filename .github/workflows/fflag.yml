@@ -72,12 +72,12 @@ jobs:
       # Inject FFlag_Report.html into index.html
       - name: Inject report into index.html
         run: |
-          mkdir -p output
-          cp index.html output/index.html
-          REPORT_HTML=$(<FFlag_Report.html)
-          # Use Perl to replace placeholder <div id="reportContent"></div>
-          perl -0777 -i -pe 's|<div id="reportContent"></div>|<div id="reportContent">${REPORT_HTML}</div>|s' output/index.html
+          mkdir -p Roblox-fflag-tracker/output
+          cp Roblox-fflag-tracker/index.html Roblox-fflag-tracker/output/index.html
+          REPORT_HTML=$(<Roblox-fflag-tracker/FFlag_Report.html)
+          perl -0777 -i -pe 's|<div id="reportContent"></div>|<div id="reportContent">${REPORT_HTML}</div>|s' Roblox-fflag-tracker/output/index.html
           echo "✅ Injected FFlag_Report.html into index.html"
+
 
       # Copy static assets
       - name: Copy static assets
