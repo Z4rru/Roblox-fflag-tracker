@@ -1,3 +1,8 @@
+import Chart from './chart.js';
+import zoomPlugin from './chartjs-plugin-zoom.js';
+
+Chart.register(zoomPlugin);
+
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let resizeTimeout, animationId, particles = [];
@@ -98,11 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-import Chart from './assets/chart.js';
-import zoomPlugin from './assets/chartjs-plugin-zoom.min.js'; // <- put the downloaded file here
-
-// Register the plugin before creating any chart
-Chart.register(zoomPlugin);
 // =============================
 // Chart.js Trend Chart
 // =============================
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 loadingP.textContent = `Error loading chart. Retrying (${retries}/${maxRetries}) in 5 seconds...`;
                 setTimeout(loadChartData, 5000);
             } else {
-                loadingP.textContent = 'Failed to load chart after retries.';
+                loadingP.textContent = 'Failed to load chart after retries. Check if history.json exists.';
             }
         }
     };
@@ -333,7 +333,7 @@ async function loadReportData() {
         if (!indexRes.ok) throw new Error('Failed to load commits_index.json');
         const commitFiles = await indexRes.json();
         for (let file of commitFiles) {
-            file = file.replace("output/", ""); // Remove prefix to match root location
+            file = file.replace(/^output\//, ''); // Strip 'output/' if present
             const res = await fetch(file);
             if (!res.ok) {
                 console.error(`Failed to load ${file}`);
@@ -436,7 +436,7 @@ setInterval(() => {
     }).catch(() => { });
 }, 60000);
 
-// Comment out to avoid interception errors; debug sw.js if needed
+// Comment out SW to avoid errors
 // if ('serviceWorker' in navigator) {
 //     navigator.serviceWorker.register('sw.js').catch(error => {
 //         console.error('Service Worker registration failed:', error);
