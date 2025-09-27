@@ -56,6 +56,10 @@ document.addEventListener('visibilitychange', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    const preloadLink = document.querySelector('link[rel="preload"][as="style"]');
+    if (preloadLink) {
+        preloadLink.rel = 'stylesheet';
+    }
     resizeCanvas();
     generateParticles();
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -119,6 +123,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const maxRetries = 3;
     const loadChartData = async () => {
         try {
+            const { default: zoomPlugin } = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.min.js');
+            Chart.register(zoomPlugin);
+
             const response = await fetch("history.json");
             if (!response.ok) throw new Error('Failed to load history.json');
             const data = await response.json();
@@ -164,7 +171,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 loadingP.textContent = `Error loading chart. Retrying (${retries}/${maxRetries}) in 5 seconds...`;
                 setTimeout(loadChartData, 5000);
             } else {
-                loadingP.textContent = 'Failed to load chart after retries.';
+                loadingP.textContent = 'Failed to load chart after retries. Check for adblockers, cache issues, or CDN blocks.';
             }
         }
     };
