@@ -1,8 +1,3 @@
-import Chart from './chart.js';
-import zoomPlugin from './chartjs-plugin-zoom.js';
-
-Chart.register(zoomPlugin);
-
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 let resizeTimeout, animationId, particles = [];
@@ -123,7 +118,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const maxRetries = 3;
     const loadChartData = async () => {
         try {
-            // Dynamically import the ESM zoom plugin to ensure module compatibility and lazy loading
+            // Dynamically import Chart.js ESM build
+            const { Chart, registerables } = await import('https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.esm.js');
+            Chart.register(...registerables);
+
+            // Dynamically import the ESM zoom plugin
             const { default: zoomPlugin } = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.min.js');
             Chart.register(zoomPlugin);
 
