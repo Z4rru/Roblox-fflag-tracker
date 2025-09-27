@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const maxRetries = 3;
     const loadChartData = async () => {
         try {
+            // Dynamically import the ESM zoom plugin to ensure module compatibility and lazy loading
             const { default: zoomPlugin } = await import('https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.esm.min.js');
             Chart.register(zoomPlugin);
 
@@ -168,17 +169,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error('Error loading chart:', error);
             if (retries < maxRetries) {
                 retries++;
-                loadingP.textContent = `Error loading chart. Retrying (${retries}/${maxRetries}) in 5 seconds...`;
+                loadingP.textContent = `Error loading chart. Retrying (${retries}/${maxRetries}) in 5 seconds... (Check adblockers if MIME mismatch persists)`;
                 setTimeout(loadChartData, 5000);
             } else {
-                loadingP.textContent = 'Failed to load chart after retries. Check for adblockers, cache issues, or CDN blocks.';
+                loadingP.textContent = 'Failed to load chart after retries. Likely adblocker blocking CDN—disable and retry.';
             }
         }
     };
 
     loadChartData();
 });
-
 // =============================
 // Report Rendering
 // =============================
