@@ -1,63 +1,52 @@
-// assets/app.js
-(async function initChart() {
+// app.js - Local-only chart setup (no CDN)
+(async function() {
   async function loadScript(src) {
     return new Promise((resolve, reject) => {
-      const s = document.createElement('script');
-      s.src = src;
-      s.async = true;
-      s.onload = resolve;
-      s.onerror = reject;
-      document.head.appendChild(s);
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = (e) => reject(e);
+      document.head.appendChild(script);
     });
   }
 
   try {
-    if (!window.Chart) {
-      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js');
-    }
-    if (!window.ChartZoom) {
-      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.umd.min.js');
-    }
-  } catch (err) {
-    console.warn('[App] CDN load failed, falling back to local assets:', err);
-    try {
-      if (!window.Chart) {
-        await loadScript('assets/chart.js');
-      }
-      if (!window.ChartZoom) {
-        await loadScript('assets/chartjs-plugin-zoom.js');
-      }
-    } catch (e) {
-      console.error('[App] Failed to load local chart libraries:', e);
-      return;
-    }
-  }
+    // ✅ Load from local assets only
+    await loadScript('assets/chart.js');
+    await loadScript('assets/chartjs-plugin-zoom.js');
 
-  // Initialize chart
-  const ctx = document.getElementById('chart').getContext('2d');
-  const chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr'],
-      datasets: [{
-        label: 'Example',
-        data: [10, 20, 30, 25],
-        borderWidth: 2
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        zoom: {
+    console.log('[App] Local chart libraries loaded');
+
+    // ✅ Initialize chart
+    const ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['A', 'B', 'C', 'D'],
+        datasets: [{
+          label: 'Demo',
+          data: [10, 20, 15, 30],
+          borderColor: 'rgb(75, 192, 192)',
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
           zoom: {
-            wheel: { enabled: true },
-            pinch: { enabled: true },
-            mode: 'x'
+            zoom: {
+              wheel: { enabled: true },
+              pinch: { enabled: true },
+              mode: 'x'
+            }
           }
         }
       }
-    }
-  });
+    });
+    console.log('[App] Chart initialized successfully.');
 
-  console.log('[App] Chart initialized successfully.');
+  } catch (err) {
+    console.error('[App] Failed to load local chart libraries:', err);
+  }
 })();
