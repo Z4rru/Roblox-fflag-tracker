@@ -164,58 +164,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadChartData();
 });
 
-// Rest of your code remains similar—report rendering, filters, exports, auto-refresh. I didn't change those as they seem solid, but added debug logging.
-
-const CACHE_NAME = "fflag-cache-v2"; // Bumped version
-const URLS_TO_CACHE = [
-    "./",
-    "index.html",
-    "summary.json",
-    "commits_index.json",
-    "history.json",
-    "assets/app.js",
-    "assets/chart.js", // Local fallback
-    "assets/chartjs-plugin-zoom.js"
-];
-
-// Service Worker (Enhanced)
-self.addEventListener("install", event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => cache.addAll(URLS_TO_CACHE))
-    );
-});
-self.addEventListener("activate", event => {
-    event.waitUntil(
-        caches.keys().then(cacheNames => 
-            Promise.all(
-                cacheNames
-                    .filter(name => name !== CACHE_NAME)
-                    .map(name => caches.delete(name))
-            )
-        )
-    );
-});
-self.addEventListener("fetch", event => {
-    const url = event.request.url;
-    if (url.includes("fonts.googleapis")) {
-        event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
-        return;
-    }
-    event.respondWith(
-        caches.match(event.request).then(response => {
-            return response || fetch(event.request).then(fetchRes => {
-                return caches.open(CACHE_NAME).then(cache => {
-                    cache.put(event.request, fetchRes.clone());
-                    return fetchRes;
-                });
-            }).catch(() => {
-                console.warn(`Grok Debug: Offline fallback for ${url}`);
-                return new Response('Offline - Cached content unavailable', { status: 503 });
-            });
-        })
-    );
-});
-
 // Debug Mode Toggle
 document.addEventListener('keydown', e => {
     if (e.ctrlKey && e.shiftKey && e.key === 'D') {
@@ -223,3 +171,12 @@ document.addEventListener('keydown', e => {
         alert('Debug mode activated—check console for raw logs!');
     }
 });
+
+// Service Worker Registration (Add this to app.js if SW is not separate)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker registered:', reg))
+            .catch(err => console.error('Service Worker registration failed:', err));
+    });
+}
