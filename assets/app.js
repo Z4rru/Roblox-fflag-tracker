@@ -1,74 +1,63 @@
-// Fixes for CSP, MIME, and canvas oversize errors
-// Place in assets/app.js after Chart.bundle.js is loaded
-
-(async function() {
-  const DEBUG = true;
-
-  function log(...args) {
-    if (DEBUG) console.log('[App]', ...args);
+// assets/app.js
+(async function initChart() {
+  async function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
   }
-
-  if (!window.Chart) {
-    log('Chart.js not found. Ensure chart.bundle.js is included.');
-    return;
-  }
-
-  // Ensure a container with proper dimensions
-  let container = document.getElementById('chart-container');
-  if (!container) {
-    container = document.createElement('div');
-    container.id = 'chart-container';
-    container.style.width = '800px';
-    container.style.height = '400px';
-    container.style.maxWidth = '100%';
-    container.style.maxHeight = '600px';
-    document.body.appendChild(container);
-  }
-
-  let canvas = document.getElementById('fflagChart');
-  if (!canvas) {
-    canvas = document.createElement('canvas');
-    canvas.id = 'fflagChart';
-    container.appendChild(canvas);
-  }
-
-  const data = {
-    labels: ['Flag A', 'Flag B', 'Flag C', 'Flag D'],
-    datasets: [{
-      label: 'FFlag Toggles',
-      data: [12, 19, 3, 5],
-      borderColor: 'rgba(75,192,192,1)',
-      backgroundColor: 'rgba(75,192,192,0.2)',
-      tension: 0.2
-    }]
-  };
-
-  const config = {
-    type: 'line',
-    data: data,
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'top' },
-        title: { display: true, text: 'Fflag Tracker Debug' },
-        zoom: {
-          zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'xy' },
-          pan: { enabled: true, mode: 'xy' }
-        }
-      },
-      interaction: { mode: 'nearest', axis: 'x', intersect: false },
-      scales: {
-        x: { title: { display: true, text: 'Flags' } },
-        y: { title: { display: true, text: 'Values' } }
-      }
-    }
-  };
 
   try {
-    new Chart(canvas, config);
-    log('Chart initialized successfully.');
+    if (!window.Chart) {
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js');
+    }
+    if (!window.ChartZoom) {
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.umd.min.js');
+    }
   } catch (err) {
-    console.error('Chart initialization failed:', err);
+    console.warn('[App] CDN load failed, falling back to local assets:', err);
+    try {
+      if (!window.Chart) {
+        await loadScript('assets/chart.js');
+      }
+      if (!window.ChartZoom) {
+        await loadScript('assets/chartjs-plugin-zoom.js');
+      }
+    } catch (e) {
+      console.error('[App] Failed to load local chart libraries:', e);
+      return;
+    }
   }
+
+  // Initialize chart
+  const ctx = document.getElementById('chart').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+      datasets: [{
+        label: 'Example',
+        data: [10, 20, 30, 25],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        zoom: {
+          zoom: {
+            wheel: { enabled: true },
+            pinch: { enabled: true },
+            mode: 'x'
+          }
+        }
+      }
+    }
+  });
+
+  console.log('[App] Chart initialized successfully.');
 })();
