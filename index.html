@@ -1,38 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roblox FFlag Tracker</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Chart.js + Zoom Plugin (cdnjs, proper MIME types) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-J6U3zIYHCsw5hfMYu6f0PpQEZFTMvGVRjVrUv1H8C97yo6cs5dfHQL+Y36MULicJ8w2MJ28rZ+SRo9YnNSuk6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.umd.min.js" integrity="sha512-xCqSk/hJk9QWAWPcjD0mHg6YV+tx13QbRvxQ2BfASOQ+8mPMOCHTYn5LLNqUNpkfcZOr+gJ93jbsp9Fi7sjXPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-  <!-- Local App JS -->
-  <script src="assets/app.js" defer></script>
-
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fafafa;
-    }
-    #chartContainer {
-      width: 100%;
-      max-width: 900px;
-      margin: 40px auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self';">
+    <title>Roblox FFlag Tracker</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚩</text></svg>">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"></noscript>
+    <style>
+        :root {
+            --primary-green: #34d399;
+            --primary-blue: #60a5fa;
+            --primary-red: #f87171;
+            --primary-yellow: #fbbf24;
+            --historical-green: #10b981;
+            --historical-blue: #3b82f6;
+            --historical-red: #ef4444;
+            --bg-opacity: 0.15;
+            --text-color: #fff;
+            --bg-color: linear-gradient(135deg,#4f46e5,#3b82f6,#06b6d4,#14b8a6);
+            --high-contrast-bg: #000;
+            --high-contrast-text: #fff;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: var(--bg-color);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        body.light {
+            --text-color: #333;
+            --bg-opacity: 0.05;
+            --bg-color: linear-gradient(135deg,#e0f2fe,#bfdbfe,#a5f3fc,#99f6e4);
+        }
+        body.high-contrast {
+            --bg-color: var(--high-contrast-bg);
+            --text-color: var(--high-contrast-text);
+            --bg-opacity: 1;
+            background: var(--high-contrast-bg);
+        }
+        @keyframes gradientBG {
+            0% {background-position:0% 50%;}
+            50% {background-position:100% 50%;}
+            100% {background-position:0% 50%;}
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0s !important;
+                transition-duration: 0s !important;
+            }
+            #particleCanvas { display: none; }
+        }
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            text-shadow: 0 0 12px rgba(0,0,0,0.3);
+        }
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: -40px auto 40px;
+            position: relative;
+            z-index: 2;
+        }
+        .badge {
+            flex: 1;
+            min-width: 220px;
+            text-align: center;
+            padding: 25px;
+            border-radius: 16px;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            background: #ffffff;
+            color: #0b1220;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+        }
+        body.high-contrast .badge {
+            background: var(--high-contrast-bg);
+            border: 2px solid var(--high-contrast-text);
+        }
+        .badge:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.4);
+            border: 2px solid var(--primary-green);
+        }
+        .added {
+            border-left: 6px solid var(--primary-green);
+        }
+        .added::before {
+            content: "✅ Added: ";
+            font-size: 0.9rem;
+        }
+        .changed {
+            border-left: 6px solid var(--primary-blue);
+        }
+        .changed::before {
+            content: "🔄 Changed: ";
+            font-size: 0.9rem;
+        }
+        .removed {
+            border-left: 6px solid var(--primary-red);
+        }
+        .removed::before {
+            content: "❌ Removed: ";
+            font-size: 0.9rem;
+        }
+        .net {
+            border-left: 6px solid var(--primary-yellow);
+        }
+        .net::before {
+            content: "Net Changes: ";
+            font-size: 0.9rem;
+        }
+        .percent {
+            border-left: 6px solid var(--primary-blue);
+        }
+        .percent::before {
+            content: "% Change: ";
+            font-size: 0.9rem;
+        }
+        .percent.positive {
+            border-left-color: var(--primary-green);
+        }
+        .percent.negative {
+            border-left-color: var(--primary-red);
+        }
+        .historical-added {
+            border-left: 6px solid var(--historical-green);
+        }
+        .historical-added::before {
+            content: "📈 Historical Added: ";
+            font-size: 0.9rem;
+        }
+        .historical-changed {
+            border-left: 6px solid var(--historical-blue);
+        }
+        .historical-changed::before {
+            content: "📈 Historical Changed: ";
+            font-size: 0.9rem;
+        }
+        .historical-removed {
+            border-left: 6px solid var(--historical-red);
+        }
+        .historical-removed::before {
+            content: "📉 Historical Removed: ";
+            font-size: 0.9rem;
+        }
+        .last-run {
+            text-align: center;
+            margin: 20px 0;
+            font-style: italic;
+            color: #eee;
+        }
+        body.high-contrast .last-run {
+            color: var(--high-contrast-text);
+        }
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .report-container {
+            background: rgba(255,255,255,var(--bg-opacity));
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+            padding: 15px;
+            position: relative;
+            min-height: 75vh;
+        }
+        body.high-contrast .report-container {
+            background: var(--high-contrast-bg);
+            border: 2px solid var(--high-contrast-text);
+        }
+        #loadingSpinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid var(--primary-green);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #reportContent {
+            width: 100%;
+            min-height: 75vh;
+            border-radius: 12px;
+        }
+        canvas#trendChart {
+            display: block;
+            max-width: 850px;
+            margin: 40px auto;
+            border-radius: 12px;
+        }
+        input#searchInput {
+            width: 90%;
+            padding: 12px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.2);
+            color: var(--text-color);
+            font-size: 1rem;
+            backdrop-filter: blur(5px);
+        }
+        body.high-contrast input#searchInput {
+            background: var(--high-contrast-bg);
+            border: 1px solid var(--high-contrast-text);
+            color: var(--high-contrast-text);
+        }
+        select {
+            padding: 12px;
+            margin: 10px;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.2);
+            color: var(--text-color);
+        }
+        body.high-contrast select {
+            background: var(--high-contrast-bg);
+            border: 1px solid var(--high-contrast-text);
+            color: var(--high-contrast-text);
+        }
+        body.light input#searchInput,
+        body.light select,
+        body.light button {
+            background: #fff !important;
+            color: #111 !important;
+            border: 1px solid #ccc !important;
+        }
+        body.light .copy-btn {
+            background: #fbbf24 !important;
+            color: #111 !important;
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        body.high-contrast button {
+            background: var(--high-contrast-text);
+            color: var(--high-contrast-bg);
+            border: 1px solid var(--high-contrast-text);
+        }
+        button:hover {
+            background: var(--primary-green);
+        }
+        body.high-contrast button:hover {
+            background: var(--primary-green);
+            color: var(--high-contrast-text);
+        }
+        .copy-btn {
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            background: var(--primary-yellow);
+        }
+        body.high-contrast .copy-btn {
+            background: var(--high-contrast-text);
+            color: var(--high-contrast-bg);
+        }
+        .commit-card {
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        body.high-contrast .commit-card {
+            background: var(--high-contrast-bg);
+            border: 2px solid var(--high-contrast-text);
+        }
+        h3 {
+            cursor: pointer;
+        }
+        ul {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 25px;
+            font-size: 0.9rem;
+            color: #eee;
+        }
+        body.high-contrast footer {
+            color: var(--high-contrast-text);
+        }
+        canvas#particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        body.high-contrast canvas#particleCanvas {
+            display: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        th, td {
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 12px;
+            text-align: left;
+        }
+        body.high-contrast th, body.high-contrast td {
+            border: 1px solid var(--high-contrast-text);
+        }
+        th {
+            background: rgba(0,0,0,0.2);
+        }
+        body.high-contrast th {
+            background: var(--high-contrast-bg);
+            color: var(--high-contrast-text);
+        }
+        :focus {
+            outline: 3px solid #ffbf47;
+            outline-offset: 3px;
+        }
+        button:focus, a:focus {
+            box-shadow: 0 0 0 3px rgba(96,165,250,0.3);
+        }
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .skip-link:focus {
+            left: 10px;
+            top: 10px;
+            width: auto;
+            height: auto;
+            z-index: 9999;
+        }
+        .error-message {
+            color: var(--primary-red);
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div id="chartContainer">
-    <canvas id="fflagChart"></canvas>
-  </div>
+    <a class="skip-link" href="#reportContent">Skip to report</a>
+    <canvas id="particleCanvas"></canvas>
+    <header>
+        <h1>Roblox Client FFlag Tracker</h1>
+        <button id="themeToggle">Toggle Theme</button>
+        <button id="contrastToggle">High Contrast</button>
+    </header>
+    <div class="stats">
+        <div class="badge added" aria-label="Added flags">
+            <span id="flags-added">301</span>
+        </div>
+        <div class="badge changed" aria-label="Changed flags">
+            <span id="flags-changed">865</span>
+        </div>
+        <div class="badge removed" aria-label="Removed flags">
+            <span id="flags-removed">113</span>
+        </div>
+        <div class="badge net" aria-label="Net changes">
+            <span id="net-changes">188</span>
+        </div>
+        <div class="badge percent" aria-label="Percent change">
+            <span id="percent-change">0.00</span>%
+        </div>
+        <div class="badge historical-added" aria-label="Historical added">
+            <span id="historical-added">301</span>
+        </div>
+        <div class="badge historical-changed" aria-label="Historical changed">
+            <span id="historical-changed">865</span>
+        </div>
+        <div class="badge historical-removed" aria-label="Historical removed">
+            <span id="historical-removed">113</span>
+        </div>
+    </div>
+    <p class="last-run">Last Run: <span id="last-run">2025-10-01 12:26:58 AM PST</span></p>
+    <section>
+        <label for="searchInput" class="sr-only">Search flags</label>
+        <input type="text" id="searchInput" placeholder="Search flags..." aria-label="Search flags">
+        <label for="categoryFilter" class="sr-only">Filter by category</label>
+        <select id="categoryFilter" aria-label="Filter by category">
+            <option value="">All Categories</option>
+                <option value="Graphics">Graphics</option>
+    <option value="Physics">Physics</option>
+    <option value="Network">Network</option>
+    <option value="Camera/UI">Camera/UI</option>
+    <option value="Security">Security</option>
+    <option value="World">World</option>
+    <option value="Input">Input</option>
+    <option value="Hit">Hit</option>
+    <option value="Interpolation">Interpolation</option>
+    <option value="Body">Body</option>
+    <option value="Other">Other</option>
+        </select>
+        <label for="sortSelect" class="sr-only">Sort options</label>
+        <select id="sortSelect" aria-label="Sort options">
+            <option value="">Sort by Name</option>
+            <option value="freq">Sort by Frequency</option>
+        </select>
+       <h2>Summary</h2>
+        <table id="summaryTable" aria-label="Summary of flag changes by category">
+          <thead>
+            <tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th><th>Total</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Graphics</td><td>6</td><td>4</td><td>3</td><td>13</td></tr>
+<tr><td>Physics</td><td>4</td><td>0</td><td>1</td><td>5</td></tr>
+<tr><td>Network</td><td>18</td><td>10</td><td>12</td><td>40</td></tr>
+<tr><td>Camera/UI</td><td>26</td><td>2</td><td>8</td><td>36</td></tr>
+<tr><td>Security</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>World</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>Input</td><td>6</td><td>0</td><td>2</td><td>8</td></tr>
+<tr><td>Hit</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Interpolation</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Body</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Other</td><td>240</td><td>849</td><td>87</td><td>1176</td></tr>
+
+          </tbody>
+        </table>
+        <h2>📄 Full Markdown Report</h2>
+        <a href="FFlag_Report.md" target="_blank">View Markdown Report</a>
+        <h2>📊 Latest Full Report</h2>
+        <div class="report-container"> 
+            <div id="loadingSpinner" aria-label="Loading report"></div>
+            <div id="reportContent" role="region" aria-live="polite"></div>
+        </div>
+        <button id="exportCSV" aria-label="Export report as CSV">Export CSV</button>
+        <button id="exportJSON" aria-label="Export report as JSON">Export JSON</button>
+        <canvas id="trendChart" aria-label="Trend chart of flag changes"></canvas>
+    </section>
+    <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.umd.min.js"></script>
+    <script src="assets/app.js" defer></script>
 </body>
 </html>
