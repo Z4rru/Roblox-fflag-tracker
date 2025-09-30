@@ -1,30 +1,37 @@
-// assets/app.js
-// Main application logic for Fflag Tracker
-// Handles chart initialization, data loading, and resilience against CSP/CDN issues
+// Fixes for CSP, MIME, and canvas oversize errors
+// Place in assets/app.js after Chart.bundle.js is loaded
 
 (async function() {
-  // Debug toggle
   const DEBUG = true;
 
   function log(...args) {
     if (DEBUG) console.log('[App]', ...args);
   }
 
-  // Ensure Chart.js is available (from bundle)
   if (!window.Chart) {
-    log('Chart.js not found. Make sure assets/chart.bundle.js is loaded.');
+    log('Chart.js not found. Ensure chart.bundle.js is included.');
     return;
   }
 
-  // Create or get canvas
+  // Ensure a container with proper dimensions
+  let container = document.getElementById('chart-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'chart-container';
+    container.style.width = '800px';
+    container.style.height = '400px';
+    container.style.maxWidth = '100%';
+    container.style.maxHeight = '600px';
+    document.body.appendChild(container);
+  }
+
   let canvas = document.getElementById('fflagChart');
   if (!canvas) {
     canvas = document.createElement('canvas');
     canvas.id = 'fflagChart';
-    document.body.appendChild(canvas);
+    container.appendChild(canvas);
   }
 
-  // Example dataset: Replace with real FFlag tracking data
   const data = {
     labels: ['Flag A', 'Flag B', 'Flag C', 'Flag D'],
     datasets: [{
@@ -36,7 +43,6 @@
     }]
   };
 
-  // Chart config with zoom & pan
   const config = {
     type: 'line',
     data: data,
@@ -47,11 +53,7 @@
         legend: { position: 'top' },
         title: { display: true, text: 'Fflag Tracker Debug' },
         zoom: {
-          zoom: {
-            wheel: { enabled: true },
-            pinch: { enabled: true },
-            mode: 'xy'
-          },
+          zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'xy' },
           pan: { enabled: true, mode: 'xy' }
         }
       },
@@ -63,7 +65,6 @@
     }
   };
 
-  // Initialize chart
   try {
     new Chart(canvas, config);
     log('Chart initialized successfully.');
