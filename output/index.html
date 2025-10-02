@@ -4,29 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roblox FFlag Tracker</title>
-    <!-- CSP meta for extra safety; allows 'self' only, no CDNs -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
-    <!-- Fonts: Link directly, no preload unless you time it right -->
+    <!-- Updated CSP: Allows self, fonts, and unsafe-hashes with the exact hash for any onload handlers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-hashes' 'sha256-1jAmyYXcRq6zFldLe/GCgIDJBiOONdXjTLgEFMDnDSM='; script-src-attr 'self' 'unsafe-hashes' 'sha256-1jAmyYXcRq6zFldLe/GCgIDJBiOONdXjTLgEFMDnDSM='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:;">
+    <!-- Standard font links, no preload/onload to avoid CSP and timing issues -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Your styles here, e.g., -->
+    <!-- Inline styles if needed -->
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        #myChart { max-height: 400px; }
+        body { font-family: 'Inter', sans-serif; margin: 20px; }
+        #myChart { width: 100%; height: 400px; }
     </style>
 </head>
 <body>
     <h1>Roblox FFlag Tracker</h1>
-    <!-- Your FFlag content/table here, e.g., -->
     <div id="fflags-container">
-        <!-- Dynamic FFlags load here via JS if needed -->
+        <!-- Your dynamic FFlag content here -->
     </div>
-    
-    <!-- Chart canvas -->
     <canvas id="myChart"></canvas>
-    
-    <!-- Load app.js last, after DOM -->
-    <script src="app.js" nonce="r4Nd0mN0Nc3"></script>
+    <!-- Load app.js at the end, no CDNs -->
+    <script src="app.js"></script>
 </body>
 </html>
