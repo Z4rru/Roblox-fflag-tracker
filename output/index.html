@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox FFlag Tracker</title>
-    <!-- Updated CSP: Allows self, fonts, and unsafe-hashes with the exact hash for any onload handlers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-hashes' 'sha256-1jAmyYXcRq6zFldLe/GCgIDJBiOONdXjTLgEFMDnDSM='; script-src-attr 'self' 'unsafe-hashes' 'sha256-1jAmyYXcRq6zFldLe/GCgIDJBiOONdXjTLgEFMDnDSM='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:;">
-    <!-- Standard font links, no preload/onload to avoid CSP and timing issues -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Inline styles if needed -->
-    <style>
-        body { font-family: 'Inter', sans-serif; margin: 20px; }
-        #myChart { width: 100%; height: 400px; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Roblox FFlag Tracker</title>
+  <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self'; 
+                 script-src 'self'; 
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+                 font-src https://fonts.gstatic.com data:;">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; margin: 20px; }
+    #myChart { width: 100%; height: 400px; }
+  </style>
 </head>
 <body>
-    <h1>Roblox FFlag Tracker</h1>
-    <div id="fflags-container">
-        <!-- Your dynamic FFlag content here -->
-    </div>
-    <canvas id="myChart"></canvas>
-    <!-- Load app.js at the end, no CDNs -->
-    <script src="app.js"></script>
+  <h1>Roblox FFlag Tracker</h1>
+  <canvas id="myChart"></canvas>
+
+  <!-- Local libs -->
+  <script src="assets/chart.js"></script>
+  <script src="assets/chartjs-plugin-zoom.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
