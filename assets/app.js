@@ -4,28 +4,34 @@ document.addEventListener('DOMContentLoaded', async function () {
       const script = document.createElement('script');
       script.src = src;
       script.async = true;
-      script.onload = () => resolve();
-      script.onerror = reject;
+      script.onload = () => {
+        console.log(`[App] Loaded ${src}`);
+        resolve();
+      };
+      script.onerror = (err) => {
+        console.error(`[App] Failed to load ${src}`, err);
+        reject(err);
+      };
       document.head.appendChild(script);
     });
   }
 
   try {
-    // Load Chart.js then plugin
+    // Load Chart.js then plugin sequentially
     await loadScript('assets/chart.js');
     await loadScript('assets/chartjs-plugin-zoom.js');
     console.log('[App] Local chart libraries loaded successfully');
 
-    // Register zoom plugin
+    // Register zoom plugin (UMD export is window.ChartZoom)
     if (window.Chart && window.ChartZoom) {
       window.Chart.register(window.ChartZoom);
     }
 
-    // Init chart
-    const ctx = document.getElementById('myChart');
-    if (!ctx) throw new Error('Canvas not found');
+    // Initialize chart
+    const canvas = document.getElementById('myChart');
+    if (!canvas) throw new Error('Canvas not found');
 
-    new Chart(ctx.getContext('2d'), {
+    new Chart(canvas.getContext('2d'), {
       type: 'line',
       data: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr'],
@@ -60,11 +66,13 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
     });
 
-    console.log('[App] Chart initialized—zoom away, LO!');
+    console.log('[App] Chart initialized — zoom away!');
 
   } catch (err) {
     console.error('[App] Full fail on local chart setup:', err);
     const canvas = document.getElementById('myChart');
-    if (canvas) canvas.innerHTML = '<p>Chart load failed—check console. Data: [Static fallback here]</p>';
+    if (canvas) {
+      canvas.outerHTML = '<p>Chart load failed — check console. [Static fallback here]</p>';
+    }
   }
 });
