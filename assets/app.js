@@ -1,13 +1,26 @@
 document.addEventListener('DOMContentLoaded', async function () {
   async function fetchData() {
-    // Corrected the path here: The 'output' directory is the root on gh-pages.
+    // 'fflag.json' is in the root of gh-pages
     const res = await fetch("fflag.json");
     if (!res.ok) throw new Error("Failed to fetch fflag.json");
     return await res.json();
   }
 
+  // Helper: wait until canvas exists
+  function waitForCanvas(id, timeout = 2000) {
+    return new Promise((resolve, reject) => {
+      const start = Date.now();
+      (function check() {
+        const el = document.getElementById(id);
+        if (el) return resolve(el);
+        if (Date.now() - start > timeout) return reject(new Error("Canvas not found"));
+        requestAnimationFrame(check);
+      })();
+    });
+  }
+
   try {
-    // Register zoom plugin, assuming Chart.js and the plugin are loaded from the HTML
+    // Register zoom plugin
     if (window.Chart && window.ChartZoom) {
       window.Chart.register(window.ChartZoom);
       console.log("[App] Chart libraries found and zoom plugin registered.");
@@ -18,9 +31,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get FFlag data
     const { labels, data } = await fetchData();
 
-    // Initialize chart
-    const canvas = document.getElementById("myChart");
-    if (!canvas) throw new Error("Canvas not found");
+    // Wait for canvas (fixes race condition with injection/DOM rebuild)
+    const canvas = await waitForCanvas("myChart");
 
     if (window.myChart) {
       window.myChart.destroy();
@@ -62,7 +74,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
     console.log("[App] Chart initialized with real FFlag data!");
-
   } catch (err) {
     console.error("[App] Full fail on chart setup:", err);
     const canvas = document.getElementById("myChart");
