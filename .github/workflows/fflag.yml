@@ -101,7 +101,6 @@ jobs:
           cat output/commits_index.json
           echo "✅ commits_index.json generated"
 
-      # ✅ NEW STEP: Create fflag.json from history.json for the chart
       - name: Create fflag.json for Chart
         run: |
           jq '{labels: map(.date), data: map(.added + .changed + .removed)}' output/history.json > output/fflag.json
@@ -125,12 +124,10 @@ jobs:
 
       - name: Inject report into index.html
         run: |
-          sed -e '/<div id="reportContent"><\/div>/{ 
-            r output/FFlag_Report.html
-            d
-          }' output/index.html > output/index.tmp
+          # This awk command finds the line with </body>, prints the report file content, then prints the original line.
+          awk '/<\/body>/ {system("cat output/FFlag_Report.html")} {print}' output/index.html > output/index.tmp
           mv output/index.tmp output/index.html
-          echo "✅ Injected FFlag_Report.html into index.html"
+          echo "✅ Injected FFlag_Report.html before </body>"
 
       - name: Copy static assets
         run: |
