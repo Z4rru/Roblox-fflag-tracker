@@ -18,20 +18,26 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   try {
     // Load Chart.js then plugin sequentially
-    await loadScript('assets/chart.js');
-    await loadScript('assets/chartjs-plugin-zoom.js');
+    await loadScript('assets/chart.umd.js'); // ensure this is UMD
+    await loadScript('assets/chartjs-plugin-zoom.umd.js'); // ensure this is UMD
     console.log('[App] Local chart libraries loaded successfully');
 
-    // Register zoom plugin (UMD export is window.ChartZoom)
+    // Register zoom plugin
     if (window.Chart && window.ChartZoom) {
       window.Chart.register(window.ChartZoom);
+    } else {
+      throw new Error('Chart or ChartZoom missing');
     }
 
     // Initialize chart
     const canvas = document.getElementById('myChart');
     if (!canvas) throw new Error('Canvas not found');
 
-    new Chart(canvas.getContext('2d'), {
+    if (window.myChart) {
+      window.myChart.destroy();
+    }
+
+    window.myChart = new Chart(canvas.getContext('2d'), {
       type: 'line',
       data: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr'],
