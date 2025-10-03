@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
   async function fetchData() {
-    const res = await fetch("output/fflag.json");
+    // Corrected the path here: The 'output' directory is the root on gh-pages.
+    const res = await fetch("fflag.json");
     if (!res.ok) throw new Error("Failed to fetch fflag.json");
     return await res.json();
   }
