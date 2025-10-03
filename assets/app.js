@@ -16,15 +16,17 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
   }
 
+  async function fetchData() {
+    const res = await fetch("output/fflag.json");
+    if (!res.ok) throw new Error("Failed to fetch fflag.json");
+    return await res.json();
+  }
+
   try {
-    // Load Hammer.js
-    await loadScript("https://unpkg.com/hammerjs@2.0.8/hammer.min.js");
-
-    // Load Chart.js
-    await loadScript("https://unpkg.com/chart.js@4.4.0/dist/chart.umd.js");
-
-    // Load Zoom plugin
-    await loadScript("https://unpkg.com/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.umd.min.js");
+    // Load dependencies (via jsDelivr to satisfy CSP)
+    await loadScript("https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js");
+    await loadScript("https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js");
+    await loadScript("https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.umd.min.js");
 
     console.log("[App] Libraries loaded successfully");
 
@@ -34,6 +36,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     } else {
       throw new Error("Chart or ChartZoom missing after load");
     }
+
+    // Get FFlag data
+    const { labels, data } = await fetchData();
 
     // Initialize chart
     const canvas = document.getElementById("myChart");
@@ -46,10 +51,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     window.myChart = new Chart(canvas.getContext("2d"), {
       type: "line",
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr"],
+        labels,
         datasets: [{
           label: "FFlag Changes",
-          data: [12, 19, 3, 5],
+          data,
           borderColor: "rgb(75, 192, 192)",
           backgroundColor: "rgba(75, 192, 192, 0.2)",
           fill: false,
@@ -78,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
     });
 
-    console.log("[App] Chart initialized — zoom away!");
+    console.log("[App] Chart initialized with real FFlag data!");
 
   } catch (err) {
     console.error("[App] Full fail on chart setup:", err);
