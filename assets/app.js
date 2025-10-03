@@ -23,7 +23,7 @@
     if (!canvas) throw new Error("Canvas element #myChart not found!");
 
     // Destroy old chart if it exists
-    if (window.myChart) {
+    if (window.myChart && typeof window.myChart.destroy === 'function') {
       window.myChart.destroy();
     }
 
