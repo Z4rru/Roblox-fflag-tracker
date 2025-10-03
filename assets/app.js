@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     return await res.json();
   }
 
-  // Helper: wait until canvas exists
+  // Helper: wait until canvas exists to prevent race conditions
   function waitForCanvas(id, timeout = 2000) {
     return new Promise((resolve, reject) => {
       const start = Date.now();
       (function check() {
         const el = document.getElementById(id);
         if (el) return resolve(el);
-        if (Date.now() - start > timeout) return reject(new Error("Canvas not found"));
+        if (Date.now() - start > timeout) return reject(new Error("Canvas not found after waiting"));
         requestAnimationFrame(check);
       })();
     });
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Get FFlag data
     const { labels, data } = await fetchData();
 
-    // Wait for canvas (fixes race condition with injection/DOM rebuild)
+    // Wait for canvas to ensure it exists before trying to use it
     const canvas = await waitForCanvas("myChart");
 
     if (window.myChart) {
@@ -76,9 +76,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     console.log("[App] Chart initialized with real FFlag data!");
   } catch (err) {
     console.error("[App] Full fail on chart setup:", err);
-    const canvas = document.getElementById("myChart");
-    if (canvas) {
-      canvas.outerHTML = '<p>Chart load failed — check console for details.</p>';
+    // Attempt to select the canvas again for the error message, but it might not exist.
+    const canvasContainer = document.getElementById("chart-container");
+    if (canvasContainer) {
+      canvasContainer.innerHTML = '<p>Chart load failed — check console for details.</p>';
     }
   }
 });
