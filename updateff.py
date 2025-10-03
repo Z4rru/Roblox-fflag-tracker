@@ -686,7 +686,7 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
                         f"<li>{html.escape(flag)} {desc} - Mechanism: {html.escape(info['mechanism'])} - Purpose: {html.escape(info['purpose'])}</li>"
                     )
                 html_lines.append("</ul></details>")
-    html_lines.append('</body></html>')
+    html_lines = ['<h1>Roblox FFlag Report</h1>']
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
     json_data = {
         "last_run": last_run,
