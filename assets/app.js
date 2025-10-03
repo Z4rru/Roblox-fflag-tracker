@@ -1,21 +1,4 @@
 document.addEventListener('DOMContentLoaded', async function () {
-  async function loadScript(src) {
-    return new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      script.src = src;
-      script.async = true;
-      script.onload = () => {
-        console.log(`[App] Loaded ${src}`);
-        resolve();
-      };
-      script.onerror = (err) => {
-        console.error(`[App] Failed to load ${src}`, err);
-        reject(err);
-      };
-      document.head.appendChild(script);
-    });
-  }
-
   async function fetchData() {
     const res = await fetch("output/fflag.json");
     if (!res.ok) throw new Error("Failed to fetch fflag.json");
@@ -23,18 +6,12 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   try {
-    // Load dependencies (via jsDelivr to satisfy CSP)
-    await loadScript("https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js");
-    await loadScript("https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js");
-    await loadScript("https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.umd.min.js");
-
-    console.log("[App] Libraries loaded successfully");
-
-    // Register zoom plugin
+    // Register zoom plugin, assuming Chart.js and the plugin are loaded from the HTML
     if (window.Chart && window.ChartZoom) {
       window.Chart.register(window.ChartZoom);
+      console.log("[App] Chart libraries found and zoom plugin registered.");
     } else {
-      throw new Error("Chart or ChartZoom missing after load");
+      throw new Error("Chart.js or chartjs-plugin-zoom is missing. Ensure they are loaded in the HTML.");
     }
 
     // Get FFlag data
@@ -89,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     console.error("[App] Full fail on chart setup:", err);
     const canvas = document.getElementById("myChart");
     if (canvas) {
-      canvas.outerHTML = '<p>Chart load failed — check console. [Static fallback here]</p>';
+      canvas.outerHTML = '<p>Chart load failed — check console for details.</p>';
     }
   }
 });
