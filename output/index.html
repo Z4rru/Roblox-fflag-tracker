@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>Roblox FFlag Tracker</title>
 
-  <!-- Adjusted CSP to allow inline hashes + external scripts -->
-  <meta http-equiv="Content-Security-Policy" 
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy"
         content="
           default-src 'self';
-          script-src 'self' 'unsafe-inline' https://unpkg.com;
+          script-src 'self' https://unpkg.com;
           style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
           font-src https://fonts.gstatic.com data:;
         ">
@@ -18,22 +18,34 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
+  <!-- Page styles -->
   <style>
     body {
       font-family: 'Inter', sans-serif;
       margin: 20px;
+      background: #f9f9f9;
     }
-    #myChart {
+    h1 {
+      font-weight: 600;
+    }
+    #chart-container {
       width: 100%;
-      height: 400px;
+      height: 500px;
+      position: relative;
+    }
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
     }
   </style>
 </head>
 <body>
   <h1>Roblox FFlag Tracker</h1>
-  <canvas id="myChart"></canvas>
+  <div id="chart-container">
+    <canvas id="myChart"></canvas>
+  </div>
 
-  <!-- App logic -->
-  <script src="app.js"></script>
+  <!-- App logic only; libraries loaded dynamically in app.js -->
+  <script src="assets/app.js"></script>
 </body>
 </html>
