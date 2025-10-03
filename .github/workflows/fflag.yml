@@ -101,6 +101,12 @@ jobs:
           cat output/commits_index.json
           echo "✅ commits_index.json generated"
 
+      # ✅ NEW STEP: Create fflag.json from history.json for the chart
+      - name: Create fflag.json for Chart
+        run: |
+          jq '{labels: map(.date), data: map(.added + .changed + .removed)}' output/history.json > output/fflag.json
+          echo "✅ fflag.json created for charting."
+
       - name: Add favicon.ico if missing
         run: |
           if [ ! -f output/favicon.ico ]; then
@@ -136,7 +142,6 @@ jobs:
             echo "⚠️ Warning: assets/ folder not found"
           fi
 
-      # ✅ NEW STEP: Copy custom ServiceWorker last
       - name: Copy custom ServiceWorker
         run: |
           cp custom-sw/sw.js output/sw.js
