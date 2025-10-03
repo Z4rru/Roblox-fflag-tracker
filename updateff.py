@@ -597,29 +597,37 @@ def generate_flag_info(flag: str) -> dict:
 # ============================
 def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
     last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
+
     added_total = sum(summary.get((cat, "Added"), 0) for cat in CATEGORIES)
     changed_total = sum(summary.get((cat, "Changed"), 0) for cat in CATEGORIES)
     removed_total = sum(summary.get((cat, "Removed"), 0) for cat in CATEGORIES)
     net_changes = added_total - removed_total
+
     history = []
     if HISTORY_FILE.exists():
         try:
             history = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             log.warning("Corrupted history file. Using empty history.")
+
     total_historical_added = sum(entry.get('added', 0) for entry in history)
     total_historical_changed = sum(entry.get('changed', 0) for entry in history)
     total_historical_removed = sum(entry.get('removed', 0) for entry in history)
+
     percent_change = 0.0
     historical_avg_added = total_historical_added / len(history) if history else 0.0
     historical_avg_changed = total_historical_changed / len(history) if history else 0.0
     historical_avg_removed = total_historical_removed / len(history) if history else 0.0
+
     if len(history) > 1:
         prev = history[-2]
         prev_total = prev['added'] + prev['changed'] + prev['removed']
         curr_total = added_total + changed_total + removed_total
         percent_change = round(((curr_total - prev_total) / prev_total * 100), 2) if prev_total > 0 else 0.0
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    # ---------------- Markdown Export ----------------
     md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
     md.append(f"- Last Run: {last_run}")
     md.append(f"- Flags Added: {added_total}")
@@ -631,12 +639,14 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
         c = summary.get((cat, "Changed"), 0)
         r = summary.get((cat, "Removed"), 0)
         md.append(f"| {cat} | {a} | {c} | {r} | {a+c+r} |")
+
     md.append("\n## History Summary\n")
     md.append(f"- Total Historical Added: {total_historical_added}")
     md.append(f"- Total Historical Changed: {total_historical_changed}")
     md.append(f"- Total Historical Removed: {total_historical_removed}")
     if len(history) <= 1:
         md.append("- Note: Limited history available.")
+
     if not report:
         md.append(f"\n## No Recent Changes\nNo flag changes in the last {DAYS} days.")
     else:
@@ -659,8 +669,11 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
                     elif typ == "Removed":
                         desc = f"removed (was {format_value(values[0])})"
                     md.append(f"- {flag} {desc} | Mechanism: {info['mechanism']} | Purpose: {info['purpose']}")
+
     OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
-    html_lines = ['<!DOCTYPE html>', '<html>', '<head><title>Roblox FFlag Report</title></head>', '<body>', '<h1>Roblox FFlag Report</h1>']
+
+    # ---------------- HTML Export (INLINE SAFE) ----------------
+    html_lines = ['<h1>Roblox FFlag Report</h1>']
     if not report:
         html_lines.append(f"<p>No Recent Changes</p><p>No flag changes in the last {html.escape(str(DAYS))} days.</p>")
     else:
@@ -675,7 +688,6 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
                     flag = item[0]
                     values = item[1:]
                     info = generate_flag_info(flag)
-                    desc = ""
                     if typ == "Added":
                         desc = f"= {html.escape(format_value(values[0]))}"
                     elif typ == "Changed":
@@ -686,8 +698,10 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
                         f"<li>{html.escape(flag)} {desc} - Mechanism: {html.escape(info['mechanism'])} - Purpose: {html.escape(info['purpose'])}</li>"
                     )
                 html_lines.append("</ul></details>")
-    html_lines = ['<h1>Roblox FFlag Report</h1>']
+
     OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
+
+    # ---------------- JSON Export ----------------
     json_data = {
         "last_run": last_run,
         "added_total": added_total,
@@ -711,6 +725,7 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
         "report": [],
         "days": DAYS
     }
+
     for header, changes in report:
         grouped = {}
         for typ, cat, flag, *values in changes:
@@ -732,8 +747,11 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
                 entry["new_value"] = None
             grouped.setdefault(f"{typ}_{cat}", []).append(entry)
         json_data["report"].append({"header": header, "grouped": grouped})
+
     json_data["report"] = json_data["report"][-MAX_REPORT_COMMITS:]
     OUTPUT_JSON.write_text(json.dumps(json_data, indent=2), encoding="utf-8")
+
+    # ---------------- Summary + Chunks ----------------
     summary_data = json_data.copy()
     commits_data = summary_data.pop("report")
     SUMMARY_JSON = OUTPUT_DIR / "summary.json"
@@ -747,8 +765,10 @@ def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
         chunk_file = OUTPUT_DIR / f"commits_{i // COMMIT_CHUNK_SIZE}.json"
         chunk_file.write_text(json.dumps(chunk, indent=2), encoding="utf-8")
         chunk_files.append(chunk_file.name)
+
     summary_data['num_chunks'] = (len(commits_data) + COMMIT_CHUNK_SIZE - 1) // COMMIT_CHUNK_SIZE
     SUMMARY_JSON.write_text(json.dumps(summary_data, indent=2), encoding="utf-8")
+
     log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}, {SUMMARY_JSON}, commits_*.json")
 
 # ============================
