@@ -124,10 +124,10 @@ jobs:
 
       - name: Inject report into index.html
         run: |
-          # This awk command finds the line with </body>, prints the report file content, then prints the original line.
-          awk '/<\/body>/ {system("cat output/FFlag_Report.html")} {print}' output/index.html > output/index.tmp
+          # Insert FFlag_Report.html inside <div id="reportContent">
+          awk '/<div id="reportContent">/ {print; system("cat output/FFlag_Report.html"); next} {print}' output/index.html > output/index.tmp
           mv output/index.tmp output/index.html
-          echo "✅ Injected FFlag_Report.html before </body>"
+          echo "✅ Injected FFlag_Report.html inside #reportContent"
 
       - name: Copy static assets
         run: |
