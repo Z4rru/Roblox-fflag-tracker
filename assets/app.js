@@ -16,33 +16,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
   }
 
-  async function safeLoad(name, localPath, cdnUrl) {
-    try {
-      await loadScript(localPath);
-    } catch (err) {
-      console.warn(`[App] ${name} failed locally, falling back to CDN`);
-      await loadScript(cdnUrl);
-    }
-  }
-
   try {
-    // Load Hammer.js first (local -> fallback)
-    await safeLoad("Hammer.js",
-      "assets/hammer.min.js",
-      "https://unpkg.com/hammerjs@2.0.8/hammer.min.js"
-    );
+    // Load Hammer.js
+    await loadScript("https://unpkg.com/hammerjs@2.0.8/hammer.min.js");
 
-    // Then Chart.js
-    await safeLoad("Chart.js",
-      "assets/chart.umd.js",
-      "https://unpkg.com/chart.js@4.4.0/dist/chart.umd.js"
-    );
+    // Load Chart.js
+    await loadScript("https://unpkg.com/chart.js@4.4.0/dist/chart.umd.js");
 
-    // Then Zoom plugin
-    await safeLoad("Chart Zoom Plugin",
-      "assets/chartjs-plugin-zoom.js",
-      "https://unpkg.com/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.umd.min.js"
-    );
+    // Load Zoom plugin
+    await loadScript("https://unpkg.com/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.umd.min.js");
 
     console.log("[App] Libraries loaded successfully");
 
