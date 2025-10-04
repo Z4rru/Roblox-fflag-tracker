@@ -39,7 +39,8 @@ self.addEventListener("activate", (event) => {
       // 🔥 Tell every controlled tab to refresh
       const clientsList = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
       for (const client of clientsList) {
-        client.navigate(client.url);
+        // Comment out the next line
+        // client.navigate(client.url); 
       }
     } catch (e) {
       console.error("Service worker activate error:", e);
