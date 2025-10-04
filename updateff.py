@@ -1247,7 +1247,9 @@ def ensure_landing_page(added: int, changed: int, removed: int, last_run: str, s
         </div>
         <button id="exportCSV" aria-label="Export report as CSV">Export CSV</button>
         <button id="exportJSON" aria-label="Export report as JSON">Export JSON</button>
-        <canvas id="myChart" aria-label="Trend chart of flag changes"></canvas>
+        <div id="chart-container">
+            <canvas id="myChart" aria-label="Trend chart of flag changes"></canvas>
+        </div>
     </section>
     <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
     <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
