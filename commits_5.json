@@ -1,64 +1,30 @@
 [
   {
-    "header": "279f08ce - 2025-10-07 13:35:52 -0500 - 10/07/2025 13:35:52",
+    "header": "97427c51 - 2025-10-08 12:32:47 -0500 - 10/08/2025 12:32:46",
     "grouped": {
-      "Added_Camera/UI": [
-        {
-          "name": "DFFlagBaseGuiSelectedObjectUpdates",
-          "mechanism": "Updates the selected object in the GUI when changes occur.",
-          "purpose": "Provides players with real-time feedback on their selections, enhancing usability.",
-          "freq": 1,
-          "old_value": null,
-          "new_value": "True"
-        }
-      ],
-      "Added_Physics": [
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForLegacyMassData_Staged",
-          "mechanism": "Uses an updated method to decode physics mesh data for older models.",
-          "purpose": "Improves performance and accuracy of physics interactions for legacy models in games.",
-          "freq": 6,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;2135956193;2025-10-07T18:27:39"
-        },
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForNav_Staged",
-          "mechanism": "Implements a new method for decoding physics meshes for navigation.",
-          "purpose": "Improves the accuracy and efficiency of navigation in games.",
-          "freq": 6,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1763408978;2025-10-07T18:26:38"
-        },
-        {
-          "name": "DFFlagUsePhysicsMeshDecoderInBulletWrapper_Staged",
-          "mechanism": "Enables a new method for processing physics meshes in bullet simulations.",
-          "purpose": "Improves the accuracy and performance of physics interactions in games.",
-          "freq": 6,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1763408978;2025-10-07T18:26:38"
-        }
-      ],
       "Added_Other": [
         {
-          "name": "FFlagAddDropdownTypeToValueChanger_Staged",
-          "mechanism": "Adds a dropdown menu option to the value changer tool for selecting different types of values.",
-          "purpose": "Makes it easier for developers to customize game settings and options, enhancing gameplay variety.",
-          "freq": 2,
+          "name": "FFlagAXPrefetchMarketplaceIXP2_Staged",
+          "mechanism": "Preloads certain marketplace data to improve loading times.",
+          "purpose": "Reduces waiting time for players when accessing the marketplace, enhancing overall experience.",
+          "freq": 6,
           "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T18:27:04"
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;339453041;2025-10-08T17:25:34"
         },
         {
-          "name": "FFlagAXFixBuyActionBarNotAppearing3",
-          "mechanism": "Addresses a bug that prevents the buy action bar from showing up.",
-          "purpose": "Ensures players can easily access purchase options in games.",
-          "freq": 1,
+          "name": "FFlagPlayerFeedbackPromptEnabled_Staged",
+          "mechanism": "Enables prompts for players to give feedback during gameplay.",
+          "purpose": "Encourages players to share their thoughts, helping improve the game experience.",
+          "freq": 4,
           "old_value": null,
-          "new_value": "True"
-        },
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-08T17:25:07"
+        }
+      ],
+      "Added_Camera/UI": [
         {
-          "name": "FFlagAXMigrateScalesPageComponentsForAutofocus",
-          "mechanism": "Migrates components on the scales page to support autofocus features.",
-          "purpose": "Makes it easier for players to interact with the scales page by automatically focusing on relevant input fields.",
+          "name": "FFlagLuauIndividualRecursionLimits",
+          "mechanism": "Sets specific limits on how deep functions can call themselves in scripts.",
+          "purpose": "Prevents scripts from crashing due to excessive recursion, improving game performance.",
           "freq": 1,
           "old_value": null,
           "new_value": "True"
@@ -67,1178 +33,1014 @@
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
           "freq": 200,
-          "old_value": "51d95c4f360e3426b80d502c95dfb02e1b18b5b0",
-          "new_value": "db06751d54452e54a622418d92a1fd29478c36e1"
+          "old_value": "a9875476eed9135ee9e11483fade1a3f5e752ad3",
+          "new_value": "de49bdc2abe5f458ea8d93a5d6e68479ca5eed4a"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
           "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
+          "purpose": "Improves readability of time-related information for players.",
           "freq": 200,
-          "old_value": "10/07/2025 18:33:02",
-          "new_value": "10/07/2025 18:35:17"
+          "old_value": "10/08/2025 17:26:37",
+          "new_value": "10/08/2025 17:31:31"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
           "freq": 200,
-          "old_value": "51d95c4f360e3426b80d502c95dfb02e1b18b5b0",
-          "new_value": "db06751d54452e54a622418d92a1fd29478c36e1"
+          "old_value": "a9875476eed9135ee9e11483fade1a3f5e752ad3",
+          "new_value": "de49bdc2abe5f458ea8d93a5d6e68479ca5eed4a"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
           "freq": 200,
-          "old_value": "10/07/2025 18:33:02",
-          "new_value": "10/07/2025 18:35:17"
+          "old_value": "10/08/2025 17:26:37",
+          "new_value": "10/08/2025 17:31:31"
         }
       ],
       "Removed_Camera/UI": [
         {
-          "name": "DFFlagBaseGuiSelectedObjectUpdates_Staged",
-          "mechanism": "Updates selected GUI objects in real-time.",
-          "purpose": "Improves user experience by ensuring that selected items in the interface reflect changes immediately.",
+          "name": "FFlagLuauIndividualRecursionLimits_Staged",
+          "mechanism": "Sets specific limits on recursion depth for individual functions in Luau.",
+          "purpose": "Prevents excessive resource use and potential crashes from deep recursive calls, improving stability.",
           "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T17:26:47",
-          "new_value": null
-        }
-      ],
-      "Removed_Other": [
-        {
-          "name": "FFlagAXFixBuyActionBarNotAppearing3_Staged",
-          "mechanism": "Fixes an issue where the buy action bar does not show up in certain scenarios.",
-          "purpose": "Ensures players can access purchasing options consistently, improving gameplay experience.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T17:20:45",
-          "new_value": null
-        },
-        {
-          "name": "FFlagAXMigrateScalesPageComponentsForAutofocus_Staged",
-          "mechanism": "Updates the components on the scales page to support automatic focus.",
-          "purpose": "Makes it easier for players to navigate and use the scales page efficiently.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T17:28:11",
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1474384295;2025-10-08T16:24:33",
           "new_value": null
         }
       ]
     }
   },
   {
-    "header": "30b2cc01 - 2025-10-07 13:33:39 -0500 - 10/07/2025 13:33:39",
+    "header": "71806a87 - 2025-10-08 12:28:23 -0500 - 10/08/2025 12:28:23",
     "grouped": {
-      "Added_Physics": [
+      "Added_Input": [
         {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForAero_Staged",
-          "mechanism": "Uses a new method to decode physics meshes for better performance.",
-          "purpose": "Improves the stability and realism of physics in games.",
-          "freq": 6,
+          "name": "FFlagCASButtonsOnWindowsTouch_Staged",
+          "mechanism": "Enables touch-friendly buttons for the Create-A-Sim feature on Windows devices.",
+          "purpose": "Enhances usability for players using touch screens, making it easier to create characters.",
+          "freq": 2,
           "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;858930271;2025-10-07T18:25:27"
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-08T17:18:32"
         }
       ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "40a2561fa7c76292127b3452db4f79dffbb9566c",
+          "new_value": "a9875476eed9135ee9e11483fade1a3f5e752ad3"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 17:25:39",
+          "new_value": "10/08/2025 17:26:37"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "40a2561fa7c76292127b3452db4f79dffbb9566c",
+          "new_value": "a9875476eed9135ee9e11483fade1a3f5e752ad3"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 17:25:39",
+          "new_value": "10/08/2025 17:26:37"
+        }
+      ]
+    }
+  },
+  {
+    "header": "24317c7f - 2025-10-08 12:26:13 -0500 - 10/08/2025 12:26:13",
+    "grouped": {
       "Added_Other": [
         {
-          "name": "FFlagRemoveLegacyChatConsoleCheck_Staged",
-          "mechanism": "Eliminates old checks for the chat console that are no longer needed.",
-          "purpose": "Improves chat performance and reliability for players.",
+          "name": "FFlagUsernameValidatorSelectorPaddingFix_Staged",
+          "mechanism": "Adjusts the padding in the username validation selector interface.",
+          "purpose": "Enhances the visual layout for a better user experience when entering usernames.",
           "freq": 2,
           "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T18:26:12"
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;819861154;2025-10-08T17:17:42"
         }
       ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
           "freq": 200,
-          "old_value": "30a97edaa601d7da5d5d0b18582b3c09417abf1e",
-          "new_value": "51d95c4f360e3426b80d502c95dfb02e1b18b5b0"
+          "old_value": "5a4d81586653537b2d69a97e5827db56be6760c4",
+          "new_value": "40a2561fa7c76292127b3452db4f79dffbb9566c"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
           "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
+          "purpose": "Improves readability of time-related information for players.",
           "freq": 200,
-          "old_value": "10/07/2025 18:27:20",
-          "new_value": "10/07/2025 18:33:02"
+          "old_value": "10/08/2025 17:12:51",
+          "new_value": "10/08/2025 17:25:39"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
           "freq": 200,
-          "old_value": "30a97edaa601d7da5d5d0b18582b3c09417abf1e",
-          "new_value": "51d95c4f360e3426b80d502c95dfb02e1b18b5b0"
+          "old_value": "5a4d81586653537b2d69a97e5827db56be6760c4",
+          "new_value": "40a2561fa7c76292127b3452db4f79dffbb9566c"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
           "freq": 200,
-          "old_value": "10/07/2025 18:27:20",
-          "new_value": "10/07/2025 18:33:02"
+          "old_value": "10/08/2025 17:12:51",
+          "new_value": "10/08/2025 17:25:39"
         }
       ]
     }
   },
   {
-    "header": "302d36b5 - 2025-10-07 13:29:22 -0500 - 10/07/2025 13:29:22",
+    "header": "04c675a8 - 2025-10-08 12:15:22 -0500 - 10/08/2025 12:15:21",
     "grouped": {
-      "Added_Camera/UI": [
+      "Changed_Other": [
         {
-          "name": "FFlagIEMSelectorUnchangedByMouseWheel_Staged",
-          "mechanism": "Prevents the item selector from changing when scrolling with the mouse wheel.",
-          "purpose": "Enhances user experience by keeping the selected item consistent during scrolling.",
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "501a9ffca6b1955a6e284fc17a209fcf36353a45",
+          "new_value": "5a4d81586653537b2d69a97e5827db56be6760c4"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 17:11:01",
+          "new_value": "10/08/2025 17:12:51"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "501a9ffca6b1955a6e284fc17a209fcf36353a45",
+          "new_value": "5a4d81586653537b2d69a97e5827db56be6760c4"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 17:11:01",
+          "new_value": "10/08/2025 17:12:51"
+        }
+      ],
+      "Changed_Graphics": [
+        {
+          "name": "FFlagTexturePackGeneratorFix",
+          "mechanism": "Fixes issues in the texture pack generation process.",
+          "purpose": "Ensures that texture packs are created correctly, improving visual quality in games.",
           "freq": 2,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T18:23:59"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "e181fb7b9c3cf73a7239e3cd8690917c50c7aa3d",
-          "new_value": "30a97edaa601d7da5d5d0b18582b3c09417abf1e"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:24:48",
-          "new_value": "10/07/2025 18:27:20"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "e181fb7b9c3cf73a7239e3cd8690917c50c7aa3d",
-          "new_value": "30a97edaa601d7da5d5d0b18582b3c09417abf1e"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:24:48",
-          "new_value": "10/07/2025 18:27:20"
-        }
-      ],
-      "Removed_Physics": [
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForAero_Staged",
-          "mechanism": "Uses a new method to decode physics meshes for better performance.",
-          "purpose": "Improves the stability and realism of physics in games.",
-          "freq": 6,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;695014256;2025-10-07T17:50:38",
-          "new_value": null
-        },
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForLegacyMassData_Staged",
-          "mechanism": "Uses an updated method to decode physics mesh data for older models.",
-          "purpose": "Improves performance and accuracy of physics interactions for legacy models in games.",
-          "freq": 6,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;695014256;2025-10-07T17:50:38",
-          "new_value": null
-        },
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForNav_Staged",
-          "mechanism": "Implements a new method for decoding physics meshes for navigation.",
-          "purpose": "Improves the accuracy and efficiency of navigation in games.",
-          "freq": 6,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;695014256;2025-10-07T17:50:38",
-          "new_value": null
-        },
-        {
-          "name": "DFFlagUsePhysicsMeshDecoderInBulletWrapper_Staged",
-          "mechanism": "Enables a new method for processing physics meshes in bullet simulations.",
-          "purpose": "Improves the accuracy and performance of physics interactions in games.",
-          "freq": 6,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;695014256;2025-10-07T17:50:38",
-          "new_value": null
-        }
-      ]
-    }
-  },
-  {
-    "header": "4988a7f4 - 2025-10-07 13:24:59 -0500 - 10/07/2025 13:24:59",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "b3b8271a75ff2deef3a8d245f4b01974ae3fe0e5",
-          "new_value": "e181fb7b9c3cf73a7239e3cd8690917c50c7aa3d"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:21:25",
-          "new_value": "10/07/2025 18:24:48"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "b3b8271a75ff2deef3a8d245f4b01974ae3fe0e5",
-          "new_value": "e181fb7b9c3cf73a7239e3cd8690917c50c7aa3d"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:21:25",
-          "new_value": "10/07/2025 18:24:48"
-        }
-      ]
-    }
-  },
-  {
-    "header": "721ff079 - 2025-10-07 13:22:47 -0500 - 10/07/2025 13:22:47",
-    "grouped": {
-      "Added_Network": [
-        {
-          "name": "DFFlagDataPingTracerAdditionalFields_Staged",
-          "mechanism": "Adds more data fields to the ping tracer for better diagnostics.",
-          "purpose": "Helps developers identify and fix connection issues more effectively.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T18:19:40"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "c90835233137c7d074f8277215802228cf6d1e75",
-          "new_value": "b3b8271a75ff2deef3a8d245f4b01974ae3fe0e5"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:19:56",
-          "new_value": "10/07/2025 18:21:25"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "c90835233137c7d074f8277215802228cf6d1e75",
-          "new_value": "b3b8271a75ff2deef3a8d245f4b01974ae3fe0e5"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:19:56",
-          "new_value": "10/07/2025 18:21:25"
-        }
-      ]
-    }
-  },
-  {
-    "header": "b0289307 - 2025-10-07 13:20:34 -0500 - 10/07/2025 13:20:34",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "2877b4181a97c9030539c88fd6997a5cc2576f76",
-          "new_value": "c90835233137c7d074f8277215802228cf6d1e75"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:16:58",
-          "new_value": "10/07/2025 18:19:56"
-        },
-        {
-          "name": "FFlagStreamJobRefactorSetCollection_PlaceFilter",
-          "mechanism": "Refactors how collections of places are managed in streaming jobs.",
-          "purpose": "Improves performance and organization for players when accessing multiple places.",
-          "freq": 4,
-          "old_value": "false;95721658376580;115385421369591",
-          "new_value": "false;95721658376580;115385421369591;116683624874765"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "2877b4181a97c9030539c88fd6997a5cc2576f76",
-          "new_value": "c90835233137c7d074f8277215802228cf6d1e75"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:16:58",
-          "new_value": "10/07/2025 18:19:56"
-        }
-      ]
-    }
-  },
-  {
-    "header": "529506f3 - 2025-10-07 13:18:21 -0500 - 10/07/2025 13:18:21",
-    "grouped": {
-      "Added_Graphics": [
-        {
-          "name": "DFFlagPath2DFixVisibleChangeRerender",
-          "mechanism": "Fixes how 2D paths are redrawn when visibility changes.",
-          "purpose": "Improves visual consistency for players when paths appear or disappear.",
-          "freq": 1,
-          "old_value": null,
-          "new_value": "True"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "f43f41745f082ee692a433fd9ab0565039cb7b4b",
-          "new_value": "2877b4181a97c9030539c88fd6997a5cc2576f76"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:14:23",
-          "new_value": "10/07/2025 18:16:58"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "f43f41745f082ee692a433fd9ab0565039cb7b4b",
-          "new_value": "2877b4181a97c9030539c88fd6997a5cc2576f76"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:14:23",
-          "new_value": "10/07/2025 18:16:58"
+          "old_value": "True",
+          "new_value": "False"
         }
       ],
       "Removed_Graphics": [
         {
-          "name": "DFFlagPath2DFixVisibleChangeRerender_Staged",
-          "mechanism": "Fixes how changes in visibility affect rendering in 2D paths.",
-          "purpose": "Enhances the visual experience by ensuring smooth updates when objects become visible or hidden.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T17:11:05",
-          "new_value": null
-        }
-      ]
-    }
-  },
-  {
-    "header": "7de3798e - 2025-10-07 13:16:11 -0500 - 10/07/2025 13:16:11",
-    "grouped": {
-      "Added_Other": [
-        {
-          "name": "DFFlagFixGetTextSizeWrongLocale_Staged",
-          "mechanism": "Corrects the text size calculation to consider the player's locale settings.",
-          "purpose": "Ensures text appears correctly sized for players in different regions, improving readability.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;51259039;2025-10-07T18:10:51"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "fad148a8b3d762307fc7eac5644266f34e7794e4",
-          "new_value": "f43f41745f082ee692a433fd9ab0565039cb7b4b"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:12:38",
-          "new_value": "10/07/2025 18:14:23"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "fad148a8b3d762307fc7eac5644266f34e7794e4",
-          "new_value": "f43f41745f082ee692a433fd9ab0565039cb7b4b"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:12:38",
-          "new_value": "10/07/2025 18:14:23"
-        }
-      ]
-    }
-  },
-  {
-    "header": "737d8508 - 2025-10-07 13:14:01 -0500 - 10/07/2025 13:14:01",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "388c741783fb14a3b971f382371477ed396b4037",
-          "new_value": "fad148a8b3d762307fc7eac5644266f34e7794e4"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:09:32",
-          "new_value": "10/07/2025 18:12:38"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "388c741783fb14a3b971f382371477ed396b4037",
-          "new_value": "fad148a8b3d762307fc7eac5644266f34e7794e4"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:09:32",
-          "new_value": "10/07/2025 18:12:38"
-        }
-      ]
-    }
-  },
-  {
-    "header": "46b1ab54 - 2025-10-07 13:11:51 -0500 - 10/07/2025 13:11:51",
-    "grouped": {
-      "Added_Other": [
-        {
-          "name": "FIntLivenessWithCallbackPollMaxRetries_Staged",
-          "mechanism": "Sets a limit on how many times the system checks for active processes.",
-          "purpose": "Ensures smoother gameplay by managing system resources effectively.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "15;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T18:07:23"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "cd4c7e78df222c8d87b873e633f1d168c6fd951d",
-          "new_value": "388c741783fb14a3b971f382371477ed396b4037"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:06:19",
-          "new_value": "10/07/2025 18:09:32"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "cd4c7e78df222c8d87b873e633f1d168c6fd951d",
-          "new_value": "388c741783fb14a3b971f382371477ed396b4037"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:06:19",
-          "new_value": "10/07/2025 18:09:32"
-        }
-      ]
-    }
-  },
-  {
-    "header": "2e5606d5 - 2025-10-07 13:07:29 -0500 - 10/07/2025 13:07:29",
-    "grouped": {
-      "Added_Other": [
-        {
-          "name": "FFlagEnableBackgroundSignatureVerification_Staged",
-          "mechanism": "Implements a system to verify digital signatures in the background for security.",
-          "purpose": "Increases the security of player data and game assets, helping to prevent cheating and hacks.",
+          "name": "FFlagTexturePackGeneratorFix_Staged",
+          "mechanism": "Fixes issues in generating texture packs for games.",
+          "purpose": "Ensures players see the correct visuals in games using custom textures.",
           "freq": 4,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T18:01:22"
-        },
-        {
-          "name": "FFlagLuauStringConstFolding2_Staged",
-          "mechanism": "Optimizes string constants in the Luau scripting language.",
-          "purpose": "Enhances script performance, leading to faster game execution.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T18:02:13"
-        }
-      ],
-      "Added_Camera/UI": [
-        {
-          "name": "FFlagLuauInterpStringConstFolding_Staged",
-          "mechanism": "Optimizes string interpolation by folding constant strings at compile time.",
-          "purpose": "Improves performance when using constant strings in scripts, making games run smoother.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T18:03:21"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "5081e65fca058c680e0c35be6fab4558e5df9aa7",
-          "new_value": "cd4c7e78df222c8d87b873e633f1d168c6fd951d"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:04:35",
-          "new_value": "10/07/2025 18:06:19"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "5081e65fca058c680e0c35be6fab4558e5df9aa7",
-          "new_value": "cd4c7e78df222c8d87b873e633f1d168c6fd951d"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:04:35",
-          "new_value": "10/07/2025 18:06:19"
-        }
-      ]
-    }
-  },
-  {
-    "header": "9e87462b - 2025-10-07 13:05:16 -0500 - 10/07/2025 13:05:15",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "1889a81122ffd0b09f9dbe00bf06b024ec9899a8",
-          "new_value": "5081e65fca058c680e0c35be6fab4558e5df9aa7"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:00:00",
-          "new_value": "10/07/2025 18:04:35"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "1889a81122ffd0b09f9dbe00bf06b024ec9899a8",
-          "new_value": "5081e65fca058c680e0c35be6fab4558e5df9aa7"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 18:00:00",
-          "new_value": "10/07/2025 18:04:35"
-        }
-      ]
-    }
-  },
-  {
-    "header": "36f19ca7 - 2025-10-07 13:00:54 -0500 - 10/07/2025 13:00:54",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "4c1bc305204ce02cabca78f2dbd9c071190a18f9",
-          "new_value": "1889a81122ffd0b09f9dbe00bf06b024ec9899a8"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 17:56:04",
-          "new_value": "10/07/2025 18:00:00"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "4c1bc305204ce02cabca78f2dbd9c071190a18f9",
-          "new_value": "1889a81122ffd0b09f9dbe00bf06b024ec9899a8"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 17:56:04",
-          "new_value": "10/07/2025 18:00:00"
-        }
-      ]
-    }
-  },
-  {
-    "header": "656bd1e6 - 2025-10-07 12:58:40 -0500 - 10/07/2025 12:58:40",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "fc6a26fc261b448b56ed87dc3a33478834ad6c81",
-          "new_value": "4c1bc305204ce02cabca78f2dbd9c071190a18f9"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 17:53:17",
-          "new_value": "10/07/2025 17:56:04"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "fc6a26fc261b448b56ed87dc3a33478834ad6c81",
-          "new_value": "4c1bc305204ce02cabca78f2dbd9c071190a18f9"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 17:53:17",
-          "new_value": "10/07/2025 17:56:04"
-        }
-      ]
-    }
-  },
-  {
-    "header": "93fe8f94 - 2025-10-07 12:54:17 -0500 - 10/07/2025 12:54:17",
-    "grouped": {
-      "Added_Camera/UI": [
-        {
-          "name": "DFFlagEnableCheckAdGuiData",
-          "mechanism": "Enables the system to verify and collect data related to advertisement GUI elements.",
-          "purpose": "Improves the accuracy of ad-related features and enhances user experience with ads.",
-          "freq": 1,
-          "old_value": null,
-          "new_value": "True"
-        }
-      ],
-      "Added_Physics": [
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForAero_Staged",
-          "mechanism": "Uses a new method to decode physics meshes for better performance.",
-          "purpose": "Improves the stability and realism of physics in games.",
-          "freq": 6,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;695014256;2025-10-07T17:50:38"
-        },
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForLegacyMassData_Staged",
-          "mechanism": "Uses an updated method to decode physics mesh data for older models.",
-          "purpose": "Improves performance and accuracy of physics interactions for legacy models in games.",
-          "freq": 6,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;695014256;2025-10-07T17:50:38"
-        },
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForNav_Staged",
-          "mechanism": "Implements a new method for decoding physics meshes for navigation.",
-          "purpose": "Improves the accuracy and efficiency of navigation in games.",
-          "freq": 6,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;695014256;2025-10-07T17:50:38"
-        },
-        {
-          "name": "DFFlagUsePhysicsMeshDecoderInBulletWrapper_Staged",
-          "mechanism": "Enables a new method for processing physics meshes in bullet simulations.",
-          "purpose": "Improves the accuracy and performance of physics interactions in games.",
-          "freq": 6,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;695014256;2025-10-07T17:50:38"
-        }
-      ],
-      "Added_Other": [
-        {
-          "name": "FFlagDynamicTranslationUseCacheValue_Staged",
-          "mechanism": "Utilizes cached values for dynamic translations in the game.",
-          "purpose": "Speeds up text rendering and improves localization performance.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T17:48:13"
-        },
-        {
-          "name": "FFlagEnableTelemetryIntegrationCheck",
-          "mechanism": "Enables checks for telemetry data integration in the system.",
-          "purpose": "Improves data tracking and analysis for better game performance.",
-          "freq": 1,
-          "old_value": null,
-          "new_value": "True"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
-          "freq": 200,
-          "old_value": "fc34218f3de5f2230fa02b692ac2516a8b31013c",
-          "new_value": "fc6a26fc261b448b56ed87dc3a33478834ad6c81"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 17:47:01",
-          "new_value": "10/07/2025 17:53:17"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
-          "freq": 200,
-          "old_value": "fc34218f3de5f2230fa02b692ac2516a8b31013c",
-          "new_value": "fc6a26fc261b448b56ed87dc3a33478834ad6c81"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
-          "freq": 200,
-          "old_value": "10/07/2025 17:47:01",
-          "new_value": "10/07/2025 17:53:17"
-        }
-      ],
-      "Removed_Camera/UI": [
-        {
-          "name": "DFFlagEnableCheckAdGuiData_Staged",
-          "mechanism": "Activates a system to verify ad-related data in the GUI.",
-          "purpose": "Ensures that advertisements displayed in games are accurate and functioning correctly.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T16:48:24",
-          "new_value": null
-        }
-      ],
-      "Removed_Other": [
-        {
-          "name": "FFlagEnableTelemetryIntegrationCheck_Staged",
-          "mechanism": "Introduces a check for integrating telemetry data into the system.",
-          "purpose": "Helps developers monitor and analyze game performance more effectively.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T16:46:07",
+          "old_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-08T16:06:19",
           "new_value": null
         }
       ]
     }
   },
   {
-    "header": "53daba0a - 2025-10-07 12:47:42 -0500 - 10/07/2025 12:47:41",
+    "header": "012a17e0 - 2025-10-08 12:13:10 -0500 - 10/08/2025 12:13:10",
     "grouped": {
-      "Added_Other": [
-        {
-          "name": "DFFlagConvexDecompInertiaDataValidation_Staged",
-          "mechanism": "Implements checks for data used in physics calculations.",
-          "purpose": "Improves the stability and accuracy of physics interactions in games.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;545778189;2025-10-07T17:45:13"
-        }
-      ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
           "freq": 200,
-          "old_value": "b83d51f4c1652a4dffab5478bdb132812985d09c",
-          "new_value": "fc34218f3de5f2230fa02b692ac2516a8b31013c"
+          "old_value": "73c62d651871034b05a905e90bdf741817213089",
+          "new_value": "501a9ffca6b1955a6e284fc17a209fcf36353a45"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
           "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
+          "purpose": "Improves readability of time-related information for players.",
           "freq": 200,
-          "old_value": "10/07/2025 17:45:03",
-          "new_value": "10/07/2025 17:47:01"
+          "old_value": "10/08/2025 17:07:26",
+          "new_value": "10/08/2025 17:11:01"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
           "freq": 200,
-          "old_value": "b83d51f4c1652a4dffab5478bdb132812985d09c",
-          "new_value": "fc34218f3de5f2230fa02b692ac2516a8b31013c"
+          "old_value": "73c62d651871034b05a905e90bdf741817213089",
+          "new_value": "501a9ffca6b1955a6e284fc17a209fcf36353a45"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
           "freq": 200,
-          "old_value": "10/07/2025 17:45:03",
-          "new_value": "10/07/2025 17:47:01"
-        }
-      ],
-      "Removed_Other": [
-        {
-          "name": "FFlagLuaAppMigrateGameTileByDefault4_Staged",
-          "mechanism": "Automatically updates game tiles to a new format in Lua applications.",
-          "purpose": "Players benefit from enhanced game performance and features without needing manual updates.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T16:43:53",
-          "new_value": null
+          "old_value": "10/08/2025 17:07:26",
+          "new_value": "10/08/2025 17:11:01"
         }
       ]
     }
   },
   {
-    "header": "d8dcb719 - 2025-10-07 12:45:31 -0500 - 10/07/2025 12:45:31",
+    "header": "d4b33e74 - 2025-10-08 12:08:47 -0500 - 10/08/2025 12:08:47",
     "grouped": {
-      "Added_Other": [
+      "Changed_Other": [
         {
-          "name": "FFlagFixWallsOcclusion",
-          "mechanism": "Improves how walls block visibility in the game engine.",
-          "purpose": "Players will see more accurate visuals where walls properly hide or reveal objects.",
-          "freq": 1,
-          "old_value": null,
-          "new_value": "True"
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "b58b1d5d0f96f6622fd181fede9f0a08d6501db7",
+          "new_value": "73c62d651871034b05a905e90bdf741817213089"
         },
         {
-          "name": "FFlagHighlights255Allowed_Staged",
-          "mechanism": "Allows up to 255 highlight effects in the game.",
-          "purpose": "Enables more vibrant and dynamic visual effects for players.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T17:41:17"
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 17:06:00",
+          "new_value": "10/08/2025 17:07:26"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "b58b1d5d0f96f6622fd181fede9f0a08d6501db7",
+          "new_value": "73c62d651871034b05a905e90bdf741817213089"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 17:06:00",
+          "new_value": "10/08/2025 17:07:26"
         }
-      ],
+      ]
+    }
+  },
+  {
+    "header": "fd4a2a5c - 2025-10-08 12:06:34 -0500 - 10/08/2025 12:06:34",
+    "grouped": {
       "Changed_Camera/UI": [
         {
           "name": "DFIntReverbCameraPushForwardStudsHundredths",
-          "mechanism": "Adjusts the camera position based on sound effects.",
-          "purpose": "Enhances audio experience by making sounds feel more immersive.",
-          "freq": 2,
-          "old_value": "10",
-          "new_value": "180"
+          "mechanism": "Adjusts the camera position based on reverb effects in the game environment.",
+          "purpose": "Creates a more immersive audio experience by aligning sound effects with the player's perspective.",
+          "freq": 1,
+          "old_value": "180",
+          "new_value": "10"
         }
       ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
           "freq": 200,
-          "old_value": "a963120a81c4d90d9d79d14a3e0efe3af6f6e82d",
-          "new_value": "b83d51f4c1652a4dffab5478bdb132812985d09c"
+          "old_value": "440dcab256c2ebb7516b13544891034849c83379",
+          "new_value": "b58b1d5d0f96f6622fd181fede9f0a08d6501db7"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
           "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
+          "purpose": "Improves readability of time-related information for players.",
           "freq": 200,
-          "old_value": "10/07/2025 17:41:36",
-          "new_value": "10/07/2025 17:45:03"
+          "old_value": "10/08/2025 17:02:03",
+          "new_value": "10/08/2025 17:06:00"
+        },
+        {
+          "name": "FFlagStreamJobRefactorSetCollection",
+          "mechanism": "Refactors how streaming jobs are managed and organized in collections.",
+          "purpose": "Optimizes game performance and loading times for players by improving data handling.",
+          "freq": 2,
+          "old_value": "True",
+          "new_value": "False"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
           "freq": 200,
-          "old_value": "a963120a81c4d90d9d79d14a3e0efe3af6f6e82d",
-          "new_value": "b83d51f4c1652a4dffab5478bdb132812985d09c"
+          "old_value": "440dcab256c2ebb7516b13544891034849c83379",
+          "new_value": "b58b1d5d0f96f6622fd181fede9f0a08d6501db7"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
           "freq": 200,
-          "old_value": "10/07/2025 17:41:36",
-          "new_value": "10/07/2025 17:45:03"
+          "old_value": "10/08/2025 17:02:03",
+          "new_value": "10/08/2025 17:06:00"
         }
       ],
       "Removed_Camera/UI": [
         {
           "name": "DFIntReverbCameraPushForwardStudsHundredths_Staged",
-          "mechanism": "Adjusts the camera position to enhance audio effects in the game.",
-          "purpose": "Creates a more immersive experience by improving how sound is perceived relative to the player's view.",
-          "freq": 4,
-          "old_value": "180;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;386874270;2025-10-07T16:37:24",
+          "mechanism": "Adjusts the camera position based on reverb effects in the game.",
+          "purpose": "Enhances audio experience by making sounds feel more immersive.",
+          "freq": 2,
+          "old_value": "10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;386874270;2025-10-08T15:58:40",
           "new_value": null
         }
       ],
       "Removed_Other": [
         {
-          "name": "FFlagFixWallsOcclusion_Staged",
-          "mechanism": "Addresses issues with how walls block visibility in the game.",
-          "purpose": "Enhances gameplay by ensuring players can see through walls correctly.",
+          "name": "FFlagStreamJobRefactorSetCollection_Staged",
+          "mechanism": "Refines how streaming jobs are organized and managed within collections.",
+          "purpose": "Enhances performance and efficiency in loading game assets, leading to smoother gameplay.",
           "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T16:38:53",
+          "old_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-08T16:00:43",
           "new_value": null
         }
       ]
     }
   },
   {
-    "header": "0d55f697 - 2025-10-07 12:43:20 -0500 - 10/07/2025 12:43:20",
+    "header": "0fb266e1 - 2025-10-08 12:04:20 -0500 - 10/08/2025 12:04:20",
     "grouped": {
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
           "freq": 200,
-          "old_value": "3267deff4fdd8fc13910247000ecbfa1e6ecca05",
-          "new_value": "a963120a81c4d90d9d79d14a3e0efe3af6f6e82d"
+          "old_value": "4b7405ac9c9f8b450e631fce7dceda0429b18b0c",
+          "new_value": "440dcab256c2ebb7516b13544891034849c83379"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
           "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
+          "purpose": "Improves readability of time-related information for players.",
           "freq": 200,
-          "old_value": "10/07/2025 17:37:56",
-          "new_value": "10/07/2025 17:41:36"
+          "old_value": "10/08/2025 16:58:25",
+          "new_value": "10/08/2025 17:02:03"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
           "freq": 200,
-          "old_value": "3267deff4fdd8fc13910247000ecbfa1e6ecca05",
-          "new_value": "a963120a81c4d90d9d79d14a3e0efe3af6f6e82d"
+          "old_value": "4b7405ac9c9f8b450e631fce7dceda0429b18b0c",
+          "new_value": "440dcab256c2ebb7516b13544891034849c83379"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
           "freq": 200,
-          "old_value": "10/07/2025 17:37:56",
-          "new_value": "10/07/2025 17:41:36"
-        }
-      ],
-      "Removed_Physics": [
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForAero_Staged",
-          "mechanism": "Uses a new method to decode physics meshes for better performance.",
-          "purpose": "Improves the stability and realism of physics in games.",
-          "freq": 6,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;702954384;2025-10-07T17:29:10",
-          "new_value": null
-        },
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForLegacyMassData_Staged",
-          "mechanism": "Uses an updated method to decode physics mesh data for older models.",
-          "purpose": "Improves performance and accuracy of physics interactions for legacy models in games.",
-          "freq": 6,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;702954384;2025-10-07T17:29:10",
-          "new_value": null
-        },
-        {
-          "name": "DFFlagUseNewPhysicsMeshDecoderForNav_Staged",
-          "mechanism": "Implements a new method for decoding physics meshes for navigation.",
-          "purpose": "Improves the accuracy and efficiency of navigation in games.",
-          "freq": 6,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;702954384;2025-10-07T17:29:10",
-          "new_value": null
-        },
-        {
-          "name": "DFFlagUsePhysicsMeshDecoderInBulletWrapper_Staged",
-          "mechanism": "Enables a new method for processing physics meshes in bullet simulations.",
-          "purpose": "Improves the accuracy and performance of physics interactions in games.",
-          "freq": 6,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;702954384;2025-10-07T17:29:10",
-          "new_value": null
+          "old_value": "10/08/2025 16:58:25",
+          "new_value": "10/08/2025 17:02:03"
         }
       ]
     }
   },
   {
-    "header": "9ce46244 - 2025-10-07 12:39:03 -0500 - 10/07/2025 12:39:03",
+    "header": "052adbea - 2025-10-08 11:59:59 -0500 - 10/08/2025 11:59:59",
     "grouped": {
       "Added_Other": [
         {
-          "name": "FFlagLuaAppActiveFriendIconEmphasisBorder",
-          "mechanism": "Adds a visual border to highlight active friends in the app.",
-          "purpose": "Makes it easier for players to identify and connect with active friends.",
-          "freq": 1,
+          "name": "FFlagDisableNpotException_Staged",
+          "mechanism": "Prevents errors related to non-power-of-two textures.",
+          "purpose": "Enhances graphics performance by avoiding issues with certain image formats.",
+          "freq": 2,
           "old_value": null,
-          "new_value": "True"
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-08T16:54:48"
+        },
+        {
+          "name": "FFlagLuaAppScrollableDesktopCarousels2_Staged",
+          "mechanism": "Enables a new type of scrolling carousel for desktop users in the Lua app.",
+          "purpose": "Improves the user experience by allowing players to easily browse through items in a visually appealing way.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1766612114;2025-10-08T16:55:38"
         }
       ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "c5b549489d184ca919f7edd4a87dd44d520d22c8",
+          "new_value": "4b7405ac9c9f8b450e631fce7dceda0429b18b0c"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:53:01",
+          "new_value": "10/08/2025 16:58:25"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "c5b549489d184ca919f7edd4a87dd44d520d22c8",
+          "new_value": "4b7405ac9c9f8b450e631fce7dceda0429b18b0c"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:53:01",
+          "new_value": "10/08/2025 16:58:25"
+        }
+      ]
+    }
+  },
+  {
+    "header": "ce9bb3d5 - 2025-10-08 11:53:25 -0500 - 10/08/2025 11:53:25",
+    "grouped": {
+      "Added_Other": [
+        {
+          "name": "FFlagLuaAppUpdateCollectionHeader2_Staged",
+          "mechanism": "Updates the header design for collection updates in the Lua app.",
+          "purpose": "Enhances the visual appeal and usability of the app for developers managing their collections.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;2009490664;2025-10-08T16:51:58"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "512ab9ebe77c09a841b071f514b09b155e77e70f",
+          "new_value": "c5b549489d184ca919f7edd4a87dd44d520d22c8"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:50:28",
+          "new_value": "10/08/2025 16:53:01"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "512ab9ebe77c09a841b071f514b09b155e77e70f",
+          "new_value": "c5b549489d184ca919f7edd4a87dd44d520d22c8"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:50:28",
+          "new_value": "10/08/2025 16:53:01"
+        }
+      ]
+    }
+  },
+  {
+    "header": "9f96d3d5 - 2025-10-08 11:51:12 -0500 - 10/08/2025 11:51:12",
+    "grouped": {
+      "Added_Other": [
+        {
+          "name": "FFlagLuauResumeFix_Staged",
+          "mechanism": "Fixes issues with the Luau scripting language's resume function.",
+          "purpose": "Ensures smoother execution of scripts, reducing errors during gameplay.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-08T16:48:17"
+        },
+        {
+          "name": "FFlagSTM6798Enabled_Staged",
+          "mechanism": "Activates a new system or feature within the platform.",
+          "purpose": "Improves performance or adds new capabilities for players.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1002229250;2025-10-08T16:48:32"
+        },
+        {
+          "name": "FFlagToolboxRetryReloadFailures3_Staged",
+          "mechanism": "Allows the toolbox to automatically retry loading assets if the initial attempt fails.",
+          "purpose": "Enhances the reliability of asset loading, ensuring players have access to necessary tools and items.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1002229250;2025-10-08T16:48:32"
+        },
+        {
+          "name": "FFlagWebBrowserWinExecuteJavaScriptNullGuard_Staged",
+          "mechanism": "Adds a safety check when executing JavaScript in the web browser.",
+          "purpose": "Enhances security and stability when using web features in games.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1002229250;2025-10-08T16:48:32"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "d414061ae7de08b6fe142d53cfd0cb4e737e76a8",
+          "new_value": "512ab9ebe77c09a841b071f514b09b155e77e70f"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:42:05",
+          "new_value": "10/08/2025 16:50:28"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "d414061ae7de08b6fe142d53cfd0cb4e737e76a8",
+          "new_value": "512ab9ebe77c09a841b071f514b09b155e77e70f"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:42:05",
+          "new_value": "10/08/2025 16:50:28"
+        }
+      ]
+    }
+  },
+  {
+    "header": "6c1cabb2 - 2025-10-08 11:44:39 -0500 - 10/08/2025 11:44:39",
+    "grouped": {
+      "Added_Other": [
+        {
+          "name": "FFlagEnableBackgroundSignatureVerification_Staged",
+          "mechanism": "Activates a system for verifying signatures in the background.",
+          "purpose": "Enhances security by ensuring that scripts and assets are verified without interrupting gameplay.",
+          "freq": 4,
+          "old_value": null,
+          "new_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-08T16:39:51"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "a85cd903801cb8a07611ea7ba36c01ca1b88e0fd",
+          "new_value": "d414061ae7de08b6fe142d53cfd0cb4e737e76a8"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:39:58",
+          "new_value": "10/08/2025 16:42:05"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "a85cd903801cb8a07611ea7ba36c01ca1b88e0fd",
+          "new_value": "d414061ae7de08b6fe142d53cfd0cb4e737e76a8"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:39:58",
+          "new_value": "10/08/2025 16:42:05"
+        }
+      ]
+    }
+  },
+  {
+    "header": "bf8e72df - 2025-10-08 11:42:25 -0500 - 10/08/2025 11:42:25",
+    "grouped": {
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "d78a14fbe773c31940475fa1fdc81a0a65a14378",
+          "new_value": "a85cd903801cb8a07611ea7ba36c01ca1b88e0fd"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:30:59",
+          "new_value": "10/08/2025 16:39:58"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "d78a14fbe773c31940475fa1fdc81a0a65a14378",
+          "new_value": "a85cd903801cb8a07611ea7ba36c01ca1b88e0fd"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:30:59",
+          "new_value": "10/08/2025 16:39:58"
+        }
+      ]
+    }
+  },
+  {
+    "header": "eb8ec669 - 2025-10-08 11:31:39 -0500 - 10/08/2025 11:31:39",
+    "grouped": {
+      "Added_Other": [
+        {
+          "name": "FFlagEnableBacktraceMetricKitReporter3_Staged",
+          "mechanism": "Enables advanced error reporting for better debugging.",
+          "purpose": "Helps developers fix issues faster, leading to a more stable gaming experience for players.",
+          "freq": 4,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-08T16:28:53"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "f585ada4918f6cef4f91ae1b538834c0025d4404",
+          "new_value": "d78a14fbe773c31940475fa1fdc81a0a65a14378"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:26:23",
+          "new_value": "10/08/2025 16:30:59"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "f585ada4918f6cef4f91ae1b538834c0025d4404",
+          "new_value": "d78a14fbe773c31940475fa1fdc81a0a65a14378"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:26:23",
+          "new_value": "10/08/2025 16:30:59"
+        }
+      ]
+    }
+  },
+  {
+    "header": "2e1393c4 - 2025-10-08 11:27:16 -0500 - 10/08/2025 11:27:16",
+    "grouped": {
+      "Added_Camera/UI": [
+        {
+          "name": "FFlagLuauIndividualRecursionLimits_Staged",
+          "mechanism": "Sets specific limits on recursion depth for individual functions in Luau.",
+          "purpose": "Prevents excessive resource use and potential crashes from deep recursive calls, improving stability.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1474384295;2025-10-08T16:24:33"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "16996f47a4edb78406dc6e2776619ec03c22bb53",
+          "new_value": "f585ada4918f6cef4f91ae1b538834c0025d4404"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:07:36",
+          "new_value": "10/08/2025 16:26:23"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "16996f47a4edb78406dc6e2776619ec03c22bb53",
+          "new_value": "f585ada4918f6cef4f91ae1b538834c0025d4404"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 16:07:36",
+          "new_value": "10/08/2025 16:26:23"
+        }
+      ]
+    }
+  },
+  {
+    "header": "d4117a77 - 2025-10-08 11:10:05 -0500 - 10/08/2025 11:10:04",
+    "grouped": {
       "Added_Graphics": [
         {
-          "name": "FFlagReportTextureStreamingTelemetry3_Staged",
-          "mechanism": "Activates reporting for texture streaming performance metrics.",
-          "purpose": "Helps developers understand how textures load in games, leading to better graphics performance.",
-          "freq": 2,
+          "name": "FFlagTexturePackGeneratorFix_Staged",
+          "mechanism": "Fixes issues in generating texture packs for games.",
+          "purpose": "Ensures players see the correct visuals in games using custom textures.",
+          "freq": 4,
           "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T17:35:47"
+          "new_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-08T16:06:19"
         }
       ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
           "freq": 200,
-          "old_value": "cbf036b2290de1a116d7c30ae4a12f6799a6d8b8",
-          "new_value": "3267deff4fdd8fc13910247000ecbfa1e6ecca05"
+          "old_value": "4c29f3a96ee1f6ebd1fae4d01959018dc21fde39",
+          "new_value": "16996f47a4edb78406dc6e2776619ec03c22bb53"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
           "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
+          "purpose": "Improves readability of time-related information for players.",
           "freq": 200,
-          "old_value": "10/07/2025 17:36:11",
-          "new_value": "10/07/2025 17:37:56"
+          "old_value": "10/08/2025 16:01:27",
+          "new_value": "10/08/2025 16:07:36"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
           "freq": 200,
-          "old_value": "cbf036b2290de1a116d7c30ae4a12f6799a6d8b8",
-          "new_value": "3267deff4fdd8fc13910247000ecbfa1e6ecca05"
+          "old_value": "4c29f3a96ee1f6ebd1fae4d01959018dc21fde39",
+          "new_value": "16996f47a4edb78406dc6e2776619ec03c22bb53"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
           "freq": 200,
-          "old_value": "10/07/2025 17:36:11",
-          "new_value": "10/07/2025 17:37:56"
+          "old_value": "10/08/2025 16:01:27",
+          "new_value": "10/08/2025 16:07:36"
+        }
+      ]
+    }
+  },
+  {
+    "header": "aceb5795 - 2025-10-08 11:05:40 -0500 - 10/08/2025 11:05:39",
+    "grouped": {
+      "Added_Other": [
+        {
+          "name": "FFlagStreamJobRefactorSetCollection_Staged",
+          "mechanism": "Refines how streaming jobs are organized and managed within collections.",
+          "purpose": "Enhances performance and efficiency in loading game assets, leading to smoother gameplay.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-08T16:00:43"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "f72e9c9e1207f6d733c2ded108cece607d73b6ae",
+          "new_value": "4c29f3a96ee1f6ebd1fae4d01959018dc21fde39"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 15:59:55",
+          "new_value": "10/08/2025 16:01:27"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "f72e9c9e1207f6d733c2ded108cece607d73b6ae",
+          "new_value": "4c29f3a96ee1f6ebd1fae4d01959018dc21fde39"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 15:59:55",
+          "new_value": "10/08/2025 16:01:27"
+        }
+      ]
+    }
+  },
+  {
+    "header": "3fbb93bb - 2025-10-08 11:01:22 -0500 - 10/08/2025 11:01:22",
+    "grouped": {
+      "Added_Camera/UI": [
+        {
+          "name": "DFIntReverbCameraPushForwardStudsHundredths_Staged",
+          "mechanism": "Adjusts the camera position based on reverb effects in the game.",
+          "purpose": "Enhances audio experience by making sounds feel more immersive.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;386874270;2025-10-08T15:58:40"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "d981324bb837e3025498cd6e45137fe91e23d62c",
+          "new_value": "f72e9c9e1207f6d733c2ded108cece607d73b6ae"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 05:02:36",
+          "new_value": "10/08/2025 15:59:55"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "d981324bb837e3025498cd6e45137fe91e23d62c",
+          "new_value": "f72e9c9e1207f6d733c2ded108cece607d73b6ae"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 05:02:36",
+          "new_value": "10/08/2025 15:59:55"
+        }
+      ]
+    }
+  },
+  {
+    "header": "6e018934 - 2025-10-08 00:04:23 -0500 - 10/08/2025 00:04:22",
+    "grouped": {
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
+          "freq": 200,
+          "old_value": "9dd43f390017127e8a7ecd2504b4c90487043ed4",
+          "new_value": "d981324bb837e3025498cd6e45137fe91e23d62c"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Changes how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 200,
+          "old_value": "10/08/2025 03:40:53",
+          "new_value": "10/08/2025 05:02:36"
+        },
+        {
+          "name": "FFlagLuauResumeFix",
+          "mechanism": "Fixes issues with resuming scripts in the Luau programming language.",
+          "purpose": "Ensures smoother gameplay by preventing script errors when players return to the game.",
+          "freq": 2,
+          "old_value": "True",
+          "new_value": "False"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
+          "freq": 200,
+          "old_value": "9dd43f390017127e8a7ecd2504b4c90487043ed4",
+          "new_value": "d981324bb837e3025498cd6e45137fe91e23d62c"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
+          "freq": 200,
+          "old_value": "10/08/2025 03:40:53",
+          "new_value": "10/08/2025 05:02:36"
         }
       ],
       "Removed_Other": [
         {
-          "name": "FFlagLuaAppActiveFriendIconEmphasisBorder_Staged",
-          "mechanism": "Adds a visual border around active friend icons in the Lua application.",
-          "purpose": "Makes it easier for players to identify which friends are currently online.",
+          "name": "FFlagLuauResumeFix_PlaceFilter",
+          "mechanism": "Fixes issues with filtering places in the Luau scripting language.",
+          "purpose": "Improves the reliability of searching and filtering game places.",
           "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T16:32:06",
+          "old_value": "false;3475397644",
           "new_value": null
         }
       ]
     }
   },
   {
-    "header": "20f88b39 - 2025-10-07 12:36:50 -0500 - 10/07/2025 12:36:50",
+    "header": "126b42a5 - 2025-10-07 22:41:56 -0500 - 10/07/2025 22:41:56",
     "grouped": {
       "Added_Other": [
         {
-          "name": "FFlagAvatarChatDelayModelDelivery2_Staged",
-          "mechanism": "Improves the delivery speed of avatar chat models.",
-          "purpose": "Enhances the responsiveness of chat features for players.",
+          "name": "FFlagLuauResumeFix_PlaceFilter",
+          "mechanism": "Fixes issues with filtering places in the Luau scripting language.",
+          "purpose": "Improves the reliability of searching and filtering game places.",
           "freq": 2,
           "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-07T17:34:21"
+          "new_value": "false;3475397644"
         }
       ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current Git hash of the repository as a dynamic string.",
-          "purpose": "Helps developers track the exact version of the code being used, aiding in debugging and updates.",
+          "mechanism": "Dynamically retrieves the current version of the codebase.",
+          "purpose": "Ensures players have access to the latest features and fixes.",
           "freq": 200,
-          "old_value": "f946366b2d66f27b09a066c7bd6d3192e256adc8",
-          "new_value": "cbf036b2290de1a116d7c30ae4a12f6799a6d8b8"
+          "old_value": "5097ce7eacb112fafdbd5218717bd5a5a54ab894",
+          "new_value": "9dd43f390017127e8a7ecd2504b4c90487043ed4"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
           "mechanism": "Changes how timestamps are formatted in dynamic strings.",
-          "purpose": "Improves the readability and consistency of time displays for players.",
+          "purpose": "Improves readability of time-related information for players.",
           "freq": 200,
-          "old_value": "10/07/2025 17:33:23",
-          "new_value": "10/07/2025 17:36:11"
+          "old_value": "10/08/2025 00:24:44",
+          "new_value": "10/08/2025 03:40:53"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes string handling by using a faster method for Git hash retrieval.",
-          "purpose": "Improves game performance by speeding up the loading of game assets.",
+          "mechanism": "Utilizes a specific string format for version control in the codebase.",
+          "purpose": "Ensures smoother updates and better performance for players.",
           "freq": 200,
-          "old_value": "f946366b2d66f27b09a066c7bd6d3192e256adc8",
-          "new_value": "cbf036b2290de1a116d7c30ae4a12f6799a6d8b8"
+          "old_value": "5097ce7eacb112fafdbd5218717bd5a5a54ab894",
+          "new_value": "9dd43f390017127e8a7ecd2504b4c90487043ed4"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed.",
-          "purpose": "Makes the display of time-related information faster and more efficient for players.",
+          "mechanism": "Improves how timestamps are processed in strings.",
+          "purpose": "Players experience faster loading times for time-related data.",
           "freq": 200,
-          "old_value": "10/07/2025 17:33:23",
-          "new_value": "10/07/2025 17:36:11"
+          "old_value": "10/08/2025 00:24:44",
+          "new_value": "10/08/2025 03:40:53"
         }
       ]
     }
