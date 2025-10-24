@@ -1,247 +1,180 @@
 [
   {
-    "header": "16aa5443 - 2025-10-22 14:37:41 -0500 - 10/22/2025 14:37:41",
+    "header": "480925f2 - 2025-10-23 13:47:32 -0500 - 10/23/2025 13:47:31",
     "grouped": {
+      "Added_Other": [
+        {
+          "name": "DFFlagSimScaleSleepAcceleration_PlaceFilter",
+          "mechanism": "Filters places based on simulation scale sleep acceleration settings.",
+          "purpose": "Improves performance in games by optimizing how they handle simulation scaling.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "true;102669905873657;95110357124286;74420304866897;112408689884212"
+        },
+        {
+          "name": "FFlagLoadRawBytecodeWithHashKey_Staged",
+          "mechanism": "Enables loading of raw bytecode with a hash key for better performance.",
+          "purpose": "Improves game loading times and efficiency, enhancing the overall player experience.",
+          "freq": 4,
+          "old_value": null,
+          "new_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T18:41:32"
+        }
+      ],
+      "Added_Physics": [
+        {
+          "name": "DFIntSimSolverWakeDisplacementMultiplier_PlaceFilter",
+          "mechanism": "Adjusts physics calculations for specific places based on a multiplier.",
+          "purpose": "Improves the accuracy of physics interactions in certain game environments.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "200;102669905873657;95110357124286;74420304866897;112408689884212"
+        }
+      ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "994c280a4ee75323592c900738f4c8567bcc8d12",
-          "new_value": "e7e450aba4d9c37ea0e00721376be7f6bcb4d5e7"
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "9f272b0100e518b80df9105dbd5315cecccf1299",
+          "new_value": "869960a3e77ec17da3f24f95091fb0cdc2c8395d"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:31:13",
-          "new_value": "10/22/2025 19:37:00"
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:44:57",
+          "new_value": "10/23/2025 18:46:50"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "994c280a4ee75323592c900738f4c8567bcc8d12",
-          "new_value": "e7e450aba4d9c37ea0e00721376be7f6bcb4d5e7"
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "9f272b0100e518b80df9105dbd5315cecccf1299",
+          "new_value": "869960a3e77ec17da3f24f95091fb0cdc2c8395d"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:31:13",
-          "new_value": "10/22/2025 19:37:00"
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:44:57",
+          "new_value": "10/23/2025 18:46:50"
+        }
+      ]
+    }
+  },
+  {
+    "header": "e2528205 - 2025-10-23 13:45:17 -0500 - 10/23/2025 13:45:17",
+    "grouped": {
+      "Added_Physics": [
+        {
+          "name": "DFFlagLetRagdolledHumanoidsSleep_PlaceFilter",
+          "mechanism": "Allows ragdolled humanoids to enter a sleep state based on place filters.",
+          "purpose": "Improves gameplay realism by enabling characters to rest in specific areas.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "true;102669905873657;95110357124286;74420304866897;112408689884212"
         }
       ],
-      "Removed_Other": [
+      "Added_Network": [
         {
-          "name": "FFlagStreamJobMRF4_PlaceFilter",
-          "mechanism": "Introduces a filtering system for streaming job placements.",
-          "purpose": "Enhances performance by optimizing how game assets are loaded and displayed.",
+          "name": "DFIntClientNonLocalChildrenRemovalStatsThrottle",
+          "mechanism": "Limits the frequency of updates related to removing non-local child objects in the game.",
+          "purpose": "Reduces lag and improves game stability by managing how often these updates occur.",
           "freq": 1,
-          "old_value": "false;112175511067612",
+          "old_value": null,
+          "new_value": "100"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "0e09700d79f38ed396e36865df2d93cdd5442d31",
+          "new_value": "9f272b0100e518b80df9105dbd5315cecccf1299"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:42:34",
+          "new_value": "10/23/2025 18:44:57"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "0e09700d79f38ed396e36865df2d93cdd5442d31",
+          "new_value": "9f272b0100e518b80df9105dbd5315cecccf1299"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:42:34",
+          "new_value": "10/23/2025 18:44:57"
+        }
+      ],
+      "Removed_Network": [
+        {
+          "name": "DFIntClientNonLocalChildrenRemovalStatsThrottle_Staged",
+          "mechanism": "Limits the frequency of statistics collection regarding non-local child objects in the game.",
+          "purpose": "Optimizes performance by reducing unnecessary data processing, leading to smoother gameplay.",
+          "freq": 2,
+          "old_value": "100;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:35:43",
           "new_value": null
         }
       ]
     }
   },
   {
-    "header": "6b9cb408 - 2025-10-22 14:33:16 -0500 - 10/22/2025 14:33:15",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "9152f431585cde2dd47586f7febc6a6da490bbfa",
-          "new_value": "994c280a4ee75323592c900738f4c8567bcc8d12"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:29:01",
-          "new_value": "10/22/2025 19:31:13"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "9152f431585cde2dd47586f7febc6a6da490bbfa",
-          "new_value": "994c280a4ee75323592c900738f4c8567bcc8d12"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:29:01",
-          "new_value": "10/22/2025 19:31:13"
-        }
-      ]
-    }
-  },
-  {
-    "header": "515103a2 - 2025-10-22 14:31:01 -0500 - 10/22/2025 14:31:01",
-    "grouped": {
-      "Added_Input": [
-        {
-          "name": "FFlagAppChatFixAndroidKeyboardReturn2_Staged",
-          "mechanism": "Fixes issues with the keyboard return key in the chat feature on Android devices.",
-          "purpose": "Provides a smoother chatting experience for players using Android devices.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-22T19:27:06"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "f2fc706c9e4c4308ecbd6d03311f3e4766c0ea88",
-          "new_value": "9152f431585cde2dd47586f7febc6a6da490bbfa"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:25:26",
-          "new_value": "10/22/2025 19:29:01"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "f2fc706c9e4c4308ecbd6d03311f3e4766c0ea88",
-          "new_value": "9152f431585cde2dd47586f7febc6a6da490bbfa"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:25:26",
-          "new_value": "10/22/2025 19:29:01"
-        }
-      ]
-    }
-  },
-  {
-    "header": "0d91c15e - 2025-10-22 14:26:36 -0500 - 10/22/2025 14:26:36",
+    "header": "6376a245 - 2025-10-23 13:43:02 -0500 - 10/23/2025 13:43:02",
     "grouped": {
       "Added_Other": [
         {
-          "name": "DFFlagHttpServiceInsightsImprovedTelemetry3_Staged",
-          "mechanism": "Upgrades the tracking of HTTP service usage and performance metrics.",
-          "purpose": "Provides developers with better insights into their game's online interactions, improving reliability.",
+          "name": "DFFlagReportNonLocalChildrenRemoved",
+          "mechanism": "Tracks and reports when non-local children are removed from the game.",
+          "purpose": "Improves game stability and debugging by providing better removal tracking.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "True"
+        },
+        {
+          "name": "DFIntNonLocalChildWithMRDRemovedUEThrottleHP",
+          "mechanism": "Adjusts performance settings for non-local child objects in the game engine.",
+          "purpose": "Improves game performance and reduces lag for players.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "1000"
+        },
+        {
+          "name": "FFlagCreateUncompressedRbxm3_Staged",
+          "mechanism": "Allows the creation of uncompressed RBXM3 files during development.",
+          "purpose": "Improves performance and loading times for developers when working on large projects.",
           "freq": 2,
           "old_value": null,
-          "new_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-22T19:21:56"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "6e63d019334f88097c26dfcfdfebad732dae32bd",
-          "new_value": "f2fc706c9e4c4308ecbd6d03311f3e4766c0ea88"
+          "new_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1314603579;2025-10-23T18:38:55"
         },
         {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:21:04",
-          "new_value": "10/22/2025 19:25:26"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "6e63d019334f88097c26dfcfdfebad732dae32bd",
-          "new_value": "f2fc706c9e4c4308ecbd6d03311f3e4766c0ea88"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:21:04",
-          "new_value": "10/22/2025 19:25:26"
-        }
-      ]
-    }
-  },
-  {
-    "header": "1a90ebfa - 2025-10-22 14:22:11 -0500 - 10/22/2025 14:22:11",
-    "grouped": {
-      "Added_Network": [
-        {
-          "name": "DFFlagSimExecuteClientOnlyFallenParts_Staged",
-          "mechanism": "Allows simulation of client-only fallen parts in the game environment.",
-          "purpose": "Improves gameplay by ensuring that falling parts behave correctly for players, enhancing realism.",
-          "freq": 6,
+          "name": "FFlagEnableEconomicRestrictionInAvatarExperience",
+          "mechanism": "Imposes economic limits on avatar customization options.",
+          "purpose": "Ensures fairer access to avatar items, promoting a balanced economy.",
+          "freq": 1,
           "old_value": null,
-          "new_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-22T19:19:43"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "6f7c61311563ebbf9af079f88edf3b9558fb990e",
-          "new_value": "6e63d019334f88097c26dfcfdfebad732dae32bd"
+          "new_value": "True"
         },
         {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:19:11",
-          "new_value": "10/22/2025 19:21:04"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "6f7c61311563ebbf9af079f88edf3b9558fb990e",
-          "new_value": "6e63d019334f88097c26dfcfdfebad732dae32bd"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:19:11",
-          "new_value": "10/22/2025 19:21:04"
-        }
-      ]
-    }
-  },
-  {
-    "header": "9f70b71c - 2025-10-22 14:19:55 -0500 - 10/22/2025 14:19:55",
-    "grouped": {
-      "Added_Other": [
-        {
-          "name": "FFlagEnableBackgroundCheckV2",
-          "mechanism": "Implements a new system for verifying user safety.",
-          "purpose": "Improves player safety by better screening users.",
+          "name": "FFlagGamePassPrefetchOnJoinEnabled",
+          "mechanism": "Preloads game pass data when a player joins a game.",
+          "purpose": "Reduces waiting time for players to access game passes immediately.",
           "freq": 1,
           "old_value": null,
           "new_value": "True"
@@ -250,591 +183,606 @@
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "259fd856f9c5a1ed88686e7fd53875299c4b1351",
-          "new_value": "6f7c61311563ebbf9af079f88edf3b9558fb990e"
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "b2d8084528249b9125919b0b9069e85811c90aaa",
+          "new_value": "0e09700d79f38ed396e36865df2d93cdd5442d31"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:14:53",
-          "new_value": "10/22/2025 19:19:11"
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:36:40",
+          "new_value": "10/23/2025 18:42:34"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "259fd856f9c5a1ed88686e7fd53875299c4b1351",
-          "new_value": "6f7c61311563ebbf9af079f88edf3b9558fb990e"
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "b2d8084528249b9125919b0b9069e85811c90aaa",
+          "new_value": "0e09700d79f38ed396e36865df2d93cdd5442d31"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:14:53",
-          "new_value": "10/22/2025 19:19:11"
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:36:40",
+          "new_value": "10/23/2025 18:42:34"
         }
       ],
       "Removed_Other": [
         {
-          "name": "FFlagEnableBackgroundCheckV2_Staged",
-          "mechanism": "Implements an improved system for verifying user backgrounds during gameplay.",
-          "purpose": "Enhances player safety by ensuring a more thorough background check.",
+          "name": "DFFlagProductInfoBatchingEnabled2_Staged",
+          "mechanism": "Groups product information requests to reduce server load.",
+          "purpose": "Speeds up loading times for product details, enhancing shopping experience.",
           "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-22T18:10:48",
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:33:45",
+          "new_value": null
+        },
+        {
+          "name": "DFFlagReportNonLocalChildrenRemoved_Staged",
+          "mechanism": "Tracks and reports when non-local children of objects are removed.",
+          "purpose": "Enhances stability and performance by better managing object relationships.",
+          "freq": 2,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:31:49",
+          "new_value": null
+        },
+        {
+          "name": "DFIntNonLocalChildWithMRDRemovedUEThrottleHP_Staged",
+          "mechanism": "Adjusts performance settings for certain game elements to improve efficiency.",
+          "purpose": "Provides smoother gameplay by optimizing how certain elements are handled.",
+          "freq": 2,
+          "old_value": "1000;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:34:19",
+          "new_value": null
+        },
+        {
+          "name": "FFlagEnableEconomicRestrictionInAvatarExperience_Staged",
+          "mechanism": "Implements restrictions on avatar purchases based on economic factors.",
+          "purpose": "Ensures fairer economic gameplay by limiting certain avatar items.",
+          "freq": 2,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:34:28",
+          "new_value": null
+        },
+        {
+          "name": "FFlagGamePassPrefetchOnJoinEnabled_Staged",
+          "mechanism": "Enables preloading of game pass data when a player joins a game.",
+          "purpose": "Reduces waiting time for players to access game passes immediately upon joining.",
+          "freq": 2,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:32:37",
           "new_value": null
         }
       ]
     }
   },
   {
-    "header": "4f1fe358 - 2025-10-22 14:17:40 -0500 - 10/22/2025 14:17:40",
+    "header": "19ab0104 - 2025-10-23 13:38:36 -0500 - 10/23/2025 13:38:36",
     "grouped": {
-      "Changed_Other": [
+      "Added_Other": [
         {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "d04fd98b144209861ccaebca1912a30b8cc8d981",
-          "new_value": "259fd856f9c5a1ed88686e7fd53875299c4b1351"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:12:42",
-          "new_value": "10/22/2025 19:14:53"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "d04fd98b144209861ccaebca1912a30b8cc8d981",
-          "new_value": "259fd856f9c5a1ed88686e7fd53875299c4b1351"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:12:42",
-          "new_value": "10/22/2025 19:14:53"
-        }
-      ]
-    }
-  },
-  {
-    "header": "bac395a0 - 2025-10-22 14:15:24 -0500 - 10/22/2025 14:15:24",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFFlagEnableLuaApiToRegisterEncryptedAssets_PlaceFilter",
-          "mechanism": "Allows developers to register encrypted assets with a filter for specific places.",
-          "purpose": "Improves asset security and management for developers, ensuring better protection of their creations.",
-          "freq": 2,
-          "old_value": "true;5646917919;5535247402;5650743011;5732185084;5796554295;5796546949;5796518985;5792232897;5790039516;5938526032;5180703112;5036207802;5947859215;5976554489;5967514178;5762783081;4927429832;5271804927;6225076142;6037119605;6313620339;5064251723;6409082143;6366043734;6366019895;5853107391;6303851272;6525184819;6462090760;6536060882;6656109940;6651400444;6833753645;6714103515;4640354700;537413528;6072880991;5388509011;6842406841;6763975907;6810569772;6836529297;5162124741;6242296404;893973440;6555759299;3272174207;2817429547;455327877;6923264315;6876683880;7085107422;6985067462;6994744290;6994747143;6994748760;6994750558;6999960212;7172485708;7085418723;7085416132;7085412189;7198250439;7236522784;7245550076;7234259327;7234162497;6679274937;3101667897;2913303231;364802243;815405518;277751860;6888253864;3457390032;4947425425;3689690770;756247480;285063827;5097010345;5111071793;7331970543;7277505766;7277502454;7277500013;7277498004;7277488595;6073366803;6764786757;5063122755;5579439108;698448212;706824758;447452406;5802642341;5233782396;7317639465;3475397644;4390337206;629119226;7489842410;5542348564;6774662981;7252283618;7021822357;7352428641;6782499449;7665856814;7665858439;7484857336;7429189755;7427268133;7619937171;7427270590;7280776979;7852580088;7711545622;7682549746;8519873016;8600776606;8430712643;8267821593;8523408215;8656125900;8656131552;8323392614;8209480473;8649501395;8526353932;8190625873;8451491417;8967359816;8430716410;8430720021;8691928149;8893378293;8893376837;8893375234;9230434873;9230346239;9244015146;6704278765;8528736393;8257697092;9288568020;9279671395;9426082120;9470653946;9379021494;9432710689;9424457125;4672922401;8583038000;4448566543;4543144283;4042427666;253431746;5974747216;6594198779;2533391464;8020984414;680750021;8778105026;5552313358;9297923091;6933439918;3956818381;4209071254;3623096087;3947737541;8983893891;9272701767;5074204685;5113678354;5089420081;5113680396;5101838579;5445525505;5237652005;6479720355;6152695332;9386500519;8988878415;5205771996;844441865;9449357539;9449346312;9449322773;9449312253;9449300051;5578992252;2056597445;9604473769;9666345834;9670497620;6536120621;9724177376;9769345912;4850718823;9300407930;6639766;6737970321;6599438732;9800475426;9291030453;9411975514;9648880560;9542881071;9552022794;9648883891;9648888455;9660279665;9708947809;9809534920;9463737803;9862870352;9862849972;9862789592;9894900344;9479367099;9486506804;9922817401;10002051672;10001920797;9982801024;9709393094;9659989778;9563367175;9997709290;10054526037;9465859374;9938883474;10113002281;10096544537;6445973668;6447798030;6996694685;8847312489;10190394336;10191408952;9423318797;10272293170;9314466589;10285554184;10057963710;10435224215;10146432319;10465853247;10465873968;9129288160;9134839143;9803810042;10201978992;10381578920;9717701801;9134941656;6837934317;9495369236;10217794885;10692093600;10695302524;10445615061;9524757503;10919330567;10895555747;10768305459;10912060909;11088788925;11110464593;11002897309;11116169215;11116168996;11116167810;11116167943;11109117989;10928399479;10966838056;10928411159;5289509545;4640368528;6023903686;11008022191;11138479969;11138508272;11115477432;11189492685;11189163544;11237748076;11237759266;11237755090;11237755215;11237755035;10894180429;10957579790;11315351400;11278516344;11286999367;11309534295;11287011130;11309714627;10695312682;11436221007;11444932478;11450899603;11497622549;11504321677;11498022323;11508738359;11508738629;11509888388;10720270804;9249776514;9049840490;9442460702;9280212924;8633070661;8472419479;11638764033;10126768872;11110455694;5326576507;5913722875;6386911572;8979173396;9125662619;9125667996;9916502094;11658541192;11105064323;10956766913;6737935903;9356050413;10900725936;11566389687;11566385150;11707114324;11697170413;11707130433;11707134020;11707136082;9616411936;11268121492;12113006580;12128024661;11504594758;12204626493;11946824905;3512481881;10752876846;9667175956;5938036553;11716079088;12331642939;11432287153;12268627706;12146837523;11302971424;12357661992;6766156863;12494616651;12202678406;4398851468;12670139300;12498843001;12519296046;12734535169;12734143030;12206689536;10762579692;11155913359;11758008778;12801867915;12955585971;12955639113;11777418254;12949951201;4580204640;6739798578;11840234178;11840243894;11849563578;11775512993;6350157277;5614144350;4111023553;5735553160;6032399813;6473861193;8668476218;4623386862;12983981151;10277607801;10277635599;10290363458;13022188319;12928836670;8665926945;12850021634;11808691145;12282826305;11377247691;8980446061;9346039031;2737661792;2871773892;3494556606;13413015814;2228128339;10048866629;4642718405;13166315054;12340070029;13388158627;13328383256;13602654181;7087982069;7226318833;12656847041;9607498518;7364683673;13408202978;9682240267;9346060856;13542186363;12566669965;12566670192;12566670531;12566670877;12566671127;12566671353;12566671529;12566671737;12566671942;12566672165;12566672378;12566672541;13671265268;13523140789;13413186900;13413150992;13190787726;13674000186;13539427431;13684472299;12108137135;12812062986;13581272176;13753433201;13539297457;13389095726;13260947739;12402722213;13324911372;13324917013;13403099993;4765976371;6507422231;13967475781;13104723083;7772134508;13978720221;13982397897;10211636793;12512626432;10894135377;14094603479;4996049426;10466293565;14112350669;14190161262;14190165276;13692908073;8003641817;11258371342;4014729424;14198802909;14050316710;6876897961;14298053780;14102374323;13913497984;13747937824;13279293321;14110497434;14550810567;3989527087;7830918930;14278574000;14618379101;4822723634;3386147714;14708622235;14708625196;14437915609;14702261217;14760955024;14106184172;14748762848;14700018413;14700503536;14700037385;14783054482;14700032079;14760646478;14700025324;14817872760;14100328983;14813042848;14745955429;14785438081;14889649635;14301956564;14263572229;10070780439;14478075491;14892572912;13279101556;13279104395;13279081722;13315930375;13433158135;14627078551;14898749542;14834598561;9979991670;14449036946;11806684300;12094311187;14968769349;2249956087;3670530550;903807016;9952774534;2534724415;6158369151;14890468710;11431489908;11240751480;11573230049;12804938725;11696224952;13326568190;8262636746;4823774310;4863502867;4692956554;14213578663;15018756870;15018759110;15019079127;15027905565;15090768015;15097774866;15121102278;13916945181;14042308512;13492762057;15154640283;14833076643;14565246812;14445068355;14445063204;13730658693;13730660420;13546112315;13324919767;5250557412;15229379003;14612279970;14520214356;15089099874;14618179455;14754487835;14976126374;15046883807;15220477368;13183511038;14884154051;12397515839;13886771215;15239190282;12661593618;13875657202;15230762576;7041939546;7061415250;15366303335;15360735397;14912173667;15246188138;14300294394;13978562365;13771684349;12631800770;12716371164;14042248442;11781338235;5972698540;1554960397;15148898765;15148887622;2274830359;5359990748;8003084678;15361532537;15548658643;11592468118;12572342856;12494782517;12596416224;12596420088;15559053838;15486683455;6804602922;6830203652;568350650;14184086618;15566395852;15565261877;4627817111;4627817882;4639006255;4674634750;4627871235;5045167247;14484579599;11383187368;11383187525;11383187688;11383188211;12275304058;15048215990;15230534913;15633063575;15633046194;15611620603;15872966840;15872999606;15883311692;15883312942;15883314575;15883381991;15035125923;14110608221;14110899148;14124909045;14308670761;6205205961;6364879587;6364881161;6391540653;6391642302;6463986562;6481131111;6507405695;6815760584;8709253565;15720304364;6413499953;15530488927;16006097169;6165038613;5785490105;5481779891;5481761946;5574814408;6238835427;6276061207;6517499261;6878610938;6866493186;7113825039;7116381283;7116702046;7116359883;7143609862;7409347440;7904559949;7904610383;7934323316;8232694369;8243032172;9405899288;9409201333;10430910649;11632100181;11632077138;11640052933;11793382673;11856129049;15705559027;15629541460;11632126721;8510589470;4241852625;8404684575;14238596528;15010814218;13184713709;13609999411;15696392675;15554979176;15555009597;15555152237;14696958202;5771467270;7308170886;5504135235;15918047570;3576787348;11863357640;12487789640;15123266349;16078980231;16078985058;16259243391;16199184400;16078983738;16256557884;16203696851;16258504798;16168372772;16256672025;16078982297;16289193441;11366343566;16283785212;15515633443;15432848623;15483728847;15015456533;16289193823;16351911381;5639479940;16013491402;5535744734;15553342068;5368632441;15513125039;5353488433;16462849084;16163726449;15481776731;14970015233;16465872867;15285658486;15574462881;16570021747;15254104733;844929123;166986752;16354460415;16537295657;14332741391;14345214315;14486832259;16628495726;13882183199;16447494654;15548888898;5721793369;5682917257;5363158649;15638731415;16866591880;16786806972;16805529755;16735914512;16719116735;16654319710;16646736918;16209331599;16565225470;15916274203;16252850662;16210529796;16185337739;16174846197;15354926906;15943789199;15544198652;15411224440;15370306777;15346604540;16806284145;16796346149;16732995612;16713027401;16296040578;16673347100;16970181235;16970189449;16970183654;16970185950;16970187260;16970191534;16970192771;16970193905;16637432168;16660479433;13000007654;16460694373;16429345261;16800307723;16725378671;16379598396;15489966249;16796377224;17065989459;17088952586;16739990874;15872961954;16630328183;16499205169;17183094198;16640867537;14266068291;14303756636;14709768053;17256291280;17181515306;17256293951;17256296185;17256298653;17256301033;17256075762;17256096568;17256118997;17256143199;13800717766;16849012343;15479377118;15334341098;16871709896;17327040230;17327030059;16434644938;15538708440;12129789607;6377740507;17490721006;17488220782;17373029266;13421266463;14895087162;12985361032;12985341499;12363313138;14704943644;17269346759;17269340201;17269292417;17480205349;17575492616;17575497513;17076563795;17556040524;17556037890;17659529447;16369023184;16369025010;17332451684;17116212498;16297600456;15992589987;15622887088;15164938644;17269297441;17336468238;17336471113;17336471400;17727263108;17727262816;17727262513;17727262301;17727205351;17727205123;17727204955;17727204653;17480206543;17563605831;17563608327;17563610497;16288561317;15218427871;15357970630;6934310111;14051757935;16017695597;17077627629;17356064588;16647545765;13398434647;13398230007;16890428355;13176058901;17569162537;17600179329;17600190676;17811870593;17495653641;17101171811;5970984243;14448662003;17447213133;18121514822;15218407500;17083366577;15843953438;15843957836;15843961264;17067024883;18341914628;17718083590;17576185251;17577101777;18195358934;18223727140;5297405973;18513265196;17578715653;17578711181;8737602449;8943844393;15611066348;14569410003;13415640045;14926164818;14879081274;8034026074;17811071580;18296260757;18112157688;17811079407;18111172516;18605830527;18397110912;18727659869;18503770332;18395887647;18536844330;18134433503;9859576867;8712817601;18734197659;14409368297;18654827953;18820482579;18727723068;18849518367;15486520864;18849588189;18849588625;18849589457;18963014717;14055498520;14891410939;18995954092;16110149934;19002847336;17230784439;18657144315;99590779149212;539960592;13691484057;15687370918;14775339176;2414851778;6052033819;4107728990;14943334555;2506552320;2727067538;2978693500;3582895165;2727072708;3165900886;3029833262;3383444582;3180260667;3885726701;3876515985;3994953548;3868367216;4050468028;3964647716;4310463616;2801784955;2978696440;4201860144;4310464656;4202491340;4310476380;4202709630;4310478830;4202959435;4310785330;4202976484;4310463940;3313821175;4465987684;4750776109;4465989998;4332744642;4465989351;4426374899;4465988196;4434431676;4526768266;15497256167;4617426261;4602326358;4646475570;4599453198;4646473427;4597651359;4646472003;3441138667;4646475342;3269109671;5703355191;5033247187;5703353651;5408429442;6075085184;5893171846;6075083204;6032934718;6386112652;6333155637;6510862058;6404275837;6510868181;6467448211;6847035264;6531678809;6847034886;6745424367;7071564842;6860483493;7499964980;131022574358785;9944262922;9171204517;10089970465;9649635544;9944263348;9649638002;10014664329;9863480370;10651517727;10074837226;10651527284;10489805577;10727165164;10683162998;10795158121;10724045559;11466514043;11155720733;11533444995;11379954422;11644048314;11530295305;14914684761;13741906191;13988110964;13661903549;14400549310;14213731433;14914700740;14692530018;14914855930;14768473411;15121292578;15025509897;75540798045662;122219842181820;125645867930579;18937883985;6101365417;6451702585;6454068948;3378819821;605887098;1701623492;3237615544;3367801828;18532003409;18228802662;18228805769;100219516754540;17808780506;87641067978449;111038871669535;8953242851;79765542592794;13423217832;134964516922646;5968388453;15855634668;16003793902;7305309231;15893203988;16033532219;126259681759948;17656935206;89410048034357;8472851459;8916037983;4954752502;79710108840469;11572762117;17670743999;71367782943796;16549917043;16703458787;132007474810089;18973713348;18139069423;13451596695;18440166505;12177325772;96695025808213;135229885104482;83692298883909;6073537839;88817926315458;104729035207525;76626266837363;113487357420897;107879176226772;130871423490486;11137575513;12943247001;12943245078;80005067957132;3818155097;3647333358;10324346056;10324347967;10662542523;10808838353;11353528705;96537472072550;99214917572799;18860937012;18860985311;115513358987315;129543795429973;18860934161;18860987667;17731318051;138811103914348;16732694052;131579468225600;11765402359;11828796994;5324719298;5342986949;6758497682;73848637067536;14900087266;119794400485251;80450830186028;88311415897149;119410252629691;103823923570615;110371647221022;96418538200619;7051736361;114220575509759;79372260836317;115243862171595;74712767707170;18752369972;129681463747237;78914719040186;15871955418;76762995566774;12641272458;6939111033;6426944918;137544427935459;15032994029;118706441243120;13389049867;10760024537;9281034297;15218831594;113029417107834;139040426524819;107286136869541;16126108459;14913354249;81793885962794;118556668407391;18647920435;88364323402553;109285335492645;128621093194805;123662243100680;112642345119817;18647956169;104526133535566;90753913217772;89161734699335;137461635848196;116697817957558;5750914919;6756890519;96005412559462;2548976609;2546612479;114907227214588;89227693986075;88342891966226;140080535032062;72073166002331;77221396426833;81319559867791;81737495082190;85341391356499;87351379991751;89712649086456;92911136919199;95324606076674;102435660805182;103275072481933;108343132674489;113050446018685;117785409277711;124000207868671;125165007426523;126865137021740;131981552061642;132643889235480;18668065416;92517437168342;99999183305180;115110570222234;73425816668928;88233429548268;130739873848552;82710350236919;71580765918830;94170955089948;16909704232;101394944107806;104746643025210;119038667082595;95448143850147;139548786112139;96804383423412;124660577261950;122819728171185;132004114310511;787988004728135;129230994638464;73708914208963;98118902024430;132935874487897;90216279544722;77915441816737;87014900491609;79018097401349;85774300903718;120428153057168;97872047573441;134772811582797;72534188920161;138993958163764;102018283146594;78037392664516;79895744759186;117860234965291;125337041623563;17840501830;72190557439380;70454767164205;91733245171139;91228542222122;130888608591113;124948436023758;7450497506;75663528075786;118304171612688;79174624435953;116296033709863;83545284007309;130651760577349;122825844998639;135381296103877;96265145951044;78026056611611;7720048224;96077916226556;97056995744329;100277824753624;103793593586394;138811411414576;12640491155;125889350453386;16590754220;16978845877;80611835622737;102716401412280;96902541318046;15351762625;13772394625;14486733015;127966866038346;125654797564410;125247930279216;107447262204970;89872700617308;111865923474705;14368557094;14732610803;14907104587;14915220621;15092011734;15106881665;15131065025;15131070225;15144787112;15181537975;15185247558;15227672707;15229817314;15234596844;15264892126;15351763826;15351764032;15351764187;15351764348;15351764507;15351764740;15351764881;15351764966;15351765130;15462212483;15509346379;15509350986;15509357472;15517169103;15552588346;15552625961;15582813408;15582821022;15582823307;15582834071;15582835531;16031521714;16031541538;16044264830;16281300371;16331595046;16331596518;16331598816;16331600459;16331633255;16331634414;16331635718;16331635995;16456370330;16581613207;16581637217;16581648071;17757578266;17757592456;75474715372485;80316691895873;92458008626219;94739503741288;84211911194381;86959746238096;79152141768156;133468541502594;78575159450955;80951765302134;105378961467772;89865052230260;81090934593448;75313569154781;89596436703421;92752656404044;126581936679803;107738647542786;10489114145;9872472334;121271605799901;17069498206;16931515487;16896790433;11761274032;11764980869;16926077853;11753029192;13965228772;102916117017468;121372427435947;119952687833295;112898865140956;124044706645343;135456035952103;93804003372568;124248440864832;18334179599;16389395869;16844101122;76603224491021;83370733060419;103479080416741;101128307729202;107731702241186;122645084125812;78529064493417;130112681881594;139392011420826;115700747039144;78517252105400;73484909444934;114347154312193;74815645991109;18248633989;17698425045;86098085533596;118758941554698;17750719380;96628744411718;113567868263978;74475530512823;128778160701214;140223498612774;125156298745329;118535429818702;89703062547673;103883018654651;140287841692914;3010276628;111014975161818;102605854369937;11158043705;17747224478;102730218405996;104676452414043;119369863786092;118524425609297;86955381046056;8472085082;90203410635303;72723436074493;110708547231329;103650844120570;87868857007174;93481552663411;112564920810158;109983668079237;96342491571673;128762245270197;120148879522453;73226809349189;119602771011506;127732283735594;125461249438738;87445296052708;136517679309458;15768329004;108059757699905;70542636057631;101606960500983;103349603274756;89343390950953;93651812913748;15101393044;15642262165;15642275269;17481176031;89606894431558;127076465038391;93577264377184;91732685148261;138937299583930;78572645499619;122061917549078;106153673498996;95047916580305;133400153206637;110470525256662;123468479998097;82441850250520;116185509299834;81072337989394;96652240771528;98881331868329;108204315743653;109533232275124;121269997456920;124184374777402;111145810816450;3233351170;8458974184;72178041068475;130859235108277;86962954395779;77162302089899;6931042565;134314141048307;109684591839194;74691681039273;73956553001240;96802054849934;86789627188240;79136731857959;103521881639626;117134837736236;7099263384;93507193197337;127230203073079;70882603136659;127978196002690;77569554466776;128311527873732;80289684342936;122273223414774;78499094786141;107214420833891;133370458228346;90688392698752;89752387031554;103658027677245;105764668548382;87706612753421;128997103569769;96223451292903;96604744451060;95445450782680;90346996348563;76800900334648;131082319718215;110321186768296;8248004705;119058117746091;95815562184695;72293243384445;140159579197170;120064291937900;107757296388993;140104197573447;124991631436250;72277410833409;87773427230428;82298052173374;122241151273608;112849554065563;75333462792994;130160244117542;74185370550900;86517463532234;118814182678109;93561553871338;108462619394007;14021953565;124087144919678;123439661582156;124532804761244;100349497885381;127104365805084;126953033317926;106560355070751;140358213724897;114181481862155;80010340277260;140429793519388;134497530231879;136409236554789;86522549610893;95656979989750;71683821699644;85265340826775;121928784820997;77638307191108;92626170235541;104548429314536;6325068386;80219362391408;129027544628653;115594497201999;103332930661641;72921500494845;139434932554684;136505972636980;94991053520125;72995931205549;108862151633853;5901440255;6119570238;6126992207;105814505642482;74588338744555;97589732026842;85513756910439;93366760336122;77977481651141;17026065260;17026079202;17026081473;17026082885;17026083128;17026083473;17026083734;17026084038;17026084803;17026085546;17671143350;17671143714;17671144394;17671148230;18605534919;116238950016910;129525666081265;2338325648;4822225642;4940687511;7097139127;7098347455;7098347570;11414445247;12770493773;12986634964;12986636453;12986638725;13415948659;13834702475;14801724413;15098628040;17685156577;17685159087;17685161741;17685164681;17685181130;93001350941802;125444254609144;124335066106952;4924922222;11981280399;12446587737;4566572536",
-          "new_value": "true;5646917919;5535247402;5650743011;5732185084;5796554295;5796546949;5796518985;5792232897;5790039516;5938526032;5180703112;5036207802;5947859215;5976554489;5967514178;5762783081;4927429832;5271804927;6225076142;6037119605;6313620339;5064251723;6409082143;6366043734;6366019895;5853107391;6303851272;6525184819;6462090760;6536060882;6656109940;6651400444;6833753645;6714103515;4640354700;537413528;6072880991;5388509011;6842406841;6763975907;6810569772;6836529297;5162124741;6242296404;893973440;6555759299;3272174207;2817429547;455327877;6923264315;6876683880;7085107422;6985067462;6994744290;6994747143;6994748760;6994750558;6999960212;7172485708;7085418723;7085416132;7085412189;7198250439;7236522784;7245550076;7234259327;7234162497;6679274937;3101667897;2913303231;364802243;815405518;277751860;6888253864;3457390032;4947425425;3689690770;756247480;285063827;5097010345;5111071793;7331970543;7277505766;7277502454;7277500013;7277498004;7277488595;6073366803;6764786757;5063122755;5579439108;698448212;706824758;447452406;5802642341;5233782396;7317639465;3475397644;4390337206;629119226;7489842410;5542348564;6774662981;7252283618;7021822357;7352428641;6782499449;7665856814;7665858439;7484857336;7429189755;7427268133;7619937171;7427270590;7280776979;7852580088;7711545622;7682549746;8519873016;8600776606;8430712643;8267821593;8523408215;8656125900;8656131552;8323392614;8209480473;8649501395;8526353932;8190625873;8451491417;8967359816;8430716410;8430720021;8691928149;8893378293;8893376837;8893375234;9230434873;9230346239;9244015146;6704278765;8528736393;8257697092;9288568020;9279671395;9426082120;9470653946;9379021494;9432710689;9424457125;4672922401;8583038000;4448566543;4543144283;4042427666;253431746;5974747216;6594198779;2533391464;8020984414;680750021;8778105026;5552313358;9297923091;6933439918;3956818381;4209071254;3623096087;3947737541;8983893891;9272701767;5074204685;5113678354;5089420081;5113680396;5101838579;5445525505;5237652005;6479720355;6152695332;9386500519;8988878415;5205771996;844441865;9449357539;9449346312;9449322773;9449312253;9449300051;5578992252;2056597445;9604473769;9666345834;9670497620;6536120621;9724177376;9769345912;4850718823;9300407930;6639766;6737970321;6599438732;9800475426;9291030453;9411975514;9648880560;9542881071;9552022794;9648883891;9648888455;9660279665;9708947809;9809534920;9463737803;9862870352;9862849972;9862789592;9894900344;9479367099;9486506804;9922817401;10002051672;10001920797;9982801024;9709393094;9659989778;9563367175;9997709290;10054526037;9465859374;9938883474;10113002281;10096544537;6445973668;6447798030;6996694685;8847312489;10190394336;10191408952;9423318797;10272293170;9314466589;10285554184;10057963710;10435224215;10146432319;10465853247;10465873968;9129288160;9134839143;9803810042;10201978992;10381578920;9717701801;9134941656;6837934317;9495369236;10217794885;10692093600;10695302524;10445615061;9524757503;10919330567;10895555747;10768305459;10912060909;11088788925;11110464593;11002897309;11116169215;11116168996;11116167810;11116167943;11109117989;10928399479;10966838056;10928411159;5289509545;4640368528;6023903686;11008022191;11138479969;11138508272;11115477432;11189492685;11189163544;11237748076;11237759266;11237755090;11237755215;11237755035;10894180429;10957579790;11315351400;11278516344;11286999367;11309534295;11287011130;11309714627;10695312682;11436221007;11444932478;11450899603;11497622549;11504321677;11498022323;11508738359;11508738629;11509888388;10720270804;9249776514;9049840490;9442460702;9280212924;8633070661;8472419479;11638764033;10126768872;11110455694;5326576507;5913722875;6386911572;8979173396;9125662619;9125667996;9916502094;11658541192;11105064323;10956766913;6737935903;9356050413;10900725936;11566389687;11566385150;11707114324;11697170413;11707130433;11707134020;11707136082;9616411936;11268121492;12113006580;12128024661;11504594758;12204626493;11946824905;3512481881;10752876846;9667175956;5938036553;11716079088;12331642939;11432287153;12268627706;12146837523;11302971424;12357661992;6766156863;12494616651;12202678406;4398851468;12670139300;12498843001;12519296046;12734535169;12734143030;12206689536;10762579692;11155913359;11758008778;12801867915;12955585971;12955639113;11777418254;12949951201;4580204640;6739798578;11840234178;11840243894;11849563578;11775512993;6350157277;5614144350;4111023553;5735553160;6032399813;6473861193;8668476218;4623386862;12983981151;10277607801;10277635599;10290363458;13022188319;12928836670;8665926945;12850021634;11808691145;12282826305;11377247691;8980446061;9346039031;2737661792;2871773892;3494556606;13413015814;2228128339;10048866629;4642718405;13166315054;12340070029;13388158627;13328383256;13602654181;7087982069;7226318833;12656847041;9607498518;7364683673;13408202978;9682240267;9346060856;13542186363;12566669965;12566670192;12566670531;12566670877;12566671127;12566671353;12566671529;12566671737;12566671942;12566672165;12566672378;12566672541;13671265268;13523140789;13413186900;13413150992;13190787726;13674000186;13539427431;13684472299;12108137135;12812062986;13581272176;13753433201;13539297457;13389095726;13260947739;12402722213;13324911372;13324917013;13403099993;4765976371;6507422231;13967475781;13104723083;7772134508;13978720221;13982397897;10211636793;12512626432;10894135377;14094603479;4996049426;10466293565;14112350669;14190161262;14190165276;13692908073;8003641817;11258371342;4014729424;14198802909;14050316710;6876897961;14298053780;14102374323;13913497984;13747937824;13279293321;14110497434;14550810567;3989527087;7830918930;14278574000;14618379101;4822723634;3386147714;14708622235;14708625196;14437915609;14702261217;14760955024;14106184172;14748762848;14700018413;14700503536;14700037385;14783054482;14700032079;14760646478;14700025324;14817872760;14100328983;14813042848;14745955429;14785438081;14889649635;14301956564;14263572229;10070780439;14478075491;14892572912;13279101556;13279104395;13279081722;13315930375;13433158135;14627078551;14898749542;14834598561;9979991670;14449036946;11806684300;12094311187;14968769349;2249956087;3670530550;903807016;9952774534;2534724415;6158369151;14890468710;11431489908;11240751480;11573230049;12804938725;11696224952;13326568190;8262636746;4823774310;4863502867;4692956554;14213578663;15018756870;15018759110;15019079127;15027905565;15090768015;15097774866;15121102278;13916945181;14042308512;13492762057;15154640283;14833076643;14565246812;14445068355;14445063204;13730658693;13730660420;13546112315;13324919767;5250557412;15229379003;14612279970;14520214356;15089099874;14618179455;14754487835;14976126374;15046883807;15220477368;13183511038;14884154051;12397515839;13886771215;15239190282;12661593618;13875657202;15230762576;7041939546;7061415250;15366303335;15360735397;14912173667;15246188138;14300294394;13978562365;13771684349;12631800770;12716371164;14042248442;11781338235;5972698540;1554960397;15148898765;15148887622;2274830359;5359990748;8003084678;15361532537;15548658643;11592468118;12572342856;12494782517;12596416224;12596420088;15559053838;15486683455;6804602922;6830203652;568350650;14184086618;15566395852;15565261877;4627817111;4627817882;4639006255;4674634750;4627871235;5045167247;14484579599;11383187368;11383187525;11383187688;11383188211;12275304058;15048215990;15230534913;15633063575;15633046194;15611620603;15872966840;15872999606;15883311692;15883312942;15883314575;15883381991;15035125923;14110608221;14110899148;14124909045;14308670761;6205205961;6364879587;6364881161;6391540653;6391642302;6463986562;6481131111;6507405695;6815760584;8709253565;15720304364;6413499953;15530488927;16006097169;6165038613;5785490105;5481779891;5481761946;5574814408;6238835427;6276061207;6517499261;6878610938;6866493186;7113825039;7116381283;7116702046;7116359883;7143609862;7409347440;7904559949;7904610383;7934323316;8232694369;8243032172;9405899288;9409201333;10430910649;11632100181;11632077138;11640052933;11793382673;11856129049;15705559027;15629541460;11632126721;8510589470;4241852625;8404684575;14238596528;15010814218;13184713709;13609999411;15696392675;15554979176;15555009597;15555152237;14696958202;5771467270;7308170886;5504135235;15918047570;3576787348;11863357640;12487789640;15123266349;16078980231;16078985058;16259243391;16199184400;16078983738;16256557884;16203696851;16258504798;16168372772;16256672025;16078982297;16289193441;11366343566;16283785212;15515633443;15432848623;15483728847;15015456533;16289193823;16351911381;5639479940;16013491402;5535744734;15553342068;5368632441;15513125039;5353488433;16462849084;16163726449;15481776731;14970015233;16465872867;15285658486;15574462881;16570021747;15254104733;844929123;166986752;16354460415;16537295657;14332741391;14345214315;14486832259;16628495726;13882183199;16447494654;15548888898;5721793369;5682917257;5363158649;15638731415;16866591880;16786806972;16805529755;16735914512;16719116735;16654319710;16646736918;16209331599;16565225470;15916274203;16252850662;16210529796;16185337739;16174846197;15354926906;15943789199;15544198652;15411224440;15370306777;15346604540;16806284145;16796346149;16732995612;16713027401;16296040578;16673347100;16970181235;16970189449;16970183654;16970185950;16970187260;16970191534;16970192771;16970193905;16637432168;16660479433;13000007654;16460694373;16429345261;16800307723;16725378671;16379598396;15489966249;16796377224;17065989459;17088952586;16739990874;15872961954;16630328183;16499205169;17183094198;16640867537;14266068291;14303756636;14709768053;17256291280;17181515306;17256293951;17256296185;17256298653;17256301033;17256075762;17256096568;17256118997;17256143199;13800717766;16849012343;15479377118;15334341098;16871709896;17327040230;17327030059;16434644938;15538708440;12129789607;6377740507;17490721006;17488220782;17373029266;13421266463;14895087162;12985361032;12985341499;12363313138;14704943644;17269346759;17269340201;17269292417;17480205349;17575492616;17575497513;17076563795;17556040524;17556037890;17659529447;16369023184;16369025010;17332451684;17116212498;16297600456;15992589987;15622887088;15164938644;17269297441;17336468238;17336471113;17336471400;17727263108;17727262816;17727262513;17727262301;17727205351;17727205123;17727204955;17727204653;17480206543;17563605831;17563608327;17563610497;16288561317;15218427871;15357970630;6934310111;14051757935;16017695597;17077627629;17356064588;16647545765;13398434647;13398230007;16890428355;13176058901;17569162537;17600179329;17600190676;17811870593;17495653641;17101171811;5970984243;14448662003;17447213133;18121514822;15218407500;17083366577;15843953438;15843957836;15843961264;17067024883;18341914628;17718083590;17576185251;17577101777;18195358934;18223727140;5297405973;18513265196;17578715653;17578711181;8737602449;8943844393;15611066348;14569410003;13415640045;14926164818;14879081274;8034026074;17811071580;18296260757;18112157688;17811079407;18111172516;18605830527;18397110912;18727659869;18503770332;18395887647;18536844330;18134433503;9859576867;8712817601;18734197659;14409368297;18654827953;18820482579;18727723068;18849518367;15486520864;18849588189;18849588625;18849589457;18963014717;14055498520;14891410939;18995954092;16110149934;19002847336;17230784439;18657144315;99590779149212;539960592;13691484057;15687370918;14775339176;2414851778;6052033819;4107728990;14943334555;2506552320;2727067538;2978693500;3582895165;2727072708;3165900886;3029833262;3383444582;3180260667;3885726701;3876515985;3994953548;3868367216;4050468028;3964647716;4310463616;2801784955;2978696440;4201860144;4310464656;4202491340;4310476380;4202709630;4310478830;4202959435;4310785330;4202976484;4310463940;3313821175;4465987684;4750776109;4465989998;4332744642;4465989351;4426374899;4465988196;4434431676;4526768266;15497256167;4617426261;4602326358;4646475570;4599453198;4646473427;4597651359;4646472003;3441138667;4646475342;3269109671;5703355191;5033247187;5703353651;5408429442;6075085184;5893171846;6075083204;6032934718;6386112652;6333155637;6510862058;6404275837;6510868181;6467448211;6847035264;6531678809;6847034886;6745424367;7071564842;6860483493;7499964980;131022574358785;9944262922;9171204517;10089970465;9649635544;9944263348;9649638002;10014664329;9863480370;10651517727;10074837226;10651527284;10489805577;10727165164;10683162998;10795158121;10724045559;11466514043;11155720733;11533444995;11379954422;11644048314;11530295305;14914684761;13741906191;13988110964;13661903549;14400549310;14213731433;14914700740;14692530018;14914855930;14768473411;15121292578;15025509897;75540798045662;122219842181820;125645867930579;18937883985;6101365417;6451702585;6454068948;3378819821;605887098;1701623492;3237615544;3367801828;18532003409;18228802662;18228805769;100219516754540;17808780506;87641067978449;111038871669535;8953242851;79765542592794;13423217832;134964516922646;5968388453;15855634668;16003793902;7305309231;15893203988;16033532219;126259681759948;17656935206;89410048034357;8472851459;8916037983;4954752502;79710108840469;11572762117;17670743999;71367782943796;16549917043;16703458787;132007474810089;18973713348;18139069423;13451596695;18440166505;12177325772;96695025808213;135229885104482;83692298883909;6073537839;88817926315458;104729035207525;76626266837363;113487357420897;107879176226772;130871423490486;11137575513;12943247001;12943245078;80005067957132;3818155097;3647333358;10324346056;10324347967;10662542523;10808838353;11353528705;96537472072550;99214917572799;18860937012;18860985311;115513358987315;129543795429973;18860934161;18860987667;17731318051;138811103914348;16732694052;131579468225600;11765402359;11828796994;5324719298;5342986949;6758497682;73848637067536;14900087266;119794400485251;80450830186028;88311415897149;119410252629691;103823923570615;110371647221022;96418538200619;7051736361;114220575509759;79372260836317;115243862171595;74712767707170;18752369972;129681463747237;78914719040186;15871955418;76762995566774;12641272458;6939111033;6426944918;137544427935459;15032994029;118706441243120;13389049867;10760024537;9281034297;15218831594;113029417107834;139040426524819;107286136869541;16126108459;14913354249;81793885962794;118556668407391;18647920435;88364323402553;109285335492645;128621093194805;123662243100680;112642345119817;18647956169;104526133535566;90753913217772;89161734699335;137461635848196;116697817957558;5750914919;6756890519;96005412559462;2548976609;2546612479;114907227214588;89227693986075;88342891966226;140080535032062;72073166002331;77221396426833;81319559867791;81737495082190;85341391356499;87351379991751;89712649086456;92911136919199;95324606076674;102435660805182;103275072481933;108343132674489;113050446018685;117785409277711;124000207868671;125165007426523;126865137021740;131981552061642;132643889235480;18668065416;92517437168342;99999183305180;115110570222234;73425816668928;88233429548268;130739873848552;82710350236919;71580765918830;94170955089948;16909704232;101394944107806;104746643025210;119038667082595;95448143850147;139548786112139;96804383423412;124660577261950;122819728171185;132004114310511;787988004728135;129230994638464;73708914208963;98118902024430;132935874487897;90216279544722;77915441816737;87014900491609;79018097401349;85774300903718;120428153057168;97872047573441;134772811582797;72534188920161;138993958163764;102018283146594;78037392664516;79895744759186;117860234965291;125337041623563;17840501830;72190557439380;70454767164205;91733245171139;91228542222122;130888608591113;124948436023758;7450497506;75663528075786;118304171612688;79174624435953;116296033709863;83545284007309;130651760577349;122825844998639;135381296103877;96265145951044;78026056611611;7720048224;96077916226556;97056995744329;100277824753624;103793593586394;138811411414576;12640491155;125889350453386;16590754220;16978845877;80611835622737;102716401412280;96902541318046;15351762625;13772394625;14486733015;127966866038346;125654797564410;125247930279216;107447262204970;89872700617308;111865923474705;14368557094;14732610803;14907104587;14915220621;15092011734;15106881665;15131065025;15131070225;15144787112;15181537975;15185247558;15227672707;15229817314;15234596844;15264892126;15351763826;15351764032;15351764187;15351764348;15351764507;15351764740;15351764881;15351764966;15351765130;15462212483;15509346379;15509350986;15509357472;15517169103;15552588346;15552625961;15582813408;15582821022;15582823307;15582834071;15582835531;16031521714;16031541538;16044264830;16281300371;16331595046;16331596518;16331598816;16331600459;16331633255;16331634414;16331635718;16331635995;16456370330;16581613207;16581637217;16581648071;17757578266;17757592456;75474715372485;80316691895873;92458008626219;94739503741288;84211911194381;86959746238096;79152141768156;133468541502594;78575159450955;80951765302134;105378961467772;89865052230260;81090934593448;75313569154781;89596436703421;92752656404044;126581936679803;107738647542786;10489114145;9872472334;121271605799901;17069498206;16931515487;16896790433;11761274032;11764980869;16926077853;11753029192;13965228772;102916117017468;121372427435947;119952687833295;112898865140956;124044706645343;135456035952103;93804003372568;124248440864832;18334179599;16389395869;16844101122;76603224491021;83370733060419;103479080416741;101128307729202;107731702241186;122645084125812;78529064493417;130112681881594;139392011420826;115700747039144;78517252105400;73484909444934;114347154312193;74815645991109;18248633989;17698425045;86098085533596;118758941554698;17750719380;96628744411718;113567868263978;74475530512823;128778160701214;140223498612774;125156298745329;118535429818702;89703062547673;103883018654651;140287841692914;3010276628;111014975161818;102605854369937;11158043705;17747224478;102730218405996;104676452414043;119369863786092;118524425609297;86955381046056;8472085082;90203410635303;72723436074493;110708547231329;103650844120570;87868857007174;93481552663411;112564920810158;109983668079237;96342491571673;128762245270197;120148879522453;73226809349189;119602771011506;127732283735594;125461249438738;87445296052708;136517679309458;15768329004;108059757699905;70542636057631;101606960500983;103349603274756;89343390950953;93651812913748;15101393044;15642262165;15642275269;17481176031;89606894431558;127076465038391;93577264377184;91732685148261;138937299583930;78572645499619;122061917549078;106153673498996;95047916580305;133400153206637;110470525256662;123468479998097;82441850250520;116185509299834;81072337989394;96652240771528;98881331868329;108204315743653;109533232275124;121269997456920;124184374777402;111145810816450;3233351170;8458974184;72178041068475;130859235108277;86962954395779;77162302089899;6931042565;134314141048307;109684591839194;74691681039273;73956553001240;96802054849934;86789627188240;79136731857959;103521881639626;117134837736236;7099263384;93507193197337;127230203073079;70882603136659;127978196002690;77569554466776;128311527873732;80289684342936;122273223414774;78499094786141;107214420833891;133370458228346;90688392698752;89752387031554;103658027677245;105764668548382;87706612753421;128997103569769;96223451292903;96604744451060;95445450782680;90346996348563;76800900334648;131082319718215;110321186768296;8248004705;119058117746091;95815562184695;72293243384445;140159579197170;120064291937900;107757296388993;140104197573447;124991631436250;72277410833409;87773427230428;82298052173374;122241151273608;112849554065563;75333462792994;130160244117542;74185370550900;86517463532234;118814182678109;93561553871338;108462619394007;14021953565;124087144919678;123439661582156;124532804761244;100349497885381;127104365805084;126953033317926;106560355070751;140358213724897;114181481862155;80010340277260;140429793519388;134497530231879;136409236554789;86522549610893;95656979989750;71683821699644;85265340826775;121928784820997;77638307191108;92626170235541;104548429314536;6325068386;80219362391408;129027544628653;115594497201999;103332930661641;72921500494845;139434932554684;136505972636980;94991053520125;72995931205549;108862151633853;5901440255;6119570238;6126992207;105814505642482;74588338744555;97589732026842;85513756910439;93366760336122;77977481651141;17026065260;17026079202;17026081473;17026082885;17026083128;17026083473;17026083734;17026084038;17026084803;17026085546;17671143350;17671143714;17671144394;17671148230;18605534919;116238950016910;129525666081265;2338325648;4822225642;4940687511;7097139127;7098347455;7098347570;11414445247;12770493773;12986634964;12986636453;12986638725;13415948659;13834702475;14801724413;15098628040;17685156577;17685159087;17685161741;17685164681;17685181130;93001350941802;125444254609144;124335066106952;4924922222;11981280399;12446587737;4566572536;91751877679930"
-        },
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "3b94f2be5631633ac9ee4c8034e59a816998f0ce",
-          "new_value": "d04fd98b144209861ccaebca1912a30b8cc8d981"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:11:54",
-          "new_value": "10/22/2025 19:12:42"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "3b94f2be5631633ac9ee4c8034e59a816998f0ce",
-          "new_value": "d04fd98b144209861ccaebca1912a30b8cc8d981"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:11:54",
-          "new_value": "10/22/2025 19:12:42"
-        }
-      ]
-    }
-  },
-  {
-    "header": "f82556ec - 2025-10-22 14:13:09 -0500 - 10/22/2025 14:13:09",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "87e267651ee5176c8a9207e3811f2d16eb34c376",
-          "new_value": "3b94f2be5631633ac9ee4c8034e59a816998f0ce"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:07:22",
-          "new_value": "10/22/2025 19:11:54"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "87e267651ee5176c8a9207e3811f2d16eb34c376",
-          "new_value": "3b94f2be5631633ac9ee4c8034e59a816998f0ce"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 19:07:22",
-          "new_value": "10/22/2025 19:11:54"
-        }
-      ]
-    }
-  },
-  {
-    "header": "7179604a - 2025-10-22 14:08:46 -0500 - 10/22/2025 14:08:46",
-    "grouped": {
-      "Added_Graphics": [
-        {
-          "name": "FFlagNewTextureTranscoder3_Staged",
-          "mechanism": "Implements a new system for converting textures to improve loading and performance.",
-          "purpose": "Provides players with faster loading times and better visual quality in games.",
+          "name": "FFlagEnableBackgroundCheckV2_Staged",
+          "mechanism": "Implementing a new version of background checks for user safety.",
+          "purpose": "Enhances player safety by providing more thorough checks on user interactions.",
           "freq": 2,
           "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-22T19:03:47"
-        },
-        {
-          "name": "FIntNewTextureTranscoderHundredthPercent",
-          "mechanism": "Adjusts the texture transcoder to handle finer quality adjustments.",
-          "purpose": "Enhances visual quality of textures in games.",
-          "freq": 1,
-          "old_value": null,
-          "new_value": "0"
+          "new_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T18:31:24"
         }
       ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "41ce1f9c16941285b5dc37ff517f643555ea03dd",
-          "new_value": "87e267651ee5176c8a9207e3811f2d16eb34c376"
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "3387b856892502fa0633a924f1210e4ed0eba486",
+          "new_value": "b2d8084528249b9125919b0b9069e85811c90aaa"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:58:44",
-          "new_value": "10/22/2025 19:07:22"
-        },
-        {
-          "name": "FFlagGamePassPrefetchOnJoinEnabled_PlaceFilter",
-          "mechanism": "Preloads game passes when a player joins a game.",
-          "purpose": "Reduces wait time for players when accessing game passes.",
-          "freq": 5,
-          "old_value": "true;85537329004957;112780263016678;70451556031302;131716211654599;106011698424775;16732694052;105044186406168;72907489978215;99519129453387;17800150007",
-          "new_value": "true;85537329004957;112780263016678;70451556031302;131716211654599;106011698424775;16732694052;105044186406168;72907489978215;99519129453387;17800150007;121864768012064"
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:34:12",
+          "new_value": "10/23/2025 18:36:40"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "41ce1f9c16941285b5dc37ff517f643555ea03dd",
-          "new_value": "87e267651ee5176c8a9207e3811f2d16eb34c376"
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "3387b856892502fa0633a924f1210e4ed0eba486",
+          "new_value": "b2d8084528249b9125919b0b9069e85811c90aaa"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:58:44",
-          "new_value": "10/22/2025 19:07:22"
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:34:12",
+          "new_value": "10/23/2025 18:36:40"
+        }
+      ]
+    }
+  },
+  {
+    "header": "3c881eeb - 2025-10-23 13:36:21 -0500 - 10/23/2025 13:36:21",
+    "grouped": {
+      "Added_Other": [
+        {
+          "name": "DFFlagVideoMp4AddRobloxMetaData",
+          "mechanism": "Adds metadata to MP4 videos uploaded to Roblox.",
+          "purpose": "Players can find and organize videos more easily with additional information.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "True"
+        }
+      ],
+      "Added_Camera/UI": [
+        {
+          "name": "FFlagTouchInputServicePinchRotateVelocity",
+          "mechanism": "Enables smoother rotation gestures for touch input on mobile devices.",
+          "purpose": "Improves the experience of rotating objects using pinch gestures.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "True"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "12552da3ae3f6855d1f00454184506c6623110b7",
+          "new_value": "3387b856892502fa0633a924f1210e4ed0eba486"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:33:49",
+          "new_value": "10/23/2025 18:34:12"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "12552da3ae3f6855d1f00454184506c6623110b7",
+          "new_value": "3387b856892502fa0633a924f1210e4ed0eba486"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:33:49",
+          "new_value": "10/23/2025 18:34:12"
+        }
+      ],
+      "Removed_Other": [
+        {
+          "name": "DFFlagVideoMp4AddRobloxMetaData_Staged",
+          "mechanism": "Adds metadata to MP4 videos uploaded to Roblox for better organization.",
+          "purpose": "Enhances video management and discovery for users.",
+          "freq": 2,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:26:01",
+          "new_value": null
+        }
+      ],
+      "Removed_Camera/UI": [
+        {
+          "name": "FFlagTouchInputServicePinchRotateVelocity_Staged",
+          "mechanism": "Enhances touch input handling for pinch and rotate gestures.",
+          "purpose": "Improves the responsiveness and accuracy of touch controls for mobile users.",
+          "freq": 2,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;61046255;2025-10-23T17:24:41",
+          "new_value": null
+        }
+      ]
+    }
+  },
+  {
+    "header": "2285c2e6 - 2025-10-23 13:34:05 -0500 - 10/23/2025 13:34:05",
+    "grouped": {
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "a5c71805e0b5acb588b4e764ba6bc624910dd912",
+          "new_value": "12552da3ae3f6855d1f00454184506c6623110b7"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:31:34",
+          "new_value": "10/23/2025 18:33:49"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "a5c71805e0b5acb588b4e764ba6bc624910dd912",
+          "new_value": "12552da3ae3f6855d1f00454184506c6623110b7"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:31:34",
+          "new_value": "10/23/2025 18:33:49"
+        }
+      ]
+    }
+  },
+  {
+    "header": "6bc3372c - 2025-10-23 13:31:50 -0500 - 10/23/2025 13:31:49",
+    "grouped": {
+      "Added_Network": [
+        {
+          "name": "DFFlagEnableGenerateItemListServerIntentInStudio",
+          "mechanism": "Allows developers to generate item lists directly from the server in Roblox Studio.",
+          "purpose": "Streamlines the development process by making it easier to manage and create items.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "True"
+        }
+      ],
+      "Added_Other": [
+        {
+          "name": "FFlagReportWindowsTabletMetrics_Staged",
+          "mechanism": "Collects performance data specifically from Windows tablet devices.",
+          "purpose": "Helps optimize the game for better performance on Windows tablets, enhancing user experience.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T18:25:26"
+        }
+      ],
+      "Added_Camera/UI": [
+        {
+          "name": "FFlagSduiCleanupDataStoreApp",
+          "mechanism": "Cleans up and optimizes the data store application for better efficiency.",
+          "purpose": "Improves the speed and reliability of data storage, benefiting game developers and players.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "True"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "b7368a64e699344a5d3bea394de8c573437d779e",
+          "new_value": "a5c71805e0b5acb588b4e764ba6bc624910dd912"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:21:48",
+          "new_value": "10/23/2025 18:31:34"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "b7368a64e699344a5d3bea394de8c573437d779e",
+          "new_value": "a5c71805e0b5acb588b4e764ba6bc624910dd912"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:21:48",
+          "new_value": "10/23/2025 18:31:34"
+        }
+      ],
+      "Removed_Network": [
+        {
+          "name": "DFFlagEnableGenerateItemListServerIntentInStudio_Staged",
+          "mechanism": "Allows developers to create a list of items in their game directly from the studio environment.",
+          "purpose": "Makes it easier for developers to manage and organize game items.",
+          "freq": 2,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:18:40",
+          "new_value": null
+        }
+      ],
+      "Removed_Camera/UI": [
+        {
+          "name": "FFlagSduiCleanupDataStoreApp_Staged",
+          "mechanism": "Cleans up unused data in the data storage system.",
+          "purpose": "Enhances performance and reduces clutter, leading to smoother gameplay.",
+          "freq": 2,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;108531444;2025-10-23T17:15:36",
+          "new_value": null
+        }
+      ]
+    }
+  },
+  {
+    "header": "cc7b3b74 - 2025-10-23 13:23:08 -0500 - 10/23/2025 13:23:07",
+    "grouped": {
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "a5b195c82bd280b3c4b2ff94b5ddab7cd20d877e",
+          "new_value": "b7368a64e699344a5d3bea394de8c573437d779e"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:19:22",
+          "new_value": "10/23/2025 18:21:48"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "a5b195c82bd280b3c4b2ff94b5ddab7cd20d877e",
+          "new_value": "b7368a64e699344a5d3bea394de8c573437d779e"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:19:22",
+          "new_value": "10/23/2025 18:21:48"
+        }
+      ],
+      "Removed_Other": [
+        {
+          "name": "DFIntCaptureVideoBitsPerThousandPixels_IXP",
+          "mechanism": "Adjusts the video quality settings based on bits allocated per thousand pixels.",
+          "purpose": "Enhances video capture quality for better visual output when recording gameplay.",
+          "freq": 1,
+          "old_value": "1;Engine.Video.WinCapture;Engine.Video.WinCapture.HardwareAndGsuns;1422196895;dev_controlled",
+          "new_value": null
+        },
+        {
+          "name": "DFStringVideoWinHwEncoderBlacklistCsv_IXP",
+          "mechanism": "Updates the list of hardware encoders that are not supported for video capture.",
+          "purpose": "Ensures better video quality by preventing use of incompatible hardware.",
+          "freq": 1,
+          "old_value": "1;Engine.Video.WinCapture;Engine.Video.WinCapture.HardwareAndGsuns;1422196895;dev_controlled",
+          "new_value": null
         }
       ],
       "Removed_Graphics": [
         {
-          "name": "FIntNewTextureTranscoderHundredthPercent_Staged",
-          "mechanism": "Implements a new method for converting textures more efficiently.",
-          "purpose": "Improves the quality and speed of loading textures in games.",
-          "freq": 2,
-          "old_value": "0;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-22T17:59:22",
+          "name": "DFStringVideoAllCapturesGraphicsAPIBlacklistForGPUsCsv_IXP",
+          "mechanism": "Blocks certain graphics APIs for specific GPUs to improve performance.",
+          "purpose": "Ensures smoother gameplay by avoiding issues with unsupported graphics hardware.",
+          "freq": 1,
+          "old_value": "1;Engine.Video.WinCapture;Engine.Video.WinCapture.HardwareAndGsuns;1422196895;dev_controlled",
           "new_value": null
         }
       ]
     }
   },
   {
-    "header": "0a04f4c9 - 2025-10-22 14:00:01 -0500 - 10/22/2025 14:00:01",
+    "header": "82cc5b30 - 2025-10-23 13:20:52 -0500 - 10/23/2025 13:20:52",
     "grouped": {
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "33b90addd4c9baeaa7fd4bc00a3c5b1366078733",
-          "new_value": "41ce1f9c16941285b5dc37ff517f643555ea03dd"
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "b91251c547c19b2e72da2711af253422678de436",
+          "new_value": "a5b195c82bd280b3c4b2ff94b5ddab7cd20d877e"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:56:03",
-          "new_value": "10/22/2025 18:58:44"
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:18:10",
+          "new_value": "10/23/2025 18:19:22"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "33b90addd4c9baeaa7fd4bc00a3c5b1366078733",
-          "new_value": "41ce1f9c16941285b5dc37ff517f643555ea03dd"
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "b91251c547c19b2e72da2711af253422678de436",
+          "new_value": "a5b195c82bd280b3c4b2ff94b5ddab7cd20d877e"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:56:03",
-          "new_value": "10/22/2025 18:58:44"
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:18:10",
+          "new_value": "10/23/2025 18:19:22"
         }
       ]
     }
   },
   {
-    "header": "43df3021 - 2025-10-22 13:57:47 -0500 - 10/22/2025 13:57:47",
+    "header": "5f98fd90 - 2025-10-23 13:18:37 -0500 - 10/23/2025 13:18:37",
+    "grouped": {
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "4e5437f6c12c2b7294df104d9547685d0e2bc74c",
+          "new_value": "b91251c547c19b2e72da2711af253422678de436"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:15:42",
+          "new_value": "10/23/2025 18:18:10"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "4e5437f6c12c2b7294df104d9547685d0e2bc74c",
+          "new_value": "b91251c547c19b2e72da2711af253422678de436"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:15:42",
+          "new_value": "10/23/2025 18:18:10"
+        }
+      ]
+    }
+  },
+  {
+    "header": "f7ac83f2 - 2025-10-23 13:16:21 -0500 - 10/23/2025 13:16:21",
     "grouped": {
       "Added_Other": [
         {
-          "name": "FFlagUKOSAUpdatedCopy2",
-          "mechanism": "Updates the copy used for UK Online Safety regulations.",
-          "purpose": "Ensures players in the UK have clear information about online safety.",
-          "freq": 1,
+          "name": "DFIntCaptureVideoBitsPerThousandPixels_Staged",
+          "mechanism": "Adjusts the video quality settings based on pixel count.",
+          "purpose": "Improves video clarity for players capturing gameplay.",
+          "freq": 2,
           "old_value": null,
-          "new_value": "True"
+          "new_value": "210;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T18:09:33"
         }
       ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "f296e354ee7ac524a81d22d814f51a5846cd5d76",
-          "new_value": "33b90addd4c9baeaa7fd4bc00a3c5b1366078733"
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "ac66ad0227867e1781273bf7fb89221045cc6244",
+          "new_value": "4e5437f6c12c2b7294df104d9547685d0e2bc74c"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:53:25",
-          "new_value": "10/22/2025 18:56:03"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
           "freq": 198,
-          "old_value": "f296e354ee7ac524a81d22d814f51a5846cd5d76",
-          "new_value": "33b90addd4c9baeaa7fd4bc00a3c5b1366078733"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:53:25",
-          "new_value": "10/22/2025 18:56:03"
-        }
-      ],
-      "Removed_Other": [
-        {
-          "name": "FFlagAXCatalogRealTimeRecommendationsIXP_Staged",
-          "mechanism": "Enables real-time recommendations based on player behavior.",
-          "purpose": "Helps players discover new games and items they might enjoy.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;902779483;2025-10-22T18:37:37",
-          "new_value": null
-        },
-        {
-          "name": "FFlagAXResetFetchMarketplaceLogic_Staged",
-          "mechanism": "Resets how marketplace data is fetched and processed.",
-          "purpose": "Ensures more reliable access to marketplace items for players.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;902779483;2025-10-22T18:37:37",
-          "new_value": null
-        },
-        {
-          "name": "FFlagUKOSAUpdatedCopy2_Staged",
-          "mechanism": "Updates the text and information related to UK Online Safety Act compliance.",
-          "purpose": "Ensures players receive accurate and relevant information regarding online safety regulations.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1774752086;2025-10-22T17:46:22",
-          "new_value": null
-        }
-      ]
-    }
-  },
-  {
-    "header": "282d896a - 2025-10-22 13:55:32 -0500 - 10/22/2025 13:55:32",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "75f3408bf4d9ee495f46bcbf5da65fe6f4cf1af4",
-          "new_value": "f296e354ee7ac524a81d22d814f51a5846cd5d76"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:52:39",
-          "new_value": "10/22/2025 18:53:25"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "75f3408bf4d9ee495f46bcbf5da65fe6f4cf1af4",
-          "new_value": "f296e354ee7ac524a81d22d814f51a5846cd5d76"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:52:39",
-          "new_value": "10/22/2025 18:53:25"
-        }
-      ]
-    }
-  },
-  {
-    "header": "f7cbf8ba - 2025-10-22 13:53:12 -0500 - 10/22/2025 13:53:12",
-    "grouped": {
-      "Added_Other": [
-        {
-          "name": "FFlagVideoCaptureFixFrameRate",
-          "mechanism": "Fixes issues with frame rate during video capture.",
-          "purpose": "Ensures smoother and more consistent video recordings for players.",
-          "freq": 1,
-          "old_value": null,
-          "new_value": "True"
-        }
-      ],
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "89afbf32d8b95f91c5ebdcaf673282b51b1d0e1a",
-          "new_value": "75f3408bf4d9ee495f46bcbf5da65fe6f4cf1af4"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:48:08",
-          "new_value": "10/22/2025 18:52:39"
-        },
-        {
-          "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "89afbf32d8b95f91c5ebdcaf673282b51b1d0e1a",
-          "new_value": "75f3408bf4d9ee495f46bcbf5da65fe6f4cf1af4"
-        },
-        {
-          "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:48:08",
-          "new_value": "10/22/2025 18:52:39"
-        }
-      ],
-      "Removed_Other": [
-        {
-          "name": "FFlagVideoCaptureFixFrameRate_Staged",
-          "mechanism": "A test version of the video capture frame rate fix.",
-          "purpose": "Allows for early testing of smoother video recording features.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-22T17:43:57",
-          "new_value": null
-        }
-      ]
-    }
-  },
-  {
-    "header": "0ef55507 - 2025-10-22 13:48:44 -0500 - 10/22/2025 13:48:44",
-    "grouped": {
-      "Changed_Other": [
-        {
-          "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "999b3a037005b2e531c768ac2167f187e7d98a4d",
-          "new_value": "89afbf32d8b95f91c5ebdcaf673282b51b1d0e1a"
-        },
-        {
-          "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:44:18",
-          "new_value": "10/22/2025 18:48:08"
+          "old_value": "10/23/2025 18:13:34",
+          "new_value": "10/23/2025 18:15:42"
         },
         {
           "name": "DFStringSlimMajorVersion",
-          "mechanism": "Updates the versioning system for string handling in the platform.",
-          "purpose": "Enhances performance and stability for string operations, leading to smoother gameplay.",
-          "freq": 2,
-          "old_value": "v0.16",
-          "new_value": "v0.20"
+          "mechanism": "Simplifies versioning for string data in the system.",
+          "purpose": "Ensures smoother updates and compatibility, leading to a more stable gaming experience.",
+          "freq": 1,
+          "old_value": "v0.20",
+          "new_value": "v0.21"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "999b3a037005b2e531c768ac2167f187e7d98a4d",
-          "new_value": "89afbf32d8b95f91c5ebdcaf673282b51b1d0e1a"
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "ac66ad0227867e1781273bf7fb89221045cc6244",
+          "new_value": "4e5437f6c12c2b7294df104d9547685d0e2bc74c"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:44:18",
-          "new_value": "10/22/2025 18:48:08"
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:13:34",
+          "new_value": "10/23/2025 18:15:42"
         }
       ],
       "Removed_Other": [
         {
           "name": "DFStringSlimMajorVersion_Staged",
-          "mechanism": "Introduces a new versioning system for the platform.",
-          "purpose": "Streamlines updates and enhances compatibility for players.",
-          "freq": 4,
-          "old_value": "v0.20;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1405179684;2025-10-22T17:37:44",
+          "mechanism": "Updates the versioning system for a specific feature in Roblox.",
+          "purpose": "Ensures players have access to the latest features and improvements in a streamlined way.",
+          "freq": 2,
+          "old_value": "v0.21;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1405179684;2025-10-23T17:10:13",
           "new_value": null
         }
       ]
     }
   },
   {
-    "header": "b7b349b9 - 2025-10-22 13:46:28 -0500 - 10/22/2025 13:46:28",
+    "header": "2e8b432d - 2025-10-23 13:14:06 -0500 - 10/23/2025 13:14:06",
     "grouped": {
       "Added_Other": [
         {
-          "name": "FFlagFixFadeOutRaceCondition_Staged",
-          "mechanism": "Fixes a timing issue that causes fading effects to behave incorrectly.",
-          "purpose": "Ensures visual effects work consistently, enhancing the player experience.",
+          "name": "FFlagSessionTrackingUseMovedRelaunch_Staged",
+          "mechanism": "Tracks player sessions more accurately by using a new method for relaunching the game.",
+          "purpose": "Improves the accuracy of session data, helping developers understand player engagement better.",
           "freq": 2,
           "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-22T18:38:11"
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T18:08:56"
         }
       ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "944727ed3f6dc384c4d2e32d28e5aed8f70d8d38",
-          "new_value": "999b3a037005b2e531c768ac2167f187e7d98a4d"
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "0fc06071a7722159fe5f975ad245e76dff741cf7",
+          "new_value": "ac66ad0227867e1781273bf7fb89221045cc6244"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:42:05",
-          "new_value": "10/22/2025 18:44:18"
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:09:26",
+          "new_value": "10/23/2025 18:13:34"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "944727ed3f6dc384c4d2e32d28e5aed8f70d8d38",
-          "new_value": "999b3a037005b2e531c768ac2167f187e7d98a4d"
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "0fc06071a7722159fe5f975ad245e76dff741cf7",
+          "new_value": "ac66ad0227867e1781273bf7fb89221045cc6244"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:42:05",
-          "new_value": "10/22/2025 18:44:18"
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:09:26",
+          "new_value": "10/23/2025 18:13:34"
         }
       ]
     }
   },
   {
-    "header": "693ec956 - 2025-10-22 13:44:13 -0500 - 10/22/2025 13:44:13",
+    "header": "784d13be - 2025-10-23 13:11:50 -0500 - 10/23/2025 13:11:50",
     "grouped": {
-      "Added_Other": [
+      "Added_Camera/UI": [
         {
-          "name": "FFlagAXCatalogRealTimeRecommendationsIXP_Staged",
-          "mechanism": "Enables real-time recommendations based on player behavior.",
-          "purpose": "Helps players discover new games and items they might enjoy.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;902779483;2025-10-22T18:37:37"
-        },
-        {
-          "name": "FFlagAXResetFetchMarketplaceLogic_Staged",
-          "mechanism": "Resets how marketplace data is fetched and processed.",
-          "purpose": "Ensures more reliable access to marketplace items for players.",
-          "freq": 2,
-          "old_value": null,
-          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;902779483;2025-10-22T18:37:37"
-        },
-        {
-          "name": "FFlagRIDE121821",
-          "mechanism": "Introduces a new feature or update related to game mechanics.",
-          "purpose": "Enhances gameplay experiences for players with new features or improvements.",
+          "name": "FFlagSduiUseTokensContext",
+          "mechanism": "Implements a new context for managing tokens in the user interface.",
+          "purpose": "Streamlines the use of tokens for players in various game scenarios.",
           "freq": 1,
           "old_value": null,
           "new_value": "True"
@@ -843,172 +791,460 @@
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "93d0a00ed787591e42747c83436ea1b236da1c91",
-          "new_value": "944727ed3f6dc384c4d2e32d28e5aed8f70d8d38"
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "10e4375dfc6b5d7393478fb8f710783f20972426",
+          "new_value": "0fc06071a7722159fe5f975ad245e76dff741cf7"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:39:18",
-          "new_value": "10/22/2025 18:42:05"
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:09:07",
+          "new_value": "10/23/2025 18:09:26"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "93d0a00ed787591e42747c83436ea1b236da1c91",
-          "new_value": "944727ed3f6dc384c4d2e32d28e5aed8f70d8d38"
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "10e4375dfc6b5d7393478fb8f710783f20972426",
+          "new_value": "0fc06071a7722159fe5f975ad245e76dff741cf7"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:39:18",
-          "new_value": "10/22/2025 18:42:05"
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:09:07",
+          "new_value": "10/23/2025 18:09:26"
         }
       ],
-      "Removed_Other": [
+      "Removed_Camera/UI": [
         {
-          "name": "FFlagRIDE121821_Staged",
-          "mechanism": "Introduces updates to the RIDE feature in Roblox.",
-          "purpose": "Enhances the experience of using rides in games, making them more enjoyable.",
-          "freq": 2,
-          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-22T17:31:37",
+          "name": "FFlagSduiUseTokensContext_Staged",
+          "mechanism": "Enables the use of tokens in the context of the game's UI.",
+          "purpose": "Enhances the user interface by allowing for more dynamic and engaging interactions with in-game items.",
+          "freq": 4,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;128713786;2025-10-23T17:05:04",
           "new_value": null
         }
       ]
     }
   },
   {
-    "header": "3701a27f - 2025-10-22 13:39:44 -0500 - 10/22/2025 13:39:44",
+    "header": "d5af9fab - 2025-10-23 13:09:33 -0500 - 10/23/2025 13:09:33",
     "grouped": {
       "Added_Other": [
         {
-          "name": "FFlagGamePassPrefetchOnJoinEnabled_PlaceFilter",
-          "mechanism": "Preloads game passes when a player joins a game.",
-          "purpose": "Reduces wait time for players when accessing game passes.",
-          "freq": 5,
+          "name": "FFlagImprovedModelLODBetaFeature_Staged",
+          "mechanism": "Introduces a new system for managing Level of Detail (LOD) in models.",
+          "purpose": "Enhances game performance and visual quality by dynamically adjusting model detail based on distance.",
+          "freq": 4,
           "old_value": null,
-          "new_value": "true;85537329004957;112780263016678;70451556031302;131716211654599;106011698424775;16732694052;105044186406168;72907489978215;99519129453387;17800150007"
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;748036607;2025-10-23T18:05:05"
         }
       ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "dca659507e53caa5d55591319245bed8b880d248",
-          "new_value": "93d0a00ed787591e42747c83436ea1b236da1c91"
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "93d95ffe2d316005f43c9e39f5e4b32a878c9996",
+          "new_value": "10e4375dfc6b5d7393478fb8f710783f20972426"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:33:42",
-          "new_value": "10/22/2025 18:39:18"
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:07:01",
+          "new_value": "10/23/2025 18:09:07"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "dca659507e53caa5d55591319245bed8b880d248",
-          "new_value": "93d0a00ed787591e42747c83436ea1b236da1c91"
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "93d95ffe2d316005f43c9e39f5e4b32a878c9996",
+          "new_value": "10e4375dfc6b5d7393478fb8f710783f20972426"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:33:42",
-          "new_value": "10/22/2025 18:39:18"
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:07:01",
+          "new_value": "10/23/2025 18:09:07"
         }
       ]
     }
   },
   {
-    "header": "09b8bdc4 - 2025-10-22 13:35:21 -0500 - 10/22/2025 13:35:20",
+    "header": "87a38453 - 2025-10-23 13:07:16 -0500 - 10/23/2025 13:07:15",
     "grouped": {
+      "Added_Network": [
+        {
+          "name": "DFFlagVoiceRtcStatsIgnoreNegativePacketLoss_Staged",
+          "mechanism": "Ignores negative values in packet loss statistics for voice chat.",
+          "purpose": "Provides more accurate voice chat performance metrics, improving communication quality.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T18:02:35"
+        }
+      ],
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "35945d7847805ab0a2a15f2ad4b6a810ccbbe144",
-          "new_value": "dca659507e53caa5d55591319245bed8b880d248"
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "b5d941d25a28332db661c6c3f3be02481e141ca0",
+          "new_value": "93d95ffe2d316005f43c9e39f5e4b32a878c9996"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:32:52",
-          "new_value": "10/22/2025 18:33:42"
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:04:01",
+          "new_value": "10/23/2025 18:07:01"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "35945d7847805ab0a2a15f2ad4b6a810ccbbe144",
-          "new_value": "dca659507e53caa5d55591319245bed8b880d248"
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "b5d941d25a28332db661c6c3f3be02481e141ca0",
+          "new_value": "93d95ffe2d316005f43c9e39f5e4b32a878c9996"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:32:52",
-          "new_value": "10/22/2025 18:33:42"
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 18:04:01",
+          "new_value": "10/23/2025 18:07:01"
         }
       ]
     }
   },
   {
-    "header": "d01d34f8 - 2025-10-22 13:33:05 -0500 - 10/22/2025 13:33:04",
+    "header": "80e9bd62 - 2025-10-23 13:05:01 -0500 - 10/23/2025 13:05:00",
+    "grouped": {
+      "Added_Other": [
+        {
+          "name": "DFFlagGetPrimaryPartUpdate",
+          "mechanism": "Updates how the primary part of a model is retrieved in scripts.",
+          "purpose": "Enhances scripting capabilities for developers, leading to better game mechanics.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "True"
+        },
+        {
+          "name": "FFlagAXMigrateAXFocusBehaviorRoot",
+          "mechanism": "Changes how focus behavior is managed for accessibility features.",
+          "purpose": "Enhances navigation for players using assistive technologies.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "True"
+        },
+        {
+          "name": "FFlagCancelDeferOnShutdown",
+          "mechanism": "Stops deferred actions when the game is shutting down.",
+          "purpose": "Ensures that players don't experience incomplete actions or data loss when the game closes.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "True"
+        }
+      ],
+      "Added_Camera/UI": [
+        {
+          "name": "FFlagSduiComponentTests",
+          "mechanism": "Enables testing of new user interface components in a controlled environment.",
+          "purpose": "Allows developers to create better UI experiences for players.",
+          "freq": 1,
+          "old_value": null,
+          "new_value": "True"
+        }
+      ],
+      "Added_Input": [
+        {
+          "name": "FFlagTouchEnabledUseTabletCheck_Staged",
+          "mechanism": "Checks if the device is a tablet to enable touch controls.",
+          "purpose": "Provides a better touch experience for players using tablets.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:57:16"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "6f461c32d173e72928a10d538c1506105e6ff7a4",
+          "new_value": "b5d941d25a28332db661c6c3f3be02481e141ca0"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 17:57:13",
+          "new_value": "10/23/2025 18:04:01"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "6f461c32d173e72928a10d538c1506105e6ff7a4",
+          "new_value": "b5d941d25a28332db661c6c3f3be02481e141ca0"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 17:57:13",
+          "new_value": "10/23/2025 18:04:01"
+        }
+      ],
+      "Removed_Other": [
+        {
+          "name": "DFFlagGetPrimaryPartUpdate_Staged",
+          "mechanism": "Updates how the primary part of models is retrieved.",
+          "purpose": "Enhances the functionality for developers, leading to smoother gameplay experiences.",
+          "freq": 2,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T16:51:46",
+          "new_value": null
+        },
+        {
+          "name": "FFlagAXMigrateAXFocusBehaviorRoot_Staged",
+          "mechanism": "Changes the foundational behavior of focus management in the accessibility system.",
+          "purpose": "Improves accessibility features for players, making games easier to navigate for users with disabilities.",
+          "freq": 8,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T16:55:09",
+          "new_value": null
+        },
+        {
+          "name": "FFlagCancelDeferOnShutdown_Staged",
+          "mechanism": "Stops deferring tasks when the game is shutting down.",
+          "purpose": "Ensures smoother shutdown processes, reducing lag and improving player experience.",
+          "freq": 2,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T16:50:39",
+          "new_value": null
+        }
+      ],
+      "Removed_Camera/UI": [
+        {
+          "name": "FFlagSduiComponentTests_Staged",
+          "mechanism": "Tests new UI components in a controlled environment.",
+          "purpose": "Ensures new features work correctly before being released to players.",
+          "freq": 4,
+          "old_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;936755888;2025-10-23T16:51:52",
+          "new_value": null
+        }
+      ]
+    }
+  },
+  {
+    "header": "dfc3853d - 2025-10-23 12:58:27 -0500 - 10/23/2025 12:58:27",
+    "grouped": {
+      "Added_Other": [
+        {
+          "name": "FFlagGetMeshPartJointOffsetTelemetry_Staged",
+          "mechanism": "Collects data on joint offsets in mesh parts for analysis.",
+          "purpose": "Improves the accuracy of how mesh parts move and connect in the game.",
+          "freq": 4,
+          "old_value": null,
+          "new_value": "false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:51:26"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "aeb0e5857ed902c7e355a8751ea8bbfa6b7e1f6e",
+          "new_value": "6f461c32d173e72928a10d538c1506105e6ff7a4"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 17:51:52",
+          "new_value": "10/23/2025 17:57:13"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "aeb0e5857ed902c7e355a8751ea8bbfa6b7e1f6e",
+          "new_value": "6f461c32d173e72928a10d538c1506105e6ff7a4"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 17:51:52",
+          "new_value": "10/23/2025 17:57:13"
+        }
+      ]
+    }
+  },
+  {
+    "header": "fce1eb6a - 2025-10-23 12:54:04 -0500 - 10/23/2025 12:54:04",
     "grouped": {
       "Changed_Other": [
         {
           "name": "DFStringFlagRepoGitHashDynamicString",
-          "mechanism": "Stores the current version of the game code as a dynamic string.",
-          "purpose": "Helps developers track changes in the game code for better version control and updates.",
-          "freq": 198,
-          "old_value": "3acb8b7b4cac3183afaeb9de5f28d84de8cd4207",
-          "new_value": "35945d7847805ab0a2a15f2ad4b6a810ccbbe144"
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "8fd1512af36afa63c511bea595752fa25ee033fe",
+          "new_value": "aeb0e5857ed902c7e355a8751ea8bbfa6b7e1f6e"
         },
         {
           "name": "DFStringFlipTimeStampDynamicString",
-          "mechanism": "Adjusts how dynamic strings with timestamps are processed.",
-          "purpose": "Improves the accuracy and performance of time-related string displays.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:25:54",
-          "new_value": "10/22/2025 18:32:52"
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 17:48:59",
+          "new_value": "10/23/2025 17:51:52"
         },
         {
           "name": "FStringFlagRepoGitHashFastString",
-          "mechanism": "Optimizes the way string data is stored and retrieved in the system.",
-          "purpose": "Improves performance and speed of loading text elements in games.",
-          "freq": 198,
-          "old_value": "3acb8b7b4cac3183afaeb9de5f28d84de8cd4207",
-          "new_value": "35945d7847805ab0a2a15f2ad4b6a810ccbbe144"
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "8fd1512af36afa63c511bea595752fa25ee033fe",
+          "new_value": "aeb0e5857ed902c7e355a8751ea8bbfa6b7e1f6e"
         },
         {
           "name": "FStringFlipTimeStampFastString",
-          "mechanism": "Optimizes the way timestamps are formatted and displayed in strings.",
-          "purpose": "Provides quicker and more efficient display of time-related information in games.",
-          "freq": 199,
-          "old_value": "10/22/2025 18:25:54",
-          "new_value": "10/22/2025 18:32:52"
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 17:48:59",
+          "new_value": "10/23/2025 17:51:52"
+        }
+      ]
+    }
+  },
+  {
+    "header": "f374374d - 2025-10-23 12:51:48 -0500 - 10/23/2025 12:51:47",
+    "grouped": {
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "4bd98b9e2e711dadab0a316414b4da33d1cc5a92",
+          "new_value": "8fd1512af36afa63c511bea595752fa25ee033fe"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 17:48:42",
+          "new_value": "10/23/2025 17:48:59"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "4bd98b9e2e711dadab0a316414b4da33d1cc5a92",
+          "new_value": "8fd1512af36afa63c511bea595752fa25ee033fe"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 17:48:42",
+          "new_value": "10/23/2025 17:48:59"
+        }
+      ]
+    }
+  },
+  {
+    "header": "d55e40c6 - 2025-10-23 12:49:00 -0500 - 10/23/2025 12:49:00",
+    "grouped": {
+      "Added_Other": [
+        {
+          "name": "DFFlagVoiceSdpCompressionRemoteEventFieldReceivesOriginalSdp_Staged",
+          "mechanism": "Improves how voice data is compressed and transmitted.",
+          "purpose": "Enhances voice chat quality for clearer communication between players.",
+          "freq": 2,
+          "old_value": null,
+          "new_value": "true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-10-23T17:43:02"
+        }
+      ],
+      "Changed_World": [
+        {
+          "name": "DFFlagEnableRealWorldCommercePOC_PlaceFilter",
+          "mechanism": "Introduces a filtering system for places related to real-world commerce.",
+          "purpose": "Enhances the visibility of games that involve real-world transactions.",
+          "freq": 1,
+          "old_value": "true;15098120933;13398434647;14298635815;17284537980;13398230007;17096487289;16288561317;15218427871;15357970630;15254715712;14265145574;12931369823;17811071580;18973713348",
+          "new_value": "true;15098120933;13398434647;14298635815;17284537980;13398230007;17096487289;16288561317;15218427871;15357970630;15254715712;14265145574;12931369823;17811071580;18973713348;85513756910439;92021495190839;80569231098954"
+        }
+      ],
+      "Changed_Other": [
+        {
+          "name": "DFStringFlagRepoGitHashDynamicString",
+          "mechanism": "Tracks the specific version of the code being used by referencing a Git hash.",
+          "purpose": "Helps developers ensure they are using the latest code updates in their games.",
+          "freq": 197,
+          "old_value": "f1a25780ac8b2255fea8dc47297b372ecfaefe1a",
+          "new_value": "4bd98b9e2e711dadab0a316414b4da33d1cc5a92"
+        },
+        {
+          "name": "DFStringFlipTimeStampDynamicString",
+          "mechanism": "Modifies how timestamps are formatted in dynamic strings.",
+          "purpose": "Improves readability of time-related information for players.",
+          "freq": 198,
+          "old_value": "10/23/2025 17:38:58",
+          "new_value": "10/23/2025 17:48:42"
+        },
+        {
+          "name": "FStringFlagRepoGitHashFastString",
+          "mechanism": "Uses a faster method to retrieve version information from the game's code repository.",
+          "purpose": "Improves game loading times by quickly accessing version data.",
+          "freq": 197,
+          "old_value": "f1a25780ac8b2255fea8dc47297b372ecfaefe1a",
+          "new_value": "4bd98b9e2e711dadab0a316414b4da33d1cc5a92"
+        },
+        {
+          "name": "FStringFlipTimeStampFastString",
+          "mechanism": "Uses a faster method to handle string timestamps in the game.",
+          "purpose": "Improves the speed of displaying time-related information to players.",
+          "freq": 198,
+          "old_value": "10/23/2025 17:38:58",
+          "new_value": "10/23/2025 17:48:42"
+        }
+      ],
+      "Removed_Other": [
+        {
+          "name": "FFlagVoiceUseModularDeviceManager4_Staged",
+          "mechanism": "Enables a new system for managing voice chat devices.",
+          "purpose": "Improves voice chat quality and reliability for players.",
+          "freq": 4,
+          "old_value": "true;SteadyState;10;30;Revert;2025-10-23T17:08:42",
+          "new_value": null
         }
       ]
     }
