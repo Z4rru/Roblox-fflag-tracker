@@ -1,1896 +1,1862 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2025-11-20 02:31:29 AM PST
-- Flags Added: 173
-- Flags Changed: 814
-- Flags Removed: 92
+- Last Run: 2025-11-20 09:27:49 AM PST
+- Flags Added: 145
+- Flags Changed: 824
+- Flags Removed: 83
 
 ## Summary
 | Category | Added | Changed | Removed | Total |
 |---|---|---|---|---|
 | Graphics | 2 | 0 | 1 | 3 |
 | Physics | 0 | 0 | 0 | 0 |
-| Network | 8 | 2 | 4 | 14 |
-| Camera/UI | 6 | 0 | 3 | 9 |
+| Network | 11 | 5 | 3 | 19 |
+| Camera/UI | 2 | 0 | 1 | 3 |
 | Security | 0 | 0 | 0 | 0 |
 | World | 0 | 0 | 0 | 0 |
-| Input | 2 | 0 | 1 | 3 |
+| Input | 5 | 1 | 3 | 9 |
 | Hit | 0 | 0 | 0 | 0 |
 | Interpolation | 0 | 0 | 0 | 0 |
-| Body | 0 | 0 | 0 | 0 |
-| Other | 155 | 812 | 83 | 1050 |
+| Body | 2 | 0 | 1 | 3 |
+| Other | 123 | 818 | 74 | 1015 |
 
 ## History Summary
 
-- Total Historical Added: 173
-- Total Historical Changed: 814
-- Total Historical Removed: 92
+- Total Historical Added: 145
+- Total Historical Changed: 824
+- Total Historical Removed: 83
 - Note: Limited history available.
+
+## bceffa91d - 2025-11-19 19:11:36 -0600 - 11/19/2025 19:11:36
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 26a1b1d1f15e124b1167e62bec005bab634422ac to 710f04bf31aa024440fa92538688168f01fffedb | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:59:15 to 11/20/2025 01:08:58 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 26a1b1d1f15e124b1167e62bec005bab634422ac to 710f04bf31aa024440fa92538688168f01fffedb | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:59:15 to 11/20/2025 01:08:58 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 3dca49892 - 2025-11-19 19:00:18 -0600 - 11/19/2025 19:00:18
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 0ee9f9864c245461e3c95d515328767126cbb0ed to 26a1b1d1f15e124b1167e62bec005bab634422ac | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:55:56 to 11/20/2025 00:59:15 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 0ee9f9864c245461e3c95d515328767126cbb0ed to 26a1b1d1f15e124b1167e62bec005bab634422ac | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:55:56 to 11/20/2025 00:59:15 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 9f7e6d6c3 - 2025-11-19 18:57:58 -0600 - 11/19/2025 18:57:58
+Added in Other:
+- FStringLuaOTATag_Staged = ;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-20T00:52:52 | Mechanism: Tags specific updates for Lua scripts. | Purpose: Helps developers manage and track changes in game scripts.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 505d194f43d5e00fdb18c312bb27b9d1b021220f to 0ee9f9864c245461e3c95d515328767126cbb0ed | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:52:36 to 11/20/2025 00:55:56 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 505d194f43d5e00fdb18c312bb27b9d1b021220f to 0ee9f9864c245461e3c95d515328767126cbb0ed | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:52:36 to 11/20/2025 00:55:56 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## e475e7186 - 2025-11-19 18:53:24 -0600 - 11/19/2025 18:53:24
+Added in Other:
+- FFlagEnableUnifiedProductPurchaseFlowV37 = True | Mechanism: Activates the latest version of the unified product purchase system. | Purpose: Provides a more consistent and user-friendly purchasing experience across the platform.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from ecd4db89dcd20a75233b8ef00a4055b8c7d6f732 to 505d194f43d5e00fdb18c312bb27b9d1b021220f | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:48:11 to 11/20/2025 00:52:36 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from ecd4db89dcd20a75233b8ef00a4055b8c7d6f732 to 505d194f43d5e00fdb18c312bb27b9d1b021220f | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:48:11 to 11/20/2025 00:52:36 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagEnableUnifiedProductPurchaseFlowV37_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T23:49:35) | Mechanism: Introduces a new streamlined process for purchasing products within Roblox. | Purpose: Makes it easier and faster for players to buy items and experiences.
+
+## 9d9b89504 - 2025-11-19 18:51:01 -0600 - 11/19/2025 18:51:00
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from d2d40a0ee8246e2c6a5295d9fbe07102ae7ce431 to ecd4db89dcd20a75233b8ef00a4055b8c7d6f732 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:46:23 to 11/20/2025 00:48:11 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from d2d40a0ee8246e2c6a5295d9fbe07102ae7ce431 to ecd4db89dcd20a75233b8ef00a4055b8c7d6f732 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:46:23 to 11/20/2025 00:48:11 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## ae0e3741b - 2025-11-19 18:48:35 -0600 - 11/19/2025 18:48:35
+Added in Other:
+- FStringIxpNewLayersForRegistration_Staged = App.AppPerf.Regression,AvatarMarketplace.SearchPageWidgetPlatform,AvatarMarketplace.Sorts,Consoles.App,DesignSystem.Font,ExperienceDetailPage.EnableSubscriptionPurchase,Growth.Notifications.GameInviteMenu,Notification.Toast,PlayerApp.GameJoin.UX,PlayerApp.HomepageUpsell.PhoneVerificationEntry,PlayerApp.HomePageUpsell.VNGApp,PlayerApp.Logout,PlayerApp.OmniSearchResultsPage.UX.Exposure,PlayerApp.PhoneVerification.Android,PlayerApp.PhoneVerification.iOS,Revenue.UA.Gamepass.RobuxUpsell,Universality.AppNav,Social.ProfileViewSocialLinks,Social.JoinGameCardViewProfile,HomePage.UpsellCard,AvatarMarketplace.WidgetPlatformSorts,Universality.FoundationColors,Universality.AppNav.2,AvatarExperience.UA.ActionBarView,Universality.MorePage,UniversalApp.MoreLayout.Exposure,Experience.Menu.Settings.Exposure,PlayerApp.HomePage.UX.TileLayer,Social.FriendsCarouselAddFriendsEntry,Social.PartyRollout,PlayerApp.HomePage.UX.WholePageRanking,Social.PartyVoice,PlatformExcellence.Consoles.Features,ProfileQRCodeScannerLayer,AvatarExperience.UA.SearchView,Social.ViewFriendSortInGameFriends,Social.AppChat,Social.CommunityProfileView,UIEcosystem.User,InExperience.Performance,CreatorSuccess.VirtualEvents,ContactImporter.DevicePermissionNeededModal.Exposure,PlayerApp.ConsoleAndVR.HomePage.UX.TileLayer,PlayerApp.Homepage.Serving.SDUI,Experience.Menu.VR,UIEcosystem.User.Migration,User.Communication.ConsoleVoice,Social.RM,Party.Coordination.ExperienceJoin2,PlayerApp.GameDetailsPage.Exposure,CoreServices.Thumbnail.ServeThumbnailsFromEdge,Experience.Menu.HelpPage.Exposure,Social.ProfilePeekView.Secondary,Economy.DeveloperMonetization.EdpVirtualProductsRanking,Universality.MorePage.Access,Party.ConversationPage,Party.PartySheet,Party.LandingPage,Party.EntryPoint,Party.Toast,Party.Push,PlayerApp.Badges.Exposure;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1274855583;2025-11-20T00:44:37 | Mechanism: Introduces new layers in the registration process for user accounts. | Purpose: Enhances user experience by streamlining account registration and making it easier for new players to join.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 8b7d47cdb09a9bcb9910fc60f5ee41849c2e76a1 to d2d40a0ee8246e2c6a5295d9fbe07102ae7ce431 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:43:08 to 11/20/2025 00:46:23 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 8b7d47cdb09a9bcb9910fc60f5ee41849c2e76a1 to d2d40a0ee8246e2c6a5295d9fbe07102ae7ce431 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:43:08 to 11/20/2025 00:46:23 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 3bd5c1457 - 2025-11-19 18:46:16 -0600 - 11/19/2025 18:46:16
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 03ef4d18967f2ef98984ed7ad982b18dfdfb1660 to 8b7d47cdb09a9bcb9910fc60f5ee41849c2e76a1 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:42:50 to 11/20/2025 00:43:08 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 03ef4d18967f2ef98984ed7ad982b18dfdfb1660 to 8b7d47cdb09a9bcb9910fc60f5ee41849c2e76a1 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:42:50 to 11/20/2025 00:43:08 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 9e3621849 - 2025-11-19 18:43:34 -0600 - 11/19/2025 18:43:34
+Changed in Network:
+- DFFlagClientPacketLimiting_PlaceFilter changed from true;106487781999308 to true;106487781999308;101719619989110 | Mechanism: Limits the number of data packets sent to the client for filtering places. | Purpose: Reduces lag and improves loading times for players in games.
+- DFFlagClientProcessLimitPartial_PlaceFilter changed from true;106487781999308 to true;106487781999308;101719619989110 | Mechanism: Limits the number of processes that can run on the client for certain places. | Purpose: Enhances performance and stability by preventing overload in resource-intensive games.
+- DFFlagReportClientProcessPacketMetrics_PlaceFilter changed from true;106487781999308 to true;106487781999308;101719619989110 | Mechanism: Tracks and filters data packets related to client reporting for specific places. | Purpose: Improves the accuracy of reports and helps developers understand player interactions better.
+- DFIntReportClientProcessPacketMetricsStatsHundredths_PlaceFilter changed from 1000;106487781999308 to 1000;106487781999308;101719619989110 | Mechanism: Collects detailed statistics on how client processes handle network packets with a specific filter. | Purpose: Helps developers optimize network performance by providing insights into packet handling efficiency.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 2c2da6c56ddef1d12ef847f4e34157f07a45d4ab to 03ef4d18967f2ef98984ed7ad982b18dfdfb1660 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:32:11 to 11/20/2025 00:42:50 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 2c2da6c56ddef1d12ef847f4e34157f07a45d4ab to 03ef4d18967f2ef98984ed7ad982b18dfdfb1660 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:32:11 to 11/20/2025 00:42:50 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 06eb9f5f7 - 2025-11-19 18:34:48 -0600 - 11/19/2025 18:34:48
+Added in Other:
+- FFlagFoundationSheetCenterSheetNoShrink = True | Mechanism: Prevents the center sheet from resizing in the UI. | Purpose: Provides a more consistent and visually appealing user interface.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 3f5832cc3b77545e16eda7419f31c92193852902 to 2c2da6c56ddef1d12ef847f4e34157f07a45d4ab | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:30:16 to 11/20/2025 00:32:11 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 3f5832cc3b77545e16eda7419f31c92193852902 to 2c2da6c56ddef1d12ef847f4e34157f07a45d4ab | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:30:16 to 11/20/2025 00:32:11 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagFoundationSheetCenterSheetNoShrink_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;558195079;2025-11-19T23:26:24) | Mechanism: Prevents the center sheet from shrinking in size. | Purpose: Ensures that the center sheet maintains its intended size for better visual consistency.
+
+## 0ef988665 - 2025-11-19 18:32:21 -0600 - 11/19/2025 18:32:21
+Added in Other:
+- FFlagExperienceDetailsPrompt_PlaceFilter = true;70871138376268;72194430968900;72978157969725;73969653008164;75467626919852;76524197186639;77362637584345;77541380503238;77913197925241;78092772027092;78525724545575;78533368171928;78772399348482;79143963521188;80143305996885;80607520815487;80928167009449;80939703733964;81025356716139;81270904946526;83291776150181;83621382586683;84990426276965;85784835755901;86801301511729;87105585898144;87265254925239;89741522333138;90159781129598;91708113927022;92540165845503;92755694215125;92758961278039;93289712854863;93785651106588;93866646275922;94001616681829;94123586713231;94522119810308;94622010057971;94626323054526;94742341656573;95344444648686;95984890859948;96112613747192;98911804991818;98954687073963;99727015454137;99936364644556;101741061298990;102275973000315;103050087219606;103506668827966;105236129978788;105367763549847;105450852598759;105868495660726;106157216315640;106376719367261;106469557899798;106998012115536;107028958120249;107412202981656;107605130869868;108036570985507;108194620404229;108412071814243;109084229872135;109852527075942;110773211873091;110875544422684;111356441520638;111362117875754;111690309539206;112934510111679;115999999910618;117330511618118;117744897757799;118171263682820;119524072047648;119887281559953;120798446928695;121676933856072;122100184578727;122724651395545;123114131168528;123940993933848;123962966150395;124378295695368;126298764168407;126717016095151;127210642809629;127830186289117;127863843520618;128488233547081;131183658593047;131890646335001;131988988207445;132404650098218;134332097267970;136656017132972;136979595698984;137450197218005;137678363403771;138228542455444;139561909307043 | Mechanism: Adds a filter option in the experience details prompt. | Purpose: Allows players to find specific places more easily.
+- FFlagLuaAppInExperienceDetailsPrompt3_PlaceFilter = true;70871138376268;72194430968900;72978157969725;73969653008164;75467626919852;76524197186639;77362637584345;77541380503238;77913197925241;78092772027092;78525724545575;78533368171928;78772399348482;79143963521188;80143305996885;80607520815487;80928167009449;80939703733964;81025356716139;81270904946526;83291776150181;83621382586683;84990426276965;85784835755901;86801301511729;87105585898144;87265254925239;89741522333138;90159781129598;91708113927022;92540165845503;92755694215125;92758961278039;93289712854863;93785651106588;93866646275922;94001616681829;94123586713231;94522119810308;94622010057971;94626323054526;94742341656573;95344444648686;95984890859948;96112613747192;98911804991818;98954687073963;99727015454137;99936364644556;101741061298990;102275973000315;103050087219606;103506668827966;105236129978788;105367763549847;105450852598759;105868495660726;106157216315640;106376719367261;106469557899798;106998012115536;107028958120249;107412202981656;107605130869868;108036570985507;108194620404229;108412071814243;109084229872135;109852527075942;110773211873091;110875544422684;111356441520638;111362117875754;111690309539206;112934510111679;115999999910618;117330511618118;117744897757799;118171263682820;119524072047648;119887281559953;120798446928695;121676933856072;122100184578727;122724651395545;123114131168528;123940993933848;123962966150395;124378295695368;126298764168407;126717016095151;127210642809629;127830186289117;127863843520618;128488233547081;131183658593047;131890646335001;131988988207445;132404650098218;134332097267970;136656017132972;136979595698984;137450197218005;137678363403771;138228542455444;139561909307043 | Mechanism: Introduces a filtering option for places in the experience details using Lua scripts. | Purpose: Makes it easier for players to find specific places within a game.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from d53f10d7b673012bce33ce58938fd8218d733924 to 3f5832cc3b77545e16eda7419f31c92193852902 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:22:00 to 11/20/2025 00:30:16 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from d53f10d7b673012bce33ce58938fd8218d733924 to 3f5832cc3b77545e16eda7419f31c92193852902 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:22:00 to 11/20/2025 00:30:16 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 75ddb1d6f - 2025-11-19 18:23:24 -0600 - 11/19/2025 18:23:23
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 678cb88db7407d749c7f2ccd5a5aa98e62a0b1b2 to d53f10d7b673012bce33ce58938fd8218d733924 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:18:26 to 11/20/2025 00:22:00 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 678cb88db7407d749c7f2ccd5a5aa98e62a0b1b2 to d53f10d7b673012bce33ce58938fd8218d733924 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:18:26 to 11/20/2025 00:22:00 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+- FStringIxpNewLayersForRegistration changed from App.AppPerf.Regression,AvatarMarketplace.SearchPageWidgetPlatform,AvatarMarketplace.Sorts,Consoles.App,DesignSystem.Font,ExperienceDetailPage.EnableSubscriptionPurchase,Growth.Notifications.GameInviteMenu,Notification.Toast,PlayerApp.GameJoin.UX,PlayerApp.HomepageUpsell.PhoneVerificationEntry,PlayerApp.HomePageUpsell.VNGApp,PlayerApp.Logout,PlayerApp.OmniSearchResultsPage.UX.Exposure,PlayerApp.PhoneVerification.Android,PlayerApp.PhoneVerification.iOS,Revenue.UA.Gamepass.RobuxUpsell,Universality.AppNav,Social.ProfileViewSocialLinks,Social.JoinGameCardViewProfile,HomePage.UpsellCard,AvatarMarketplace.WidgetPlatformSorts,Universality.FoundationColors,Universality.AppNav.2,AvatarExperience.UA.ActionBarView,Universality.MorePage,UniversalApp.MoreLayout.Exposure,Experience.Menu.Settings.Exposure,PlayerApp.HomePage.UX.TileLayer,Social.FriendsCarouselAddFriendsEntry,Social.PartyRollout,PlayerApp.HomePage.UX.WholePageRanking,Social.PartyVoice,PlatformExcellence.Consoles.Features,ProfileQRCodeScannerLayer,AvatarExperience.UA.SearchView,Social.ViewFriendSortInGameFriends,Social.AppChat,Social.CommunityProfileView,UIEcosystem.User,InExperience.Performance,CreatorSuccess.VirtualEvents,ContactImporter.DevicePermissionNeededModal.Exposure,PlayerApp.ConsoleAndVR.HomePage.UX.TileLayer,PlayerApp.Homepage.Serving.SDUI,Experience.Menu.VR,UIEcosystem.User.Migration,User.Communication.ConsoleVoice,Social.RM,Party.Coordination.ExperienceJoin2,PlayerApp.GameDetailsPage.Exposure,CoreServices.Thumbnail.ServeThumbnailsFromEdge,Experience.Menu.HelpPage.Exposure,Social.ProfilePeekView.Secondary,Economy.DeveloperMonetization.EdpVirtualProductsRanking,Universality.MorePage.Access to App.AppPerf.Regression,AvatarMarketplace.SearchPageWidgetPlatform,AvatarMarketplace.Sorts,Consoles.App,DesignSystem.Font,ExperienceDetailPage.EnableSubscriptionPurchase,Growth.Notifications.GameInviteMenu,Notification.Toast,PlayerApp.GameJoin.UX,PlayerApp.HomepageUpsell.PhoneVerificationEntry,PlayerApp.HomePageUpsell.VNGApp,PlayerApp.Logout,PlayerApp.OmniSearchResultsPage.UX.Exposure,PlayerApp.PhoneVerification.Android,PlayerApp.PhoneVerification.iOS,Revenue.UA.Gamepass.RobuxUpsell,Universality.AppNav,Social.ProfileViewSocialLinks,Social.JoinGameCardViewProfile,HomePage.UpsellCard,AvatarMarketplace.WidgetPlatformSorts,Universality.FoundationColors,Universality.AppNav.2,AvatarExperience.UA.ActionBarView,Universality.MorePage,UniversalApp.MoreLayout.Exposure,Experience.Menu.Settings.Exposure,PlayerApp.HomePage.UX.TileLayer,Social.FriendsCarouselAddFriendsEntry,Social.PartyRollout,PlayerApp.HomePage.UX.WholePageRanking,Social.PartyVoice,PlatformExcellence.Consoles.Features,ProfileQRCodeScannerLayer,AvatarExperience.UA.SearchView,Social.ViewFriendSortInGameFriends,Social.AppChat,Social.CommunityProfileView,UIEcosystem.User,InExperience.Performance,CreatorSuccess.VirtualEvents,ContactImporter.DevicePermissionNeededModal.Exposure,PlayerApp.ConsoleAndVR.HomePage.UX.TileLayer,PlayerApp.Homepage.Serving.SDUI,Experience.Menu.VR,UIEcosystem.User.Migration,User.Communication.ConsoleVoice,Social.RM,Party.Coordination.ExperienceJoin2,PlayerApp.GameDetailsPage.Exposure,CoreServices.Thumbnail.ServeThumbnailsFromEdge,Experience.Menu.HelpPage.Exposure,Social.ProfilePeekView.Secondary,Economy.DeveloperMonetization.EdpVirtualProductsRanking,Universality.MorePage.Access,Party.ConversationPage,Party.PartySheet,Party.LandingPage,Party.EntryPoint,Party.Toast,Party.Push | Mechanism: Introduces new layers in the registration process. | Purpose: Streamlines user registration, making it easier and faster for new players.
+Removed in Other:
+- FStringIxpNewLayersForRegistration_Staged removed (was App.AppPerf.Regression,AvatarMarketplace.SearchPageWidgetPlatform,AvatarMarketplace.Sorts,Consoles.App,DesignSystem.Font,ExperienceDetailPage.EnableSubscriptionPurchase,Growth.Notifications.GameInviteMenu,Notification.Toast,PlayerApp.GameJoin.UX,PlayerApp.HomepageUpsell.PhoneVerificationEntry,PlayerApp.HomePageUpsell.VNGApp,PlayerApp.Logout,PlayerApp.OmniSearchResultsPage.UX.Exposure,PlayerApp.PhoneVerification.Android,PlayerApp.PhoneVerification.iOS,Revenue.UA.Gamepass.RobuxUpsell,Universality.AppNav,Social.ProfileViewSocialLinks,Social.JoinGameCardViewProfile,HomePage.UpsellCard,AvatarMarketplace.WidgetPlatformSorts,Universality.FoundationColors,Universality.AppNav.2,AvatarExperience.UA.ActionBarView,Universality.MorePage,UniversalApp.MoreLayout.Exposure,Experience.Menu.Settings.Exposure,PlayerApp.HomePage.UX.TileLayer,Social.FriendsCarouselAddFriendsEntry,Social.PartyRollout,PlayerApp.HomePage.UX.WholePageRanking,Social.PartyVoice,PlatformExcellence.Consoles.Features,ProfileQRCodeScannerLayer,AvatarExperience.UA.SearchView,Social.ViewFriendSortInGameFriends,Social.AppChat,Social.CommunityProfileView,UIEcosystem.User,InExperience.Performance,CreatorSuccess.VirtualEvents,ContactImporter.DevicePermissionNeededModal.Exposure,PlayerApp.ConsoleAndVR.HomePage.UX.TileLayer,PlayerApp.Homepage.Serving.SDUI,Experience.Menu.VR,UIEcosystem.User.Migration,User.Communication.ConsoleVoice,Social.RM,Party.Coordination.ExperienceJoin2,PlayerApp.GameDetailsPage.Exposure,CoreServices.Thumbnail.ServeThumbnailsFromEdge,Experience.Menu.HelpPage.Exposure,Social.ProfilePeekView.Secondary,Economy.DeveloperMonetization.EdpVirtualProductsRanking,Universality.MorePage.Access,Party.ConversationPage,Party.PartySheet,Party.LandingPage,Party.EntryPoint,Party.Toast,Party.Push;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T23:19:20) | Mechanism: Introduces new layers in the registration process for user accounts. | Purpose: Enhances user experience by streamlining account registration and making it easier for new players to join.
+
+## aa2d7940e - 2025-11-19 18:18:44 -0600 - 11/19/2025 18:18:44
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 8405e163cf99ac23fac68b6176eedf2f5609f7b5 to 678cb88db7407d749c7f2ccd5a5aa98e62a0b1b2 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:08:16 to 11/20/2025 00:18:26 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 8405e163cf99ac23fac68b6176eedf2f5609f7b5 to 678cb88db7407d749c7f2ccd5a5aa98e62a0b1b2 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:08:16 to 11/20/2025 00:18:26 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 7c0978682 - 2025-11-19 18:09:51 -0600 - 11/19/2025 18:09:51
+Added in Other:
+- FFlagNonCompositeRespectNoFaceTag = True | Mechanism: Ensures that certain tags are respected in non-composite items. | Purpose: Allows for better customization and respect for player choices in avatar appearance.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 6fe922e245193960eaab255ad21a30dd9d920984 to 8405e163cf99ac23fac68b6176eedf2f5609f7b5 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:03:41 to 11/20/2025 00:08:16 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 6fe922e245193960eaab255ad21a30dd9d920984 to 8405e163cf99ac23fac68b6176eedf2f5609f7b5 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:03:41 to 11/20/2025 00:08:16 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagNonCompositeRespectNoFaceTag_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;613096393;2025-11-19T23:01:38) | Mechanism: Ensures certain tags are respected in non-composite objects. | Purpose: Improves how game assets are displayed and interacted with.
+
+## 394d51109 - 2025-11-19 18:05:16 -0600 - 11/19/2025 18:05:15
+Added in Other:
+- FFlagBootcampCLI165710 = True | Mechanism: Updates the command line interface for bootcamp features. | Purpose: Enhances the training experience for new players by making commands easier to use.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from a032081d53cd9b08b05d5081935ab9928a1b0254 to 6fe922e245193960eaab255ad21a30dd9d920984 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/20/2025 00:01:54 to 11/20/2025 00:03:41 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from a032081d53cd9b08b05d5081935ab9928a1b0254 to 6fe922e245193960eaab255ad21a30dd9d920984 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/20/2025 00:01:54 to 11/20/2025 00:03:41 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagBootcampCLI165710_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T22:56:39) | Mechanism: Enables a new command-line interface for bootcamp features. | Purpose: Improves the onboarding experience for new players by streamlining access to tutorials.
+
+## a3a8b6ef6 - 2025-11-19 18:02:52 -0600 - 11/19/2025 18:02:52
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from a03587490af6b600d879dfbb6903dabdca91df6f to a032081d53cd9b08b05d5081935ab9928a1b0254 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:59:37 to 11/20/2025 00:01:54 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from a03587490af6b600d879dfbb6903dabdca91df6f to a032081d53cd9b08b05d5081935ab9928a1b0254 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:59:37 to 11/20/2025 00:01:54 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 4baff54c0 - 2025-11-19 18:00:32 -0600 - 11/19/2025 18:00:32
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 9fa28705c7692de2048e8a8ce091baabf6e254b1 to a03587490af6b600d879dfbb6903dabdca91df6f | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:57:32 to 11/19/2025 23:59:37 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 9fa28705c7692de2048e8a8ce091baabf6e254b1 to a03587490af6b600d879dfbb6903dabdca91df6f | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:57:32 to 11/19/2025 23:59:37 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Changed in Input:
+- FFlagPTFControllerLayoutSupport changed from True to False | Mechanism: Adds support for new controller layouts in Roblox games. | Purpose: Allows players to use different controller configurations for better gameplay.
+Removed in Input:
+- FFlagPTFControllerLayoutSupport_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;359008946;2025-11-19T22:53:55) | Mechanism: Introduces support for a new layout for game controllers. | Purpose: Improves gameplay experience for players using controllers by making controls more intuitive.
+
+## d6efe9bf1 - 2025-11-19 17:58:13 -0600 - 11/19/2025 17:58:12
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 396ab2f9225f576a2a9f0bd786f6f2e68f437c57 to 9fa28705c7692de2048e8a8ce091baabf6e254b1 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:53:11 to 11/19/2025 23:57:32 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 396ab2f9225f576a2a9f0bd786f6f2e68f437c57 to 9fa28705c7692de2048e8a8ce091baabf6e254b1 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:53:11 to 11/19/2025 23:57:32 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 8531c7a45 - 2025-11-19 17:55:48 -0600 - 11/19/2025 17:55:47
+Added in Other:
+- FFlagEnableUnifiedProductPurchaseFlowV37_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T23:49:35 | Mechanism: Introduces a new streamlined process for purchasing products within Roblox. | Purpose: Makes it easier and faster for players to buy items and experiences.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 52a7a711fc388b5e70a365f6c3e5476266a8a239 to 396ab2f9225f576a2a9f0bd786f6f2e68f437c57 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:52:09 to 11/19/2025 23:53:11 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 52a7a711fc388b5e70a365f6c3e5476266a8a239 to 396ab2f9225f576a2a9f0bd786f6f2e68f437c57 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:52:09 to 11/19/2025 23:53:11 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## dea9ed2a3 - 2025-11-19 17:53:23 -0600 - 11/19/2025 17:53:23
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from f17d04ee42068af4b7739f05d491a139a11385af to 52a7a711fc388b5e70a365f6c3e5476266a8a239 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:50:09 to 11/19/2025 23:52:09 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from f17d04ee42068af4b7739f05d491a139a11385af to 52a7a711fc388b5e70a365f6c3e5476266a8a239 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:50:09 to 11/19/2025 23:52:09 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## b3e35cb2d - 2025-11-19 17:51:03 -0600 - 11/19/2025 17:51:03
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 39f2382c804003012875c1bd701a26230ea7c25a to f17d04ee42068af4b7739f05d491a139a11385af | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:43:50 to 11/19/2025 23:50:09 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 39f2382c804003012875c1bd701a26230ea7c25a to f17d04ee42068af4b7739f05d491a139a11385af | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:43:50 to 11/19/2025 23:50:09 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## c23421dfe - 2025-11-19 17:46:29 -0600 - 11/19/2025 17:46:29
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 86a5f6d5ef68a3d31fe588a2b21a36fa12a30bd0 to 39f2382c804003012875c1bd701a26230ea7c25a | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:41:06 to 11/19/2025 23:43:50 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FFlagAXMigrateReportAvatarEventCounter2 changed from True to False | Mechanism: Migrates the reporting of avatar events to a new system. | Purpose: Improves tracking of avatar-related events for better analytics.
+- FStringFlagRepoGitHashFastString changed from 86a5f6d5ef68a3d31fe588a2b21a36fa12a30bd0 to 39f2382c804003012875c1bd701a26230ea7c25a | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:41:06 to 11/19/2025 23:43:50 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagAXMigrateReportAvatarEventCounter2_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T22:41:06) | Mechanism: Updates the way avatar event data is reported for better tracking. | Purpose: Enhances the ability to monitor avatar interactions, leading to improved avatar features.
+
+## 1cc5cd255 - 2025-11-19 17:41:46 -0600 - 11/19/2025 17:41:46
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from e926e82a41251a850a9beb0208d2e8a120ea1aca to 86a5f6d5ef68a3d31fe588a2b21a36fa12a30bd0 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:33:43 to 11/19/2025 23:41:06 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from e926e82a41251a850a9beb0208d2e8a120ea1aca to 86a5f6d5ef68a3d31fe588a2b21a36fa12a30bd0 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:33:43 to 11/19/2025 23:41:06 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 27386a7ec - 2025-11-19 17:35:04 -0600 - 11/19/2025 17:35:04
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 596ec6535d2a13931eba0caa86dee041114d9504 to e926e82a41251a850a9beb0208d2e8a120ea1aca | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:29:39 to 11/19/2025 23:33:43 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 596ec6535d2a13931eba0caa86dee041114d9504 to e926e82a41251a850a9beb0208d2e8a120ea1aca | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:29:39 to 11/19/2025 23:33:43 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## cd2075281 - 2025-11-19 17:30:31 -0600 - 11/19/2025 17:30:30
+Added in Other:
+- FFlagFoundationSheetCenterSheetNoShrink_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;558195079;2025-11-19T23:26:24 | Mechanism: Prevents the center sheet from shrinking in size. | Purpose: Ensures that the center sheet maintains its intended size for better visual consistency.
+- FFlagImporterSupportAlphaTransparencyMode = True | Mechanism: Enables support for importing textures with transparent areas. | Purpose: Allows creators to use images that have see-through parts, improving the quality of game graphics.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from c3845c2a69b5988bdc2a9e02d5207b976c9f8d85 to 596ec6535d2a13931eba0caa86dee041114d9504 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:21:38 to 11/19/2025 23:29:39 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from c3845c2a69b5988bdc2a9e02d5207b976c9f8d85 to 596ec6535d2a13931eba0caa86dee041114d9504 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:21:38 to 11/19/2025 23:29:39 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagImporterSupportAlphaTransparencyMode_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;2075068995;2025-11-19T22:25:58) | Mechanism: Enables support for importing textures with transparent areas in a specific mode. | Purpose: Allows creators to use images with see-through parts, enhancing the visual quality of their creations.
+
+## 8a4de60a7 - 2025-11-19 17:23:44 -0600 - 11/19/2025 17:23:44
+Added in Other:
+- FStringIxpNewLayersForRegistration_Staged = App.AppPerf.Regression,AvatarMarketplace.SearchPageWidgetPlatform,AvatarMarketplace.Sorts,Consoles.App,DesignSystem.Font,ExperienceDetailPage.EnableSubscriptionPurchase,Growth.Notifications.GameInviteMenu,Notification.Toast,PlayerApp.GameJoin.UX,PlayerApp.HomepageUpsell.PhoneVerificationEntry,PlayerApp.HomePageUpsell.VNGApp,PlayerApp.Logout,PlayerApp.OmniSearchResultsPage.UX.Exposure,PlayerApp.PhoneVerification.Android,PlayerApp.PhoneVerification.iOS,Revenue.UA.Gamepass.RobuxUpsell,Universality.AppNav,Social.ProfileViewSocialLinks,Social.JoinGameCardViewProfile,HomePage.UpsellCard,AvatarMarketplace.WidgetPlatformSorts,Universality.FoundationColors,Universality.AppNav.2,AvatarExperience.UA.ActionBarView,Universality.MorePage,UniversalApp.MoreLayout.Exposure,Experience.Menu.Settings.Exposure,PlayerApp.HomePage.UX.TileLayer,Social.FriendsCarouselAddFriendsEntry,Social.PartyRollout,PlayerApp.HomePage.UX.WholePageRanking,Social.PartyVoice,PlatformExcellence.Consoles.Features,ProfileQRCodeScannerLayer,AvatarExperience.UA.SearchView,Social.ViewFriendSortInGameFriends,Social.AppChat,Social.CommunityProfileView,UIEcosystem.User,InExperience.Performance,CreatorSuccess.VirtualEvents,ContactImporter.DevicePermissionNeededModal.Exposure,PlayerApp.ConsoleAndVR.HomePage.UX.TileLayer,PlayerApp.Homepage.Serving.SDUI,Experience.Menu.VR,UIEcosystem.User.Migration,User.Communication.ConsoleVoice,Social.RM,Party.Coordination.ExperienceJoin2,PlayerApp.GameDetailsPage.Exposure,CoreServices.Thumbnail.ServeThumbnailsFromEdge,Experience.Menu.HelpPage.Exposure,Social.ProfilePeekView.Secondary,Economy.DeveloperMonetization.EdpVirtualProductsRanking,Universality.MorePage.Access,Party.ConversationPage,Party.PartySheet,Party.LandingPage,Party.EntryPoint,Party.Toast,Party.Push;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T23:19:20 | Mechanism: Introduces new layers in the registration process for user accounts. | Purpose: Enhances user experience by streamlining account registration and making it easier for new players to join.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 75ac5aa82ab5389342004c8ffa19028dfac61b13 to c3845c2a69b5988bdc2a9e02d5207b976c9f8d85 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:17:14 to 11/19/2025 23:21:38 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 75ac5aa82ab5389342004c8ffa19028dfac61b13 to c3845c2a69b5988bdc2a9e02d5207b976c9f8d85 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:17:14 to 11/19/2025 23:21:38 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 121e95184 - 2025-11-19 17:19:04 -0600 - 11/19/2025 17:19:04
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 4ef778dce3c95acf009e146c5ef9443ba5af0a17 to 75ac5aa82ab5389342004c8ffa19028dfac61b13 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:13:45 to 11/19/2025 23:17:14 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 4ef778dce3c95acf009e146c5ef9443ba5af0a17 to 75ac5aa82ab5389342004c8ffa19028dfac61b13 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:13:45 to 11/19/2025 23:17:14 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## aa612c157 - 2025-11-19 17:14:15 -0600 - 11/19/2025 17:14:15
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 19854c1119ef91d74d920033cd37ca2e5ebe9cf9 to 4ef778dce3c95acf009e146c5ef9443ba5af0a17 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:09:34 to 11/19/2025 23:13:45 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 19854c1119ef91d74d920033cd37ca2e5ebe9cf9 to 4ef778dce3c95acf009e146c5ef9443ba5af0a17 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:09:34 to 11/19/2025 23:13:45 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 54c1e97d6 - 2025-11-19 17:11:52 -0600 - 11/19/2025 17:11:51
+Changed in Other:
+- DFFlagTelemetryServiceAsBridge changed from True to False | Mechanism: Utilizes a telemetry service to gather and analyze player data. | Purpose: Helps developers understand player behavior to improve game experiences.
+- DFStringFlagRepoGitHashDynamicString changed from 47a1e26b48027ac8d845699b46027156cec1c11d to 19854c1119ef91d74d920033cd37ca2e5ebe9cf9 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:08:11 to 11/19/2025 23:09:34 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 47a1e26b48027ac8d845699b46027156cec1c11d to 19854c1119ef91d74d920033cd37ca2e5ebe9cf9 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:08:11 to 11/19/2025 23:09:34 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- DFFlagTelemetryServiceAsBridge_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1262172806;2025-11-19T22:04:01) | Mechanism: Uses a telemetry service to track and analyze game data. | Purpose: Helps developers understand player behavior for better game experiences.
+
+## ca34967a9 - 2025-11-19 17:09:27 -0600 - 11/19/2025 17:09:26
+Added in Other:
+- FFlagNonCompositeRespectNoFaceTag_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;613096393;2025-11-19T23:01:38 | Mechanism: Ensures certain tags are respected in non-composite objects. | Purpose: Improves how game assets are displayed and interacted with.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from e1825f25078f98eb3ab07710d72b82dad7146cec to 47a1e26b48027ac8d845699b46027156cec1c11d | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:02:33 to 11/19/2025 23:08:11 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from e1825f25078f98eb3ab07710d72b82dad7146cec to 47a1e26b48027ac8d845699b46027156cec1c11d | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:02:33 to 11/19/2025 23:08:11 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## b86f50d4e - 2025-11-19 17:04:57 -0600 - 11/19/2025 17:04:57
+Added in Other:
+- FFlagBootcampCLI165710_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T22:56:39 | Mechanism: Enables a new command-line interface for bootcamp features. | Purpose: Improves the onboarding experience for new players by streamlining access to tutorials.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from f58669062053415afb750d084f8c4c42b3bf0d9c to e1825f25078f98eb3ab07710d72b82dad7146cec | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 23:01:58 to 11/19/2025 23:02:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from f58669062053415afb750d084f8c4c42b3bf0d9c to e1825f25078f98eb3ab07710d72b82dad7146cec | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 23:01:58 to 11/19/2025 23:02:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 90d2b16ba - 2025-11-19 17:02:37 -0600 - 11/19/2025 17:02:37
+Added in Other:
+- FFlagStopBubbleChatReactWarning = True | Mechanism: Removes warnings related to the bubble chat feature in the game. | Purpose: Enhances the chat experience by reducing unnecessary alerts for players.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from fe3ac5a61fba3f02472f4dc0bf2df69f4bf2ab85 to f58669062053415afb750d084f8c4c42b3bf0d9c | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:57:24 to 11/19/2025 23:01:58 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from fe3ac5a61fba3f02472f4dc0bf2df69f4bf2ab85 to f58669062053415afb750d084f8c4c42b3bf0d9c | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:57:24 to 11/19/2025 23:01:58 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagStopBubbleChatReactWarning_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;349345942;2025-11-19T21:51:01) | Mechanism: Disables warning messages in bubble chat when using React. | Purpose: Reduces interruptions for players using bubble chat, making conversations smoother.
+
+## 30a553afa - 2025-11-19 16:57:51 -0600 - 11/19/2025 16:57:50
+Added in Other:
+- FFlagFixGridContentSize = True | Mechanism: Adjusts the calculation of grid content sizes to ensure proper display. | Purpose: Ensures that items in a grid layout are displayed correctly and look better.
+- FFlagFixGridMinSize = True | Mechanism: Adjusts the minimum size of grid elements in the UI. | Purpose: Enhances layout flexibility, allowing for better organization of UI elements.
+Added in Input:
+- FFlagPTFControllerLayoutSupport_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;359008946;2025-11-19T22:53:55 | Mechanism: Introduces support for a new layout for game controllers. | Purpose: Improves gameplay experience for players using controllers by making controls more intuitive.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 57a34f6045f7b7191c435513268a1bf213c1092e to fe3ac5a61fba3f02472f4dc0bf2df69f4bf2ab85 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:51:16 to 11/19/2025 22:57:24 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 57a34f6045f7b7191c435513268a1bf213c1092e to fe3ac5a61fba3f02472f4dc0bf2df69f4bf2ab85 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:51:16 to 11/19/2025 22:57:24 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagFixGridContentSize_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:50:09) | Mechanism: Correcting the calculation of content size in grid layouts. | Purpose: Ensures that items in grids are displayed correctly and consistently.
+- FFlagFixGridMinSize_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:48:54) | Mechanism: Adjusts the minimum size of grid elements in the UI. | Purpose: Improves layout consistency and appearance of user interfaces.
+
+## 5911b8a6b - 2025-11-19 16:53:09 -0600 - 11/19/2025 16:53:08
+Added in Other:
+- FFlagLuaAppAddVideoBlockingToEventStream = True | Mechanism: Integrates video blocking features into the event tracking system. | Purpose: Enhances player experience by managing video content more effectively.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 5b628f81323faeb583e256f06d8bcb7504e0a042 to 57a34f6045f7b7191c435513268a1bf213c1092e | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:47:29 to 11/19/2025 22:51:16 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 5b628f81323faeb583e256f06d8bcb7504e0a042 to 57a34f6045f7b7191c435513268a1bf213c1092e | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:47:29 to 11/19/2025 22:51:16 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagLuaAppAddVideoBlockingToEventStream_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:41:40) | Mechanism: Adds video blocking functionality to the event stream. | Purpose: Prevents unwanted video content from interrupting gameplay.
+
+## 23fb9cd9f - 2025-11-19 16:48:33 -0600 - 11/19/2025 16:48:33
+Added in Other:
+- DFFlagCLI178222 = True | Mechanism: Enables a specific command-line interface feature for developers. | Purpose: Provides developers with more tools to manage their games effectively.
+- FFlagAXMigrateReportAvatarEventCounter2_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T22:41:06 | Mechanism: Updates the way avatar event data is reported for better tracking. | Purpose: Enhances the ability to monitor avatar interactions, leading to improved avatar features.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from ede33f3d93441482926e3591954f6724b43d5411 to 5b628f81323faeb583e256f06d8bcb7504e0a042 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:41:29 to 11/19/2025 22:47:29 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from ede33f3d93441482926e3591954f6724b43d5411 to 5b628f81323faeb583e256f06d8bcb7504e0a042 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:41:29 to 11/19/2025 22:47:29 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- DFFlagCLI178222_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:38:11) | Mechanism: Enables a new command line interface feature in the game engine. | Purpose: Improves developer experience by providing better tools for game creation.
+
+## 47a2f37c6 - 2025-11-19 16:44:02 -0600 - 11/19/2025 16:44:02
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 9991c9a7a52d3aa496014e2e0ba62765a1e5b09d to ede33f3d93441482926e3591954f6724b43d5411 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:28:01 to 11/19/2025 22:41:29 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FFlagSongDetailsPageDesignPass changed from True to False | Mechanism: Implements a new design for the song details page. | Purpose: Enhances the visual appeal and usability of the song details for players.
+- FStringFlagRepoGitHashFastString changed from 9991c9a7a52d3aa496014e2e0ba62765a1e5b09d to ede33f3d93441482926e3591954f6724b43d5411 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:28:01 to 11/19/2025 22:41:29 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagSongDetailsPageDesignPass_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:31:29) | Mechanism: Implements a new design for the song details page in the music section. | Purpose: Improves the user experience by making it easier to find and enjoy music-related content.
+
+## 59944e37f - 2025-11-19 16:30:32 -0600 - 11/19/2025 16:30:32
+Added in Network:
+- DFFlagClientPacketLimiting_PlaceFilter = true;106487781999308 | Mechanism: Limits the number of data packets sent to the client for filtering places. | Purpose: Reduces lag and improves loading times for players in games.
+- DFFlagClientProcessLimitPartial_PlaceFilter = true;106487781999308 | Mechanism: Limits the number of processes that can run on the client for certain places. | Purpose: Enhances performance and stability by preventing overload in resource-intensive games.
+- DFFlagReportClientProcessPacketMetrics_PlaceFilter = true;106487781999308 | Mechanism: Tracks and filters data packets related to client reporting for specific places. | Purpose: Improves the accuracy of reports and helps developers understand player interactions better.
+- DFIntReportClientProcessPacketMetricsStatsHundredths_PlaceFilter = 1000;106487781999308 | Mechanism: Collects detailed statistics on how client processes handle network packets with a specific filter. | Purpose: Helps developers optimize network performance by providing insights into packet handling efficiency.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from d95880056e672e5ba845d057118b6d52e1dd3cc9 to 9991c9a7a52d3aa496014e2e0ba62765a1e5b09d | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:27:42 to 11/19/2025 22:28:01 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from d95880056e672e5ba845d057118b6d52e1dd3cc9 to 9991c9a7a52d3aa496014e2e0ba62765a1e5b09d | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:27:42 to 11/19/2025 22:28:01 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 43f6c55b8 - 2025-11-19 16:28:06 -0600 - 11/19/2025 16:28:06
+Added in Other:
+- FFlagImporterSupportAlphaTransparencyMode_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;2075068995;2025-11-19T22:25:58 | Mechanism: Enables support for importing textures with transparent areas in a specific mode. | Purpose: Allows creators to use images with see-through parts, enhancing the visual quality of their creations.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 640fb2bac812f0403eefcd9600bd9757a33ad1cd to d95880056e672e5ba845d057118b6d52e1dd3cc9 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:23:10 to 11/19/2025 22:27:42 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 640fb2bac812f0403eefcd9600bd9757a33ad1cd to d95880056e672e5ba845d057118b6d52e1dd3cc9 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:23:10 to 11/19/2025 22:27:42 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## db42664cc - 2025-11-19 16:25:16 -0600 - 11/19/2025 16:25:15
+Added in Other:
+- FFlagFixGrassSurfaceLightShading = True | Mechanism: Adjusts how light interacts with grass surfaces in the game engine. | Purpose: Improves the visual appearance of grass, making it look more realistic in different lighting conditions.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 006563de6d806b58c19e21c60d9042cece2df4c7 to 640fb2bac812f0403eefcd9600bd9757a33ad1cd | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:22:27 to 11/19/2025 22:23:10 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 006563de6d806b58c19e21c60d9042cece2df4c7 to 640fb2bac812f0403eefcd9600bd9757a33ad1cd | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:22:27 to 11/19/2025 22:23:10 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagFixGrassSurfaceLightShading_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:16:32) | Mechanism: Adjusts the way light interacts with grass surfaces in the game engine. | Purpose: Improves the visual appearance of grass by making it look more realistic under different lighting conditions.
+
+## c30a73e56 - 2025-11-19 16:22:56 -0600 - 11/19/2025 16:22:55
+Added in Other:
+- DFFlagBase64NewDecodeReport = True | Mechanism: Enhances the reporting of Base64 decoding errors. | Purpose: Helps developers identify and fix issues faster, improving game stability.
+- DFFlagBase64NewDecodeWarning = True | Mechanism: Introduces a warning when decoding Base64 data that may be outdated. | Purpose: Helps developers avoid potential issues with data handling, ensuring smoother gameplay.
+- DFIntBase64NewDecodeReportHundredthsPercentage = 10 | Mechanism: Enhances the reporting of decoding performance metrics in a more precise format. | Purpose: Provides developers with better insights into data processing efficiency.
+Added in Network:
+- DFFlagResetNetworkOwnerOnRemovePrimitive2_PlaceFilter = true;102669905873657 | Mechanism: Resets the ownership of networked objects when they are removed. | Purpose: Enhances game stability by preventing issues with object ownership, improving overall gameplay.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 2ad8667dfc76876f526cee2cc41ba4eded879a25 to 006563de6d806b58c19e21c60d9042cece2df4c7 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:18:03 to 11/19/2025 22:22:27 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 2ad8667dfc76876f526cee2cc41ba4eded879a25 to 006563de6d806b58c19e21c60d9042cece2df4c7 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:18:03 to 11/19/2025 22:22:27 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- DFFlagBase64NewDecodeReport_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;704954588;2025-11-19T21:14:34) | Mechanism: Updates the way data encoded in Base64 is decoded for reporting purposes. | Purpose: Improves the accuracy and reliability of data reports for developers.
+- DFFlagBase64NewDecodeWarning_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;704954588;2025-11-19T21:14:34) | Mechanism: Introduces a warning system for outdated Base64 decoding methods. | Purpose: Informs developers to update their code for better security and performance.
+- DFIntBase64NewDecodeReportHundredthsPercentage_Staged removed (was 10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;704954588;2025-11-19T21:14:34) | Mechanism: Introduces a new method for reporting decoding performance in a more precise format. | Purpose: Helps developers optimize their games by providing detailed performance metrics.
+
+## 8b35bf73b - 2025-11-19 16:20:36 -0600 - 11/19/2025 16:20:36
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 4cbcb282fcabd19f8cefac226cb4b3aee70b8b1f to 2ad8667dfc76876f526cee2cc41ba4eded879a25 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:16:13 to 11/19/2025 22:18:03 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 4cbcb282fcabd19f8cefac226cb4b3aee70b8b1f to 2ad8667dfc76876f526cee2cc41ba4eded879a25 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:16:13 to 11/19/2025 22:18:03 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 02b2b4e62 - 2025-11-19 16:18:12 -0600 - 11/19/2025 16:18:11
+Changed in Other:
+- DFIntWrapDeformerEventHundredthsPercentage changed from 1000 to 10 | Mechanism: Adjusts deformation events to use a percentage format for smoother transitions. | Purpose: Improves the visual quality of character movements and animations.
+- DFStringFlagRepoGitHashDynamicString changed from 2c2cb5f3666d2596357c84cbe9c5cd607356141f to 4cbcb282fcabd19f8cefac226cb4b3aee70b8b1f | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:13:11 to 11/19/2025 22:16:13 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 2c2cb5f3666d2596357c84cbe9c5cd607356141f to 4cbcb282fcabd19f8cefac226cb4b3aee70b8b1f | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:13:11 to 11/19/2025 22:16:13 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- DFIntWrapDeformerEventHundredthsPercentage_Staged removed (was 10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;23609967;2025-11-19T21:09:54) | Mechanism: Adjusts how deformation events are processed in the game engine. | Purpose: Allows for more precise animations and movements, making characters and objects look better.
+
+## b2c903404 - 2025-11-19 16:15:47 -0600 - 11/19/2025 16:15:47
+Added in Network:
+- DFIntVideoMetricsClientHundredthsPercent_PlaceFilter = 10000;136954310107221;105796526973604;95047916580305 | Mechanism: Adjusts how video metrics are calculated for specific places. | Purpose: Improves the accuracy of video performance tracking for games.
+Added in Other:
+- DFIntVideoServiceMetricsEventstreamReportHundredthsPercent_PlaceFilter = 10000;136954310107221;105796526973604;95047916580305 | Mechanism: Reports video service metrics with increased precision in hundredths of a percent. | Purpose: Provides more accurate data for developers to analyze video performance and improve user engagement.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 8c6bef35ef6e0b6c2abb9d40aaaa39ddbc268ed8 to 2c2cb5f3666d2596357c84cbe9c5cd607356141f | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:06:14 to 11/19/2025 22:13:11 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 8c6bef35ef6e0b6c2abb9d40aaaa39ddbc268ed8 to 2c2cb5f3666d2596357c84cbe9c5cd607356141f | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:06:14 to 11/19/2025 22:13:11 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 307a7bfec - 2025-11-19 16:08:48 -0600 - 11/19/2025 16:08:48
+Added in Other:
+- DFFlagTelemetryServiceAsBridge_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1262172806;2025-11-19T22:04:01 | Mechanism: Uses a telemetry service to track and analyze game data. | Purpose: Helps developers understand player behavior for better game experiences.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 19175a7e617a0a4574d9060d1e508a473047d647 to 8c6bef35ef6e0b6c2abb9d40aaaa39ddbc268ed8 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 22:05:48 to 11/19/2025 22:06:14 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 19175a7e617a0a4574d9060d1e508a473047d647 to 8c6bef35ef6e0b6c2abb9d40aaaa39ddbc268ed8 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 22:05:48 to 11/19/2025 22:06:14 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 960744f6b - 2025-11-19 16:06:25 -0600 - 11/19/2025 16:06:25
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from b29dc2f9f0971d53435d732651db9546d9ef463a to 19175a7e617a0a4574d9060d1e508a473047d647 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:55:52 to 11/19/2025 22:05:48 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b29dc2f9f0971d53435d732651db9546d9ef463a to 19175a7e617a0a4574d9060d1e508a473047d647 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:55:52 to 11/19/2025 22:05:48 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 08a98ee2e - 2025-11-19 15:57:34 -0600 - 11/19/2025 15:57:34
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from c5e364b435b121be31a3adfd06f0ab0656bd9856 to b29dc2f9f0971d53435d732651db9546d9ef463a | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:54:26 to 11/19/2025 21:55:52 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from c5e364b435b121be31a3adfd06f0ab0656bd9856 to b29dc2f9f0971d53435d732651db9546d9ef463a | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:54:26 to 11/19/2025 21:55:52 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 0c33fb62b - 2025-11-19 15:55:14 -0600 - 11/19/2025 15:55:13
+Added in Other:
+- FFlagFixGridContentSize_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:50:09 | Mechanism: Correcting the calculation of content size in grid layouts. | Purpose: Ensures that items in grids are displayed correctly and consistently.
+- FFlagStopBubbleChatReactWarning_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;349345942;2025-11-19T21:51:01 | Mechanism: Disables warning messages in bubble chat when using React. | Purpose: Reduces interruptions for players using bubble chat, making conversations smoother.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 72330ec23c9676632d726e74b337623037736058 to c5e364b435b121be31a3adfd06f0ab0656bd9856 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:52:22 to 11/19/2025 21:54:26 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 72330ec23c9676632d726e74b337623037736058 to c5e364b435b121be31a3adfd06f0ab0656bd9856 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:52:22 to 11/19/2025 21:54:26 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## d20f04422 - 2025-11-19 15:52:51 -0600 - 11/19/2025 15:52:51
+Added in Other:
+- FFlagFixGridMinSize_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:48:54 | Mechanism: Adjusts the minimum size of grid elements in the UI. | Purpose: Improves layout consistency and appearance of user interfaces.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 20fef9fec6b897dc10680259fcd3531bdbb361f4 to 72330ec23c9676632d726e74b337623037736058 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:47:56 to 11/19/2025 21:52:22 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 20fef9fec6b897dc10680259fcd3531bdbb361f4 to 72330ec23c9676632d726e74b337623037736058 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:47:56 to 11/19/2025 21:52:22 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 1d7e07878 - 2025-11-19 15:50:29 -0600 - 11/19/2025 15:50:29
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from b1d27c62962c713e28bf167daeab7e5dfa62fabe to 20fef9fec6b897dc10680259fcd3531bdbb361f4 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:46:09 to 11/19/2025 21:47:56 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b1d27c62962c713e28bf167daeab7e5dfa62fabe to 20fef9fec6b897dc10680259fcd3531bdbb361f4 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:46:09 to 11/19/2025 21:47:56 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## bcaa2937f - 2025-11-19 15:48:09 -0600 - 11/19/2025 15:48:09
+Added in Other:
+- FFlagLuaAppAddVideoBlockingToEventStream_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:41:40 | Mechanism: Adds video blocking functionality to the event stream. | Purpose: Prevents unwanted video content from interrupting gameplay.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 985fdc58f5c82af1ed23a0f280b4410544808058 to b1d27c62962c713e28bf167daeab7e5dfa62fabe | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:40:50 to 11/19/2025 21:46:09 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 985fdc58f5c82af1ed23a0f280b4410544808058 to b1d27c62962c713e28bf167daeab7e5dfa62fabe | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:40:50 to 11/19/2025 21:46:09 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## c97b61579 - 2025-11-19 15:41:21 -0600 - 11/19/2025 15:41:21
+Added in Other:
+- DFFlagCLI178222_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:38:11 | Mechanism: Enables a new command line interface feature in the game engine. | Purpose: Improves developer experience by providing better tools for game creation.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 85d50f88ffcea89f58890610959c1ca6e057cd25 to 985fdc58f5c82af1ed23a0f280b4410544808058 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:34:27 to 11/19/2025 21:40:50 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 85d50f88ffcea89f58890610959c1ca6e057cd25 to 985fdc58f5c82af1ed23a0f280b4410544808058 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:34:27 to 11/19/2025 21:40:50 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 4462118f2 - 2025-11-19 15:38:59 -0600 - 11/19/2025 15:38:59
+Added in Other:
+- FFlagSongDetailsPageDesignPass_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:31:29 | Mechanism: Implements a new design for the song details page in the music section. | Purpose: Improves the user experience by making it easier to find and enjoy music-related content.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 8e73251f5502e6e1443339be99d84d1ea9a170eb to 85d50f88ffcea89f58890610959c1ca6e057cd25 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:18:33 to 11/19/2025 21:34:27 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 8e73251f5502e6e1443339be99d84d1ea9a170eb to 85d50f88ffcea89f58890610959c1ca6e057cd25 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:18:33 to 11/19/2025 21:34:27 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 52b2130e5 - 2025-11-19 15:19:38 -0600 - 11/19/2025 15:19:37
+Added in Other:
+- DFFlagBase64NewDecodeReport_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;704954588;2025-11-19T21:14:34 | Mechanism: Updates the way data encoded in Base64 is decoded for reporting purposes. | Purpose: Improves the accuracy and reliability of data reports for developers.
+- DFFlagBase64NewDecodeWarning_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;704954588;2025-11-19T21:14:34 | Mechanism: Introduces a warning system for outdated Base64 decoding methods. | Purpose: Informs developers to update their code for better security and performance.
+- DFIntBase64NewDecodeReportHundredthsPercentage_Staged = 10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;704954588;2025-11-19T21:14:34 | Mechanism: Introduces a new method for reporting decoding performance in a more precise format. | Purpose: Helps developers optimize their games by providing detailed performance metrics.
+- FFlagFixGrassSurfaceLightShading_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T21:16:32 | Mechanism: Adjusts the way light interacts with grass surfaces in the game engine. | Purpose: Improves the visual appearance of grass by making it look more realistic under different lighting conditions.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 2ca872652049deb7a14787fedc4f217e249b1782 to 8e73251f5502e6e1443339be99d84d1ea9a170eb | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:13:24 to 11/19/2025 21:18:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 2ca872652049deb7a14787fedc4f217e249b1782 to 8e73251f5502e6e1443339be99d84d1ea9a170eb | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:13:24 to 11/19/2025 21:18:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 10fdd3ea6 - 2025-11-19 15:14:58 -0600 - 11/19/2025 15:14:58
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 9c71d5e508fc1c2b7d1ff0f843e2609f4b83ea40 to 2ca872652049deb7a14787fedc4f217e249b1782 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:11:37 to 11/19/2025 21:13:24 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 9c71d5e508fc1c2b7d1ff0f843e2609f4b83ea40 to 2ca872652049deb7a14787fedc4f217e249b1782 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:11:37 to 11/19/2025 21:13:24 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## ec26cb0e0 - 2025-11-19 15:12:36 -0600 - 11/19/2025 15:12:35
+Added in Other:
+- DFIntWrapDeformerEventHundredthsPercentage_Staged = 10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;23609967;2025-11-19T21:09:54 | Mechanism: Adjusts how deformation events are processed in the game engine. | Purpose: Allows for more precise animations and movements, making characters and objects look better.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 0ec54712fbdea0ee811e9872158f10c07b334007 to 9c71d5e508fc1c2b7d1ff0f843e2609f4b83ea40 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 21:09:04 to 11/19/2025 21:11:37 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 0ec54712fbdea0ee811e9872158f10c07b334007 to 9c71d5e508fc1c2b7d1ff0f843e2609f4b83ea40 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 21:09:04 to 11/19/2025 21:11:37 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## ab9e068af - 2025-11-19 15:10:13 -0600 - 11/19/2025 15:10:13
+Added in Other:
+- DFFlagVoiceChatRoomCreationOnFirstUserJoin = True | Mechanism: Enables voice chat rooms to be created when the first user joins. | Purpose: Allows players to start voice chatting immediately when they enter a game.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 38e91fb7363d6c73e3bb44a7569e21d23d4c50e7 to 0ec54712fbdea0ee811e9872158f10c07b334007 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:58:49 to 11/19/2025 21:09:04 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 38e91fb7363d6c73e3bb44a7569e21d23d4c50e7 to 0ec54712fbdea0ee811e9872158f10c07b334007 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:58:49 to 11/19/2025 21:09:04 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- DFFlagVoiceChatRoomCreationOnFirstUserJoin_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;2128335163;2025-11-19T20:02:42) | Mechanism: Allows a voice chat room to be created automatically when the first user joins a game. | Purpose: Facilitates instant communication among players, enhancing social interaction right from the start.
+
+## 5df1c6c39 - 2025-11-19 15:01:17 -0600 - 11/19/2025 15:01:17
+Added in Other:
+- FFlagRelativeSkinningTransferEnabled3 = True | Mechanism: Allows for more efficient skinning transfer between models. | Purpose: Enhances character animations and model compatibility.
+- FFlagRemoveDeprecatedValidationChecks = True | Mechanism: Eliminates old checks that were no longer necessary in the code. | Purpose: Streamlines the game development process, allowing for smoother gameplay.
+- FFlagUGCValidationEyebrowEyelashSupport = True | Mechanism: Enables validation for user-generated content related to eyebrows and eyelashes. | Purpose: Allows players to create and use more detailed character customization options.
+Added in Body:
+- FFlagWarnDropSpecialJointsBodyPartSkinnedOnly = True | Mechanism: Issues a warning when special joints are used only with skinned body parts. | Purpose: Informs developers to prevent potential issues with character animations.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 913f8cfa27c9e5299c2a3bc8516de856847f0497 to 38e91fb7363d6c73e3bb44a7569e21d23d4c50e7 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:51:12 to 11/19/2025 20:58:49 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 913f8cfa27c9e5299c2a3bc8516de856847f0497 to 38e91fb7363d6c73e3bb44a7569e21d23d4c50e7 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:51:12 to 11/19/2025 20:58:49 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagRelativeSkinningTransferEnabled3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;615573542;2025-11-19T19:54:24) | Mechanism: Enables a new method for transferring skin settings between characters. | Purpose: Allows for more personalized character appearances, enhancing player customization.
+- FFlagRemoveDeprecatedValidationChecks_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;615573542;2025-11-19T19:54:24) | Mechanism: Eliminates old validation checks that are no longer needed. | Purpose: Streamlines game performance by removing unnecessary checks.
+- FFlagUGCValidationEyebrowEyelashSupport_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;615573542;2025-11-19T19:54:24) | Mechanism: Adds support for validating eyebrow and eyelash assets in user-generated content. | Purpose: Ensures that players can create and use more diverse and detailed character customizations.
+Removed in Body:
+- FFlagWarnDropSpecialJointsBodyPartSkinnedOnly_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;615573542;2025-11-19T19:54:24) | Mechanism: Triggers a warning when special joints are dropped from skinned body parts. | Purpose: Helps developers avoid issues with character animations by alerting them about potential problems.
+
+## 27c4e5fad - 2025-11-19 14:54:28 -0600 - 11/19/2025 14:54:27
+Changed in Other:
+- DFFlagInitTombstoneAfterBlockingFetch3 changed from True to False | Mechanism: Changes how data is initialized after a fetch operation is blocked. | Purpose: Enhances game stability by ensuring data is handled more reliably.
+- DFFlagWriteFlagCacheAfterFlagFetch2 changed from True to False | Mechanism: Updates the cache after fetching flag values. | Purpose: Enhances performance by reducing the need to repeatedly fetch flag values.
+- DFStringFlagRepoGitHashDynamicString changed from 3d68dd602c3272ac5602fbc7e87a341f87eb8d77 to 913f8cfa27c9e5299c2a3bc8516de856847f0497 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:47:50 to 11/19/2025 20:51:12 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 3d68dd602c3272ac5602fbc7e87a341f87eb8d77 to 913f8cfa27c9e5299c2a3bc8516de856847f0497 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:47:50 to 11/19/2025 20:51:12 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## f62af7fcd - 2025-11-19 14:49:58 -0600 - 11/19/2025 14:49:58
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 9511fc7ae89f0ed2a0ca34f95942b506e7704b5c to 3d68dd602c3272ac5602fbc7e87a341f87eb8d77 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:43:03 to 11/19/2025 20:47:50 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 9511fc7ae89f0ed2a0ca34f95942b506e7704b5c to 3d68dd602c3272ac5602fbc7e87a341f87eb8d77 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:43:03 to 11/19/2025 20:47:50 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## fbc29ee86 - 2025-11-19 14:45:20 -0600 - 11/19/2025 14:45:19
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 94d42ec4801dede72e4affbba1034297961ed3b9 to 9511fc7ae89f0ed2a0ca34f95942b506e7704b5c | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:22:07 to 11/19/2025 20:43:03 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 94d42ec4801dede72e4affbba1034297961ed3b9 to 9511fc7ae89f0ed2a0ca34f95942b506e7704b5c | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:22:07 to 11/19/2025 20:43:03 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## e7093cc31 - 2025-11-19 14:23:22 -0600 - 11/19/2025 14:23:22
+Added in Graphics:
+- FFlagUseTextureTranscoderClientConfig = True | Mechanism: Utilizes a new system for handling textures on the client side. | Purpose: Enhances the visual quality and performance of textures in games.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 5c4297a228d762a7a96c8cb755d9ed4c971d7773 to 94d42ec4801dede72e4affbba1034297961ed3b9 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:18:19 to 11/19/2025 20:22:07 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 5c4297a228d762a7a96c8cb755d9ed4c971d7773 to 94d42ec4801dede72e4affbba1034297961ed3b9 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:18:19 to 11/19/2025 20:22:07 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Graphics:
+- FFlagUseTextureTranscoderClientConfig_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T19:17:32) | Mechanism: Enables a new system for converting textures on the client side. | Purpose: Improves the quality and performance of textures in games.
+
+## 18e2e5f1c - 2025-11-19 14:21:03 -0600 - 11/19/2025 14:21:03
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from a10162f4093f2c6d129b5cd2ea6f8d45b82f3443 to 5c4297a228d762a7a96c8cb755d9ed4c971d7773 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:17:56 to 11/19/2025 20:18:19 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from a10162f4093f2c6d129b5cd2ea6f8d45b82f3443 to 5c4297a228d762a7a96c8cb755d9ed4c971d7773 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:17:56 to 11/19/2025 20:18:19 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 16b922d20 - 2025-11-19 14:18:37 -0600 - 11/19/2025 14:18:37
+Added in Other:
+- FFlagUseNewDiscoverabilityModal_v2 = True | Mechanism: Introduces an updated modal for discovering games and experiences. | Purpose: Improves how players find new games, making it easier to discover fun content.
+Changed in Other:
+- DFFlagEnableLuaApiToRegisterEncryptedAssets_PlaceFilter changed from true;5646917919;5535247402;5650743011;5732185084;5796554295;5796546949;5796518985;5792232897;5790039516;5938526032;5180703112;5036207802;5947859215;5976554489;5967514178;5762783081;4927429832;5271804927;6225076142;6037119605;6313620339;5064251723;6409082143;6366043734;6366019895;5853107391;6303851272;6525184819;6462090760;6536060882;6656109940;6651400444;6833753645;6714103515;4640354700;537413528;6072880991;5388509011;6842406841;6763975907;6810569772;6836529297;5162124741;6242296404;893973440;6555759299;3272174207;2817429547;455327877;6923264315;6876683880;7085107422;6985067462;6994744290;6994747143;6994748760;6994750558;6999960212;7172485708;7085418723;7085416132;7085412189;7198250439;7236522784;7245550076;7234259327;7234162497;6679274937;3101667897;2913303231;364802243;815405518;277751860;6888253864;3457390032;4947425425;3689690770;756247480;285063827;5097010345;5111071793;7331970543;7277505766;7277502454;7277500013;7277498004;7277488595;6073366803;6764786757;5063122755;5579439108;698448212;706824758;447452406;5802642341;5233782396;7317639465;3475397644;4390337206;629119226;7489842410;5542348564;6774662981;7252283618;7021822357;7352428641;6782499449;7665856814;7665858439;7484857336;7429189755;7427268133;7619937171;7427270590;7280776979;7852580088;7711545622;7682549746;8519873016;8600776606;8430712643;8267821593;8523408215;8656125900;8656131552;8323392614;8209480473;8649501395;8526353932;8190625873;8451491417;8967359816;8430716410;8430720021;8691928149;8893378293;8893376837;8893375234;9230434873;9230346239;9244015146;6704278765;8528736393;8257697092;9288568020;9279671395;9426082120;9470653946;9379021494;9432710689;9424457125;4672922401;8583038000;4448566543;4543144283;4042427666;253431746;5974747216;6594198779;2533391464;8020984414;680750021;8778105026;5552313358;9297923091;6933439918;3956818381;4209071254;3623096087;3947737541;8983893891;9272701767;5074204685;5113678354;5089420081;5113680396;5101838579;5445525505;5237652005;6479720355;6152695332;9386500519;8988878415;5205771996;844441865;9449357539;9449346312;9449322773;9449312253;9449300051;5578992252;2056597445;9604473769;9666345834;9670497620;6536120621;9724177376;9769345912;4850718823;9300407930;6639766;6737970321;6599438732;9800475426;9291030453;9411975514;9648880560;9542881071;9552022794;9648883891;9648888455;9660279665;9708947809;9809534920;9463737803;9862870352;9862849972;9862789592;9894900344;9479367099;9486506804;9922817401;10002051672;10001920797;9982801024;9709393094;9659989778;9563367175;9997709290;10054526037;9465859374;9938883474;10113002281;10096544537;6445973668;6447798030;6996694685;8847312489;10190394336;10191408952;9423318797;10272293170;9314466589;10285554184;10057963710;10435224215;10146432319;10465853247;10465873968;9129288160;9134839143;9803810042;10201978992;10381578920;9717701801;9134941656;6837934317;9495369236;10217794885;10692093600;10695302524;10445615061;9524757503;10919330567;10895555747;10768305459;10912060909;11088788925;11110464593;11002897309;11116169215;11116168996;11116167810;11116167943;11109117989;10928399479;10966838056;10928411159;5289509545;4640368528;6023903686;11008022191;11138479969;11138508272;11115477432;11189492685;11189163544;11237748076;11237759266;11237755090;11237755215;11237755035;10894180429;10957579790;11315351400;11278516344;11286999367;11309534295;11287011130;11309714627;10695312682;11436221007;11444932478;11450899603;11497622549;11504321677;11498022323;11508738359;11508738629;11509888388;10720270804;9249776514;9049840490;9442460702;9280212924;8633070661;8472419479;11638764033;10126768872;11110455694;5326576507;5913722875;6386911572;8979173396;9125662619;9125667996;9916502094;11658541192;11105064323;10956766913;6737935903;9356050413;10900725936;11566389687;11566385150;11707114324;11697170413;11707130433;11707134020;11707136082;9616411936;11268121492;12113006580;12128024661;11504594758;12204626493;11946824905;3512481881;10752876846;9667175956;5938036553;11716079088;12331642939;11432287153;12268627706;12146837523;11302971424;12357661992;6766156863;12494616651;12202678406;4398851468;12670139300;12498843001;12519296046;12734535169;12734143030;12206689536;10762579692;11155913359;11758008778;12801867915;12955585971;12955639113;11777418254;12949951201;4580204640;6739798578;11840234178;11840243894;11849563578;11775512993;6350157277;5614144350;4111023553;5735553160;6032399813;6473861193;8668476218;4623386862;12983981151;10277607801;10277635599;10290363458;13022188319;12928836670;8665926945;12850021634;11808691145;12282826305;11377247691;8980446061;9346039031;2737661792;2871773892;3494556606;13413015814;2228128339;10048866629;4642718405;13166315054;12340070029;13388158627;13328383256;13602654181;7087982069;7226318833;12656847041;9607498518;7364683673;13408202978;9682240267;9346060856;13542186363;12566669965;12566670192;12566670531;12566670877;12566671127;12566671353;12566671529;12566671737;12566671942;12566672165;12566672378;12566672541;13671265268;13523140789;13413186900;13413150992;13190787726;13674000186;13539427431;13684472299;12108137135;12812062986;13581272176;13753433201;13539297457;13389095726;13260947739;12402722213;13324911372;13324917013;13403099993;4765976371;6507422231;13967475781;13104723083;7772134508;13978720221;13982397897;10211636793;12512626432;10894135377;14094603479;4996049426;10466293565;14112350669;14190161262;14190165276;13692908073;8003641817;11258371342;4014729424;14198802909;14050316710;6876897961;14298053780;14102374323;13913497984;13747937824;13279293321;14110497434;14550810567;3989527087;7830918930;14278574000;14618379101;4822723634;3386147714;14708622235;14708625196;14437915609;14702261217;14760955024;14106184172;14748762848;14700018413;14700503536;14700037385;14783054482;14700032079;14760646478;14700025324;14817872760;14100328983;14813042848;14745955429;14785438081;14889649635;14301956564;14263572229;10070780439;14478075491;14892572912;13279101556;13279104395;13279081722;13315930375;13433158135;14627078551;14898749542;14834598561;9979991670;14449036946;11806684300;12094311187;14968769349;2249956087;3670530550;903807016;9952774534;2534724415;6158369151;14890468710;11431489908;11240751480;11573230049;12804938725;11696224952;13326568190;8262636746;4823774310;4863502867;4692956554;14213578663;15018756870;15018759110;15019079127;15027905565;15090768015;15097774866;15121102278;13916945181;14042308512;13492762057;15154640283;14833076643;14565246812;14445068355;14445063204;13730658693;13730660420;13546112315;13324919767;5250557412;15229379003;14612279970;14520214356;15089099874;14618179455;14754487835;14976126374;15046883807;15220477368;13183511038;14884154051;12397515839;13886771215;15239190282;12661593618;13875657202;15230762576;7041939546;7061415250;15366303335;15360735397;14912173667;15246188138;14300294394;13978562365;13771684349;12631800770;12716371164;14042248442;11781338235;5972698540;1554960397;15148898765;15148887622;2274830359;5359990748;8003084678;15361532537;15548658643;11592468118;12572342856;12494782517;12596416224;12596420088;15559053838;15486683455;6804602922;6830203652;568350650;14184086618;15566395852;15565261877;4627817111;4627817882;4639006255;4674634750;4627871235;5045167247;14484579599;11383187368;11383187525;11383187688;11383188211;12275304058;15048215990;15230534913;15633063575;15633046194;15611620603;15872966840;15872999606;15883311692;15883312942;15883314575;15883381991;15035125923;14110608221;14110899148;14124909045;14308670761;6205205961;6364879587;6364881161;6391540653;6391642302;6463986562;6481131111;6507405695;6815760584;8709253565;15720304364;6413499953;15530488927;16006097169;6165038613;5785490105;5481779891;5481761946;5574814408;6238835427;6276061207;6517499261;6878610938;6866493186;7113825039;7116381283;7116702046;7116359883;7143609862;7409347440;7904559949;7904610383;7934323316;8232694369;8243032172;9405899288;9409201333;10430910649;11632100181;11632077138;11640052933;11793382673;11856129049;15705559027;15629541460;11632126721;8510589470;4241852625;8404684575;14238596528;15010814218;13184713709;13609999411;15696392675;15554979176;15555009597;15555152237;14696958202;5771467270;7308170886;5504135235;15918047570;3576787348;11863357640;12487789640;15123266349;16078980231;16078985058;16259243391;16199184400;16078983738;16256557884;16203696851;16258504798;16168372772;16256672025;16078982297;16289193441;11366343566;16283785212;15515633443;15432848623;15483728847;15015456533;16289193823;16351911381;5639479940;16013491402;5535744734;15553342068;5368632441;15513125039;5353488433;16462849084;16163726449;15481776731;14970015233;16465872867;15285658486;15574462881;16570021747;15254104733;844929123;166986752;16354460415;16537295657;14332741391;14345214315;14486832259;16628495726;13882183199;16447494654;15548888898;5721793369;5682917257;5363158649;15638731415;16866591880;16786806972;16805529755;16735914512;16719116735;16654319710;16646736918;16209331599;16565225470;15916274203;16252850662;16210529796;16185337739;16174846197;15354926906;15943789199;15544198652;15411224440;15370306777;15346604540;16806284145;16796346149;16732995612;16713027401;16296040578;16673347100;16970181235;16970189449;16970183654;16970185950;16970187260;16970191534;16970192771;16970193905;16637432168;16660479433;13000007654;16460694373;16429345261;16800307723;16725378671;16379598396;15489966249;16796377224;17065989459;17088952586;16739990874;15872961954;16630328183;16499205169;17183094198;16640867537;14266068291;14303756636;14709768053;17256291280;17181515306;17256293951;17256296185;17256298653;17256301033;17256075762;17256096568;17256118997;17256143199;13800717766;16849012343;15479377118;15334341098;16871709896;17327040230;17327030059;16434644938;15538708440;12129789607;6377740507;17490721006;17488220782;17373029266;13421266463;14895087162;12985361032;12985341499;12363313138;14704943644;17269346759;17269340201;17269292417;17480205349;17575492616;17575497513;17076563795;17556040524;17556037890;17659529447;16369023184;16369025010;17332451684;17116212498;16297600456;15992589987;15622887088;15164938644;17269297441;17336468238;17336471113;17336471400;17727263108;17727262816;17727262513;17727262301;17727205351;17727205123;17727204955;17727204653;17480206543;17563605831;17563608327;17563610497;16288561317;15218427871;15357970630;6934310111;14051757935;16017695597;17077627629;17356064588;16647545765;13398434647;13398230007;16890428355;13176058901;17569162537;17600179329;17600190676;17811870593;17495653641;17101171811;5970984243;14448662003;17447213133;18121514822;15218407500;17083366577;15843953438;15843957836;15843961264;17067024883;18341914628;17718083590;17576185251;17577101777;18195358934;18223727140;5297405973;18513265196;17578715653;17578711181;8737602449;8943844393;15611066348;14569410003;13415640045;14926164818;14879081274;8034026074;17811071580;18296260757;18112157688;17811079407;18111172516;18605830527;18397110912;18727659869;18503770332;18395887647;18536844330;18134433503;9859576867;8712817601;18734197659;14409368297;18654827953;18820482579;18727723068;18849518367;15486520864;18849588189;18849588625;18849589457;18963014717;14055498520;14891410939;18995954092;16110149934;19002847336;17230784439;18657144315;99590779149212;539960592;13691484057;15687370918;14775339176;2414851778;6052033819;4107728990;14943334555;2506552320;2727067538;2978693500;3582895165;2727072708;3165900886;3029833262;3383444582;3180260667;3885726701;3876515985;3994953548;3868367216;4050468028;3964647716;4310463616;2801784955;2978696440;4201860144;4310464656;4202491340;4310476380;4202709630;4310478830;4202959435;4310785330;4202976484;4310463940;3313821175;4465987684;4750776109;4465989998;4332744642;4465989351;4426374899;4465988196;4434431676;4526768266;15497256167;4617426261;4602326358;4646475570;4599453198;4646473427;4597651359;4646472003;3441138667;4646475342;3269109671;5703355191;5033247187;5703353651;5408429442;6075085184;5893171846;6075083204;6032934718;6386112652;6333155637;6510862058;6404275837;6510868181;6467448211;6847035264;6531678809;6847034886;6745424367;7071564842;6860483493;7499964980;131022574358785;9944262922;9171204517;10089970465;9649635544;9944263348;9649638002;10014664329;9863480370;10651517727;10074837226;10651527284;10489805577;10727165164;10683162998;10795158121;10724045559;11466514043;11155720733;11533444995;11379954422;11644048314;11530295305;14914684761;13741906191;13988110964;13661903549;14400549310;14213731433;14914700740;14692530018;14914855930;14768473411;15121292578;15025509897;75540798045662;122219842181820;125645867930579;18937883985;6101365417;6451702585;6454068948;3378819821;605887098;1701623492;3237615544;3367801828;18532003409;18228802662;18228805769;100219516754540;17808780506;87641067978449;111038871669535;8953242851;79765542592794;13423217832;134964516922646;5968388453;15855634668;16003793902;7305309231;15893203988;16033532219;126259681759948;17656935206;89410048034357;8472851459;8916037983;4954752502;79710108840469;11572762117;17670743999;71367782943796;16549917043;16703458787;132007474810089;18973713348;18139069423;13451596695;18440166505;12177325772;96695025808213;135229885104482;83692298883909;6073537839;88817926315458;104729035207525;76626266837363;113487357420897;107879176226772;130871423490486;11137575513;12943247001;12943245078;80005067957132;3818155097;3647333358;10324346056;10324347967;10662542523;10808838353;11353528705;96537472072550;99214917572799;18860937012;18860985311;115513358987315;129543795429973;18860934161;18860987667;17731318051;138811103914348;16732694052;131579468225600;11765402359;11828796994;5324719298;5342986949;6758497682;73848637067536;14900087266;119794400485251;80450830186028;88311415897149;119410252629691;103823923570615;110371647221022;96418538200619;7051736361;114220575509759;79372260836317;115243862171595;74712767707170;18752369972;129681463747237;78914719040186;15871955418;76762995566774;12641272458;6939111033;6426944918;137544427935459;15032994029;118706441243120;13389049867;10760024537;9281034297;15218831594;113029417107834;139040426524819;107286136869541;16126108459;14913354249;81793885962794;118556668407391;18647920435;88364323402553;109285335492645;128621093194805;123662243100680;112642345119817;18647956169;104526133535566;90753913217772;89161734699335;137461635848196;116697817957558;5750914919;6756890519;96005412559462;2548976609;2546612479;114907227214588;89227693986075;88342891966226;140080535032062;72073166002331;77221396426833;81319559867791;81737495082190;85341391356499;87351379991751;89712649086456;92911136919199;95324606076674;102435660805182;103275072481933;108343132674489;113050446018685;117785409277711;124000207868671;125165007426523;126865137021740;131981552061642;132643889235480;18668065416;92517437168342;99999183305180;115110570222234;73425816668928;88233429548268;130739873848552;82710350236919;71580765918830;94170955089948;16909704232;101394944107806;104746643025210;119038667082595;95448143850147;139548786112139;96804383423412;124660577261950;122819728171185;132004114310511;787988004728135;129230994638464;73708914208963;98118902024430;132935874487897;90216279544722;77915441816737;87014900491609;79018097401349;85774300903718;120428153057168;97872047573441;134772811582797;72534188920161;138993958163764;102018283146594;78037392664516;79895744759186;117860234965291;125337041623563;17840501830;72190557439380;70454767164205;91733245171139;91228542222122;130888608591113;124948436023758;7450497506;75663528075786;118304171612688;79174624435953;116296033709863;83545284007309;130651760577349;122825844998639;135381296103877;96265145951044;78026056611611;7720048224;96077916226556;97056995744329;100277824753624;103793593586394;138811411414576;12640491155;125889350453386;16590754220;16978845877;80611835622737;102716401412280;96902541318046;15351762625;13772394625;14486733015;127966866038346;125654797564410;125247930279216;107447262204970;89872700617308;111865923474705;14368557094;14732610803;14907104587;14915220621;15092011734;15106881665;15131065025;15131070225;15144787112;15181537975;15185247558;15227672707;15229817314;15234596844;15264892126;15351763826;15351764032;15351764187;15351764348;15351764507;15351764740;15351764881;15351764966;15351765130;15462212483;15509346379;15509350986;15509357472;15517169103;15552588346;15552625961;15582813408;15582821022;15582823307;15582834071;15582835531;16031521714;16031541538;16044264830;16281300371;16331595046;16331596518;16331598816;16331600459;16331633255;16331634414;16331635718;16331635995;16456370330;16581613207;16581637217;16581648071;17757578266;17757592456;75474715372485;80316691895873;92458008626219;94739503741288;84211911194381;86959746238096;79152141768156;133468541502594;78575159450955;80951765302134;105378961467772;89865052230260;81090934593448;75313569154781;89596436703421;92752656404044;126581936679803;107738647542786;10489114145;9872472334;121271605799901;17069498206;16931515487;16896790433;11761274032;11764980869;16926077853;11753029192;13965228772;102916117017468;121372427435947;119952687833295;112898865140956;124044706645343;135456035952103;93804003372568;124248440864832;18334179599;16389395869;16844101122;76603224491021;83370733060419;103479080416741;101128307729202;107731702241186;122645084125812;78529064493417;130112681881594;139392011420826;115700747039144;78517252105400;73484909444934;114347154312193;74815645991109;18248633989;17698425045;86098085533596;118758941554698;17750719380;96628744411718;113567868263978;74475530512823;128778160701214;140223498612774;125156298745329;118535429818702;89703062547673;103883018654651;140287841692914;3010276628;111014975161818;102605854369937;11158043705;17747224478;102730218405996;104676452414043;119369863786092;118524425609297;86955381046056;8472085082;90203410635303;72723436074493;110708547231329;103650844120570;87868857007174;93481552663411;112564920810158;109983668079237;96342491571673;128762245270197;120148879522453;73226809349189;119602771011506;127732283735594;125461249438738;87445296052708;136517679309458;15768329004;108059757699905;70542636057631;101606960500983;103349603274756;89343390950953;93651812913748;15101393044;15642262165;15642275269;17481176031;89606894431558;127076465038391;93577264377184;91732685148261;138937299583930;78572645499619;122061917549078;106153673498996;95047916580305;133400153206637;110470525256662;123468479998097;82441850250520;116185509299834;81072337989394;96652240771528;98881331868329;108204315743653;109533232275124;121269997456920;124184374777402;111145810816450;3233351170;8458974184;72178041068475;130859235108277;86962954395779;77162302089899;6931042565;134314141048307;109684591839194;74691681039273;73956553001240;96802054849934;86789627188240;79136731857959;103521881639626;117134837736236;7099263384;93507193197337;127230203073079;70882603136659;127978196002690;77569554466776;128311527873732;80289684342936;122273223414774;78499094786141;107214420833891;133370458228346;90688392698752;89752387031554;103658027677245;105764668548382;87706612753421;128997103569769;96223451292903;96604744451060;95445450782680;90346996348563;76800900334648;131082319718215;110321186768296;8248004705;119058117746091;95815562184695;72293243384445;140159579197170;120064291937900;107757296388993;140104197573447;124991631436250;72277410833409;87773427230428;82298052173374;122241151273608;112849554065563;75333462792994;130160244117542;74185370550900;86517463532234;118814182678109;93561553871338;108462619394007;14021953565;124087144919678;123439661582156;124532804761244;100349497885381;127104365805084;126953033317926;106560355070751;140358213724897;114181481862155;80010340277260;140429793519388;134497530231879;136409236554789;86522549610893;95656979989750;71683821699644;85265340826775;121928784820997;77638307191108;92626170235541;104548429314536;6325068386;80219362391408;129027544628653;115594497201999;103332930661641;72921500494845;139434932554684;136505972636980;94991053520125;72995931205549;108862151633853;5901440255;6119570238;6126992207;105814505642482;74588338744555;97589732026842;85513756910439;93366760336122;77977481651141;17026065260;17026079202;17026081473;17026082885;17026083128;17026083473;17026083734;17026084038;17026084803;17026085546;17671143350;17671143714;17671144394;17671148230;18605534919;116238950016910;129525666081265;2338325648;4822225642;4940687511;7097139127;7098347455;7098347570;11414445247;12770493773;12986634964;12986636453;12986638725;13415948659;13834702475;14801724413;15098628040;17685156577;17685159087;17685161741;17685164681;17685181130;93001350941802;125444254609144;124335066106952;4924922222;11981280399;12446587737;4566572536;91751877679930;126884695634066;140398800602847;96443646410175;84663621619610;138349771708864;131456775839122;138137777772420;134614543668802;79368714145670;132151526704941;92106543276146;98573759838033;110125451314286;115600257231423;95183590295663;81493541492179;85239275355743;16625391970;18650866518;18895717031;11452349236;80951089371762;5136040124;5136248000;3405618667;3523688332;3237397989;3474940993;3975583821;4994548435;6281216515;4179732320;6902944446;9053214954;70876832253163;133377094302868;128842011385105;140202562685639;16448271523;17168246061 to true;5646917919;5535247402;5650743011;5732185084;5796554295;5796546949;5796518985;5792232897;5790039516;5938526032;5180703112;5036207802;5947859215;5976554489;5967514178;5762783081;4927429832;5271804927;6225076142;6037119605;6313620339;5064251723;6409082143;6366043734;6366019895;5853107391;6303851272;6525184819;6462090760;6536060882;6656109940;6651400444;6833753645;6714103515;4640354700;537413528;6072880991;5388509011;6842406841;6763975907;6810569772;6836529297;5162124741;6242296404;893973440;6555759299;3272174207;2817429547;455327877;6923264315;6876683880;7085107422;6985067462;6994744290;6994747143;6994748760;6994750558;6999960212;7172485708;7085418723;7085416132;7085412189;7198250439;7236522784;7245550076;7234259327;7234162497;6679274937;3101667897;2913303231;364802243;815405518;277751860;6888253864;3457390032;4947425425;3689690770;756247480;285063827;5097010345;5111071793;7331970543;7277505766;7277502454;7277500013;7277498004;7277488595;6073366803;6764786757;5063122755;5579439108;698448212;706824758;447452406;5802642341;5233782396;7317639465;3475397644;4390337206;629119226;7489842410;5542348564;6774662981;7252283618;7021822357;7352428641;6782499449;7665856814;7665858439;7484857336;7429189755;7427268133;7619937171;7427270590;7280776979;7852580088;7711545622;7682549746;8519873016;8600776606;8430712643;8267821593;8523408215;8656125900;8656131552;8323392614;8209480473;8649501395;8526353932;8190625873;8451491417;8967359816;8430716410;8430720021;8691928149;8893378293;8893376837;8893375234;9230434873;9230346239;9244015146;6704278765;8528736393;8257697092;9288568020;9279671395;9426082120;9470653946;9379021494;9432710689;9424457125;4672922401;8583038000;4448566543;4543144283;4042427666;253431746;5974747216;6594198779;2533391464;8020984414;680750021;8778105026;5552313358;9297923091;6933439918;3956818381;4209071254;3623096087;3947737541;8983893891;9272701767;5074204685;5113678354;5089420081;5113680396;5101838579;5445525505;5237652005;6479720355;6152695332;9386500519;8988878415;5205771996;844441865;9449357539;9449346312;9449322773;9449312253;9449300051;5578992252;2056597445;9604473769;9666345834;9670497620;6536120621;9724177376;9769345912;4850718823;9300407930;6639766;6737970321;6599438732;9800475426;9291030453;9411975514;9648880560;9542881071;9552022794;9648883891;9648888455;9660279665;9708947809;9809534920;9463737803;9862870352;9862849972;9862789592;9894900344;9479367099;9486506804;9922817401;10002051672;10001920797;9982801024;9709393094;9659989778;9563367175;9997709290;10054526037;9465859374;9938883474;10113002281;10096544537;6445973668;6447798030;6996694685;8847312489;10190394336;10191408952;9423318797;10272293170;9314466589;10285554184;10057963710;10435224215;10146432319;10465853247;10465873968;9129288160;9134839143;9803810042;10201978992;10381578920;9717701801;9134941656;6837934317;9495369236;10217794885;10692093600;10695302524;10445615061;9524757503;10919330567;10895555747;10768305459;10912060909;11088788925;11110464593;11002897309;11116169215;11116168996;11116167810;11116167943;11109117989;10928399479;10966838056;10928411159;5289509545;4640368528;6023903686;11008022191;11138479969;11138508272;11115477432;11189492685;11189163544;11237748076;11237759266;11237755090;11237755215;11237755035;10894180429;10957579790;11315351400;11278516344;11286999367;11309534295;11287011130;11309714627;10695312682;11436221007;11444932478;11450899603;11497622549;11504321677;11498022323;11508738359;11508738629;11509888388;10720270804;9249776514;9049840490;9442460702;9280212924;8633070661;8472419479;11638764033;10126768872;11110455694;5326576507;5913722875;6386911572;8979173396;9125662619;9125667996;9916502094;11658541192;11105064323;10956766913;6737935903;9356050413;10900725936;11566389687;11566385150;11707114324;11697170413;11707130433;11707134020;11707136082;9616411936;11268121492;12113006580;12128024661;11504594758;12204626493;11946824905;3512481881;10752876846;9667175956;5938036553;11716079088;12331642939;11432287153;12268627706;12146837523;11302971424;12357661992;6766156863;12494616651;12202678406;4398851468;12670139300;12498843001;12519296046;12734535169;12734143030;12206689536;10762579692;11155913359;11758008778;12801867915;12955585971;12955639113;11777418254;12949951201;4580204640;6739798578;11840234178;11840243894;11849563578;11775512993;6350157277;5614144350;4111023553;5735553160;6032399813;6473861193;8668476218;4623386862;12983981151;10277607801;10277635599;10290363458;13022188319;12928836670;8665926945;12850021634;11808691145;12282826305;11377247691;8980446061;9346039031;2737661792;2871773892;3494556606;13413015814;2228128339;10048866629;4642718405;13166315054;12340070029;13388158627;13328383256;13602654181;7087982069;7226318833;12656847041;9607498518;7364683673;13408202978;9682240267;9346060856;13542186363;12566669965;12566670192;12566670531;12566670877;12566671127;12566671353;12566671529;12566671737;12566671942;12566672165;12566672378;12566672541;13671265268;13523140789;13413186900;13413150992;13190787726;13674000186;13539427431;13684472299;12108137135;12812062986;13581272176;13753433201;13539297457;13389095726;13260947739;12402722213;13324911372;13324917013;13403099993;4765976371;6507422231;13967475781;13104723083;7772134508;13978720221;13982397897;10211636793;12512626432;10894135377;14094603479;4996049426;10466293565;14112350669;14190161262;14190165276;13692908073;8003641817;11258371342;4014729424;14198802909;14050316710;6876897961;14298053780;14102374323;13913497984;13747937824;13279293321;14110497434;14550810567;3989527087;7830918930;14278574000;14618379101;4822723634;3386147714;14708622235;14708625196;14437915609;14702261217;14760955024;14106184172;14748762848;14700018413;14700503536;14700037385;14783054482;14700032079;14760646478;14700025324;14817872760;14100328983;14813042848;14745955429;14785438081;14889649635;14301956564;14263572229;10070780439;14478075491;14892572912;13279101556;13279104395;13279081722;13315930375;13433158135;14627078551;14898749542;14834598561;9979991670;14449036946;11806684300;12094311187;14968769349;2249956087;3670530550;903807016;9952774534;2534724415;6158369151;14890468710;11431489908;11240751480;11573230049;12804938725;11696224952;13326568190;8262636746;4823774310;4863502867;4692956554;14213578663;15018756870;15018759110;15019079127;15027905565;15090768015;15097774866;15121102278;13916945181;14042308512;13492762057;15154640283;14833076643;14565246812;14445068355;14445063204;13730658693;13730660420;13546112315;13324919767;5250557412;15229379003;14612279970;14520214356;15089099874;14618179455;14754487835;14976126374;15046883807;15220477368;13183511038;14884154051;12397515839;13886771215;15239190282;12661593618;13875657202;15230762576;7041939546;7061415250;15366303335;15360735397;14912173667;15246188138;14300294394;13978562365;13771684349;12631800770;12716371164;14042248442;11781338235;5972698540;1554960397;15148898765;15148887622;2274830359;5359990748;8003084678;15361532537;15548658643;11592468118;12572342856;12494782517;12596416224;12596420088;15559053838;15486683455;6804602922;6830203652;568350650;14184086618;15566395852;15565261877;4627817111;4627817882;4639006255;4674634750;4627871235;5045167247;14484579599;11383187368;11383187525;11383187688;11383188211;12275304058;15048215990;15230534913;15633063575;15633046194;15611620603;15872966840;15872999606;15883311692;15883312942;15883314575;15883381991;15035125923;14110608221;14110899148;14124909045;14308670761;6205205961;6364879587;6364881161;6391540653;6391642302;6463986562;6481131111;6507405695;6815760584;8709253565;15720304364;6413499953;15530488927;16006097169;6165038613;5785490105;5481779891;5481761946;5574814408;6238835427;6276061207;6517499261;6878610938;6866493186;7113825039;7116381283;7116702046;7116359883;7143609862;7409347440;7904559949;7904610383;7934323316;8232694369;8243032172;9405899288;9409201333;10430910649;11632100181;11632077138;11640052933;11793382673;11856129049;15705559027;15629541460;11632126721;8510589470;4241852625;8404684575;14238596528;15010814218;13184713709;13609999411;15696392675;15554979176;15555009597;15555152237;14696958202;5771467270;7308170886;5504135235;15918047570;3576787348;11863357640;12487789640;15123266349;16078980231;16078985058;16259243391;16199184400;16078983738;16256557884;16203696851;16258504798;16168372772;16256672025;16078982297;16289193441;11366343566;16283785212;15515633443;15432848623;15483728847;15015456533;16289193823;16351911381;5639479940;16013491402;5535744734;15553342068;5368632441;15513125039;5353488433;16462849084;16163726449;15481776731;14970015233;16465872867;15285658486;15574462881;16570021747;15254104733;844929123;166986752;16354460415;16537295657;14332741391;14345214315;14486832259;16628495726;13882183199;16447494654;15548888898;5721793369;5682917257;5363158649;15638731415;16866591880;16786806972;16805529755;16735914512;16719116735;16654319710;16646736918;16209331599;16565225470;15916274203;16252850662;16210529796;16185337739;16174846197;15354926906;15943789199;15544198652;15411224440;15370306777;15346604540;16806284145;16796346149;16732995612;16713027401;16296040578;16673347100;16970181235;16970189449;16970183654;16970185950;16970187260;16970191534;16970192771;16970193905;16637432168;16660479433;13000007654;16460694373;16429345261;16800307723;16725378671;16379598396;15489966249;16796377224;17065989459;17088952586;16739990874;15872961954;16630328183;16499205169;17183094198;16640867537;14266068291;14303756636;14709768053;17256291280;17181515306;17256293951;17256296185;17256298653;17256301033;17256075762;17256096568;17256118997;17256143199;13800717766;16849012343;15479377118;15334341098;16871709896;17327040230;17327030059;16434644938;15538708440;12129789607;6377740507;17490721006;17488220782;17373029266;13421266463;14895087162;12985361032;12985341499;12363313138;14704943644;17269346759;17269340201;17269292417;17480205349;17575492616;17575497513;17076563795;17556040524;17556037890;17659529447;16369023184;16369025010;17332451684;17116212498;16297600456;15992589987;15622887088;15164938644;17269297441;17336468238;17336471113;17336471400;17727263108;17727262816;17727262513;17727262301;17727205351;17727205123;17727204955;17727204653;17480206543;17563605831;17563608327;17563610497;16288561317;15218427871;15357970630;6934310111;14051757935;16017695597;17077627629;17356064588;16647545765;13398434647;13398230007;16890428355;13176058901;17569162537;17600179329;17600190676;17811870593;17495653641;17101171811;5970984243;14448662003;17447213133;18121514822;15218407500;17083366577;15843953438;15843957836;15843961264;17067024883;18341914628;17718083590;17576185251;17577101777;18195358934;18223727140;5297405973;18513265196;17578715653;17578711181;8737602449;8943844393;15611066348;14569410003;13415640045;14926164818;14879081274;8034026074;17811071580;18296260757;18112157688;17811079407;18111172516;18605830527;18397110912;18727659869;18503770332;18395887647;18536844330;18134433503;9859576867;8712817601;18734197659;14409368297;18654827953;18820482579;18727723068;18849518367;15486520864;18849588189;18849588625;18849589457;18963014717;14055498520;14891410939;18995954092;16110149934;19002847336;17230784439;18657144315;99590779149212;539960592;13691484057;15687370918;14775339176;2414851778;6052033819;4107728990;14943334555;2506552320;2727067538;2978693500;3582895165;2727072708;3165900886;3029833262;3383444582;3180260667;3885726701;3876515985;3994953548;3868367216;4050468028;3964647716;4310463616;2801784955;2978696440;4201860144;4310464656;4202491340;4310476380;4202709630;4310478830;4202959435;4310785330;4202976484;4310463940;3313821175;4465987684;4750776109;4465989998;4332744642;4465989351;4426374899;4465988196;4434431676;4526768266;15497256167;4617426261;4602326358;4646475570;4599453198;4646473427;4597651359;4646472003;3441138667;4646475342;3269109671;5703355191;5033247187;5703353651;5408429442;6075085184;5893171846;6075083204;6032934718;6386112652;6333155637;6510862058;6404275837;6510868181;6467448211;6847035264;6531678809;6847034886;6745424367;7071564842;6860483493;7499964980;131022574358785;9944262922;9171204517;10089970465;9649635544;9944263348;9649638002;10014664329;9863480370;10651517727;10074837226;10651527284;10489805577;10727165164;10683162998;10795158121;10724045559;11466514043;11155720733;11533444995;11379954422;11644048314;11530295305;14914684761;13741906191;13988110964;13661903549;14400549310;14213731433;14914700740;14692530018;14914855930;14768473411;15121292578;15025509897;75540798045662;122219842181820;125645867930579;18937883985;6101365417;6451702585;6454068948;3378819821;605887098;1701623492;3237615544;3367801828;18532003409;18228802662;18228805769;100219516754540;17808780506;87641067978449;111038871669535;8953242851;79765542592794;13423217832;134964516922646;5968388453;15855634668;16003793902;7305309231;15893203988;16033532219;126259681759948;17656935206;89410048034357;8472851459;8916037983;4954752502;79710108840469;11572762117;17670743999;71367782943796;16549917043;16703458787;132007474810089;18973713348;18139069423;13451596695;18440166505;12177325772;96695025808213;135229885104482;83692298883909;6073537839;88817926315458;104729035207525;76626266837363;113487357420897;107879176226772;130871423490486;11137575513;12943247001;12943245078;80005067957132;3818155097;3647333358;10324346056;10324347967;10662542523;10808838353;11353528705;96537472072550;99214917572799;18860937012;18860985311;115513358987315;129543795429973;18860934161;18860987667;17731318051;138811103914348;16732694052;131579468225600;11765402359;11828796994;5324719298;5342986949;6758497682;73848637067536;14900087266;119794400485251;80450830186028;88311415897149;119410252629691;103823923570615;110371647221022;96418538200619;7051736361;114220575509759;79372260836317;115243862171595;74712767707170;18752369972;129681463747237;78914719040186;15871955418;76762995566774;12641272458;6939111033;6426944918;137544427935459;15032994029;118706441243120;13389049867;10760024537;9281034297;15218831594;113029417107834;139040426524819;107286136869541;16126108459;14913354249;81793885962794;118556668407391;18647920435;88364323402553;109285335492645;128621093194805;123662243100680;112642345119817;18647956169;104526133535566;90753913217772;89161734699335;137461635848196;116697817957558;5750914919;6756890519;96005412559462;2548976609;2546612479;114907227214588;89227693986075;88342891966226;140080535032062;72073166002331;77221396426833;81319559867791;81737495082190;85341391356499;87351379991751;89712649086456;92911136919199;95324606076674;102435660805182;103275072481933;108343132674489;113050446018685;117785409277711;124000207868671;125165007426523;126865137021740;131981552061642;132643889235480;18668065416;92517437168342;99999183305180;115110570222234;73425816668928;88233429548268;130739873848552;82710350236919;71580765918830;94170955089948;16909704232;101394944107806;104746643025210;119038667082595;95448143850147;139548786112139;96804383423412;124660577261950;122819728171185;132004114310511;787988004728135;129230994638464;73708914208963;98118902024430;132935874487897;90216279544722;77915441816737;87014900491609;79018097401349;85774300903718;120428153057168;97872047573441;134772811582797;72534188920161;138993958163764;102018283146594;78037392664516;79895744759186;117860234965291;125337041623563;17840501830;72190557439380;70454767164205;91733245171139;91228542222122;130888608591113;124948436023758;7450497506;75663528075786;118304171612688;79174624435953;116296033709863;83545284007309;130651760577349;122825844998639;135381296103877;96265145951044;78026056611611;7720048224;96077916226556;97056995744329;100277824753624;103793593586394;138811411414576;12640491155;125889350453386;16590754220;16978845877;80611835622737;102716401412280;96902541318046;15351762625;13772394625;14486733015;127966866038346;125654797564410;125247930279216;107447262204970;89872700617308;111865923474705;14368557094;14732610803;14907104587;14915220621;15092011734;15106881665;15131065025;15131070225;15144787112;15181537975;15185247558;15227672707;15229817314;15234596844;15264892126;15351763826;15351764032;15351764187;15351764348;15351764507;15351764740;15351764881;15351764966;15351765130;15462212483;15509346379;15509350986;15509357472;15517169103;15552588346;15552625961;15582813408;15582821022;15582823307;15582834071;15582835531;16031521714;16031541538;16044264830;16281300371;16331595046;16331596518;16331598816;16331600459;16331633255;16331634414;16331635718;16331635995;16456370330;16581613207;16581637217;16581648071;17757578266;17757592456;75474715372485;80316691895873;92458008626219;94739503741288;84211911194381;86959746238096;79152141768156;133468541502594;78575159450955;80951765302134;105378961467772;89865052230260;81090934593448;75313569154781;89596436703421;92752656404044;126581936679803;107738647542786;10489114145;9872472334;121271605799901;17069498206;16931515487;16896790433;11761274032;11764980869;16926077853;11753029192;13965228772;102916117017468;121372427435947;119952687833295;112898865140956;124044706645343;135456035952103;93804003372568;124248440864832;18334179599;16389395869;16844101122;76603224491021;83370733060419;103479080416741;101128307729202;107731702241186;122645084125812;78529064493417;130112681881594;139392011420826;115700747039144;78517252105400;73484909444934;114347154312193;74815645991109;18248633989;17698425045;86098085533596;118758941554698;17750719380;96628744411718;113567868263978;74475530512823;128778160701214;140223498612774;125156298745329;118535429818702;89703062547673;103883018654651;140287841692914;3010276628;111014975161818;102605854369937;11158043705;17747224478;102730218405996;104676452414043;119369863786092;118524425609297;86955381046056;8472085082;90203410635303;72723436074493;110708547231329;103650844120570;87868857007174;93481552663411;112564920810158;109983668079237;96342491571673;128762245270197;120148879522453;73226809349189;119602771011506;127732283735594;125461249438738;87445296052708;136517679309458;15768329004;108059757699905;70542636057631;101606960500983;103349603274756;89343390950953;93651812913748;15101393044;15642262165;15642275269;17481176031;89606894431558;127076465038391;93577264377184;91732685148261;138937299583930;78572645499619;122061917549078;106153673498996;95047916580305;133400153206637;110470525256662;123468479998097;82441850250520;116185509299834;81072337989394;96652240771528;98881331868329;108204315743653;109533232275124;121269997456920;124184374777402;111145810816450;3233351170;8458974184;72178041068475;130859235108277;86962954395779;77162302089899;6931042565;134314141048307;109684591839194;74691681039273;73956553001240;96802054849934;86789627188240;79136731857959;103521881639626;117134837736236;7099263384;93507193197337;127230203073079;70882603136659;127978196002690;77569554466776;128311527873732;80289684342936;122273223414774;78499094786141;107214420833891;133370458228346;90688392698752;89752387031554;103658027677245;105764668548382;87706612753421;128997103569769;96223451292903;96604744451060;95445450782680;90346996348563;76800900334648;131082319718215;110321186768296;8248004705;119058117746091;95815562184695;72293243384445;140159579197170;120064291937900;107757296388993;140104197573447;124991631436250;72277410833409;87773427230428;82298052173374;122241151273608;112849554065563;75333462792994;130160244117542;74185370550900;86517463532234;118814182678109;93561553871338;108462619394007;14021953565;124087144919678;123439661582156;124532804761244;100349497885381;127104365805084;126953033317926;106560355070751;140358213724897;114181481862155;80010340277260;140429793519388;134497530231879;136409236554789;86522549610893;95656979989750;71683821699644;85265340826775;121928784820997;77638307191108;92626170235541;104548429314536;6325068386;80219362391408;129027544628653;115594497201999;103332930661641;72921500494845;139434932554684;136505972636980;94991053520125;72995931205549;108862151633853;5901440255;6119570238;6126992207;105814505642482;74588338744555;97589732026842;85513756910439;93366760336122;77977481651141;17026065260;17026079202;17026081473;17026082885;17026083128;17026083473;17026083734;17026084038;17026084803;17026085546;17671143350;17671143714;17671144394;17671148230;18605534919;116238950016910;129525666081265;2338325648;4822225642;4940687511;7097139127;7098347455;7098347570;11414445247;12770493773;12986634964;12986636453;12986638725;13415948659;13834702475;14801724413;15098628040;17685156577;17685159087;17685161741;17685164681;17685181130;93001350941802;125444254609144;124335066106952;4924922222;11981280399;12446587737;4566572536;91751877679930;126884695634066;140398800602847;96443646410175;84663621619610;138349771708864;131456775839122;138137777772420;134614543668802;79368714145670;132151526704941;92106543276146;98573759838033;110125451314286;115600257231423;95183590295663;81493541492179;85239275355743;16625391970;18650866518;18895717031;11452349236;80951089371762;5136040124;5136248000;3405618667;3523688332;3237397989;3474940993;3975583821;4994548435;6281216515;4179732320;6902944446;9053214954;70876832253163;133377094302868;128842011385105;140202562685639;16448271523;17168246061;89121255316677;137212977957030 | Mechanism: Allows developers to register encrypted assets with a filter for specific places using Lua API. | Purpose: Enhances security by enabling developers to control which places can access their encrypted assets.
+- DFStringFlagRepoGitHashDynamicString changed from 1f95086a764a449964247811b382db0694196da5 to a10162f4093f2c6d129b5cd2ea6f8d45b82f3443 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:09:56 to 11/19/2025 20:17:56 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 1f95086a764a449964247811b382db0694196da5 to a10162f4093f2c6d129b5cd2ea6f8d45b82f3443 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:09:56 to 11/19/2025 20:17:56 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagUseNewDiscoverabilityModal_v2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1266679527;2025-11-19T19:10:19) | Mechanism: Introduces a new interface for discovering games and experiences. | Purpose: Makes it easier for players to find and enjoy new games on the platform.
+
+## c180101a0 - 2025-11-19 14:11:49 -0600 - 11/19/2025 14:11:49
+Added in Other:
+- FFlagSlimProfileTelemetry = True | Mechanism: Collects streamlined data on user profile interactions. | Purpose: Provides insights to improve user profiles and enhance player engagement.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from a44a4b62df014146f87312e53348a315b103d7e8 to 1f95086a764a449964247811b382db0694196da5 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:06:12 to 11/19/2025 20:09:56 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from a44a4b62df014146f87312e53348a315b103d7e8 to 1f95086a764a449964247811b382db0694196da5 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:06:12 to 11/19/2025 20:09:56 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagSlimProfileTelemetry_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T19:00:59) | Mechanism: Collects less data about player profiles to improve performance. | Purpose: Provides a faster and smoother experience when viewing player profiles.
+
+## fd1110f3b - 2025-11-19 14:09:21 -0600 - 11/19/2025 14:09:21
+Added in Other:
+- DFFlagVoiceChatRoomCreationOnFirstUserJoin_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;2128335163;2025-11-19T20:02:42 | Mechanism: Allows a voice chat room to be created automatically when the first user joins a game. | Purpose: Facilitates instant communication among players, enhancing social interaction right from the start.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from b78f571fc898344b09a53d944e16f11982381bbb to a44a4b62df014146f87312e53348a315b103d7e8 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:05:29 to 11/19/2025 20:06:12 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b78f571fc898344b09a53d944e16f11982381bbb to a44a4b62df014146f87312e53348a315b103d7e8 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:05:29 to 11/19/2025 20:06:12 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 28bf269f8 - 2025-11-19 14:06:22 -0600 - 11/19/2025 14:06:21
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 6318799f1ac6570f0fd4d2f9b53c5b48bba71937 to b78f571fc898344b09a53d944e16f11982381bbb | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 20:01:50 to 11/19/2025 20:05:29 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 6318799f1ac6570f0fd4d2f9b53c5b48bba71937 to b78f571fc898344b09a53d944e16f11982381bbb | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 20:01:50 to 11/19/2025 20:05:29 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## f85df58bf - 2025-11-19 14:04:03 -0600 - 11/19/2025 14:04:03
+Added in Other:
+- FFlagAXMigrateReportAvatarEventCounter2 = True | Mechanism: Migrates the reporting of avatar events to a new system. | Purpose: Improves tracking of avatar-related events for better analytics.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 17ccf788121289280519f108c8eef57eec264327 to 6318799f1ac6570f0fd4d2f9b53c5b48bba71937 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:57:31 to 11/19/2025 20:01:50 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 17ccf788121289280519f108c8eef57eec264327 to 6318799f1ac6570f0fd4d2f9b53c5b48bba71937 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:57:31 to 11/19/2025 20:01:50 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagAXMigrateReportAvatarEventCounter2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:50:31) | Mechanism: Updates the way avatar event data is reported for better tracking. | Purpose: Enhances the ability to monitor avatar interactions, leading to improved avatar features.
+
+## 61b8c929c - 2025-11-19 13:59:32 -0600 - 11/19/2025 13:59:31
+Added in Other:
+- FFlagRelativeSkinningTransferEnabled3_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;615573542;2025-11-19T19:54:24 | Mechanism: Enables a new method for transferring skin settings between characters. | Purpose: Allows for more personalized character appearances, enhancing player customization.
+- FFlagRemoveDeprecatedValidationChecks_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;615573542;2025-11-19T19:54:24 | Mechanism: Eliminates old validation checks that are no longer needed. | Purpose: Streamlines game performance by removing unnecessary checks.
+- FFlagUGCValidationEyebrowEyelashSupport_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;615573542;2025-11-19T19:54:24 | Mechanism: Adds support for validating eyebrow and eyelash assets in user-generated content. | Purpose: Ensures that players can create and use more diverse and detailed character customizations.
+Added in Body:
+- FFlagWarnDropSpecialJointsBodyPartSkinnedOnly_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;615573542;2025-11-19T19:54:24 | Mechanism: Triggers a warning when special joints are dropped from skinned body parts. | Purpose: Helps developers avoid issues with character animations by alerting them about potential problems.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 2db9596a0471195247c0fd93eb3e8a7d530c1cf8 to 17ccf788121289280519f108c8eef57eec264327 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:44:32 to 11/19/2025 19:57:31 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 2db9596a0471195247c0fd93eb3e8a7d530c1cf8 to 17ccf788121289280519f108c8eef57eec264327 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:44:32 to 11/19/2025 19:57:31 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 3e6eb0267 - 2025-11-19 13:46:28 -0600 - 11/19/2025 13:46:28
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from c84bfe2e6e5b6ad1b9a43525002a92629dda6fba to 2db9596a0471195247c0fd93eb3e8a7d530c1cf8 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:39:51 to 11/19/2025 19:44:32 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from c84bfe2e6e5b6ad1b9a43525002a92629dda6fba to 2db9596a0471195247c0fd93eb3e8a7d530c1cf8 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:39:51 to 11/19/2025 19:44:32 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## ba48a44ef - 2025-11-19 13:41:45 -0600 - 11/19/2025 13:41:44
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from d5bee5c491de8f703daf178bd70fbe0de11001a3 to c84bfe2e6e5b6ad1b9a43525002a92629dda6fba | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:38:13 to 11/19/2025 19:39:51 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from d5bee5c491de8f703daf178bd70fbe0de11001a3 to c84bfe2e6e5b6ad1b9a43525002a92629dda6fba | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:38:13 to 11/19/2025 19:39:51 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 698224f26 - 2025-11-19 13:39:26 -0600 - 11/19/2025 13:39:25
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from de59d650c267738866d3ec14b790c87fa04a0acb to d5bee5c491de8f703daf178bd70fbe0de11001a3 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:32:49 to 11/19/2025 19:38:13 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from de59d650c267738866d3ec14b790c87fa04a0acb to d5bee5c491de8f703daf178bd70fbe0de11001a3 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:32:49 to 11/19/2025 19:38:13 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 391e301f9 - 2025-11-19 13:34:58 -0600 - 11/19/2025 13:34:58
+Added in Input:
+- FFlagEnableAdCtaUseNewTouchListener = True | Mechanism: Implements a new method for detecting touch interactions with ads. | Purpose: Enhances the responsiveness of ad interactions for mobile players.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from adf6494f599c07fc5e800bcbd939366d85d3a81e to de59d650c267738866d3ec14b790c87fa04a0acb | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:29:26 to 11/19/2025 19:32:49 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from adf6494f599c07fc5e800bcbd939366d85d3a81e to de59d650c267738866d3ec14b790c87fa04a0acb | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:29:26 to 11/19/2025 19:32:49 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Input:
+- FFlagEnableAdCtaUseNewTouchListener_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:27:32) | Mechanism: Implements a new touch listener for ad call-to-action buttons. | Purpose: Improves responsiveness and interaction with ads on mobile devices for a better user experience.
+
+## 786168af3 - 2025-11-19 13:30:21 -0600 - 11/19/2025 13:30:21
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 4f7d086b2c2d134603fd620c4fdfb144c9e4cba1 to adf6494f599c07fc5e800bcbd939366d85d3a81e | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:23:14 to 11/19/2025 19:29:26 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 4f7d086b2c2d134603fd620c4fdfb144c9e4cba1 to adf6494f599c07fc5e800bcbd939366d85d3a81e | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:23:14 to 11/19/2025 19:29:26 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- DFFlagCLI178222_Staged removed (was true;SteadyState;10;30;Revert;2025-11-19T18:53:29) | Mechanism: Enables a new command line interface feature in the game engine. | Purpose: Improves developer experience by providing better tools for game creation.
+
+## 7773af964 - 2025-11-19 13:23:32 -0600 - 11/19/2025 13:23:32
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 5f9043efa470a3166fff76f4f9251c8ad3c8643d to 4f7d086b2c2d134603fd620c4fdfb144c9e4cba1 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:19:15 to 11/19/2025 19:23:14 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 5f9043efa470a3166fff76f4f9251c8ad3c8643d to 4f7d086b2c2d134603fd620c4fdfb144c9e4cba1 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:19:15 to 11/19/2025 19:23:14 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- DFFlagStartupRobloxTelemetryFlagCacheUtils_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:16:27) | Mechanism: Optimizes how data is collected and stored during game startup. | Purpose: Enhances performance and reliability of games by improving data handling.
+
+## fa6e94348 - 2025-11-19 13:20:53 -0600 - 11/19/2025 13:20:53
+Added in Graphics:
+- FFlagUseTextureTranscoderClientConfig_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T19:17:32 | Mechanism: Enables a new system for converting textures on the client side. | Purpose: Improves the quality and performance of textures in games.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 7667cbfd4cbcf57e64243c8d628fb884d8f65b71 to 5f9043efa470a3166fff76f4f9251c8ad3c8643d | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:14:33 to 11/19/2025 19:19:15 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FFlagEnableAdsLifecycleManager2 changed from True to False | Mechanism: Introduces a new manager to handle the lifecycle of ads within the game. | Purpose: Optimizes ad delivery, leading to a better experience for players with fewer interruptions.
+- FStringFlagRepoGitHashFastString changed from 7667cbfd4cbcf57e64243c8d628fb884d8f65b71 to 5f9043efa470a3166fff76f4f9251c8ad3c8643d | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:14:33 to 11/19/2025 19:19:15 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagEnableAdsLifecycleManager2_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:15:40) | Mechanism: Implements a new system to manage ad displays and interactions. | Purpose: Improves ad performance and user experience with better ad management.
+
+## 88ff3abeb - 2025-11-19 13:16:19 -0600 - 11/19/2025 13:16:18
+Added in Other:
+- FFlagSetUniverseWithPlaceAndDC2 = True | Mechanism: Allows setting a universe with specific place and data center configurations. | Purpose: Gives developers more control over where their games are hosted, improving player experience.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from ec8a438f71b8574b5bc8d9eb3772a385adfa64c0 to 7667cbfd4cbcf57e64243c8d628fb884d8f65b71 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:12:09 to 11/19/2025 19:14:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from ec8a438f71b8574b5bc8d9eb3772a385adfa64c0 to 7667cbfd4cbcf57e64243c8d628fb884d8f65b71 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:12:09 to 11/19/2025 19:14:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagSetUniverseWithPlaceAndDC2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:06:57) | Mechanism: Allows setting a game universe with specific place and data center configurations. | Purpose: Enhances game stability and performance by optimizing server locations.
+
+## c0ebac99d - 2025-11-19 13:13:53 -0600 - 11/19/2025 13:13:53
+Added in Other:
+- FFlagUseNewDiscoverabilityModal_v2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1266679527;2025-11-19T19:10:19 | Mechanism: Introduces a new interface for discovering games and experiences. | Purpose: Makes it easier for players to find and enjoy new games on the platform.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 723a81f2b539e9bc5a8c818082d7aed2150aadc7 to ec8a438f71b8574b5bc8d9eb3772a385adfa64c0 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:08:26 to 11/19/2025 19:12:09 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 723a81f2b539e9bc5a8c818082d7aed2150aadc7 to ec8a438f71b8574b5bc8d9eb3772a385adfa64c0 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:08:26 to 11/19/2025 19:12:09 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## ea430f1ad - 2025-11-19 13:09:18 -0600 - 11/19/2025 13:09:18
+Added in Other:
+- FFlagStyleEditorPluginStyleSheets2 = True | Mechanism: Enhances the style editor plugin to support new stylesheet features. | Purpose: Allows creators to customize their game's appearance more easily and effectively.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from b37c0e7feb60dc9b7cad6766d1b73cf3a6b5e58c to 723a81f2b539e9bc5a8c818082d7aed2150aadc7 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:06:36 to 11/19/2025 19:08:26 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b37c0e7feb60dc9b7cad6766d1b73cf3a6b5e58c to 723a81f2b539e9bc5a8c818082d7aed2150aadc7 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:06:36 to 11/19/2025 19:08:26 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagStyleEditorPluginStyleSheets2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:01:10) | Mechanism: Introduces a new version of style sheets for plugins in the style editor. | Purpose: Enhances customization options for developers creating styles in Roblox.
+
+## 5736007e6 - 2025-11-19 13:06:59 -0600 - 11/19/2025 13:06:59
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from ae0bff10e664ea6eb7fc36d5d5ae981912084906 to b37c0e7feb60dc9b7cad6766d1b73cf3a6b5e58c | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 19:04:08 to 11/19/2025 19:06:36 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from ae0bff10e664ea6eb7fc36d5d5ae981912084906 to b37c0e7feb60dc9b7cad6766d1b73cf3a6b5e58c | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 19:04:08 to 11/19/2025 19:06:36 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 035b23813 - 2025-11-19 13:04:33 -0600 - 11/19/2025 13:04:33
+Added in Other:
+- FFlagSlimProfileTelemetry_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T19:00:59 | Mechanism: Collects less data about player profiles to improve performance. | Purpose: Provides a faster and smoother experience when viewing player profiles.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 843c372bb646205304e857381f4d60ee56ca06e6 to ae0bff10e664ea6eb7fc36d5d5ae981912084906 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:58:54 to 11/19/2025 19:04:08 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 843c372bb646205304e857381f4d60ee56ca06e6 to ae0bff10e664ea6eb7fc36d5d5ae981912084906 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:58:54 to 11/19/2025 19:04:08 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 0e295f9a8 - 2025-11-19 12:59:49 -0600 - 11/19/2025 12:59:49
+Added in Other:
+- DFFlagCLI178222_Staged = true;SteadyState;10;30;Revert;2025-11-19T18:53:29 | Mechanism: Enables a new command line interface feature in the game engine. | Purpose: Improves developer experience by providing better tools for game creation.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 46ef386b08df3894fdeebd48db76a67197350231 to 843c372bb646205304e857381f4d60ee56ca06e6 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:52:35 to 11/19/2025 18:58:54 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 46ef386b08df3894fdeebd48db76a67197350231 to 843c372bb646205304e857381f4d60ee56ca06e6 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:52:35 to 11/19/2025 18:58:54 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 533329805 - 2025-11-19 12:55:25 -0600 - 11/19/2025 12:55:25
+Added in Other:
+- FFlagEnableRefactorGoogleAdViewControlsFadeLogic = True | Mechanism: Modifying how ad view controls fade in and out on the platform. | Purpose: Enhances the user experience by making ads less intrusive and more visually appealing.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from f807a62439585a9c54fdc97046865651f1b7de64 to 46ef386b08df3894fdeebd48db76a67197350231 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:51:36 to 11/19/2025 18:52:35 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from f807a62439585a9c54fdc97046865651f1b7de64 to 46ef386b08df3894fdeebd48db76a67197350231 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:51:36 to 11/19/2025 18:52:35 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagEnableRefactorGoogleAdViewControlsFadeLogic_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:47:49) | Mechanism: Modifies how ad controls fade in and out on the platform. | Purpose: Improves the visual experience of ads for players, making them less intrusive.
+
+## 30d95b66c - 2025-11-19 12:53:07 -0600 - 11/19/2025 12:53:07
+Added in Other:
+- FFlagAXMigrateReportAvatarEventCounter2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:50:31 | Mechanism: Updates the way avatar event data is reported for better tracking. | Purpose: Enhances the ability to monitor avatar interactions, leading to improved avatar features.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 20e129281d4f760b23b18a348d4a70f36149f61c to f807a62439585a9c54fdc97046865651f1b7de64 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:47:45 to 11/19/2025 18:51:36 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 20e129281d4f760b23b18a348d4a70f36149f61c to f807a62439585a9c54fdc97046865651f1b7de64 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:47:45 to 11/19/2025 18:51:36 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 7b7d3e0d8 - 2025-11-19 12:48:47 -0600 - 11/19/2025 12:48:47
+Added in Other:
+- FFlagPassThemeToAppStyleProviderSettingsHub = True | Mechanism: Sends theme settings to the app's style provider. | Purpose: Improves the visual consistency of the settings hub.
+Changed in Other:
+- DFFlagInitTombstoneAfterBlockingFetch3 changed from False to True | Mechanism: Changes how data is initialized after a fetch operation is blocked. | Purpose: Enhances game stability by ensuring data is handled more reliably.
+- DFFlagWriteFlagCacheAfterFlagFetch2 changed from False to True | Mechanism: Updates the cache after fetching flag values. | Purpose: Enhances performance by reducing the need to repeatedly fetch flag values.
+- DFStringFlagRepoGitHashDynamicString changed from e2d969ee562bc1091d71bd2a41396fd55233373c to 20e129281d4f760b23b18a348d4a70f36149f61c | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:42:21 to 11/19/2025 18:47:45 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from e2d969ee562bc1091d71bd2a41396fd55233373c to 20e129281d4f760b23b18a348d4a70f36149f61c | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:42:21 to 11/19/2025 18:47:45 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- DFFlagInitTombstoneAfterBlockingFetch3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:41:57) | Mechanism: Initializes a backup system for player data after a specific fetch operation is blocked. | Purpose: Ensures player progress is saved and recoverable even if there are issues with data retrieval.
+- DFFlagWriteFlagCacheAfterFlagFetch2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:42:34) | Mechanism: Updates the caching system to store flag data after fetching. | Purpose: Improves game performance by reducing the need to repeatedly fetch the same data.
+- FFlagPassThemeToAppStyleProviderSettingsHub_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1166292571;2025-11-19T17:42:43) | Mechanism: Passes theme settings to the app's style provider for consistency. | Purpose: Ensures that the app's appearance matches the selected theme, improving user experience.
+
+## 90d3451b8 - 2025-11-19 12:44:14 -0600 - 11/19/2025 12:44:14
+Changed in Other:
+- DFIntWrapDeformerEventHundredthsPercentage changed from 20 to 1000 | Mechanism: Adjusts deformation events to use a percentage format for smoother transitions. | Purpose: Improves the visual quality of character movements and animations.
+- DFStringFlagRepoGitHashDynamicString changed from 20120943dc9f334b39b39d8023131c16c48f830f to e2d969ee562bc1091d71bd2a41396fd55233373c | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:39:48 to 11/19/2025 18:42:21 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 20120943dc9f334b39b39d8023131c16c48f830f to e2d969ee562bc1091d71bd2a41396fd55233373c | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:39:48 to 11/19/2025 18:42:21 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- DFIntWrapDeformerEventHundredthsPercentage_Staged removed (was 1000;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;23609967;2025-11-19T17:40:23) | Mechanism: Adjusts how deformation events are processed in the game engine. | Purpose: Allows for more precise animations and movements, making characters and objects look better.
+
+## e842233de - 2025-11-19 12:41:56 -0600 - 11/19/2025 12:41:56
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 24235b2756962da4ee075dd454d31176150add8f to 20120943dc9f334b39b39d8023131c16c48f830f | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:38:22 to 11/19/2025 18:39:48 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 24235b2756962da4ee075dd454d31176150add8f to 20120943dc9f334b39b39d8023131c16c48f830f | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:38:22 to 11/19/2025 18:39:48 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 04aa085bd - 2025-11-19 12:39:30 -0600 - 11/19/2025 12:39:30
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 05a73ef5e9476f3c01b53102f92aba0065ce5c44 to 24235b2756962da4ee075dd454d31176150add8f | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:36:07 to 11/19/2025 18:38:22 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 05a73ef5e9476f3c01b53102f92aba0065ce5c44 to 24235b2756962da4ee075dd454d31176150add8f | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:36:07 to 11/19/2025 18:38:22 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 8931d3cd7 - 2025-11-19 12:37:12 -0600 - 11/19/2025 12:37:11
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 6a96ffe85df492336db299bcf98e2ca8cee06e99 to 05a73ef5e9476f3c01b53102f92aba0065ce5c44 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:33:17 to 11/19/2025 18:36:07 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 6a96ffe85df492336db299bcf98e2ca8cee06e99 to 05a73ef5e9476f3c01b53102f92aba0065ce5c44 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:33:17 to 11/19/2025 18:36:07 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+
+## 428b0615b - 2025-11-19 12:34:50 -0600 - 11/19/2025 12:34:50
+Added in Other:
+- FFlagAEGISFixUpsellOverlayTextCutoff = True | Mechanism: Fixing issues where text in upsell overlays gets cut off or is not displayed properly. | Purpose: Ensures players can read all promotional messages without missing important information.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 7b1d1854910938cacd8e469e3e0e5ad7f6065a51 to 6a96ffe85df492336db299bcf98e2ca8cee06e99 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:29:06 to 11/19/2025 18:33:17 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 7b1d1854910938cacd8e469e3e0e5ad7f6065a51 to 6a96ffe85df492336db299bcf98e2ca8cee06e99 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:29:06 to 11/19/2025 18:33:17 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
+Removed in Other:
+- FFlagAEGISFixUpsellOverlayTextCutoff_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:26:29) | Mechanism: Fixes issues with text being cut off in promotional overlays. | Purpose: Ensures players can read all important information in game promotions.
+
+## cd193c805 - 2025-11-19 12:30:20 -0600 - 11/19/2025 12:30:20
+Added in Input:
+- FFlagEnableAdCtaUseNewTouchListener_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:27:32 | Mechanism: Implements a new touch listener for ad call-to-action buttons. | Purpose: Improves responsiveness and interaction with ads on mobile devices for a better user experience.
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 175772679793f6029f4a9250b86a5075c382c56e to 7b1d1854910938cacd8e469e3e0e5ad7f6065a51 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:27:30 to 11/19/2025 18:29:06 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 175772679793f6029f4a9250b86a5075c382c56e to 7b1d1854910938cacd8e469e3e0e5ad7f6065a51 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:27:30 to 11/19/2025 18:29:06 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## ea5807703 - 2025-11-19 12:28:00 -0600 - 11/19/2025 12:27:59
 Added in Network:
-- FFlagCrossPlayUseAppLifecycleObserver = True | Mechanism: Uses an observer to track app lifecycle events for cross-play functionality. | Purpose: Enhances the experience for players by allowing smoother transitions between different devices.
+- FFlagCrossPlayUseAppLifecycleObserver = True | Mechanism: Utilizes an observer to manage app lifecycle events for cross-platform play. | Purpose: Enhances stability and performance when players switch between devices while playing.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2d0f9f9c617037abc6c3e0e20a50764148ab3ea6 to 175772679793f6029f4a9250b86a5075c382c56e | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:19:35 to 11/19/2025 18:27:30 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 2d0f9f9c617037abc6c3e0e20a50764148ab3ea6 to 175772679793f6029f4a9250b86a5075c382c56e | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 18:19:35 to 11/19/2025 18:27:30 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 2d0f9f9c617037abc6c3e0e20a50764148ab3ea6 to 175772679793f6029f4a9250b86a5075c382c56e | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:19:35 to 11/19/2025 18:27:30 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 2d0f9f9c617037abc6c3e0e20a50764148ab3ea6 to 175772679793f6029f4a9250b86a5075c382c56e | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:19:35 to 11/19/2025 18:27:30 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Network:
-- FFlagCrossPlayUseAppLifecycleObserver_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:21:31) | Mechanism: Implements an observer for app lifecycle events to manage cross-play. | Purpose: Enhances the experience for players switching between devices.
+- FFlagCrossPlayUseAppLifecycleObserver_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:21:31) | Mechanism: Utilizes an app lifecycle observer to manage cross-platform play. | Purpose: Ensures smoother transitions and better performance when players switch between devices.
 
 ## 37db77e49 - 2025-11-19 12:21:22 -0600 - 11/19/2025 12:21:21
 Added in Other:
-- DFFlagStartupRobloxTelemetryFlagCacheUtils_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:16:27 | Mechanism: Enhances the way Roblox stores and retrieves telemetry data at startup. | Purpose: Improves performance and reliability of data collection, leading to better game insights.
-- FFlagEnableAdsLifecycleManager2_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:15:40 | Mechanism: Implements a new system for managing ad displays and their lifecycle. | Purpose: Improves the efficiency and relevance of ads shown to players, enhancing their experience.
+- DFFlagStartupRobloxTelemetryFlagCacheUtils_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:16:27 | Mechanism: Optimizes how data is collected and stored during game startup. | Purpose: Enhances performance and reliability of games by improving data handling.
+- FFlagEnableAdsLifecycleManager2_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:15:40 | Mechanism: Implements a new system to manage ad displays and interactions. | Purpose: Improves ad performance and user experience with better ad management.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 95bbbd1e773343a3e817ffc463eb5b942305e12f to 2d0f9f9c617037abc6c3e0e20a50764148ab3ea6 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:17:20 to 11/19/2025 18:19:35 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 95bbbd1e773343a3e817ffc463eb5b942305e12f to 2d0f9f9c617037abc6c3e0e20a50764148ab3ea6 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 18:17:20 to 11/19/2025 18:19:35 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 95bbbd1e773343a3e817ffc463eb5b942305e12f to 2d0f9f9c617037abc6c3e0e20a50764148ab3ea6 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:17:20 to 11/19/2025 18:19:35 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 95bbbd1e773343a3e817ffc463eb5b942305e12f to 2d0f9f9c617037abc6c3e0e20a50764148ab3ea6 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:17:20 to 11/19/2025 18:19:35 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 45159db18 - 2025-11-19 12:19:01 -0600 - 11/19/2025 12:19:00
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 21dbfe6ee9ca84f9c9140a9e548fac4b4bf5795e to 95bbbd1e773343a3e817ffc463eb5b942305e12f | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:08:33 to 11/19/2025 18:17:20 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 21dbfe6ee9ca84f9c9140a9e548fac4b4bf5795e to 95bbbd1e773343a3e817ffc463eb5b942305e12f | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 18:08:33 to 11/19/2025 18:17:20 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 21dbfe6ee9ca84f9c9140a9e548fac4b4bf5795e to 95bbbd1e773343a3e817ffc463eb5b942305e12f | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:08:33 to 11/19/2025 18:17:20 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 21dbfe6ee9ca84f9c9140a9e548fac4b4bf5795e to 95bbbd1e773343a3e817ffc463eb5b942305e12f | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:08:33 to 11/19/2025 18:17:20 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 65c62b22c - 2025-11-19 12:10:04 -0600 - 11/19/2025 12:10:04
 Added in Other:
-- FFlagSetUniverseWithPlaceAndDC2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:06:57 | Mechanism: Allows setting a universe with specific place and data center configurations. | Purpose: Improves game deployment flexibility and performance across different regions.
+- FFlagSetUniverseWithPlaceAndDC2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:06:57 | Mechanism: Allows setting a game universe with specific place and data center configurations. | Purpose: Enhances game stability and performance by optimizing server locations.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7eb693b6f36fec7285108da30d7730e3c913711c to 21dbfe6ee9ca84f9c9140a9e548fac4b4bf5795e | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:03:38 to 11/19/2025 18:08:33 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 7eb693b6f36fec7285108da30d7730e3c913711c to 21dbfe6ee9ca84f9c9140a9e548fac4b4bf5795e | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 18:03:38 to 11/19/2025 18:08:33 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 7eb693b6f36fec7285108da30d7730e3c913711c to 21dbfe6ee9ca84f9c9140a9e548fac4b4bf5795e | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 18:03:38 to 11/19/2025 18:08:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 7eb693b6f36fec7285108da30d7730e3c913711c to 21dbfe6ee9ca84f9c9140a9e548fac4b4bf5795e | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 18:03:38 to 11/19/2025 18:08:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 23f6e74fa - 2025-11-19 12:05:30 -0600 - 11/19/2025 12:05:29
 Added in Other:
-- FFlagStyleEditorPluginStyleSheets2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:01:10 | Mechanism: Enables a new version of the style editor plugin that uses updated stylesheets. | Purpose: Allows developers to create and manage styles for their games more efficiently and with better tools.
+- FFlagStyleEditorPluginStyleSheets2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T18:01:10 | Mechanism: Introduces a new version of style sheets for plugins in the style editor. | Purpose: Enhances customization options for developers creating styles in Roblox.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0fcd42df2a98d537f512aa09fdfa59ad530338f7 to 7eb693b6f36fec7285108da30d7730e3c913711c | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:59:33 to 11/19/2025 18:03:38 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 0fcd42df2a98d537f512aa09fdfa59ad530338f7 to 7eb693b6f36fec7285108da30d7730e3c913711c | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 17:59:33 to 11/19/2025 18:03:38 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 0fcd42df2a98d537f512aa09fdfa59ad530338f7 to 7eb693b6f36fec7285108da30d7730e3c913711c | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:59:33 to 11/19/2025 18:03:38 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 0fcd42df2a98d537f512aa09fdfa59ad530338f7 to 7eb693b6f36fec7285108da30d7730e3c913711c | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 17:59:33 to 11/19/2025 18:03:38 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 9e49ff8d9 - 2025-11-19 12:01:04 -0600 - 11/19/2025 12:01:04
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 186961640b3d16827799d781cffb3737fc2bc384 to 0fcd42df2a98d537f512aa09fdfa59ad530338f7 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:56:03 to 11/19/2025 17:59:33 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 186961640b3d16827799d781cffb3737fc2bc384 to 0fcd42df2a98d537f512aa09fdfa59ad530338f7 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 17:56:03 to 11/19/2025 17:59:33 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 186961640b3d16827799d781cffb3737fc2bc384 to 0fcd42df2a98d537f512aa09fdfa59ad530338f7 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:56:03 to 11/19/2025 17:59:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 186961640b3d16827799d781cffb3737fc2bc384 to 0fcd42df2a98d537f512aa09fdfa59ad530338f7 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 17:56:03 to 11/19/2025 17:59:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## aac619687 - 2025-11-19 11:56:43 -0600 - 11/19/2025 11:56:43
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d1c0e4d8e7b4b2332714ca167af4ae5e28c54c3e to 186961640b3d16827799d781cffb3737fc2bc384 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:51:28 to 11/19/2025 17:56:03 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from d1c0e4d8e7b4b2332714ca167af4ae5e28c54c3e to 186961640b3d16827799d781cffb3737fc2bc384 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 17:51:28 to 11/19/2025 17:56:03 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from d1c0e4d8e7b4b2332714ca167af4ae5e28c54c3e to 186961640b3d16827799d781cffb3737fc2bc384 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:51:28 to 11/19/2025 17:56:03 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from d1c0e4d8e7b4b2332714ca167af4ae5e28c54c3e to 186961640b3d16827799d781cffb3737fc2bc384 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 17:51:28 to 11/19/2025 17:56:03 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## be8a741a5 - 2025-11-19 11:52:13 -0600 - 11/19/2025 11:52:13
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 4a29f9dce3b0a55a9a9fa748370c08f6acedeb90 to d1c0e4d8e7b4b2332714ca167af4ae5e28c54c3e | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:49:20 to 11/19/2025 17:51:28 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 4a29f9dce3b0a55a9a9fa748370c08f6acedeb90 to d1c0e4d8e7b4b2332714ca167af4ae5e28c54c3e | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 17:49:20 to 11/19/2025 17:51:28 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 4a29f9dce3b0a55a9a9fa748370c08f6acedeb90 to d1c0e4d8e7b4b2332714ca167af4ae5e28c54c3e | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:49:20 to 11/19/2025 17:51:28 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 4a29f9dce3b0a55a9a9fa748370c08f6acedeb90 to d1c0e4d8e7b4b2332714ca167af4ae5e28c54c3e | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 17:49:20 to 11/19/2025 17:51:28 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagEnableSetChangeTypeBitmask3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:06:21) | Mechanism: Introduces a new way to manage changes in game settings using a bitmask system. | Purpose: Allows for more efficient updates to game settings, improving performance and stability.
+- FFlagEnableSetChangeTypeBitmask3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:06:21) | Mechanism: Implements a new method for tracking changes in settings. | Purpose: Improves how player settings changes are handled.
 
 ## e3e36e5e3 - 2025-11-19 11:49:55 -0600 - 11/19/2025 11:49:55
 Added in Other:
-- FFlagEnableRefactorGoogleAdViewControlsFadeLogic_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:47:49 | Mechanism: Changes how ad view controls fade in and out on the screen. | Purpose: Creates a smoother visual transition for ads, improving overall aesthetics.
+- FFlagEnableRefactorGoogleAdViewControlsFadeLogic_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:47:49 | Mechanism: Modifies how ad controls fade in and out on the platform. | Purpose: Improves the visual experience of ads for players, making them less intrusive.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 758e7c686096f072581504a3909194470a59c7d8 to 4a29f9dce3b0a55a9a9fa748370c08f6acedeb90 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:44:26 to 11/19/2025 17:49:20 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 758e7c686096f072581504a3909194470a59c7d8 to 4a29f9dce3b0a55a9a9fa748370c08f6acedeb90 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 17:44:26 to 11/19/2025 17:49:20 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 758e7c686096f072581504a3909194470a59c7d8 to 4a29f9dce3b0a55a9a9fa748370c08f6acedeb90 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:44:26 to 11/19/2025 17:49:20 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 758e7c686096f072581504a3909194470a59c7d8 to 4a29f9dce3b0a55a9a9fa748370c08f6acedeb90 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 17:44:26 to 11/19/2025 17:49:20 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 261740048 - 2025-11-19 11:47:37 -0600 - 11/19/2025 11:47:37
 Added in Other:
-- DFFlagInitTombstoneAfterBlockingFetch3_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:41:57 | Mechanism: Initializes a fallback system after blocking certain data fetches. | Purpose: Ensures smoother gameplay by handling data issues more gracefully.
-- DFFlagWriteFlagCacheAfterFlagFetch2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:42:34 | Mechanism: Updates the cache after fetching flags to improve performance. | Purpose: Reduces lag and speeds up the loading of game settings for players.
-- FFlagPassThemeToAppStyleProviderSettingsHub_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1166292571;2025-11-19T17:42:43 | Mechanism: Allows the application theme to be passed to the settings hub for consistent styling. | Purpose: Enhances the visual experience by ensuring the settings hub matches the app's theme.
+- DFFlagInitTombstoneAfterBlockingFetch3_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:41:57 | Mechanism: Initializes a backup system for player data after a specific fetch operation is blocked. | Purpose: Ensures player progress is saved and recoverable even if there are issues with data retrieval.
+- DFFlagWriteFlagCacheAfterFlagFetch2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:42:34 | Mechanism: Updates the caching system to store flag data after fetching. | Purpose: Improves game performance by reducing the need to repeatedly fetch the same data.
+- FFlagPassThemeToAppStyleProviderSettingsHub_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1166292571;2025-11-19T17:42:43 | Mechanism: Passes theme settings to the app's style provider for consistency. | Purpose: Ensures that the app's appearance matches the selected theme, improving user experience.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 81f6cad97c034234c1b1f364dc8d1a460e92b861 to 758e7c686096f072581504a3909194470a59c7d8 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:42:05 to 11/19/2025 17:44:26 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 81f6cad97c034234c1b1f364dc8d1a460e92b861 to 758e7c686096f072581504a3909194470a59c7d8 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 17:42:05 to 11/19/2025 17:44:26 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 81f6cad97c034234c1b1f364dc8d1a460e92b861 to 758e7c686096f072581504a3909194470a59c7d8 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:42:05 to 11/19/2025 17:44:26 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 81f6cad97c034234c1b1f364dc8d1a460e92b861 to 758e7c686096f072581504a3909194470a59c7d8 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 17:42:05 to 11/19/2025 17:44:26 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## eeba83f7f - 2025-11-19 11:43:47 -0600 - 11/19/2025 11:43:47
 Added in Other:
-- DFIntWrapDeformerEventHundredthsPercentage_Staged = 1000;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;23609967;2025-11-19T17:40:23 | Mechanism: Adjusts the percentage calculations for deformer events. | Purpose: Enhances the precision of character animations.
+- DFIntWrapDeformerEventHundredthsPercentage_Staged = 1000;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;23609967;2025-11-19T17:40:23 | Mechanism: Adjusts how deformation events are processed in the game engine. | Purpose: Allows for more precise animations and movements, making characters and objects look better.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from bb9607943c0f7a194b5fbbd66471b4764387b72b to 81f6cad97c034234c1b1f364dc8d1a460e92b861 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:27:48 to 11/19/2025 17:42:05 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from bb9607943c0f7a194b5fbbd66471b4764387b72b to 81f6cad97c034234c1b1f364dc8d1a460e92b861 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 17:27:48 to 11/19/2025 17:42:05 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from bb9607943c0f7a194b5fbbd66471b4764387b72b to 81f6cad97c034234c1b1f364dc8d1a460e92b861 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:27:48 to 11/19/2025 17:42:05 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from bb9607943c0f7a194b5fbbd66471b4764387b72b to 81f6cad97c034234c1b1f364dc8d1a460e92b861 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 17:27:48 to 11/19/2025 17:42:05 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 4c816d2d5 - 2025-11-19 11:30:41 -0600 - 11/19/2025 11:30:40
 Added in Other:
-- FFlagAEGISFixUpsellOverlayTextCutoff_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:26:29 | Mechanism: Adjusts the display settings to ensure text in promotional overlays fits properly. | Purpose: Ensures players can read all promotional messages without missing important information.
+- FFlagAEGISFixUpsellOverlayTextCutoff_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:26:29 | Mechanism: Fixes issues with text being cut off in promotional overlays. | Purpose: Ensures players can read all important information in game promotions.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 73cd20770297bf83427f67e77cdfc426912536d6 to bb9607943c0f7a194b5fbbd66471b4764387b72b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:22:21 to 11/19/2025 17:27:48 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 73cd20770297bf83427f67e77cdfc426912536d6 to bb9607943c0f7a194b5fbbd66471b4764387b72b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 17:22:21 to 11/19/2025 17:27:48 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 73cd20770297bf83427f67e77cdfc426912536d6 to bb9607943c0f7a194b5fbbd66471b4764387b72b | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:22:21 to 11/19/2025 17:27:48 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 73cd20770297bf83427f67e77cdfc426912536d6 to bb9607943c0f7a194b5fbbd66471b4764387b72b | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 17:22:21 to 11/19/2025 17:27:48 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## b5291ca41 - 2025-11-19 11:23:50 -0600 - 11/19/2025 11:23:49
 Added in Network:
-- FFlagCrossPlayUseAppLifecycleObserver_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:21:31 | Mechanism: Implements an observer for app lifecycle events to manage cross-play. | Purpose: Enhances the experience for players switching between devices.
+- FFlagCrossPlayUseAppLifecycleObserver_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:21:31 | Mechanism: Utilizes an app lifecycle observer to manage cross-platform play. | Purpose: Ensures smoother transitions and better performance when players switch between devices.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 1ee4fc5315102d0542a2142691a41dea0d1e9614 to 73cd20770297bf83427f67e77cdfc426912536d6 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:07:42 to 11/19/2025 17:22:21 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 1ee4fc5315102d0542a2142691a41dea0d1e9614 to 73cd20770297bf83427f67e77cdfc426912536d6 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 17:07:42 to 11/19/2025 17:22:21 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 1ee4fc5315102d0542a2142691a41dea0d1e9614 to 73cd20770297bf83427f67e77cdfc426912536d6 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:07:42 to 11/19/2025 17:22:21 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 1ee4fc5315102d0542a2142691a41dea0d1e9614 to 73cd20770297bf83427f67e77cdfc426912536d6 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 17:07:42 to 11/19/2025 17:22:21 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 34866f05a - 2025-11-19 11:10:41 -0600 - 11/19/2025 11:10:40
 Added in Other:
-- FFlagEnableSetChangeTypeBitmask3_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:06:21 | Mechanism: Introduces a new way to manage changes in game settings using a bitmask system. | Purpose: Allows for more efficient updates to game settings, improving performance and stability.
+- FFlagEnableSetChangeTypeBitmask3_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T17:06:21 | Mechanism: Implements a new method for tracking changes in settings. | Purpose: Improves how player settings changes are handled.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b6cf675c588acc5d6b4a51ebb9a619a14756788e to 1ee4fc5315102d0542a2142691a41dea0d1e9614 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:01:14 to 11/19/2025 17:07:42 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b6cf675c588acc5d6b4a51ebb9a619a14756788e to 1ee4fc5315102d0542a2142691a41dea0d1e9614 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 17:01:14 to 11/19/2025 17:07:42 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from b6cf675c588acc5d6b4a51ebb9a619a14756788e to 1ee4fc5315102d0542a2142691a41dea0d1e9614 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 17:01:14 to 11/19/2025 17:07:42 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b6cf675c588acc5d6b4a51ebb9a619a14756788e to 1ee4fc5315102d0542a2142691a41dea0d1e9614 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 17:01:14 to 11/19/2025 17:07:42 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 023ace810 - 2025-11-19 11:01:45 -0600 - 11/19/2025 11:01:45
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a44cbd9036a270a10cc405e3c320e1d3b93a8db9 to b6cf675c588acc5d6b4a51ebb9a619a14756788e | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 07:22:40 to 11/19/2025 17:01:14 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from a44cbd9036a270a10cc405e3c320e1d3b93a8db9 to b6cf675c588acc5d6b4a51ebb9a619a14756788e | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 07:22:40 to 11/19/2025 17:01:14 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from a44cbd9036a270a10cc405e3c320e1d3b93a8db9 to b6cf675c588acc5d6b4a51ebb9a619a14756788e | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 07:22:40 to 11/19/2025 17:01:14 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from a44cbd9036a270a10cc405e3c320e1d3b93a8db9 to b6cf675c588acc5d6b4a51ebb9a619a14756788e | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 07:22:40 to 11/19/2025 17:01:14 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 31290fc7f - 2025-11-19 01:23:54 -0600 - 11/19/2025 01:23:54
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 9d428751d6d2c541a972e6761d622712614f8492 to a44cbd9036a270a10cc405e3c320e1d3b93a8db9 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 06:20:03 to 11/19/2025 07:22:40 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 9d428751d6d2c541a972e6761d622712614f8492 to a44cbd9036a270a10cc405e3c320e1d3b93a8db9 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 06:20:03 to 11/19/2025 07:22:40 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 9d428751d6d2c541a972e6761d622712614f8492 to a44cbd9036a270a10cc405e3c320e1d3b93a8db9 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 06:20:03 to 11/19/2025 07:22:40 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 9d428751d6d2c541a972e6761d622712614f8492 to a44cbd9036a270a10cc405e3c320e1d3b93a8db9 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 06:20:03 to 11/19/2025 07:22:40 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 35302069c - 2025-11-19 00:22:44 -0600 - 11/19/2025 00:22:43
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 191457b7aa74a4158635d611aa203ea555212179 to 9d428751d6d2c541a972e6761d622712614f8492 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 02:03:01 to 11/19/2025 06:20:03 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 191457b7aa74a4158635d611aa203ea555212179 to 9d428751d6d2c541a972e6761d622712614f8492 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 02:03:01 to 11/19/2025 06:20:03 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 191457b7aa74a4158635d611aa203ea555212179 to 9d428751d6d2c541a972e6761d622712614f8492 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 02:03:01 to 11/19/2025 06:20:03 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 191457b7aa74a4158635d611aa203ea555212179 to 9d428751d6d2c541a972e6761d622712614f8492 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 02:03:01 to 11/19/2025 06:20:03 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 6761e95db - 2025-11-18 20:04:51 -0600 - 11/18/2025 20:04:51
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e8e9cff372e79ae26724a3498601100b25710cd8 to 191457b7aa74a4158635d611aa203ea555212179 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:51:35 to 11/19/2025 02:03:01 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e8e9cff372e79ae26724a3498601100b25710cd8 to 191457b7aa74a4158635d611aa203ea555212179 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 01:51:35 to 11/19/2025 02:03:01 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from e8e9cff372e79ae26724a3498601100b25710cd8 to 191457b7aa74a4158635d611aa203ea555212179 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:51:35 to 11/19/2025 02:03:01 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from e8e9cff372e79ae26724a3498601100b25710cd8 to 191457b7aa74a4158635d611aa203ea555212179 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 01:51:35 to 11/19/2025 02:03:01 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## e0204fb12 - 2025-11-18 19:53:43 -0600 - 11/18/2025 19:53:43
 Added in Other:
-- DFFlagUseTranslationDisplayModeAsAbTestIdentifier = True | Mechanism: Uses a specific display mode to test different translations for players. | Purpose: Allows players to experience and provide feedback on various language translations.
+- DFFlagUseTranslationDisplayModeAsAbTestIdentifier = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 646797d114e7005eee3cd397540dedad4b7e0014 to e8e9cff372e79ae26724a3498601100b25710cd8 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:47:00 to 11/19/2025 01:51:35 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FFlagEnableCreatePartyNudge changed from True to False | Mechanism: Prompts players to create or join parties in games. | Purpose: Encourages social play by making it easier to team up with friends.
-- FStringFlagRepoGitHashFastString changed from 646797d114e7005eee3cd397540dedad4b7e0014 to e8e9cff372e79ae26724a3498601100b25710cd8 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 01:47:00 to 11/19/2025 01:51:35 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 646797d114e7005eee3cd397540dedad4b7e0014 to e8e9cff372e79ae26724a3498601100b25710cd8 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:47:00 to 11/19/2025 01:51:35 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FFlagEnableCreatePartyNudge changed from True to False | Mechanism: Introduces prompts to encourage players to create parties. | Purpose: Encourages social interaction among players, enhancing multiplayer experiences.
+- FStringFlagRepoGitHashFastString changed from 646797d114e7005eee3cd397540dedad4b7e0014 to e8e9cff372e79ae26724a3498601100b25710cd8 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 01:47:00 to 11/19/2025 01:51:35 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFFlagUseTranslationDisplayModeAsAbTestIdentifier_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:46:54) | Mechanism: Implements a new method for identifying A/B tests based on translation display settings. | Purpose: Improves the accuracy of testing features for players by tailoring experiences based on language settings.
-- FFlagEnableCreatePartyNudge_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:46:59) | Mechanism: Introduces prompts to encourage party creation. | Purpose: Makes it easier for players to form parties and play together.
+- DFFlagUseTranslationDisplayModeAsAbTestIdentifier_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:46:54) | Mechanism: Uses a specific display mode for A/B testing translations. | Purpose: Helps improve language support by testing different translation displays to see what works best for players.
+- FFlagEnableCreatePartyNudge_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:46:59) | Mechanism: Triggers a prompt to encourage players to create parties. | Purpose: Helps players easily form groups for playing together.
 
 ## 31cb928ca - 2025-11-18 19:49:10 -0600 - 11/18/2025 19:49:10
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 85a8140140ad42203491b87a4f8bc1b4525c0ea7 to 646797d114e7005eee3cd397540dedad4b7e0014 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:33:36 to 11/19/2025 01:47:00 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 85a8140140ad42203491b87a4f8bc1b4525c0ea7 to 646797d114e7005eee3cd397540dedad4b7e0014 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 01:33:36 to 11/19/2025 01:47:00 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 85a8140140ad42203491b87a4f8bc1b4525c0ea7 to 646797d114e7005eee3cd397540dedad4b7e0014 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:33:36 to 11/19/2025 01:47:00 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 85a8140140ad42203491b87a4f8bc1b4525c0ea7 to 646797d114e7005eee3cd397540dedad4b7e0014 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 01:33:36 to 11/19/2025 01:47:00 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 2b2f50b14 - 2025-11-18 19:36:08 -0600 - 11/18/2025 19:36:08
 Added in Other:
 - FFlagFixExperienceDetailsNavigation = True | Mechanism: Corrects navigation issues in the experience details section. | Purpose: Makes it easier for players to find and explore game details.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 4a701f1f1a59e66ed7c67227fb022766ed8354c8 to 85a8140140ad42203491b87a4f8bc1b4525c0ea7 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:13:22 to 11/19/2025 01:33:36 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 4a701f1f1a59e66ed7c67227fb022766ed8354c8 to 85a8140140ad42203491b87a4f8bc1b4525c0ea7 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 01:13:22 to 11/19/2025 01:33:36 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 4a701f1f1a59e66ed7c67227fb022766ed8354c8 to 85a8140140ad42203491b87a4f8bc1b4525c0ea7 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:13:22 to 11/19/2025 01:33:36 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 4a701f1f1a59e66ed7c67227fb022766ed8354c8 to 85a8140140ad42203491b87a4f8bc1b4525c0ea7 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 01:13:22 to 11/19/2025 01:33:36 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagFixExperienceDetailsNavigation_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:25:44) | Mechanism: Improves the navigation system within the experience details page. | Purpose: Makes it easier for players to find and access information about games.
+- FFlagFixExperienceDetailsNavigation_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:25:44) | Mechanism: Improves the navigation system for experience details in the interface. | Purpose: Makes it easier for players to find and access information about games.
 
 ## 11da6be51 - 2025-11-18 19:13:48 -0600 - 11/18/2025 19:13:48
 Added in Other:
-- FFlagAXFixConsoleTitleDropdownMissing = True | Mechanism: Fixes a bug where the console title dropdown was not appearing. | Purpose: Ensures players can access the title dropdown in the console for better navigation.
+- FFlagAXFixConsoleTitleDropdownMissing = True | Mechanism: Fixes an issue where the dropdown for console titles was not appearing. | Purpose: Ensures players can select titles easily, improving navigation in the console.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 43215db6d7021ba941c257a204acf4502d5af577 to 4a701f1f1a59e66ed7c67227fb022766ed8354c8 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:08:55 to 11/19/2025 01:13:22 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 43215db6d7021ba941c257a204acf4502d5af577 to 4a701f1f1a59e66ed7c67227fb022766ed8354c8 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 01:08:55 to 11/19/2025 01:13:22 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 43215db6d7021ba941c257a204acf4502d5af577 to 4a701f1f1a59e66ed7c67227fb022766ed8354c8 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:08:55 to 11/19/2025 01:13:22 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 43215db6d7021ba941c257a204acf4502d5af577 to 4a701f1f1a59e66ed7c67227fb022766ed8354c8 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 01:08:55 to 11/19/2025 01:13:22 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagAXFixConsoleTitleDropdownMissing_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:08:35) | Mechanism: Fixes an issue where the title dropdown was not appearing on console devices. | Purpose: Ensures players can select titles for their games on consoles without problems.
+- FFlagAXFixConsoleTitleDropdownMissing_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:08:35) | Mechanism: Fixes a bug that caused the title dropdown in the console to not appear. | Purpose: Ensures players can easily select game titles when using the console.
 
 ## a32ffe4bf - 2025-11-18 19:11:29 -0600 - 11/18/2025 19:11:29
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 17406f9a7900751086081ec3f16e6899efb8668b to 43215db6d7021ba941c257a204acf4502d5af577 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:02:42 to 11/19/2025 01:08:55 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 17406f9a7900751086081ec3f16e6899efb8668b to 43215db6d7021ba941c257a204acf4502d5af577 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 01:02:42 to 11/19/2025 01:08:55 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 17406f9a7900751086081ec3f16e6899efb8668b to 43215db6d7021ba941c257a204acf4502d5af577 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 01:02:42 to 11/19/2025 01:08:55 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 17406f9a7900751086081ec3f16e6899efb8668b to 43215db6d7021ba941c257a204acf4502d5af577 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 01:02:42 to 11/19/2025 01:08:55 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 5f9b8dad7 - 2025-11-18 19:04:37 -0600 - 11/18/2025 19:04:37
 Added in Other:
-- FFlagLuaAppEnableWhyThisAdModal = True | Mechanism: Activates a modal that explains why ads are shown in the app. | Purpose: Increases transparency and understanding of ad placements for players.
+- FFlagLuaAppEnableWhyThisAdModal = True | Mechanism: Enables a modal that explains why ads are shown in the app. | Purpose: Informs players about the presence of ads, enhancing transparency.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5d3c6c6a9272c0b8058c3404f1b163143a92a50b to 17406f9a7900751086081ec3f16e6899efb8668b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:49:20 to 11/19/2025 01:02:42 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 5d3c6c6a9272c0b8058c3404f1b163143a92a50b to 17406f9a7900751086081ec3f16e6899efb8668b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:49:20 to 11/19/2025 01:02:42 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 5d3c6c6a9272c0b8058c3404f1b163143a92a50b to 17406f9a7900751086081ec3f16e6899efb8668b | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:49:20 to 11/19/2025 01:02:42 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 5d3c6c6a9272c0b8058c3404f1b163143a92a50b to 17406f9a7900751086081ec3f16e6899efb8668b | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:49:20 to 11/19/2025 01:02:42 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagLuaAppEnableWhyThisAdModal_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:55:15) | Mechanism: Displays a modal explaining ad purposes in Lua apps. | Purpose: Enhances transparency about ads, helping players understand why they see them.
+- FFlagLuaAppEnableWhyThisAdModal_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:55:15) | Mechanism: Enables a modal that explains why ads are shown in the Lua app. | Purpose: Helps players understand the presence of ads, improving transparency.
 
 ## f17b2c4ec - 2025-11-18 18:51:16 -0600 - 11/18/2025 18:51:16
 Added in Other:
-- FFlagEnableCreatePartyNudge_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:46:59 | Mechanism: Introduces prompts to encourage party creation. | Purpose: Makes it easier for players to form parties and play together.
+- FFlagEnableCreatePartyNudge_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:46:59 | Mechanism: Triggers a prompt to encourage players to create parties. | Purpose: Helps players easily form groups for playing together.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from eee69c6c091add5c75405b54072ec6303568bf5a to 5d3c6c6a9272c0b8058c3404f1b163143a92a50b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:48:10 to 11/19/2025 00:49:20 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from eee69c6c091add5c75405b54072ec6303568bf5a to 5d3c6c6a9272c0b8058c3404f1b163143a92a50b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:48:10 to 11/19/2025 00:49:20 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from eee69c6c091add5c75405b54072ec6303568bf5a to 5d3c6c6a9272c0b8058c3404f1b163143a92a50b | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:48:10 to 11/19/2025 00:49:20 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from eee69c6c091add5c75405b54072ec6303568bf5a to 5d3c6c6a9272c0b8058c3404f1b163143a92a50b | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:48:10 to 11/19/2025 00:49:20 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 0527f9596 - 2025-11-18 18:48:54 -0600 - 11/18/2025 18:48:53
 Added in Other:
-- DFFlagUseTranslationDisplayModeAsAbTestIdentifier_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:46:54 | Mechanism: Implements a new method for identifying A/B tests based on translation display settings. | Purpose: Improves the accuracy of testing features for players by tailoring experiences based on language settings.
+- DFFlagUseTranslationDisplayModeAsAbTestIdentifier_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:46:54 | Mechanism: Uses a specific display mode for A/B testing translations. | Purpose: Helps improve language support by testing different translation displays to see what works best for players.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b80a8f4827cebe341af93f93306cc9f881299167 to eee69c6c091add5c75405b54072ec6303568bf5a | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:45:16 to 11/19/2025 00:48:10 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b80a8f4827cebe341af93f93306cc9f881299167 to eee69c6c091add5c75405b54072ec6303568bf5a | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:45:16 to 11/19/2025 00:48:10 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from b80a8f4827cebe341af93f93306cc9f881299167 to eee69c6c091add5c75405b54072ec6303568bf5a | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:45:16 to 11/19/2025 00:48:10 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b80a8f4827cebe341af93f93306cc9f881299167 to eee69c6c091add5c75405b54072ec6303568bf5a | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:45:16 to 11/19/2025 00:48:10 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 35815f4a5 - 2025-11-18 18:46:32 -0600 - 11/18/2025 18:46:31
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 71a62e9c58874568980663ad34688377a06a4fbb to b80a8f4827cebe341af93f93306cc9f881299167 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:40:24 to 11/19/2025 00:45:16 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 71a62e9c58874568980663ad34688377a06a4fbb to b80a8f4827cebe341af93f93306cc9f881299167 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:40:24 to 11/19/2025 00:45:16 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 71a62e9c58874568980663ad34688377a06a4fbb to b80a8f4827cebe341af93f93306cc9f881299167 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:40:24 to 11/19/2025 00:45:16 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 71a62e9c58874568980663ad34688377a06a4fbb to b80a8f4827cebe341af93f93306cc9f881299167 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:40:24 to 11/19/2025 00:45:16 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 05c6c98be - 2025-11-18 18:42:02 -0600 - 11/18/2025 18:42:01
 Added in Other:
-- FFlagUsePresenceDataFromRtn_IXP = 1;Social.Presence.Frontend;Social.Presence.BackendOnlineFriendsSort.M1.V2;225515523;flagbank | Mechanism: Utilizes real-time presence data for user interactions. | Purpose: Improves social features by showing accurate online status.
+- FFlagUsePresenceDataFromRtn_IXP = 1;Social.Presence.Frontend;Social.Presence.BackendOnlineFriendsSort.M1.V2;225515523;flagbank | Mechanism: Uses real-time presence data from the IXP system to show player activity. | Purpose: Helps players see who is online and active in games more accurately.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 9965de2fbe5becc018746d3f266f60cd8f328514 to 71a62e9c58874568980663ad34688377a06a4fbb | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:38:48 to 11/19/2025 00:40:24 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 9965de2fbe5becc018746d3f266f60cd8f328514 to 71a62e9c58874568980663ad34688377a06a4fbb | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:38:48 to 11/19/2025 00:40:24 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 9965de2fbe5becc018746d3f266f60cd8f328514 to 71a62e9c58874568980663ad34688377a06a4fbb | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:38:48 to 11/19/2025 00:40:24 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 9965de2fbe5becc018746d3f266f60cd8f328514 to 71a62e9c58874568980663ad34688377a06a4fbb | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:38:48 to 11/19/2025 00:40:24 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 2761afb39 - 2025-11-18 18:39:42 -0600 - 11/18/2025 18:39:42
 Added in Other:
-- FFlagSlimNoRandomSeedFromPart = True | Mechanism: Removes random seed generation from certain parts in the game. | Purpose: Provides more consistent behavior for parts, improving gameplay predictability.
+- FFlagSlimNoRandomSeedFromPart = True | Mechanism: Prevents parts from generating random seeds that affect gameplay. | Purpose: Ensures consistent behavior of parts in games, enhancing predictability.
 Changed in Other:
-- DFIntSQLiteBusyChkpointMaxReport changed from 3 to 0 | Mechanism: Sets limits on how often busy database checkpoints are reported. | Purpose: Improves database performance and stability for smoother gameplay.
-- DFStringFlagRepoGitHashDynamicString changed from 2edec89666c5c0f39d3d2e47c098fc0461d61787 to 9965de2fbe5becc018746d3f266f60cd8f328514 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:28:24 to 11/19/2025 00:38:48 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 2edec89666c5c0f39d3d2e47c098fc0461d61787 to 9965de2fbe5becc018746d3f266f60cd8f328514 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:28:24 to 11/19/2025 00:38:48 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFIntSQLiteBusyChkpointMaxReport changed from 3 to 0 | Mechanism: Sets a limit on how many times the system checks for busy SQLite operations before reporting. | Purpose: Improves performance by reducing unnecessary checks, leading to smoother gameplay.
+- DFStringFlagRepoGitHashDynamicString changed from 2edec89666c5c0f39d3d2e47c098fc0461d61787 to 9965de2fbe5becc018746d3f266f60cd8f328514 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:28:24 to 11/19/2025 00:38:48 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 2edec89666c5c0f39d3d2e47c098fc0461d61787 to 9965de2fbe5becc018746d3f266f60cd8f328514 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:28:24 to 11/19/2025 00:38:48 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFIntSQLiteBusyChkpointMaxReport_Staged removed (was 0;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:32:31) | Mechanism: Adjusts the maximum report limit for busy checkpoints in SQLite database operations. | Purpose: Enhances database performance, leading to faster loading times and smoother gameplay.
-- FFlagSlimNoRandomSeedFromPart_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:31:41) | Mechanism: Removes the random seed generation from parts in the game engine. | Purpose: Ensures more predictable behavior of parts, improving gameplay consistency.
+- DFIntSQLiteBusyChkpointMaxReport_Staged removed (was 0;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:32:31) | Mechanism: Setting a maximum limit for reporting busy checkpoints in SQLite databases. | Purpose: Improves database performance and stability during high-load situations.
+- FFlagSlimNoRandomSeedFromPart_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:31:41) | Mechanism: Removes random seed generation from certain parts in the game. | Purpose: Ensures consistent behavior of parts, making gameplay more predictable and stable for players.
 
 ## e3f4fd458 - 2025-11-18 18:30:50 -0600 - 11/18/2025 18:30:50
 Added in Other:
-- FFlagLuaAppChangeRecommendedGamesTitleLogExposure = True | Mechanism: Changes how recommended games are logged and displayed in the app. | Purpose: Improves the visibility of recommended games for players, making it easier to find new favorites.
+- FFlagLuaAppChangeRecommendedGamesTitleLogExposure = True | Mechanism: Modifies how recommended games are displayed in the app. | Purpose: Improves visibility and engagement with recommended games for players.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 81f5d7971a66b0fb7c6f6df05b3e044c0b4dad1d to 2edec89666c5c0f39d3d2e47c098fc0461d61787 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:27:26 to 11/19/2025 00:28:24 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 81f5d7971a66b0fb7c6f6df05b3e044c0b4dad1d to 2edec89666c5c0f39d3d2e47c098fc0461d61787 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:27:26 to 11/19/2025 00:28:24 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 81f5d7971a66b0fb7c6f6df05b3e044c0b4dad1d to 2edec89666c5c0f39d3d2e47c098fc0461d61787 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:27:26 to 11/19/2025 00:28:24 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 81f5d7971a66b0fb7c6f6df05b3e044c0b4dad1d to 2edec89666c5c0f39d3d2e47c098fc0461d61787 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:27:26 to 11/19/2025 00:28:24 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagLuaAppChangeRecommendedGamesTitleLogExposure_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:24:16) | Mechanism: Adjusts how recommended games are displayed in the app. | Purpose: Helps players discover new games more effectively by improving visibility.
+- FFlagLuaAppChangeRecommendedGamesTitleLogExposure_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:24:16) | Mechanism: Modifies how recommended games are logged and displayed. | Purpose: Enhances the visibility of recommended games, making it easier for players to discover new content.
 
 ## db7f01eed - 2025-11-18 18:28:28 -0600 - 11/18/2025 18:28:27
 Added in Other:
-- FFlagFixExperienceDetailsNavigation_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:25:44 | Mechanism: Improves the navigation system within the experience details page. | Purpose: Makes it easier for players to find and access information about games.
+- FFlagFixExperienceDetailsNavigation_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:25:44 | Mechanism: Improves the navigation system for experience details in the interface. | Purpose: Makes it easier for players to find and access information about games.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0b80b350d39330a6bcbc9f2b3a32f9e31abcf6c3 to 81f5d7971a66b0fb7c6f6df05b3e044c0b4dad1d | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:24:46 to 11/19/2025 00:27:26 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 0b80b350d39330a6bcbc9f2b3a32f9e31abcf6c3 to 81f5d7971a66b0fb7c6f6df05b3e044c0b4dad1d | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:24:46 to 11/19/2025 00:27:26 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 0b80b350d39330a6bcbc9f2b3a32f9e31abcf6c3 to 81f5d7971a66b0fb7c6f6df05b3e044c0b4dad1d | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:24:46 to 11/19/2025 00:27:26 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 0b80b350d39330a6bcbc9f2b3a32f9e31abcf6c3 to 81f5d7971a66b0fb7c6f6df05b3e044c0b4dad1d | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:24:46 to 11/19/2025 00:27:26 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 62bb1846a - 2025-11-18 18:26:05 -0600 - 11/18/2025 18:26:05
 Changed in Other:
-- DFIntWrapDeformerEventHundredthsPercentage changed from 5 to 20 | Mechanism: Wraps deformation events in a percentage format for better precision. | Purpose: Improves the accuracy of character animations, making movements look smoother and more realistic.
-- DFStringFlagRepoGitHashDynamicString changed from 0a4ceb72e8e0c06ad03ef6c2668496e4f0069fa3 to 0b80b350d39330a6bcbc9f2b3a32f9e31abcf6c3 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:18:51 to 11/19/2025 00:24:46 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 0a4ceb72e8e0c06ad03ef6c2668496e4f0069fa3 to 0b80b350d39330a6bcbc9f2b3a32f9e31abcf6c3 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:18:51 to 11/19/2025 00:24:46 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFIntWrapDeformerEventHundredthsPercentage changed from 5 to 20 | Mechanism: Adjusts deformation events to use a percentage format for smoother transitions. | Purpose: Improves the visual quality of character movements and animations.
+- DFStringFlagRepoGitHashDynamicString changed from 0a4ceb72e8e0c06ad03ef6c2668496e4f0069fa3 to 0b80b350d39330a6bcbc9f2b3a32f9e31abcf6c3 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:18:51 to 11/19/2025 00:24:46 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 0a4ceb72e8e0c06ad03ef6c2668496e4f0069fa3 to 0b80b350d39330a6bcbc9f2b3a32f9e31abcf6c3 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:18:51 to 11/19/2025 00:24:46 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFIntWrapDeformerEventHundredthsPercentage_Staged removed (was 20;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;23609967;2025-11-18T23:19:50) | Mechanism: Adjusts the percentage calculations for deformer events. | Purpose: Enhances the precision of character animations.
+- DFIntWrapDeformerEventHundredthsPercentage_Staged removed (was 20;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;23609967;2025-11-18T23:19:50) | Mechanism: Adjusts how deformation events are processed in the game engine. | Purpose: Allows for more precise animations and movements, making characters and objects look better.
 
 ## 19c0a71d8 - 2025-11-18 18:19:22 -0600 - 11/18/2025 18:19:22
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 9c6c64906e05959e73f8a38b1daea0988040c7f4 to 0a4ceb72e8e0c06ad03ef6c2668496e4f0069fa3 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:10:47 to 11/19/2025 00:18:51 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 9c6c64906e05959e73f8a38b1daea0988040c7f4 to 0a4ceb72e8e0c06ad03ef6c2668496e4f0069fa3 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:10:47 to 11/19/2025 00:18:51 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 9c6c64906e05959e73f8a38b1daea0988040c7f4 to 0a4ceb72e8e0c06ad03ef6c2668496e4f0069fa3 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:10:47 to 11/19/2025 00:18:51 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 9c6c64906e05959e73f8a38b1daea0988040c7f4 to 0a4ceb72e8e0c06ad03ef6c2668496e4f0069fa3 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:10:47 to 11/19/2025 00:18:51 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## f1b71c3c5 - 2025-11-18 18:12:41 -0600 - 11/18/2025 18:12:40
 Added in Other:
-- FFlagAXFixConsoleTitleDropdownMissing_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:08:35 | Mechanism: Fixes an issue where the title dropdown was not appearing on console devices. | Purpose: Ensures players can select titles for their games on consoles without problems.
+- FFlagAXFixConsoleTitleDropdownMissing_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-19T00:08:35 | Mechanism: Fixes a bug that caused the title dropdown in the console to not appear. | Purpose: Ensures players can easily select game titles when using the console.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 973d1ce26768a4536c4f5c18a46f1ca54856e87d to 9c6c64906e05959e73f8a38b1daea0988040c7f4 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:07:12 to 11/19/2025 00:10:47 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 973d1ce26768a4536c4f5c18a46f1ca54856e87d to 9c6c64906e05959e73f8a38b1daea0988040c7f4 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:07:12 to 11/19/2025 00:10:47 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 973d1ce26768a4536c4f5c18a46f1ca54856e87d to 9c6c64906e05959e73f8a38b1daea0988040c7f4 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:07:12 to 11/19/2025 00:10:47 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 973d1ce26768a4536c4f5c18a46f1ca54856e87d to 9c6c64906e05959e73f8a38b1daea0988040c7f4 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:07:12 to 11/19/2025 00:10:47 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 2eb09a2fa - 2025-11-18 18:08:06 -0600 - 11/18/2025 18:08:06
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from cbaa4d5f1c6bcc1a16cf8d4f8c4426cc1cf3cc44 to 973d1ce26768a4536c4f5c18a46f1ca54856e87d | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:04:33 to 11/19/2025 00:07:12 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from cbaa4d5f1c6bcc1a16cf8d4f8c4426cc1cf3cc44 to 973d1ce26768a4536c4f5c18a46f1ca54856e87d | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/19/2025 00:04:33 to 11/19/2025 00:07:12 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from cbaa4d5f1c6bcc1a16cf8d4f8c4426cc1cf3cc44 to 973d1ce26768a4536c4f5c18a46f1ca54856e87d | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/19/2025 00:04:33 to 11/19/2025 00:07:12 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from cbaa4d5f1c6bcc1a16cf8d4f8c4426cc1cf3cc44 to 973d1ce26768a4536c4f5c18a46f1ca54856e87d | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/19/2025 00:04:33 to 11/19/2025 00:07:12 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 023fb166b - 2025-11-18 18:05:47 -0600 - 11/18/2025 18:05:47
 Added in Other:
-- FFlagAXSendSessionForEvents = True | Mechanism: Sends user session data for event tracking. | Purpose: Improves the accuracy of event analytics for better game experiences.
+- FFlagAXSendSessionForEvents = True | Mechanism: Sends session data for events to improve tracking. | Purpose: Helps developers understand player interactions better.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7f26d2ac2360746428f4a8f6236302551330a5af to cbaa4d5f1c6bcc1a16cf8d4f8c4426cc1cf3cc44 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:56:57 to 11/19/2025 00:04:33 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 7f26d2ac2360746428f4a8f6236302551330a5af to cbaa4d5f1c6bcc1a16cf8d4f8c4426cc1cf3cc44 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:56:57 to 11/19/2025 00:04:33 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 7f26d2ac2360746428f4a8f6236302551330a5af to cbaa4d5f1c6bcc1a16cf8d4f8c4426cc1cf3cc44 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:56:57 to 11/19/2025 00:04:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 7f26d2ac2360746428f4a8f6236302551330a5af to cbaa4d5f1c6bcc1a16cf8d4f8c4426cc1cf3cc44 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:56:57 to 11/19/2025 00:04:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Network:
-- DFFlagResetNetworkOwnerOnRemovePrimitive2_Staged removed (was true;SteadyState;10;30;Revert;2025-11-18T23:26:59) | Mechanism: Resets the network ownership of objects when they are removed from the game. | Purpose: Improves game performance and reduces lag by managing object ownership more effectively.
+- DFFlagResetNetworkOwnerOnRemovePrimitive2_Staged removed (was true;SteadyState;10;30;Revert;2025-11-18T23:26:59) | Mechanism: Resets the network ownership of objects when they are removed from the game. | Purpose: Ensures smoother gameplay by preventing issues with object ownership and control.
 Removed in Other:
-- FFlagAXSendSessionForEvents_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:57:37) | Mechanism: Sending session data for tracking events in the game. | Purpose: Helps developers understand player interactions better, leading to improved gameplay.
+- FFlagAXSendSessionForEvents_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:57:37) | Mechanism: Sends session data for specific events to improve tracking. | Purpose: Helps developers understand player interactions better for game improvements.
 
 ## 604770e22 - 2025-11-18 17:59:10 -0600 - 11/18/2025 17:59:10
 Added in Other:
-- FFlagLuaAppEnableWhyThisAdModal_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:55:15 | Mechanism: Displays a modal explaining ad purposes in Lua apps. | Purpose: Enhances transparency about ads, helping players understand why they see them.
+- FFlagLuaAppEnableWhyThisAdModal_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:55:15 | Mechanism: Enables a modal that explains why ads are shown in the Lua app. | Purpose: Helps players understand the presence of ads, improving transparency.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5a9ef12d52b47957d5656a59ed596be414c6971b to 7f26d2ac2360746428f4a8f6236302551330a5af | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:53:56 to 11/18/2025 23:56:57 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 5a9ef12d52b47957d5656a59ed596be414c6971b to 7f26d2ac2360746428f4a8f6236302551330a5af | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:53:56 to 11/18/2025 23:56:57 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 5a9ef12d52b47957d5656a59ed596be414c6971b to 7f26d2ac2360746428f4a8f6236302551330a5af | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:53:56 to 11/18/2025 23:56:57 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 5a9ef12d52b47957d5656a59ed596be414c6971b to 7f26d2ac2360746428f4a8f6236302551330a5af | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:53:56 to 11/18/2025 23:56:57 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 9a78c15e2 - 2025-11-18 17:54:39 -0600 - 11/18/2025 17:54:39
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 167e8d785234faffd67dc573ae9c567da7d0c3e7 to 5a9ef12d52b47957d5656a59ed596be414c6971b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:48:43 to 11/18/2025 23:53:56 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 167e8d785234faffd67dc573ae9c567da7d0c3e7 to 5a9ef12d52b47957d5656a59ed596be414c6971b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:48:43 to 11/18/2025 23:53:56 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 167e8d785234faffd67dc573ae9c567da7d0c3e7 to 5a9ef12d52b47957d5656a59ed596be414c6971b | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:48:43 to 11/18/2025 23:53:56 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 167e8d785234faffd67dc573ae9c567da7d0c3e7 to 5a9ef12d52b47957d5656a59ed596be414c6971b | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:48:43 to 11/18/2025 23:53:56 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## dd9d11d11 - 2025-11-18 17:50:05 -0600 - 11/18/2025 17:50:04
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f8f304f68c0293967a7fb91cf6d5bdabf168471d to 167e8d785234faffd67dc573ae9c567da7d0c3e7 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:43:54 to 11/18/2025 23:48:43 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from f8f304f68c0293967a7fb91cf6d5bdabf168471d to 167e8d785234faffd67dc573ae9c567da7d0c3e7 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:43:54 to 11/18/2025 23:48:43 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from f8f304f68c0293967a7fb91cf6d5bdabf168471d to 167e8d785234faffd67dc573ae9c567da7d0c3e7 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:43:54 to 11/18/2025 23:48:43 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from f8f304f68c0293967a7fb91cf6d5bdabf168471d to 167e8d785234faffd67dc573ae9c567da7d0c3e7 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:43:54 to 11/18/2025 23:48:43 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 66d828892 - 2025-11-18 17:45:33 -0600 - 11/18/2025 17:45:33
 Added in Other:
-- FFlagEmitterSharedCurvePool = True | Mechanism: Optimizes how particle effects are managed by reusing curves. | Purpose: Improves game performance by reducing resource usage for visual effects.
+- FFlagEmitterSharedCurvePool = True | Mechanism: Optimizes the storage and reuse of animation curves for particle emitters. | Purpose: Improves performance by reducing memory usage for particle effects.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 96f159ef4952be82c1ee14bb4896fddec9983da9 to f8f304f68c0293967a7fb91cf6d5bdabf168471d | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:38:11 to 11/18/2025 23:43:54 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 96f159ef4952be82c1ee14bb4896fddec9983da9 to f8f304f68c0293967a7fb91cf6d5bdabf168471d | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:38:11 to 11/18/2025 23:43:54 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 96f159ef4952be82c1ee14bb4896fddec9983da9 to f8f304f68c0293967a7fb91cf6d5bdabf168471d | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:38:11 to 11/18/2025 23:43:54 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 96f159ef4952be82c1ee14bb4896fddec9983da9 to f8f304f68c0293967a7fb91cf6d5bdabf168471d | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:38:11 to 11/18/2025 23:43:54 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagEmitterSharedCurvePool_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:39:20) | Mechanism: Implements a shared pool for curve data in particle emitters to optimize performance. | Purpose: Improves the efficiency of particle effects, leading to smoother visuals for players.
+- FFlagEmitterSharedCurvePool_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:39:20) | Mechanism: Utilizes a shared pool for emitter curves to optimize performance. | Purpose: Enhances the visual effects in games by making them run more efficiently.
 
 ## f91429ad3 - 2025-11-18 17:38:36 -0600 - 11/18/2025 17:38:36
 Added in Other:
-- DFFlagTelemetryServiceAsBridge = True | Mechanism: Uses a telemetry service to connect different data sources for better insights. | Purpose: Improves overall game performance and player experience by providing better data analysis.
+- DFFlagTelemetryServiceAsBridge = True | Mechanism: Utilizes a telemetry service to gather and analyze player data. | Purpose: Helps developers understand player behavior to improve game experiences.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0fcf6f92690188e017ba0b662e67c5d568680652 to 96f159ef4952be82c1ee14bb4896fddec9983da9 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:34:23 to 11/18/2025 23:38:11 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 0fcf6f92690188e017ba0b662e67c5d568680652 to 96f159ef4952be82c1ee14bb4896fddec9983da9 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:34:23 to 11/18/2025 23:38:11 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 0fcf6f92690188e017ba0b662e67c5d568680652 to 96f159ef4952be82c1ee14bb4896fddec9983da9 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:34:23 to 11/18/2025 23:38:11 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 0fcf6f92690188e017ba0b662e67c5d568680652 to 96f159ef4952be82c1ee14bb4896fddec9983da9 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:34:23 to 11/18/2025 23:38:11 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFFlagTelemetryServiceAsBridge_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:30:58) | Mechanism: Routes telemetry data through a centralized service. | Purpose: Improves tracking and analysis of player interactions for better game experiences.
+- DFFlagTelemetryServiceAsBridge_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:30:58) | Mechanism: Uses a telemetry service to track and analyze game data. | Purpose: Helps developers understand player behavior for better game experiences.
 
 ## 506f1fe6e - 2025-11-18 17:36:14 -0600 - 11/18/2025 17:36:14
 Added in Other:
-- DFIntSQLiteBusyChkpointMaxReport_Staged = 0;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:32:31 | Mechanism: Adjusts the maximum report limit for busy checkpoints in SQLite database operations. | Purpose: Enhances database performance, leading to faster loading times and smoother gameplay.
-- FFlagSlimNoRandomSeedFromPart_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:31:41 | Mechanism: Removes the random seed generation from parts in the game engine. | Purpose: Ensures more predictable behavior of parts, improving gameplay consistency.
+- DFIntSQLiteBusyChkpointMaxReport_Staged = 0;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:32:31 | Mechanism: Setting a maximum limit for reporting busy checkpoints in SQLite databases. | Purpose: Improves database performance and stability during high-load situations.
+- FFlagSlimNoRandomSeedFromPart_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:31:41 | Mechanism: Removes random seed generation from certain parts in the game. | Purpose: Ensures consistent behavior of parts, making gameplay more predictable and stable for players.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e7b682c31e86f45dae950f03bd99d9ea8e0589a1 to 0fcf6f92690188e017ba0b662e67c5d568680652 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:33:15 to 11/18/2025 23:34:23 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e7b682c31e86f45dae950f03bd99d9ea8e0589a1 to 0fcf6f92690188e017ba0b662e67c5d568680652 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:33:15 to 11/18/2025 23:34:23 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from e7b682c31e86f45dae950f03bd99d9ea8e0589a1 to 0fcf6f92690188e017ba0b662e67c5d568680652 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:33:15 to 11/18/2025 23:34:23 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from e7b682c31e86f45dae950f03bd99d9ea8e0589a1 to 0fcf6f92690188e017ba0b662e67c5d568680652 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:33:15 to 11/18/2025 23:34:23 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 1ccad167d - 2025-11-18 17:33:49 -0600 - 11/18/2025 17:33:49
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from af6467ffdc5845f9c6beb104bfec675f5a109c8a to e7b682c31e86f45dae950f03bd99d9ea8e0589a1 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:28:03 to 11/18/2025 23:33:15 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from af6467ffdc5845f9c6beb104bfec675f5a109c8a to e7b682c31e86f45dae950f03bd99d9ea8e0589a1 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:28:03 to 11/18/2025 23:33:15 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from af6467ffdc5845f9c6beb104bfec675f5a109c8a to e7b682c31e86f45dae950f03bd99d9ea8e0589a1 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:28:03 to 11/18/2025 23:33:15 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from af6467ffdc5845f9c6beb104bfec675f5a109c8a to e7b682c31e86f45dae950f03bd99d9ea8e0589a1 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:28:03 to 11/18/2025 23:33:15 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 70a70fe37 - 2025-11-18 17:29:11 -0600 - 11/18/2025 17:29:11
 Added in Network:
-- DFFlagResetNetworkOwnerOnRemovePrimitive2_Staged = true;SteadyState;10;30;Revert;2025-11-18T23:26:59 | Mechanism: Resets the network ownership of objects when they are removed from the game. | Purpose: Improves game performance and reduces lag by managing object ownership more effectively.
+- DFFlagResetNetworkOwnerOnRemovePrimitive2_Staged = true;SteadyState;10;30;Revert;2025-11-18T23:26:59 | Mechanism: Resets the network ownership of objects when they are removed from the game. | Purpose: Ensures smoother gameplay by preventing issues with object ownership and control.
 Added in Other:
-- FFlagLuaAppChangeRecommendedGamesTitleLogExposure_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:24:16 | Mechanism: Adjusts how recommended games are displayed in the app. | Purpose: Helps players discover new games more effectively by improving visibility.
+- FFlagLuaAppChangeRecommendedGamesTitleLogExposure_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T23:24:16 | Mechanism: Modifies how recommended games are logged and displayed. | Purpose: Enhances the visibility of recommended games, making it easier for players to discover new content.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b07a700e76418796b6cf044f4ba0b0965f36344b to af6467ffdc5845f9c6beb104bfec675f5a109c8a | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:23:41 to 11/18/2025 23:28:03 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b07a700e76418796b6cf044f4ba0b0965f36344b to af6467ffdc5845f9c6beb104bfec675f5a109c8a | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:23:41 to 11/18/2025 23:28:03 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from b07a700e76418796b6cf044f4ba0b0965f36344b to af6467ffdc5845f9c6beb104bfec675f5a109c8a | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:23:41 to 11/18/2025 23:28:03 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b07a700e76418796b6cf044f4ba0b0965f36344b to af6467ffdc5845f9c6beb104bfec675f5a109c8a | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:23:41 to 11/18/2025 23:28:03 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 886eafea6 - 2025-11-18 17:24:24 -0600 - 11/18/2025 17:24:24
 Added in Other:
-- DFFlagReverbLimitMaxRotationAngle = True | Mechanism: Limits the maximum rotation angle for sound reverb effects. | Purpose: Ensures sound effects are more realistic and immersive in games.
+- DFFlagReverbLimitMaxRotationAngle = True | Mechanism: Adjusting the maximum rotation angle for sound reverb effects in the game. | Purpose: Improves the audio experience by allowing more realistic sound effects in 3D environments.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 383c4fa60fb7ff2fe33893bc15608df2b3806461 to b07a700e76418796b6cf044f4ba0b0965f36344b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:21:33 to 11/18/2025 23:23:41 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 383c4fa60fb7ff2fe33893bc15608df2b3806461 to b07a700e76418796b6cf044f4ba0b0965f36344b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:21:33 to 11/18/2025 23:23:41 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 383c4fa60fb7ff2fe33893bc15608df2b3806461 to b07a700e76418796b6cf044f4ba0b0965f36344b | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:21:33 to 11/18/2025 23:23:41 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 383c4fa60fb7ff2fe33893bc15608df2b3806461 to b07a700e76418796b6cf044f4ba0b0965f36344b | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:21:33 to 11/18/2025 23:23:41 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFFlagReverbLimitMaxRotationAngle_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:17:04) | Mechanism: Limits the maximum rotation angle for sound reverb effects. | Purpose: Enhances audio realism by preventing unnatural sound distortions in games.
+- DFFlagReverbLimitMaxRotationAngle_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:17:04) | Mechanism: Sets a maximum rotation angle for sound reverb effects. | Purpose: Improves audio quality in games by controlling sound behavior.
 
 ## 7f9d054da - 2025-11-18 17:22:02 -0600 - 11/18/2025 17:22:02
 Added in Other:
-- DFIntWrapDeformerEventHundredthsPercentage_Staged = 20;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;23609967;2025-11-18T23:19:50 | Mechanism: Adjusts the percentage calculations for deformer events. | Purpose: Enhances the precision of character animations.
+- DFIntWrapDeformerEventHundredthsPercentage_Staged = 20;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;23609967;2025-11-18T23:19:50 | Mechanism: Adjusts how deformation events are processed in the game engine. | Purpose: Allows for more precise animations and movements, making characters and objects look better.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b0939dd3a4648a2c636d7d160a84131a69693996 to 383c4fa60fb7ff2fe33893bc15608df2b3806461 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:19:01 to 11/18/2025 23:21:33 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b0939dd3a4648a2c636d7d160a84131a69693996 to 383c4fa60fb7ff2fe33893bc15608df2b3806461 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:19:01 to 11/18/2025 23:21:33 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from b0939dd3a4648a2c636d7d160a84131a69693996 to 383c4fa60fb7ff2fe33893bc15608df2b3806461 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:19:01 to 11/18/2025 23:21:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b0939dd3a4648a2c636d7d160a84131a69693996 to 383c4fa60fb7ff2fe33893bc15608df2b3806461 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:19:01 to 11/18/2025 23:21:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## b12586d63 - 2025-11-18 17:19:38 -0600 - 11/18/2025 17:19:38
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 3cde72a7604f65bf18366d1fb4a0958e126e1cbe to b0939dd3a4648a2c636d7d160a84131a69693996 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:16:19 to 11/18/2025 23:19:01 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 3cde72a7604f65bf18366d1fb4a0958e126e1cbe to b0939dd3a4648a2c636d7d160a84131a69693996 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:16:19 to 11/18/2025 23:19:01 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 3cde72a7604f65bf18366d1fb4a0958e126e1cbe to b0939dd3a4648a2c636d7d160a84131a69693996 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:16:19 to 11/18/2025 23:19:01 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 3cde72a7604f65bf18366d1fb4a0958e126e1cbe to b0939dd3a4648a2c636d7d160a84131a69693996 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:16:19 to 11/18/2025 23:19:01 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 07188fce7 - 2025-11-18 17:17:13 -0600 - 11/18/2025 17:17:12
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 1c626ccba9e981b8f7f8d3b0fbe0cd7421152621 to 3cde72a7604f65bf18366d1fb4a0958e126e1cbe | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:10:19 to 11/18/2025 23:16:19 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 1c626ccba9e981b8f7f8d3b0fbe0cd7421152621 to 3cde72a7604f65bf18366d1fb4a0958e126e1cbe | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:10:19 to 11/18/2025 23:16:19 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 1c626ccba9e981b8f7f8d3b0fbe0cd7421152621 to 3cde72a7604f65bf18366d1fb4a0958e126e1cbe | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:10:19 to 11/18/2025 23:16:19 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 1c626ccba9e981b8f7f8d3b0fbe0cd7421152621 to 3cde72a7604f65bf18366d1fb4a0958e126e1cbe | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:10:19 to 11/18/2025 23:16:19 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 34a406ed1 - 2025-11-18 17:12:30 -0600 - 11/18/2025 17:12:30
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 91daf3a47e662cf021a90e6318cf26e5458e995b to 1c626ccba9e981b8f7f8d3b0fbe0cd7421152621 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:09:40 to 11/18/2025 23:10:19 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 91daf3a47e662cf021a90e6318cf26e5458e995b to 1c626ccba9e981b8f7f8d3b0fbe0cd7421152621 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:09:40 to 11/18/2025 23:10:19 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 91daf3a47e662cf021a90e6318cf26e5458e995b to 1c626ccba9e981b8f7f8d3b0fbe0cd7421152621 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:09:40 to 11/18/2025 23:10:19 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 91daf3a47e662cf021a90e6318cf26e5458e995b to 1c626ccba9e981b8f7f8d3b0fbe0cd7421152621 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:09:40 to 11/18/2025 23:10:19 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 05ca7db0c - 2025-11-18 17:10:08 -0600 - 11/18/2025 17:10:08
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 4f4a188ee45e39bcb8ce8c6d2de52c924cdeb269 to 91daf3a47e662cf021a90e6318cf26e5458e995b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:06:56 to 11/18/2025 23:09:40 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 4f4a188ee45e39bcb8ce8c6d2de52c924cdeb269 to 91daf3a47e662cf021a90e6318cf26e5458e995b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:06:56 to 11/18/2025 23:09:40 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 4f4a188ee45e39bcb8ce8c6d2de52c924cdeb269 to 91daf3a47e662cf021a90e6318cf26e5458e995b | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:06:56 to 11/18/2025 23:09:40 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 4f4a188ee45e39bcb8ce8c6d2de52c924cdeb269 to 91daf3a47e662cf021a90e6318cf26e5458e995b | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:06:56 to 11/18/2025 23:09:40 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 2a3909c04 - 2025-11-18 17:07:38 -0600 - 11/18/2025 17:07:37
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e0543c9702245436cbab4247e87d37081079c244 to 4f4a188ee45e39bcb8ce8c6d2de52c924cdeb269 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:04:49 to 11/18/2025 23:06:56 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e0543c9702245436cbab4247e87d37081079c244 to 4f4a188ee45e39bcb8ce8c6d2de52c924cdeb269 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 23:04:49 to 11/18/2025 23:06:56 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from e0543c9702245436cbab4247e87d37081079c244 to 4f4a188ee45e39bcb8ce8c6d2de52c924cdeb269 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 23:04:49 to 11/18/2025 23:06:56 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from e0543c9702245436cbab4247e87d37081079c244 to 4f4a188ee45e39bcb8ce8c6d2de52c924cdeb269 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 23:04:49 to 11/18/2025 23:06:56 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 10d4d9da2 - 2025-11-18 17:05:09 -0600 - 11/18/2025 17:05:08
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 51fc0c2dbe56ff3d27ec3d9454f7118c5ca77dcf to e0543c9702245436cbab4247e87d37081079c244 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:59:03 to 11/18/2025 23:04:49 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 51fc0c2dbe56ff3d27ec3d9454f7118c5ca77dcf to e0543c9702245436cbab4247e87d37081079c244 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:59:03 to 11/18/2025 23:04:49 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 51fc0c2dbe56ff3d27ec3d9454f7118c5ca77dcf to e0543c9702245436cbab4247e87d37081079c244 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:59:03 to 11/18/2025 23:04:49 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 51fc0c2dbe56ff3d27ec3d9454f7118c5ca77dcf to e0543c9702245436cbab4247e87d37081079c244 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:59:03 to 11/18/2025 23:04:49 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 14d25f768 - 2025-11-18 17:00:29 -0600 - 11/18/2025 17:00:29
 Added in Other:
-- FFlagAXSendSessionForEvents_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:57:37 | Mechanism: Sending session data for tracking events in the game. | Purpose: Helps developers understand player interactions better, leading to improved gameplay.
+- FFlagAXSendSessionForEvents_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:57:37 | Mechanism: Sends session data for specific events to improve tracking. | Purpose: Helps developers understand player interactions better for game improvements.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8ddd13f0ea24f054d644c59a10e2a2e0ff47a792 to 51fc0c2dbe56ff3d27ec3d9454f7118c5ca77dcf | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:57:08 to 11/18/2025 22:59:03 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 8ddd13f0ea24f054d644c59a10e2a2e0ff47a792 to 51fc0c2dbe56ff3d27ec3d9454f7118c5ca77dcf | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:57:08 to 11/18/2025 22:59:03 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 8ddd13f0ea24f054d644c59a10e2a2e0ff47a792 to 51fc0c2dbe56ff3d27ec3d9454f7118c5ca77dcf | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:57:08 to 11/18/2025 22:59:03 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 8ddd13f0ea24f054d644c59a10e2a2e0ff47a792 to 51fc0c2dbe56ff3d27ec3d9454f7118c5ca77dcf | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:57:08 to 11/18/2025 22:59:03 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## eae86fd5d - 2025-11-18 16:57:59 -0600 - 11/18/2025 16:57:59
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d7c13a2c538c9d789b3107bf93c8ee737a1c981a to 8ddd13f0ea24f054d644c59a10e2a2e0ff47a792 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:52:04 to 11/18/2025 22:57:08 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from d7c13a2c538c9d789b3107bf93c8ee737a1c981a to 8ddd13f0ea24f054d644c59a10e2a2e0ff47a792 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:52:04 to 11/18/2025 22:57:08 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from d7c13a2c538c9d789b3107bf93c8ee737a1c981a to 8ddd13f0ea24f054d644c59a10e2a2e0ff47a792 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:52:04 to 11/18/2025 22:57:08 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from d7c13a2c538c9d789b3107bf93c8ee737a1c981a to 8ddd13f0ea24f054d644c59a10e2a2e0ff47a792 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:52:04 to 11/18/2025 22:57:08 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 35074f423 - 2025-11-18 16:53:26 -0600 - 11/18/2025 16:53:26
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2da83d12b832a88422e0976d0c78fefa01eb2b5b to d7c13a2c538c9d789b3107bf93c8ee737a1c981a | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:48:33 to 11/18/2025 22:52:04 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 2da83d12b832a88422e0976d0c78fefa01eb2b5b to d7c13a2c538c9d789b3107bf93c8ee737a1c981a | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:48:33 to 11/18/2025 22:52:04 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 2da83d12b832a88422e0976d0c78fefa01eb2b5b to d7c13a2c538c9d789b3107bf93c8ee737a1c981a | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:48:33 to 11/18/2025 22:52:04 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 2da83d12b832a88422e0976d0c78fefa01eb2b5b to d7c13a2c538c9d789b3107bf93c8ee737a1c981a | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:48:33 to 11/18/2025 22:52:04 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagPlayerSearchEnableOnlineFrequentsForAll_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:49:52) | Mechanism: Allows all players to see frequently online friends in search. | Purpose: Makes it easier to find and connect with friends in games.
+- FFlagPlayerSearchEnableOnlineFrequentsForAll_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:49:52) | Mechanism: Enabling a feature that shows frequently online players in search results for all users. | Purpose: Helps players easily find and connect with friends who are frequently online.
 
 ## b3d16b4e2 - 2025-11-18 16:50:55 -0600 - 11/18/2025 16:50:55
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0bcd7c6d468f35125062c3bbb7bdca1601a7f618 to 2da83d12b832a88422e0976d0c78fefa01eb2b5b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:44:18 to 11/18/2025 22:48:33 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 0bcd7c6d468f35125062c3bbb7bdca1601a7f618 to 2da83d12b832a88422e0976d0c78fefa01eb2b5b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:44:18 to 11/18/2025 22:48:33 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 0bcd7c6d468f35125062c3bbb7bdca1601a7f618 to 2da83d12b832a88422e0976d0c78fefa01eb2b5b | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:44:18 to 11/18/2025 22:48:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 0bcd7c6d468f35125062c3bbb7bdca1601a7f618 to 2da83d12b832a88422e0976d0c78fefa01eb2b5b | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:44:18 to 11/18/2025 22:48:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 122650201 - 2025-11-18 16:46:07 -0600 - 11/18/2025 16:46:07
 Added in Other:
-- FFlagAXItemCardSelectedOverlayBorderInsteadOfCheckmark_IXP = 1;AvatarExperience.UA.AllViews;AvatarMarketplace.UA.MultiItemShoppingDesktopOnly;2142854400;dev_controlled | Mechanism: Replaces the checkmark with a border on selected item cards. | Purpose: Enhances visual clarity when selecting items.
-- FFlagAXMISExposureLogging_IXP = 1;AvatarExperience.UA.AllViews;AvatarMarketplace.UA.MultiItemShoppingDesktopOnly;2142854400;dev_controlled | Mechanism: Logging player exposure to various features for analysis. | Purpose: Enables better feature development based on player usage data.
+- FFlagAXItemCardSelectedOverlayBorderInsteadOfCheckmark_IXP = 1;AvatarExperience.UA.AllViews;AvatarMarketplace.UA.MultiItemShoppingDesktopOnly;2142854400;dev_controlled | Mechanism: Changes the visual indicator for selected items from a checkmark to a border. | Purpose: Enhances the visual clarity of selected items in the UI.
+- FFlagAXMISExposureLogging_IXP = 1;AvatarExperience.UA.AllViews;AvatarMarketplace.UA.MultiItemShoppingDesktopOnly;2142854400;dev_controlled | Mechanism: Implements logging for exposure metrics in the system. | Purpose: Helps developers understand player interactions better for improving game features.
 Added in Network:
-- FFlagAXMISEnableMultiShopping10_IXP = 1;AvatarExperience.UA.AllViews;AvatarMarketplace.UA.MultiItemShoppingDesktopOnly;2142854400;dev_controlled | Mechanism: Allows users to add multiple items to their shopping cart at once. | Purpose: Makes it easier and faster for players to purchase several items together.
+- FFlagAXMISEnableMultiShopping10_IXP = 1;AvatarExperience.UA.AllViews;AvatarMarketplace.UA.MultiItemShoppingDesktopOnly;2142854400;dev_controlled | Mechanism: Allows multiple shopping options in the in-game store. | Purpose: Gives players more choices when purchasing items, enhancing the shopping experience.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7bf16b4e443ed23350aaf5b42012a99aa6864877 to 0bcd7c6d468f35125062c3bbb7bdca1601a7f618 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:42:16 to 11/18/2025 22:44:18 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 7bf16b4e443ed23350aaf5b42012a99aa6864877 to 0bcd7c6d468f35125062c3bbb7bdca1601a7f618 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:42:16 to 11/18/2025 22:44:18 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 7bf16b4e443ed23350aaf5b42012a99aa6864877 to 0bcd7c6d468f35125062c3bbb7bdca1601a7f618 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:42:16 to 11/18/2025 22:44:18 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 7bf16b4e443ed23350aaf5b42012a99aa6864877 to 0bcd7c6d468f35125062c3bbb7bdca1601a7f618 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:42:16 to 11/18/2025 22:44:18 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 525a0811f - 2025-11-18 16:43:15 -0600 - 11/18/2025 16:43:15
 Added in Other:
-- FFlagEmitterSharedCurvePool_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:39:20 | Mechanism: Implements a shared pool for curve data in particle emitters to optimize performance. | Purpose: Improves the efficiency of particle effects, leading to smoother visuals for players.
+- FFlagEmitterSharedCurvePool_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:39:20 | Mechanism: Utilizes a shared pool for emitter curves to optimize performance. | Purpose: Enhances the visual effects in games by making them run more efficiently.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 619d89a77cf533d384c4d5e7efb249db22247424 to 7bf16b4e443ed23350aaf5b42012a99aa6864877 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:38:51 to 11/18/2025 22:42:16 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 619d89a77cf533d384c4d5e7efb249db22247424 to 7bf16b4e443ed23350aaf5b42012a99aa6864877 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:38:51 to 11/18/2025 22:42:16 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 619d89a77cf533d384c4d5e7efb249db22247424 to 7bf16b4e443ed23350aaf5b42012a99aa6864877 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:38:51 to 11/18/2025 22:42:16 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 619d89a77cf533d384c4d5e7efb249db22247424 to 7bf16b4e443ed23350aaf5b42012a99aa6864877 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:38:51 to 11/18/2025 22:42:16 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 8fcc702e5 - 2025-11-18 16:40:53 -0600 - 11/18/2025 16:40:53
 Added in Input:
-- FFlagUserCheckTouchControlMode = True | Mechanism: Checks if users are using touch controls on devices. | Purpose: Enhances the gaming experience by optimizing controls for touch devices.
+- FFlagUserCheckTouchControlMode = True | Mechanism: Checks if the user is using touch controls for input. | Purpose: Improves gameplay experience on touch devices by optimizing controls.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c32d185d02cad74dc2f82791cea6997e7b05a169 to 619d89a77cf533d384c4d5e7efb249db22247424 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:33:56 to 11/18/2025 22:38:51 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from c32d185d02cad74dc2f82791cea6997e7b05a169 to 619d89a77cf533d384c4d5e7efb249db22247424 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:33:56 to 11/18/2025 22:38:51 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from c32d185d02cad74dc2f82791cea6997e7b05a169 to 619d89a77cf533d384c4d5e7efb249db22247424 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:33:56 to 11/18/2025 22:38:51 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from c32d185d02cad74dc2f82791cea6997e7b05a169 to 619d89a77cf533d384c4d5e7efb249db22247424 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:33:56 to 11/18/2025 22:38:51 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Input:
-- FFlagUserCheckTouchControlMode_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:33:28) | Mechanism: Enables a check for touch control modes on user devices. | Purpose: Improves the touch control experience for mobile players.
+- FFlagUserCheckTouchControlMode_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:33:28) | Mechanism: Checks if the user is using touch controls on their device. | Purpose: Optimizes gameplay experience for touch users by adjusting controls accordingly.
 
 ## c4ae0f1ab - 2025-11-18 16:36:14 -0600 - 11/18/2025 16:36:14
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 65efe345aad6f20afbdc2fb36a1fb1095b351164 to c32d185d02cad74dc2f82791cea6997e7b05a169 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:32:44 to 11/18/2025 22:33:56 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FIntBackgroundDMLocalPlayerLoadingTimeoutSeconds changed from 25 to 40 | Mechanism: Sets a timeout duration for loading the local player's data in the background. | Purpose: Ensures players don't wait too long for their game data to load, improving the overall experience.
-- FStringFlagRepoGitHashFastString changed from 65efe345aad6f20afbdc2fb36a1fb1095b351164 to c32d185d02cad74dc2f82791cea6997e7b05a169 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:32:44 to 11/18/2025 22:33:56 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 65efe345aad6f20afbdc2fb36a1fb1095b351164 to c32d185d02cad74dc2f82791cea6997e7b05a169 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:32:44 to 11/18/2025 22:33:56 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FIntBackgroundDMLocalPlayerLoadingTimeoutSeconds changed from 25 to 40 | Mechanism: Defines the maximum time allowed for loading player data. | Purpose: Enhances player experience by reducing loading times.
+- FStringFlagRepoGitHashFastString changed from 65efe345aad6f20afbdc2fb36a1fb1095b351164 to c32d185d02cad74dc2f82791cea6997e7b05a169 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:32:44 to 11/18/2025 22:33:56 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagEmitterSharedCurvePool_Staged removed (was true;SteadyState;10;30;Revert;2025-11-18T21:56:08) | Mechanism: Implements a shared pool for curve data in particle emitters to optimize performance. | Purpose: Improves the efficiency of particle effects, leading to smoother visuals for players.
-- FIntBackgroundDMLocalPlayerLoadingTimeoutSeconds_Staged removed (was 40;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:27:54) | Mechanism: Sets a time limit for loading player data in the background. | Purpose: Players experience faster loading times and less waiting when joining games.
+- FFlagEmitterSharedCurvePool_Staged removed (was true;SteadyState;10;30;Revert;2025-11-18T21:56:08) | Mechanism: Utilizes a shared pool for emitter curves to optimize performance. | Purpose: Enhances the visual effects in games by making them run more efficiently.
+- FIntBackgroundDMLocalPlayerLoadingTimeoutSeconds_Staged removed (was 40;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:27:54) | Mechanism: Sets a timeout duration for loading player data. | Purpose: Ensures players don't wait too long for their game to load.
 
 ## 2e50cdf47 - 2025-11-18 16:33:49 -0600 - 11/18/2025 16:33:49
 Added in Other:
-- DFFlagTelemetryServiceAsBridge_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:30:58 | Mechanism: Routes telemetry data through a centralized service. | Purpose: Improves tracking and analysis of player interactions for better game experiences.
+- DFFlagTelemetryServiceAsBridge_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:30:58 | Mechanism: Uses a telemetry service to track and analyze game data. | Purpose: Helps developers understand player behavior for better game experiences.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e2a2416aadde9877d78e839640acfc5f27308a61 to 65efe345aad6f20afbdc2fb36a1fb1095b351164 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:27:26 to 11/18/2025 22:32:44 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e2a2416aadde9877d78e839640acfc5f27308a61 to 65efe345aad6f20afbdc2fb36a1fb1095b351164 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:27:26 to 11/18/2025 22:32:44 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from e2a2416aadde9877d78e839640acfc5f27308a61 to 65efe345aad6f20afbdc2fb36a1fb1095b351164 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:27:26 to 11/18/2025 22:32:44 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from e2a2416aadde9877d78e839640acfc5f27308a61 to 65efe345aad6f20afbdc2fb36a1fb1095b351164 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:27:26 to 11/18/2025 22:32:44 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 76d8a18d9 - 2025-11-18 16:29:18 -0600 - 11/18/2025 16:29:17
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 88f5b56306bf7c24c4048a4350be3f635ac0f32e to e2a2416aadde9877d78e839640acfc5f27308a61 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:24:06 to 11/18/2025 22:27:26 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 88f5b56306bf7c24c4048a4350be3f635ac0f32e to e2a2416aadde9877d78e839640acfc5f27308a61 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:24:06 to 11/18/2025 22:27:26 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 88f5b56306bf7c24c4048a4350be3f635ac0f32e to e2a2416aadde9877d78e839640acfc5f27308a61 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:24:06 to 11/18/2025 22:27:26 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 88f5b56306bf7c24c4048a4350be3f635ac0f32e to e2a2416aadde9877d78e839640acfc5f27308a61 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:24:06 to 11/18/2025 22:27:26 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Changed in Network:
-- FFlagDelayAudioFocusReplication changed from True to False | Mechanism: Introduces a delay in how audio focus changes are communicated. | Purpose: Reduces audio interruptions for players, leading to a smoother sound experience.
+- FFlagDelayAudioFocusReplication changed from True to False | Mechanism: Introduces a delay in replicating audio focus changes. | Purpose: Reduces audio interruptions for players during gameplay.
 Removed in Network:
-- FFlagDelayAudioFocusReplication_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:24:48) | Mechanism: Delays the update of audio focus across clients. | Purpose: Improves audio synchronization for a better listening experience.
+- FFlagDelayAudioFocusReplication_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:24:48) | Mechanism: Introducing a delay in how audio focus changes are replicated across clients. | Purpose: Enhances audio experience by preventing abrupt changes in sound focus.
 
 ## ed786118e - 2025-11-18 16:26:49 -0600 - 11/18/2025 16:26:48
 Added in Camera/UI:
-- FFlagPerformanceControlCreateImGuiOnPlaceStart = True | Mechanism: Enables performance monitoring tools at the start of a game. | Purpose: Helps developers optimize game performance for smoother gameplay.
+- FFlagPerformanceControlCreateImGuiOnPlaceStart = True | Mechanism: Creates a performance control interface when a game place starts. | Purpose: Gives players better control over performance settings for a smoother experience.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 3cb4035f4cab05fcb1749e169d2cc368db9e32ed to 88f5b56306bf7c24c4048a4350be3f635ac0f32e | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:18:33 to 11/18/2025 22:24:06 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 3cb4035f4cab05fcb1749e169d2cc368db9e32ed to 88f5b56306bf7c24c4048a4350be3f635ac0f32e | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:18:33 to 11/18/2025 22:24:06 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 3cb4035f4cab05fcb1749e169d2cc368db9e32ed to 88f5b56306bf7c24c4048a4350be3f635ac0f32e | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:18:33 to 11/18/2025 22:24:06 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 3cb4035f4cab05fcb1749e169d2cc368db9e32ed to 88f5b56306bf7c24c4048a4350be3f635ac0f32e | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:18:33 to 11/18/2025 22:24:06 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Camera/UI:
-- FFlagPerformanceControlCreateImGuiOnPlaceStart_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:16:52) | Mechanism: Enables a graphical user interface (GUI) for performance monitoring at the start of a place. | Purpose: Allows developers to better manage and optimize game performance.
+- FFlagPerformanceControlCreateImGuiOnPlaceStart_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:16:52) | Mechanism: Activates a performance monitoring tool at the start of a game. | Purpose: Helps developers optimize game performance, leading to smoother gameplay for players.
 
 ## 2e8f4374c - 2025-11-18 16:19:36 -0600 - 11/18/2025 16:19:35
 Added in Other:
-- DFFlagReverbLimitMaxRotationAngle_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:17:04 | Mechanism: Limits the maximum rotation angle for sound reverb effects. | Purpose: Enhances audio realism by preventing unnatural sound distortions in games.
+- DFFlagReverbLimitMaxRotationAngle_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T22:17:04 | Mechanism: Sets a maximum rotation angle for sound reverb effects. | Purpose: Improves audio quality in games by controlling sound behavior.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 49a5132bc0c22b98b064da1d10dc90e04b26f5db to 3cb4035f4cab05fcb1749e169d2cc368db9e32ed | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:13:23 to 11/18/2025 22:18:33 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 49a5132bc0c22b98b064da1d10dc90e04b26f5db to 3cb4035f4cab05fcb1749e169d2cc368db9e32ed | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:13:23 to 11/18/2025 22:18:33 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 49a5132bc0c22b98b064da1d10dc90e04b26f5db to 3cb4035f4cab05fcb1749e169d2cc368db9e32ed | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:13:23 to 11/18/2025 22:18:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 49a5132bc0c22b98b064da1d10dc90e04b26f5db to 3cb4035f4cab05fcb1749e169d2cc368db9e32ed | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:13:23 to 11/18/2025 22:18:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 86bfb595f - 2025-11-18 16:15:05 -0600 - 11/18/2025 16:15:05
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e015bae3ca2905df17d25379fefffce8791dff9d to 49a5132bc0c22b98b064da1d10dc90e04b26f5db | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:11:07 to 11/18/2025 22:13:23 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e015bae3ca2905df17d25379fefffce8791dff9d to 49a5132bc0c22b98b064da1d10dc90e04b26f5db | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:11:07 to 11/18/2025 22:13:23 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from e015bae3ca2905df17d25379fefffce8791dff9d to 49a5132bc0c22b98b064da1d10dc90e04b26f5db | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:11:07 to 11/18/2025 22:13:23 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from e015bae3ca2905df17d25379fefffce8791dff9d to 49a5132bc0c22b98b064da1d10dc90e04b26f5db | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:11:07 to 11/18/2025 22:13:23 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagFFlagAXRemoveCatalogCategoryIconOnOff3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:07:43) | Mechanism: Removing specific icons from catalog categories in the interface. | Purpose: Streamlines the catalog appearance for a cleaner browsing experience.
+- FFlagFFlagAXRemoveCatalogCategoryIconOnOff3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:07:43) | Mechanism: Removes specific icons from catalog categories during testing. | Purpose: Streamlines the catalog interface for players, making it easier to navigate.
 
 ## 238c99454 - 2025-11-18 16:12:35 -0600 - 11/18/2025 16:12:35
 Changed in Other:
-- DFFlagInitTombstoneAfterBlockingFetch3 changed from True to False | Mechanism: Prevents loading errors by displaying a fallback message when data can't be fetched. | Purpose: Improves user experience by providing clear feedback instead of a broken screen.
-- DFStringFlagRepoGitHashDynamicString changed from 66f632e03cb0e0769f4117b3ae6b63ce4c92a442 to e015bae3ca2905df17d25379fefffce8791dff9d | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:06:49 to 11/18/2025 22:11:07 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 66f632e03cb0e0769f4117b3ae6b63ce4c92a442 to e015bae3ca2905df17d25379fefffce8791dff9d | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:06:49 to 11/18/2025 22:11:07 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFFlagInitTombstoneAfterBlockingFetch3 changed from True to False | Mechanism: Changes how data is initialized after a fetch operation is blocked. | Purpose: Enhances game stability by ensuring data is handled more reliably.
+- DFStringFlagRepoGitHashDynamicString changed from 66f632e03cb0e0769f4117b3ae6b63ce4c92a442 to e015bae3ca2905df17d25379fefffce8791dff9d | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:06:49 to 11/18/2025 22:11:07 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 66f632e03cb0e0769f4117b3ae6b63ce4c92a442 to e015bae3ca2905df17d25379fefffce8791dff9d | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:06:49 to 11/18/2025 22:11:07 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## ec53bce49 - 2025-11-18 16:07:56 -0600 - 11/18/2025 16:07:55
 Changed in Other:
-- DFFlagWriteFlagCacheAfterFlagFetch2 changed from True to False | Mechanism: Updates the caching process for feature flags after fetching. | Purpose: Improves performance by reducing the need to repeatedly fetch the same data.
-- DFStringFlagRepoGitHashDynamicString changed from b0c26c202cc0ce7d98127c2e64616c3a21d13176 to 66f632e03cb0e0769f4117b3ae6b63ce4c92a442 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:04:13 to 11/18/2025 22:06:49 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b0c26c202cc0ce7d98127c2e64616c3a21d13176 to 66f632e03cb0e0769f4117b3ae6b63ce4c92a442 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 22:04:13 to 11/18/2025 22:06:49 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFFlagWriteFlagCacheAfterFlagFetch2 changed from True to False | Mechanism: Updates the cache after fetching flag values. | Purpose: Enhances performance by reducing the need to repeatedly fetch flag values.
+- DFStringFlagRepoGitHashDynamicString changed from b0c26c202cc0ce7d98127c2e64616c3a21d13176 to 66f632e03cb0e0769f4117b3ae6b63ce4c92a442 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 22:04:13 to 11/18/2025 22:06:49 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b0c26c202cc0ce7d98127c2e64616c3a21d13176 to 66f632e03cb0e0769f4117b3ae6b63ce4c92a442 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 22:04:13 to 11/18/2025 22:06:49 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 2642cce96 - 2025-11-18 16:05:27 -0600 - 11/18/2025 16:05:26
 Added in Other:
-- FFlagAddThumbnailReportToPlayerFeedback = True | Mechanism: Adds a feature to report inappropriate thumbnails directly from player feedback. | Purpose: Enhances community safety by allowing players to flag bad content easily.
+- FFlagAddThumbnailReportToPlayerFeedback = True | Mechanism: Enables players to report inappropriate thumbnails directly through feedback. | Purpose: Improves community safety by allowing players to flag offensive content easily.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 833d0730c65f0b603f5ed2aed6e64c9b3213994b to b0c26c202cc0ce7d98127c2e64616c3a21d13176 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:58:19 to 11/18/2025 22:04:13 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 833d0730c65f0b603f5ed2aed6e64c9b3213994b to b0c26c202cc0ce7d98127c2e64616c3a21d13176 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:58:19 to 11/18/2025 22:04:13 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 833d0730c65f0b603f5ed2aed6e64c9b3213994b to b0c26c202cc0ce7d98127c2e64616c3a21d13176 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:58:19 to 11/18/2025 22:04:13 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 833d0730c65f0b603f5ed2aed6e64c9b3213994b to b0c26c202cc0ce7d98127c2e64616c3a21d13176 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:58:19 to 11/18/2025 22:04:13 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagAddThumbnailReportToPlayerFeedback_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T20:58:32) | Mechanism: Adds an option to report inappropriate thumbnails in player feedback. | Purpose: Helps players report thumbnails that violate guidelines, improving the overall game experience.
+- FFlagAddThumbnailReportToPlayerFeedback_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T20:58:32) | Mechanism: Adds an option to report thumbnail issues in player feedback. | Purpose: Allows players to report problems with thumbnails directly.
 
 ## 788f48527 - 2025-11-18 16:00:37 -0600 - 11/18/2025 16:00:36
 Added in Other:
-- FFlagEmitterSharedCurvePool_Staged = true;SteadyState;10;30;Revert;2025-11-18T21:56:08 | Mechanism: Implements a shared pool for curve data in particle emitters to optimize performance. | Purpose: Improves the efficiency of particle effects, leading to smoother visuals for players.
-- FFlagEnableNewChatTimeouts2 = True | Mechanism: Adjusts the timing settings for chat messages to improve performance. | Purpose: Ensures chat messages are sent and received more reliably, leading to better communication.
+- FFlagEmitterSharedCurvePool_Staged = true;SteadyState;10;30;Revert;2025-11-18T21:56:08 | Mechanism: Utilizes a shared pool for emitter curves to optimize performance. | Purpose: Enhances the visual effects in games by making them run more efficiently.
+- FFlagEnableNewChatTimeouts2 = True | Mechanism: Adjusts the timing for chat message timeouts in the game. | Purpose: Improves the chat experience by allowing messages to stay visible longer.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f1398e525ce0339705aebbaebe3a4e082071cd6d to 833d0730c65f0b603f5ed2aed6e64c9b3213994b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:57:25 to 11/18/2025 21:58:19 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from f1398e525ce0339705aebbaebe3a4e082071cd6d to 833d0730c65f0b603f5ed2aed6e64c9b3213994b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:57:25 to 11/18/2025 21:58:19 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from f1398e525ce0339705aebbaebe3a4e082071cd6d to 833d0730c65f0b603f5ed2aed6e64c9b3213994b | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:57:25 to 11/18/2025 21:58:19 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from f1398e525ce0339705aebbaebe3a4e082071cd6d to 833d0730c65f0b603f5ed2aed6e64c9b3213994b | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:57:25 to 11/18/2025 21:58:19 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagEnableNewChatTimeouts2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T20:52:38) | Mechanism: Implements new timeout settings for chat messages. | Purpose: Enhances chat moderation by reducing spam and improving communication quality.
+- FFlagEnableNewChatTimeouts2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T20:52:38) | Mechanism: Introduces updated timeout settings for chat messages. | Purpose: Reduces delays in sending and receiving chat messages.
 
 ## 240c123c8 - 2025-11-18 15:58:07 -0600 - 11/18/2025 15:58:07
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c24e3421ca1ba6c5ca340114e2ced101d435774e to f1398e525ce0339705aebbaebe3a4e082071cd6d | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:54:43 to 11/18/2025 21:57:25 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from c24e3421ca1ba6c5ca340114e2ced101d435774e to f1398e525ce0339705aebbaebe3a4e082071cd6d | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:54:43 to 11/18/2025 21:57:25 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from c24e3421ca1ba6c5ca340114e2ced101d435774e to f1398e525ce0339705aebbaebe3a4e082071cd6d | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:54:43 to 11/18/2025 21:57:25 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from c24e3421ca1ba6c5ca340114e2ced101d435774e to f1398e525ce0339705aebbaebe3a4e082071cd6d | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:54:43 to 11/18/2025 21:57:25 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## cde121004 - 2025-11-18 15:55:36 -0600 - 11/18/2025 15:55:36
 Added in Other:
-- FFlagPlayerSearchEnableOnlineFrequentsForAll_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:49:52 | Mechanism: Allows all players to see frequently online friends in search. | Purpose: Makes it easier to find and connect with friends in games.
+- FFlagPlayerSearchEnableOnlineFrequentsForAll_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:49:52 | Mechanism: Enabling a feature that shows frequently online players in search results for all users. | Purpose: Helps players easily find and connect with friends who are frequently online.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0147521c809fe89986df6794234a878cfb80c714 to c24e3421ca1ba6c5ca340114e2ced101d435774e | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:51:02 to 11/18/2025 21:54:43 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 0147521c809fe89986df6794234a878cfb80c714 to c24e3421ca1ba6c5ca340114e2ced101d435774e | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:51:02 to 11/18/2025 21:54:43 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 0147521c809fe89986df6794234a878cfb80c714 to c24e3421ca1ba6c5ca340114e2ced101d435774e | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:51:02 to 11/18/2025 21:54:43 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 0147521c809fe89986df6794234a878cfb80c714 to c24e3421ca1ba6c5ca340114e2ced101d435774e | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:51:02 to 11/18/2025 21:54:43 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## e5bd50c9e - 2025-11-18 15:53:15 -0600 - 11/18/2025 15:53:14
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f035093205bf30b6f48e4f0f3e883d56781575a6 to 0147521c809fe89986df6794234a878cfb80c714 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:46:47 to 11/18/2025 21:51:02 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from f035093205bf30b6f48e4f0f3e883d56781575a6 to 0147521c809fe89986df6794234a878cfb80c714 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:46:47 to 11/18/2025 21:51:02 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from f035093205bf30b6f48e4f0f3e883d56781575a6 to 0147521c809fe89986df6794234a878cfb80c714 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:46:47 to 11/18/2025 21:51:02 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from f035093205bf30b6f48e4f0f3e883d56781575a6 to 0147521c809fe89986df6794234a878cfb80c714 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:46:47 to 11/18/2025 21:51:02 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## be5350f6f - 2025-11-18 15:48:36 -0600 - 11/18/2025 15:48:36
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 356272e3bccf2b5bcf2fa9c1e6809febd157af36 to f035093205bf30b6f48e4f0f3e883d56781575a6 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:44:20 to 11/18/2025 21:46:47 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 356272e3bccf2b5bcf2fa9c1e6809febd157af36 to f035093205bf30b6f48e4f0f3e883d56781575a6 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:44:20 to 11/18/2025 21:46:47 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 356272e3bccf2b5bcf2fa9c1e6809febd157af36 to f035093205bf30b6f48e4f0f3e883d56781575a6 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:44:20 to 11/18/2025 21:46:47 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 356272e3bccf2b5bcf2fa9c1e6809febd157af36 to f035093205bf30b6f48e4f0f3e883d56781575a6 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:44:20 to 11/18/2025 21:46:47 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## c19ae3291 - 2025-11-18 15:46:09 -0600 - 11/18/2025 15:46:08
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0293ed2dd81b9105a71a162db383a6892b65b84b to 356272e3bccf2b5bcf2fa9c1e6809febd157af36 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:42:42 to 11/18/2025 21:44:20 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 0293ed2dd81b9105a71a162db383a6892b65b84b to 356272e3bccf2b5bcf2fa9c1e6809febd157af36 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:42:42 to 11/18/2025 21:44:20 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 0293ed2dd81b9105a71a162db383a6892b65b84b to 356272e3bccf2b5bcf2fa9c1e6809febd157af36 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:42:42 to 11/18/2025 21:44:20 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 0293ed2dd81b9105a71a162db383a6892b65b84b to 356272e3bccf2b5bcf2fa9c1e6809febd157af36 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:42:42 to 11/18/2025 21:44:20 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## a42a8b984 - 2025-11-18 15:43:41 -0600 - 11/18/2025 15:43:40
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 64acb4e5d3bbf20a3dadb798365baa2ab61d79d2 to 0293ed2dd81b9105a71a162db383a6892b65b84b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:38:12 to 11/18/2025 21:42:42 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 64acb4e5d3bbf20a3dadb798365baa2ab61d79d2 to 0293ed2dd81b9105a71a162db383a6892b65b84b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:38:12 to 11/18/2025 21:42:42 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 64acb4e5d3bbf20a3dadb798365baa2ab61d79d2 to 0293ed2dd81b9105a71a162db383a6892b65b84b | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:38:12 to 11/18/2025 21:42:42 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 64acb4e5d3bbf20a3dadb798365baa2ab61d79d2 to 0293ed2dd81b9105a71a162db383a6892b65b84b | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:38:12 to 11/18/2025 21:42:42 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 98d099241 - 2025-11-18 15:38:52 -0600 - 11/18/2025 15:38:51
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 63a3e4a433bf4e4f2d350017d5489488e02ee945 to 64acb4e5d3bbf20a3dadb798365baa2ab61d79d2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:35:58 to 11/18/2025 21:38:12 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 63a3e4a433bf4e4f2d350017d5489488e02ee945 to 64acb4e5d3bbf20a3dadb798365baa2ab61d79d2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:35:58 to 11/18/2025 21:38:12 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 63a3e4a433bf4e4f2d350017d5489488e02ee945 to 64acb4e5d3bbf20a3dadb798365baa2ab61d79d2 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:35:58 to 11/18/2025 21:38:12 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 63a3e4a433bf4e4f2d350017d5489488e02ee945 to 64acb4e5d3bbf20a3dadb798365baa2ab61d79d2 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:35:58 to 11/18/2025 21:38:12 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 7288889dd - 2025-11-18 15:36:29 -0600 - 11/18/2025 15:36:29
 Added in Input:
-- FFlagUserCheckTouchControlMode_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:33:28 | Mechanism: Enables a check for touch control modes on user devices. | Purpose: Improves the touch control experience for mobile players.
+- FFlagUserCheckTouchControlMode_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:33:28 | Mechanism: Checks if the user is using touch controls on their device. | Purpose: Optimizes gameplay experience for touch users by adjusting controls accordingly.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 782a8a3c7b92b2b833362e61f1e320383698fa05 to 63a3e4a433bf4e4f2d350017d5489488e02ee945 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:30:45 to 11/18/2025 21:35:58 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 782a8a3c7b92b2b833362e61f1e320383698fa05 to 63a3e4a433bf4e4f2d350017d5489488e02ee945 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:30:45 to 11/18/2025 21:35:58 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 782a8a3c7b92b2b833362e61f1e320383698fa05 to 63a3e4a433bf4e4f2d350017d5489488e02ee945 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:30:45 to 11/18/2025 21:35:58 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 782a8a3c7b92b2b833362e61f1e320383698fa05 to 63a3e4a433bf4e4f2d350017d5489488e02ee945 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:30:45 to 11/18/2025 21:35:58 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 430ecaa59 - 2025-11-18 15:33:56 -0600 - 11/18/2025 15:33:56
 Added in Other:
-- FIntBackgroundDMLocalPlayerLoadingTimeoutSeconds_Staged = 40;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:27:54 | Mechanism: Sets a time limit for loading player data in the background. | Purpose: Players experience faster loading times and less waiting when joining games.
+- FIntBackgroundDMLocalPlayerLoadingTimeoutSeconds_Staged = 40;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:27:54 | Mechanism: Sets a timeout duration for loading player data. | Purpose: Ensures players don't wait too long for their game to load.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 75e9755051b5c4d2fd2186c65d7bd698dd408c77 to 782a8a3c7b92b2b833362e61f1e320383698fa05 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:29:56 to 11/18/2025 21:30:45 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 75e9755051b5c4d2fd2186c65d7bd698dd408c77 to 782a8a3c7b92b2b833362e61f1e320383698fa05 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:29:56 to 11/18/2025 21:30:45 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 75e9755051b5c4d2fd2186c65d7bd698dd408c77 to 782a8a3c7b92b2b833362e61f1e320383698fa05 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:29:56 to 11/18/2025 21:30:45 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 75e9755051b5c4d2fd2186c65d7bd698dd408c77 to 782a8a3c7b92b2b833362e61f1e320383698fa05 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:29:56 to 11/18/2025 21:30:45 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 2d9f1f3b9 - 2025-11-18 15:31:22 -0600 - 11/18/2025 15:31:22
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from bf1a041811c88270cc93e8159ebba59e8f03c807 to 75e9755051b5c4d2fd2186c65d7bd698dd408c77 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:28:03 to 11/18/2025 21:29:56 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from bf1a041811c88270cc93e8159ebba59e8f03c807 to 75e9755051b5c4d2fd2186c65d7bd698dd408c77 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:28:03 to 11/18/2025 21:29:56 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from bf1a041811c88270cc93e8159ebba59e8f03c807 to 75e9755051b5c4d2fd2186c65d7bd698dd408c77 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:28:03 to 11/18/2025 21:29:56 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from bf1a041811c88270cc93e8159ebba59e8f03c807 to 75e9755051b5c4d2fd2186c65d7bd698dd408c77 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:28:03 to 11/18/2025 21:29:56 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 51880b554 - 2025-11-18 15:28:57 -0600 - 11/18/2025 15:28:56
 Added in Network:
-- FFlagDelayAudioFocusReplication_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:24:48 | Mechanism: Delays the update of audio focus across clients. | Purpose: Improves audio synchronization for a better listening experience.
+- FFlagDelayAudioFocusReplication_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:24:48 | Mechanism: Introducing a delay in how audio focus changes are replicated across clients. | Purpose: Enhances audio experience by preventing abrupt changes in sound focus.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b9b0833e92c8e25df11a920903e2eaddc769ca80 to bf1a041811c88270cc93e8159ebba59e8f03c807 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:25:33 to 11/18/2025 21:28:03 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b9b0833e92c8e25df11a920903e2eaddc769ca80 to bf1a041811c88270cc93e8159ebba59e8f03c807 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:25:33 to 11/18/2025 21:28:03 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from b9b0833e92c8e25df11a920903e2eaddc769ca80 to bf1a041811c88270cc93e8159ebba59e8f03c807 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:25:33 to 11/18/2025 21:28:03 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b9b0833e92c8e25df11a920903e2eaddc769ca80 to bf1a041811c88270cc93e8159ebba59e8f03c807 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:25:33 to 11/18/2025 21:28:03 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## b437096bf - 2025-11-18 15:26:28 -0600 - 11/18/2025 15:26:28
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 1f8e1ec55a6a56f5f74272480d6f44adf49f2d0b to b9b0833e92c8e25df11a920903e2eaddc769ca80 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:19:22 to 11/18/2025 21:25:33 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 1f8e1ec55a6a56f5f74272480d6f44adf49f2d0b to b9b0833e92c8e25df11a920903e2eaddc769ca80 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:19:22 to 11/18/2025 21:25:33 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 1f8e1ec55a6a56f5f74272480d6f44adf49f2d0b to b9b0833e92c8e25df11a920903e2eaddc769ca80 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:19:22 to 11/18/2025 21:25:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 1f8e1ec55a6a56f5f74272480d6f44adf49f2d0b to b9b0833e92c8e25df11a920903e2eaddc769ca80 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:19:22 to 11/18/2025 21:25:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 749242b50 - 2025-11-18 15:21:28 -0600 - 11/18/2025 15:21:27
 Added in Camera/UI:
-- FFlagPerformanceControlCreateImGuiOnPlaceStart_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:16:52 | Mechanism: Enables a graphical user interface (GUI) for performance monitoring at the start of a place. | Purpose: Allows developers to better manage and optimize game performance.
+- FFlagPerformanceControlCreateImGuiOnPlaceStart_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:16:52 | Mechanism: Activates a performance monitoring tool at the start of a game. | Purpose: Helps developers optimize game performance, leading to smoother gameplay for players.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 70f5e3ec4306358c2996e84ca472845bf25ffbcb to 1f8e1ec55a6a56f5f74272480d6f44adf49f2d0b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:18:33 to 11/18/2025 21:19:22 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 70f5e3ec4306358c2996e84ca472845bf25ffbcb to 1f8e1ec55a6a56f5f74272480d6f44adf49f2d0b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:18:33 to 11/18/2025 21:19:22 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 70f5e3ec4306358c2996e84ca472845bf25ffbcb to 1f8e1ec55a6a56f5f74272480d6f44adf49f2d0b | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:18:33 to 11/18/2025 21:19:22 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 70f5e3ec4306358c2996e84ca472845bf25ffbcb to 1f8e1ec55a6a56f5f74272480d6f44adf49f2d0b | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:18:33 to 11/18/2025 21:19:22 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 9c419f8e8 - 2025-11-18 15:18:59 -0600 - 11/18/2025 15:18:59
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0c9d74b7d4baeccfcc01b975b135f133d5fc5422 to 70f5e3ec4306358c2996e84ca472845bf25ffbcb | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:14:07 to 11/18/2025 21:18:33 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 0c9d74b7d4baeccfcc01b975b135f133d5fc5422 to 70f5e3ec4306358c2996e84ca472845bf25ffbcb | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:14:07 to 11/18/2025 21:18:33 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 0c9d74b7d4baeccfcc01b975b135f133d5fc5422 to 70f5e3ec4306358c2996e84ca472845bf25ffbcb | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:14:07 to 11/18/2025 21:18:33 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 0c9d74b7d4baeccfcc01b975b135f133d5fc5422 to 70f5e3ec4306358c2996e84ca472845bf25ffbcb | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:14:07 to 11/18/2025 21:18:33 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 2bbad7dd9 - 2025-11-18 15:16:29 -0600 - 11/18/2025 15:16:29
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from bd62f6596975b2db57ce38ddf6da57be3755b446 to 0c9d74b7d4baeccfcc01b975b135f133d5fc5422 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:09:42 to 11/18/2025 21:14:07 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from bd62f6596975b2db57ce38ddf6da57be3755b446 to 0c9d74b7d4baeccfcc01b975b135f133d5fc5422 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:09:42 to 11/18/2025 21:14:07 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from bd62f6596975b2db57ce38ddf6da57be3755b446 to 0c9d74b7d4baeccfcc01b975b135f133d5fc5422 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:09:42 to 11/18/2025 21:14:07 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from bd62f6596975b2db57ce38ddf6da57be3755b446 to 0c9d74b7d4baeccfcc01b975b135f133d5fc5422 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:09:42 to 11/18/2025 21:14:07 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 630e44032 - 2025-11-18 15:11:47 -0600 - 11/18/2025 15:11:47
 Added in Other:
-- FFlagFFlagAXRemoveCatalogCategoryIconOnOff3_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:07:43 | Mechanism: Removing specific icons from catalog categories in the interface. | Purpose: Streamlines the catalog appearance for a cleaner browsing experience.
+- FFlagFFlagAXRemoveCatalogCategoryIconOnOff3_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T21:07:43 | Mechanism: Removes specific icons from catalog categories during testing. | Purpose: Streamlines the catalog interface for players, making it easier to navigate.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d743ed426dcc606b65cc6a63f529ad547a3ed1f6 to bd62f6596975b2db57ce38ddf6da57be3755b446 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:08:03 to 11/18/2025 21:09:42 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from d743ed426dcc606b65cc6a63f529ad547a3ed1f6 to bd62f6596975b2db57ce38ddf6da57be3755b446 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:08:03 to 11/18/2025 21:09:42 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from d743ed426dcc606b65cc6a63f529ad547a3ed1f6 to bd62f6596975b2db57ce38ddf6da57be3755b446 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:08:03 to 11/18/2025 21:09:42 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from d743ed426dcc606b65cc6a63f529ad547a3ed1f6 to bd62f6596975b2db57ce38ddf6da57be3755b446 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:08:03 to 11/18/2025 21:09:42 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## e0f6e1a89 - 2025-11-18 15:09:24 -0600 - 11/18/2025 15:09:24
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 86d8696eff7e4ba12a0db399200950f30b1a3ca8 to d743ed426dcc606b65cc6a63f529ad547a3ed1f6 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:02:44 to 11/18/2025 21:08:03 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 86d8696eff7e4ba12a0db399200950f30b1a3ca8 to d743ed426dcc606b65cc6a63f529ad547a3ed1f6 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:02:44 to 11/18/2025 21:08:03 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 86d8696eff7e4ba12a0db399200950f30b1a3ca8 to d743ed426dcc606b65cc6a63f529ad547a3ed1f6 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:02:44 to 11/18/2025 21:08:03 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 86d8696eff7e4ba12a0db399200950f30b1a3ca8 to d743ed426dcc606b65cc6a63f529ad547a3ed1f6 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:02:44 to 11/18/2025 21:08:03 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 02063226f - 2025-11-18 15:04:38 -0600 - 11/18/2025 15:04:38
 Added in Other:
-- DFFlagIxpSendExposureSignalImmediately = True | Mechanism: Sends data about player exposure to features instantly. | Purpose: Allows for quicker adjustments based on how players interact with new features.
-- DFIntHttpServiceEventReportThrottleHundredthPercent = 50 | Mechanism: Controls the rate at which event reports are sent to the server to manage load. | Purpose: Improves server performance and stability, leading to a smoother gameplay experience.
+- DFFlagIxpSendExposureSignalImmediately = True | Mechanism: Sends user interaction data instantly to the server. | Purpose: Provides real-time feedback for better user experience and engagement.
+- DFIntHttpServiceEventReportThrottleHundredthPercent = 50 | Mechanism: Limits the frequency of event reporting to improve performance. | Purpose: Reduces lag and improves the responsiveness of the game by managing how often events are reported.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8b1d20ca2cdd3dc78be927978742e1c98275a31a to 86d8696eff7e4ba12a0db399200950f30b1a3ca8 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:01:16 to 11/18/2025 21:02:44 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 8b1d20ca2cdd3dc78be927978742e1c98275a31a to 86d8696eff7e4ba12a0db399200950f30b1a3ca8 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 21:01:16 to 11/18/2025 21:02:44 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 8b1d20ca2cdd3dc78be927978742e1c98275a31a to 86d8696eff7e4ba12a0db399200950f30b1a3ca8 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 21:01:16 to 11/18/2025 21:02:44 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 8b1d20ca2cdd3dc78be927978742e1c98275a31a to 86d8696eff7e4ba12a0db399200950f30b1a3ca8 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 21:01:16 to 11/18/2025 21:02:44 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFFlagIxpSendExposureSignalImmediately_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:59:27) | Mechanism: Sends user engagement data instantly instead of batching it. | Purpose: Improves real-time analytics for better game updates.
-- DFIntHttpServiceEventReportThrottleHundredthPercent_Staged removed (was 50;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:55:24) | Mechanism: Limits the frequency of event reports sent via HTTP service. | Purpose: Reduces server load and improves performance by managing data traffic.
+- DFFlagIxpSendExposureSignalImmediately_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:59:27) | Mechanism: Sending exposure signals instantly rather than delaying them. | Purpose: Improves the responsiveness of features that rely on exposure signals.
+- DFIntHttpServiceEventReportThrottleHundredthPercent_Staged removed (was 50;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:55:24) | Mechanism: Limits the frequency of event reports sent to the server. | Purpose: Improves server performance and stability, leading to a smoother gameplay experience for players.
 
 ## aa627e14c - 2025-11-18 15:02:15 -0600 - 11/18/2025 15:02:14
 Added in Other:
-- DFFlagVoiceChatRecordRoomMetricsFromRCC3 = True | Mechanism: Collects data on voice chat usage within specific game rooms. | Purpose: Allows developers to analyze how players use voice chat to enhance communication features.
-- FFlagAddThumbnailReportToPlayerFeedback_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T20:58:32 | Mechanism: Adds an option to report inappropriate thumbnails in player feedback. | Purpose: Helps players report thumbnails that violate guidelines, improving the overall game experience.
+- DFFlagVoiceChatRecordRoomMetricsFromRCC3 = True | Mechanism: Records voice chat usage data from specific rooms. | Purpose: Helps improve voice chat features based on how players use them.
+- FFlagAddThumbnailReportToPlayerFeedback_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T20:58:32 | Mechanism: Adds an option to report thumbnail issues in player feedback. | Purpose: Allows players to report problems with thumbnails directly.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c030520ea8dff2ad3b7cd5b1b558f99a3494f542 to 8b1d20ca2cdd3dc78be927978742e1c98275a31a | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:59:21 to 11/18/2025 21:01:16 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from c030520ea8dff2ad3b7cd5b1b558f99a3494f542 to 8b1d20ca2cdd3dc78be927978742e1c98275a31a | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:59:21 to 11/18/2025 21:01:16 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from c030520ea8dff2ad3b7cd5b1b558f99a3494f542 to 8b1d20ca2cdd3dc78be927978742e1c98275a31a | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:59:21 to 11/18/2025 21:01:16 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from c030520ea8dff2ad3b7cd5b1b558f99a3494f542 to 8b1d20ca2cdd3dc78be927978742e1c98275a31a | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:59:21 to 11/18/2025 21:01:16 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 7c3169a8f - 2025-11-18 14:59:53 -0600 - 11/18/2025 14:59:53
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2c9f69c15002b924cac4d4f208dff580574e07c6 to c030520ea8dff2ad3b7cd5b1b558f99a3494f542 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:54:40 to 11/18/2025 20:59:21 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 2c9f69c15002b924cac4d4f208dff580574e07c6 to c030520ea8dff2ad3b7cd5b1b558f99a3494f542 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:54:40 to 11/18/2025 20:59:21 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 2c9f69c15002b924cac4d4f208dff580574e07c6 to c030520ea8dff2ad3b7cd5b1b558f99a3494f542 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:54:40 to 11/18/2025 20:59:21 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 2c9f69c15002b924cac4d4f208dff580574e07c6 to c030520ea8dff2ad3b7cd5b1b558f99a3494f542 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:54:40 to 11/18/2025 20:59:21 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## ce3e425d3 - 2025-11-18 14:57:20 -0600 - 11/18/2025 14:57:20
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 73695324dd4838b066416f2bf7765da3ada3354e to 2c9f69c15002b924cac4d4f208dff580574e07c6 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:54:18 to 11/18/2025 20:54:40 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 73695324dd4838b066416f2bf7765da3ada3354e to 2c9f69c15002b924cac4d4f208dff580574e07c6 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:54:18 to 11/18/2025 20:54:40 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 73695324dd4838b066416f2bf7765da3ada3354e to 2c9f69c15002b924cac4d4f208dff580574e07c6 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:54:18 to 11/18/2025 20:54:40 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 73695324dd4838b066416f2bf7765da3ada3354e to 2c9f69c15002b924cac4d4f208dff580574e07c6 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:54:18 to 11/18/2025 20:54:40 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 1c9ba168c - 2025-11-18 14:54:58 -0600 - 11/18/2025 14:54:58
 Added in Other:
-- FFlagEnableNewChatTimeouts2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T20:52:38 | Mechanism: Implements new timeout settings for chat messages. | Purpose: Enhances chat moderation by reducing spam and improving communication quality.
+- FFlagEnableNewChatTimeouts2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T20:52:38 | Mechanism: Introduces updated timeout settings for chat messages. | Purpose: Reduces delays in sending and receiving chat messages.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a9f278f65f29af002d702d1f4a0a67582262f2db to 73695324dd4838b066416f2bf7765da3ada3354e | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:51:58 to 11/18/2025 20:54:18 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from a9f278f65f29af002d702d1f4a0a67582262f2db to 73695324dd4838b066416f2bf7765da3ada3354e | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:51:58 to 11/18/2025 20:54:18 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from a9f278f65f29af002d702d1f4a0a67582262f2db to 73695324dd4838b066416f2bf7765da3ada3354e | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:51:58 to 11/18/2025 20:54:18 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from a9f278f65f29af002d702d1f4a0a67582262f2db to 73695324dd4838b066416f2bf7765da3ada3354e | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:51:58 to 11/18/2025 20:54:18 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## ca27f185f - 2025-11-18 14:52:30 -0600 - 11/18/2025 14:52:29
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 29d585c43e0558d6d29f8d74495751f4b50acabc to a9f278f65f29af002d702d1f4a0a67582262f2db | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:48:17 to 11/18/2025 20:51:58 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 29d585c43e0558d6d29f8d74495751f4b50acabc to a9f278f65f29af002d702d1f4a0a67582262f2db | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:48:17 to 11/18/2025 20:51:58 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 29d585c43e0558d6d29f8d74495751f4b50acabc to a9f278f65f29af002d702d1f4a0a67582262f2db | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:48:17 to 11/18/2025 20:51:58 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 29d585c43e0558d6d29f8d74495751f4b50acabc to a9f278f65f29af002d702d1f4a0a67582262f2db | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:48:17 to 11/18/2025 20:51:58 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 15defdd74 - 2025-11-18 14:50:05 -0600 - 11/18/2025 14:50:04
 Added in Other:
-- DFFlagVideoWinHwEncoderActivateSkipAdapterIdCheck = True | Mechanism: Bypassing checks for specific hardware identifiers when using video encoding. | Purpose: Allows more players to use video encoding features without hardware restrictions.
+- DFFlagVideoWinHwEncoderActivateSkipAdapterIdCheck = True | Mechanism: Bypassing the check for specific hardware adapter IDs when using video encoding. | Purpose: Allows more users to utilize video encoding features without hardware restrictions.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 76576891a1b9a25335f2677b09e034e0fef7873a to 29d585c43e0558d6d29f8d74495751f4b50acabc | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:41:20 to 11/18/2025 20:48:17 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 76576891a1b9a25335f2677b09e034e0fef7873a to 29d585c43e0558d6d29f8d74495751f4b50acabc | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:41:20 to 11/18/2025 20:48:17 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 76576891a1b9a25335f2677b09e034e0fef7873a to 29d585c43e0558d6d29f8d74495751f4b50acabc | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:41:20 to 11/18/2025 20:48:17 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 76576891a1b9a25335f2677b09e034e0fef7873a to 29d585c43e0558d6d29f8d74495751f4b50acabc | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:41:20 to 11/18/2025 20:48:17 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFFlagVideoWinHwEncoderActivateSkipAdapterIdCheck_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:42:11) | Mechanism: Activates a feature that skips checking the adapter ID for hardware video encoding. | Purpose: Improves video recording performance for players using certain hardware.
+- DFFlagVideoWinHwEncoderActivateSkipAdapterIdCheck_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:42:11) | Mechanism: Bypassing the check for specific hardware adapter IDs during video encoding. | Purpose: Allows more users to use video encoding features without hardware restrictions.
 
 ## 47ebb76ab - 2025-11-18 14:42:59 -0600 - 11/18/2025 14:42:59
 Added in Other:
-- FFlagCollab7848SupportHistoryWaypoints = True | Mechanism: Adds support for tracking historical waypoints in collaborative games. | Purpose: Improves collaboration by allowing players to see past locations and actions.
+- FFlagCollab7848SupportHistoryWaypoints = True | Mechanism: Adds support for tracking player progress through specific points in the game. | Purpose: Helps players keep track of their achievements and progress in games.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b62a7043672d99bdd513f703c254ba0b784e77e3 to 76576891a1b9a25335f2677b09e034e0fef7873a | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:37:59 to 11/18/2025 20:41:20 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b62a7043672d99bdd513f703c254ba0b784e77e3 to 76576891a1b9a25335f2677b09e034e0fef7873a | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:37:59 to 11/18/2025 20:41:20 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from b62a7043672d99bdd513f703c254ba0b784e77e3 to 76576891a1b9a25335f2677b09e034e0fef7873a | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:37:59 to 11/18/2025 20:41:20 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from b62a7043672d99bdd513f703c254ba0b784e77e3 to 76576891a1b9a25335f2677b09e034e0fef7873a | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:37:59 to 11/18/2025 20:41:20 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagCollab7848SupportHistoryWaypoints_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:38:16) | Mechanism: Adds support for tracking changes in collaborative projects using waypoints. | Purpose: Helps players see the history of changes made in group projects, enhancing teamwork.
+- FFlagCollab7848SupportHistoryWaypoints_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:38:16) | Mechanism: Adds support for tracking historical waypoints in collaborative games. | Purpose: Helps players keep track of important locations in games where teamwork is essential.
 
 ## b0d5a62be - 2025-11-18 14:40:37 -0600 - 11/18/2025 14:40:37
 Added in Other:
-- DFFlagFileCacheDirSizeYield = True | Mechanism: Adjusts the size limit for file caching to improve performance. | Purpose: Enhances game loading times by optimizing how files are stored.
+- DFFlagFileCacheDirSizeYield = True | Mechanism: Adjusts how file caching handles large directories to optimize performance. | Purpose: Improves loading times for games with many assets, enhancing player experience.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 99388fb0eb8e719b5dc78d52da0c871a79198dc2 to b62a7043672d99bdd513f703c254ba0b784e77e3 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:32:17 to 11/18/2025 20:37:59 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 99388fb0eb8e719b5dc78d52da0c871a79198dc2 to b62a7043672d99bdd513f703c254ba0b784e77e3 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:32:17 to 11/18/2025 20:37:59 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 99388fb0eb8e719b5dc78d52da0c871a79198dc2 to b62a7043672d99bdd513f703c254ba0b784e77e3 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:32:17 to 11/18/2025 20:37:59 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 99388fb0eb8e719b5dc78d52da0c871a79198dc2 to b62a7043672d99bdd513f703c254ba0b784e77e3 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:32:17 to 11/18/2025 20:37:59 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFFlagFileCacheDirSizeYield_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:31:48) | Mechanism: Adjusts how the system manages the size of cached files. | Purpose: Optimizes performance by efficiently handling storage space.
+- DFFlagFileCacheDirSizeYield_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:31:48) | Mechanism: Limits the size of the file cache directory to improve performance. | Purpose: Helps the game run smoother by managing storage better.
 
 ## 0579307e9 - 2025-11-18 14:32:57 -0600 - 11/18/2025 14:32:57
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 27c568c8b699d746ddead783eba9c759379782d1 to 99388fb0eb8e719b5dc78d52da0c871a79198dc2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:27:51 to 11/18/2025 20:32:17 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 27c568c8b699d746ddead783eba9c759379782d1 to 99388fb0eb8e719b5dc78d52da0c871a79198dc2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:27:51 to 11/18/2025 20:32:17 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 27c568c8b699d746ddead783eba9c759379782d1 to 99388fb0eb8e719b5dc78d52da0c871a79198dc2 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:27:51 to 11/18/2025 20:32:17 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 27c568c8b699d746ddead783eba9c759379782d1 to 99388fb0eb8e719b5dc78d52da0c871a79198dc2 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:27:51 to 11/18/2025 20:32:17 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 9188d01d9 - 2025-11-18 14:28:29 -0600 - 11/18/2025 14:28:29
 Added in Other:
-- FFlagAddFriendsIgnoreAllRefactor = True | Mechanism: Changes how friend requests are managed to streamline the process. | Purpose: Makes it easier for players to manage their friend requests.
+- FFlagAddFriendsIgnoreAllRefactor = True | Mechanism: Changes how friend requests are processed to ignore certain conditions. | Purpose: Simplifies the friend request system, making it easier for players to connect with friends.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 73e6dd5c1d6f22c4235059673dbb8333fd0ebd32 to 27c568c8b699d746ddead783eba9c759379782d1 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:17:18 to 11/18/2025 20:27:51 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 73e6dd5c1d6f22c4235059673dbb8333fd0ebd32 to 27c568c8b699d746ddead783eba9c759379782d1 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:17:18 to 11/18/2025 20:27:51 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 73e6dd5c1d6f22c4235059673dbb8333fd0ebd32 to 27c568c8b699d746ddead783eba9c759379782d1 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:17:18 to 11/18/2025 20:27:51 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 73e6dd5c1d6f22c4235059673dbb8333fd0ebd32 to 27c568c8b699d746ddead783eba9c759379782d1 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:17:18 to 11/18/2025 20:27:51 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- FFlagAddFriendsIgnoreAllRefactor_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:22:21) | Mechanism: Updates the way friend requests are managed to allow ignoring all at once. | Purpose: Players can easily ignore multiple friend requests without having to do it one by one.
+- FFlagAddFriendsIgnoreAllRefactor_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:22:21) | Mechanism: Refines the way friend requests and ignore features are managed. | Purpose: Enhances user control over friend interactions and improves the social experience.
 
 ## bf0fa5f09 - 2025-11-18 14:19:39 -0600 - 11/18/2025 14:19:39
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7a7a8877bcb7abbfef1d157ce511844aff20b784 to 73e6dd5c1d6f22c4235059673dbb8333fd0ebd32 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:15:13 to 11/18/2025 20:17:18 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 7a7a8877bcb7abbfef1d157ce511844aff20b784 to 73e6dd5c1d6f22c4235059673dbb8333fd0ebd32 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:15:13 to 11/18/2025 20:17:18 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 7a7a8877bcb7abbfef1d157ce511844aff20b784 to 73e6dd5c1d6f22c4235059673dbb8333fd0ebd32 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:15:13 to 11/18/2025 20:17:18 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 7a7a8877bcb7abbfef1d157ce511844aff20b784 to 73e6dd5c1d6f22c4235059673dbb8333fd0ebd32 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:15:13 to 11/18/2025 20:17:18 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 3c2d2b8eb - 2025-11-18 14:17:17 -0600 - 11/18/2025 14:17:17
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from bb456281cf945f6acec55001126676f2ebb99b6c to 7a7a8877bcb7abbfef1d157ce511844aff20b784 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:08:02 to 11/18/2025 20:15:13 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from bb456281cf945f6acec55001126676f2ebb99b6c to 7a7a8877bcb7abbfef1d157ce511844aff20b784 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:08:02 to 11/18/2025 20:15:13 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from bb456281cf945f6acec55001126676f2ebb99b6c to 7a7a8877bcb7abbfef1d157ce511844aff20b784 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:08:02 to 11/18/2025 20:15:13 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from bb456281cf945f6acec55001126676f2ebb99b6c to 7a7a8877bcb7abbfef1d157ce511844aff20b784 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:08:02 to 11/18/2025 20:15:13 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 50518034b - 2025-11-18 14:10:16 -0600 - 11/18/2025 14:10:16
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d5cfeee94d4130f9481fdbac8c3d84b5ef129401 to bb456281cf945f6acec55001126676f2ebb99b6c | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:06:35 to 11/18/2025 20:08:02 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from d5cfeee94d4130f9481fdbac8c3d84b5ef129401 to bb456281cf945f6acec55001126676f2ebb99b6c | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:06:35 to 11/18/2025 20:08:02 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from d5cfeee94d4130f9481fdbac8c3d84b5ef129401 to bb456281cf945f6acec55001126676f2ebb99b6c | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:06:35 to 11/18/2025 20:08:02 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from d5cfeee94d4130f9481fdbac8c3d84b5ef129401 to bb456281cf945f6acec55001126676f2ebb99b6c | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:06:35 to 11/18/2025 20:08:02 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## d42308a84 - 2025-11-18 14:07:54 -0600 - 11/18/2025 14:07:54
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ba59dc18943725008c6b0bdec287e5d572c225fd to d5cfeee94d4130f9481fdbac8c3d84b5ef129401 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:04:07 to 11/18/2025 20:06:35 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from ba59dc18943725008c6b0bdec287e5d572c225fd to d5cfeee94d4130f9481fdbac8c3d84b5ef129401 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:04:07 to 11/18/2025 20:06:35 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from ba59dc18943725008c6b0bdec287e5d572c225fd to d5cfeee94d4130f9481fdbac8c3d84b5ef129401 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:04:07 to 11/18/2025 20:06:35 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from ba59dc18943725008c6b0bdec287e5d572c225fd to d5cfeee94d4130f9481fdbac8c3d84b5ef129401 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:04:07 to 11/18/2025 20:06:35 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 4933871c1 - 2025-11-18 14:05:33 -0600 - 11/18/2025 14:05:33
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 22e1e134dea1e210b7c1ffa034c0852ce516efa0 to ba59dc18943725008c6b0bdec287e5d572c225fd | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:02:20 to 11/18/2025 20:04:07 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 22e1e134dea1e210b7c1ffa034c0852ce516efa0 to ba59dc18943725008c6b0bdec287e5d572c225fd | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 20:02:20 to 11/18/2025 20:04:07 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 22e1e134dea1e210b7c1ffa034c0852ce516efa0 to ba59dc18943725008c6b0bdec287e5d572c225fd | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 20:02:20 to 11/18/2025 20:04:07 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 22e1e134dea1e210b7c1ffa034c0852ce516efa0 to ba59dc18943725008c6b0bdec287e5d572c225fd | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 20:02:20 to 11/18/2025 20:04:07 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## d8e616b5c - 2025-11-18 14:03:01 -0600 - 11/18/2025 14:03:01
 Added in Other:
-- DFFlagIxpSendExposureSignalImmediately_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:59:27 | Mechanism: Sends user engagement data instantly instead of batching it. | Purpose: Improves real-time analytics for better game updates.
+- DFFlagIxpSendExposureSignalImmediately_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:59:27 | Mechanism: Sending exposure signals instantly rather than delaying them. | Purpose: Improves the responsiveness of features that rely on exposure signals.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5527da7ee2f457d30d0c673bc41b1785c203ddb2 to 22e1e134dea1e210b7c1ffa034c0852ce516efa0 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:59:22 to 11/18/2025 20:02:20 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 5527da7ee2f457d30d0c673bc41b1785c203ddb2 to 22e1e134dea1e210b7c1ffa034c0852ce516efa0 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:59:22 to 11/18/2025 20:02:20 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 5527da7ee2f457d30d0c673bc41b1785c203ddb2 to 22e1e134dea1e210b7c1ffa034c0852ce516efa0 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:59:22 to 11/18/2025 20:02:20 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 5527da7ee2f457d30d0c673bc41b1785c203ddb2 to 22e1e134dea1e210b7c1ffa034c0852ce516efa0 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 19:59:22 to 11/18/2025 20:02:20 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## a0221ff56 - 2025-11-18 14:00:43 -0600 - 11/18/2025 14:00:42
 Added in Other:
-- DFFlagPrefetchWaitForAppStorage = True | Mechanism: Delays loading until app storage is ready. | Purpose: Ensures smoother game startup and reduces loading errors.
-- DFFlagSendFlagCacheLoadTelemetry = True | Mechanism: Tracks and sends data about loading flags from cache. | Purpose: Improves performance by understanding how flags are loaded, leading to faster game experiences.
-- DFFlagStartupRobloxTelemetryFlagCacheUtils = True | Mechanism: Implements a caching system for telemetry data during startup. | Purpose: Improves game performance and stability by reducing the time it takes to gather and send data about game usage.
-- DFFlagWriteFlagCacheAfterFlagFetch2 = True | Mechanism: Updates the caching process for feature flags after fetching. | Purpose: Improves performance by reducing the need to repeatedly fetch the same data.
-- DFIntHttpServiceEventReportThrottleHundredthPercent_Staged = 50;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:55:24 | Mechanism: Limits the frequency of event reports sent via HTTP service. | Purpose: Reduces server load and improves performance by managing data traffic.
+- DFFlagPrefetchWaitForAppStorage = True | Mechanism: Allows preloading of app data before it's needed. | Purpose: Improves loading times and performance for players, enhancing their gaming experience.
+- DFFlagSendFlagCacheLoadTelemetry = True | Mechanism: Tracks and reports data on how flag settings are loaded. | Purpose: Helps developers understand and optimize the use of feature flags.
+- DFFlagStartupRobloxTelemetryFlagCacheUtils = True | Mechanism: Caches telemetry flags at startup for faster access. | Purpose: Improves performance by reducing load times when accessing game data.
+- DFFlagWriteFlagCacheAfterFlagFetch2 = True | Mechanism: Updates the cache after fetching flag values. | Purpose: Enhances performance by reducing the need to repeatedly fetch flag values.
+- DFIntHttpServiceEventReportThrottleHundredthPercent_Staged = 50;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:55:24 | Mechanism: Limits the frequency of event reports sent to the server. | Purpose: Improves server performance and stability, leading to a smoother gameplay experience for players.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 008f9eeb305e0be4c066d9b33c7eb597f1de69dd to 5527da7ee2f457d30d0c673bc41b1785c203ddb2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:57:09 to 11/18/2025 19:59:22 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 008f9eeb305e0be4c066d9b33c7eb597f1de69dd to 5527da7ee2f457d30d0c673bc41b1785c203ddb2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:57:09 to 11/18/2025 19:59:22 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 008f9eeb305e0be4c066d9b33c7eb597f1de69dd to 5527da7ee2f457d30d0c673bc41b1785c203ddb2 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:57:09 to 11/18/2025 19:59:22 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 008f9eeb305e0be4c066d9b33c7eb597f1de69dd to 5527da7ee2f457d30d0c673bc41b1785c203ddb2 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 19:57:09 to 11/18/2025 19:59:22 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFFlagPrefetchWaitForAppStorage_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:54:55) | Mechanism: Delays prefetching until app storage is ready. | Purpose: Enhances performance by ensuring data is available before loading.
-- DFFlagSendFlagCacheLoadTelemetry_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:51:15) | Mechanism: Tracks when flag cache data is loaded for analysis. | Purpose: Provides developers with better understanding of data usage, helping improve game features.
-- DFFlagStartupRobloxTelemetryFlagCacheUtils_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:51:54) | Mechanism: Enhances the way Roblox stores and retrieves telemetry data at startup. | Purpose: Improves performance and reliability of data collection, leading to better game insights.
-- DFFlagWriteFlagCacheAfterFlagFetch2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:53:07) | Mechanism: Updates the cache after fetching flags to improve performance. | Purpose: Reduces lag and speeds up the loading of game settings for players.
+- DFFlagPrefetchWaitForAppStorage_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:54:55) | Mechanism: Optimizes the loading process by waiting for app storage to be ready before prefetching data. | Purpose: Reduces loading times and improves overall game performance for players.
+- DFFlagSendFlagCacheLoadTelemetry_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:51:15) | Mechanism: Tracks and sends data about how flag cache loading performs. | Purpose: Helps improve the game's performance by analyzing loading times.
+- DFFlagStartupRobloxTelemetryFlagCacheUtils_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:51:54) | Mechanism: Optimizes how data is collected and stored during game startup. | Purpose: Enhances performance and reliability of games by improving data handling.
+- DFFlagWriteFlagCacheAfterFlagFetch2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:53:07) | Mechanism: Updates the caching system to store flag data after fetching. | Purpose: Improves game performance by reducing the need to repeatedly fetch the same data.
 
 ## 88afdaab2 - 2025-11-18 13:58:25 -0600 - 11/18/2025 13:58:25
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 28b23f7d7450da3cc9a8f56752bb37de4b34e700 to 008f9eeb305e0be4c066d9b33c7eb597f1de69dd | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:53:25 to 11/18/2025 19:57:09 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 28b23f7d7450da3cc9a8f56752bb37de4b34e700 to 008f9eeb305e0be4c066d9b33c7eb597f1de69dd | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:53:25 to 11/18/2025 19:57:09 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 28b23f7d7450da3cc9a8f56752bb37de4b34e700 to 008f9eeb305e0be4c066d9b33c7eb597f1de69dd | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:53:25 to 11/18/2025 19:57:09 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 28b23f7d7450da3cc9a8f56752bb37de4b34e700 to 008f9eeb305e0be4c066d9b33c7eb597f1de69dd | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 19:53:25 to 11/18/2025 19:57:09 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## b6695110d - 2025-11-18 13:53:55 -0600 - 11/18/2025 13:53:55
 Added in Other:
-- DFFlagInitTombstoneAfterBlockingFetch3 = True | Mechanism: Prevents loading errors by displaying a fallback message when data can't be fetched. | Purpose: Improves user experience by providing clear feedback instead of a broken screen.
+- DFFlagInitTombstoneAfterBlockingFetch3 = True | Mechanism: Changes how data is initialized after a fetch operation is blocked. | Purpose: Enhances game stability by ensuring data is handled more reliably.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 31daf7506fc4a8f44a8f25b5f72967364c99b1e6 to 28b23f7d7450da3cc9a8f56752bb37de4b34e700 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:48:40 to 11/18/2025 19:53:25 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 31daf7506fc4a8f44a8f25b5f72967364c99b1e6 to 28b23f7d7450da3cc9a8f56752bb37de4b34e700 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:48:40 to 11/18/2025 19:53:25 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 31daf7506fc4a8f44a8f25b5f72967364c99b1e6 to 28b23f7d7450da3cc9a8f56752bb37de4b34e700 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:48:40 to 11/18/2025 19:53:25 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 31daf7506fc4a8f44a8f25b5f72967364c99b1e6 to 28b23f7d7450da3cc9a8f56752bb37de4b34e700 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 19:48:40 to 11/18/2025 19:53:25 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFFlagFetchAndWriteFlagsAfterSuccessfulCachedFlagsLoad_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:49:20) | Mechanism: Fetches and updates feature flags after successfully loading cached data. | Purpose: Enhances performance and responsiveness for players by ensuring they receive the latest features quickly.
-- DFFlagInitTombstoneAfterBlockingFetch3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:49:57) | Mechanism: Initializes a fallback system after blocking certain data fetches. | Purpose: Ensures smoother gameplay by handling data issues more gracefully.
+- DFFlagFetchAndWriteFlagsAfterSuccessfulCachedFlagsLoad_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:49:20) | Mechanism: Fetches and updates feature flags after loading cached data. | Purpose: Ensures players receive the latest features without delay.
+- DFFlagInitTombstoneAfterBlockingFetch3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:49:57) | Mechanism: Initializes a backup system for player data after a specific fetch operation is blocked. | Purpose: Ensures player progress is saved and recoverable even if there are issues with data retrieval.
 
 ## 4ff6f4648 - 2025-11-18 13:49:05 -0600 - 11/18/2025 13:49:05
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d6e7e0cd1c20066d0bc958bd9fdd3573b9e3fe36 to 31daf7506fc4a8f44a8f25b5f72967364c99b1e6 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:43:51 to 11/18/2025 19:48:40 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from d6e7e0cd1c20066d0bc958bd9fdd3573b9e3fe36 to 31daf7506fc4a8f44a8f25b5f72967364c99b1e6 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:43:51 to 11/18/2025 19:48:40 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from d6e7e0cd1c20066d0bc958bd9fdd3573b9e3fe36 to 31daf7506fc4a8f44a8f25b5f72967364c99b1e6 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:43:51 to 11/18/2025 19:48:40 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from d6e7e0cd1c20066d0bc958bd9fdd3573b9e3fe36 to 31daf7506fc4a8f44a8f25b5f72967364c99b1e6 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 19:43:51 to 11/18/2025 19:48:40 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 8f5e75121 - 2025-11-18 13:46:39 -0600 - 11/18/2025 13:46:38
 Added in Other:
-- DFFlagVideoWinHwEncoderActivateSkipAdapterIdCheck_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:42:11 | Mechanism: Activates a feature that skips checking the adapter ID for hardware video encoding. | Purpose: Improves video recording performance for players using certain hardware.
+- DFFlagVideoWinHwEncoderActivateSkipAdapterIdCheck_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:42:11 | Mechanism: Bypassing the check for specific hardware adapter IDs during video encoding. | Purpose: Allows more users to use video encoding features without hardware restrictions.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 427f9802c9fa1e31c5fff80354f4e2cadb676336 to d6e7e0cd1c20066d0bc958bd9fdd3573b9e3fe36 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:43:32 to 11/18/2025 19:43:51 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 427f9802c9fa1e31c5fff80354f4e2cadb676336 to d6e7e0cd1c20066d0bc958bd9fdd3573b9e3fe36 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:43:32 to 11/18/2025 19:43:51 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 427f9802c9fa1e31c5fff80354f4e2cadb676336 to d6e7e0cd1c20066d0bc958bd9fdd3573b9e3fe36 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:43:32 to 11/18/2025 19:43:51 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 427f9802c9fa1e31c5fff80354f4e2cadb676336 to d6e7e0cd1c20066d0bc958bd9fdd3573b9e3fe36 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 19:43:32 to 11/18/2025 19:43:51 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 921a1c91a - 2025-11-18 13:44:18 -0600 - 11/18/2025 13:44:17
 Added in Other:
-- DFFlagCLI175686 = True | Mechanism: Activates a command-line interface feature for improved performance and functionality. | Purpose: Enhances the development experience by providing faster and more reliable commands for game developers.
-- FFlagEnableConsoleJoinVoiceTranslation = True | Mechanism: Allows voice chat translations for players joining from consoles. | Purpose: Enables players to communicate across different languages while playing on consoles.
+- DFFlagCLI175686 = True | Mechanism: Implements a command-line interface feature for developers. | Purpose: Makes it easier for developers to manage their games and tools.
+- FFlagEnableConsoleJoinVoiceTranslation = True | Mechanism: Enables voice chat translation for players joining from consoles. | Purpose: Allows players on consoles to communicate with others in different languages.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 69c204499f880acf81a7e692572299147d304eaa to 427f9802c9fa1e31c5fff80354f4e2cadb676336 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:40:52 to 11/18/2025 19:43:32 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 69c204499f880acf81a7e692572299147d304eaa to 427f9802c9fa1e31c5fff80354f4e2cadb676336 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:40:52 to 11/18/2025 19:43:32 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 69c204499f880acf81a7e692572299147d304eaa to 427f9802c9fa1e31c5fff80354f4e2cadb676336 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:40:52 to 11/18/2025 19:43:32 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 69c204499f880acf81a7e692572299147d304eaa to 427f9802c9fa1e31c5fff80354f4e2cadb676336 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 19:40:52 to 11/18/2025 19:43:32 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFFlagCLI175686_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:40:00) | Mechanism: Activates a staged rollout of a command-line interface feature. | Purpose: Allows developers to access new tools gradually, ensuring stability.
-- FFlagEnableConsoleJoinVoiceTranslation_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:35:49) | Mechanism: Enables voice chat translation for players on consoles. | Purpose: Players can communicate with others in different languages while playing on consoles.
+- DFFlagCLI175686_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:40:00) | Mechanism: Enables a new command line interface feature for developers. | Purpose: Enhances the development experience by providing better tools for scripting.
+- FFlagEnableConsoleJoinVoiceTranslation_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:35:49) | Mechanism: Enables voice chat translation features for players joining games on console devices. | Purpose: Improves communication by allowing players who speak different languages to understand each other during gameplay.
 
 ## 8549e5cac - 2025-11-18 13:42:01 -0600 - 11/18/2025 13:42:00
 Added in Other:
-- FFlagCollab7848SupportHistoryWaypoints_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:38:16 | Mechanism: Adds support for tracking changes in collaborative projects using waypoints. | Purpose: Helps players see the history of changes made in group projects, enhancing teamwork.
+- FFlagCollab7848SupportHistoryWaypoints_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:38:16 | Mechanism: Adds support for tracking historical waypoints in collaborative games. | Purpose: Helps players keep track of important locations in games where teamwork is essential.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8a78e43d4792f76493727a8ad2c0432efee44a78 to 69c204499f880acf81a7e692572299147d304eaa | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:38:40 to 11/18/2025 19:40:52 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 8a78e43d4792f76493727a8ad2c0432efee44a78 to 69c204499f880acf81a7e692572299147d304eaa | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:38:40 to 11/18/2025 19:40:52 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 8a78e43d4792f76493727a8ad2c0432efee44a78 to 69c204499f880acf81a7e692572299147d304eaa | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:38:40 to 11/18/2025 19:40:52 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 8a78e43d4792f76493727a8ad2c0432efee44a78 to 69c204499f880acf81a7e692572299147d304eaa | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 19:38:40 to 11/18/2025 19:40:52 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 
 ## 9f13dee1d - 2025-11-18 13:39:40 -0600 - 11/18/2025 13:39:39
 Added in Other:
-- DFFlagSocialCounterpartyManagerPopulateOnChatSignal = True | Mechanism: Updates social interactions based on chat activity. | Purpose: Improves how friends and players are managed during chats.
-- DFFlagSocialCounterpartyManagerReplicateProperty = True | Mechanism: Synchronizes social properties between users in real-time. | Purpose: Improves social interactions by keeping player information updated.
+- DFFlagSocialCounterpartyManagerPopulateOnChatSignal = True | Mechanism: Enhances chat system to manage social interactions more effectively. | Purpose: Improves player connections and interactions in chat.
+- DFFlagSocialCounterpartyManagerReplicateProperty = True | Mechanism: Synchronizes social properties between players. | Purpose: Ensures that social features work consistently across players.
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 10d4e33aa362cf7f93b0ca469c75fdeab4f0c8db to 8a78e43d4792f76493727a8ad2c0432efee44a78 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:34:52 to 11/18/2025 19:38:40 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 10d4e33aa362cf7f93b0ca469c75fdeab4f0c8db to 8a78e43d4792f76493727a8ad2c0432efee44a78 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:34:52 to 11/18/2025 19:38:40 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFStringFlagRepoGitHashDynamicString changed from 10d4e33aa362cf7f93b0ca469c75fdeab4f0c8db to 8a78e43d4792f76493727a8ad2c0432efee44a78 | Mechanism: Links game data to a specific version in the code repository. | Purpose: Ensures players experience the most up-to-date features and fixes in games.
+- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:34:52 to 11/18/2025 19:38:40 | Mechanism: Allows dynamic strings to incorporate flipped timestamps for better formatting. | Purpose: Provides players with clearer and more accurate time displays in the game.
+- FStringFlagRepoGitHashFastString changed from 10d4e33aa362cf7f93b0ca469c75fdeab4f0c8db to 8a78e43d4792f76493727a8ad2c0432efee44a78 | Mechanism: Stores a fast reference to the Git hash for version control. | Purpose: Improves performance by quickly identifying the version of the game assets.
+- FStringFlipTimeStampFastString changed from 11/18/2025 19:34:52 to 11/18/2025 19:38:40 | Mechanism: Optimizes how timestamps are processed in strings. | Purpose: Increases the speed of displaying time-related information in games.
 Removed in Other:
-- DFFlagSocialCounterpartyManagerPopulateOnChatSignal_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1831058373;2025-11-18T18:31:44) | Mechanism: Updates social interactions based on chat signals in real-time. | Purpose: Enhances social features by keeping player interactions up-to-date during chats.
-- DFFlagSocialCounterpartyManagerReplicateProperty_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1831058373;2025-11-18T18:31:44) | Mechanism: Synchronizes social properties across different systems. | Purpose: Ensures consistent social information for players.
-- FFlagAXFixSubcategorySelectionById2_Staged removed (was true;SteadyState;10;30;Revert;2025-11-18T19:01:08) | Mechanism: Fixes issues with selecting subcategories by their ID in the asset system. | Purpose: Allows players to more easily find and select specific subcategories of assets.
-
-## 4eff3a553 - 2025-11-18 13:37:22 -0600 - 11/18/2025 13:37:21
-Added in Other:
-- DFFlagFileCacheDirSizeYield_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:31:48 | Mechanism: Adjusts how the system manages the size of cached files. | Purpose: Optimizes performance by efficiently handling storage space.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 83ad691a22218defe5ae25d56de2f836f4e9d7a9 to 10d4e33aa362cf7f93b0ca469c75fdeab4f0c8db | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:34:25 to 11/18/2025 19:34:52 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 83ad691a22218defe5ae25d56de2f836f4e9d7a9 to 10d4e33aa362cf7f93b0ca469c75fdeab4f0c8db | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:34:25 to 11/18/2025 19:34:52 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## d1610379c - 2025-11-18 13:35:04 -0600 - 11/18/2025 13:35:04
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8a946591012952790e929b8d505bad99c092ca75 to 83ad691a22218defe5ae25d56de2f836f4e9d7a9 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:28:10 to 11/18/2025 19:34:25 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 8a946591012952790e929b8d505bad99c092ca75 to 83ad691a22218defe5ae25d56de2f836f4e9d7a9 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:28:10 to 11/18/2025 19:34:25 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 7388883f3 - 2025-11-18 13:30:36 -0600 - 11/18/2025 13:30:35
-Added in Other:
-- FFlagCountAcousticSimulationUsageTelemetry2 = True | Mechanism: Collects data on how often acoustic simulations are used in games. | Purpose: Allows developers to optimize sound features based on player usage patterns.
-- FFlagEnableVoiceVrVoiceConnectDisconnect_AEGIS2 = True | Mechanism: Enables voice chat features for VR users, allowing them to connect and disconnect easily. | Purpose: Enhances communication in VR games, making it more immersive and social.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 910a38df40182eab662f9ed0b39886a817f9a73e to 8a946591012952790e929b8d505bad99c092ca75 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:27:41 to 11/18/2025 19:28:10 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 910a38df40182eab662f9ed0b39886a817f9a73e to 8a946591012952790e929b8d505bad99c092ca75 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:27:41 to 11/18/2025 19:28:10 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagCountAcousticSimulationUsageTelemetry2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:23:59) | Mechanism: Tracks usage data for acoustic simulations in games. | Purpose: Provides developers with insights to improve sound design.
-- FFlagEnableVoiceVrVoiceConnectDisconnect_AEGIS2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:21:03) | Mechanism: Enables a system for connecting and disconnecting voice chat in VR. | Purpose: Allows players in VR to easily manage their voice chat connections.
-
-## cda91fd4a - 2025-11-18 13:28:12 -0600 - 11/18/2025 13:28:12
-Added in Other:
-- FFlagAddFriendsIgnoreAllRefactor_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T19:22:21 | Mechanism: Updates the way friend requests are managed to allow ignoring all at once. | Purpose: Players can easily ignore multiple friend requests without having to do it one by one.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ea6978806b211fb8d0bd0024208eef0303e44bf5 to 910a38df40182eab662f9ed0b39886a817f9a73e | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:17:56 to 11/18/2025 19:27:41 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from ea6978806b211fb8d0bd0024208eef0303e44bf5 to 910a38df40182eab662f9ed0b39886a817f9a73e | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:17:56 to 11/18/2025 19:27:41 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## ddfa7ee91 - 2025-11-18 13:19:30 -0600 - 11/18/2025 13:19:29
-Added in Other:
-- DFFlagXboxDeeplinkAnalytics = True | Mechanism: Tracks how players access games via deep links on Xbox. | Purpose: Helps developers understand player engagement and improve game discovery.
-- FFlagUpdateVoiceConnectionToasts_AEGIS2 = True | Mechanism: Updates the notifications for voice connection status in the game. | Purpose: Enhances player awareness of their voice chat connection quality.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 05393f5d8b60bf9b1b1d33efc41540a16bb87586 to ea6978806b211fb8d0bd0024208eef0303e44bf5 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:14:13 to 11/18/2025 19:17:56 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 05393f5d8b60bf9b1b1d33efc41540a16bb87586 to ea6978806b211fb8d0bd0024208eef0303e44bf5 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:14:13 to 11/18/2025 19:17:56 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFFlagXboxDeeplinkAnalytics_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:14:51) | Mechanism: Tracks analytics for deep links on Xbox. | Purpose: Helps improve the experience for players using Xbox by understanding how they access games.
-- FFlagUpdateVoiceConnectionToasts_AEGIS2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:14:10) | Mechanism: Updates notifications related to voice connection status. | Purpose: Provides clearer feedback to players about their voice chat connection.
-
-## fd185dbbd - 2025-11-18 13:14:52 -0600 - 11/18/2025 13:14:52
-Added in Other:
-- FFlagEnableInitialJoinVoiceButton = True | Mechanism: Adds a button for voice chat when players first join a game. | Purpose: Makes it easier for players to start using voice chat right away.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7441eb263492de1e4b0be99635f8656c436bcac4 to 05393f5d8b60bf9b1b1d33efc41540a16bb87586 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:10:09 to 11/18/2025 19:14:13 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 7441eb263492de1e4b0be99635f8656c436bcac4 to 05393f5d8b60bf9b1b1d33efc41540a16bb87586 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:10:09 to 11/18/2025 19:14:13 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagEnableInitialJoinVoiceButton_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:06:18) | Mechanism: Adds a button for voice chat when players first join a game. | Purpose: Makes it easier for players to communicate with others right from the start.
-
-## 6083b3710 - 2025-11-18 13:12:35 -0600 - 11/18/2025 13:12:34
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 76a6c2f3f0ca7d91e46af48463be06fc72030153 to 7441eb263492de1e4b0be99635f8656c436bcac4 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:09:36 to 11/18/2025 19:10:09 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 76a6c2f3f0ca7d91e46af48463be06fc72030153 to 7441eb263492de1e4b0be99635f8656c436bcac4 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:09:36 to 11/18/2025 19:10:09 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 70029dada - 2025-11-18 13:10:14 -0600 - 11/18/2025 13:10:14
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c25d44d63ca6658e186e18b06b31367fb4ca8eb6 to 76a6c2f3f0ca7d91e46af48463be06fc72030153 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:04:23 to 11/18/2025 19:09:36 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from c25d44d63ca6658e186e18b06b31367fb4ca8eb6 to 76a6c2f3f0ca7d91e46af48463be06fc72030153 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:04:23 to 11/18/2025 19:09:36 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 9f94e22c1 - 2025-11-18 13:05:49 -0600 - 11/18/2025 13:05:48
-Added in Other:
-- FFlagAXFixSubcategorySelectionById2_Staged = true;SteadyState;10;30;Revert;2025-11-18T19:01:08 | Mechanism: Fixes issues with selecting subcategories by their ID in the asset system. | Purpose: Allows players to more easily find and select specific subcategories of assets.
-- FFlagEnableHideJoinToastSubtitle = True | Mechanism: Hides the subtitle text that appears when a player joins a game. | Purpose: Makes the joining experience cleaner by removing unnecessary text.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2b590019d84438dca95960122b9681a05c26f63a to c25d44d63ca6658e186e18b06b31367fb4ca8eb6 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 19:00:51 to 11/18/2025 19:04:23 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 2b590019d84438dca95960122b9681a05c26f63a to c25d44d63ca6658e186e18b06b31367fb4ca8eb6 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 19:00:51 to 11/18/2025 19:04:23 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagEnableHideJoinToastSubtitle_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:58:53) | Mechanism: Hides the subtitle that appears when a player joins a game. | Purpose: Provides a cleaner visual experience by removing unnecessary text when players join.
-
-## 300fb15da - 2025-11-18 13:03:28 -0600 - 11/18/2025 13:03:28
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8a56e0c7586816c7b2551986b02966ac26876c03 to 2b590019d84438dca95960122b9681a05c26f63a | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:59:44 to 11/18/2025 19:00:51 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 8a56e0c7586816c7b2551986b02966ac26876c03 to 2b590019d84438dca95960122b9681a05c26f63a | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:59:44 to 11/18/2025 19:00:51 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## d7736b021 - 2025-11-18 13:01:08 -0600 - 11/18/2025 13:01:08
-Added in Other:
-- DFFlagPrefetchWaitForAppStorage_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:54:55 | Mechanism: Delays prefetching until app storage is ready. | Purpose: Enhances performance by ensuring data is available before loading.
-- DFIntUnexpectedSetChangeCombinationThrottleHP = 10 | Mechanism: Limits the rate at which certain changes can occur in the game to prevent performance issues. | Purpose: Improves game stability and reduces lag for players.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 45421fd289aeb08ba7f8be6ea32a64fca223c375 to 8a56e0c7586816c7b2551986b02966ac26876c03 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:55:39 to 11/18/2025 18:59:44 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 45421fd289aeb08ba7f8be6ea32a64fca223c375 to 8a56e0c7586816c7b2551986b02966ac26876c03 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:55:39 to 11/18/2025 18:59:44 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFIntUnexpectedSetChangeCombinationThrottleHP_Staged removed (was 10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:52:26) | Mechanism: Throttles unexpected changes in game settings to stabilize performance. | Purpose: Ensures smoother gameplay by preventing sudden changes that could disrupt the experience.
-
-## a6bd602e1 - 2025-11-18 12:56:32 -0600 - 11/18/2025 12:56:32
-Added in Other:
-- DFFlagSendFlagCacheLoadTelemetry_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:51:15 | Mechanism: Tracks when flag cache data is loaded for analysis. | Purpose: Provides developers with better understanding of data usage, helping improve game features.
-- DFFlagStartupRobloxTelemetryFlagCacheUtils_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:51:54 | Mechanism: Enhances the way Roblox stores and retrieves telemetry data at startup. | Purpose: Improves performance and reliability of data collection, leading to better game insights.
-- DFFlagWriteFlagCacheAfterFlagFetch2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:53:07 | Mechanism: Updates the cache after fetching flags to improve performance. | Purpose: Reduces lag and speeds up the loading of game settings for players.
-- FFlagUseConvexDecompV8Format = True | Mechanism: Switches to a new format for handling convex shapes in physics calculations. | Purpose: Improves the accuracy and performance of physics interactions in games.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from fd3f8bd357f885334d7a9b85580b7705bc23b365 to 45421fd289aeb08ba7f8be6ea32a64fca223c375 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:51:29 to 11/18/2025 18:55:39 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from fd3f8bd357f885334d7a9b85580b7705bc23b365 to 45421fd289aeb08ba7f8be6ea32a64fca223c375 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:51:29 to 11/18/2025 18:55:39 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagUseConvexDecompV8Format_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:46:35) | Mechanism: Implements a new format for handling 3D shapes. | Purpose: Improves performance and accuracy in rendering complex game objects.
-
-## a915bfc8e - 2025-11-18 12:54:15 -0600 - 11/18/2025 12:54:15
-Added in Other:
-- DFFlagInitTombstoneAfterBlockingFetch3_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:49:57 | Mechanism: Initializes a fallback system after blocking certain data fetches. | Purpose: Ensures smoother gameplay by handling data issues more gracefully.
-
-## bedc4f87f - 2025-11-18 12:51:57 -0600 - 11/18/2025 12:51:57
-Added in Other:
-- DFFlagFetchAndWriteFlagsAfterSuccessfulCachedFlagsLoad_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:49:20 | Mechanism: Fetches and updates feature flags after successfully loading cached data. | Purpose: Enhances performance and responsiveness for players by ensuring they receive the latest features quickly.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7c5cfbe74aad0fa611a8159876039176c88fefde to fd3f8bd357f885334d7a9b85580b7705bc23b365 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:48:00 to 11/18/2025 18:51:29 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 7c5cfbe74aad0fa611a8159876039176c88fefde to fd3f8bd357f885334d7a9b85580b7705bc23b365 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:48:00 to 11/18/2025 18:51:29 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## c11e6661b - 2025-11-18 12:49:30 -0600 - 11/18/2025 12:49:30
-Added in Other:
-- DFFlagGCJobMRFEarlierRemoval = True | Mechanism: Adjusts the timing of garbage collection jobs to run sooner. | Purpose: Improves game performance by freeing up memory more quickly.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 62c91d4faa560f6a6a9e3fd143fd75e3e5eccf0c to 7c5cfbe74aad0fa611a8159876039176c88fefde | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:42:42 to 11/18/2025 18:48:00 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 62c91d4faa560f6a6a9e3fd143fd75e3e5eccf0c to 7c5cfbe74aad0fa611a8159876039176c88fefde | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:42:42 to 11/18/2025 18:48:00 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFFlagGCJobMRFEarlierRemoval_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:41:09) | Mechanism: Modifies the garbage collection job to remove unused data sooner. | Purpose: Improves game performance by freeing up resources more efficiently.
-
-## 452fcea0b - 2025-11-18 12:45:05 -0600 - 11/18/2025 12:45:05
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5c3b6df6f5cb315cd64be262d58ea283e679b4a3 to 62c91d4faa560f6a6a9e3fd143fd75e3e5eccf0c | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:41:16 to 11/18/2025 18:42:42 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 5c3b6df6f5cb315cd64be262d58ea283e679b4a3 to 62c91d4faa560f6a6a9e3fd143fd75e3e5eccf0c | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:41:16 to 11/18/2025 18:42:42 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 5e879e3c9 - 2025-11-18 12:42:48 -0600 - 11/18/2025 12:42:48
-Added in Other:
-- DFFlagCLI175686_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:40:00 | Mechanism: Activates a staged rollout of a command-line interface feature. | Purpose: Allows developers to access new tools gradually, ensuring stability.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 37fd9bb85f41a03ead1137e45416a3838327dc7d to 5c3b6df6f5cb315cd64be262d58ea283e679b4a3 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:39:32 to 11/18/2025 18:41:16 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 37fd9bb85f41a03ead1137e45416a3838327dc7d to 5c3b6df6f5cb315cd64be262d58ea283e679b4a3 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:39:32 to 11/18/2025 18:41:16 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagAXCatalogCategoriesStore6_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:02:17) | Mechanism: Introduces new categories for organizing items in the catalog. | Purpose: Helps players find and browse items more easily in the store.
-
-## 14393b947 - 2025-11-18 12:39:59 -0600 - 11/18/2025 12:39:59
-Added in Other:
-- FFlagEnableConsoleJoinVoiceTranslation_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:35:49 | Mechanism: Enables voice chat translation for players on consoles. | Purpose: Players can communicate with others in different languages while playing on consoles.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8d84f51ba6a768134e8310d4b2c70b2ee7ab890f to 37fd9bb85f41a03ead1137e45416a3838327dc7d | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:33:42 to 11/18/2025 18:39:32 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 8d84f51ba6a768134e8310d4b2c70b2ee7ab890f to 37fd9bb85f41a03ead1137e45416a3838327dc7d | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:33:42 to 11/18/2025 18:39:32 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 7ed2fdb3c - 2025-11-18 12:35:23 -0600 - 11/18/2025 12:35:23
-Added in Other:
-- DFFlagSocialCounterpartyManagerPopulateOnChatSignal_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1831058373;2025-11-18T18:31:44 | Mechanism: Updates social interactions based on chat signals in real-time. | Purpose: Enhances social features by keeping player interactions up-to-date during chats.
-- DFFlagSocialCounterpartyManagerReplicateProperty_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1831058373;2025-11-18T18:31:44 | Mechanism: Synchronizes social properties across different systems. | Purpose: Ensures consistent social information for players.
-- FFlagEnableDeferVoiceConnection = True | Mechanism: Delays the connection to voice chat until it's needed. | Purpose: Improves performance by reducing lag when voice chat isn't in use.
-Added in Camera/UI:
-- FFlagSduiGetItemCollectionKeys = True | Mechanism: Enables retrieval of specific keys related to item collections in the game. | Purpose: Allows players to access and manage their item collections more effectively.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from cead58aa2b6e39bda25c0fd8e72b44e152c95a05 to 8d84f51ba6a768134e8310d4b2c70b2ee7ab890f | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:32:03 to 11/18/2025 18:33:42 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from cead58aa2b6e39bda25c0fd8e72b44e152c95a05 to 8d84f51ba6a768134e8310d4b2c70b2ee7ab890f | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:32:03 to 11/18/2025 18:33:42 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagEnableDeferVoiceConnection_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:30:32) | Mechanism: Delays the voice connection setup until necessary. | Purpose: Improves connection reliability and reduces initial loading times for voice chat.
-Removed in Camera/UI:
-- FFlagSduiGetItemCollectionKeys_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:28:10) | Mechanism: Enables a new method to retrieve keys for item collections in the UI. | Purpose: Improves the way players can access and manage their items in the game.
-
-## c4aca40aa - 2025-11-18 12:32:55 -0600 - 11/18/2025 12:32:55
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 40ff43c97690d55d12ac85cb8cf39f8a9193aea2 to cead58aa2b6e39bda25c0fd8e72b44e152c95a05 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:29:01 to 11/18/2025 18:32:03 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 40ff43c97690d55d12ac85cb8cf39f8a9193aea2 to cead58aa2b6e39bda25c0fd8e72b44e152c95a05 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:29:01 to 11/18/2025 18:32:03 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 7c6617390 - 2025-11-18 12:30:34 -0600 - 11/18/2025 12:30:34
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e6f558f8be08251e278e27a5ff732f679c6f20bc to 40ff43c97690d55d12ac85cb8cf39f8a9193aea2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:25:58 to 11/18/2025 18:29:01 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e6f558f8be08251e278e27a5ff732f679c6f20bc to 40ff43c97690d55d12ac85cb8cf39f8a9193aea2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:25:58 to 11/18/2025 18:29:01 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 4b8a9f0a1 - 2025-11-18 12:28:13 -0600 - 11/18/2025 12:28:13
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from fa1bf357a5d16ef0d68e02fce286d032297619eb to e6f558f8be08251e278e27a5ff732f679c6f20bc | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:25:07 to 11/18/2025 18:25:58 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from fa1bf357a5d16ef0d68e02fce286d032297619eb to e6f558f8be08251e278e27a5ff732f679c6f20bc | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:25:07 to 11/18/2025 18:25:58 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 7a99e733e - 2025-11-18 12:25:55 -0600 - 11/18/2025 12:25:55
-Added in Other:
-- FFlagCountAcousticSimulationUsageTelemetry2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:23:59 | Mechanism: Tracks usage data for acoustic simulations in games. | Purpose: Provides developers with insights to improve sound design.
-- FFlagEnableVoiceVrVoiceConnectDisconnect_AEGIS2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:21:03 | Mechanism: Enables a system for connecting and disconnecting voice chat in VR. | Purpose: Allows players in VR to easily manage their voice chat connections.
-- FFlagLuauUseNativeStackGuard = True | Mechanism: Implements a native stack guard for the Luau scripting language. | Purpose: Increases script safety and prevents crashes, enhancing the overall player experience.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f8fc2352944b2387b174aa56f2d64f701130f733 to fa1bf357a5d16ef0d68e02fce286d032297619eb | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:19:29 to 11/18/2025 18:25:07 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from f8fc2352944b2387b174aa56f2d64f701130f733 to fa1bf357a5d16ef0d68e02fce286d032297619eb | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:19:29 to 11/18/2025 18:25:07 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagLuauUseNativeStackGuard_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:17:47) | Mechanism: Implements a native method for handling stack overflows in Luau. | Purpose: Improves stability and performance of scripts by preventing crashes.
-
-## 7a7235394 - 2025-11-18 12:21:17 -0600 - 11/18/2025 12:21:17
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 809b52d2cb7fe5ade6e98f78eec3c01d6b3f6b2c to f8fc2352944b2387b174aa56f2d64f701130f733 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:18:24 to 11/18/2025 18:19:29 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 809b52d2cb7fe5ade6e98f78eec3c01d6b3f6b2c to f8fc2352944b2387b174aa56f2d64f701130f733 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:18:24 to 11/18/2025 18:19:29 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 4af0f5fd1 - 2025-11-18 12:18:43 -0600 - 11/18/2025 12:18:43
-Added in Other:
-- DFFlagXboxDeeplinkAnalytics_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:14:51 | Mechanism: Tracks analytics for deep links on Xbox. | Purpose: Helps improve the experience for players using Xbox by understanding how they access games.
-- FFlagUpdateVoiceConnectionToasts_AEGIS2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:14:10 | Mechanism: Updates notifications related to voice connection status. | Purpose: Provides clearer feedback to players about their voice chat connection.
-Added in Graphics:
-- FFlagGlyphRenderErrorChecking = True | Mechanism: Enables checks for errors when rendering text glyphs. | Purpose: Improves text display by reducing errors and ensuring clarity.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e16fd0d693410f1772d417da6e841f2fb522b691 to 809b52d2cb7fe5ade6e98f78eec3c01d6b3f6b2c | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:12:34 to 11/18/2025 18:18:24 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e16fd0d693410f1772d417da6e841f2fb522b691 to 809b52d2cb7fe5ade6e98f78eec3c01d6b3f6b2c | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:12:34 to 11/18/2025 18:18:24 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Graphics:
-- FFlagGlyphRenderErrorChecking_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:11:36) | Mechanism: Adds error checking for rendering text glyphs. | Purpose: Ensures text displays correctly, enhancing readability for players.
-
-## f266ceb83 - 2025-11-18 12:14:11 -0600 - 11/18/2025 12:14:11
-Added in Other:
-- DFFlagMicroprofilerShowFrameRangeOnGraph = True | Mechanism: Enhances the microprofiler to display a range of frames on performance graphs. | Purpose: Helps developers analyze game performance over specific time frames.
-Added in Camera/UI:
-- FFlagTopLeftOrigin2DUI6 = True | Mechanism: Adjusts the origin point for 2D UI elements to the top-left corner. | Purpose: Improves layout consistency for developers when placing UI elements.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 338ac5b870a0b55ce3c33d37fce328adf4636563 to e16fd0d693410f1772d417da6e841f2fb522b691 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:09:30 to 11/18/2025 18:12:34 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 338ac5b870a0b55ce3c33d37fce328adf4636563 to e16fd0d693410f1772d417da6e841f2fb522b691 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:09:30 to 11/18/2025 18:12:34 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFFlagMicroprofilerShowFrameRangeOnGraph_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:09:38) | Mechanism: Displays frame range data on performance graphs in the microprofiler tool. | Purpose: Helps developers visualize performance over time, making it easier to optimize games.
-Removed in Camera/UI:
-- FFlagTopLeftOrigin2DUI6_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:09:23) | Mechanism: Changes the origin point for 2D user interfaces to the top-left corner. | Purpose: Provides a more intuitive layout for developers creating 2D interfaces.
-
-## 64b20655f - 2025-11-18 12:11:42 -0600 - 11/18/2025 12:11:41
-Added in Other:
-- DFFlagChatReconcileAccess2 = True | Mechanism: Enables a new method for reconciling chat data to improve accuracy. | Purpose: Enhances the chat experience by ensuring messages are delivered correctly and promptly.
-- DFFlagChatReconcileAccessRateLimiter = True | Mechanism: Limits how often chat access can be requested. | Purpose: Prevents spam and improves chat stability.
-Added in Network:
-- DFFlagChatReconcileAccessServer2 = True | Mechanism: Updates the chat system to improve server communication. | Purpose: Provides a more reliable and efficient chat experience for players.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 105eec18bf832dca6dbbd5e025222c1e769f334d to 338ac5b870a0b55ce3c33d37fce328adf4636563 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:07:24 to 11/18/2025 18:09:30 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 105eec18bf832dca6dbbd5e025222c1e769f334d to 338ac5b870a0b55ce3c33d37fce328adf4636563 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:07:24 to 11/18/2025 18:09:30 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFFlagChatReconcileAccess2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;76061020;2025-11-18T17:04:57) | Mechanism: Enables a new method for syncing chat messages between servers. | Purpose: Improves the reliability and speed of chat message delivery for players.
-- DFFlagChatReconcileAccessRateLimiter_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;76061020;2025-11-18T17:04:57) | Mechanism: Limits the rate of chat access to prevent spam. | Purpose: Enhances chat quality by reducing spam messages for players.
-Removed in Network:
-- DFFlagChatReconcileAccessServer2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;76061020;2025-11-18T17:04:57) | Mechanism: Enhancing server communication for chat features. | Purpose: Improves chat reliability and performance for players.
-
-## 9738a3251 - 2025-11-18 12:09:23 -0600 - 11/18/2025 12:09:23
-Added in Other:
-- FFlagEnableInitialJoinVoiceButton_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:06:18 | Mechanism: Adds a button for voice chat when players first join a game. | Purpose: Makes it easier for players to communicate with others right from the start.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8463ebd2decf4e192e62788642e9e287329aecfb to 105eec18bf832dca6dbbd5e025222c1e769f334d | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:05:20 to 11/18/2025 18:07:24 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 8463ebd2decf4e192e62788642e9e287329aecfb to 105eec18bf832dca6dbbd5e025222c1e769f334d | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:05:20 to 11/18/2025 18:07:24 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 8fc1c7902 - 2025-11-18 12:07:05 -0600 - 11/18/2025 12:07:05
-Added in Other:
-- FFlagAXCatalogCategoriesStore6_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T18:02:17 | Mechanism: Introduces new categories for organizing items in the catalog. | Purpose: Helps players find and browse items more easily in the store.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 9942dbccc6e66911eb19ea8246f6a25c9ce7cb26 to 8463ebd2decf4e192e62788642e9e287329aecfb | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 18:01:41 to 11/18/2025 18:05:20 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 9942dbccc6e66911eb19ea8246f6a25c9ce7cb26 to 8463ebd2decf4e192e62788642e9e287329aecfb | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 18:01:41 to 11/18/2025 18:05:20 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 86d78601d - 2025-11-18 12:04:45 -0600 - 11/18/2025 12:04:44
-Added in Other:
-- FFlagEnableHideJoinToastSubtitle_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:58:53 | Mechanism: Hides the subtitle that appears when a player joins a game. | Purpose: Provides a cleaner visual experience by removing unnecessary text when players join.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 10b8baff06dfd1e149f807dbc1775eca7cd671e9 to 9942dbccc6e66911eb19ea8246f6a25c9ce7cb26 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:53:11 to 11/18/2025 18:01:41 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 10b8baff06dfd1e149f807dbc1775eca7cd671e9 to 9942dbccc6e66911eb19ea8246f6a25c9ce7cb26 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:53:11 to 11/18/2025 18:01:41 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 8a5a52b8a - 2025-11-18 11:53:55 -0600 - 11/18/2025 11:53:55
-Added in Other:
-- DFIntUnexpectedSetChangeCombinationThrottleHP_Staged = 10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:52:26 | Mechanism: Throttles unexpected changes in game settings to stabilize performance. | Purpose: Ensures smoother gameplay by preventing sudden changes that could disrupt the experience.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 861574c3dbb836258db0d1802287a5301739577c to 10b8baff06dfd1e149f807dbc1775eca7cd671e9 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:48:14 to 11/18/2025 17:53:11 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 861574c3dbb836258db0d1802287a5301739577c to 10b8baff06dfd1e149f807dbc1775eca7cd671e9 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:48:14 to 11/18/2025 17:53:11 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 8e8631594 - 2025-11-18 11:49:24 -0600 - 11/18/2025 11:49:24
-Added in Other:
-- FFlagUseConvexDecompV8Format_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:46:35 | Mechanism: Implements a new format for handling 3D shapes. | Purpose: Improves performance and accuracy in rendering complex game objects.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d9c6b7035d09997ac49f43b60206d039dab41062 to 861574c3dbb836258db0d1802287a5301739577c | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:42:19 to 11/18/2025 17:48:14 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from d9c6b7035d09997ac49f43b60206d039dab41062 to 861574c3dbb836258db0d1802287a5301739577c | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:42:19 to 11/18/2025 17:48:14 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## b012048e1 - 2025-11-18 11:44:58 -0600 - 11/18/2025 11:44:58
-Added in Other:
-- DFFlagGCJobMRFEarlierRemoval_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:41:09 | Mechanism: Modifies the garbage collection job to remove unused data sooner. | Purpose: Improves game performance by freeing up resources more efficiently.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0d2f72bf6a6134f7540ff079f3cf4cccb1f053f6 to d9c6b7035d09997ac49f43b60206d039dab41062 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:39:46 to 11/18/2025 17:42:19 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 0d2f72bf6a6134f7540ff079f3cf4cccb1f053f6 to d9c6b7035d09997ac49f43b60206d039dab41062 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:39:46 to 11/18/2025 17:42:19 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## fd3a32b7a - 2025-11-18 11:42:37 -0600 - 11/18/2025 11:42:37
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b4938ccb8760404262a32e5c5c2c4bd8314cb564 to 0d2f72bf6a6134f7540ff079f3cf4cccb1f053f6 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:38:11 to 11/18/2025 17:39:46 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b4938ccb8760404262a32e5c5c2c4bd8314cb564 to 0d2f72bf6a6134f7540ff079f3cf4cccb1f053f6 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:38:11 to 11/18/2025 17:39:46 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 3ade0b68a - 2025-11-18 11:40:20 -0600 - 11/18/2025 11:40:19
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 897e9f9b2ccdd308c593c300d9a5072206771ef7 to b4938ccb8760404262a32e5c5c2c4bd8314cb564 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:37:15 to 11/18/2025 17:38:11 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 897e9f9b2ccdd308c593c300d9a5072206771ef7 to b4938ccb8760404262a32e5c5c2c4bd8314cb564 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:37:15 to 11/18/2025 17:38:11 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 049a516e5 - 2025-11-18 11:38:02 -0600 - 11/18/2025 11:38:02
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b63ad219d27502ec2c7887243fa9c8c96b89df0a to 897e9f9b2ccdd308c593c300d9a5072206771ef7 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:34:40 to 11/18/2025 17:37:15 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b63ad219d27502ec2c7887243fa9c8c96b89df0a to 897e9f9b2ccdd308c593c300d9a5072206771ef7 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:34:40 to 11/18/2025 17:37:15 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagAXCatalogCategoriesStore6_Staged removed (was true;SteadyState;10;30;Revert;2025-11-18T17:04:05) | Mechanism: Introduces new categories for organizing items in the catalog. | Purpose: Helps players find and browse items more easily in the store.
-
-## 78ab12a9b - 2025-11-18 11:35:44 -0600 - 11/18/2025 11:35:44
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 213ed1071145f3decf860624a24d327fc1d425f8 to b63ad219d27502ec2c7887243fa9c8c96b89df0a | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:32:05 to 11/18/2025 17:34:40 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 213ed1071145f3decf860624a24d327fc1d425f8 to b63ad219d27502ec2c7887243fa9c8c96b89df0a | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:32:05 to 11/18/2025 17:34:40 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 001f48fd7 - 2025-11-18 11:33:23 -0600 - 11/18/2025 11:33:22
-Added in Other:
-- FFlagEnableDeferVoiceConnection_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:30:32 | Mechanism: Delays the voice connection setup until necessary. | Purpose: Improves connection reliability and reduces initial loading times for voice chat.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e4682cb3ded95f8dd849e924d46f3839a434cba7 to 213ed1071145f3decf860624a24d327fc1d425f8 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:29:51 to 11/18/2025 17:32:05 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e4682cb3ded95f8dd849e924d46f3839a434cba7 to 213ed1071145f3decf860624a24d327fc1d425f8 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:29:51 to 11/18/2025 17:32:05 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## bc6533988 - 2025-11-18 11:31:05 -0600 - 11/18/2025 11:31:05
-Added in Camera/UI:
-- FFlagSduiGetItemCollectionKeys_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:28:10 | Mechanism: Enables a new method to retrieve keys for item collections in the UI. | Purpose: Improves the way players can access and manage their items in the game.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from bbf5225f5991fcf21b47ca26c11238b33420b158 to e4682cb3ded95f8dd849e924d46f3839a434cba7 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:28:05 to 11/18/2025 17:29:51 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from bbf5225f5991fcf21b47ca26c11238b33420b158 to e4682cb3ded95f8dd849e924d46f3839a434cba7 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:28:05 to 11/18/2025 17:29:51 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 4e26f51c2 - 2025-11-18 11:28:45 -0600 - 11/18/2025 11:28:44
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 63994032c5d3c3ff8a33f1f3e4889f7c10011be2 to bbf5225f5991fcf21b47ca26c11238b33420b158 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:26:03 to 11/18/2025 17:28:05 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 63994032c5d3c3ff8a33f1f3e4889f7c10011be2 to bbf5225f5991fcf21b47ca26c11238b33420b158 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:26:03 to 11/18/2025 17:28:05 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 6a4adfa60 - 2025-11-18 11:26:24 -0600 - 11/18/2025 11:26:24
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7582ce77db25cdc735eb513adcf1ed7be50acde1 to 63994032c5d3c3ff8a33f1f3e4889f7c10011be2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:18:55 to 11/18/2025 17:26:03 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 7582ce77db25cdc735eb513adcf1ed7be50acde1 to 63994032c5d3c3ff8a33f1f3e4889f7c10011be2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:18:55 to 11/18/2025 17:26:03 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 8ebefeca7 - 2025-11-18 11:19:46 -0600 - 11/18/2025 11:19:45
-Added in Other:
-- FFlagLuauUseNativeStackGuard_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:17:47 | Mechanism: Implements a native method for handling stack overflows in Luau. | Purpose: Improves stability and performance of scripts by preventing crashes.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 96cea34d5188513050f074e60c16908bf9c2cda2 to 7582ce77db25cdc735eb513adcf1ed7be50acde1 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:12:48 to 11/18/2025 17:18:55 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 96cea34d5188513050f074e60c16908bf9c2cda2 to 7582ce77db25cdc735eb513adcf1ed7be50acde1 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:12:48 to 11/18/2025 17:18:55 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 509945317 - 2025-11-18 11:15:14 -0600 - 11/18/2025 11:15:14
-Added in Graphics:
-- FFlagGlyphRenderErrorChecking_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:11:36 | Mechanism: Adds error checking for rendering text glyphs. | Purpose: Ensures text displays correctly, enhancing readability for players.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 680a8756fc8934ac7fd1bce6a1f444f61ef71792 to 96cea34d5188513050f074e60c16908bf9c2cda2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:10:44 to 11/18/2025 17:12:48 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 680a8756fc8934ac7fd1bce6a1f444f61ef71792 to 96cea34d5188513050f074e60c16908bf9c2cda2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:10:44 to 11/18/2025 17:12:48 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## aa1cf91e7 - 2025-11-18 11:12:54 -0600 - 11/18/2025 11:12:53
-Added in Other:
-- DFFlagMicroprofilerShowFrameRangeOnGraph_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:09:38 | Mechanism: Displays frame range data on performance graphs in the microprofiler tool. | Purpose: Helps developers visualize performance over time, making it easier to optimize games.
-Added in Camera/UI:
-- FFlagTopLeftOrigin2DUI6_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T17:09:23 | Mechanism: Changes the origin point for 2D user interfaces to the top-left corner. | Purpose: Provides a more intuitive layout for developers creating 2D interfaces.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8f832c8c3c347bc2a1e6a333051f25d5a192f4c0 to 680a8756fc8934ac7fd1bce6a1f444f61ef71792 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:07:32 to 11/18/2025 17:10:44 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 8f832c8c3c347bc2a1e6a333051f25d5a192f4c0 to 680a8756fc8934ac7fd1bce6a1f444f61ef71792 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:07:32 to 11/18/2025 17:10:44 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 390dfd752 - 2025-11-18 11:08:16 -0600 - 11/18/2025 11:08:15
-Added in Other:
-- DFFlagChatReconcileAccess2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;76061020;2025-11-18T17:04:57 | Mechanism: Enables a new method for syncing chat messages between servers. | Purpose: Improves the reliability and speed of chat message delivery for players.
-- DFFlagChatReconcileAccessRateLimiter_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;76061020;2025-11-18T17:04:57 | Mechanism: Limits the rate of chat access to prevent spam. | Purpose: Enhances chat quality by reducing spam messages for players.
-- FFlagAXCatalogCategoriesStore6_Staged = true;SteadyState;10;30;Revert;2025-11-18T17:04:05 | Mechanism: Introduces new categories for organizing items in the catalog. | Purpose: Helps players find and browse items more easily in the store.
-Added in Network:
-- DFFlagChatReconcileAccessServer2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;76061020;2025-11-18T17:04:57 | Mechanism: Enhancing server communication for chat features. | Purpose: Improves chat reliability and performance for players.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8469cbf623c6704792cd9c2c18089a5e77ac578b to 8f832c8c3c347bc2a1e6a333051f25d5a192f4c0 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 17:02:19 to 11/18/2025 17:07:32 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 8469cbf623c6704792cd9c2c18089a5e77ac578b to 8f832c8c3c347bc2a1e6a333051f25d5a192f4c0 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 17:02:19 to 11/18/2025 17:07:32 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 57ddddebe - 2025-11-18 11:03:43 -0600 - 11/18/2025 11:03:43
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from cbb3aecaebd81c52326a891844ac7180ccd41460 to 8469cbf623c6704792cd9c2c18089a5e77ac578b | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 16:57:29 to 11/18/2025 17:02:19 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from cbb3aecaebd81c52326a891844ac7180ccd41460 to 8469cbf623c6704792cd9c2c18089a5e77ac578b | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 16:57:29 to 11/18/2025 17:02:19 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## c91528f2b - 2025-11-18 10:59:14 -0600 - 11/18/2025 10:59:14
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 02ad2d90579117f4cf8fbd9c0563a0c122e36ad7 to cbb3aecaebd81c52326a891844ac7180ccd41460 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 02:36:28 to 11/18/2025 16:57:29 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- DFStringModerationServiceEnabledUniverseIds changed from 88070565,7703115801,383310974,604142934,4165164803,2160907981,79301772,1686885941,210851291,2711375305,3209986755 to 88070565,7703115801,383310974,604142934,4165164803,2160907981,79301772,1686885941,210851291,2711375305,3209986755,3259111134,3666294218,3906287814,4659045993,5769168420,8814660446,8399000588,9073852362,8892135360 | Mechanism: Activates a moderation service that checks specific game IDs for inappropriate content. | Purpose: Helps keep games safe by filtering out harmful or offensive material.
-- FStringFlagRepoGitHashFastString changed from 02ad2d90579117f4cf8fbd9c0563a0c122e36ad7 to cbb3aecaebd81c52326a891844ac7180ccd41460 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 02:36:28 to 11/18/2025 16:57:29 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 79d61f20c - 2025-11-17 20:38:19 -0600 - 11/17/2025 20:38:18
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 33a91c2f442e4829025b75b96e982ce309bf01ee to 02ad2d90579117f4cf8fbd9c0563a0c122e36ad7 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 02:20:13 to 11/18/2025 02:36:28 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FFlagCleanupMuteSelfButton changed from True to False | Mechanism: Removes the button that lets players mute themselves in certain contexts. | Purpose: Simplifies the user interface, making it easier for players to manage their audio settings.
-- FStringFlagRepoGitHashFastString changed from 33a91c2f442e4829025b75b96e982ce309bf01ee to 02ad2d90579117f4cf8fbd9c0563a0c122e36ad7 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 02:20:13 to 11/18/2025 02:36:28 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## de49e4385 - 2025-11-17 20:20:43 -0600 - 11/17/2025 20:20:42
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f22b7f7ec0f50bf47d34040aa1dc2ed63b19fb5e to 33a91c2f442e4829025b75b96e982ce309bf01ee | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 01:57:49 to 11/18/2025 02:20:13 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from f22b7f7ec0f50bf47d34040aa1dc2ed63b19fb5e to 33a91c2f442e4829025b75b96e982ce309bf01ee | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 01:57:49 to 11/18/2025 02:20:13 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 361c25a57 - 2025-11-17 19:58:42 -0600 - 11/17/2025 19:58:41
-Changed in Other:
-- DFIntPerfDataOnTelemetryV2ThrottleHundredthsPercent changed from 20 to 40 | Mechanism: Controls the rate at which performance data is sent for analysis. | Purpose: Helps maintain game performance by managing data flow to telemetry systems.
-- DFStringFlagRepoGitHashDynamicString changed from 262f9e80cf65711110172e0db991495bb459c9b2 to f22b7f7ec0f50bf47d34040aa1dc2ed63b19fb5e | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 01:55:25 to 11/18/2025 01:57:49 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 262f9e80cf65711110172e0db991495bb459c9b2 to f22b7f7ec0f50bf47d34040aa1dc2ed63b19fb5e | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 01:55:25 to 11/18/2025 01:57:49 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFIntPerfDataOnTelemetryV2ThrottleHundredthsPercent_Staged removed (was 40;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1081213308;2025-11-18T00:50:22) | Mechanism: Limits the amount of performance data sent to the server to reduce bandwidth usage. | Purpose: Helps maintain smoother gameplay by preventing lag caused by excessive data transmission.
-
-## 706647865 - 2025-11-17 19:56:18 -0600 - 11/17/2025 19:56:18
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c3116c9854226a2861d9e3525a9a4aef3644cc91 to 262f9e80cf65711110172e0db991495bb459c9b2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 01:22:09 to 11/18/2025 01:55:25 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from c3116c9854226a2861d9e3525a9a4aef3644cc91 to 262f9e80cf65711110172e0db991495bb459c9b2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 01:22:09 to 11/18/2025 01:55:25 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## c387dfd39 - 2025-11-17 19:23:03 -0600 - 11/17/2025 19:23:03
-Added in Other:
-- DFFlagUseRealtimeProtocolLock = True | Mechanism: Implements a locking mechanism for real-time data protocols. | Purpose: Enhances the stability of real-time interactions in games.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5c04b8b8a0f60b9c970c36049b8e1559c603414d to c3116c9854226a2861d9e3525a9a4aef3644cc91 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 01:14:00 to 11/18/2025 01:22:09 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 5c04b8b8a0f60b9c970c36049b8e1559c603414d to c3116c9854226a2861d9e3525a9a4aef3644cc91 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 01:14:00 to 11/18/2025 01:22:09 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFFlagUseRealtimeProtocolLock_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T00:16:20) | Mechanism: Implements a real-time communication protocol for smoother interactions. | Purpose: Enhances the responsiveness of in-game features and chat.
-
-## fb40af024 - 2025-11-17 19:16:14 -0600 - 11/17/2025 19:16:14
-Added in Other:
-- DFIntRobloxTelemetryGamePassesProductInfoBatchingAnalyticsThrottleHundredthsPercent = 1 | Mechanism: Adjusts the frequency of data collection for game pass analytics. | Purpose: Enhances the accuracy and efficiency of game pass performance tracking.
-- DFIntRobloxTelemetryGamePassOwnershipBatchingAnalyticsThrottleHundredthsPercent = 1 | Mechanism: Limits the frequency of game pass ownership data being sent for analytics. | Purpose: Reduces server load and improves performance by optimizing data collection.
-- FFlagLuauSimplifyRefinementOfReadOnlyProperty = True | Mechanism: Streamlines the way read-only properties are handled in code. | Purpose: Makes scripting easier and more efficient for developers.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5c3ab2fb412af6fa1c7698942812b0f9edfa4472 to 5c04b8b8a0f60b9c970c36049b8e1559c603414d | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 01:07:52 to 11/18/2025 01:14:00 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 5c3ab2fb412af6fa1c7698942812b0f9edfa4472 to 5c04b8b8a0f60b9c970c36049b8e1559c603414d | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 01:07:52 to 11/18/2025 01:14:00 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFIntRobloxTelemetryGamePassesProductInfoBatchingAnalyticsThrottleHundredthsPercent_Staged removed (was 1;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T00:05:23) | Mechanism: Adjusts the frequency of data collection for game pass analytics to optimize performance. | Purpose: Improves the reliability of game pass data, helping developers understand player engagement better.
-- DFIntRobloxTelemetryGamePassOwnershipBatchingAnalyticsThrottleHundredthsPercent_Staged removed (was 1;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T00:06:39) | Mechanism: Adjusts the frequency of analytics data collection for game pass ownership. | Purpose: Improves the accuracy of game pass ownership data without overwhelming the system.
-- FFlagLuauSimplifyRefinementOfReadOnlyProperty_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T00:06:07) | Mechanism: Streamlines how read-only properties are handled in code. | Purpose: Makes coding easier for developers, leading to better games.
-
-## 869c5a6e3 - 2025-11-17 19:09:26 -0600 - 11/17/2025 19:09:26
-Added in Other:
-- FFlagAddSessionizationToAnalytics = True | Mechanism: Introduces a new way to track player sessions in analytics. | Purpose: Provides better insights into player engagement and behavior.
-- FFlagFoundationDialogHeroMediaGradientFix = True | Mechanism: Fixes visual issues with gradient backgrounds in dialog boxes. | Purpose: Improves the visual appearance of dialogs for a better user interface.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d2e41d6b82a1a9a3c41b685ecacd605d8216bdd2 to 5c3ab2fb412af6fa1c7698942812b0f9edfa4472 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:56:54 to 11/18/2025 01:07:52 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from d2e41d6b82a1a9a3c41b685ecacd605d8216bdd2 to 5c3ab2fb412af6fa1c7698942812b0f9edfa4472 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:56:54 to 11/18/2025 01:07:52 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagAddSessionizationToAnalytics_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:55:56) | Mechanism: Tracks user sessions for better data analysis. | Purpose: Helps developers understand player behavior over time.
-- FFlagFoundationDialogHeroMediaGradientFix_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;641500893;2025-11-17T23:59:37) | Mechanism: Fixes visual issues with gradient backgrounds in dialog boxes. | Purpose: Improves the appearance of dialog boxes for a better user experience.
-
-## 884c00f30 - 2025-11-17 18:58:23 -0600 - 11/17/2025 18:58:23
-Added in Other:
-- FFlagAddAEGIS2Analytics = True | Mechanism: Integrates advanced analytics tracking for user interactions. | Purpose: Helps improve the platform by understanding player behavior better.
-- FFlagCleanupMuteSelfButton = True | Mechanism: Removes the button that lets players mute themselves in certain contexts. | Purpose: Simplifies the user interface, making it easier for players to manage their audio settings.
-- FFlagEnableVoiceSelectorTranslations_AEGIS2 = True | Mechanism: Enables translations for voice selection options in the user interface. | Purpose: Allows players to choose voice options in their preferred language.
-- FFlagLoadFontAssetsFromAllAssetPaths = True | Mechanism: Allows the game to load font assets from multiple locations. | Purpose: Enables a wider variety of fonts to be used in games, enhancing visual customization.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e207c3881e0f3917e20e06a4e2fd8120ccc21cb9 to d2e41d6b82a1a9a3c41b685ecacd605d8216bdd2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:51:32 to 11/18/2025 00:56:54 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e207c3881e0f3917e20e06a4e2fd8120ccc21cb9 to d2e41d6b82a1a9a3c41b685ecacd605d8216bdd2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:51:32 to 11/18/2025 00:56:54 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagAddAEGIS2Analytics_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:55:00) | Mechanism: Integrates additional tracking for user interactions with promotional content. | Purpose: Helps developers understand player engagement with promotions to improve future offers.
-- FFlagCleanupMuteSelfButton_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:50:56) | Mechanism: Removes the button that mutes your own audio. | Purpose: Simplifies the user interface for better accessibility.
-- FFlagEnableVoiceSelectorTranslations_AEGIS2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:52:17) | Mechanism: Adds support for translating the voice selector interface into different languages. | Purpose: Makes it easier for players around the world to use voice features by providing language options.
-- FFlagLoadFontAssetsFromAllAssetPaths_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:52:41) | Mechanism: Loads font assets from multiple locations instead of a single path. | Purpose: Improves text rendering by allowing more font options for developers.
-
-## 8b4494320 - 2025-11-17 18:53:49 -0600 - 11/17/2025 18:53:48
-Added in Other:
-- DFIntPerfDataOnTelemetryV2ThrottleHundredthsPercent_Staged = 40;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1081213308;2025-11-18T00:50:22 | Mechanism: Limits the amount of performance data sent to the server to reduce bandwidth usage. | Purpose: Helps maintain smoother gameplay by preventing lag caused by excessive data transmission.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f1d6ded1cc7ff530715cc2b8b8d1c657d70debc9 to e207c3881e0f3917e20e06a4e2fd8120ccc21cb9 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:48:24 to 11/18/2025 00:51:32 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from f1d6ded1cc7ff530715cc2b8b8d1c657d70debc9 to e207c3881e0f3917e20e06a4e2fd8120ccc21cb9 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:48:24 to 11/18/2025 00:51:32 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 1dce79862 - 2025-11-17 18:49:03 -0600 - 11/17/2025 18:49:03
-Added in Other:
-- FFlagCheckButtonFrameBeforeDestroy = True | Mechanism: Adds a check before a button frame is destroyed. | Purpose: Prevents errors by ensuring that button frames are only removed when safe.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 6e7f0169009010f1f07f14fc1d640346bc8c966d to f1d6ded1cc7ff530715cc2b8b8d1c657d70debc9 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:37:54 to 11/18/2025 00:48:24 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 6e7f0169009010f1f07f14fc1d640346bc8c966d to f1d6ded1cc7ff530715cc2b8b8d1c657d70debc9 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:37:54 to 11/18/2025 00:48:24 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagCheckButtonFrameBeforeDestroy_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:40:47) | Mechanism: Checks if a button frame is still in use before it is destroyed. | Purpose: Prevents errors and ensures that players can interact with buttons without issues.
-
-## a21041c61 - 2025-11-17 18:40:08 -0600 - 11/17/2025 18:40:08
-Changed in Other:
-- DFFlagHttpCurlFallbackIPv4 changed from True to False | Mechanism: Allows the system to use a fallback method for HTTP requests over IPv4 if needed. | Purpose: Improves connectivity for players by ensuring reliable access to game servers.
-- DFStringFlagRepoGitHashDynamicString changed from ee70739a0c7f900785c69b2a300f6eb93e5bb5e2 to 6e7f0169009010f1f07f14fc1d640346bc8c966d | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:35:44 to 11/18/2025 00:37:54 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from ee70739a0c7f900785c69b2a300f6eb93e5bb5e2 to 6e7f0169009010f1f07f14fc1d640346bc8c966d | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:35:44 to 11/18/2025 00:37:54 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFFlagHttpCurlFallbackIPv4_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:30:52) | Mechanism: Enables a fallback method for HTTP requests using IPv4. | Purpose: Ensures reliable internet connectivity for games when IPv6 is not available.
-
-## cebe7ea16 - 2025-11-17 18:37:44 -0600 - 11/17/2025 18:37:44
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7c471ad56de0bb04c38c2b827c20bdd3a1999fe0 to ee70739a0c7f900785c69b2a300f6eb93e5bb5e2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:32:24 to 11/18/2025 00:35:44 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 7c471ad56de0bb04c38c2b827c20bdd3a1999fe0 to ee70739a0c7f900785c69b2a300f6eb93e5bb5e2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:32:24 to 11/18/2025 00:35:44 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 884882882 - 2025-11-17 18:33:05 -0600 - 11/17/2025 18:33:05
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e880565d6b3a1d98cef1972b33593061c42f9e01 to 7c471ad56de0bb04c38c2b827c20bdd3a1999fe0 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:29:32 to 11/18/2025 00:32:24 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e880565d6b3a1d98cef1972b33593061c42f9e01 to 7c471ad56de0bb04c38c2b827c20bdd3a1999fe0 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:29:32 to 11/18/2025 00:32:24 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## acb9b058a - 2025-11-17 18:30:45 -0600 - 11/17/2025 18:30:44
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f2119f8dcf44cdec54240042fa5f427199506ff6 to e880565d6b3a1d98cef1972b33593061c42f9e01 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:27:55 to 11/18/2025 00:29:32 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from f2119f8dcf44cdec54240042fa5f427199506ff6 to e880565d6b3a1d98cef1972b33593061c42f9e01 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:27:55 to 11/18/2025 00:29:32 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 9f7b6aa03 - 2025-11-17 18:28:25 -0600 - 11/17/2025 18:28:25
-Added in Other:
-- FFlagUGCValidateAccurateBoundingBoxRasterMethodTopViewFix = True | Mechanism: Improves the method used to calculate the bounding box for user-generated content (UGC) from a top view perspective. | Purpose: Ensures that UGC is displayed correctly and accurately in the game, enhancing visual quality.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5fef2272fd38bf59c42285a8a2aadcf189f27616 to f2119f8dcf44cdec54240042fa5f427199506ff6 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:23:10 to 11/18/2025 00:27:55 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 5fef2272fd38bf59c42285a8a2aadcf189f27616 to f2119f8dcf44cdec54240042fa5f427199506ff6 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:23:10 to 11/18/2025 00:27:55 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-- FStringUGCValidationInflationThresholdArmsX changed from 4.0 to 1.5 | Mechanism: Sets a limit for validating user-generated content related to arm models. | Purpose: Ensures that arm models meet quality standards, enhancing the overall appearance of avatars.
-- FStringUGCValidationInflationThresholdArmsZ changed from 4.0 to 1.5 | Mechanism: Sets a limit for validating user-generated content for arm models. | Purpose: Ensures that arm models meet quality standards before being used.
-- FStringUGCValidationInflationThresholdLegsX changed from 4.0 to 1.5 | Mechanism: Sets a threshold for validating user-generated content. | Purpose: Helps maintain quality by filtering out low-quality submissions.
-- FStringUGCValidationInflationThresholdLegsZ changed from 4.0 to 1.5 | Mechanism: Sets a limit for validating user-generated content for leg models. | Purpose: Ensures that leg models meet quality standards before being used.
-Removed in Other:
-- FFlagUGCValidateAccurateBoundingBoxRasterMethodTopViewFix_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1941730288;2025-11-17T23:25:20) | Mechanism: Fixes how bounding boxes for user-generated content are calculated. | Purpose: Ensures that user-created items fit correctly in the game world, enhancing gameplay quality.
-- FStringUGCValidationInflationThresholdArmsX_Staged removed (was 1.5;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1941730288;2025-11-17T23:25:20) | Mechanism: Sets a threshold for validating user-generated content. | Purpose: Ensures higher quality and safety of user-created items in the game.
-- FStringUGCValidationInflationThresholdArmsZ_Staged removed (was 1.5;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1941730288;2025-11-17T23:25:20) | Mechanism: Sets a limit for validating user-generated content. | Purpose: Enhances content safety by preventing inappropriate items from being uploaded.
-- FStringUGCValidationInflationThresholdLegsX_Staged removed (was 1.5;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1941730288;2025-11-17T23:25:20) | Mechanism: Sets a limit for validating user-generated content to manage quality control. | Purpose: Helps maintain a high standard for user-created items, ensuring a better experience for players.
-- FStringUGCValidationInflationThresholdLegsZ_Staged removed (was 1.5;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1941730288;2025-11-17T23:25:20) | Mechanism: Establishes a threshold for validating user-generated content related to leg models. | Purpose: Helps maintain high-quality leg models, ensuring better avatar customization options for players.
-
-## bdafce165 - 2025-11-17 18:23:55 -0600 - 11/17/2025 18:23:54
-Added in Other:
-- DFFlagNewReflectionService = True | Mechanism: Introduces a new system for reflecting game properties. | Purpose: Enhances game development by providing better tools for developers to manage game elements.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a5ce22bb6c3a8d0e3ce6e3f72ab57dd7bffae39f to 5fef2272fd38bf59c42285a8a2aadcf189f27616 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:17:28 to 11/18/2025 00:23:10 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from a5ce22bb6c3a8d0e3ce6e3f72ab57dd7bffae39f to 5fef2272fd38bf59c42285a8a2aadcf189f27616 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:17:28 to 11/18/2025 00:23:10 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFFlagNewReflectionService_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;190975859;2025-11-17T23:18:45) | Mechanism: Introduces a new service for better handling of object reflection in scripts. | Purpose: Enhances script performance and reliability, making game development smoother.
-
-## 9b0cbb7eb - 2025-11-17 18:19:23 -0600 - 11/17/2025 18:19:23
-Changed in Other:
-- DFFlagUseRealtimeProtocolLock_Staged changed from true;SteadyState;10;30;Revert;2025-11-17T23:42:11 to true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T00:16:20 | Mechanism: Implements a real-time communication protocol for smoother interactions. | Purpose: Enhances the responsiveness of in-game features and chat.
-- DFStringFlagRepoGitHashDynamicString changed from c430242078ef77f24de84642d67039c19b8e43ad to a5ce22bb6c3a8d0e3ce6e3f72ab57dd7bffae39f | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:12:56 to 11/18/2025 00:17:28 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from c430242078ef77f24de84642d67039c19b8e43ad to a5ce22bb6c3a8d0e3ce6e3f72ab57dd7bffae39f | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:12:56 to 11/18/2025 00:17:28 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## b596bc38d - 2025-11-17 18:14:57 -0600 - 11/17/2025 18:14:56
-Added in Other:
-- FFlagVoiceStopRecordingImmediatelyDuringShutdown = True | Mechanism: Stops voice recording instantly when the system shuts down. | Purpose: Prevents any unwanted audio from being recorded during shutdown.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 865c46ea79d31e7b98e3c0755434333808265931 to c430242078ef77f24de84642d67039c19b8e43ad | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:08:25 to 11/18/2025 00:12:56 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 865c46ea79d31e7b98e3c0755434333808265931 to c430242078ef77f24de84642d67039c19b8e43ad | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:08:25 to 11/18/2025 00:12:56 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagVoiceStopRecordingImmediatelyDuringShutdown_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:09:18) | Mechanism: Stops voice recording instantly when the application is closing. | Purpose: Protects user privacy by ensuring no audio is captured during shutdown.
-
-## 11d2d4516 - 2025-11-17 18:10:27 -0600 - 11/17/2025 18:10:27
-Added in Other:
-- DFIntRobloxTelemetryGamePassOwnershipBatchingAnalyticsThrottleHundredthsPercent_Staged = 1;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T00:06:39 | Mechanism: Adjusts the frequency of analytics data collection for game pass ownership. | Purpose: Improves the accuracy of game pass ownership data without overwhelming the system.
-- FFlagLuauSimplifyRefinementOfReadOnlyProperty_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T00:06:07 | Mechanism: Streamlines how read-only properties are handled in code. | Purpose: Makes coding easier for developers, leading to better games.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 6f34d2ec06f28e9c529ca1a98be9e4e6da578dc9 to 865c46ea79d31e7b98e3c0755434333808265931 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:07:26 to 11/18/2025 00:08:25 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 6f34d2ec06f28e9c529ca1a98be9e4e6da578dc9 to 865c46ea79d31e7b98e3c0755434333808265931 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:07:26 to 11/18/2025 00:08:25 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 1f2acf5e1 - 2025-11-17 18:08:09 -0600 - 11/17/2025 18:08:09
-Added in Other:
-- DFIntRobloxTelemetryGamePassesProductInfoBatchingAnalyticsThrottleHundredthsPercent_Staged = 1;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-18T00:05:23 | Mechanism: Adjusts the frequency of data collection for game pass analytics to optimize performance. | Purpose: Improves the reliability of game pass data, helping developers understand player engagement better.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from eaa2fa0741852800fc071ddbc66ce5c09c359710 to 6f34d2ec06f28e9c529ca1a98be9e4e6da578dc9 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/18/2025 00:03:27 to 11/18/2025 00:07:26 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from eaa2fa0741852800fc071ddbc66ce5c09c359710 to 6f34d2ec06f28e9c529ca1a98be9e4e6da578dc9 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/18/2025 00:03:27 to 11/18/2025 00:07:26 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## b7b8ceacf - 2025-11-17 18:05:48 -0600 - 11/17/2025 18:05:47
-Added in Other:
-- DFIntSQLiteDiskFullCleanMB = 64 | Mechanism: Sets a limit on how much data can be stored before cleaning up old data. | Purpose: Ensures smoother performance by preventing storage issues that could disrupt gameplay.
-- DFIntWrapDeformerEventHundredthsPercentage = 5 | Mechanism: Wraps deformation events in a percentage format for better precision. | Purpose: Improves the accuracy of character animations, making movements look smoother and more realistic.
-- FFlagFoundationDialogHeroMediaGradientFix_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;641500893;2025-11-17T23:59:37 | Mechanism: Fixes visual issues with gradient backgrounds in dialog boxes. | Purpose: Improves the appearance of dialog boxes for a better user experience.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ac7bdf96e7b5f3e23ef3f0142e8179e02b8e32c6 to eaa2fa0741852800fc071ddbc66ce5c09c359710 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:57:38 to 11/18/2025 00:03:27 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from ac7bdf96e7b5f3e23ef3f0142e8179e02b8e32c6 to eaa2fa0741852800fc071ddbc66ce5c09c359710 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:57:38 to 11/18/2025 00:03:27 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFIntSQLiteDiskFullCleanMB_Staged removed (was 64;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T22:57:34) | Mechanism: Sets a limit for cleaning up data when the disk is full. | Purpose: Ensures smoother gameplay by managing storage effectively.
-- DFIntWrapDeformerEventHundredthsPercentage_Staged removed (was 5;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T22:57:26) | Mechanism: Adjusts the percentage calculations for deformer events. | Purpose: Enhances the precision of character animations.
-
-## a0589c1fe - 2025-11-17 17:59:00 -0600 - 11/17/2025 17:58:59
-Added in Other:
-- FFlagAddSessionizationToAnalytics_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:55:56 | Mechanism: Tracks user sessions for better data analysis. | Purpose: Helps developers understand player behavior over time.
-- FFlagNewLegacyCapDetection = True | Mechanism: Identifies older game versions to ensure compatibility with new features. | Purpose: Ensures that players can still enjoy older games without issues when new updates are made.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2238e3caf44bc0c08740590d57ffa97b27be4b73 to ac7bdf96e7b5f3e23ef3f0142e8179e02b8e32c6 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:56:04 to 11/17/2025 23:57:38 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 2238e3caf44bc0c08740590d57ffa97b27be4b73 to ac7bdf96e7b5f3e23ef3f0142e8179e02b8e32c6 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:56:04 to 11/17/2025 23:57:38 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagNewLegacyCapDetection_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1885034145;2025-11-17T22:53:25) | Mechanism: Introduces a new way to detect legacy caps for user accounts. | Purpose: Ensures players have the correct limits and features based on their account history.
-
-## e58c85656 - 2025-11-17 17:56:41 -0600 - 11/17/2025 17:56:41
-Added in Other:
-- FFlagAddAEGIS2Analytics_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:55:00 | Mechanism: Integrates additional tracking for user interactions with promotional content. | Purpose: Helps developers understand player engagement with promotions to improve future offers.
-- FFlagEnableVoiceSelectorTranslations_AEGIS2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:52:17 | Mechanism: Adds support for translating the voice selector interface into different languages. | Purpose: Makes it easier for players around the world to use voice features by providing language options.
-- FFlagLoadFontAssetsFromAllAssetPaths_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:52:41 | Mechanism: Loads font assets from multiple locations instead of a single path. | Purpose: Improves text rendering by allowing more font options for developers.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e2892971cff0fc9451f8ac7407666daee1a05196 to 2238e3caf44bc0c08740590d57ffa97b27be4b73 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:53:18 to 11/17/2025 23:56:04 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e2892971cff0fc9451f8ac7407666daee1a05196 to 2238e3caf44bc0c08740590d57ffa97b27be4b73 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:53:18 to 11/17/2025 23:56:04 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## ec9ecb124 - 2025-11-17 17:54:20 -0600 - 11/17/2025 17:54:20
-Added in Other:
-- FFlagCleanupMuteSelfButton_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:50:56 | Mechanism: Removes the button that mutes your own audio. | Purpose: Simplifies the user interface for better accessibility.
-- FFlagDisableMicRejectedPromiseReject = True | Mechanism: Prevents rejection of promises when microphone access is denied. | Purpose: Ensures smoother gameplay experience even if microphone access is not granted.
-Changed in Network:
-- DFIntClientReplicatorStatsEventsThrottleHP_PlaceFilter changed from 1000;6269446951;17276564408;15075482336;844929123;17218764178;166986752 to 5000;6269446951;17276564408;15075482336;844929123;17218764178;166986752 | Mechanism: Controls the frequency of data updates for player stats. | Purpose: Optimizes performance by reducing unnecessary data processing.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7b890e21df286cfef49d2de87f3f4f2547a409f2 to e2892971cff0fc9451f8ac7407666daee1a05196 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:44:23 to 11/17/2025 23:53:18 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 7b890e21df286cfef49d2de87f3f4f2547a409f2 to e2892971cff0fc9451f8ac7407666daee1a05196 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:44:23 to 11/17/2025 23:53:18 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagDisableMicRejectedPromiseReject_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T22:50:52) | Mechanism: Prevents promises from rejecting when microphone access is denied. | Purpose: Enhances user experience by avoiding errors when users deny microphone permissions.
-
-## a773c23cc - 2025-11-17 17:45:32 -0600 - 11/17/2025 17:45:32
-Added in Other:
-- DFFlagUseRealtimeProtocolLock_Staged = true;SteadyState;10;30;Revert;2025-11-17T23:42:11 | Mechanism: Implements a real-time communication protocol for smoother interactions. | Purpose: Enhances the responsiveness of in-game features and chat.
-- FFlagCheckButtonFrameBeforeDestroy_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:40:47 | Mechanism: Checks if a button frame is still in use before it is destroyed. | Purpose: Prevents errors and ensures that players can interact with buttons without issues.
-- FFlagLuaAppNilApportionedItems = True | Mechanism: Fixes how certain items are handled in Lua scripts to prevent errors. | Purpose: Ensures a more stable experience when using scripts in games.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a255f0295cb8deb4c2e6c06f3558b7cd3e609a8e to 7b890e21df286cfef49d2de87f3f4f2547a409f2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:34:15 to 11/17/2025 23:44:23 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from a255f0295cb8deb4c2e6c06f3558b7cd3e609a8e to 7b890e21df286cfef49d2de87f3f4f2547a409f2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:34:15 to 11/17/2025 23:44:23 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- FFlagLuaAppNilApportionedItems_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T22:39:18) | Mechanism: Allows for better handling of items that are not assigned or are null in Lua scripts. | Purpose: Reduces errors in games, making them more stable and enjoyable for players.
-
-## ece753ec4 - 2025-11-17 17:36:42 -0600 - 11/17/2025 17:36:42
-Added in Network:
-- DFIntClientReplicatorStatsEventsThrottleHP_PlaceFilter = 1000;6269446951;17276564408;15075482336;844929123;17218764178;166986752 | Mechanism: Controls the frequency of data updates for player stats. | Purpose: Optimizes performance by reducing unnecessary data processing.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 4be88bb513cefef2556b83374809fe41427b3b3c to a255f0295cb8deb4c2e6c06f3558b7cd3e609a8e | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:33:12 to 11/17/2025 23:34:15 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 4be88bb513cefef2556b83374809fe41427b3b3c to a255f0295cb8deb4c2e6c06f3558b7cd3e609a8e | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:33:12 to 11/17/2025 23:34:15 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## a2f79fb08 - 2025-11-17 17:34:20 -0600 - 11/17/2025 17:34:20
-Added in Other:
-- DFFlagHttpCurlFallbackIPv4_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:30:52 | Mechanism: Enables a fallback method for HTTP requests using IPv4. | Purpose: Ensures reliable internet connectivity for games when IPv6 is not available.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f31951a404f29966ee95cc78d614e385a3c84b45 to 4be88bb513cefef2556b83374809fe41427b3b3c | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:29:07 to 11/17/2025 23:33:12 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from f31951a404f29966ee95cc78d614e385a3c84b45 to 4be88bb513cefef2556b83374809fe41427b3b3c | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:29:07 to 11/17/2025 23:33:12 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## f2d355c8b - 2025-11-17 17:31:58 -0600 - 11/17/2025 17:31:58
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e71f4a81c459e3d4bb3c0453f364d30785e33fbf to f31951a404f29966ee95cc78d614e385a3c84b45 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:27:38 to 11/17/2025 23:29:07 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from e71f4a81c459e3d4bb3c0453f364d30785e33fbf to f31951a404f29966ee95cc78d614e385a3c84b45 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:27:38 to 11/17/2025 23:29:07 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 2bd339cbb - 2025-11-17 17:29:36 -0600 - 11/17/2025 17:29:35
-Added in Other:
-- FFlagUGCValidateAccurateBoundingBoxRasterMethodTopViewFix_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1941730288;2025-11-17T23:25:20 | Mechanism: Fixes how bounding boxes for user-generated content are calculated. | Purpose: Ensures that user-created items fit correctly in the game world, enhancing gameplay quality.
-- FStringUGCValidationInflationThresholdArmsX_Staged = 1.5;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1941730288;2025-11-17T23:25:20 | Mechanism: Sets a threshold for validating user-generated content. | Purpose: Ensures higher quality and safety of user-created items in the game.
-- FStringUGCValidationInflationThresholdArmsZ_Staged = 1.5;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1941730288;2025-11-17T23:25:20 | Mechanism: Sets a limit for validating user-generated content. | Purpose: Enhances content safety by preventing inappropriate items from being uploaded.
-- FStringUGCValidationInflationThresholdLegsX_Staged = 1.5;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1941730288;2025-11-17T23:25:20 | Mechanism: Sets a limit for validating user-generated content to manage quality control. | Purpose: Helps maintain a high standard for user-created items, ensuring a better experience for players.
-- FStringUGCValidationInflationThresholdLegsZ_Staged = 1.5;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1941730288;2025-11-17T23:25:20 | Mechanism: Establishes a threshold for validating user-generated content related to leg models. | Purpose: Helps maintain high-quality leg models, ensuring better avatar customization options for players.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ce4f7abdd59de46c88c506627bd6fff222b433f4 to e71f4a81c459e3d4bb3c0453f364d30785e33fbf | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:22:12 to 11/17/2025 23:27:38 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from ce4f7abdd59de46c88c506627bd6fff222b433f4 to e71f4a81c459e3d4bb3c0453f364d30785e33fbf | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:22:12 to 11/17/2025 23:27:38 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 474f75277 - 2025-11-17 17:25:08 -0600 - 11/17/2025 17:25:08
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0df96180d5c56f5527d1bd191ab716ac6e6c9a05 to ce4f7abdd59de46c88c506627bd6fff222b433f4 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:20:44 to 11/17/2025 23:22:12 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 0df96180d5c56f5527d1bd191ab716ac6e6c9a05 to ce4f7abdd59de46c88c506627bd6fff222b433f4 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:20:44 to 11/17/2025 23:22:12 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 86bcb6dc1 - 2025-11-17 17:22:25 -0600 - 11/17/2025 17:22:24
-Added in Other:
-- DFFlagNewReflectionService_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;190975859;2025-11-17T23:18:45 | Mechanism: Introduces a new service for better handling of object reflection in scripts. | Purpose: Enhances script performance and reliability, making game development smoother.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 270095f770f35444ac5d100199e5d5bf20e734d5 to 0df96180d5c56f5527d1bd191ab716ac6e6c9a05 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:15:35 to 11/17/2025 23:20:44 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 270095f770f35444ac5d100199e5d5bf20e734d5 to 0df96180d5c56f5527d1bd191ab716ac6e6c9a05 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:15:35 to 11/17/2025 23:20:44 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 27cf2e467 - 2025-11-17 17:17:58 -0600 - 11/17/2025 17:17:57
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ae34825247bab721d4bc8597ad6582b974e14710 to 270095f770f35444ac5d100199e5d5bf20e734d5 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:12:50 to 11/17/2025 23:15:35 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from ae34825247bab721d4bc8597ad6582b974e14710 to 270095f770f35444ac5d100199e5d5bf20e734d5 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:12:50 to 11/17/2025 23:15:35 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 1df6152f9 - 2025-11-17 17:15:38 -0600 - 11/17/2025 17:15:38
-Added in Other:
-- DFFlagFixFitScalingNegativeOffsets = True | Mechanism: Corrects the scaling of objects that have negative offsets in their positioning. | Purpose: Ensures that objects appear correctly sized and positioned in the game, improving visual consistency.
-- FFlagLuaAppAddAvailRamToVideoBlockingTelemetry = True | Mechanism: Tracks available RAM to improve video playback performance. | Purpose: Enhances video streaming quality for a smoother viewing experience.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c3096a8cd693cd121361471cd61895102ddbf890 to ae34825247bab721d4bc8597ad6582b974e14710 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:11:08 to 11/17/2025 23:12:50 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from c3096a8cd693cd121361471cd61895102ddbf890 to ae34825247bab721d4bc8597ad6582b974e14710 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:11:08 to 11/17/2025 23:12:50 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFFlagFixFitScalingNegativeOffsets_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T22:10:03) | Mechanism: Adjusts the scaling calculations to handle negative offsets correctly. | Purpose: Ensures that objects fit properly in their designated spaces without visual glitches.
-- FFlagLuaAppAddAvailRamToVideoBlockingTelemetry_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T22:05:47) | Mechanism: Tracks available RAM usage when blocking videos in the game. | Purpose: Enhances performance by optimizing video playback and reducing interruptions for players.
-
-## 498ff8edb - 2025-11-17 17:13:11 -0600 - 11/17/2025 17:13:11
-Added in Other:
-- DFFlagIASReportNewActionTypes = True | Mechanism: Introduces new types of actions for reporting in the in-game analytics system. | Purpose: Players benefit from improved tracking of in-game actions, leading to better game experiences.
-- FFlagVoiceStopRecordingImmediatelyDuringShutdown_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T23:09:18 | Mechanism: Stops voice recording instantly when the application is closing. | Purpose: Protects user privacy by ensuring no audio is captured during shutdown.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from abef41bfabd42524c0458effcd6d2e9b8eaa719d to c3096a8cd693cd121361471cd61895102ddbf890 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 23:02:38 to 11/17/2025 23:11:08 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from abef41bfabd42524c0458effcd6d2e9b8eaa719d to c3096a8cd693cd121361471cd61895102ddbf890 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 23:02:38 to 11/17/2025 23:11:08 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFFlagIASReportNewActionTypes_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T22:04:52) | Mechanism: Introduces new types of actions for reporting in the analytics system. | Purpose: Enhances data tracking for better insights into player behavior.
-
-## a902c85bd - 2025-11-17 17:04:12 -0600 - 11/17/2025 17:04:12
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2a6b434ed154924786d7fc464d017cdbc40c30aa to abef41bfabd42524c0458effcd6d2e9b8eaa719d | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 22:59:22 to 11/17/2025 23:02:38 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 2a6b434ed154924786d7fc464d017cdbc40c30aa to abef41bfabd42524c0458effcd6d2e9b8eaa719d | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 22:59:22 to 11/17/2025 23:02:38 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 47c00326e - 2025-11-17 17:01:49 -0600 - 11/17/2025 17:01:49
-Added in Other:
-- DFIntSQLiteDiskFullCleanMB_Staged = 64;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T22:57:34 | Mechanism: Sets a limit for cleaning up data when the disk is full. | Purpose: Ensures smoother gameplay by managing storage effectively.
-- DFIntWrapDeformerEventHundredthsPercentage_Staged = 5;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T22:57:26 | Mechanism: Adjusts the percentage calculations for deformer events. | Purpose: Enhances the precision of character animations.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 72945a53e93d0d54b7e88fa07046cd56cd7b5701 to 2a6b434ed154924786d7fc464d017cdbc40c30aa | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 22:58:01 to 11/17/2025 22:59:22 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 72945a53e93d0d54b7e88fa07046cd56cd7b5701 to 2a6b434ed154924786d7fc464d017cdbc40c30aa | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 22:58:01 to 11/17/2025 22:59:22 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 17f746f3b - 2025-11-17 16:59:26 -0600 - 11/17/2025 16:59:26
-Added in Other:
-- DFFlagUseFtsThumbEnrollHeader2 = True | Mechanism: Enables a new header design for thumbnail enrollment. | Purpose: Improves the visual appeal and usability of thumbnail enrollment for creators.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5ddbffaf384f8f4325d95ef0d866d23e9879c021 to 72945a53e93d0d54b7e88fa07046cd56cd7b5701 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 22:55:00 to 11/17/2025 22:58:01 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 5ddbffaf384f8f4325d95ef0d866d23e9879c021 to 72945a53e93d0d54b7e88fa07046cd56cd7b5701 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 22:55:00 to 11/17/2025 22:58:01 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-Removed in Other:
-- DFFlagUseFtsThumbEnrollHeader2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1581478324;2025-11-17T21:51:36) | Mechanism: Introduces a new header design for the thumbnail enrollment process. | Purpose: Provides a more user-friendly interface for uploading thumbnails.
-
-## 4d91801da - 2025-11-17 16:57:07 -0600 - 11/17/2025 16:57:06
-Added in Other:
-- FFlagNewLegacyCapDetection_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1885034145;2025-11-17T22:53:25 | Mechanism: Introduces a new way to detect legacy caps for user accounts. | Purpose: Ensures players have the correct limits and features based on their account history.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b8947670b6174b7e325e9346ae51b6ae37d37ea0 to 5ddbffaf384f8f4325d95ef0d866d23e9879c021 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 22:51:47 to 11/17/2025 22:55:00 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b8947670b6174b7e325e9346ae51b6ae37d37ea0 to 5ddbffaf384f8f4325d95ef0d866d23e9879c021 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 22:51:47 to 11/17/2025 22:55:00 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## f564673f1 - 2025-11-17 16:52:37 -0600 - 11/17/2025 16:52:37
-Added in Other:
-- FFlagDisableMicRejectedPromiseReject_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T22:50:52 | Mechanism: Prevents promises from rejecting when microphone access is denied. | Purpose: Enhances user experience by avoiding errors when users deny microphone permissions.
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c567b2929f7364fd79e7b7d65633416176413856 to b8947670b6174b7e325e9346ae51b6ae37d37ea0 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 22:48:40 to 11/17/2025 22:51:47 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from c567b2929f7364fd79e7b7d65633416176413856 to b8947670b6174b7e325e9346ae51b6ae37d37ea0 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 22:48:40 to 11/17/2025 22:51:47 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 8c81ad218 - 2025-11-17 16:50:19 -0600 - 11/17/2025 16:50:19
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b88472b804fe4337a2dcfb0f213bfffb2fde6ab2 to c567b2929f7364fd79e7b7d65633416176413856 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 22:46:46 to 11/17/2025 22:48:40 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from b88472b804fe4337a2dcfb0f213bfffb2fde6ab2 to c567b2929f7364fd79e7b7d65633416176413856 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 22:46:46 to 11/17/2025 22:48:40 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-
-## 1a09f2f4c - 2025-11-17 16:47:58 -0600 - 11/17/2025 16:47:58
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 04fcabcbe61aecb09023bf5c424613578dec80a1 to b88472b804fe4337a2dcfb0f213bfffb2fde6ab2 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 22:43:01 to 11/17/2025 22:46:46 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 04fcabcbe61aecb09023bf5c424613578dec80a1 to b88472b804fe4337a2dcfb0f213bfffb2fde6ab2 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 22:43:01 to 11/17/2025 22:46:46 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
-- FStringPartyEmulatorBetaFeatureUrl changed from https://devforum.roblox.com/t/beta-studio-party-simulator-play-test-your-party-based-logic to https://devforum.roblox.com/t/beta-studio-party-simulator-play-test-your-party-based-logic/4037049 | Mechanism: Provides a link to access a beta version of a party feature for testing. | Purpose: Allows players to try out new party features before they are officially released.
-Removed in Other:
-- FStringPartyEmulatorBetaFeatureUrl_Staged removed (was https://devforum.roblox.com/t/beta-studio-party-simulator-play-test-your-party-based-logic/4037049;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2025-11-17T21:40:57) | Mechanism: Provides a URL for testing a new party feature in beta. | Purpose: Players can try out new party functionalities before they are officially released.
-
-## 491e96098 - 2025-11-17 16:43:22 -0600 - 11/17/2025 16:43:22
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 3d1168c639b7a4442055234dac0e3ffbcf71dd1a to 04fcabcbe61aecb09023bf5c424613578dec80a1 | Mechanism: Links to a dynamic string representing the current Git hash. | Purpose: Facilitates tracking of code changes for better version control.
-- DFStringFlipTimeStampDynamicString changed from 11/17/2025 22:40:12 to 11/17/2025 22:43:01 | Mechanism: Modifies how timestamps are handled in dynamic strings. | Purpose: Improves the accuracy and reliability of time-related data in games.
-- FStringFlagRepoGitHashFastString changed from 3d1168c639b7a4442055234dac0e3ffbcf71dd1a to 04fcabcbe61aecb09023bf5c424613578dec80a1 | Mechanism: Uses a fast string representation of the Git hash for versioning. | Purpose: Speeds up loading times by optimizing version checks.
-- FStringFlipTimeStampFastString changed from 11/17/2025 22:40:12 to 11/17/2025 22:43:01 | Mechanism: Optimizes string handling for timestamps. | Purpose: Improves performance when displaying time-related information.
+- DFFlagSocialCounterpartyManagerPopulateOnChatSignal_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1831058373;2025-11-18T18:31:44) | Mechanism: Enhances the chat system to automatically manage social interactions. | Purpose: Improves player communication by making it easier to connect with friends.
+- DFFlagSocialCounterpartyManagerReplicateProperty_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1831058373;2025-11-18T18:31:44) | Mechanism: Updates how social properties are replicated between users. | Purpose: Enhances social interactions by ensuring accurate sharing of user data.
+- FFlagAXFixSubcategorySelectionById2_Staged removed (was true;SteadyState;10;30;Revert;2025-11-18T19:01:08) | Mechanism: Fixes issues with selecting subcategories in the user interface. | Purpose: Enhances user experience by making it easier to navigate categories.
