@@ -1,6 +1,6 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-01-27 10:18:20 AM PST
+- Last Run: 2026-01-27 03:04:35 PM PST
 - Flags Added: 200
 - Flags Changed: 829
 - Flags Removed: 117
@@ -31,7 +31,7 @@
 Added in Other:
 - DFIntDefaultScreenshotMaxSize = 640 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 82afaf4d16f5f8eb0eeac870f3c6a1d90aa8b753 to 0f66a987aad4466b6c7169df9c5179dc74744740 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 82afaf4d16f5f8eb0eeac870f3c6a1d90aa8b753 to 0f66a987aad4466b6c7169df9c5179dc74744740 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 01:31:18 to 01/27/2026 01:36:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 82afaf4d16f5f8eb0eeac870f3c6a1d90aa8b753 to 0f66a987aad4466b6c7169df9c5179dc74744740 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 01:31:18 to 01/27/2026 01:36:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -42,7 +42,7 @@ Removed in Other:
 Added in Physics:
 - DFFlagReplicatorCheckReadTableCollisions = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f330fb875a9db598ce42d9acb43ce0a814d1d8fc to 82afaf4d16f5f8eb0eeac870f3c6a1d90aa8b753 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from f330fb875a9db598ce42d9acb43ce0a814d1d8fc to 82afaf4d16f5f8eb0eeac870f3c6a1d90aa8b753 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 01:11:29 to 01/27/2026 01:31:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from f330fb875a9db598ce42d9acb43ce0a814d1d8fc to 82afaf4d16f5f8eb0eeac870f3c6a1d90aa8b753 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 01:11:29 to 01/27/2026 01:31:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -51,14 +51,14 @@ Removed in Physics:
 
 ## 0369fe716 - 2026-01-26 19:13:57 -0600 - 01/26/2026 19:13:57
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d8471ba719f84ef7606c818e2a93f8341074b3b3 to f330fb875a9db598ce42d9acb43ce0a814d1d8fc | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from d8471ba719f84ef7606c818e2a93f8341074b3b3 to f330fb875a9db598ce42d9acb43ce0a814d1d8fc | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 01:06:42 to 01/27/2026 01:11:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from d8471ba719f84ef7606c818e2a93f8341074b3b3 to f330fb875a9db598ce42d9acb43ce0a814d1d8fc | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 01:06:42 to 01/27/2026 01:11:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 420da1e20 - 2026-01-26 19:09:22 -0600 - 01/26/2026 19:09:22
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 957c40389b2fe694ba93886ab8b51180a2578c21 to d8471ba719f84ef7606c818e2a93f8341074b3b3 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 957c40389b2fe694ba93886ab8b51180a2578c21 to d8471ba719f84ef7606c818e2a93f8341074b3b3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 01:01:47 to 01/27/2026 01:06:42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FIntScrollWheelDeltaAmount changed from 130 to 115 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 957c40389b2fe694ba93886ab8b51180a2578c21 to d8471ba719f84ef7606c818e2a93f8341074b3b3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -70,7 +70,7 @@ Removed in Other:
 Added in Other:
 - FFlagFixMakeFriendsButton = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 266b7a25412e8b5e2f98c3f49b3f2877a775b1de to 957c40389b2fe694ba93886ab8b51180a2578c21 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 266b7a25412e8b5e2f98c3f49b3f2877a775b1de to 957c40389b2fe694ba93886ab8b51180a2578c21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 00:56:22 to 01/27/2026 01:01:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 266b7a25412e8b5e2f98c3f49b3f2877a775b1de to 957c40389b2fe694ba93886ab8b51180a2578c21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 00:56:22 to 01/27/2026 01:01:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -79,10 +79,10 @@ Removed in Other:
 
 ## 19fea081d - 2026-01-26 18:57:55 -0600 - 01/26/2026 18:57:55
 Added in Other:
-- FFlagExplorerFilterHasIncrementalSearch = True | Mechanism: Adds a search feature that filters results as you type in the Explorer panel. | Purpose: Makes it easier for developers to find objects quickly in their game hierarchy.
+- FFlagExplorerFilterHasIncrementalSearch = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagVideoCaptureEncoderOpenHangDetection = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 15a36593718ed517249c70d9463626d944ef92f4 to 266b7a25412e8b5e2f98c3f49b3f2877a775b1de | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 15a36593718ed517249c70d9463626d944ef92f4 to 266b7a25412e8b5e2f98c3f49b3f2877a775b1de | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 00:33:55 to 01/27/2026 00:56:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 15a36593718ed517249c70d9463626d944ef92f4 to 266b7a25412e8b5e2f98c3f49b3f2877a775b1de | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 00:33:55 to 01/27/2026 00:56:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -94,7 +94,7 @@ Removed in Other:
 Added in Other:
 - DFIntDefaultScreenshotMaxSize_Staged = 640;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1883981632;2026-01-27T00:31:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 90fa52ad388e704064c65b92cf09898725e935e6 to 15a36593718ed517249c70d9463626d944ef92f4 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 90fa52ad388e704064c65b92cf09898725e935e6 to 15a36593718ed517249c70d9463626d944ef92f4 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 00:32:11 to 01/27/2026 00:33:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 90fa52ad388e704064c65b92cf09898725e935e6 to 15a36593718ed517249c70d9463626d944ef92f4 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 00:32:11 to 01/27/2026 00:33:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -103,26 +103,26 @@ Changed in Other:
 Added in Physics:
 - DFFlagReplicatorCheckReadTableCollisions_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1488514003;2026-01-27T00:28:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in Other:
-- DFFlagVideoVpxYuvEncode = True | Mechanism: Enables encoding videos using VPX and YUV formats. | Purpose: Improves video quality and performance for players watching in-game videos.
+- DFFlagVideoVpxYuvEncode = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagUserTileRemoveExtraPadding = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ba443b64510f5588623e4a20c13ad318a5bb25bb to 90fa52ad388e704064c65b92cf09898725e935e6 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from ba443b64510f5588623e4a20c13ad318a5bb25bb to 90fa52ad388e704064c65b92cf09898725e935e6 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 00:26:58 to 01/27/2026 00:32:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ba443b64510f5588623e4a20c13ad318a5bb25bb to 90fa52ad388e704064c65b92cf09898725e935e6 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 00:26:58 to 01/27/2026 00:32:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
 - DFFlagVideoVpxYuvEncode_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:26:02) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagUserTileRemoveExtraPadding_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:28:18) | Mechanism: Removes unnecessary space around user profile tiles in the interface. | Purpose: Makes the user interface cleaner and more visually appealing for players.
+- FFlagUserTileRemoveExtraPadding_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:28:18) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## d510cdeca - 2026-01-26 18:28:34 -0600 - 01/26/2026 18:28:34
 Added in Physics:
 - DFFlagSimAeroFluidForceSensorFixAsyncTask = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in Other:
-- FFlagAcousticSimulationAvailable = True | Mechanism: Enables sound simulations that mimic real-world acoustics in the game environment. | Purpose: Enhances audio realism, making sounds more immersive and lifelike for players.
-- FFlagLuauUseWorkspacePropToChooseCheckMode2 = True | Mechanism: Changes how the Luau scripting language checks for certain properties in the workspace. | Purpose: Enhances script performance and reliability, leading to smoother gameplay.
+- FFlagAcousticSimulationAvailable = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagLuauUseWorkspacePropToChooseCheckMode2 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagVideoRegisterNewWebm = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 4038801ae9d6e0142edf19fe048bbf5b100366fe to ba443b64510f5588623e4a20c13ad318a5bb25bb | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 4038801ae9d6e0142edf19fe048bbf5b100366fe to ba443b64510f5588623e4a20c13ad318a5bb25bb | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 00:21:35 to 01/27/2026 00:26:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 4038801ae9d6e0142edf19fe048bbf5b100366fe to ba443b64510f5588623e4a20c13ad318a5bb25bb | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 00:21:35 to 01/27/2026 00:26:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -137,7 +137,7 @@ Removed in Other:
 Added in Other:
 - DFFlagLrStatsRepair = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ed07582d4798a5cae2701e02dae236291222183d to 4038801ae9d6e0142edf19fe048bbf5b100366fe | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from ed07582d4798a5cae2701e02dae236291222183d to 4038801ae9d6e0142edf19fe048bbf5b100366fe | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 00:16:41 to 01/27/2026 00:21:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ed07582d4798a5cae2701e02dae236291222183d to 4038801ae9d6e0142edf19fe048bbf5b100366fe | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 00:16:41 to 01/27/2026 00:21:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -146,9 +146,9 @@ Removed in Other:
 
 ## c58a529b4 - 2026-01-26 18:19:26 -0600 - 01/26/2026 18:19:26
 Added in Other:
-- FFlagStudsPerTileEmptyFix = True | Mechanism: Fixes the calculation of empty spaces in the game grid. | Purpose: Ensures accurate placement of objects, enhancing game design and playability.
+- FFlagStudsPerTileEmptyFix = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 6710b464d8bfe4729f2410a4819a3f8a0908eb83 to ed07582d4798a5cae2701e02dae236291222183d | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 6710b464d8bfe4729f2410a4819a3f8a0908eb83 to ed07582d4798a5cae2701e02dae236291222183d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 00:11:58 to 01/27/2026 00:16:41 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 6710b464d8bfe4729f2410a4819a3f8a0908eb83 to ed07582d4798a5cae2701e02dae236291222183d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 00:11:58 to 01/27/2026 00:16:41 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -157,7 +157,7 @@ Removed in Other:
 
 ## 30df6ed92 - 2026-01-26 18:12:34 -0600 - 01/26/2026 18:12:34
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from cea0e20d6e75bca3f94fa91ce14a7e3f91d936f5 to 6710b464d8bfe4729f2410a4819a3f8a0908eb83 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from cea0e20d6e75bca3f94fa91ce14a7e3f91d936f5 to 6710b464d8bfe4729f2410a4819a3f8a0908eb83 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 00:06:50 to 01/27/2026 00:11:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from cea0e20d6e75bca3f94fa91ce14a7e3f91d936f5 to 6710b464d8bfe4729f2410a4819a3f8a0908eb83 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 00:06:50 to 01/27/2026 00:11:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -166,7 +166,7 @@ Changed in Other:
 Added in Other:
 - DFFlagFastTrailFill = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 501fadc3a262f3237042d88120508787aeaeee7a to cea0e20d6e75bca3f94fa91ce14a7e3f91d936f5 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 501fadc3a262f3237042d88120508787aeaeee7a to cea0e20d6e75bca3f94fa91ce14a7e3f91d936f5 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 00:02:01 to 01/27/2026 00:06:50 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 501fadc3a262f3237042d88120508787aeaeee7a to cea0e20d6e75bca3f94fa91ce14a7e3f91d936f5 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 00:02:01 to 01/27/2026 00:06:50 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -177,7 +177,7 @@ Removed in Other:
 Added in Other:
 - FIntScrollWheelDeltaAmount_Staged = 115;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;108396800;2026-01-27T00:01:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 364346b731609a6802b31083c5c1836def70587a to 501fadc3a262f3237042d88120508787aeaeee7a | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 364346b731609a6802b31083c5c1836def70587a to 501fadc3a262f3237042d88120508787aeaeee7a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:59:02 to 01/27/2026 00:02:01 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 364346b731609a6802b31083c5c1836def70587a to 501fadc3a262f3237042d88120508787aeaeee7a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:59:02 to 01/27/2026 00:02:01 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -186,14 +186,14 @@ Changed in Other:
 Added in Other:
 - FFlagFixMakeFriendsButton_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:58:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c3e558526f475eb150db31310700054fb3b87984 to 364346b731609a6802b31083c5c1836def70587a | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from c3e558526f475eb150db31310700054fb3b87984 to 364346b731609a6802b31083c5c1836def70587a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:56:39 to 01/26/2026 23:59:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from c3e558526f475eb150db31310700054fb3b87984 to 364346b731609a6802b31083c5c1836def70587a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:56:39 to 01/26/2026 23:59:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## af26fb6fd - 2026-01-26 17:58:54 -0600 - 01/26/2026 17:58:54
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 77bb917307d1fff7439cb37b6c4ca571d34449bf to c3e558526f475eb150db31310700054fb3b87984 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 77bb917307d1fff7439cb37b6c4ca571d34449bf to c3e558526f475eb150db31310700054fb3b87984 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:55:47 to 01/26/2026 23:56:39 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 77bb917307d1fff7439cb37b6c4ca571d34449bf to c3e558526f475eb150db31310700054fb3b87984 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:55:47 to 01/26/2026 23:56:39 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -202,7 +202,7 @@ Changed in Other:
 Added in Other:
 - FFlagExplorerFilterHasIncrementalSearch_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:55:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 4959c2f504650de53a45777a174f71c19d89d1d0 to 77bb917307d1fff7439cb37b6c4ca571d34449bf | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 4959c2f504650de53a45777a174f71c19d89d1d0 to 77bb917307d1fff7439cb37b6c4ca571d34449bf | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:51:27 to 01/26/2026 23:55:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 4959c2f504650de53a45777a174f71c19d89d1d0 to 77bb917307d1fff7439cb37b6c4ca571d34449bf | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:51:27 to 01/26/2026 23:55:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -211,16 +211,16 @@ Changed in Other:
 Added in Other:
 - FFlagVideoCaptureEncoderOpenHangDetection_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:50:36 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b6a3f35e6fe80de7a191001eea91c3055ee791fe to 4959c2f504650de53a45777a174f71c19d89d1d0 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from b6a3f35e6fe80de7a191001eea91c3055ee791fe to 4959c2f504650de53a45777a174f71c19d89d1d0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:46:48 to 01/26/2026 23:51:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from b6a3f35e6fe80de7a191001eea91c3055ee791fe to 4959c2f504650de53a45777a174f71c19d89d1d0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:46:48 to 01/26/2026 23:51:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 97e031346 - 2026-01-26 17:47:31 -0600 - 01/26/2026 17:47:31
 Added in Other:
-- DFIntAcousticSimQualityCutoffHundreths = 20 | Mechanism: Sets a threshold for sound simulation quality in finer increments. | Purpose: Allows for more precise sound quality adjustments, improving audio realism.
+- DFIntAcousticSimQualityCutoffHundreths = 20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5e8a408523f17ef5f34a71930eee2ceb20bb7780 to b6a3f35e6fe80de7a191001eea91c3055ee791fe | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 5e8a408523f17ef5f34a71930eee2ceb20bb7780 to b6a3f35e6fe80de7a191001eea91c3055ee791fe | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:42:17 to 01/26/2026 23:46:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 5e8a408523f17ef5f34a71930eee2ceb20bb7780 to b6a3f35e6fe80de7a191001eea91c3055ee791fe | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:42:17 to 01/26/2026 23:46:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -230,9 +230,9 @@ Removed in Other:
 ## f7e1e1c9d - 2026-01-26 17:42:59 -0600 - 01/26/2026 17:42:59
 Added in Other:
 - FFlagDisableFireForgetGuard = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagLrFixRemove = True | Mechanism: Removes a specific bug related to lighting rendering. | Purpose: Enhances visual quality by fixing lighting issues in the game.
+- FFlagLrFixRemove = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f8ad389b72b3a30692166e4b32d2e28387a12719 to 5e8a408523f17ef5f34a71930eee2ceb20bb7780 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from f8ad389b72b3a30692166e4b32d2e28387a12719 to 5e8a408523f17ef5f34a71930eee2ceb20bb7780 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:29:02 to 01/26/2026 23:42:17 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from f8ad389b72b3a30692166e4b32d2e28387a12719 to 5e8a408523f17ef5f34a71930eee2ceb20bb7780 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:29:02 to 01/26/2026 23:42:17 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -242,9 +242,9 @@ Removed in Other:
 
 ## 079c41692 - 2026-01-26 17:31:45 -0600 - 01/26/2026 17:31:45
 Added in Other:
-- FFlagUserTileRemoveExtraPadding_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:28:18 | Mechanism: Removes unnecessary space around user profile tiles in the interface. | Purpose: Makes the user interface cleaner and more visually appealing for players.
+- FFlagUserTileRemoveExtraPadding_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:28:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 14b068fa99671e4f1d7636862cfa520256eae648 to f8ad389b72b3a30692166e4b32d2e28387a12719 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 14b068fa99671e4f1d7636862cfa520256eae648 to f8ad389b72b3a30692166e4b32d2e28387a12719 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:28:37 to 01/26/2026 23:29:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 14b068fa99671e4f1d7636862cfa520256eae648 to f8ad389b72b3a30692166e4b32d2e28387a12719 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:28:37 to 01/26/2026 23:29:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -253,7 +253,7 @@ Changed in Other:
 Added in Other:
 - DFFlagVideoVpxYuvEncode_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:26:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2649323bd6f9d9251c5d27e8f4f833aa3490f704 to 14b068fa99671e4f1d7636862cfa520256eae648 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 2649323bd6f9d9251c5d27e8f4f833aa3490f704 to 14b068fa99671e4f1d7636862cfa520256eae648 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:26:24 to 01/26/2026 23:28:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 2649323bd6f9d9251c5d27e8f4f833aa3490f704 to 14b068fa99671e4f1d7636862cfa520256eae648 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:26:24 to 01/26/2026 23:28:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -264,7 +264,7 @@ Added in Other:
 - FFlagFixModelUseOfStalePointer = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagLuauUseWorkspacePropToChooseCheckMode2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:24:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5523ddcb991632f94259668d7284e245fa1f76d6 to 2649323bd6f9d9251c5d27e8f4f833aa3490f704 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 5523ddcb991632f94259668d7284e245fa1f76d6 to 2649323bd6f9d9251c5d27e8f4f833aa3490f704 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:24:18 to 01/26/2026 23:26:24 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 5523ddcb991632f94259668d7284e245fa1f76d6 to 2649323bd6f9d9251c5d27e8f4f833aa3490f704 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:24:18 to 01/26/2026 23:26:24 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -280,7 +280,7 @@ Added in Other:
 - FFlagPlayerListFixLeaderstatsStacking2 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagVideoRegisterNewWebm_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:23:08 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7605f29a216c426cf140e8f98201b0c23a44e922 to 5523ddcb991632f94259668d7284e245fa1f76d6 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 7605f29a216c426cf140e8f98201b0c23a44e922 to 5523ddcb991632f94259668d7284e245fa1f76d6 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:21:01 to 01/26/2026 23:24:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 7605f29a216c426cf140e8f98201b0c23a44e922 to 5523ddcb991632f94259668d7284e245fa1f76d6 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:21:01 to 01/26/2026 23:24:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -291,17 +291,17 @@ Removed in Other:
 Added in Other:
 - DFFlagLrStatsRepair_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:20:04 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from affd87b2b388b297b89d7342a34cce7401e28443 to 7605f29a216c426cf140e8f98201b0c23a44e922 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from affd87b2b388b297b89d7342a34cce7401e28443 to 7605f29a216c426cf140e8f98201b0c23a44e922 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:12:09 to 01/26/2026 23:21:01 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from affd87b2b388b297b89d7342a34cce7401e28443 to 7605f29a216c426cf140e8f98201b0c23a44e922 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:12:09 to 01/26/2026 23:21:01 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 9cd20996c - 2026-01-26 17:13:26 -0600 - 01/26/2026 17:13:26
 Added in Other:
-- FFlagPrecomputeMeshUvDerivs = True | Mechanism: Calculates UV derivatives for meshes in advance to improve rendering efficiency. | Purpose: Enhances the visual quality and performance of 3D models in games.
+- FFlagPrecomputeMeshUvDerivs = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagStudsPerTileEmptyFix_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:10:53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a4477a2af87f1d715089eb4f79b7ca320dfdf3f3 to affd87b2b388b297b89d7342a34cce7401e28443 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from a4477a2af87f1d715089eb4f79b7ca320dfdf3f3 to affd87b2b388b297b89d7342a34cce7401e28443 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:07:04 to 01/26/2026 23:12:09 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a4477a2af87f1d715089eb4f79b7ca320dfdf3f3 to affd87b2b388b297b89d7342a34cce7401e28443 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:07:04 to 01/26/2026 23:12:09 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -312,16 +312,16 @@ Removed in Other:
 Added in Graphics:
 - DFFlagTM2MarkShadowTextures = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in Input:
-- FFlagFixControllerDisconnectImageAspectRatio = True | Mechanism: Adjusts the aspect ratio of images displayed when a controller is disconnected. | Purpose: Ensures that disconnection notifications look correct and are easy to understand.
+- FFlagFixControllerDisconnectImageAspectRatio = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from badb17e10cfa6a3b84577b292443aff3a6a1db05 to a4477a2af87f1d715089eb4f79b7ca320dfdf3f3 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from badb17e10cfa6a3b84577b292443aff3a6a1db05 to a4477a2af87f1d715089eb4f79b7ca320dfdf3f3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:03:40 to 01/26/2026 23:07:04 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from badb17e10cfa6a3b84577b292443aff3a6a1db05 to a4477a2af87f1d715089eb4f79b7ca320dfdf3f3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:03:40 to 01/26/2026 23:07:04 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Graphics:
 - DFFlagTM2MarkShadowTextures_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:04:01) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Input:
-- FFlagFixControllerDisconnectImageAspectRatio_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:01:47) | Mechanism: Adjusts the aspect ratio of images shown when a controller disconnects. | Purpose: Ensures that disconnection notifications look correct and are visually appealing.
+- FFlagFixControllerDisconnectImageAspectRatio_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:01:47) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 88af60ec6 - 2026-01-26 17:04:18 -0600 - 01/26/2026 17:04:17
 Added in Other:
@@ -329,7 +329,7 @@ Added in Other:
 Added in Graphics:
 - FFlagTM2HandleTextureTiling = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0a579b065811e9a0040eae4f51068eb08e1c0eef to badb17e10cfa6a3b84577b292443aff3a6a1db05 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 0a579b065811e9a0040eae4f51068eb08e1c0eef to badb17e10cfa6a3b84577b292443aff3a6a1db05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:58:31 to 01/26/2026 23:03:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 0a579b065811e9a0040eae4f51068eb08e1c0eef to badb17e10cfa6a3b84577b292443aff3a6a1db05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:58:31 to 01/26/2026 23:03:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -338,9 +338,9 @@ Removed in Graphics:
 
 ## 3e02529f1 - 2026-01-26 16:59:43 -0600 - 01/26/2026 16:59:42
 Added in World:
-- DFFlagFixIsColorMapCheck = True | Mechanism: Corrects the method used to check color maps in materials. | Purpose: Improves the accuracy of color rendering in games, leading to better visuals.
+- DFFlagFixIsColorMapCheck = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from fec1d823bbe090ad4d84ea5c38917e4ee17d721c to 0a579b065811e9a0040eae4f51068eb08e1c0eef | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from fec1d823bbe090ad4d84ea5c38917e4ee17d721c to 0a579b065811e9a0040eae4f51068eb08e1c0eef | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:56:18 to 01/26/2026 22:58:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from fec1d823bbe090ad4d84ea5c38917e4ee17d721c to 0a579b065811e9a0040eae4f51068eb08e1c0eef | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:56:18 to 01/26/2026 22:58:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -349,7 +349,7 @@ Removed in World:
 
 ## 4f3c86022 - 2026-01-26 16:57:23 -0600 - 01/26/2026 16:57:23
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ff4af0881a09552329f021912db5b5426cb8e94c to fec1d823bbe090ad4d84ea5c38917e4ee17d721c | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from ff4af0881a09552329f021912db5b5426cb8e94c to fec1d823bbe090ad4d84ea5c38917e4ee17d721c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:47:10 to 01/26/2026 22:56:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ff4af0881a09552329f021912db5b5426cb8e94c to fec1d823bbe090ad4d84ea5c38917e4ee17d721c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:47:10 to 01/26/2026 22:56:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -358,7 +358,7 @@ Changed in Other:
 Added in Other:
 - FFlagPlatformAccountRouterSubflow = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 6017fa76c6a0e16a825c4defa994415711f64b1e to ff4af0881a09552329f021912db5b5426cb8e94c | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 6017fa76c6a0e16a825c4defa994415711f64b1e to ff4af0881a09552329f021912db5b5426cb8e94c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:45:09 to 01/26/2026 22:47:10 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 6017fa76c6a0e16a825c4defa994415711f64b1e to ff4af0881a09552329f021912db5b5426cb8e94c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:45:09 to 01/26/2026 22:47:10 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -369,7 +369,7 @@ Removed in Other:
 Added in Other:
 - DFIntAcousticSimQualityCutoffHundreths_Staged = 20;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;748576487;2026-01-26T22:44:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5aeeea82235cfa7d823310994db122309774d8ab to 6017fa76c6a0e16a825c4defa994415711f64b1e | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 5aeeea82235cfa7d823310994db122309774d8ab to 6017fa76c6a0e16a825c4defa994415711f64b1e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:41:46 to 01/26/2026 22:45:09 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 5aeeea82235cfa7d823310994db122309774d8ab to 6017fa76c6a0e16a825c4defa994415711f64b1e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:41:46 to 01/26/2026 22:45:09 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -380,7 +380,7 @@ Added in Other:
 Added in Physics:
 - FFlagAcousticSimulationSolverRemoveUnnecessarySyncs = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8db8a0cd7d965bdb825197c64ae6e026d9d32841 to 5aeeea82235cfa7d823310994db122309774d8ab | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 8db8a0cd7d965bdb825197c64ae6e026d9d32841 to 5aeeea82235cfa7d823310994db122309774d8ab | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:40:05 to 01/26/2026 22:41:46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 8db8a0cd7d965bdb825197c64ae6e026d9d32841 to 5aeeea82235cfa7d823310994db122309774d8ab | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:40:05 to 01/26/2026 22:41:46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -394,7 +394,7 @@ Removed in Physics:
 Added in Other:
 - FFlagLrFixRemove_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:38:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 37513db8ba4aa07298a1f0caea98c8c6349f1305 to 8db8a0cd7d965bdb825197c64ae6e026d9d32841 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 37513db8ba4aa07298a1f0caea98c8c6349f1305 to 8db8a0cd7d965bdb825197c64ae6e026d9d32841 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:36:44 to 01/26/2026 22:40:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 37513db8ba4aa07298a1f0caea98c8c6349f1305 to 8db8a0cd7d965bdb825197c64ae6e026d9d32841 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:36:44 to 01/26/2026 22:40:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -403,14 +403,14 @@ Changed in Other:
 Added in Other:
 - FFlagDisableFireForgetGuard_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:36:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 6ee061b078682042b5b6447baae01e607ad16034 to 37513db8ba4aa07298a1f0caea98c8c6349f1305 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 6ee061b078682042b5b6447baae01e607ad16034 to 37513db8ba4aa07298a1f0caea98c8c6349f1305 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:27:40 to 01/26/2026 22:36:44 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 6ee061b078682042b5b6447baae01e607ad16034 to 37513db8ba4aa07298a1f0caea98c8c6349f1305 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:27:40 to 01/26/2026 22:36:44 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## bc2f2e8db - 2026-01-26 16:30:02 -0600 - 01/26/2026 16:30:02
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a60995995234ec36fc9a6e445d905ea4cf65cad2 to 6ee061b078682042b5b6447baae01e607ad16034 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from a60995995234ec36fc9a6e445d905ea4cf65cad2 to 6ee061b078682042b5b6447baae01e607ad16034 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:24:30 to 01/26/2026 22:27:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a60995995234ec36fc9a6e445d905ea4cf65cad2 to 6ee061b078682042b5b6447baae01e607ad16034 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:24:30 to 01/26/2026 22:27:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -423,7 +423,7 @@ Added in Other:
 - FFlagAcousticSimulationToggle_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1527948597;2026-01-26T22:22:20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagFixModelUseOfStalePointer_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:21:57 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7bf86e9f1c85696c86b2ce29253761f19c078b41 to a60995995234ec36fc9a6e445d905ea4cf65cad2 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 7bf86e9f1c85696c86b2ce29253761f19c078b41 to a60995995234ec36fc9a6e445d905ea4cf65cad2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:22:12 to 01/26/2026 22:24:30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 7bf86e9f1c85696c86b2ce29253761f19c078b41 to a60995995234ec36fc9a6e445d905ea4cf65cad2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:22:12 to 01/26/2026 22:24:30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -432,7 +432,7 @@ Changed in Other:
 Added in Other:
 - FFlagLuaAppResetSlpSessionId = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a13d2978863adc12ed446ec003354d6551c10dbe to 7bf86e9f1c85696c86b2ce29253761f19c078b41 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from a13d2978863adc12ed446ec003354d6551c10dbe to 7bf86e9f1c85696c86b2ce29253761f19c078b41 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:19:06 to 01/26/2026 22:22:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a13d2978863adc12ed446ec003354d6551c10dbe to 7bf86e9f1c85696c86b2ce29253761f19c078b41 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:19:06 to 01/26/2026 22:22:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -443,7 +443,7 @@ Removed in Other:
 Added in Other:
 - FFlagPlayerListFixLeaderstatsStacking2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:18:13 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a5603f9643d1ef251b9ddd7d90a3000e9f9b634b to a13d2978863adc12ed446ec003354d6551c10dbe | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from a5603f9643d1ef251b9ddd7d90a3000e9f9b634b to a13d2978863adc12ed446ec003354d6551c10dbe | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:15:37 to 01/26/2026 22:19:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a5603f9643d1ef251b9ddd7d90a3000e9f9b634b to a13d2978863adc12ed446ec003354d6551c10dbe | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:15:37 to 01/26/2026 22:19:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -452,7 +452,7 @@ Changed in Other:
 Added in Other:
 - DFIntAcousticSimQualityCutoffHundreths_Staged = 20;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;748576487;2026-01-26T22:14:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c13a475bde9182e0cad9500a7b37b783253553bb to a5603f9643d1ef251b9ddd7d90a3000e9f9b634b | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from c13a475bde9182e0cad9500a7b37b783253553bb to a5603f9643d1ef251b9ddd7d90a3000e9f9b634b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:11:56 to 01/26/2026 22:15:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from c13a475bde9182e0cad9500a7b37b783253553bb to a5603f9643d1ef251b9ddd7d90a3000e9f9b634b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:11:56 to 01/26/2026 22:15:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -461,7 +461,7 @@ Changed in Other:
 Added in Other:
 - FFlagUserTileAdjustOverallWidthForLayoutModes = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e2fee2cc6e82837fc366a434e99d257c0168dd53 to c13a475bde9182e0cad9500a7b37b783253553bb | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from e2fee2cc6e82837fc366a434e99d257c0168dd53 to c13a475bde9182e0cad9500a7b37b783253553bb | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:06:58 to 01/26/2026 22:11:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from e2fee2cc6e82837fc366a434e99d257c0168dd53 to c13a475bde9182e0cad9500a7b37b783253553bb | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:06:58 to 01/26/2026 22:11:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -472,7 +472,7 @@ Removed in Other:
 Added in Other:
 - FFlagPrecomputeMeshUvDerivs_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:05:28 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f799b216ce3456e4fdf3e7ab43dd365009156d5b to e2fee2cc6e82837fc366a434e99d257c0168dd53 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from f799b216ce3456e4fdf3e7ab43dd365009156d5b to e2fee2cc6e82837fc366a434e99d257c0168dd53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:05:09 to 01/26/2026 22:06:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from f799b216ce3456e4fdf3e7ab43dd365009156d5b to e2fee2cc6e82837fc366a434e99d257c0168dd53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:05:09 to 01/26/2026 22:06:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -484,20 +484,20 @@ Removed in Other:
 Added in Graphics:
 - DFFlagTM2MarkShadowTextures_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:04:01 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in Input:
-- FFlagFixControllerDisconnectImageAspectRatio_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:01:47 | Mechanism: Adjusts the aspect ratio of images shown when a controller disconnects. | Purpose: Ensures that disconnection notifications look correct and are visually appealing.
+- FFlagFixControllerDisconnectImageAspectRatio_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T22:01:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b2f385dc9e37ae4d2ff114917cc1f0c49b10d9a8 to f799b216ce3456e4fdf3e7ab43dd365009156d5b | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from b2f385dc9e37ae4d2ff114917cc1f0c49b10d9a8 to f799b216ce3456e4fdf3e7ab43dd365009156d5b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 22:01:28 to 01/26/2026 22:05:09 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from b2f385dc9e37ae4d2ff114917cc1f0c49b10d9a8 to f799b216ce3456e4fdf3e7ab43dd365009156d5b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:01:28 to 01/26/2026 22:05:09 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 19548436b - 2026-01-26 16:02:35 -0600 - 01/26/2026 16:02:34
 Added in Other:
-- FFlagAcousticSimulationLazilyInitializeOcclusion = True | Mechanism: Delays the setup of sound occlusion until it's needed. | Purpose: Reduces initial loading times and improves sound quality in games.
+- FFlagAcousticSimulationLazilyInitializeOcclusion = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in Graphics:
 - FFlagTM2HandleTextureTiling_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T21:59:42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a5127157c7243a314463bf44ceff03683fef1bde to b2f385dc9e37ae4d2ff114917cc1f0c49b10d9a8 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from a5127157c7243a314463bf44ceff03683fef1bde to b2f385dc9e37ae4d2ff114917cc1f0c49b10d9a8 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:57:29 to 01/26/2026 22:01:28 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a5127157c7243a314463bf44ceff03683fef1bde to b2f385dc9e37ae4d2ff114917cc1f0c49b10d9a8 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:57:29 to 01/26/2026 22:01:28 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -507,7 +507,7 @@ Removed in Other:
 
 ## e95f66154 - 2026-01-26 16:00:15 -0600 - 01/26/2026 16:00:15
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 025256ec23b7a5368acedce52bce467e56daadfc to a5127157c7243a314463bf44ceff03683fef1bde | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 025256ec23b7a5368acedce52bce467e56daadfc to a5127157c7243a314463bf44ceff03683fef1bde | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:56:18 to 01/26/2026 21:57:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 025256ec23b7a5368acedce52bce467e56daadfc to a5127157c7243a314463bf44ceff03683fef1bde | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:56:18 to 01/26/2026 21:57:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -518,14 +518,14 @@ Added in Other:
 - DFFlagRevisedReverbLerp = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagReverbAverageDistanceFix = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2b4dd8322ae7406229777458814238d94aba7b11 to 025256ec23b7a5368acedce52bce467e56daadfc | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 2b4dd8322ae7406229777458814238d94aba7b11 to 025256ec23b7a5368acedce52bce467e56daadfc | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:51:21 to 01/26/2026 21:56:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagPerformanceControlBudgetSystemRollout10 changed from False to True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 2b4dd8322ae7406229777458814238d94aba7b11 to 025256ec23b7a5368acedce52bce467e56daadfc | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:51:21 to 01/26/2026 21:56:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
 - DFFlagRevisedReverbEnclosed_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;162668126;2026-01-26T20:52:40) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFFlagRevisedReverbLerp_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;162668126;2026-01-26T20:52:40) | Mechanism: Refines the way reverb effects are blended over time in audio. | Purpose: Creates a more immersive sound experience by enhancing audio transitions.
+- DFFlagRevisedReverbLerp_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;162668126;2026-01-26T20:52:40) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagLsbOptimizationDetail_Staged removed (was true;SteadyState;10;30;Revert;true;1745424546;2026-01-26T21:21:22) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagPerformanceControlBudgetSystemRollout10_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:50:33) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagReverbAverageDistanceFix_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;344026884;2026-01-26T20:55:04) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -534,7 +534,7 @@ Removed in Other:
 Added in Other:
 - FFlagAudioEngineDspEarlyOuts = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 42895d6786c6bc48994bc083a8cfb969a787881c to 2b4dd8322ae7406229777458814238d94aba7b11 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 42895d6786c6bc48994bc083a8cfb969a787881c to 2b4dd8322ae7406229777458814238d94aba7b11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:48:06 to 01/26/2026 21:51:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 42895d6786c6bc48994bc083a8cfb969a787881c to 2b4dd8322ae7406229777458814238d94aba7b11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:48:06 to 01/26/2026 21:51:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -545,7 +545,7 @@ Removed in Other:
 Added in World:
 - DFFlagFixIsColorMapCheck_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T21:47:09 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 305f6850ae6487a9f1d9c5fc47750f1b27b78691 to 42895d6786c6bc48994bc083a8cfb969a787881c | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 305f6850ae6487a9f1d9c5fc47750f1b27b78691 to 42895d6786c6bc48994bc083a8cfb969a787881c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:44:02 to 01/26/2026 21:48:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 305f6850ae6487a9f1d9c5fc47750f1b27b78691 to 42895d6786c6bc48994bc083a8cfb969a787881c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:44:02 to 01/26/2026 21:48:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -554,7 +554,7 @@ Changed in Other:
 Added in Other:
 - FFlagPlatformAccountRouterSubflow_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T21:43:04 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0ffa2705bc017ed203754780f213b53d4a719d75 to 305f6850ae6487a9f1d9c5fc47750f1b27b78691 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 0ffa2705bc017ed203754780f213b53d4a719d75 to 305f6850ae6487a9f1d9c5fc47750f1b27b78691 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:39:59 to 01/26/2026 21:44:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 0ffa2705bc017ed203754780f213b53d4a719d75 to 305f6850ae6487a9f1d9c5fc47750f1b27b78691 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:39:59 to 01/26/2026 21:44:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -565,7 +565,7 @@ Added in Other:
 Added in Physics:
 - FFlagAcousticSimulationSolverRemoveUnnecessarySyncs_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T21:38:28 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 01da460da3a0eec28b96dc9c555d0201fad966fc to 0ffa2705bc017ed203754780f213b53d4a719d75 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 01da460da3a0eec28b96dc9c555d0201fad966fc to 0ffa2705bc017ed203754780f213b53d4a719d75 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:36:33 to 01/26/2026 21:39:59 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 01da460da3a0eec28b96dc9c555d0201fad966fc to 0ffa2705bc017ed203754780f213b53d4a719d75 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:36:33 to 01/26/2026 21:39:59 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -575,14 +575,14 @@ Added in Other:
 - DFFlagLrStatsRepair_Staged = true;SteadyState;10;30;Revert;2026-01-26T21:34:09 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagFmodMixerRingFormatMismatch = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 22eb546eb30bb2536a55e505478a85566ca45ccd to 01da460da3a0eec28b96dc9c555d0201fad966fc | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 22eb546eb30bb2536a55e505478a85566ca45ccd to 01da460da3a0eec28b96dc9c555d0201fad966fc | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:32:21 to 01/26/2026 21:36:33 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagDeprecatePrecomputeDeformedVertices changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagWrapDeformerContextOutputFileMeshData7 changed from True to False | Mechanism: Enhances the way mesh data is handled during the deformation process. | Purpose: Improves the visual quality and performance of 3D models in games.
+- FFlagWrapDeformerContextOutputFileMeshData7 changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 22eb546eb30bb2536a55e505478a85566ca45ccd to 01da460da3a0eec28b96dc9c555d0201fad966fc | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:32:21 to 01/26/2026 21:36:33 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- FFlagDeprecatePrecomputeDeformedVertices_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:30:32) | Mechanism: Removes an outdated method for calculating vertex deformations. | Purpose: Enhances game performance by streamlining the graphics processing.
+- FFlagDeprecatePrecomputeDeformedVertices_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:30:32) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagFmodMixerRingFormatMismatch_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:33:18) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagWrapDeformerContextOutputFileMeshData7_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:32:38) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
@@ -590,18 +590,18 @@ Removed in Other:
 Added in Other:
 - FFlagLrFixRemove_Staged = true;SteadyState;10;30;Revert;2026-01-26T21:31:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from abd0ce7391039132f15bd30024b067baa3b1ba26 to 22eb546eb30bb2536a55e505478a85566ca45ccd | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from abd0ce7391039132f15bd30024b067baa3b1ba26 to 22eb546eb30bb2536a55e505478a85566ca45ccd | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:31:34 to 01/26/2026 21:32:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from abd0ce7391039132f15bd30024b067baa3b1ba26 to 22eb546eb30bb2536a55e505478a85566ca45ccd | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:31:34 to 01/26/2026 21:32:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 35c672f0b - 2026-01-26 15:32:36 -0600 - 01/26/2026 15:32:36
 Added in Interpolation:
-- FFlagAcousticSimulationFixSmoothedLatency = True | Mechanism: Adjusts how sound latency is calculated for more accurate acoustic simulation. | Purpose: Provides a more realistic audio experience for players in the game.
+- FFlagAcousticSimulationFixSmoothedLatency = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in Other:
 - FFlagDisableFireForgetGuard_Staged = true;SteadyState;10;30;Revert;2026-01-26T21:30:26 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2954032ed341531b4d398d4cb135743846614ede to abd0ce7391039132f15bd30024b067baa3b1ba26 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 2954032ed341531b4d398d4cb135743846614ede to abd0ce7391039132f15bd30024b067baa3b1ba26 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:26:38 to 01/26/2026 21:31:34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 2954032ed341531b4d398d4cb135743846614ede to abd0ce7391039132f15bd30024b067baa3b1ba26 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:26:38 to 01/26/2026 21:31:34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -611,15 +611,15 @@ Removed in Interpolation:
 ## 576ec1369 - 2026-01-26 15:28:05 -0600 - 01/26/2026 15:28:05
 Added in Other:
 - DFFlagSimAeroFillCachePrimal = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagAcousticSimulationClampInfinitePathLengths = True | Mechanism: Limits the length of sound paths in acoustic simulations to prevent performance issues. | Purpose: Ensures sound effects work properly without causing lag, enhancing audio quality in games.
+- FFlagAcousticSimulationClampInfinitePathLengths = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagParallelSortFix = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 1d7db990fd658dc866fcd867d14dfdf2102848ee to 2954032ed341531b4d398d4cb135743846614ede | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 1d7db990fd658dc866fcd867d14dfdf2102848ee to 2954032ed341531b4d398d4cb135743846614ede | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:22:29 to 01/26/2026 21:26:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 1d7db990fd658dc866fcd867d14dfdf2102848ee to 2954032ed341531b4d398d4cb135743846614ede | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:22:29 to 01/26/2026 21:26:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- DFFlagSimAeroFillCachePrimal_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:23:33) | Mechanism: Caches aerodynamic simulation data to improve performance. | Purpose: Reduces lag and improves the smoothness of gameplay involving flying or moving objects.
+- DFFlagSimAeroFillCachePrimal_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:23:33) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagAcousticSimulationClampInfinitePathLengths_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:22:27) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagParallelSortFix_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:22:10) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
@@ -628,7 +628,7 @@ Added in Other:
 - FFlagLsbOptimizationDetail_IXP = 1;Portal.Engine.Security.LuaSignatureVerification.v6-1769462453;Engine.Security.LuaSignatureVerification.v6;1745424546;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagLsbOptimizationDetail_Staged = true;SteadyState;10;30;Revert;true;1745424546;2026-01-26T21:21:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ec4d1e4b95acb1399dd452650c08751211d45f03 to 1d7db990fd658dc866fcd867d14dfdf2102848ee | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from ec4d1e4b95acb1399dd452650c08751211d45f03 to 1d7db990fd658dc866fcd867d14dfdf2102848ee | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:18:39 to 01/26/2026 21:22:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagAXCatalogCategoriesStore7 changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ec4d1e4b95acb1399dd452650c08751211d45f03 to 1d7db990fd658dc866fcd867d14dfdf2102848ee | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -640,21 +640,21 @@ Removed in Other:
 Added in Other:
 - FFlagLuaAppResetSlpSessionId_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T21:17:43 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from fb9df227ded41f7a72aa240b2d4f2738c41c7fa3 to ec4d1e4b95acb1399dd452650c08751211d45f03 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from fb9df227ded41f7a72aa240b2d4f2738c41c7fa3 to ec4d1e4b95acb1399dd452650c08751211d45f03 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:16:27 to 01/26/2026 21:18:39 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from fb9df227ded41f7a72aa240b2d4f2738c41c7fa3 to ec4d1e4b95acb1399dd452650c08751211d45f03 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:16:27 to 01/26/2026 21:18:39 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## c4481cd90 - 2026-01-26 15:18:56 -0600 - 01/26/2026 15:18:55
 Added in Other:
-- FFlagAcousticSimulationEvenFasterImmediateTraces = True | Mechanism: Optimizes the processing of sound traces for quicker responses. | Purpose: Delivers faster sound feedback, enhancing the overall auditory experience in the game.
+- FFlagAcousticSimulationEvenFasterImmediateTraces = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ec9caac693ede8307de59ab1db86ad9278553d61 to fb9df227ded41f7a72aa240b2d4f2738c41c7fa3 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from ec9caac693ede8307de59ab1db86ad9278553d61 to fb9df227ded41f7a72aa240b2d4f2738c41c7fa3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:06:36 to 01/26/2026 21:16:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ec9caac693ede8307de59ab1db86ad9278553d61 to fb9df227ded41f7a72aa240b2d4f2738c41c7fa3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:06:36 to 01/26/2026 21:16:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- FFlagAcousticSimulationEvenFasterImmediateTraces_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:11:15) | Mechanism: Improves the speed of sound calculations in the game environment. | Purpose: Players experience quicker and more realistic sound effects.
+- FFlagAcousticSimulationEvenFasterImmediateTraces_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:11:15) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 787bcc94e - 2026-01-26 15:07:33 -0600 - 01/26/2026 15:07:32
 Added in Other:
@@ -662,7 +662,7 @@ Added in Other:
 - FFlagAudioEmitterListenerAvoidRepeatCasts = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagUserTileAdjustOverallWidthForLayoutModes_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T21:05:25 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 67259ba65e131739efa04066f9518c07fc74f9ce to ec9caac693ede8307de59ab1db86ad9278553d61 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 67259ba65e131739efa04066f9518c07fc74f9ce to ec9caac693ede8307de59ab1db86ad9278553d61 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:01:51 to 01/26/2026 21:06:36 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 67259ba65e131739efa04066f9518c07fc74f9ce to ec9caac693ede8307de59ab1db86ad9278553d61 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 21:01:51 to 01/26/2026 21:06:36 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -674,7 +674,7 @@ Removed in Other:
 Added in Other:
 - FFlagAcousticSimulationLazilyInitializeOcclusion_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;244623745;2026-01-26T21:00:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 566799728f915b52952ae4e504aa9805c97184c2 to 67259ba65e131739efa04066f9518c07fc74f9ce | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 566799728f915b52952ae4e504aa9805c97184c2 to 67259ba65e131739efa04066f9518c07fc74f9ce | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:55:58 to 01/26/2026 21:01:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 566799728f915b52952ae4e504aa9805c97184c2 to 67259ba65e131739efa04066f9518c07fc74f9ce | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:55:58 to 01/26/2026 21:01:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -683,7 +683,7 @@ Changed in Other:
 Added in Other:
 - FFlagReverbAverageDistanceFix_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;344026884;2026-01-26T20:55:04 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 3293b6d0ef3f5a38ea1711b383ee64a0c62a1242 to 566799728f915b52952ae4e504aa9805c97184c2 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 3293b6d0ef3f5a38ea1711b383ee64a0c62a1242 to 566799728f915b52952ae4e504aa9805c97184c2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:53:32 to 01/26/2026 20:55:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 3293b6d0ef3f5a38ea1711b383ee64a0c62a1242 to 566799728f915b52952ae4e504aa9805c97184c2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:53:32 to 01/26/2026 20:55:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -691,9 +691,9 @@ Changed in Other:
 ## 8999e5e40 - 2026-01-26 14:56:06 -0600 - 01/26/2026 14:56:06
 Added in Other:
 - DFFlagRevisedReverbEnclosed_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;162668126;2026-01-26T20:52:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFFlagRevisedReverbLerp_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;162668126;2026-01-26T20:52:40 | Mechanism: Refines the way reverb effects are blended over time in audio. | Purpose: Creates a more immersive sound experience by enhancing audio transitions.
+- DFFlagRevisedReverbLerp_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;162668126;2026-01-26T20:52:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 773a5c0d8f9b0ff229aa8bf6e5503378765f5db7 to 3293b6d0ef3f5a38ea1711b383ee64a0c62a1242 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 773a5c0d8f9b0ff229aa8bf6e5503378765f5db7 to 3293b6d0ef3f5a38ea1711b383ee64a0c62a1242 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:53:13 to 01/26/2026 20:53:32 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 773a5c0d8f9b0ff229aa8bf6e5503378765f5db7 to 3293b6d0ef3f5a38ea1711b383ee64a0c62a1242 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:53:13 to 01/26/2026 20:53:32 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -702,7 +702,7 @@ Changed in Other:
 Added in Other:
 - FFlagPerformanceControlBudgetSystemRollout10_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:50:33 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 50b418922d55406042d5446d58869516065d2b1d to 773a5c0d8f9b0ff229aa8bf6e5503378765f5db7 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 50b418922d55406042d5446d58869516065d2b1d to 773a5c0d8f9b0ff229aa8bf6e5503378765f5db7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:49:07 to 01/26/2026 20:53:13 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 50b418922d55406042d5446d58869516065d2b1d to 773a5c0d8f9b0ff229aa8bf6e5503378765f5db7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:49:07 to 01/26/2026 20:53:13 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -711,21 +711,21 @@ Changed in Other:
 Added in Other:
 - FFlagAudioEngineDspEarlyOuts_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:48:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8fb2390046954556a65d85dc220a2696e6935472 to 50b418922d55406042d5446d58869516065d2b1d | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 8fb2390046954556a65d85dc220a2696e6935472 to 50b418922d55406042d5446d58869516065d2b1d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:46:34 to 01/26/2026 20:49:07 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 8fb2390046954556a65d85dc220a2696e6935472 to 50b418922d55406042d5446d58869516065d2b1d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:46:34 to 01/26/2026 20:49:07 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 68357f2ed - 2026-01-26 14:49:12 -0600 - 01/26/2026 14:49:12
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 4e3392f5c9457c8d36dcf9cab5185ac642b533b2 to 8fb2390046954556a65d85dc220a2696e6935472 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 4e3392f5c9457c8d36dcf9cab5185ac642b533b2 to 8fb2390046954556a65d85dc220a2696e6935472 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:41:29 to 01/26/2026 20:46:34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 4e3392f5c9457c8d36dcf9cab5185ac642b533b2 to 8fb2390046954556a65d85dc220a2696e6935472 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:41:29 to 01/26/2026 20:46:34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## fc914e08a - 2026-01-26 14:42:19 -0600 - 01/26/2026 14:42:18
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 76d60fbe540a5e975f0e48207cbd58f4f9d20a9d to 4e3392f5c9457c8d36dcf9cab5185ac642b533b2 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 76d60fbe540a5e975f0e48207cbd58f4f9d20a9d to 4e3392f5c9457c8d36dcf9cab5185ac642b533b2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:38:15 to 01/26/2026 20:41:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 76d60fbe540a5e975f0e48207cbd58f4f9d20a9d to 4e3392f5c9457c8d36dcf9cab5185ac642b533b2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:38:15 to 01/26/2026 20:41:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -737,7 +737,7 @@ Removed in Other:
 Added in Other:
 - FFlagAcousticSimulationToggle_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1527948597;2026-01-26T20:37:25 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 801ede8d5bd900d8bce7beee233fbbee701db910 to 76d60fbe540a5e975f0e48207cbd58f4f9d20a9d | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 801ede8d5bd900d8bce7beee233fbbee701db910 to 76d60fbe540a5e975f0e48207cbd58f4f9d20a9d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:36:44 to 01/26/2026 20:38:15 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 801ede8d5bd900d8bce7beee233fbbee701db910 to 76d60fbe540a5e975f0e48207cbd58f4f9d20a9d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:36:44 to 01/26/2026 20:38:15 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -746,7 +746,7 @@ Changed in Other:
 Added in Other:
 - FFlagAcousticSimulationAvailable_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1278482873;2026-01-26T20:35:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from cac98adee04b607a913f6ac80af95039f955f3c0 to 801ede8d5bd900d8bce7beee233fbbee701db910 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from cac98adee04b607a913f6ac80af95039f955f3c0 to 801ede8d5bd900d8bce7beee233fbbee701db910 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:34:08 to 01/26/2026 20:36:44 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagAvatarJointUpgradeCpp changed from False to True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from cac98adee04b607a913f6ac80af95039f955f3c0 to 801ede8d5bd900d8bce7beee233fbbee701db910 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -759,18 +759,18 @@ Added in Other:
 - FFlagFmodMixerRingFormatMismatch_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:33:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagWrapDeformerContextOutputFileMeshData7_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:32:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 47828df61ee6e41de6087da22b509c9b9b9b683c to cac98adee04b607a913f6ac80af95039f955f3c0 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 47828df61ee6e41de6087da22b509c9b9b9b683c to cac98adee04b607a913f6ac80af95039f955f3c0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:31:35 to 01/26/2026 20:34:08 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 47828df61ee6e41de6087da22b509c9b9b9b683c to cac98adee04b607a913f6ac80af95039f955f3c0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:31:35 to 01/26/2026 20:34:08 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 5b8954eef - 2026-01-26 14:32:58 -0600 - 01/26/2026 14:32:58
 Added in Other:
-- FFlagDeprecatePrecomputeDeformedVertices_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:30:32 | Mechanism: Removes an outdated method for calculating vertex deformations. | Purpose: Enhances game performance by streamlining the graphics processing.
+- FFlagDeprecatePrecomputeDeformedVertices_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:30:32 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in Graphics:
 - FFlagFixThumbnailClearColorLightingInvalidation = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from bdafb6351c33d731db4bb76456a67481f7c0becc to 47828df61ee6e41de6087da22b509c9b9b9b683c | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from bdafb6351c33d731db4bb76456a67481f7c0becc to 47828df61ee6e41de6087da22b509c9b9b9b683c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:28:30 to 01/26/2026 20:31:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from bdafb6351c33d731db4bb76456a67481f7c0becc to 47828df61ee6e41de6087da22b509c9b9b9b683c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:28:30 to 01/26/2026 20:31:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -782,37 +782,37 @@ Added in Interpolation:
 - FFlagAcousticSimulationFixSmoothedLatency_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1185629037;2026-01-26T20:26:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
 - DFIntPerformanceControlMemoryCriticalBufferSizeMB changed from 450 to 300 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlagRepoGitHashDynamicString changed from b98ae11ceada01fcd31100db1fbc7f81cf709486 to bdafb6351c33d731db4bb76456a67481f7c0becc | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from b98ae11ceada01fcd31100db1fbc7f81cf709486 to bdafb6351c33d731db4bb76456a67481f7c0becc | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:27:24 to 01/26/2026 20:28:30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from b98ae11ceada01fcd31100db1fbc7f81cf709486 to bdafb6351c33d731db4bb76456a67481f7c0becc | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:27:24 to 01/26/2026 20:28:30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## bf4876ae1 - 2026-01-26 14:28:09 -0600 - 01/26/2026 14:28:09
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7e66440963231d0a5ac18ba31228a41e4c687ceb to b98ae11ceada01fcd31100db1fbc7f81cf709486 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 7e66440963231d0a5ac18ba31228a41e4c687ceb to b98ae11ceada01fcd31100db1fbc7f81cf709486 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:24:55 to 01/26/2026 20:27:24 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 7e66440963231d0a5ac18ba31228a41e4c687ceb to b98ae11ceada01fcd31100db1fbc7f81cf709486 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:24:55 to 01/26/2026 20:27:24 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 228b37b0e - 2026-01-26 14:25:49 -0600 - 01/26/2026 14:25:49
 Added in Other:
-- DFFlagSimAeroFillCachePrimal_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:23:33 | Mechanism: Caches aerodynamic simulation data to improve performance. | Purpose: Reduces lag and improves the smoothness of gameplay involving flying or moving objects.
+- DFFlagSimAeroFillCachePrimal_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:23:33 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagAcousticSimulationClampInfinitePathLengths_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:22:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagParallelSortFix_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:22:10 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2d0fa200846fc9208979e4139df4a2cdda229439 to 7e66440963231d0a5ac18ba31228a41e4c687ceb | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 2d0fa200846fc9208979e4139df4a2cdda229439 to 7e66440963231d0a5ac18ba31228a41e4c687ceb | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:16:58 to 01/26/2026 20:24:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 2d0fa200846fc9208979e4139df4a2cdda229439 to 7e66440963231d0a5ac18ba31228a41e4c687ceb | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:16:58 to 01/26/2026 20:24:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- DFIntPerformanceControlMemoryCriticalBufferSizeMB_IXP removed (was 1;HarmonyExposure;Harmony_Budget_Based_IXP_Win_6;1695949279;flagbank) | Mechanism: Adjusts the amount of memory allocated for critical operations. | Purpose: Improves game performance by preventing memory-related issues.
+- DFIntPerformanceControlMemoryCriticalBufferSizeMB_IXP removed (was 1;HarmonyExposure;Harmony_Budget_Based_IXP_Win_6;1695949279;flagbank) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## ba901e714 - 2026-01-26 14:18:45 -0600 - 01/26/2026 14:18:44
 Added in Other:
 - FFlagAXCatalogCategoriesStore7_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;492697545;2026-01-26T20:15:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagOcclusionSettingsEnableScaledQualityBackoff = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 4a36813aca01c18399032fdd90790333253547f9 to 2d0fa200846fc9208979e4139df4a2cdda229439 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 4a36813aca01c18399032fdd90790333253547f9 to 2d0fa200846fc9208979e4139df4a2cdda229439 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:12:27 to 01/26/2026 20:16:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 4a36813aca01c18399032fdd90790333253547f9 to 2d0fa200846fc9208979e4139df4a2cdda229439 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:12:27 to 01/26/2026 20:16:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -821,14 +821,14 @@ Removed in Other:
 
 ## 4d1eecfd0 - 2026-01-26 14:14:02 -0600 - 01/26/2026 14:14:01
 Added in Other:
-- FFlagAcousticSimulationEvenFasterImmediateTraces_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:11:15 | Mechanism: Improves the speed of sound calculations in the game environment. | Purpose: Players experience quicker and more realistic sound effects.
+- FFlagAcousticSimulationEvenFasterImmediateTraces_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:11:15 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagLazyLoadReverb = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in Physics:
 - FFlagSimCreateAnimationConstraint = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in World:
 - FFlagSingleMapForMemberDescriptors = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0e4ec0a88ad451bd04ca88eb1dc2f90a7eb65d5f to 4a36813aca01c18399032fdd90790333253547f9 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 0e4ec0a88ad451bd04ca88eb1dc2f90a7eb65d5f to 4a36813aca01c18399032fdd90790333253547f9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:06:35 to 01/26/2026 20:12:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 0e4ec0a88ad451bd04ca88eb1dc2f90a7eb65d5f to 4a36813aca01c18399032fdd90790333253547f9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:06:35 to 01/26/2026 20:12:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -837,41 +837,41 @@ Removed in Other:
 Removed in Physics:
 - FFlagSimCreateAnimationConstraint_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:07:56) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in World:
-- FFlagSingleMapForMemberDescriptors_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:08:51) | Mechanism: Consolidates member data into a single map for easier access. | Purpose: Enhances performance and reduces loading times for player data.
+- FFlagSingleMapForMemberDescriptors_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:08:51) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## e5c5b2ac0 - 2026-01-26 14:09:20 -0600 - 01/26/2026 14:09:20
 Added in Other:
 - DFFlagSimDeferredPredictionInstructions = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringBatchLogEventSenderLinearLoggingUniverseIds changed from 7709344486,1686885941,8316902627 to 7709344486,7326934954,9363735110 | Mechanism: Logs events in a more organized manner using universe IDs. | Purpose: Improves tracking of events for better game performance and analytics.
-- DFStringFlagRepoGitHashDynamicString changed from a5da8f419deb0cb0494dd8f6b65ed4a03f5387b1 to 0e4ec0a88ad451bd04ca88eb1dc2f90a7eb65d5f | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringBatchLogEventSenderLinearLoggingUniverseIds changed from 7709344486,1686885941,8316902627 to 7709344486,7326934954,9363735110 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlagRepoGitHashDynamicString changed from a5da8f419deb0cb0494dd8f6b65ed4a03f5387b1 to 0e4ec0a88ad451bd04ca88eb1dc2f90a7eb65d5f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:05:23 to 01/26/2026 20:06:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a5da8f419deb0cb0494dd8f6b65ed4a03f5387b1 to 0e4ec0a88ad451bd04ca88eb1dc2f90a7eb65d5f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:05:23 to 01/26/2026 20:06:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
 - DFFlagSimDeferredPredictionInstructions_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:04:23) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringBatchLogEventSenderLinearLoggingUniverseIds_Staged removed (was 7709344486,7326934954,9363735110;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1917453506;2026-01-26T19:01:56) | Mechanism: Updates how event logging is handled by batching universe IDs for efficiency. | Purpose: Provides better tracking of events, helping developers understand player interactions more effectively.
+- DFStringBatchLogEventSenderLinearLoggingUniverseIds_Staged removed (was 7709344486,7326934954,9363735110;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1917453506;2026-01-26T19:01:56) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## d03693fff - 2026-01-26 14:06:52 -0600 - 01/26/2026 14:06:52
 Added in Other:
 - FFlagAcousticSimulationLowerOverheadImmediateTraces_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:03:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagAudioEmitterListenerAvoidRepeatCasts_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T20:04:28 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 134fdae6925542f842a0b144375e89d4be230eb2 to a5da8f419deb0cb0494dd8f6b65ed4a03f5387b1 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 134fdae6925542f842a0b144375e89d4be230eb2 to a5da8f419deb0cb0494dd8f6b65ed4a03f5387b1 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:02:15 to 01/26/2026 20:05:23 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 134fdae6925542f842a0b144375e89d4be230eb2 to a5da8f419deb0cb0494dd8f6b65ed4a03f5387b1 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:02:15 to 01/26/2026 20:05:23 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## e221f556e - 2026-01-26 14:04:28 -0600 - 01/26/2026 14:04:27
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 12b2fcb500a17e3ac8b5dcf47ab785b4092dcabe to 134fdae6925542f842a0b144375e89d4be230eb2 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 12b2fcb500a17e3ac8b5dcf47ab785b4092dcabe to 134fdae6925542f842a0b144375e89d4be230eb2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:56:32 to 01/26/2026 20:02:15 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 12b2fcb500a17e3ac8b5dcf47ab785b4092dcabe to 134fdae6925542f842a0b144375e89d4be230eb2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:56:32 to 01/26/2026 20:02:15 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 6a056e6a0 - 2026-01-26 13:57:37 -0600 - 01/26/2026 13:57:36
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 13b1428e785cb6d94ac7eab7b17024be65a6f69e to 12b2fcb500a17e3ac8b5dcf47ab785b4092dcabe | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 13b1428e785cb6d94ac7eab7b17024be65a6f69e to 12b2fcb500a17e3ac8b5dcf47ab785b4092dcabe | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:51:38 to 01/26/2026 19:56:32 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagLuaAppAddIgrsRatingToEdp changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 13b1428e785cb6d94ac7eab7b17024be65a6f69e to 12b2fcb500a17e3ac8b5dcf47ab785b4092dcabe | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -883,7 +883,7 @@ Removed in Other:
 Added in Other:
 - FFlagAcousticSimulationCombinedPannerBatching = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 182b49cd1d72d106a7641559bfe29a53a3035669 to 13b1428e785cb6d94ac7eab7b17024be65a6f69e | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 182b49cd1d72d106a7641559bfe29a53a3035669 to 13b1428e785cb6d94ac7eab7b17024be65a6f69e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:50:07 to 01/26/2026 19:51:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 182b49cd1d72d106a7641559bfe29a53a3035669 to 13b1428e785cb6d94ac7eab7b17024be65a6f69e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:50:07 to 01/26/2026 19:51:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -892,7 +892,7 @@ Removed in Other:
 
 ## 7a98b80dc - 2026-01-26 13:50:44 -0600 - 01/26/2026 13:50:43
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 255c236b4656b194b5c97f0fea61493f19896c1d to 182b49cd1d72d106a7641559bfe29a53a3035669 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 255c236b4656b194b5c97f0fea61493f19896c1d to 182b49cd1d72d106a7641559bfe29a53a3035669 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:46:27 to 01/26/2026 19:50:07 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 255c236b4656b194b5c97f0fea61493f19896c1d to 182b49cd1d72d106a7641559bfe29a53a3035669 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:46:27 to 01/26/2026 19:50:07 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -901,7 +901,7 @@ Changed in Other:
 Added in Other:
 - FFlagUGCValidationEnableFolderStructure4 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e8dc8ba0cb5551fa440811c7ef4ef73b54e49a67 to 255c236b4656b194b5c97f0fea61493f19896c1d | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from e8dc8ba0cb5551fa440811c7ef4ef73b54e49a67 to 255c236b4656b194b5c97f0fea61493f19896c1d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:41:21 to 01/26/2026 19:46:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from e8dc8ba0cb5551fa440811c7ef4ef73b54e49a67 to 255c236b4656b194b5c97f0fea61493f19896c1d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:41:21 to 01/26/2026 19:46:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -910,9 +910,9 @@ Removed in Other:
 
 ## 902734390 - 2026-01-26 13:43:50 -0600 - 01/26/2026 13:43:50
 Added in Other:
-- FFlagUGCValidateIsDynamicHead = True | Mechanism: Validates if user-generated content is a dynamic head. | Purpose: Ensures that players can only use approved dynamic heads in their avatars.
+- FFlagUGCValidateIsDynamicHead = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d4bcc07fd4adea84aa236db1231d4f412dbfaa5b to e8dc8ba0cb5551fa440811c7ef4ef73b54e49a67 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from d4bcc07fd4adea84aa236db1231d4f412dbfaa5b to e8dc8ba0cb5551fa440811c7ef4ef73b54e49a67 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:36:36 to 01/26/2026 19:41:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from d4bcc07fd4adea84aa236db1231d4f412dbfaa5b to e8dc8ba0cb5551fa440811c7ef4ef73b54e49a67 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:36:36 to 01/26/2026 19:41:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -921,12 +921,12 @@ Removed in Other:
 
 ## 1589768a9 - 2026-01-26 13:39:16 -0600 - 01/26/2026 13:39:15
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 29ac3d72dc679be075bdbafc9a0173a9f2a22aca to d4bcc07fd4adea84aa236db1231d4f412dbfaa5b | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 29ac3d72dc679be075bdbafc9a0173a9f2a22aca to d4bcc07fd4adea84aa236db1231d4f412dbfaa5b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:35:00 to 01/26/2026 19:36:36 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 29ac3d72dc679be075bdbafc9a0173a9f2a22aca to d4bcc07fd4adea84aa236db1231d4f412dbfaa5b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:35:00 to 01/26/2026 19:36:36 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Physics:
-- FFlagSimAnimationConstraint changed from False to True | Mechanism: Implements a new animation constraint system for smoother animations. | Purpose: Enhances the quality of character animations for a better gameplay experience.
+- FFlagSimAnimationConstraint changed from False to True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Physics:
 - FFlagSimAnimationConstraint_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T18:32:22) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
@@ -934,7 +934,7 @@ Removed in Physics:
 Added in Other:
 - FFlagAvatarJointUpgradeCpp_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:34:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a32746d341459c9004b2f7c5a6fcbbeedff69e72 to 29ac3d72dc679be075bdbafc9a0173a9f2a22aca | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from a32746d341459c9004b2f7c5a6fcbbeedff69e72 to 29ac3d72dc679be075bdbafc9a0173a9f2a22aca | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:30:34 to 01/26/2026 19:35:00 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a32746d341459c9004b2f7c5a6fcbbeedff69e72 to 29ac3d72dc679be075bdbafc9a0173a9f2a22aca | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:30:34 to 01/26/2026 19:35:00 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -943,35 +943,35 @@ Changed in Other:
 Added in Graphics:
 - FFlagFixThumbnailClearColorLightingInvalidation_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:29:45 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e2ec249e5a95dd9b5d6e3a4ebed3a181ccf4a252 to a32746d341459c9004b2f7c5a6fcbbeedff69e72 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from e2ec249e5a95dd9b5d6e3a4ebed3a181ccf4a252 to a32746d341459c9004b2f7c5a6fcbbeedff69e72 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:29:22 to 01/26/2026 19:30:34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from e2ec249e5a95dd9b5d6e3a4ebed3a181ccf4a252 to a32746d341459c9004b2f7c5a6fcbbeedff69e72 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:29:22 to 01/26/2026 19:30:34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 505a55c01 - 2026-01-26 13:29:56 -0600 - 01/26/2026 13:29:56
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b4480168ee702f9dc4fa2c107f709fe8b96f9522 to e2ec249e5a95dd9b5d6e3a4ebed3a181ccf4a252 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from b4480168ee702f9dc4fa2c107f709fe8b96f9522 to e2ec249e5a95dd9b5d6e3a4ebed3a181ccf4a252 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:23:46 to 01/26/2026 19:29:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from b4480168ee702f9dc4fa2c107f709fe8b96f9522 to e2ec249e5a95dd9b5d6e3a4ebed3a181ccf4a252 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:23:46 to 01/26/2026 19:29:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 2b6a45438 - 2026-01-26 13:25:18 -0600 - 01/26/2026 13:25:18
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 4dd3646144b35f166d249e86338fdeeddf913357 to b4480168ee702f9dc4fa2c107f709fe8b96f9522 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 4dd3646144b35f166d249e86338fdeeddf913357 to b4480168ee702f9dc4fa2c107f709fe8b96f9522 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:19:56 to 01/26/2026 19:23:46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 4dd3646144b35f166d249e86338fdeeddf913357 to b4480168ee702f9dc4fa2c107f709fe8b96f9522 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:19:56 to 01/26/2026 19:23:46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 7dd9670a5 - 2026-01-26 13:20:39 -0600 - 01/26/2026 13:20:39
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 31391bd2b1d447bfcfb8304567b3e815aa43ed8a to 4dd3646144b35f166d249e86338fdeeddf913357 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 31391bd2b1d447bfcfb8304567b3e815aa43ed8a to 4dd3646144b35f166d249e86338fdeeddf913357 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:15:49 to 01/26/2026 19:19:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 31391bd2b1d447bfcfb8304567b3e815aa43ed8a to 4dd3646144b35f166d249e86338fdeeddf913357 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:15:49 to 01/26/2026 19:19:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## fd835249b - 2026-01-26 13:18:19 -0600 - 01/26/2026 13:18:18
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 83088686a42b8d302f41abdf9b2d8bd9ad2aceae to 31391bd2b1d447bfcfb8304567b3e815aa43ed8a | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 83088686a42b8d302f41abdf9b2d8bd9ad2aceae to 31391bd2b1d447bfcfb8304567b3e815aa43ed8a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:12:19 to 01/26/2026 19:15:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 83088686a42b8d302f41abdf9b2d8bd9ad2aceae to 31391bd2b1d447bfcfb8304567b3e815aa43ed8a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:12:19 to 01/26/2026 19:15:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -981,7 +981,7 @@ Added in Other:
 - DFFlagCaptureUseNewBitrateFormula = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagOcclusionSettingsEnableScaledQualityBackoff_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;606707993;2026-01-26T19:11:34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ac13168d1775c6c870cbaab28b7d0622974e7bd9 to 83088686a42b8d302f41abdf9b2d8bd9ad2aceae | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from ac13168d1775c6c870cbaab28b7d0622974e7bd9 to 83088686a42b8d302f41abdf9b2d8bd9ad2aceae | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:10:24 to 01/26/2026 19:12:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ac13168d1775c6c870cbaab28b7d0622974e7bd9 to 83088686a42b8d302f41abdf9b2d8bd9ad2aceae | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:10:24 to 01/26/2026 19:12:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -994,16 +994,16 @@ Added in Other:
 Added in Physics:
 - FFlagSimCreateAnimationConstraint_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:07:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in World:
-- FFlagSingleMapForMemberDescriptors_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:08:51 | Mechanism: Consolidates member data into a single map for easier access. | Purpose: Enhances performance and reduces loading times for player data.
+- FFlagSingleMapForMemberDescriptors_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:08:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 24ee089e16a35ae1e62fbbc49eece26122233722 to ac13168d1775c6c870cbaab28b7d0622974e7bd9 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 24ee089e16a35ae1e62fbbc49eece26122233722 to ac13168d1775c6c870cbaab28b7d0622974e7bd9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:06:25 to 01/26/2026 19:10:24 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 24ee089e16a35ae1e62fbbc49eece26122233722 to ac13168d1775c6c870cbaab28b7d0622974e7bd9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:06:25 to 01/26/2026 19:10:24 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 2cd2306b8 - 2026-01-26 13:08:55 -0600 - 01/26/2026 13:08:54
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 60800d8a3dfd7a4461d5c9b830091a32456fa74c to 24ee089e16a35ae1e62fbbc49eece26122233722 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 60800d8a3dfd7a4461d5c9b830091a32456fa74c to 24ee089e16a35ae1e62fbbc49eece26122233722 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:05:17 to 01/26/2026 19:06:25 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 60800d8a3dfd7a4461d5c9b830091a32456fa74c to 24ee089e16a35ae1e62fbbc49eece26122233722 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:05:17 to 01/26/2026 19:06:25 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1012,16 +1012,16 @@ Changed in Other:
 Added in Other:
 - DFFlagSimDeferredPredictionInstructions_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:04:23 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 92fdf01b30cbeacb6f38707c78e5f0c42d14e7bd to 60800d8a3dfd7a4461d5c9b830091a32456fa74c | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 92fdf01b30cbeacb6f38707c78e5f0c42d14e7bd to 60800d8a3dfd7a4461d5c9b830091a32456fa74c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 19:02:51 to 01/26/2026 19:05:17 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 92fdf01b30cbeacb6f38707c78e5f0c42d14e7bd to 60800d8a3dfd7a4461d5c9b830091a32456fa74c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 19:02:51 to 01/26/2026 19:05:17 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## ee875782e - 2026-01-26 13:04:19 -0600 - 01/26/2026 13:04:18
 Added in Other:
-- DFStringBatchLogEventSenderLinearLoggingUniverseIds_Staged = 7709344486,7326934954,9363735110;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1917453506;2026-01-26T19:01:56 | Mechanism: Updates how event logging is handled by batching universe IDs for efficiency. | Purpose: Provides better tracking of events, helping developers understand player interactions more effectively.
+- DFStringBatchLogEventSenderLinearLoggingUniverseIds_Staged = 7709344486,7326934954,9363735110;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1917453506;2026-01-26T19:01:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ac832278794630db12b676dad96d733bb872931f to 92fdf01b30cbeacb6f38707c78e5f0c42d14e7bd | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from ac832278794630db12b676dad96d733bb872931f to 92fdf01b30cbeacb6f38707c78e5f0c42d14e7bd | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:57:00 to 01/26/2026 19:02:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ac832278794630db12b676dad96d733bb872931f to 92fdf01b30cbeacb6f38707c78e5f0c42d14e7bd | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:57:00 to 01/26/2026 19:02:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1029,7 +1029,7 @@ Changed in Other:
 ## 39c70e36f - 2026-01-26 12:57:30 -0600 - 01/26/2026 12:57:30
 Changed in Other:
 - DFFlagUseCompletedRadiusFunc changed from False to True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlagRepoGitHashDynamicString changed from bbf500fa255f405eea0c466082c84ca6ed23e431 to ac832278794630db12b676dad96d733bb872931f | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from bbf500fa255f405eea0c466082c84ca6ed23e431 to ac832278794630db12b676dad96d733bb872931f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:52:17 to 01/26/2026 18:57:00 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from bbf500fa255f405eea0c466082c84ca6ed23e431 to ac832278794630db12b676dad96d733bb872931f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:52:17 to 01/26/2026 18:57:00 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1040,14 +1040,14 @@ Removed in Other:
 Added in Other:
 - FFlagLuaAppAddIgrsRatingToEdp_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T18:51:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 00cd0a08b56d87709a320710cf552fe8daf75847 to bbf500fa255f405eea0c466082c84ca6ed23e431 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 00cd0a08b56d87709a320710cf552fe8daf75847 to bbf500fa255f405eea0c466082c84ca6ed23e431 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:47:50 to 01/26/2026 18:52:17 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 00cd0a08b56d87709a320710cf552fe8daf75847 to bbf500fa255f405eea0c466082c84ca6ed23e431 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:47:50 to 01/26/2026 18:52:17 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 2be77d9dc - 2026-01-26 12:50:36 -0600 - 01/26/2026 12:50:35
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b6c96f143891129128e67f0d65a435f48f3c12b3 to 00cd0a08b56d87709a320710cf552fe8daf75847 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from b6c96f143891129128e67f0d65a435f48f3c12b3 to 00cd0a08b56d87709a320710cf552fe8daf75847 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:47:27 to 01/26/2026 18:47:50 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from b6c96f143891129128e67f0d65a435f48f3c12b3 to 00cd0a08b56d87709a320710cf552fe8daf75847 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:47:27 to 01/26/2026 18:47:50 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1056,7 +1056,7 @@ Changed in Other:
 Added in Other:
 - FFlagAcousticSimulationCombinedPannerBatching_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T18:46:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d858a28a6b080fb8f093a57955336669499699a4 to b6c96f143891129128e67f0d65a435f48f3c12b3 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from d858a28a6b080fb8f093a57955336669499699a4 to b6c96f143891129128e67f0d65a435f48f3c12b3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:44:53 to 01/26/2026 18:47:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from d858a28a6b080fb8f093a57955336669499699a4 to b6c96f143891129128e67f0d65a435f48f3c12b3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:44:53 to 01/26/2026 18:47:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1065,7 +1065,7 @@ Changed in Other:
 Added in Other:
 - FFlagUGCValidationEnableFolderStructure4_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T18:42:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5d3078cb35b2ffe060bc88a716cc84382d24c0ea to d858a28a6b080fb8f093a57955336669499699a4 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 5d3078cb35b2ffe060bc88a716cc84382d24c0ea to d858a28a6b080fb8f093a57955336669499699a4 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:42:48 to 01/26/2026 18:44:53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 5d3078cb35b2ffe060bc88a716cc84382d24c0ea to d858a28a6b080fb8f093a57955336669499699a4 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:42:48 to 01/26/2026 18:44:53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1076,7 +1076,7 @@ Added in Other:
 Changed in Graphics:
 - DFFlagRenderFastClusterOcclusionCulling3 changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2b9d87e1d0d10b67863514982f1285ad0d0951b7 to 5d3078cb35b2ffe060bc88a716cc84382d24c0ea | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 2b9d87e1d0d10b67863514982f1285ad0d0951b7 to 5d3078cb35b2ffe060bc88a716cc84382d24c0ea | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:39:41 to 01/26/2026 18:42:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 2b9d87e1d0d10b67863514982f1285ad0d0951b7 to 5d3078cb35b2ffe060bc88a716cc84382d24c0ea | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:39:41 to 01/26/2026 18:42:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1085,7 +1085,7 @@ Removed in Graphics:
 
 ## 436b198ba - 2026-01-26 12:41:24 -0600 - 01/26/2026 12:41:23
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 92a3ed7621f5fa26807bb35ad130a3897c24cfc0 to 2b9d87e1d0d10b67863514982f1285ad0d0951b7 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 92a3ed7621f5fa26807bb35ad130a3897c24cfc0 to 2b9d87e1d0d10b67863514982f1285ad0d0951b7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:38:19 to 01/26/2026 18:39:41 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 92a3ed7621f5fa26807bb35ad130a3897c24cfc0 to 2b9d87e1d0d10b67863514982f1285ad0d0951b7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:38:19 to 01/26/2026 18:39:41 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1094,7 +1094,7 @@ Changed in Other:
 Added in Other:
 - DFFlagSimUseBetterMagnitudeDrawer = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5cf6e12033a39bc39406a9f90f7298ac1a63c0a9 to 92a3ed7621f5fa26807bb35ad130a3897c24cfc0 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 5cf6e12033a39bc39406a9f90f7298ac1a63c0a9 to 92a3ed7621f5fa26807bb35ad130a3897c24cfc0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:33:12 to 01/26/2026 18:38:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 5cf6e12033a39bc39406a9f90f7298ac1a63c0a9 to 92a3ed7621f5fa26807bb35ad130a3897c24cfc0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:33:12 to 01/26/2026 18:38:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1105,14 +1105,14 @@ Removed in Other:
 Added in Physics:
 - FFlagSimAnimationConstraint_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T18:32:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 1dece847b2faa279fd94ce5fd6eb54ab5604f5d7 to 5cf6e12033a39bc39406a9f90f7298ac1a63c0a9 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 1dece847b2faa279fd94ce5fd6eb54ab5604f5d7 to 5cf6e12033a39bc39406a9f90f7298ac1a63c0a9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:30:43 to 01/26/2026 18:33:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 1dece847b2faa279fd94ce5fd6eb54ab5604f5d7 to 5cf6e12033a39bc39406a9f90f7298ac1a63c0a9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:30:43 to 01/26/2026 18:33:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 739970b65 - 2026-01-26 12:32:10 -0600 - 01/26/2026 12:32:10
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ababb82d9a5f26a4454671c4f878bd0c18bb5284 to 1dece847b2faa279fd94ce5fd6eb54ab5604f5d7 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from ababb82d9a5f26a4454671c4f878bd0c18bb5284 to 1dece847b2faa279fd94ce5fd6eb54ab5604f5d7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:26:40 to 01/26/2026 18:30:43 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ababb82d9a5f26a4454671c4f878bd0c18bb5284 to 1dece847b2faa279fd94ce5fd6eb54ab5604f5d7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:26:40 to 01/26/2026 18:30:43 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1123,14 +1123,14 @@ Removed in Physics:
 Added in Physics:
 - FFlagSimAnimationConstraint_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T18:25:44 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 095984929ea88a1d4b63c9f84678019282c0871e to ababb82d9a5f26a4454671c4f878bd0c18bb5284 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 095984929ea88a1d4b63c9f84678019282c0871e to ababb82d9a5f26a4454671c4f878bd0c18bb5284 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:21:47 to 01/26/2026 18:26:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 095984929ea88a1d4b63c9f84678019282c0871e to ababb82d9a5f26a4454671c4f878bd0c18bb5284 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:21:47 to 01/26/2026 18:26:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 15f70403f - 2026-01-26 12:23:03 -0600 - 01/26/2026 12:23:03
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 3d728e372400291cea6a05df96fa6b2cf583e4a5 to 095984929ea88a1d4b63c9f84678019282c0871e | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 3d728e372400291cea6a05df96fa6b2cf583e4a5 to 095984929ea88a1d4b63c9f84678019282c0871e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:16:23 to 01/26/2026 18:21:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagAddVideoDetectorWrapper changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 3d728e372400291cea6a05df96fa6b2cf583e4a5 to 095984929ea88a1d4b63c9f84678019282c0871e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1140,20 +1140,20 @@ Removed in Other:
 
 ## e269324c6 - 2026-01-26 12:18:33 -0600 - 01/26/2026 12:18:33
 Added in Other:
-- FFlagLuauCodegenBufferLoadProp2 = True | Mechanism: Enhances the code generation process for the Luau scripting language. | Purpose: Increases the efficiency of scripts, leading to smoother gameplay.
+- FFlagLuauCodegenBufferLoadProp2 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 556201e6ad0ff49ae9252ca6a0014d98d87f4ec0 to 3d728e372400291cea6a05df96fa6b2cf583e4a5 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 556201e6ad0ff49ae9252ca6a0014d98d87f4ec0 to 3d728e372400291cea6a05df96fa6b2cf583e4a5 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:08:42 to 01/26/2026 18:16:23 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 556201e6ad0ff49ae9252ca6a0014d98d87f4ec0 to 3d728e372400291cea6a05df96fa6b2cf583e4a5 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 18:08:42 to 01/26/2026 18:16:23 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- FFlagLuauCodegenBufferLoadProp2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T17:14:15) | Mechanism: Improves the way code is generated and loaded in Luau, optimizing performance. | Purpose: Enhances game loading times and overall performance for smoother gameplay.
+- FFlagLuauCodegenBufferLoadProp2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T17:14:15) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 0318f0929 - 2026-01-26 12:09:32 -0600 - 01/26/2026 12:09:31
 Added in Other:
 - DFFlagCaptureUseNewBitrateFormula_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T18:07:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b09ee7479c62cfc90dd5f16aa3aa37961cf87077 to 556201e6ad0ff49ae9252ca6a0014d98d87f4ec0 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from b09ee7479c62cfc90dd5f16aa3aa37961cf87077 to 556201e6ad0ff49ae9252ca6a0014d98d87f4ec0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:56:43 to 01/26/2026 18:08:42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from b09ee7479c62cfc90dd5f16aa3aa37961cf87077 to 556201e6ad0ff49ae9252ca6a0014d98d87f4ec0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:56:43 to 01/26/2026 18:08:42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1161,7 +1161,7 @@ Changed in Other:
 ## 3c66302ca - 2026-01-26 11:58:13 -0600 - 01/26/2026 11:58:13
 Changed in Other:
 - DFFlagEnableLuaApiToRegisterEncryptedAssets_PlaceFilter changed from true;5646917919;5535247402;5650743011;5732185084;5796554295;5796546949;5796518985;5792232897;5790039516;5938526032;5180703112;5036207802;5947859215;5976554489;5967514178;5762783081;4927429832;5271804927;6225076142;6037119605;6313620339;5064251723;6409082143;6366043734;6366019895;5853107391;6303851272;6525184819;6462090760;6536060882;6656109940;6651400444;6833753645;6714103515;4640354700;537413528;6072880991;5388509011;6842406841;6763975907;6810569772;6836529297;5162124741;6242296404;893973440;6555759299;3272174207;2817429547;455327877;6923264315;6876683880;7085107422;6985067462;6994744290;6994747143;6994748760;6994750558;6999960212;7172485708;7085418723;7085416132;7085412189;7198250439;7236522784;7245550076;7234259327;7234162497;6679274937;3101667897;2913303231;364802243;815405518;277751860;6888253864;3457390032;4947425425;3689690770;756247480;285063827;5097010345;5111071793;7331970543;7277505766;7277502454;7277500013;7277498004;7277488595;6073366803;6764786757;5063122755;5579439108;698448212;706824758;447452406;5802642341;5233782396;7317639465;3475397644;4390337206;629119226;7489842410;5542348564;6774662981;7252283618;7021822357;7352428641;6782499449;7665856814;7665858439;7484857336;7429189755;7427268133;7619937171;7427270590;7280776979;7852580088;7711545622;7682549746;8519873016;8600776606;8430712643;8267821593;8523408215;8656125900;8656131552;8323392614;8209480473;8649501395;8526353932;8190625873;8451491417;8967359816;8430716410;8430720021;8691928149;8893378293;8893376837;8893375234;9230434873;9230346239;9244015146;6704278765;8528736393;8257697092;9288568020;9279671395;9426082120;9470653946;9379021494;9432710689;9424457125;4672922401;8583038000;4448566543;4543144283;4042427666;253431746;5974747216;6594198779;2533391464;8020984414;680750021;8778105026;5552313358;9297923091;6933439918;3956818381;4209071254;3623096087;3947737541;8983893891;9272701767;5074204685;5113678354;5089420081;5113680396;5101838579;5445525505;5237652005;6479720355;6152695332;9386500519;8988878415;5205771996;844441865;9449357539;9449346312;9449322773;9449312253;9449300051;5578992252;2056597445;9604473769;9666345834;9670497620;6536120621;9724177376;9769345912;4850718823;9300407930;6639766;6737970321;6599438732;9800475426;9291030453;9411975514;9648880560;9542881071;9552022794;9648883891;9648888455;9660279665;9708947809;9809534920;9463737803;9862870352;9862849972;9862789592;9894900344;9479367099;9486506804;9922817401;10002051672;10001920797;9982801024;9709393094;9659989778;9563367175;9997709290;10054526037;9465859374;9938883474;10113002281;10096544537;6445973668;6447798030;6996694685;8847312489;10190394336;10191408952;9423318797;10272293170;9314466589;10285554184;10057963710;10435224215;10146432319;10465853247;10465873968;9129288160;9134839143;9803810042;10201978992;10381578920;9717701801;9134941656;6837934317;9495369236;10217794885;10692093600;10695302524;10445615061;9524757503;10919330567;10895555747;10768305459;10912060909;11088788925;11110464593;11002897309;11116169215;11116168996;11116167810;11116167943;11109117989;10928399479;10966838056;10928411159;5289509545;4640368528;6023903686;11008022191;11138479969;11138508272;11115477432;11189492685;11189163544;11237748076;11237759266;11237755090;11237755215;11237755035;10894180429;10957579790;11315351400;11278516344;11286999367;11309534295;11287011130;11309714627;10695312682;11436221007;11444932478;11450899603;11497622549;11504321677;11498022323;11508738359;11508738629;11509888388;10720270804;9249776514;9049840490;9442460702;9280212924;8633070661;8472419479;11638764033;10126768872;11110455694;5326576507;5913722875;6386911572;8979173396;9125662619;9125667996;9916502094;11658541192;11105064323;10956766913;6737935903;9356050413;10900725936;11566389687;11566385150;11707114324;11697170413;11707130433;11707134020;11707136082;9616411936;11268121492;12113006580;12128024661;11504594758;12204626493;11946824905;3512481881;10752876846;9667175956;5938036553;11716079088;12331642939;11432287153;12268627706;12146837523;11302971424;12357661992;6766156863;12494616651;12202678406;4398851468;12670139300;12498843001;12519296046;12734535169;12734143030;12206689536;10762579692;11155913359;11758008778;12801867915;12955585971;12955639113;11777418254;12949951201;4580204640;6739798578;11840234178;11840243894;11849563578;11775512993;6350157277;5614144350;4111023553;5735553160;6032399813;6473861193;8668476218;4623386862;12983981151;10277607801;10277635599;10290363458;13022188319;12928836670;8665926945;12850021634;11808691145;12282826305;11377247691;8980446061;9346039031;2737661792;2871773892;3494556606;13413015814;2228128339;10048866629;4642718405;13166315054;12340070029;13388158627;13328383256;13602654181;7087982069;7226318833;12656847041;9607498518;7364683673;13408202978;9682240267;9346060856;13542186363;12566669965;12566670192;12566670531;12566670877;12566671127;12566671353;12566671529;12566671737;12566671942;12566672165;12566672378;12566672541;13671265268;13523140789;13413186900;13413150992;13190787726;13674000186;13539427431;13684472299;12108137135;12812062986;13581272176;13753433201;13539297457;13389095726;13260947739;12402722213;13324911372;13324917013;13403099993;4765976371;6507422231;13967475781;13104723083;7772134508;13978720221;13982397897;10211636793;12512626432;10894135377;14094603479;4996049426;10466293565;14112350669;14190161262;14190165276;13692908073;8003641817;11258371342;4014729424;14198802909;14050316710;6876897961;14298053780;14102374323;13913497984;13747937824;13279293321;14110497434;14550810567;3989527087;7830918930;14278574000;14618379101;4822723634;3386147714;14708622235;14708625196;14437915609;14702261217;14760955024;14106184172;14748762848;14700018413;14700503536;14700037385;14783054482;14700032079;14760646478;14700025324;14817872760;14100328983;14813042848;14745955429;14785438081;14889649635;14301956564;14263572229;10070780439;14478075491;14892572912;13279101556;13279104395;13279081722;13315930375;13433158135;14627078551;14898749542;14834598561;9979991670;14449036946;11806684300;12094311187;14968769349;2249956087;3670530550;903807016;9952774534;2534724415;6158369151;14890468710;11431489908;11240751480;11573230049;12804938725;11696224952;13326568190;8262636746;4823774310;4863502867;4692956554;14213578663;15018756870;15018759110;15019079127;15027905565;15090768015;15097774866;15121102278;13916945181;14042308512;13492762057;15154640283;14833076643;14565246812;14445068355;14445063204;13730658693;13730660420;13546112315;13324919767;5250557412;15229379003;14612279970;14520214356;15089099874;14618179455;14754487835;14976126374;15046883807;15220477368;13183511038;14884154051;12397515839;13886771215;15239190282;12661593618;13875657202;15230762576;7041939546;7061415250;15366303335;15360735397;14912173667;15246188138;14300294394;13978562365;13771684349;12631800770;12716371164;14042248442;11781338235;5972698540;1554960397;15148898765;15148887622;2274830359;5359990748;8003084678;15361532537;15548658643;11592468118;12572342856;12494782517;12596416224;12596420088;15559053838;15486683455;6804602922;6830203652;568350650;14184086618;15566395852;15565261877;4627817111;4627817882;4639006255;4674634750;4627871235;5045167247;14484579599;11383187368;11383187525;11383187688;11383188211;12275304058;15048215990;15230534913;15633063575;15633046194;15611620603;15872966840;15872999606;15883311692;15883312942;15883314575;15883381991;15035125923;14110608221;14110899148;14124909045;14308670761;6205205961;6364879587;6364881161;6391540653;6391642302;6463986562;6481131111;6507405695;6815760584;8709253565;15720304364;6413499953;15530488927;16006097169;6165038613;5785490105;5481779891;5481761946;5574814408;6238835427;6276061207;6517499261;6878610938;6866493186;7113825039;7116381283;7116702046;7116359883;7143609862;7409347440;7904559949;7904610383;7934323316;8232694369;8243032172;9405899288;9409201333;10430910649;11632100181;11632077138;11640052933;11793382673;11856129049;15705559027;15629541460;11632126721;8510589470;4241852625;8404684575;14238596528;15010814218;13184713709;13609999411;15696392675;15554979176;15555009597;15555152237;14696958202;5771467270;7308170886;5504135235;15918047570;3576787348;11863357640;12487789640;15123266349;16078980231;16078985058;16259243391;16199184400;16078983738;16256557884;16203696851;16258504798;16168372772;16256672025;16078982297;16289193441;11366343566;16283785212;15515633443;15432848623;15483728847;15015456533;16289193823;16351911381;5639479940;16013491402;5535744734;15553342068;5368632441;15513125039;5353488433;16462849084;16163726449;15481776731;14970015233;16465872867;15285658486;15574462881;16570021747;15254104733;844929123;166986752;16354460415;16537295657;14332741391;14345214315;14486832259;16628495726;13882183199;16447494654;15548888898;5721793369;5682917257;5363158649;15638731415;16866591880;16786806972;16805529755;16735914512;16719116735;16654319710;16646736918;16209331599;16565225470;15916274203;16252850662;16210529796;16185337739;16174846197;15354926906;15943789199;15544198652;15411224440;15370306777;15346604540;16806284145;16796346149;16732995612;16713027401;16296040578;16673347100;16970181235;16970189449;16970183654;16970185950;16970187260;16970191534;16970192771;16970193905;16637432168;16660479433;13000007654;16460694373;16429345261;16800307723;16725378671;16379598396;15489966249;16796377224;17065989459;17088952586;16739990874;15872961954;16630328183;16499205169;17183094198;16640867537;14266068291;14303756636;14709768053;17256291280;17181515306;17256293951;17256296185;17256298653;17256301033;17256075762;17256096568;17256118997;17256143199;13800717766;16849012343;15479377118;15334341098;16871709896;17327040230;17327030059;16434644938;15538708440;12129789607;6377740507;17490721006;17488220782;17373029266;13421266463;14895087162;12985361032;12985341499;12363313138;14704943644;17269346759;17269340201;17269292417;17480205349;17575492616;17575497513;17076563795;17556040524;17556037890;17659529447;16369023184;16369025010;17332451684;17116212498;16297600456;15992589987;15622887088;15164938644;17269297441;17336468238;17336471113;17336471400;17727263108;17727262816;17727262513;17727262301;17727205351;17727205123;17727204955;17727204653;17480206543;17563605831;17563608327;17563610497;16288561317;15218427871;15357970630;6934310111;14051757935;16017695597;17077627629;17356064588;16647545765;13398434647;13398230007;16890428355;13176058901;17569162537;17600179329;17600190676;17811870593;17495653641;17101171811;5970984243;14448662003;17447213133;18121514822;15218407500;17083366577;15843953438;15843957836;15843961264;17067024883;18341914628;17718083590;17576185251;17577101777;18195358934;18223727140;5297405973;18513265196;17578715653;17578711181;8737602449;8943844393;15611066348;14569410003;13415640045;14926164818;14879081274;8034026074;17811071580;18296260757;18112157688;17811079407;18111172516;18605830527;18397110912;18727659869;18503770332;18395887647;18536844330;18134433503;9859576867;8712817601;18734197659;14409368297;18654827953;18820482579;18727723068;18849518367;15486520864;18849588189;18849588625;18849589457;18963014717;14055498520;14891410939;18995954092;16110149934;19002847336;17230784439;18657144315;99590779149212;539960592;13691484057;15687370918;14775339176;2414851778;6052033819;4107728990;14943334555;2506552320;2727067538;2978693500;3582895165;2727072708;3165900886;3029833262;3383444582;3180260667;3885726701;3876515985;3994953548;3868367216;4050468028;3964647716;4310463616;2801784955;2978696440;4201860144;4310464656;4202491340;4310476380;4202709630;4310478830;4202959435;4310785330;4202976484;4310463940;3313821175;4465987684;4750776109;4465989998;4332744642;4465989351;4426374899;4465988196;4434431676;4526768266;15497256167;4617426261;4602326358;4646475570;4599453198;4646473427;4597651359;4646472003;3441138667;4646475342;3269109671;5703355191;5033247187;5703353651;5408429442;6075085184;5893171846;6075083204;6032934718;6386112652;6333155637;6510862058;6404275837;6510868181;6467448211;6847035264;6531678809;6847034886;6745424367;7071564842;6860483493;7499964980;131022574358785;9944262922;9171204517;10089970465;9649635544;9944263348;9649638002;10014664329;9863480370;10651517727;10074837226;10651527284;10489805577;10727165164;10683162998;10795158121;10724045559;11466514043;11155720733;11533444995;11379954422;11644048314;11530295305;14914684761;13741906191;13988110964;13661903549;14400549310;14213731433;14914700740;14692530018;14914855930;14768473411;15121292578;15025509897;75540798045662;122219842181820;125645867930579;18937883985;6101365417;6451702585;6454068948;3378819821;605887098;1701623492;3237615544;3367801828;18532003409;18228802662;18228805769;100219516754540;17808780506;87641067978449;111038871669535;8953242851;79765542592794;13423217832;134964516922646;5968388453;15855634668;16003793902;7305309231;15893203988;16033532219;126259681759948;17656935206;89410048034357;8472851459;8916037983;4954752502;79710108840469;11572762117;17670743999;71367782943796;16549917043;16703458787;132007474810089;18973713348;18139069423;13451596695;18440166505;12177325772;96695025808213;135229885104482;83692298883909;6073537839;88817926315458;104729035207525;76626266837363;113487357420897;107879176226772;130871423490486;11137575513;12943247001;12943245078;80005067957132;3818155097;3647333358;10324346056;10324347967;10662542523;10808838353;11353528705;96537472072550;99214917572799;18860937012;18860985311;115513358987315;129543795429973;18860934161;18860987667;17731318051;138811103914348;16732694052;131579468225600;11765402359;11828796994;5324719298;5342986949;6758497682;73848637067536;14900087266;119794400485251;80450830186028;88311415897149;119410252629691;103823923570615;110371647221022;96418538200619;7051736361;114220575509759;79372260836317;115243862171595;74712767707170;18752369972;129681463747237;78914719040186;15871955418;76762995566774;12641272458;6939111033;6426944918;137544427935459;15032994029;118706441243120;13389049867;10760024537;9281034297;15218831594;113029417107834;139040426524819;107286136869541;16126108459;14913354249;81793885962794;118556668407391;18647920435;88364323402553;109285335492645;128621093194805;123662243100680;112642345119817;18647956169;104526133535566;90753913217772;89161734699335;137461635848196;116697817957558;5750914919;6756890519;96005412559462;2548976609;2546612479;114907227214588;89227693986075;88342891966226;140080535032062;72073166002331;77221396426833;81319559867791;81737495082190;85341391356499;87351379991751;89712649086456;92911136919199;95324606076674;102435660805182;103275072481933;108343132674489;113050446018685;117785409277711;124000207868671;125165007426523;126865137021740;131981552061642;132643889235480;18668065416;92517437168342;99999183305180;115110570222234;73425816668928;88233429548268;130739873848552;82710350236919;71580765918830;94170955089948;16909704232;101394944107806;104746643025210;119038667082595;95448143850147;139548786112139;96804383423412;124660577261950;122819728171185;132004114310511;787988004728135;129230994638464;73708914208963;98118902024430;132935874487897;90216279544722;77915441816737;87014900491609;79018097401349;85774300903718;120428153057168;97872047573441;134772811582797;72534188920161;138993958163764;102018283146594;78037392664516;79895744759186;117860234965291;125337041623563;17840501830;72190557439380;70454767164205;91733245171139;91228542222122;130888608591113;124948436023758;7450497506;75663528075786;118304171612688;79174624435953;116296033709863;83545284007309;130651760577349;122825844998639;135381296103877;96265145951044;78026056611611;7720048224;96077916226556;97056995744329;100277824753624;103793593586394;138811411414576;12640491155;125889350453386;16590754220;16978845877;80611835622737;102716401412280;96902541318046;15351762625;13772394625;14486733015;127966866038346;125654797564410;125247930279216;107447262204970;89872700617308;111865923474705;14368557094;14732610803;14907104587;14915220621;15092011734;15106881665;15131065025;15131070225;15144787112;15181537975;15185247558;15227672707;15229817314;15234596844;15264892126;15351763826;15351764032;15351764187;15351764348;15351764507;15351764740;15351764881;15351764966;15351765130;15462212483;15509346379;15509350986;15509357472;15517169103;15552588346;15552625961;15582813408;15582821022;15582823307;15582834071;15582835531;16031521714;16031541538;16044264830;16281300371;16331595046;16331596518;16331598816;16331600459;16331633255;16331634414;16331635718;16331635995;16456370330;16581613207;16581637217;16581648071;17757578266;17757592456;75474715372485;80316691895873;92458008626219;94739503741288;84211911194381;86959746238096;79152141768156;133468541502594;78575159450955;80951765302134;105378961467772;89865052230260;81090934593448;75313569154781;89596436703421;92752656404044;126581936679803;107738647542786;10489114145;9872472334;121271605799901;17069498206;16931515487;16896790433;11761274032;11764980869;16926077853;11753029192;13965228772;102916117017468;121372427435947;119952687833295;112898865140956;124044706645343;135456035952103;93804003372568;124248440864832;18334179599;16389395869;16844101122;76603224491021;83370733060419;103479080416741;101128307729202;107731702241186;122645084125812;78529064493417;130112681881594;139392011420826;115700747039144;78517252105400;73484909444934;114347154312193;74815645991109;18248633989;17698425045;86098085533596;118758941554698;17750719380;96628744411718;113567868263978;74475530512823;128778160701214;140223498612774;125156298745329;118535429818702;89703062547673;103883018654651;140287841692914;3010276628;111014975161818;102605854369937;11158043705;17747224478;102730218405996;104676452414043;119369863786092;118524425609297;86955381046056;8472085082;90203410635303;72723436074493;110708547231329;103650844120570;87868857007174;93481552663411;112564920810158;109983668079237;96342491571673;128762245270197;120148879522453;73226809349189;119602771011506;127732283735594;125461249438738;87445296052708;136517679309458;15768329004;108059757699905;70542636057631;101606960500983;103349603274756;89343390950953;93651812913748;15101393044;15642262165;15642275269;17481176031;89606894431558;127076465038391;93577264377184;91732685148261;138937299583930;78572645499619;122061917549078;106153673498996;95047916580305;133400153206637;110470525256662;123468479998097;82441850250520;116185509299834;81072337989394;96652240771528;98881331868329;108204315743653;109533232275124;121269997456920;124184374777402;111145810816450;3233351170;8458974184;72178041068475;130859235108277;86962954395779;77162302089899;6931042565;134314141048307;109684591839194;74691681039273;73956553001240;96802054849934;86789627188240;79136731857959;103521881639626;117134837736236;7099263384;93507193197337;127230203073079;70882603136659;127978196002690;77569554466776;128311527873732;80289684342936;122273223414774;78499094786141;107214420833891;133370458228346;90688392698752;89752387031554;103658027677245;105764668548382;87706612753421;128997103569769;96223451292903;96604744451060;95445450782680;90346996348563;76800900334648;131082319718215;110321186768296;8248004705;119058117746091;95815562184695;72293243384445;140159579197170;120064291937900;107757296388993;140104197573447;124991631436250;72277410833409;87773427230428;82298052173374;122241151273608;112849554065563;75333462792994;130160244117542;74185370550900;86517463532234;118814182678109;93561553871338;108462619394007;14021953565;124087144919678;123439661582156;124532804761244;100349497885381;127104365805084;126953033317926;106560355070751;140358213724897;114181481862155;80010340277260;140429793519388;134497530231879;136409236554789;86522549610893;95656979989750;71683821699644;85265340826775;121928784820997;77638307191108;92626170235541;104548429314536;6325068386;80219362391408;129027544628653;115594497201999;103332930661641;72921500494845;139434932554684;136505972636980;94991053520125;72995931205549;108862151633853;5901440255;6119570238;6126992207;105814505642482;74588338744555;97589732026842;85513756910439;93366760336122;77977481651141;17026065260;17026079202;17026081473;17026082885;17026083128;17026083473;17026083734;17026084038;17026084803;17026085546;17671143350;17671143714;17671144394;17671148230;18605534919;116238950016910;129525666081265;2338325648;4822225642;4940687511;7097139127;7098347455;7098347570;11414445247;12770493773;12986634964;12986636453;12986638725;13415948659;13834702475;14801724413;15098628040;17685156577;17685159087;17685161741;17685164681;17685181130;93001350941802;125444254609144;124335066106952;4924922222;11981280399;12446587737;4566572536;91751877679930;126884695634066;140398800602847;96443646410175;84663621619610;138349771708864;131456775839122;138137777772420;134614543668802;79368714145670;132151526704941;92106543276146;98573759838033;110125451314286;115600257231423;95183590295663;81493541492179;85239275355743;16625391970;18650866518;18895717031;11452349236;80951089371762;5136040124;5136248000;3405618667;3523688332;3237397989;3474940993;3975583821;4994548435;6281216515;4179732320;6902944446;9053214954;70876832253163;133377094302868;128842011385105;140202562685639;16448271523;17168246061;89121255316677;137212977957030;71700852488818;101856043486797;74125567120998;109180942748509;77677109342572;83255568226634;93809530689375;76247082393051;74702364775128;118168745564002;138161860713168;93680175266457;137371839632687;93054971012433;98176833880009;127773181414564;99955340962947;85558630854255;78691859768596;120392838716850;81914282243912;136954310107221;87939894615077;130815519916065;96668462040940;72741786721483;98798461601883;118806061296143;94911460762869;140422012851942;75107512524289;87647277375829;75126364120046;115843826901665;94859564409757;77155705414604;139990231502528;123780435956703;104926345480848;124398716501784;89201738681342;78055502212608;131716211654599;112780263016678;99519129453387;85316963135218;110229398924353;123632192357489;136031805345492;123563444866327;132807925060015;72975517268088;123921593837160;103984222380370;101949297449238;95294502234968;122576696342824;97136653744938;87876279581635;129711915886715;135427513412109;18799085098;125182893468913;109263383287853;111448836804180;101018932049972;82831869681936;108395470109881 to true;5646917919;5535247402;5650743011;5732185084;5796554295;5796546949;5796518985;5792232897;5790039516;5938526032;5180703112;5036207802;5947859215;5976554489;5967514178;5762783081;4927429832;5271804927;6225076142;6037119605;6313620339;5064251723;6409082143;6366043734;6366019895;5853107391;6303851272;6525184819;6462090760;6536060882;6656109940;6651400444;6833753645;6714103515;4640354700;537413528;6072880991;5388509011;6842406841;6763975907;6810569772;6836529297;5162124741;6242296404;893973440;6555759299;3272174207;2817429547;455327877;6923264315;6876683880;7085107422;6985067462;6994744290;6994747143;6994748760;6994750558;6999960212;7172485708;7085418723;7085416132;7085412189;7198250439;7236522784;7245550076;7234259327;7234162497;6679274937;3101667897;2913303231;364802243;815405518;277751860;6888253864;3457390032;4947425425;3689690770;756247480;285063827;5097010345;5111071793;7331970543;7277505766;7277502454;7277500013;7277498004;7277488595;6073366803;6764786757;5063122755;5579439108;698448212;706824758;447452406;5802642341;5233782396;7317639465;3475397644;4390337206;629119226;7489842410;5542348564;6774662981;7252283618;7021822357;7352428641;6782499449;7665856814;7665858439;7484857336;7429189755;7427268133;7619937171;7427270590;7280776979;7852580088;7711545622;7682549746;8519873016;8600776606;8430712643;8267821593;8523408215;8656125900;8656131552;8323392614;8209480473;8649501395;8526353932;8190625873;8451491417;8967359816;8430716410;8430720021;8691928149;8893378293;8893376837;8893375234;9230434873;9230346239;9244015146;6704278765;8528736393;8257697092;9288568020;9279671395;9426082120;9470653946;9379021494;9432710689;9424457125;4672922401;8583038000;4448566543;4543144283;4042427666;253431746;5974747216;6594198779;2533391464;8020984414;680750021;8778105026;5552313358;9297923091;6933439918;3956818381;4209071254;3623096087;3947737541;8983893891;9272701767;5074204685;5113678354;5089420081;5113680396;5101838579;5445525505;5237652005;6479720355;6152695332;9386500519;8988878415;5205771996;844441865;9449357539;9449346312;9449322773;9449312253;9449300051;5578992252;2056597445;9604473769;9666345834;9670497620;6536120621;9724177376;9769345912;4850718823;9300407930;6639766;6737970321;6599438732;9800475426;9291030453;9411975514;9648880560;9542881071;9552022794;9648883891;9648888455;9660279665;9708947809;9809534920;9463737803;9862870352;9862849972;9862789592;9894900344;9479367099;9486506804;9922817401;10002051672;10001920797;9982801024;9709393094;9659989778;9563367175;9997709290;10054526037;9465859374;9938883474;10113002281;10096544537;6445973668;6447798030;6996694685;8847312489;10190394336;10191408952;9423318797;10272293170;9314466589;10285554184;10057963710;10435224215;10146432319;10465853247;10465873968;9129288160;9134839143;9803810042;10201978992;10381578920;9717701801;9134941656;6837934317;9495369236;10217794885;10692093600;10695302524;10445615061;9524757503;10919330567;10895555747;10768305459;10912060909;11088788925;11110464593;11002897309;11116169215;11116168996;11116167810;11116167943;11109117989;10928399479;10966838056;10928411159;5289509545;4640368528;6023903686;11008022191;11138479969;11138508272;11115477432;11189492685;11189163544;11237748076;11237759266;11237755090;11237755215;11237755035;10894180429;10957579790;11315351400;11278516344;11286999367;11309534295;11287011130;11309714627;10695312682;11436221007;11444932478;11450899603;11497622549;11504321677;11498022323;11508738359;11508738629;11509888388;10720270804;9249776514;9049840490;9442460702;9280212924;8633070661;8472419479;11638764033;10126768872;11110455694;5326576507;5913722875;6386911572;8979173396;9125662619;9125667996;9916502094;11658541192;11105064323;10956766913;6737935903;9356050413;10900725936;11566389687;11566385150;11707114324;11697170413;11707130433;11707134020;11707136082;9616411936;11268121492;12113006580;12128024661;11504594758;12204626493;11946824905;3512481881;10752876846;9667175956;5938036553;11716079088;12331642939;11432287153;12268627706;12146837523;11302971424;12357661992;6766156863;12494616651;12202678406;4398851468;12670139300;12498843001;12519296046;12734535169;12734143030;12206689536;10762579692;11155913359;11758008778;12801867915;12955585971;12955639113;11777418254;12949951201;4580204640;6739798578;11840234178;11840243894;11849563578;11775512993;6350157277;5614144350;4111023553;5735553160;6032399813;6473861193;8668476218;4623386862;12983981151;10277607801;10277635599;10290363458;13022188319;12928836670;8665926945;12850021634;11808691145;12282826305;11377247691;8980446061;9346039031;2737661792;2871773892;3494556606;13413015814;2228128339;10048866629;4642718405;13166315054;12340070029;13388158627;13328383256;13602654181;7087982069;7226318833;12656847041;9607498518;7364683673;13408202978;9682240267;9346060856;13542186363;12566669965;12566670192;12566670531;12566670877;12566671127;12566671353;12566671529;12566671737;12566671942;12566672165;12566672378;12566672541;13671265268;13523140789;13413186900;13413150992;13190787726;13674000186;13539427431;13684472299;12108137135;12812062986;13581272176;13753433201;13539297457;13389095726;13260947739;12402722213;13324911372;13324917013;13403099993;4765976371;6507422231;13967475781;13104723083;7772134508;13978720221;13982397897;10211636793;12512626432;10894135377;14094603479;4996049426;10466293565;14112350669;14190161262;14190165276;13692908073;8003641817;11258371342;4014729424;14198802909;14050316710;6876897961;14298053780;14102374323;13913497984;13747937824;13279293321;14110497434;14550810567;3989527087;7830918930;14278574000;14618379101;4822723634;3386147714;14708622235;14708625196;14437915609;14702261217;14760955024;14106184172;14748762848;14700018413;14700503536;14700037385;14783054482;14700032079;14760646478;14700025324;14817872760;14100328983;14813042848;14745955429;14785438081;14889649635;14301956564;14263572229;10070780439;14478075491;14892572912;13279101556;13279104395;13279081722;13315930375;13433158135;14627078551;14898749542;14834598561;9979991670;14449036946;11806684300;12094311187;14968769349;2249956087;3670530550;903807016;9952774534;2534724415;6158369151;14890468710;11431489908;11240751480;11573230049;12804938725;11696224952;13326568190;8262636746;4823774310;4863502867;4692956554;14213578663;15018756870;15018759110;15019079127;15027905565;15090768015;15097774866;15121102278;13916945181;14042308512;13492762057;15154640283;14833076643;14565246812;14445068355;14445063204;13730658693;13730660420;13546112315;13324919767;5250557412;15229379003;14612279970;14520214356;15089099874;14618179455;14754487835;14976126374;15046883807;15220477368;13183511038;14884154051;12397515839;13886771215;15239190282;12661593618;13875657202;15230762576;7041939546;7061415250;15366303335;15360735397;14912173667;15246188138;14300294394;13978562365;13771684349;12631800770;12716371164;14042248442;11781338235;5972698540;1554960397;15148898765;15148887622;2274830359;5359990748;8003084678;15361532537;15548658643;11592468118;12572342856;12494782517;12596416224;12596420088;15559053838;15486683455;6804602922;6830203652;568350650;14184086618;15566395852;15565261877;4627817111;4627817882;4639006255;4674634750;4627871235;5045167247;14484579599;11383187368;11383187525;11383187688;11383188211;12275304058;15048215990;15230534913;15633063575;15633046194;15611620603;15872966840;15872999606;15883311692;15883312942;15883314575;15883381991;15035125923;14110608221;14110899148;14124909045;14308670761;6205205961;6364879587;6364881161;6391540653;6391642302;6463986562;6481131111;6507405695;6815760584;8709253565;15720304364;6413499953;15530488927;16006097169;6165038613;5785490105;5481779891;5481761946;5574814408;6238835427;6276061207;6517499261;6878610938;6866493186;7113825039;7116381283;7116702046;7116359883;7143609862;7409347440;7904559949;7904610383;7934323316;8232694369;8243032172;9405899288;9409201333;10430910649;11632100181;11632077138;11640052933;11793382673;11856129049;15705559027;15629541460;11632126721;8510589470;4241852625;8404684575;14238596528;15010814218;13184713709;13609999411;15696392675;15554979176;15555009597;15555152237;14696958202;5771467270;7308170886;5504135235;15918047570;3576787348;11863357640;12487789640;15123266349;16078980231;16078985058;16259243391;16199184400;16078983738;16256557884;16203696851;16258504798;16168372772;16256672025;16078982297;16289193441;11366343566;16283785212;15515633443;15432848623;15483728847;15015456533;16289193823;16351911381;5639479940;16013491402;5535744734;15553342068;5368632441;15513125039;5353488433;16462849084;16163726449;15481776731;14970015233;16465872867;15285658486;15574462881;16570021747;15254104733;844929123;166986752;16354460415;16537295657;14332741391;14345214315;14486832259;16628495726;13882183199;16447494654;15548888898;5721793369;5682917257;5363158649;15638731415;16866591880;16786806972;16805529755;16735914512;16719116735;16654319710;16646736918;16209331599;16565225470;15916274203;16252850662;16210529796;16185337739;16174846197;15354926906;15943789199;15544198652;15411224440;15370306777;15346604540;16806284145;16796346149;16732995612;16713027401;16296040578;16673347100;16970181235;16970189449;16970183654;16970185950;16970187260;16970191534;16970192771;16970193905;16637432168;16660479433;13000007654;16460694373;16429345261;16800307723;16725378671;16379598396;15489966249;16796377224;17065989459;17088952586;16739990874;15872961954;16630328183;16499205169;17183094198;16640867537;14266068291;14303756636;14709768053;17256291280;17181515306;17256293951;17256296185;17256298653;17256301033;17256075762;17256096568;17256118997;17256143199;13800717766;16849012343;15479377118;15334341098;16871709896;17327040230;17327030059;16434644938;15538708440;12129789607;6377740507;17490721006;17488220782;17373029266;13421266463;14895087162;12985361032;12985341499;12363313138;14704943644;17269346759;17269340201;17269292417;17480205349;17575492616;17575497513;17076563795;17556040524;17556037890;17659529447;16369023184;16369025010;17332451684;17116212498;16297600456;15992589987;15622887088;15164938644;17269297441;17336468238;17336471113;17336471400;17727263108;17727262816;17727262513;17727262301;17727205351;17727205123;17727204955;17727204653;17480206543;17563605831;17563608327;17563610497;16288561317;15218427871;15357970630;6934310111;14051757935;16017695597;17077627629;17356064588;16647545765;13398434647;13398230007;16890428355;13176058901;17569162537;17600179329;17600190676;17811870593;17495653641;17101171811;5970984243;14448662003;17447213133;18121514822;15218407500;17083366577;15843953438;15843957836;15843961264;17067024883;18341914628;17718083590;17576185251;17577101777;18195358934;18223727140;5297405973;18513265196;17578715653;17578711181;8737602449;8943844393;15611066348;14569410003;13415640045;14926164818;14879081274;8034026074;17811071580;18296260757;18112157688;17811079407;18111172516;18605830527;18397110912;18727659869;18503770332;18395887647;18536844330;18134433503;9859576867;8712817601;18734197659;14409368297;18654827953;18820482579;18727723068;18849518367;15486520864;18849588189;18849588625;18849589457;18963014717;14055498520;14891410939;18995954092;16110149934;19002847336;17230784439;18657144315;99590779149212;539960592;13691484057;15687370918;14775339176;2414851778;6052033819;4107728990;14943334555;2506552320;2727067538;2978693500;3582895165;2727072708;3165900886;3029833262;3383444582;3180260667;3885726701;3876515985;3994953548;3868367216;4050468028;3964647716;4310463616;2801784955;2978696440;4201860144;4310464656;4202491340;4310476380;4202709630;4310478830;4202959435;4310785330;4202976484;4310463940;3313821175;4465987684;4750776109;4465989998;4332744642;4465989351;4426374899;4465988196;4434431676;4526768266;15497256167;4617426261;4602326358;4646475570;4599453198;4646473427;4597651359;4646472003;3441138667;4646475342;3269109671;5703355191;5033247187;5703353651;5408429442;6075085184;5893171846;6075083204;6032934718;6386112652;6333155637;6510862058;6404275837;6510868181;6467448211;6847035264;6531678809;6847034886;6745424367;7071564842;6860483493;7499964980;131022574358785;9944262922;9171204517;10089970465;9649635544;9944263348;9649638002;10014664329;9863480370;10651517727;10074837226;10651527284;10489805577;10727165164;10683162998;10795158121;10724045559;11466514043;11155720733;11533444995;11379954422;11644048314;11530295305;14914684761;13741906191;13988110964;13661903549;14400549310;14213731433;14914700740;14692530018;14914855930;14768473411;15121292578;15025509897;75540798045662;122219842181820;125645867930579;18937883985;6101365417;6451702585;6454068948;3378819821;605887098;1701623492;3237615544;3367801828;18532003409;18228802662;18228805769;100219516754540;17808780506;87641067978449;111038871669535;8953242851;79765542592794;13423217832;134964516922646;5968388453;15855634668;16003793902;7305309231;15893203988;16033532219;126259681759948;17656935206;89410048034357;8472851459;8916037983;4954752502;79710108840469;11572762117;17670743999;71367782943796;16549917043;16703458787;132007474810089;18973713348;18139069423;13451596695;18440166505;12177325772;96695025808213;135229885104482;83692298883909;6073537839;88817926315458;104729035207525;76626266837363;113487357420897;107879176226772;130871423490486;11137575513;12943247001;12943245078;80005067957132;3818155097;3647333358;10324346056;10324347967;10662542523;10808838353;11353528705;96537472072550;99214917572799;18860937012;18860985311;115513358987315;129543795429973;18860934161;18860987667;17731318051;138811103914348;16732694052;131579468225600;11765402359;11828796994;5324719298;5342986949;6758497682;73848637067536;14900087266;119794400485251;80450830186028;88311415897149;119410252629691;103823923570615;110371647221022;96418538200619;7051736361;114220575509759;79372260836317;115243862171595;74712767707170;18752369972;129681463747237;78914719040186;15871955418;76762995566774;12641272458;6939111033;6426944918;137544427935459;15032994029;118706441243120;13389049867;10760024537;9281034297;15218831594;113029417107834;139040426524819;107286136869541;16126108459;14913354249;81793885962794;118556668407391;18647920435;88364323402553;109285335492645;128621093194805;123662243100680;112642345119817;18647956169;104526133535566;90753913217772;89161734699335;137461635848196;116697817957558;5750914919;6756890519;96005412559462;2548976609;2546612479;114907227214588;89227693986075;88342891966226;140080535032062;72073166002331;77221396426833;81319559867791;81737495082190;85341391356499;87351379991751;89712649086456;92911136919199;95324606076674;102435660805182;103275072481933;108343132674489;113050446018685;117785409277711;124000207868671;125165007426523;126865137021740;131981552061642;132643889235480;18668065416;92517437168342;99999183305180;115110570222234;73425816668928;88233429548268;130739873848552;82710350236919;71580765918830;94170955089948;16909704232;101394944107806;104746643025210;119038667082595;95448143850147;139548786112139;96804383423412;124660577261950;122819728171185;132004114310511;787988004728135;129230994638464;73708914208963;98118902024430;132935874487897;90216279544722;77915441816737;87014900491609;79018097401349;85774300903718;120428153057168;97872047573441;134772811582797;72534188920161;138993958163764;102018283146594;78037392664516;79895744759186;117860234965291;125337041623563;17840501830;72190557439380;70454767164205;91733245171139;91228542222122;130888608591113;124948436023758;7450497506;75663528075786;118304171612688;79174624435953;116296033709863;83545284007309;130651760577349;122825844998639;135381296103877;96265145951044;78026056611611;7720048224;96077916226556;97056995744329;100277824753624;103793593586394;138811411414576;12640491155;125889350453386;16590754220;16978845877;80611835622737;102716401412280;96902541318046;15351762625;13772394625;14486733015;127966866038346;125654797564410;125247930279216;107447262204970;89872700617308;111865923474705;14368557094;14732610803;14907104587;14915220621;15092011734;15106881665;15131065025;15131070225;15144787112;15181537975;15185247558;15227672707;15229817314;15234596844;15264892126;15351763826;15351764032;15351764187;15351764348;15351764507;15351764740;15351764881;15351764966;15351765130;15462212483;15509346379;15509350986;15509357472;15517169103;15552588346;15552625961;15582813408;15582821022;15582823307;15582834071;15582835531;16031521714;16031541538;16044264830;16281300371;16331595046;16331596518;16331598816;16331600459;16331633255;16331634414;16331635718;16331635995;16456370330;16581613207;16581637217;16581648071;17757578266;17757592456;75474715372485;80316691895873;92458008626219;94739503741288;84211911194381;86959746238096;79152141768156;133468541502594;78575159450955;80951765302134;105378961467772;89865052230260;81090934593448;75313569154781;89596436703421;92752656404044;126581936679803;107738647542786;10489114145;9872472334;121271605799901;17069498206;16931515487;16896790433;11761274032;11764980869;16926077853;11753029192;13965228772;102916117017468;121372427435947;119952687833295;112898865140956;124044706645343;135456035952103;93804003372568;124248440864832;18334179599;16389395869;16844101122;76603224491021;83370733060419;103479080416741;101128307729202;107731702241186;122645084125812;78529064493417;130112681881594;139392011420826;115700747039144;78517252105400;73484909444934;114347154312193;74815645991109;18248633989;17698425045;86098085533596;118758941554698;17750719380;96628744411718;113567868263978;74475530512823;128778160701214;140223498612774;125156298745329;118535429818702;89703062547673;103883018654651;140287841692914;3010276628;111014975161818;102605854369937;11158043705;17747224478;102730218405996;104676452414043;119369863786092;118524425609297;86955381046056;8472085082;90203410635303;72723436074493;110708547231329;103650844120570;87868857007174;93481552663411;112564920810158;109983668079237;96342491571673;128762245270197;120148879522453;73226809349189;119602771011506;127732283735594;125461249438738;87445296052708;136517679309458;15768329004;108059757699905;70542636057631;101606960500983;103349603274756;89343390950953;93651812913748;15101393044;15642262165;15642275269;17481176031;89606894431558;127076465038391;93577264377184;91732685148261;138937299583930;78572645499619;122061917549078;106153673498996;95047916580305;133400153206637;110470525256662;123468479998097;82441850250520;116185509299834;81072337989394;96652240771528;98881331868329;108204315743653;109533232275124;121269997456920;124184374777402;111145810816450;3233351170;8458974184;72178041068475;130859235108277;86962954395779;77162302089899;6931042565;134314141048307;109684591839194;74691681039273;73956553001240;96802054849934;86789627188240;79136731857959;103521881639626;117134837736236;7099263384;93507193197337;127230203073079;70882603136659;127978196002690;77569554466776;128311527873732;80289684342936;122273223414774;78499094786141;107214420833891;133370458228346;90688392698752;89752387031554;103658027677245;105764668548382;87706612753421;128997103569769;96223451292903;96604744451060;95445450782680;90346996348563;76800900334648;131082319718215;110321186768296;8248004705;119058117746091;95815562184695;72293243384445;140159579197170;120064291937900;107757296388993;140104197573447;124991631436250;72277410833409;87773427230428;82298052173374;122241151273608;112849554065563;75333462792994;130160244117542;74185370550900;86517463532234;118814182678109;93561553871338;108462619394007;14021953565;124087144919678;123439661582156;124532804761244;100349497885381;127104365805084;126953033317926;106560355070751;140358213724897;114181481862155;80010340277260;140429793519388;134497530231879;136409236554789;86522549610893;95656979989750;71683821699644;85265340826775;121928784820997;77638307191108;92626170235541;104548429314536;6325068386;80219362391408;129027544628653;115594497201999;103332930661641;72921500494845;139434932554684;136505972636980;94991053520125;72995931205549;108862151633853;5901440255;6119570238;6126992207;105814505642482;74588338744555;97589732026842;85513756910439;93366760336122;77977481651141;17026065260;17026079202;17026081473;17026082885;17026083128;17026083473;17026083734;17026084038;17026084803;17026085546;17671143350;17671143714;17671144394;17671148230;18605534919;116238950016910;129525666081265;2338325648;4822225642;4940687511;7097139127;7098347455;7098347570;11414445247;12770493773;12986634964;12986636453;12986638725;13415948659;13834702475;14801724413;15098628040;17685156577;17685159087;17685161741;17685164681;17685181130;93001350941802;125444254609144;124335066106952;4924922222;11981280399;12446587737;4566572536;91751877679930;126884695634066;140398800602847;96443646410175;84663621619610;138349771708864;131456775839122;138137777772420;134614543668802;79368714145670;132151526704941;92106543276146;98573759838033;110125451314286;115600257231423;95183590295663;81493541492179;85239275355743;16625391970;18650866518;18895717031;11452349236;80951089371762;5136040124;5136248000;3405618667;3523688332;3237397989;3474940993;3975583821;4994548435;6281216515;4179732320;6902944446;9053214954;70876832253163;133377094302868;128842011385105;140202562685639;16448271523;17168246061;89121255316677;137212977957030;71700852488818;101856043486797;74125567120998;109180942748509;77677109342572;83255568226634;93809530689375;76247082393051;74702364775128;118168745564002;138161860713168;93680175266457;137371839632687;93054971012433;98176833880009;127773181414564;99955340962947;85558630854255;78691859768596;120392838716850;81914282243912;136954310107221;87939894615077;130815519916065;96668462040940;72741786721483;98798461601883;118806061296143;94911460762869;140422012851942;75107512524289;87647277375829;75126364120046;115843826901665;94859564409757;77155705414604;139990231502528;123780435956703;104926345480848;124398716501784;89201738681342;78055502212608;131716211654599;112780263016678;99519129453387;85316963135218;110229398924353;123632192357489;136031805345492;123563444866327;132807925060015;72975517268088;123921593837160;103984222380370;101949297449238;95294502234968;122576696342824;97136653744938;87876279581635;129711915886715;135427513412109;18799085098;125182893468913;109263383287853;111448836804180;101018932049972;82831869681936;108395470109881;104368100264269 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlagRepoGitHashDynamicString changed from 5655aaa1baf34cc2a707e31f621147490b91ce88 to b09ee7479c62cfc90dd5f16aa3aa37961cf87077 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 5655aaa1baf34cc2a707e31f621147490b91ce88 to b09ee7479c62cfc90dd5f16aa3aa37961cf87077 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:51:49 to 01/26/2026 17:56:43 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 5655aaa1baf34cc2a707e31f621147490b91ce88 to b09ee7479c62cfc90dd5f16aa3aa37961cf87077 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:51:49 to 01/26/2026 17:56:43 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1170,37 +1170,37 @@ Changed in Other:
 Added in Other:
 - DFFlagUseCompletedRadiusFunc_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T17:50:59 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8fea9bc05b9b242da21c285f41dd4ac9047abe34 to 5655aaa1baf34cc2a707e31f621147490b91ce88 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 8fea9bc05b9b242da21c285f41dd4ac9047abe34 to 5655aaa1baf34cc2a707e31f621147490b91ce88 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:49:10 to 01/26/2026 17:51:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 8fea9bc05b9b242da21c285f41dd4ac9047abe34 to 5655aaa1baf34cc2a707e31f621147490b91ce88 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:49:10 to 01/26/2026 17:51:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 3d9b969ca - 2026-01-26 11:51:25 -0600 - 01/26/2026 11:51:25
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0f4b342ae68f893e7ba5ce1eb4ea2b459d28ddf4 to 8fea9bc05b9b242da21c285f41dd4ac9047abe34 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 0f4b342ae68f893e7ba5ce1eb4ea2b459d28ddf4 to 8fea9bc05b9b242da21c285f41dd4ac9047abe34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:46:20 to 01/26/2026 17:49:10 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 0f4b342ae68f893e7ba5ce1eb4ea2b459d28ddf4 to 8fea9bc05b9b242da21c285f41dd4ac9047abe34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:46:20 to 01/26/2026 17:49:10 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## c0c6583d2 - 2026-01-26 11:46:52 -0600 - 01/26/2026 11:46:52
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a9337e154e954bf56adecfa1f1aa1cc440d41185 to 0f4b342ae68f893e7ba5ce1eb4ea2b459d28ddf4 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from a9337e154e954bf56adecfa1f1aa1cc440d41185 to 0f4b342ae68f893e7ba5ce1eb4ea2b459d28ddf4 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:43:46 to 01/26/2026 17:46:20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a9337e154e954bf56adecfa1f1aa1cc440d41185 to 0f4b342ae68f893e7ba5ce1eb4ea2b459d28ddf4 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:43:46 to 01/26/2026 17:46:20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in World:
-- FFlagSingleMapForMemberDescriptors_Staged removed (was true;SteadyState;10;30;Revert;2026-01-26T17:11:31) | Mechanism: Consolidates member data into a single map for easier access. | Purpose: Enhances performance and reduces loading times for player data.
+- FFlagSingleMapForMemberDescriptors_Staged removed (was true;SteadyState;10;30;Revert;2026-01-26T17:11:31) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## be37823fe - 2026-01-26 11:44:35 -0600 - 01/26/2026 11:44:35
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 9b0186af24cc0370e52b3c3bc686db23c0ea2932 to a9337e154e954bf56adecfa1f1aa1cc440d41185 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 9b0186af24cc0370e52b3c3bc686db23c0ea2932 to a9337e154e954bf56adecfa1f1aa1cc440d41185 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:39:55 to 01/26/2026 17:43:46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 9b0186af24cc0370e52b3c3bc686db23c0ea2932 to a9337e154e954bf56adecfa1f1aa1cc440d41185 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:39:55 to 01/26/2026 17:43:46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 08a719e66 - 2026-01-26 11:42:16 -0600 - 01/26/2026 11:42:16
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 56ed8ebb690de8ede94a80ebff58e8ceb783890a to 9b0186af24cc0370e52b3c3bc686db23c0ea2932 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 56ed8ebb690de8ede94a80ebff58e8ceb783890a to 9b0186af24cc0370e52b3c3bc686db23c0ea2932 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:38:22 to 01/26/2026 17:39:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 56ed8ebb690de8ede94a80ebff58e8ceb783890a to 9b0186af24cc0370e52b3c3bc686db23c0ea2932 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:38:22 to 01/26/2026 17:39:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1209,7 +1209,7 @@ Changed in Other:
 Added in Graphics:
 - DFFlagRenderFastClusterOcclusionCulling3_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T17:37:42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ae7cc54cfab2fd896383347951dac2ad473da3c8 to 56ed8ebb690de8ede94a80ebff58e8ceb783890a | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from ae7cc54cfab2fd896383347951dac2ad473da3c8 to 56ed8ebb690de8ede94a80ebff58e8ceb783890a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:33:16 to 01/26/2026 17:38:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ae7cc54cfab2fd896383347951dac2ad473da3c8 to 56ed8ebb690de8ede94a80ebff58e8ceb783890a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:33:16 to 01/26/2026 17:38:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1218,7 +1218,7 @@ Changed in Other:
 Added in Other:
 - DFFlagSimUseBetterMagnitudeDrawer_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T17:32:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d7b4a5422899bdf4ba29d907b9f714137acefe65 to ae7cc54cfab2fd896383347951dac2ad473da3c8 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from d7b4a5422899bdf4ba29d907b9f714137acefe65 to ae7cc54cfab2fd896383347951dac2ad473da3c8 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:17:12 to 01/26/2026 17:33:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from d7b4a5422899bdf4ba29d907b9f714137acefe65 to ae7cc54cfab2fd896383347951dac2ad473da3c8 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:17:12 to 01/26/2026 17:33:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1227,39 +1227,39 @@ Changed in Other:
 Added in Other:
 - FFlagAddVideoDetectorWrapper_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;490661354;2026-01-26T17:15:59 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 12b7228e53cb941a7ebf02b7f5e0b787edb55522 to d7b4a5422899bdf4ba29d907b9f714137acefe65 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 12b7228e53cb941a7ebf02b7f5e0b787edb55522 to d7b4a5422899bdf4ba29d907b9f714137acefe65 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:14:58 to 01/26/2026 17:17:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 12b7228e53cb941a7ebf02b7f5e0b787edb55522 to d7b4a5422899bdf4ba29d907b9f714137acefe65 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:14:58 to 01/26/2026 17:17:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## bdf0fb46f - 2026-01-26 11:17:20 -0600 - 01/26/2026 11:17:20
 Added in Other:
-- FFlagLuauCodegenBufferLoadProp2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T17:14:15 | Mechanism: Improves the way code is generated and loaded in Luau, optimizing performance. | Purpose: Enhances game loading times and overall performance for smoother gameplay.
+- FFlagLuauCodegenBufferLoadProp2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T17:14:15 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b3dcf9075aa49bcfd98527b03039c87df703ac8d to 12b7228e53cb941a7ebf02b7f5e0b787edb55522 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from b3dcf9075aa49bcfd98527b03039c87df703ac8d to 12b7228e53cb941a7ebf02b7f5e0b787edb55522 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:12:29 to 01/26/2026 17:14:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from b3dcf9075aa49bcfd98527b03039c87df703ac8d to 12b7228e53cb941a7ebf02b7f5e0b787edb55522 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:12:29 to 01/26/2026 17:14:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## d6ce4b80f - 2026-01-26 11:15:02 -0600 - 01/26/2026 11:15:02
 Added in World:
-- FFlagSingleMapForMemberDescriptors_Staged = true;SteadyState;10;30;Revert;2026-01-26T17:11:31 | Mechanism: Consolidates member data into a single map for easier access. | Purpose: Enhances performance and reduces loading times for player data.
+- FFlagSingleMapForMemberDescriptors_Staged = true;SteadyState;10;30;Revert;2026-01-26T17:11:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2739755b6e2a7a13c2ed186c2f12d921ea3253a0 to b3dcf9075aa49bcfd98527b03039c87df703ac8d | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 2739755b6e2a7a13c2ed186c2f12d921ea3253a0 to b3dcf9075aa49bcfd98527b03039c87df703ac8d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 17:02:49 to 01/26/2026 17:12:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 2739755b6e2a7a13c2ed186c2f12d921ea3253a0 to b3dcf9075aa49bcfd98527b03039c87df703ac8d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 17:02:49 to 01/26/2026 17:12:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 5ae04e97b - 2026-01-26 11:03:43 -0600 - 01/26/2026 11:03:43
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 1042c26fa175e4f86f3cdd1bd8b669636dac2065 to 2739755b6e2a7a13c2ed186c2f12d921ea3253a0 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 1042c26fa175e4f86f3cdd1bd8b669636dac2065 to 2739755b6e2a7a13c2ed186c2f12d921ea3253a0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/24/2026 02:31:37 to 01/26/2026 17:02:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 1042c26fa175e4f86f3cdd1bd8b669636dac2065 to 2739755b6e2a7a13c2ed186c2f12d921ea3253a0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/24/2026 02:31:37 to 01/26/2026 17:02:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## a759bc4d0 - 2026-01-23 20:32:32 -0600 - 01/23/2026 20:32:31
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 655d104d3434610218ccd594dbff6ae0d052b119 to 1042c26fa175e4f86f3cdd1bd8b669636dac2065 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 655d104d3434610218ccd594dbff6ae0d052b119 to 1042c26fa175e4f86f3cdd1bd8b669636dac2065 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/24/2026 01:30:18 to 01/24/2026 02:31:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagPerformanceControlBudgetSystemRollout10 changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 655d104d3434610218ccd594dbff6ae0d052b119 to 1042c26fa175e4f86f3cdd1bd8b669636dac2065 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1271,28 +1271,28 @@ Removed in Other:
 Added in Other:
 - FFlagPerformanceControlBudgetSystemRollout10_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-24T01:29:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from cca984247d6cb5cfb24a41c444c29cafacaabb77 to 655d104d3434610218ccd594dbff6ae0d052b119 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from cca984247d6cb5cfb24a41c444c29cafacaabb77 to 655d104d3434610218ccd594dbff6ae0d052b119 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/24/2026 01:22:47 to 01/24/2026 01:30:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from cca984247d6cb5cfb24a41c444c29cafacaabb77 to 655d104d3434610218ccd594dbff6ae0d052b119 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/24/2026 01:22:47 to 01/24/2026 01:30:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## d58aa023b - 2026-01-23 19:25:17 -0600 - 01/23/2026 19:25:16
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2ca00fbf625e5e64acb57c8a24c034e31c10acad to cca984247d6cb5cfb24a41c444c29cafacaabb77 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 2ca00fbf625e5e64acb57c8a24c034e31c10acad to cca984247d6cb5cfb24a41c444c29cafacaabb77 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/24/2026 00:16:31 to 01/24/2026 01:22:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 2ca00fbf625e5e64acb57c8a24c034e31c10acad to cca984247d6cb5cfb24a41c444c29cafacaabb77 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/24/2026 00:16:31 to 01/24/2026 01:22:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## fe374a52e - 2026-01-23 18:17:34 -0600 - 01/23/2026 18:17:34
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f8425b7abbb33ac5f675fe00280d30f53a24a98b to 2ca00fbf625e5e64acb57c8a24c034e31c10acad | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from f8425b7abbb33ac5f675fe00280d30f53a24a98b to 2ca00fbf625e5e64acb57c8a24c034e31c10acad | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 23:12:54 to 01/24/2026 00:16:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from f8425b7abbb33ac5f675fe00280d30f53a24a98b to 2ca00fbf625e5e64acb57c8a24c034e31c10acad | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 23:12:54 to 01/24/2026 00:16:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## c9c723f24 - 2026-01-23 17:14:48 -0600 - 01/23/2026 17:14:47
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 391f8874dfdafd5efaa9cd7586ba911c50ccb82f to f8425b7abbb33ac5f675fe00280d30f53a24a98b | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 391f8874dfdafd5efaa9cd7586ba911c50ccb82f to f8425b7abbb33ac5f675fe00280d30f53a24a98b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 20:41:40 to 01/23/2026 23:12:54 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 391f8874dfdafd5efaa9cd7586ba911c50ccb82f to f8425b7abbb33ac5f675fe00280d30f53a24a98b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 20:41:40 to 01/23/2026 23:12:54 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1301,7 +1301,7 @@ Changed in Other:
 Added in Other:
 - FFlagCLI186546 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e52848b34bd272d7d3431ba07c0a1d6f866e4e9a to 391f8874dfdafd5efaa9cd7586ba911c50ccb82f | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from e52848b34bd272d7d3431ba07c0a1d6f866e4e9a to 391f8874dfdafd5efaa9cd7586ba911c50ccb82f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 20:01:38 to 01/23/2026 20:41:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from e52848b34bd272d7d3431ba07c0a1d6f866e4e9a to 391f8874dfdafd5efaa9cd7586ba911c50ccb82f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 20:01:38 to 01/23/2026 20:41:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1311,16 +1311,16 @@ Removed in Other:
 ## 7a3dccfd2 - 2026-01-23 14:02:44 -0600 - 01/23/2026 14:02:44
 Changed in Other:
 - DFIntJoinLimitWin32x64 changed from 702 to 703 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlagRepoGitHashDynamicString changed from 027def84359a5267b0a6be9f6e03e6b100c46289 to e52848b34bd272d7d3431ba07c0a1d6f866e4e9a | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 027def84359a5267b0a6be9f6e03e6b100c46289 to e52848b34bd272d7d3431ba07c0a1d6f866e4e9a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 19:57:51 to 01/23/2026 20:01:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 027def84359a5267b0a6be9f6e03e6b100c46289 to e52848b34bd272d7d3431ba07c0a1d6f866e4e9a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 19:57:51 to 01/23/2026 20:01:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- DFIntJoinLimitWin32x64_Staged removed (was 703;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;366482982;2026-01-23T18:56:39) | Mechanism: Sets a limit on the number of players that can join a game on 64-bit Windows systems. | Purpose: Ensures better server performance and stability by managing player capacity.
+- DFIntJoinLimitWin32x64_Staged removed (was 703;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;366482982;2026-01-23T18:56:39) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 6ae71cc05 - 2026-01-23 14:00:27 -0600 - 01/23/2026 14:00:27
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0b1d9882cf47aa9f444653c6ab0d11f02239d3e6 to 027def84359a5267b0a6be9f6e03e6b100c46289 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 0b1d9882cf47aa9f444653c6ab0d11f02239d3e6 to 027def84359a5267b0a6be9f6e03e6b100c46289 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 19:38:27 to 01/23/2026 19:57:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 0b1d9882cf47aa9f444653c6ab0d11f02239d3e6 to 027def84359a5267b0a6be9f6e03e6b100c46289 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 19:38:27 to 01/23/2026 19:57:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1329,7 +1329,7 @@ Changed in Other:
 Added in Other:
 - FFlagCLI186546_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T19:37:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 74eaed12372978b15263d1db2b54fdf457c32d79 to 0b1d9882cf47aa9f444653c6ab0d11f02239d3e6 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 74eaed12372978b15263d1db2b54fdf457c32d79 to 0b1d9882cf47aa9f444653c6ab0d11f02239d3e6 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 19:37:03 to 01/23/2026 19:38:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 74eaed12372978b15263d1db2b54fdf457c32d79 to 0b1d9882cf47aa9f444653c6ab0d11f02239d3e6 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 19:37:03 to 01/23/2026 19:38:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1338,7 +1338,7 @@ Changed in Other:
 Added in Other:
 - FFlagLuaAppExplicitFeedbackSmallGeneralFixes = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0d9dfc816f1e0efa56e6d996687c8eda6824a383 to 74eaed12372978b15263d1db2b54fdf457c32d79 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 0d9dfc816f1e0efa56e6d996687c8eda6824a383 to 74eaed12372978b15263d1db2b54fdf457c32d79 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 19:34:40 to 01/23/2026 19:37:03 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 0d9dfc816f1e0efa56e6d996687c8eda6824a383 to 74eaed12372978b15263d1db2b54fdf457c32d79 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 19:34:40 to 01/23/2026 19:37:03 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1349,21 +1349,21 @@ Removed in Other:
 Added in Camera/UI:
 - FFlagUIBloxUseFoundationButtonInGame2_IXP = 1;UIEcosystem.User.Migration;Foundation.Migration.Button.InExperience-3;407884323;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0a5904ef03e113451c7c602e1def14b45c53bd42 to 0d9dfc816f1e0efa56e6d996687c8eda6824a383 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 0a5904ef03e113451c7c602e1def14b45c53bd42 to 0d9dfc816f1e0efa56e6d996687c8eda6824a383 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 19:31:43 to 01/23/2026 19:34:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 0a5904ef03e113451c7c602e1def14b45c53bd42 to 0d9dfc816f1e0efa56e6d996687c8eda6824a383 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 19:31:43 to 01/23/2026 19:34:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## cd575fe5c - 2026-01-23 13:33:03 -0600 - 01/23/2026 13:33:03
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f51bb3af25e322c3d3f9f7ad20106ba56be3c843 to 0a5904ef03e113451c7c602e1def14b45c53bd42 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from f51bb3af25e322c3d3f9f7ad20106ba56be3c843 to 0a5904ef03e113451c7c602e1def14b45c53bd42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 19:26:42 to 01/23/2026 19:31:43 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from f51bb3af25e322c3d3f9f7ad20106ba56be3c843 to 0a5904ef03e113451c7c602e1def14b45c53bd42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 19:26:42 to 01/23/2026 19:31:43 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 76f8061de - 2026-01-23 13:28:29 -0600 - 01/23/2026 13:28:29
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 38f4eba289de9709170145f7e54925c2268e7926 to f51bb3af25e322c3d3f9f7ad20106ba56be3c843 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 38f4eba289de9709170145f7e54925c2268e7926 to f51bb3af25e322c3d3f9f7ad20106ba56be3c843 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 19:21:47 to 01/23/2026 19:26:42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagEnableUseSortScoresForFriendsCarouselLoad_IXP changed from 1;Social.Presence.Frontend;Social.Presence.UseSortScoreFromOUR.M2.V2;1121520635;flagbank to 1;Social.Presence.Frontend;Social.Presence.UseSortScoreFromOUR.M2.V6;1121520635;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagHandleSortScoreUpdatesFromRtn_IXP changed from 1;Social.Presence.Frontend;Social.Presence.UseSortScoreFromOUR.M2.V2;1121520635;flagbank to 1;Social.Presence.Frontend;Social.Presence.UseSortScoreFromOUR.M2.V6;1121520635;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1374,7 +1374,7 @@ Changed in Other:
 Added in Network:
 - FFlagLuauSubtypingPackRecursionLimits = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a3648a098915e806b92eb777200d3bd45965c191 to 38f4eba289de9709170145f7e54925c2268e7926 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from a3648a098915e806b92eb777200d3bd45965c191 to 38f4eba289de9709170145f7e54925c2268e7926 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:57:25 to 01/23/2026 19:21:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a3648a098915e806b92eb777200d3bd45965c191 to 38f4eba289de9709170145f7e54925c2268e7926 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 18:57:25 to 01/23/2026 19:21:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1383,9 +1383,9 @@ Removed in Network:
 
 ## 760f91ad6 - 2026-01-23 12:59:20 -0600 - 01/23/2026 12:59:19
 Added in Other:
-- DFIntJoinLimitWin32x64_Staged = 703;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;366482982;2026-01-23T18:56:39 | Mechanism: Sets a limit on the number of players that can join a game on 64-bit Windows systems. | Purpose: Ensures better server performance and stability by managing player capacity.
+- DFIntJoinLimitWin32x64_Staged = 703;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;366482982;2026-01-23T18:56:39 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 754e455a03521002bb26150d31586e4ebefd352a to a3648a098915e806b92eb777200d3bd45965c191 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 754e455a03521002bb26150d31586e4ebefd352a to a3648a098915e806b92eb777200d3bd45965c191 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:46:57 to 01/23/2026 18:57:25 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagEnableEventsRedesignExperiment4 changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 754e455a03521002bb26150d31586e4ebefd352a to a3648a098915e806b92eb777200d3bd45965c191 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1395,7 +1395,7 @@ Removed in Other:
 
 ## df979d73d - 2026-01-23 12:48:13 -0600 - 01/23/2026 12:48:13
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 505e41f6166c5a8f76188be40c22edf96897fc14 to 754e455a03521002bb26150d31586e4ebefd352a | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 505e41f6166c5a8f76188be40c22edf96897fc14 to 754e455a03521002bb26150d31586e4ebefd352a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:36:30 to 01/23/2026 18:46:57 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 505e41f6166c5a8f76188be40c22edf96897fc14 to 754e455a03521002bb26150d31586e4ebefd352a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 18:36:30 to 01/23/2026 18:46:57 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1404,32 +1404,32 @@ Changed in Other:
 Added in Other:
 - FFlagOCNewTelem2 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0649ead158c9cd7f88b09dc76a22f4de2ab15241 to 505e41f6166c5a8f76188be40c22edf96897fc14 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 0649ead158c9cd7f88b09dc76a22f4de2ab15241 to 505e41f6166c5a8f76188be40c22edf96897fc14 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:30:59 to 01/23/2026 18:36:30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 0649ead158c9cd7f88b09dc76a22f4de2ab15241 to 505e41f6166c5a8f76188be40c22edf96897fc14 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 18:30:59 to 01/23/2026 18:36:30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- FFlagOCNewTelem2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T17:34:47) | Mechanism: Implements a new telemetry system for better data tracking. | Purpose: Provides developers with improved insights on player behavior, enhancing game development.
+- FFlagOCNewTelem2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T17:34:47) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 6299cc59a - 2026-01-23 12:32:40 -0600 - 01/23/2026 12:32:40
 Added in Other:
 - FFlagLuaAppExplicitFeedbackSmallGeneralFixes_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T18:30:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 4dfb6b120c1ff2558c53ce38d0742fab6dd9e4a8 to 0649ead158c9cd7f88b09dc76a22f4de2ab15241 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 4dfb6b120c1ff2558c53ce38d0742fab6dd9e4a8 to 0649ead158c9cd7f88b09dc76a22f4de2ab15241 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:29:17 to 01/23/2026 18:30:59 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 4dfb6b120c1ff2558c53ce38d0742fab6dd9e4a8 to 0649ead158c9cd7f88b09dc76a22f4de2ab15241 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 18:29:17 to 01/23/2026 18:30:59 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## f2788df58 - 2026-01-23 12:30:24 -0600 - 01/23/2026 12:30:24
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 312854f4a6dfd26a8b10e1c20753c5373af45201 to 4dfb6b120c1ff2558c53ce38d0742fab6dd9e4a8 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 312854f4a6dfd26a8b10e1c20753c5373af45201 to 4dfb6b120c1ff2558c53ce38d0742fab6dd9e4a8 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:26:12 to 01/23/2026 18:29:17 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 312854f4a6dfd26a8b10e1c20753c5373af45201 to 4dfb6b120c1ff2558c53ce38d0742fab6dd9e4a8 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 18:26:12 to 01/23/2026 18:29:17 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## d023a759d - 2026-01-23 12:28:09 -0600 - 01/23/2026 12:28:09
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8b096b89378b15bf9adae91d72449ac6eaa21da1 to 312854f4a6dfd26a8b10e1c20753c5373af45201 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 8b096b89378b15bf9adae91d72449ac6eaa21da1 to 312854f4a6dfd26a8b10e1c20753c5373af45201 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:20:46 to 01/23/2026 18:26:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 8b096b89378b15bf9adae91d72449ac6eaa21da1 to 312854f4a6dfd26a8b10e1c20753c5373af45201 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 18:20:46 to 01/23/2026 18:26:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1438,21 +1438,21 @@ Changed in Other:
 Added in Network:
 - FFlagLuauSubtypingPackRecursionLimits_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;2096936530;2026-01-23T18:19:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from da25e6b0c63e8facb6b46147edc60f255c79d7b2 to 8b096b89378b15bf9adae91d72449ac6eaa21da1 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from da25e6b0c63e8facb6b46147edc60f255c79d7b2 to 8b096b89378b15bf9adae91d72449ac6eaa21da1 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:17:30 to 01/23/2026 18:20:46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from da25e6b0c63e8facb6b46147edc60f255c79d7b2 to 8b096b89378b15bf9adae91d72449ac6eaa21da1 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 18:17:30 to 01/23/2026 18:20:46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## e4b1f9c6b - 2026-01-23 12:19:11 -0600 - 01/23/2026 12:19:11
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 684284f61a863646a96584d3277f5e57f18c11ff to da25e6b0c63e8facb6b46147edc60f255c79d7b2 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 684284f61a863646a96584d3277f5e57f18c11ff to da25e6b0c63e8facb6b46147edc60f255c79d7b2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:15:36 to 01/23/2026 18:17:30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 684284f61a863646a96584d3277f5e57f18c11ff to da25e6b0c63e8facb6b46147edc60f255c79d7b2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 18:15:36 to 01/23/2026 18:17:30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 6774721d5 - 2026-01-23 12:16:56 -0600 - 01/23/2026 12:16:56
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 878f1c7773b60ca373d7ba226a700e18d4d26534 to 684284f61a863646a96584d3277f5e57f18c11ff | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 878f1c7773b60ca373d7ba226a700e18d4d26534 to 684284f61a863646a96584d3277f5e57f18c11ff | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:06:37 to 01/23/2026 18:15:36 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 878f1c7773b60ca373d7ba226a700e18d4d26534 to 684284f61a863646a96584d3277f5e57f18c11ff | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 18:06:37 to 01/23/2026 18:15:36 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1460,7 +1460,7 @@ Changed in Other:
 ## 5bd82b6ff - 2026-01-23 12:08:01 -0600 - 01/23/2026 12:08:01
 Changed in Other:
 - DFFlagUseCompletedRadiusFunc changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlagRepoGitHashDynamicString changed from 157e80d2fd58900031ff13b3bfccf8fab75a69ff to 878f1c7773b60ca373d7ba226a700e18d4d26534 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 157e80d2fd58900031ff13b3bfccf8fab75a69ff to 878f1c7773b60ca373d7ba226a700e18d4d26534 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 18:01:29 to 01/23/2026 18:06:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 157e80d2fd58900031ff13b3bfccf8fab75a69ff to 878f1c7773b60ca373d7ba226a700e18d4d26534 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 18:01:29 to 01/23/2026 18:06:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1469,9 +1469,9 @@ Removed in Other:
 
 ## 93cefa60e - 2026-01-23 12:03:33 -0600 - 01/23/2026 12:03:33
 Added in Other:
-- FFlagFixMakeupInvertedCropAndProjection = True | Mechanism: Corrects issues with how makeup textures are displayed on characters. | Purpose: Ensures that character makeup appears correctly without distortion.
+- FFlagFixMakeupInvertedCropAndProjection = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from dac03be0c187b7e2913b1723ebd470469cc63795 to 157e80d2fd58900031ff13b3bfccf8fab75a69ff | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from dac03be0c187b7e2913b1723ebd470469cc63795 to 157e80d2fd58900031ff13b3bfccf8fab75a69ff | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 17:53:48 to 01/23/2026 18:01:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from dac03be0c187b7e2913b1723ebd470469cc63795 to 157e80d2fd58900031ff13b3bfccf8fab75a69ff | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 17:53:48 to 01/23/2026 18:01:29 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1482,37 +1482,37 @@ Removed in Other:
 Added in Other:
 - FFlagEnableEventsRedesignExperiment4_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T17:53:03 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 1585b8d1130cc73f6401dc6340134db450aa6f03 to dac03be0c187b7e2913b1723ebd470469cc63795 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 1585b8d1130cc73f6401dc6340134db450aa6f03 to dac03be0c187b7e2913b1723ebd470469cc63795 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 17:46:44 to 01/23/2026 17:53:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 1585b8d1130cc73f6401dc6340134db450aa6f03 to dac03be0c187b7e2913b1723ebd470469cc63795 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 17:46:44 to 01/23/2026 17:53:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 9e28fdf08 - 2026-01-23 11:48:00 -0600 - 01/23/2026 11:47:59
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e6649cd0f1ee2bc5417db0631131d0bd665cbd3e to 1585b8d1130cc73f6401dc6340134db450aa6f03 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from e6649cd0f1ee2bc5417db0631131d0bd665cbd3e to 1585b8d1130cc73f6401dc6340134db450aa6f03 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 17:36:11 to 01/23/2026 17:46:44 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from e6649cd0f1ee2bc5417db0631131d0bd665cbd3e to 1585b8d1130cc73f6401dc6340134db450aa6f03 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 17:36:11 to 01/23/2026 17:46:44 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 09718eb31 - 2026-01-23 11:39:04 -0600 - 01/23/2026 11:39:04
 Added in Other:
-- FFlagOCNewTelem2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T17:34:47 | Mechanism: Implements a new telemetry system for better data tracking. | Purpose: Provides developers with improved insights on player behavior, enhancing game development.
+- FFlagOCNewTelem2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T17:34:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f72c1c10ad7947d8d830f55eab1fbb60c965354f to e6649cd0f1ee2bc5417db0631131d0bd665cbd3e | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from f72c1c10ad7947d8d830f55eab1fbb60c965354f to e6649cd0f1ee2bc5417db0631131d0bd665cbd3e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 17:35:47 to 01/23/2026 17:36:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from f72c1c10ad7947d8d830f55eab1fbb60c965354f to e6649cd0f1ee2bc5417db0631131d0bd665cbd3e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 17:35:47 to 01/23/2026 17:36:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## d54b68ac7 - 2026-01-23 11:36:41 -0600 - 01/23/2026 11:36:40
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 71f971aab5fa1c6f5fb95494ae2eef2334979e5b to f72c1c10ad7947d8d830f55eab1fbb60c965354f | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 71f971aab5fa1c6f5fb95494ae2eef2334979e5b to f72c1c10ad7947d8d830f55eab1fbb60c965354f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 17:14:59 to 01/23/2026 17:35:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 71f971aab5fa1c6f5fb95494ae2eef2334979e5b to f72c1c10ad7947d8d830f55eab1fbb60c965354f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 17:14:59 to 01/23/2026 17:35:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 7192ac648 - 2026-01-23 11:16:42 -0600 - 01/23/2026 11:16:41
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from df13930657423f43d33c4f6d1b4f30695bb33735 to 71f971aab5fa1c6f5fb95494ae2eef2334979e5b | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from df13930657423f43d33c4f6d1b4f30695bb33735 to 71f971aab5fa1c6f5fb95494ae2eef2334979e5b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 17:04:23 to 01/23/2026 17:14:59 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from df13930657423f43d33c4f6d1b4f30695bb33735 to 71f971aab5fa1c6f5fb95494ae2eef2334979e5b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 17:04:23 to 01/23/2026 17:14:59 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1523,14 +1523,14 @@ Removed in Other:
 Added in Other:
 - DFFlagUseCompletedRadiusFunc_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T17:02:20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 94b46a66ed4922e4d0930bffb42a1b6bcfede8f2 to df13930657423f43d33c4f6d1b4f30695bb33735 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 94b46a66ed4922e4d0930bffb42a1b6bcfede8f2 to df13930657423f43d33c4f6d1b4f30695bb33735 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 17:03:03 to 01/23/2026 17:04:23 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 94b46a66ed4922e4d0930bffb42a1b6bcfede8f2 to df13930657423f43d33c4f6d1b4f30695bb33735 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 17:03:03 to 01/23/2026 17:04:23 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 31c2873fe - 2026-01-23 11:03:18 -0600 - 01/23/2026 11:03:18
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 9deff339f16073421ace6e046b8bdfc15e02ffa7 to 94b46a66ed4922e4d0930bffb42a1b6bcfede8f2 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 9deff339f16073421ace6e046b8bdfc15e02ffa7 to 94b46a66ed4922e4d0930bffb42a1b6bcfede8f2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 16:58:49 to 01/23/2026 17:03:03 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 9deff339f16073421ace6e046b8bdfc15e02ffa7 to 94b46a66ed4922e4d0930bffb42a1b6bcfede8f2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 16:58:49 to 01/23/2026 17:03:03 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1539,14 +1539,14 @@ Changed in Other:
 Added in Other:
 - FFlagFixMakeupInvertedCropAndProjection_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;135662070;2026-01-23T16:58:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e98e685368b6d92186fc9e96d9f2b192243af944 to 9deff339f16073421ace6e046b8bdfc15e02ffa7 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from e98e685368b6d92186fc9e96d9f2b192243af944 to 9deff339f16073421ace6e046b8bdfc15e02ffa7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 03:20:11 to 01/23/2026 16:58:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from e98e685368b6d92186fc9e96d9f2b192243af944 to 9deff339f16073421ace6e046b8bdfc15e02ffa7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 03:20:11 to 01/23/2026 16:58:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## ba988ac9d - 2026-01-22 21:21:24 -0600 - 01/22/2026 21:21:24
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from af33f847885d3193956d71653efcfeb586693de7 to e98e685368b6d92186fc9e96d9f2b192243af944 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from af33f847885d3193956d71653efcfeb586693de7 to e98e685368b6d92186fc9e96d9f2b192243af944 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 03:18:31 to 01/23/2026 03:20:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from af33f847885d3193956d71653efcfeb586693de7 to e98e685368b6d92186fc9e96d9f2b192243af944 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 03:18:31 to 01/23/2026 03:20:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1557,15 +1557,15 @@ Removed in Other:
 ## 26f782fdf - 2026-01-22 21:19:08 -0600 - 01/22/2026 21:19:08
 Changed in Other:
 - DFFlagStreamingHandleInvalidValues changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlagRepoGitHashDynamicString changed from 578853f35e37d4459eef882419b16cb4ca097554 to af33f847885d3193956d71653efcfeb586693de7 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 578853f35e37d4459eef882419b16cb4ca097554 to af33f847885d3193956d71653efcfeb586693de7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 02:52:38 to 01/23/2026 03:18:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 578853f35e37d4459eef882419b16cb4ca097554 to af33f847885d3193956d71653efcfeb586693de7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 02:52:38 to 01/23/2026 03:18:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 3a1efc416 - 2026-01-22 20:54:28 -0600 - 01/22/2026 20:54:28
 Changed in Other:
-- DFIntDataModelPatcherLoadRetry changed from 10 to 3 | Mechanism: Adds a retry mechanism for loading data models. | Purpose: Increases the chances of successfully loading game data, reducing errors for players.
-- DFStringFlagRepoGitHashDynamicString changed from ff77eeac1422169fe55107400f96748b81d619eb to 578853f35e37d4459eef882419b16cb4ca097554 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFIntDataModelPatcherLoadRetry changed from 10 to 3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlagRepoGitHashDynamicString changed from ff77eeac1422169fe55107400f96748b81d619eb to 578853f35e37d4459eef882419b16cb4ca097554 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 02:05:04 to 01/23/2026 02:52:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ff77eeac1422169fe55107400f96748b81d619eb to 578853f35e37d4459eef882419b16cb4ca097554 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 02:05:04 to 01/23/2026 02:52:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1576,7 +1576,7 @@ Removed in Other:
 Added in Other:
 - FStringSystrayExperimentBucketSettings2_Staged = "";SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T01:58:26 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 74d7f9b165db11535f87113207053a16605775f3 to ff77eeac1422169fe55107400f96748b81d619eb | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 74d7f9b165db11535f87113207053a16605775f3 to ff77eeac1422169fe55107400f96748b81d619eb | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 01:49:09 to 01/23/2026 02:05:04 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 74d7f9b165db11535f87113207053a16605775f3 to ff77eeac1422169fe55107400f96748b81d619eb | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 01:49:09 to 01/23/2026 02:05:04 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1585,7 +1585,7 @@ Changed in Other:
 Added in Other:
 - DFFlagHttpCacheAllowEmptyUrlInAssetCacheHeaders = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 1c5f197a4e7d3c86a595f89c69da558254d95cb0 to 74d7f9b165db11535f87113207053a16605775f3 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 1c5f197a4e7d3c86a595f89c69da558254d95cb0 to 74d7f9b165db11535f87113207053a16605775f3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 01:22:37 to 01/23/2026 01:49:09 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 1c5f197a4e7d3c86a595f89c69da558254d95cb0 to 74d7f9b165db11535f87113207053a16605775f3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 01:22:37 to 01/23/2026 01:49:09 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1596,17 +1596,17 @@ Removed in Other:
 Added in Other:
 - DFIntDataModelPatcherLoadRetry_Staged = 3;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T01:21:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFIntRemoteAllowListDisallowedNameHundredthsPercentage changed from 1000 to 50 | Mechanism: Sets a percentage limit on disallowed names for remote access. | Purpose: Helps maintain a safe environment by controlling inappropriate names.
-- DFStringFlagRepoGitHashDynamicString changed from cda64966e54237be33ab5dbc842000920a91c65a to 1c5f197a4e7d3c86a595f89c69da558254d95cb0 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFIntRemoteAllowListDisallowedNameHundredthsPercentage changed from 1000 to 50 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlagRepoGitHashDynamicString changed from cda64966e54237be33ab5dbc842000920a91c65a to 1c5f197a4e7d3c86a595f89c69da558254d95cb0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 00:56:31 to 01/23/2026 01:22:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from cda64966e54237be33ab5dbc842000920a91c65a to 1c5f197a4e7d3c86a595f89c69da558254d95cb0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 00:56:31 to 01/23/2026 01:22:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- DFIntRemoteAllowListDisallowedNameHundredthsPercentage_Staged removed (was 50;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T00:18:57) | Mechanism: Sets a limit on the percentage of disallowed names in remote calls. | Purpose: Enhances security by reducing the risk of inappropriate names in games.
+- DFIntRemoteAllowListDisallowedNameHundredthsPercentage_Staged removed (was 50;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T00:18:57) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## b28ff4874 - 2026-01-22 18:57:01 -0600 - 01/22/2026 18:57:01
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5dffc9c73efc3c610d0d772cf3379d1e0fee961c to cda64966e54237be33ab5dbc842000920a91c65a | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 5dffc9c73efc3c610d0d772cf3379d1e0fee961c to cda64966e54237be33ab5dbc842000920a91c65a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 00:46:34 to 01/23/2026 00:56:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 5dffc9c73efc3c610d0d772cf3379d1e0fee961c to cda64966e54237be33ab5dbc842000920a91c65a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 00:46:34 to 01/23/2026 00:56:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1614,25 +1614,25 @@ Changed in Other:
 ## c789b6391 - 2026-01-22 18:48:07 -0600 - 01/22/2026 18:48:07
 Changed in Other:
 - DFIntBatchLogEventSenderLinearLoggingUniverseSamplingPerMille changed from 2 to 10 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlagRepoGitHashDynamicString changed from 8762c93f27696ba46a18aef37cabc5b2513db346 to 5dffc9c73efc3c610d0d772cf3379d1e0fee961c | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 8762c93f27696ba46a18aef37cabc5b2513db346 to 5dffc9c73efc3c610d0d772cf3379d1e0fee961c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 00:45:16 to 01/23/2026 00:46:34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 8762c93f27696ba46a18aef37cabc5b2513db346 to 5dffc9c73efc3c610d0d772cf3379d1e0fee961c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 00:45:16 to 01/23/2026 00:46:34 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- DFIntBatchLogEventSenderLinearLoggingUniverseSamplingPerMille_Staged removed (was 10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1486362466;2026-01-22T23:41:18) | Mechanism: Adjusts how event logging is sampled for performance tracking. | Purpose: Improves the accuracy of performance data, helping developers optimize games.
+- DFIntBatchLogEventSenderLinearLoggingUniverseSamplingPerMille_Staged removed (was 10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1486362466;2026-01-22T23:41:18) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 8277b6159 - 2026-01-22 18:45:51 -0600 - 01/22/2026 18:45:51
 Added in Other:
 - DFFlagHttpCacheAllowEmptyUrlInAssetCacheHeaders_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T00:44:28 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 308df762f5e6af2edf3504186d6081553a17f067 to 8762c93f27696ba46a18aef37cabc5b2513db346 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 308df762f5e6af2edf3504186d6081553a17f067 to 8762c93f27696ba46a18aef37cabc5b2513db346 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 00:27:18 to 01/23/2026 00:45:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 308df762f5e6af2edf3504186d6081553a17f067 to 8762c93f27696ba46a18aef37cabc5b2513db346 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 00:27:18 to 01/23/2026 00:45:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 654f9f90b - 2026-01-22 18:28:05 -0600 - 01/22/2026 18:28:05
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 307307b4db9bf514766185970e5c5b55e9235565 to 308df762f5e6af2edf3504186d6081553a17f067 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 307307b4db9bf514766185970e5c5b55e9235565 to 308df762f5e6af2edf3504186d6081553a17f067 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 00:19:53 to 01/23/2026 00:27:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagBirthdayPickerCenteringFix changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 307307b4db9bf514766185970e5c5b55e9235565 to 308df762f5e6af2edf3504186d6081553a17f067 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1643,9 +1643,9 @@ Removed in Other:
 
 ## 4d5688df4 - 2026-01-22 18:21:25 -0600 - 01/22/2026 18:21:24
 Added in Other:
-- DFIntRemoteAllowListDisallowedNameHundredthsPercentage_Staged = 50;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T00:18:57 | Mechanism: Sets a limit on the percentage of disallowed names in remote calls. | Purpose: Enhances security by reducing the risk of inappropriate names in games.
+- DFIntRemoteAllowListDisallowedNameHundredthsPercentage_Staged = 50;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-23T00:18:57 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c071308ad106bc1196e0a59829462917eec81ecf to 307307b4db9bf514766185970e5c5b55e9235565 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from c071308ad106bc1196e0a59829462917eec81ecf to 307307b4db9bf514766185970e5c5b55e9235565 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 00:17:16 to 01/23/2026 00:19:53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from c071308ad106bc1196e0a59829462917eec81ecf to 307307b4db9bf514766185970e5c5b55e9235565 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 00:17:16 to 01/23/2026 00:19:53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1654,7 +1654,7 @@ Changed in Other:
 Added in Other:
 - FFlagAppChatExcludeSyntheticPreviewFromMessages = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7fc5cf31d7ddd7e1fc05ae6e2d398ec319fa382a to c071308ad106bc1196e0a59829462917eec81ecf | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 7fc5cf31d7ddd7e1fc05ae6e2d398ec319fa382a to c071308ad106bc1196e0a59829462917eec81ecf | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 00:13:11 to 01/23/2026 00:17:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 7fc5cf31d7ddd7e1fc05ae6e2d398ec319fa382a to c071308ad106bc1196e0a59829462917eec81ecf | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 00:13:11 to 01/23/2026 00:17:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1669,7 +1669,7 @@ Added in Other:
 Added in Physics:
 - FFlagLuauSolverAgnosticPropType = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7ca40999c6c1f2aeea61cbb796436610afce110c to 7fc5cf31d7ddd7e1fc05ae6e2d398ec319fa382a | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 7ca40999c6c1f2aeea61cbb796436610afce110c to 7fc5cf31d7ddd7e1fc05ae6e2d398ec319fa382a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 00:06:40 to 01/23/2026 00:13:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 7ca40999c6c1f2aeea61cbb796436610afce110c to 7fc5cf31d7ddd7e1fc05ae6e2d398ec319fa382a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 00:06:40 to 01/23/2026 00:13:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1681,7 +1681,7 @@ Removed in Physics:
 
 ## 96041b6f8 - 2026-01-22 18:07:47 -0600 - 01/22/2026 18:07:47
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 938a10e4777bd2fb7953f1fe566ae6976ad3b933 to 7ca40999c6c1f2aeea61cbb796436610afce110c | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 938a10e4777bd2fb7953f1fe566ae6976ad3b933 to 7ca40999c6c1f2aeea61cbb796436610afce110c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/23/2026 00:01:24 to 01/23/2026 00:06:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 938a10e4777bd2fb7953f1fe566ae6976ad3b933 to 7ca40999c6c1f2aeea61cbb796436610afce110c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/23/2026 00:01:24 to 01/23/2026 00:06:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1692,18 +1692,18 @@ Added in Other:
 - FFlagAppChatSuppressGroupOSAContextCard = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagIASModifierKeys = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from bdc10fb2d39458c266ce55d7fc81865760084bd9 to 938a10e4777bd2fb7953f1fe566ae6976ad3b933 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from bdc10fb2d39458c266ce55d7fc81865760084bd9 to 938a10e4777bd2fb7953f1fe566ae6976ad3b933 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:57:06 to 01/23/2026 00:01:24 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from bdc10fb2d39458c266ce55d7fc81865760084bd9 to 938a10e4777bd2fb7953f1fe566ae6976ad3b933 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:57:06 to 01/23/2026 00:01:24 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
 - FFlagAppChatGroupOsaPreventBlankDialog_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:58:23) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagAppChatSuppressGroupOSAContextCard_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:55:37) | Mechanism: Suppresses certain context cards in group chats. | Purpose: Reduces distractions in group chats, making conversations clearer.
+- FFlagAppChatSuppressGroupOSAContextCard_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:55:37) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagIASModifierKeys_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:57:56) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 1c0942811 - 2026-01-22 17:58:47 -0600 - 01/22/2026 17:58:47
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c025de0c75c9207104935c19af37d0a85cbc888f to bdc10fb2d39458c266ce55d7fc81865760084bd9 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from c025de0c75c9207104935c19af37d0a85cbc888f to bdc10fb2d39458c266ce55d7fc81865760084bd9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:53:53 to 01/22/2026 23:57:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from c025de0c75c9207104935c19af37d0a85cbc888f to bdc10fb2d39458c266ce55d7fc81865760084bd9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:53:53 to 01/22/2026 23:57:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1712,23 +1712,23 @@ Changed in Other:
 Added in Other:
 - FFlagWrapDeformerUsesFMD3_Staged = true;SteadyState;10;30;Revert;2026-01-22T23:52:58 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from f255a691cab117734e778987671cff04bd3e5340 to c025de0c75c9207104935c19af37d0a85cbc888f | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from f255a691cab117734e778987671cff04bd3e5340 to c025de0c75c9207104935c19af37d0a85cbc888f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:53:27 to 01/22/2026 23:53:53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from f255a691cab117734e778987671cff04bd3e5340 to c025de0c75c9207104935c19af37d0a85cbc888f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:53:27 to 01/22/2026 23:53:53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 6bfd0d418 - 2026-01-22 17:54:17 -0600 - 01/22/2026 17:54:16
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from ce1b3cb6984b437e7a71c3e88f6c735f6613e490 to f255a691cab117734e778987671cff04bd3e5340 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from ce1b3cb6984b437e7a71c3e88f6c735f6613e490 to f255a691cab117734e778987671cff04bd3e5340 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:42:05 to 01/22/2026 23:53:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from ce1b3cb6984b437e7a71c3e88f6c735f6613e490 to f255a691cab117734e778987671cff04bd3e5340 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:42:05 to 01/22/2026 23:53:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 227a066ed - 2026-01-22 17:43:02 -0600 - 01/22/2026 17:43:01
 Added in Other:
-- DFIntBatchLogEventSenderLinearLoggingUniverseSamplingPerMille_Staged = 10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1486362466;2026-01-22T23:41:18 | Mechanism: Adjusts how event logging is sampled for performance tracking. | Purpose: Improves the accuracy of performance data, helping developers optimize games.
+- DFIntBatchLogEventSenderLinearLoggingUniverseSamplingPerMille_Staged = 10;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1486362466;2026-01-22T23:41:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 86f9238b3adb131e65ce5e41a5b3b8a52487d06d to ce1b3cb6984b437e7a71c3e88f6c735f6613e490 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 86f9238b3adb131e65ce5e41a5b3b8a52487d06d to ce1b3cb6984b437e7a71c3e88f6c735f6613e490 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:27:02 to 01/22/2026 23:42:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 86f9238b3adb131e65ce5e41a5b3b8a52487d06d to ce1b3cb6984b437e7a71c3e88f6c735f6613e490 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:27:02 to 01/22/2026 23:42:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1739,7 +1739,7 @@ Added in Other:
 Added in Camera/UI:
 - FFlagLoadStoredInputAudioDeviceEarlier = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 2231dd9aa03e5136bca31fbe30045bf78fe478c3 to 86f9238b3adb131e65ce5e41a5b3b8a52487d06d | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 2231dd9aa03e5136bca31fbe30045bf78fe478c3 to 86f9238b3adb131e65ce5e41a5b3b8a52487d06d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:22:11 to 01/22/2026 23:27:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 2231dd9aa03e5136bca31fbe30045bf78fe478c3 to 86f9238b3adb131e65ce5e41a5b3b8a52487d06d | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:22:11 to 01/22/2026 23:27:02 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1752,7 +1752,7 @@ Removed in Camera/UI:
 Added in Other:
 - FFlagBirthdayPickerCenteringFix_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;186514938;2026-01-22T23:21:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 9bd0dd3b10df2edea93336d6d717d8093c401ffa to 2231dd9aa03e5136bca31fbe30045bf78fe478c3 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 9bd0dd3b10df2edea93336d6d717d8093c401ffa to 2231dd9aa03e5136bca31fbe30045bf78fe478c3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:17:37 to 01/22/2026 23:22:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 9bd0dd3b10df2edea93336d6d717d8093c401ffa to 2231dd9aa03e5136bca31fbe30045bf78fe478c3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:17:37 to 01/22/2026 23:22:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1762,17 +1762,17 @@ Added in Other:
 - FFlagAppChatGroupOsaNavigateBeforeRecordDecline = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagEventIngestTreatAcceptedAsSuccess = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 70b30d985d605492ec83d9ce3bc65cf0b6994e3b to 9bd0dd3b10df2edea93336d6d717d8093c401ffa | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 70b30d985d605492ec83d9ce3bc65cf0b6994e3b to 9bd0dd3b10df2edea93336d6d717d8093c401ffa | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:13:35 to 01/22/2026 23:17:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 70b30d985d605492ec83d9ce3bc65cf0b6994e3b to 9bd0dd3b10df2edea93336d6d717d8093c401ffa | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:13:35 to 01/22/2026 23:17:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- FFlagAppChatGroupOsaNavigateBeforeRecordDecline_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:12:10) | Mechanism: Modifies the navigation behavior in group chat features. | Purpose: Improves user experience by allowing better navigation before declining a record.
+- FFlagAppChatGroupOsaNavigateBeforeRecordDecline_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:12:10) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagEventIngestTreatAcceptedAsSuccess_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:12:55) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 075f10925 - 2026-01-22 17:16:04 -0600 - 01/22/2026 17:16:04
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from dbb38ac86f2e2c7d956170f4d153e3ed98a1e2f1 to 70b30d985d605492ec83d9ce3bc65cf0b6994e3b | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from dbb38ac86f2e2c7d956170f4d153e3ed98a1e2f1 to 70b30d985d605492ec83d9ce3bc65cf0b6994e3b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:12:25 to 01/22/2026 23:13:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from dbb38ac86f2e2c7d956170f4d153e3ed98a1e2f1 to 70b30d985d605492ec83d9ce3bc65cf0b6994e3b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:12:25 to 01/22/2026 23:13:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1782,21 +1782,21 @@ Added in Other:
 - DFFlagDataStoreEnableStartupThrottler_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;552871564;2026-01-22T23:10:10 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagAppChatEnableGroupOSA3 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagAppChatExcludeSyntheticPreviewFromMessages_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T23:11:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagAppChatNavigateBackIfOSAUnacknowledged = True | Mechanism: Allows the chat app to navigate back if an on-screen alert is not acknowledged. | Purpose: Improves user experience by ensuring players can easily return to chat after dismissing alerts.
+- FFlagAppChatNavigateBackIfOSAUnacknowledged = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 11c60ef45999ba03b6a6ad0943230b924043d74e to dbb38ac86f2e2c7d956170f4d153e3ed98a1e2f1 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 11c60ef45999ba03b6a6ad0943230b924043d74e to dbb38ac86f2e2c7d956170f4d153e3ed98a1e2f1 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:08:56 to 01/22/2026 23:12:25 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 11c60ef45999ba03b6a6ad0943230b924043d74e to dbb38ac86f2e2c7d956170f4d153e3ed98a1e2f1 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:08:56 to 01/22/2026 23:12:25 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- FFlagAppChatEnableGroupOSA3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:08:16) | Mechanism: Enables a new chat feature for group interactions. | Purpose: Enhances communication among players in groups, making it easier to collaborate.
-- FFlagAppChatNavigateBackIfOSAUnacknowledged_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:09:42) | Mechanism: Allows users to navigate back in chat if a specific action is not acknowledged. | Purpose: Improves user experience by making it easier to return to previous chat messages.
+- FFlagAppChatEnableGroupOSA3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:08:16) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagAppChatNavigateBackIfOSAUnacknowledged_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:09:42) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 5250f58f4 - 2026-01-22 17:11:31 -0600 - 01/22/2026 17:11:30
 Added in Other:
 - FFlagGroupOSAGetConversationParticipants2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T23:07:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8abc586415aea533dc44db178cd2490155926655 to 11c60ef45999ba03b6a6ad0943230b924043d74e | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 8abc586415aea533dc44db178cd2490155926655 to 11c60ef45999ba03b6a6ad0943230b924043d74e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:07:51 to 01/22/2026 23:08:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 8abc586415aea533dc44db178cd2490155926655 to 11c60ef45999ba03b6a6ad0943230b924043d74e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:07:51 to 01/22/2026 23:08:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1805,14 +1805,14 @@ Changed in Other:
 Added in Physics:
 - FFlagLuauSolverAgnosticPropType_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T23:06:59 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8aba90634c6d397fc3ebdc42f81f2528c42144ec to 8abc586415aea533dc44db178cd2490155926655 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 8aba90634c6d397fc3ebdc42f81f2528c42144ec to 8abc586415aea533dc44db178cd2490155926655 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:05:50 to 01/22/2026 23:07:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 8aba90634c6d397fc3ebdc42f81f2528c42144ec to 8abc586415aea533dc44db178cd2490155926655 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:05:50 to 01/22/2026 23:07:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 02913afdf - 2026-01-22 17:06:56 -0600 - 01/22/2026 17:06:56
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from adf489a7c2e4ff88064d744efdc64c20c57360f0 to 8aba90634c6d397fc3ebdc42f81f2528c42144ec | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from adf489a7c2e4ff88064d744efdc64c20c57360f0 to 8aba90634c6d397fc3ebdc42f81f2528c42144ec | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:03:42 to 01/22/2026 23:05:50 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from adf489a7c2e4ff88064d744efdc64c20c57360f0 to 8aba90634c6d397fc3ebdc42f81f2528c42144ec | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:03:42 to 01/22/2026 23:05:50 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1823,7 +1823,7 @@ Added in Other:
 Changed in Other:
 - DFFlagDataStoreEnableModernRequestCounters_UniverseFilter changed from true;3666294218;9343843562 to true;3666294218;9343843562;4800235170 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFFlagDataStoreEnableModernRequestThrottling_UniverseFilter changed from true;3666294218;9343843562 to true;3666294218;9343843562;4800235170 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlagRepoGitHashDynamicString changed from cd2eb245147b98eefc0fc70fcdda6ecacc4414af to adf489a7c2e4ff88064d744efdc64c20c57360f0 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from cd2eb245147b98eefc0fc70fcdda6ecacc4414af to adf489a7c2e4ff88064d744efdc64c20c57360f0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 23:00:16 to 01/22/2026 23:03:42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from cd2eb245147b98eefc0fc70fcdda6ecacc4414af to adf489a7c2e4ff88064d744efdc64c20c57360f0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 23:00:16 to 01/22/2026 23:03:42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1832,7 +1832,7 @@ Changed in Other:
 Added in Other:
 - FFlagAppChatGroupOsaPreventBlankDialog_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:58:23 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 36ceb6399c8f5bff235c3ccad3777870bdaec352 to cd2eb245147b98eefc0fc70fcdda6ecacc4414af | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 36ceb6399c8f5bff235c3ccad3777870bdaec352 to cd2eb245147b98eefc0fc70fcdda6ecacc4414af | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:59:18 to 01/22/2026 23:00:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 36ceb6399c8f5bff235c3ccad3777870bdaec352 to cd2eb245147b98eefc0fc70fcdda6ecacc4414af | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:59:18 to 01/22/2026 23:00:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1841,33 +1841,33 @@ Changed in Other:
 Added in Other:
 - FFlagIASModifierKeys_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:57:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 31f0d519865de0062ac54d722798831473bcc170 to 36ceb6399c8f5bff235c3ccad3777870bdaec352 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 31f0d519865de0062ac54d722798831473bcc170 to 36ceb6399c8f5bff235c3ccad3777870bdaec352 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:57:23 to 01/22/2026 22:59:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 31f0d519865de0062ac54d722798831473bcc170 to 36ceb6399c8f5bff235c3ccad3777870bdaec352 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:57:23 to 01/22/2026 22:59:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 3e7e1887a - 2026-01-22 16:57:44 -0600 - 01/22/2026 16:57:44
 Added in Other:
-- FFlagAppChatSuppressGroupOSAContextCard_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:55:37 | Mechanism: Suppresses certain context cards in group chats. | Purpose: Reduces distractions in group chats, making conversations clearer.
+- FFlagAppChatSuppressGroupOSAContextCard_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:55:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from afdd5cfcbc87c4e2288ea3e7fa7f2c76944704d1 to 31f0d519865de0062ac54d722798831473bcc170 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from afdd5cfcbc87c4e2288ea3e7fa7f2c76944704d1 to 31f0d519865de0062ac54d722798831473bcc170 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:52:08 to 01/22/2026 22:57:23 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from afdd5cfcbc87c4e2288ea3e7fa7f2c76944704d1 to 31f0d519865de0062ac54d722798831473bcc170 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:52:08 to 01/22/2026 22:57:23 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## b1e57be72 - 2026-01-22 16:53:14 -0600 - 01/22/2026 16:53:14
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from e65b73bb9e2ac70d687c656e5c3fb04010b64da5 to afdd5cfcbc87c4e2288ea3e7fa7f2c76944704d1 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from e65b73bb9e2ac70d687c656e5c3fb04010b64da5 to afdd5cfcbc87c4e2288ea3e7fa7f2c76944704d1 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:42:15 to 01/22/2026 22:52:08 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagDeprecatePrecomputeDeformedVertices changed from False to True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from e65b73bb9e2ac70d687c656e5c3fb04010b64da5 to afdd5cfcbc87c4e2288ea3e7fa7f2c76944704d1 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:42:15 to 01/22/2026 22:52:08 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- FFlagDeprecatePrecomputeDeformedVertices_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T21:47:17) | Mechanism: Removes an outdated method for calculating vertex deformations. | Purpose: Enhances game performance by streamlining the graphics processing.
+- FFlagDeprecatePrecomputeDeformedVertices_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T21:47:17) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 308636261 - 2026-01-22 16:44:20 -0600 - 01/22/2026 16:44:20
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 84e75b86880899108b7bcaedbdca9a5a9868e57c to e65b73bb9e2ac70d687c656e5c3fb04010b64da5 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 84e75b86880899108b7bcaedbdca9a5a9868e57c to e65b73bb9e2ac70d687c656e5c3fb04010b64da5 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:22:51 to 01/22/2026 22:42:15 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 84e75b86880899108b7bcaedbdca9a5a9868e57c to e65b73bb9e2ac70d687c656e5c3fb04010b64da5 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:22:51 to 01/22/2026 22:42:15 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1878,16 +1878,16 @@ Added in Other:
 Added in Camera/UI:
 - FFlagLoadStoredInputAudioDeviceEarlier_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:21:20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 0cb7c870737f3cb05b9d14227933e85c066157e9 to 84e75b86880899108b7bcaedbdca9a5a9868e57c | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 0cb7c870737f3cb05b9d14227933e85c066157e9 to 84e75b86880899108b7bcaedbdca9a5a9868e57c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:16:55 to 01/22/2026 22:22:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 0cb7c870737f3cb05b9d14227933e85c066157e9 to 84e75b86880899108b7bcaedbdca9a5a9868e57c | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:16:55 to 01/22/2026 22:22:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 64041341b - 2026-01-22 16:17:23 -0600 - 01/22/2026 16:17:23
 Added in Other:
-- DFIntDataStoreUseStartupThrottlerSeconds = 30 | Mechanism: Implements a throttling system for data store requests during startup to manage load. | Purpose: Improves game stability by preventing server overload during peak times when many players join.
+- DFIntDataStoreUseStartupThrottlerSeconds = 30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from bca36a34cfa6ebfa0ed2f338c8f5deddab38b765 to 0cb7c870737f3cb05b9d14227933e85c066157e9 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from bca36a34cfa6ebfa0ed2f338c8f5deddab38b765 to 0cb7c870737f3cb05b9d14227933e85c066157e9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:14:01 to 01/22/2026 22:16:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from bca36a34cfa6ebfa0ed2f338c8f5deddab38b765 to 0cb7c870737f3cb05b9d14227933e85c066157e9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:14:01 to 01/22/2026 22:16:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1896,35 +1896,35 @@ Removed in Other:
 
 ## bb8ff6153 - 2026-01-22 16:15:06 -0600 - 01/22/2026 16:15:05
 Added in Other:
-- FFlagAppChatGroupOsaNavigateBeforeRecordDecline_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:12:10 | Mechanism: Modifies the navigation behavior in group chat features. | Purpose: Improves user experience by allowing better navigation before declining a record.
+- FFlagAppChatGroupOsaNavigateBeforeRecordDecline_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:12:10 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagEventIngestTreatAcceptedAsSuccess_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:12:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7639acc17c0b20bc5a39186cc300c8c09783e3f6 to bca36a34cfa6ebfa0ed2f338c8f5deddab38b765 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 7639acc17c0b20bc5a39186cc300c8c09783e3f6 to bca36a34cfa6ebfa0ed2f338c8f5deddab38b765 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:11:30 to 01/22/2026 22:14:01 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 7639acc17c0b20bc5a39186cc300c8c09783e3f6 to bca36a34cfa6ebfa0ed2f338c8f5deddab38b765 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:11:30 to 01/22/2026 22:14:01 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 3f15c6bf2 - 2026-01-22 16:12:48 -0600 - 01/22/2026 16:12:48
 Added in Other:
-- FFlagAppChatNavigateBackIfOSAUnacknowledged_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:09:42 | Mechanism: Allows users to navigate back in chat if a specific action is not acknowledged. | Purpose: Improves user experience by making it easier to return to previous chat messages.
+- FFlagAppChatNavigateBackIfOSAUnacknowledged_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:09:42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from be2fc4eb15d8b6ab7acc4e20cdd09d3b557d5e9a to 7639acc17c0b20bc5a39186cc300c8c09783e3f6 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from be2fc4eb15d8b6ab7acc4e20cdd09d3b557d5e9a to 7639acc17c0b20bc5a39186cc300c8c09783e3f6 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:09:05 to 01/22/2026 22:11:30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from be2fc4eb15d8b6ab7acc4e20cdd09d3b557d5e9a to 7639acc17c0b20bc5a39186cc300c8c09783e3f6 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:09:05 to 01/22/2026 22:11:30 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## c5d226396 - 2026-01-22 16:10:32 -0600 - 01/22/2026 16:10:32
 Added in Other:
-- FFlagAppChatEnableGroupOSA3_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:08:16 | Mechanism: Enables a new chat feature for group interactions. | Purpose: Enhances communication among players in groups, making it easier to collaborate.
+- FFlagAppChatEnableGroupOSA3_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T22:08:16 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 193f9660be6f857b1a9f1e1ef78aa746f73f0d67 to be2fc4eb15d8b6ab7acc4e20cdd09d3b557d5e9a | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 193f9660be6f857b1a9f1e1ef78aa746f73f0d67 to be2fc4eb15d8b6ab7acc4e20cdd09d3b557d5e9a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:05:19 to 01/22/2026 22:09:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 193f9660be6f857b1a9f1e1ef78aa746f73f0d67 to be2fc4eb15d8b6ab7acc4e20cdd09d3b557d5e9a | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:05:19 to 01/22/2026 22:09:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 7cc0b53d3 - 2026-01-22 16:08:15 -0600 - 01/22/2026 16:08:15
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b50c24c01cb536ff0488c55a85c727e64a8f5673 to 193f9660be6f857b1a9f1e1ef78aa746f73f0d67 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from b50c24c01cb536ff0488c55a85c727e64a8f5673 to 193f9660be6f857b1a9f1e1ef78aa746f73f0d67 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 22:02:00 to 01/22/2026 22:05:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from b50c24c01cb536ff0488c55a85c727e64a8f5673 to 193f9660be6f857b1a9f1e1ef78aa746f73f0d67 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:02:00 to 01/22/2026 22:05:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1933,7 +1933,7 @@ Changed in Other:
 Added in Other:
 - DFIntReverbEnclosedKneeHundreths = 55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from d733edbe19b74ff0430cb6f6d1b62ecbfdd8e920 to b50c24c01cb536ff0488c55a85c727e64a8f5673 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from d733edbe19b74ff0430cb6f6d1b62ecbfdd8e920 to b50c24c01cb536ff0488c55a85c727e64a8f5673 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 21:57:12 to 01/22/2026 22:02:00 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from d733edbe19b74ff0430cb6f6d1b62ecbfdd8e920 to b50c24c01cb536ff0488c55a85c727e64a8f5673 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 21:57:12 to 01/22/2026 22:02:00 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1945,7 +1945,7 @@ Added in Other:
 - DFIntRbxTelemetryBaseMultiplier_IXP = 1;Engine.Telemetry;engine_telemetry_retry_logic;830981440;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFIntRbxTelemetryBaseRetryRandomOffsetRangeMs_IXP = 1;Engine.Telemetry;engine_telemetry_retry_logic;830981440;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFIntRbxTelemetryBaseRetryTimeMs_IXP = 1;Engine.Telemetry;engine_telemetry_retry_logic;830981440;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFIntRbxTelemetryMaxBackoffTimeMs_IXP = 1;Engine.Telemetry;engine_telemetry_retry_logic;830981440;flagbank | Mechanism: Sets a maximum time limit for retrying telemetry data transmission. | Purpose: Ensures that game performance is not hindered by excessive data retries.
+- DFIntRbxTelemetryMaxBackoffTimeMs_IXP = 1;Engine.Telemetry;engine_telemetry_retry_logic;830981440;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFIntRbxTelemetryMaxConcurrentRetriedRequests_IXP = 1;Engine.Telemetry;engine_telemetry_retry_logic;830981440;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFIntRbxTelemetryMaxElapsedTimeMs_IXP = 1;Engine.Telemetry;engine_telemetry_retry_logic;830981440;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFIntRbxTelemetryMaxRetryAttempts_IXP = 1;Engine.Telemetry;engine_telemetry_retry_logic;830981440;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1953,23 +1953,23 @@ Added in Other:
 - FFlagTelemetryRetryOnConnectFail_IXP = 1;Engine.Telemetry;engine_telemetry_retry_logic;830981440;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagTelemetryRetryOnDnsResolve_IXP = 1;Engine.Telemetry;engine_telemetry_retry_logic;830981440;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 185ab7a5ec03480617ee4c3df6dcacab53fd70c2 to d733edbe19b74ff0430cb6f6d1b62ecbfdd8e920 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 185ab7a5ec03480617ee4c3df6dcacab53fd70c2 to d733edbe19b74ff0430cb6f6d1b62ecbfdd8e920 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 21:54:44 to 01/22/2026 21:57:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 185ab7a5ec03480617ee4c3df6dcacab53fd70c2 to d733edbe19b74ff0430cb6f6d1b62ecbfdd8e920 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 21:54:44 to 01/22/2026 21:57:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## d48e23550 - 2026-01-22 15:57:03 -0600 - 01/22/2026 15:57:03
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from c8bb5bfaac62e4893ea681d33117b4e2a5f426ea to 185ab7a5ec03480617ee4c3df6dcacab53fd70c2 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from c8bb5bfaac62e4893ea681d33117b4e2a5f426ea to 185ab7a5ec03480617ee4c3df6dcacab53fd70c2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 21:51:28 to 01/22/2026 21:54:44 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from c8bb5bfaac62e4893ea681d33117b4e2a5f426ea to 185ab7a5ec03480617ee4c3df6dcacab53fd70c2 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 21:51:28 to 01/22/2026 21:54:44 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## df616c407 - 2026-01-22 15:52:25 -0600 - 01/22/2026 15:52:25
 Added in Other:
-- FFlagWrapDeformerContextOutputFileMeshData7 = True | Mechanism: Enhances the way mesh data is handled during the deformation process. | Purpose: Improves the visual quality and performance of 3D models in games.
+- FFlagWrapDeformerContextOutputFileMeshData7 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 68317a4843f4d59ec7e85cbd8447ce2b9cd66dd9 to c8bb5bfaac62e4893ea681d33117b4e2a5f426ea | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 68317a4843f4d59ec7e85cbd8447ce2b9cd66dd9 to c8bb5bfaac62e4893ea681d33117b4e2a5f426ea | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 21:47:57 to 01/22/2026 21:51:28 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 68317a4843f4d59ec7e85cbd8447ce2b9cd66dd9 to c8bb5bfaac62e4893ea681d33117b4e2a5f426ea | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 21:47:57 to 01/22/2026 21:51:28 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1978,18 +1978,18 @@ Removed in Other:
 
 ## 006719848 - 2026-01-22 15:50:10 -0600 - 01/22/2026 15:50:10
 Added in Other:
-- FFlagDeprecatePrecomputeDeformedVertices_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T21:47:17 | Mechanism: Removes an outdated method for calculating vertex deformations. | Purpose: Enhances game performance by streamlining the graphics processing.
+- FFlagDeprecatePrecomputeDeformedVertices_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-22T21:47:17 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 62925d8c45030d5f572c94103bc8c6a938f6da5e to 68317a4843f4d59ec7e85cbd8447ce2b9cd66dd9 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 62925d8c45030d5f572c94103bc8c6a938f6da5e to 68317a4843f4d59ec7e85cbd8447ce2b9cd66dd9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 21:46:45 to 01/22/2026 21:47:57 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 62925d8c45030d5f572c94103bc8c6a938f6da5e to 68317a4843f4d59ec7e85cbd8447ce2b9cd66dd9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 21:46:45 to 01/22/2026 21:47:57 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 211aa2545 - 2026-01-22 15:47:55 -0600 - 01/22/2026 15:47:55
 Added in Other:
-- FFlagMoveDeviceInfoLater = True | Mechanism: Changes when device information is processed during game startup. | Purpose: Improves loading times and overall game performance on various devices.
+- FFlagMoveDeviceInfoLater = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 46676076bb39a399a6bae89fd2b83520be3055ce to 62925d8c45030d5f572c94103bc8c6a938f6da5e | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 46676076bb39a399a6bae89fd2b83520be3055ce to 62925d8c45030d5f572c94103bc8c6a938f6da5e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 21:38:05 to 01/22/2026 21:46:45 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 46676076bb39a399a6bae89fd2b83520be3055ce to 62925d8c45030d5f572c94103bc8c6a938f6da5e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 21:38:05 to 01/22/2026 21:46:45 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -2001,7 +2001,7 @@ Removed in Other:
 
 ## 054b51aec - 2026-01-22 15:39:06 -0600 - 01/22/2026 15:39:05
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 074af2792b7eb7779f7393c87b9facaf3bea5f46 to 46676076bb39a399a6bae89fd2b83520be3055ce | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 074af2792b7eb7779f7393c87b9facaf3bea5f46 to 46676076bb39a399a6bae89fd2b83520be3055ce | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 21:32:06 to 01/22/2026 21:38:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 074af2792b7eb7779f7393c87b9facaf3bea5f46 to 46676076bb39a399a6bae89fd2b83520be3055ce | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 21:32:06 to 01/22/2026 21:38:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -2010,7 +2010,7 @@ Changed in Other:
 Added in Other:
 - DFFlagVideoCaptureDropNegativePts = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 7bddf89c51235fd1681bffcbbabc55eacd07fa93 to 074af2792b7eb7779f7393c87b9facaf3bea5f46 | Mechanism: Stores a dynamic string value related to the Git hash for version control. | Purpose: Helps developers track changes and versions of the game more efficiently.
+- DFStringFlagRepoGitHashDynamicString changed from 7bddf89c51235fd1681bffcbbabc55eacd07fa93 to 074af2792b7eb7779f7393c87b9facaf3bea5f46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 21:26:44 to 01/22/2026 21:32:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 7bddf89c51235fd1681bffcbbabc55eacd07fa93 to 074af2792b7eb7779f7393c87b9facaf3bea5f46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 21:26:44 to 01/22/2026 21:32:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
