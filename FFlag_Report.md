@@ -1,6 +1,6 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-01-27 05:54:47 PM PST
+- Last Run: 2026-01-27 09:20:09 PM PST
 - Flags Added: 200
 - Flags Changed: 829
 - Flags Removed: 117
@@ -310,7 +310,7 @@ Removed in Other:
 
 ## 67fd2de46 - 2026-01-26 17:08:52 -0600 - 01/26/2026 17:08:52
 Added in Graphics:
-- DFFlagTM2MarkShadowTextures = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFFlagTM2MarkShadowTextures = True | Mechanism: Enables marking of shadow textures in the rendering engine. | Purpose: Improves visual quality by enhancing how shadows are displayed.
 Added in Input:
 - FFlagFixControllerDisconnectImageAspectRatio = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
@@ -843,14 +843,14 @@ Removed in World:
 Added in Other:
 - DFFlagSimDeferredPredictionInstructions = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
-- DFStringBatchLogEventSenderLinearLoggingUniverseIds changed from 7709344486,1686885941,8316902627 to 7709344486,7326934954,9363735110 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringBatchLogEventSenderLinearLoggingUniverseIds changed from 7709344486,1686885941,8316902627 to 7709344486,7326934954,9363735110 | Mechanism: Allows batch logging of events with specific universe IDs. | Purpose: Helps developers track events more efficiently, leading to better game performance.
 - DFStringFlagRepoGitHashDynamicString changed from a5da8f419deb0cb0494dd8f6b65ed4a03f5387b1 to 0e4ec0a88ad451bd04ca88eb1dc2f90a7eb65d5f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 20:05:23 to 01/26/2026 20:06:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a5da8f419deb0cb0494dd8f6b65ed4a03f5387b1 to 0e4ec0a88ad451bd04ca88eb1dc2f90a7eb65d5f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:05:23 to 01/26/2026 20:06:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
 - DFFlagSimDeferredPredictionInstructions_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:04:23) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringBatchLogEventSenderLinearLoggingUniverseIds_Staged removed (was 7709344486,7326934954,9363735110;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1917453506;2026-01-26T19:01:56) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringBatchLogEventSenderLinearLoggingUniverseIds_Staged removed (was 7709344486,7326934954,9363735110;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1917453506;2026-01-26T19:01:56) | Mechanism: Similar to the previous flag, but in a testing phase for new features. | Purpose: Enables developers to test event logging improvements before full release.
 
 ## d03693fff - 2026-01-26 14:06:52 -0600 - 01/26/2026 14:06:52
 Added in Other:
@@ -1019,7 +1019,7 @@ Changed in Other:
 
 ## ee875782e - 2026-01-26 13:04:19 -0600 - 01/26/2026 13:04:18
 Added in Other:
-- DFStringBatchLogEventSenderLinearLoggingUniverseIds_Staged = 7709344486,7326934954,9363735110;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1917453506;2026-01-26T19:01:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringBatchLogEventSenderLinearLoggingUniverseIds_Staged = 7709344486,7326934954,9363735110;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1917453506;2026-01-26T19:01:56 | Mechanism: Similar to the previous flag, but in a testing phase for new features. | Purpose: Enables developers to test event logging improvements before full release.
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from ac832278794630db12b676dad96d733bb872931f to 92fdf01b30cbeacb6f38707c78e5f0c42d14e7bd | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 18:57:00 to 01/26/2026 19:02:51 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1892,7 +1892,7 @@ Changed in Other:
 - FStringFlagRepoGitHashFastString changed from bca36a34cfa6ebfa0ed2f338c8f5deddab38b765 to 0cb7c870737f3cb05b9d14227933e85c066157e9 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/22/2026 22:14:01 to 01/22/2026 22:16:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- DFIntDataStoreUseStartupThrottlerSeconds_Staged removed (was 30;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1671199340;2026-01-22T21:14:20) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFIntDataStoreUseStartupThrottlerSeconds_Staged removed (was 30;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1671199340;2026-01-22T21:14:20) | Mechanism: Implements a throttling mechanism for data store access during startup. | Purpose: Prevents server overload at startup, ensuring smoother game launches.
 
 ## bb8ff6153 - 2026-01-22 16:15:06 -0600 - 01/22/2026 16:15:05
 Added in Other:
@@ -1931,7 +1931,7 @@ Changed in Other:
 
 ## 7405358f4 - 2026-01-22 16:03:46 -0600 - 01/22/2026 16:03:46
 Added in Other:
-- DFIntReverbEnclosedKneeHundreths = 55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFIntReverbEnclosedKneeHundreths = 55 | Mechanism: Adjusts the reverb settings in audio processing. | Purpose: Enhances sound effects in games, making audio more immersive.
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from d733edbe19b74ff0430cb6f6d1b62ecbfdd8e920 to b50c24c01cb536ff0488c55a85c727e64a8f5673 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/22/2026 21:57:12 to 01/22/2026 22:02:00 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
