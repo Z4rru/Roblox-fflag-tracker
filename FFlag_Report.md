@@ -1,6 +1,6 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-01-28 06:02:50 PM PST
+- Last Run: 2026-01-28 09:26:08 PM PST
 - Flags Added: 241
 - Flags Changed: 821
 - Flags Removed: 142
@@ -43,7 +43,7 @@ Changed in Other:
 - FStringFlipTimeStampFastString changed from 01/28/2026 01:26:35 to 01/28/2026 01:31:20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
 - DFIntQuadricErrorScaleFactorHundredths_Staged removed (was 1000;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-28T00:25:36) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagSlimFetchMinLodFirst_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1275048083;2026-01-28T00:25:49) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagSlimFetchMinLodFirst_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1275048083;2026-01-28T00:25:49) | Mechanism: Fetches lower detail versions of assets first to improve loading speed. | Purpose: Players experience faster loading times for games.
 - FFlagSlimReportLodByteSize_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1275048083;2026-01-28T00:25:49) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagSlimReportSkinnedVertexCount_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1275048083;2026-01-28T00:25:49) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagSlimUse2022Material_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1275048083;2026-01-28T00:25:49) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -108,7 +108,7 @@ Changed in Other:
 ## fc671912e - 2026-01-27 18:28:15 -0600 - 01/27/2026 18:28:15
 Added in Other:
 - DFIntQuadricErrorScaleFactorHundredths_Staged = 1000;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-28T00:25:36 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagSlimFetchMinLodFirst_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1275048083;2026-01-28T00:25:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagSlimFetchMinLodFirst_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1275048083;2026-01-28T00:25:49 | Mechanism: Fetches lower detail versions of assets first to improve loading speed. | Purpose: Players experience faster loading times for games.
 - FFlagSlimReportLodByteSize_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1275048083;2026-01-28T00:25:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagSlimReportSkinnedVertexCount_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1275048083;2026-01-28T00:25:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagSlimUse2022Material_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1275048083;2026-01-28T00:25:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -905,7 +905,7 @@ Changed in Other:
 
 ## 73c091412 - 2026-01-27 13:37:35 -0600 - 01/27/2026 13:37:35
 Added in Other:
-- FFlagLuaAppsRemoteAllowListTemporaryExceptionsEnable = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagLuaAppsRemoteAllowListTemporaryExceptionsEnable = True | Mechanism: Allows temporary exceptions for remote calls in Lua applications. | Purpose: Enables more flexibility in scripting, improving game functionality.
 - FStringLuaAppsRemoteAllowListTemporaryExceptions = AvatarGesturesVRPlayer,RequestPlayerProfileSettings | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in Network:
 - FFlagVoiceChatClientRewriteOptimizeAllocations_Staged = true;SteadyState;10;30;Revert;2026-01-27T19:34:24 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1524,7 +1524,7 @@ Changed in Other:
 
 ## 9cd20996c - 2026-01-26 17:13:26 -0600 - 01/26/2026 17:13:26
 Added in Other:
-- FFlagPrecomputeMeshUvDerivs = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagPrecomputeMeshUvDerivs = True | Mechanism: Calculates texture mapping data in advance to optimize rendering. | Purpose: Improves visual quality and performance of 3D models in games.
 - FFlagStudsPerTileEmptyFix_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:10:53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from a4477a2af87f1d715089eb4f79b7ca320dfdf3f3 to affd87b2b388b297b89d7342a34cce7401e28443 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1560,7 +1560,7 @@ Changed in Other:
 - FStringFlagRepoGitHashFastString changed from 0a579b065811e9a0040eae4f51068eb08e1c0eef to badb17e10cfa6a3b84577b292443aff3a6a1db05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 22:58:31 to 01/26/2026 23:03:40 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Graphics:
-- FFlagTM2HandleTextureTiling_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T21:59:42) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagTM2HandleTextureTiling_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T21:59:42) | Mechanism: Improves the way textures are applied to surfaces in the game engine. | Purpose: Enhances the visual appearance of textures on objects.
 
 ## 3e02529f1 - 2026-01-26 16:59:43 -0600 - 01/26/2026 16:59:42
 Added in World:
@@ -1721,7 +1721,7 @@ Changed in Other:
 Added in Other:
 - FFlagAcousticSimulationLazilyInitializeOcclusion = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Added in Graphics:
-- FFlagTM2HandleTextureTiling_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T21:59:42 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagTM2HandleTextureTiling_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T21:59:42 | Mechanism: Improves the way textures are applied to surfaces in the game engine. | Purpose: Enhances the visual appearance of textures on objects.
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from a5127157c7243a314463bf44ceff03683fef1bde to b2f385dc9e37ae4d2ff114917cc1f0c49b10d9a8 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 21:57:29 to 01/26/2026 22:01:28 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -2075,7 +2075,7 @@ Changed in Other:
 - FStringFlagRepoGitHashFastString changed from a5da8f419deb0cb0494dd8f6b65ed4a03f5387b1 to 0e4ec0a88ad451bd04ca88eb1dc2f90a7eb65d5f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 20:05:23 to 01/26/2026 20:06:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- DFFlagSimDeferredPredictionInstructions_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:04:23) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFFlagSimDeferredPredictionInstructions_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T19:04:23) | Mechanism: Enhances simulation instructions for better prediction of game states. | Purpose: Provides smoother gameplay and more accurate game responses.
 - DFStringBatchLogEventSenderLinearLoggingUniverseIds_Staged removed (was 7709344486,7326934954,9363735110;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;1917453506;2026-01-26T19:01:56) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## d03693fff - 2026-01-26 14:06:52 -0600 - 01/26/2026 14:06:52
