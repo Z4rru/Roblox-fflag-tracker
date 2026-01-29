@@ -1,9 +1,9 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-01-29 10:30:42 AM PST
-- Flags Added: 196
-- Flags Changed: 812
-- Flags Removed: 111
+- Last Run: 2026-01-29 03:17:13 PM PST
+- Flags Added: 200
+- Flags Changed: 813
+- Flags Removed: 116
 
 ## Summary
 | Category | Added | Changed | Removed | Total |
@@ -18,14 +18,45 @@
 | Hit | 0 | 0 | 0 | 0 |
 | Interpolation | 6 | 1 | 3 | 10 |
 | Body | 3 | 1 | 2 | 6 |
-| Other | 149 | 810 | 85 | 1044 |
+| Other | 153 | 811 | 90 | 1054 |
 
 ## History Summary
 
-- Total Historical Added: 196
-- Total Historical Changed: 812
-- Total Historical Removed: 111
+- Total Historical Added: 200
+- Total Historical Changed: 813
+- Total Historical Removed: 116
 - Note: Limited history available.
+
+## fdd6d9cd4 - 2026-01-28 22:19:40 -0600 - 01/28/2026 22:19:40
+Added in Other:
+- FFlagAddCompactUnifiedUpsellModalMode = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagAppChatDialogRoundedCorners = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagUnifiedPurchaseFlowLowercaseTotalPrice = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagXboxPrefetchEnabled = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 21e7abdbca0e719c1b486226909756f6111da6be to 8dcee8be2b0b0f2b65f1d0a48789c042b35f6820 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlipTimeStampDynamicString changed from 01/29/2026 04:14:06 to 01/29/2026 04:17:46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagAssetProviderDetailedFailure3 changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlagRepoGitHashFastString changed from 21e7abdbca0e719c1b486226909756f6111da6be to 8dcee8be2b0b0f2b65f1d0a48789c042b35f6820 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlipTimeStampFastString changed from 01/29/2026 04:14:06 to 01/29/2026 04:17:46 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Removed in Other:
+- FFlagAddCompactUnifiedUpsellModalMode_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-28T21:05:43) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagAppChatDialogRoundedCorners_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-28T21:08:57) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagAssetProviderDetailedFailure3_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-29T01:10:48) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagUnifiedPurchaseFlowLowercaseTotalPrice_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-28T21:22:45) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagXboxPrefetchEnabled_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-28T21:21:27) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+
+## 3205637a0 - 2026-01-28 22:15:15 -0600 - 01/28/2026 22:15:15
+Added in Other:
+- FFlagAssetProviderDetailedFailure3_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-29T01:10:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagPrefillPreciseSelectionChoices = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from e8402a89779071ae38def5462363c32589f93850 to 21e7abdbca0e719c1b486226909756f6111da6be | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlipTimeStampDynamicString changed from 01/29/2026 00:26:34 to 01/29/2026 04:14:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlagRepoGitHashFastString changed from e8402a89779071ae38def5462363c32589f93850 to 21e7abdbca0e719c1b486226909756f6111da6be | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlipTimeStampFastString changed from 01/29/2026 00:26:34 to 01/29/2026 04:14:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Removed in Other:
+- FFlagPrefillPreciseSelectionChoices_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-28T21:00:37) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## d5e31dd03 - 2026-01-28 18:27:58 -0600 - 01/28/2026 18:27:58
 Added in Other:
@@ -1971,23 +2002,3 @@ Changed in Other:
 - DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:51:27 to 01/26/2026 23:55:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 4959c2f504650de53a45777a174f71c19d89d1d0 to 77bb917307d1fff7439cb37b6c4ca571d34449bf | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/26/2026 23:51:27 to 01/26/2026 23:55:47 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-
-## 8289a736e - 2026-01-26 17:52:04 -0600 - 01/26/2026 17:52:04
-Added in Other:
-- FFlagVideoCaptureEncoderOpenHangDetection_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-26T23:50:36 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from b6a3f35e6fe80de7a191001eea91c3055ee791fe to 4959c2f504650de53a45777a174f71c19d89d1d0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:46:48 to 01/26/2026 23:51:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlagRepoGitHashFastString changed from b6a3f35e6fe80de7a191001eea91c3055ee791fe to 4959c2f504650de53a45777a174f71c19d89d1d0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlipTimeStampFastString changed from 01/26/2026 23:46:48 to 01/26/2026 23:51:27 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-
-## 97e031346 - 2026-01-26 17:47:31 -0600 - 01/26/2026 17:47:31
-Added in Other:
-- DFIntAcousticSimQualityCutoffHundreths = 20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 5e8a408523f17ef5f34a71930eee2ceb20bb7780 to b6a3f35e6fe80de7a191001eea91c3055ee791fe | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlipTimeStampDynamicString changed from 01/26/2026 23:42:17 to 01/26/2026 23:46:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlagRepoGitHashFastString changed from 5e8a408523f17ef5f34a71930eee2ceb20bb7780 to b6a3f35e6fe80de7a191001eea91c3055ee791fe | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlipTimeStampFastString changed from 01/26/2026 23:42:17 to 01/26/2026 23:46:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Removed in Other:
-- DFIntAcousticSimQualityCutoffHundreths_Staged removed (was 20;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;748576487;2026-01-26T22:44:11) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
