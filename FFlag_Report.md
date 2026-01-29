@@ -1,6 +1,6 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-01-29 06:04:02 PM PST
+- Last Run: 2026-01-29 09:26:25 PM PST
 - Flags Added: 200
 - Flags Changed: 813
 - Flags Removed: 116
@@ -599,7 +599,7 @@ Changed in Other:
 
 ## eb7b19f1a - 2026-01-27 19:33:02 -0600 - 01/27/2026 19:33:01
 Added in Other:
-- FFlagSlimFetchMinLodFirst = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagSlimFetchMinLodFirst = True | Mechanism: Optimizes how low-detail models are fetched first for faster loading. | Purpose: Players experience quicker loading times for games with many models.
 - FFlagSlimReportLodByteSize = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagSlimReportSkinnedVertexCount = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagSlimUse2022Material = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -894,7 +894,7 @@ Changed in Other:
 - FStringFlipTimeStampFastString changed from 01/27/2026 23:01:11 to 01/27/2026 23:03:19 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
 - FFlagContactImporterIXPCleanup_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;706069912;2026-01-27T21:58:15) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagFixPeopleSearchIconSize_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1970403049;2026-01-27T21:56:14) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagFixPeopleSearchIconSize_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1970403049;2026-01-27T21:56:14) | Mechanism: Adjusts the size of icons in the people search feature. | Purpose: Improves the visual clarity and usability of the people search interface.
 
 ## df52078bf - 2026-01-27 17:02:03 -0600 - 01/27/2026 17:02:03
 Added in Body:
@@ -959,7 +959,7 @@ Changed in Other:
 Removed in Other:
 - FFlagAXMigrateAXFocusBehaviorRoot_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T21:27:28) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Camera/UI:
-- FFlagSduiInputDataSignals4_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;59977285;2026-01-27T21:25:53) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagSduiInputDataSignals4_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;59977285;2026-01-27T21:25:53) | Mechanism: Introduces new signals for handling input data in UI elements. | Purpose: Improves responsiveness and functionality of user interfaces in games.
 
 ## db8c63c07 - 2026-01-27 16:30:34 -0600 - 01/27/2026 16:30:34
 Added in Other:
@@ -1085,7 +1085,7 @@ Changed in Other:
 
 ## 9dae43e25 - 2026-01-27 15:58:39 -0600 - 01/27/2026 15:58:38
 Added in Other:
-- FFlagFixPeopleSearchIconSize_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1970403049;2026-01-27T21:56:14 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagFixPeopleSearchIconSize_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1970403049;2026-01-27T21:56:14 | Mechanism: Adjusts the size of icons in the people search feature. | Purpose: Improves the visual clarity and usability of the people search interface.
 - FFlagRemoveHasJustSetPermissions_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1139648711;2026-01-27T21:55:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from cf52c4162badf2237e59ea6221db6769a96518a9 to f0a372f653f9437e3952cb98a92220fc6b456d12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1165,7 +1165,7 @@ Removed in Other:
 
 ## e8d444caa - 2026-01-27 15:28:53 -0600 - 01/27/2026 15:28:53
 Added in Camera/UI:
-- FFlagSduiInputDataSignals4_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;59977285;2026-01-27T21:25:53 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagSduiInputDataSignals4_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;59977285;2026-01-27T21:25:53 | Mechanism: Introduces new signals for handling input data in UI elements. | Purpose: Improves responsiveness and functionality of user interfaces in games.
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from 93fec524ba49d79f4d1f6eb2aee9a3123aa308aa to 6b01af149179c513688e065431827abb943ad7ff | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 21:13:51 to 01/27/2026 21:26:44 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1599,7 +1599,7 @@ Removed in Other:
 
 ## c11cef9f0 - 2026-01-27 12:57:04 -0600 - 01/27/2026 12:57:04
 Added in Camera/UI:
-- FFlagLuauCodegenExplicitUint16 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagLuauCodegenExplicitUint16 = True | Mechanism: Enhances code generation for a specific data type (Uint16) in scripts. | Purpose: Allows developers to write more precise scripts, leading to better game performance.
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from 2ca6baf5af157d7f0804b9e75e0db94a0ee3c263 to cde0d228c544d2b0818709f3a4bc7b60fdacae65 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 18:53:08 to 01/27/2026 18:56:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1650,7 +1650,7 @@ Removed in Physics:
 - DFFlagInactiveGuiObjectNoLongerForcesArrowCursor_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T17:42:12) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
 - FFlagEnableAccountCarouselEvents1_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T17:44:25) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagEnableAccountPickerListViewEvents_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T17:43:45) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagEnableAccountPickerListViewEvents_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T17:43:45) | Mechanism: Enables events for list view interactions in the account picker. | Purpose: Enhances user experience by allowing more dynamic interactions when selecting accounts.
 
 ## 186415ba5 - 2026-01-27 12:41:16 -0600 - 01/27/2026 12:41:16
 Added in Other:
@@ -1775,7 +1775,7 @@ Changed in Other:
 ## 10b46907f - 2026-01-27 11:46:37 -0600 - 01/27/2026 11:46:37
 Added in Other:
 - FFlagEnableAccountCarouselEvents1_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T17:44:25 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagEnableAccountPickerListViewEvents_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T17:43:45 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagEnableAccountPickerListViewEvents_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T17:43:45 | Mechanism: Enables events for list view interactions in the account picker. | Purpose: Enhances user experience by allowing more dynamic interactions when selecting accounts.
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from d0ea42fcd3b67f1bfb09d58fc653190bf8bcdc8b to 2168c945b17dd090fa1e42dade83b454247b55c8 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 17:43:04 to 01/27/2026 17:45:20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
