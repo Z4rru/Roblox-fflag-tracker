@@ -1,31 +1,52 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-01-30 10:34:12 AM PST
-- Flags Added: 211
+- Last Run: 2026-01-30 03:22:45 PM PST
+- Flags Added: 207
 - Flags Changed: 808
-- Flags Removed: 127
+- Flags Removed: 125
 
 ## Summary
 | Category | Added | Changed | Removed | Total |
 |---|---|---|---|---|
 | Graphics | 7 | 0 | 4 | 11 |
-| Physics | 3 | 0 | 2 | 5 |
+| Physics | 2 | 0 | 1 | 3 |
 | Network | 9 | 1 | 5 | 15 |
 | Camera/UI | 13 | 0 | 7 | 20 |
 | Security | 0 | 0 | 0 | 0 |
 | World | 0 | 0 | 0 | 0 |
 | Input | 0 | 0 | 0 | 0 |
 | Hit | 0 | 0 | 0 | 0 |
-| Interpolation | 1 | 1 | 2 | 4 |
+| Interpolation | 0 | 1 | 1 | 2 |
 | Body | 1 | 1 | 1 | 3 |
-| Other | 177 | 805 | 106 | 1088 |
+| Other | 175 | 805 | 106 | 1086 |
 
 ## History Summary
 
-- Total Historical Added: 211
+- Total Historical Added: 207
 - Total Historical Changed: 808
-- Total Historical Removed: 127
+- Total Historical Removed: 125
 - Note: Limited history available.
+
+## 9aa8733c3 - 2026-01-29 21:27:08 -0600 - 01/29/2026 21:27:07
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 74f6213c0a239daf462c076aa844690a5e71db76 to 8de47a54ded29ccc93025975274a6b449a1bd0f4 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlipTimeStampDynamicString changed from 01/30/2026 02:01:21 to 01/30/2026 03:25:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlagRepoGitHashFastString changed from 74f6213c0a239daf462c076aa844690a5e71db76 to 8de47a54ded29ccc93025975274a6b449a1bd0f4 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlipTimeStampFastString changed from 01/30/2026 02:01:21 to 01/30/2026 03:25:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Removed in Other:
+- FFlagTelemetryDataReArchTransmission9_IXP removed (was 1;Portal.client_telemetry_batch_consumer-1756163029;client_telemetry_batch_consumer;719846070;flagbank) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagTelemetryProtoSerializationForBatch2_IXP removed (was 1;Portal.client_telemetry_batch_consumer-1756163029;client_telemetry_batch_consumer_proto;992797867;flagbank) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+
+## a27cd4e6b - 2026-01-29 20:02:44 -0600 - 01/29/2026 20:02:44
+Added in Other:
+- DFFlagHttpServiceRequestAsyncUserTimeout2 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 56f07e7ff86a9dfc1f08ba9405a0f0807565517a to 74f6213c0a239daf462c076aa844690a5e71db76 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlipTimeStampDynamicString changed from 01/30/2026 01:56:11 to 01/30/2026 02:01:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlagRepoGitHashFastString changed from 56f07e7ff86a9dfc1f08ba9405a0f0807565517a to 74f6213c0a239daf462c076aa844690a5e71db76 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlipTimeStampFastString changed from 01/30/2026 01:56:11 to 01/30/2026 02:01:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Removed in Other:
+- DFFlagHttpServiceRequestAsyncUserTimeout2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-30T01:00:16) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 2db8af039 - 2026-01-29 19:58:14 -0600 - 01/29/2026 19:58:13
 Added in Other:
@@ -1967,34 +1988,3 @@ Changed in Other:
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 22:11:56 to 01/27/2026 22:13:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from b1800e89b9054df2c2cbefaa93cfd12fc638c327 to 730583d6b6f1822cd3ecd7ca0f3636e2a3bf6ab4 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 01/27/2026 22:11:56 to 01/27/2026 22:13:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-
-## c0b55a1b3 - 2026-01-27 16:12:20 -0600 - 01/27/2026 16:12:20
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 8651c4e92e42757a8b579cd678834a9b3fb0b3e3 to b1800e89b9054df2c2cbefaa93cfd12fc638c327 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlipTimeStampDynamicString changed from 01/27/2026 22:09:32 to 01/27/2026 22:11:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlagRepoGitHashFastString changed from 8651c4e92e42757a8b579cd678834a9b3fb0b3e3 to b1800e89b9054df2c2cbefaa93cfd12fc638c327 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlipTimeStampFastString changed from 01/27/2026 22:09:32 to 01/27/2026 22:11:56 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Removed in Other:
-- FFlagMultiSidedPyramids_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T21:08:03) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-
-## 4256facb0 - 2026-01-27 16:10:03 -0600 - 01/27/2026 16:10:02
-Added in Other:
-- DFFlagDoISRParallelStepOnReadFixed = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagAXReduceLookDetailsTryOnChevronDownSize_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T22:07:39 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagRemoveScriptRefAsReturnInVoiceChatCore = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Added in Interpolation:
-- DFFlagInterpolationUseSelfHealing = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Added in Physics:
-- DFFlagPhysicsSenderCastsLayOnHands = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 47783a88b1004728dd9ea4291443654cba55dfd5 to 8651c4e92e42757a8b579cd678834a9b3fb0b3e3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlipTimeStampDynamicString changed from 01/27/2026 22:05:06 to 01/27/2026 22:09:32 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlagRepoGitHashFastString changed from 47783a88b1004728dd9ea4291443654cba55dfd5 to 8651c4e92e42757a8b579cd678834a9b3fb0b3e3 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlipTimeStampFastString changed from 01/27/2026 22:05:06 to 01/27/2026 22:09:32 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Removed in Other:
-- DFFlagDoISRParallelStepOnReadFixed_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;590798908;2026-01-27T21:01:27) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagRemoveScriptRefAsReturnInVoiceChatCore_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-27T21:04:17) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Removed in Interpolation:
-- DFFlagInterpolationUseSelfHealing_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;590798908;2026-01-27T21:01:27) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Removed in Physics:
-- DFFlagPhysicsSenderCastsLayOnHands_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;590798908;2026-01-27T21:01:27) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
