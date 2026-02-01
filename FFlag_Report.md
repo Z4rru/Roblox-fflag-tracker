@@ -1,6 +1,6 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-02-01 05:55:35 PM PST
+- Last Run: 2026-02-01 09:22:23 PM PST
 - Flags Added: 207
 - Flags Changed: 808
 - Flags Removed: 125
@@ -1013,7 +1013,7 @@ Removed in Other:
 ## 3205637a0 - 2026-01-28 22:15:15 -0600 - 01/28/2026 22:15:15
 Added in Other:
 - FFlagAssetProviderDetailedFailure3_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-29T01:10:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagPrefillPreciseSelectionChoices = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagPrefillPreciseSelectionChoices = True | Mechanism: Enhances the selection tool to provide more accurate options based on user context. | Purpose: Makes it easier for players to select the right items or options quickly.
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from e8402a89779071ae38def5462363c32589f93850 to 21e7abdbca0e719c1b486226909756f6111da6be | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/29/2026 00:26:34 to 01/29/2026 04:14:06 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -1620,7 +1620,7 @@ Changed in Other:
 Removed in Network:
 - DFFlagPerfDataCategoryGrouping2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-01-28T00:04:02) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- FFlagSlimMigrateModelScaleUVTransform_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;411545475;2026-01-28T00:01:18) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagSlimMigrateModelScaleUVTransform_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;411545475;2026-01-28T00:01:18) | Mechanism: Updates the way model scaling and UV mapping are processed in the engine. | Purpose: Improves the visual quality and performance of models in games.
 
 ## 205e0509d - 2026-01-27 18:52:38 -0600 - 01/27/2026 18:52:38
 Changed in Other:
@@ -1740,7 +1740,7 @@ Changed in Other:
 
 ## b886c8779 - 2026-01-27 18:03:11 -0600 - 01/27/2026 18:03:10
 Added in Other:
-- FFlagSlimMigrateModelScaleUVTransform_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;411545475;2026-01-28T00:01:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagSlimMigrateModelScaleUVTransform_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;411545475;2026-01-28T00:01:18 | Mechanism: Updates the way model scaling and UV mapping are processed in the engine. | Purpose: Improves the visual quality and performance of models in games.
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from 2ab645fec887692d95941276fd23430d2ae8d78c to e0b8d031b6115ca9debbc65fcf9c7f2479bdaeab | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 01/27/2026 23:50:53 to 01/28/2026 00:02:15 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
