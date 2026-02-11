@@ -1,16 +1,16 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-02-11 11:37:05 AM PST
-- Flags Added: 486
-- Flags Changed: 895
-- Flags Removed: 185
+- Last Run: 2026-02-11 04:12:48 PM PST
+- Flags Added: 485
+- Flags Changed: 896
+- Flags Removed: 186
 
 ## Summary
 | Category | Added | Changed | Removed | Total |
 |---|---|---|---|---|
-| Graphics | 123 | 60 | 11 | 194 |
+| Graphics | 122 | 60 | 11 | 193 |
 | Physics | 14 | 0 | 6 | 20 |
-| Network | 8 | 0 | 1 | 9 |
+| Network | 8 | 1 | 2 | 11 |
 | Camera/UI | 21 | 2 | 11 | 34 |
 | Security | 4 | 0 | 2 | 6 |
 | World | 0 | 0 | 0 | 0 |
@@ -22,10 +22,21 @@
 
 ## History Summary
 
-- Total Historical Added: 486
-- Total Historical Changed: 895
-- Total Historical Removed: 185
+- Total Historical Added: 485
+- Total Historical Changed: 896
+- Total Historical Removed: 186
 - Note: Limited history available.
+
+## 387a9da11 - 2026-02-10 20:29:40 -0600 - 02/10/2026 20:29:40
+Changed in Network:
+- DFFlagRaknetPacketTracing changed from False to True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 7fdd3e6085f4d8075dc9f37e6df0f034a5c21833 to a98a211d251c75500ee11ece81af49a5f409fa48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlipTimeStampDynamicString changed from 02/11/2026 02:07:37 to 02/11/2026 02:27:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlagRepoGitHashFastString changed from 7fdd3e6085f4d8075dc9f37e6df0f034a5c21833 to a98a211d251c75500ee11ece81af49a5f409fa48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlipTimeStampFastString changed from 02/11/2026 02:07:37 to 02/11/2026 02:27:05 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Removed in Network:
+- DFFlagRaknetPacketTracing_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;false;786691533;2026-02-11T01:20:44) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 13ef93ab8 - 2026-02-10 20:09:33 -0600 - 02/10/2026 20:09:32
 Changed in Other:
@@ -2460,12 +2471,3 @@ Changed in Other:
 - FStringFlipTimeStampFastString changed from 02/03/2026 23:04:35 to 02/03/2026 23:07:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
 - DFFlagSimParentPrimSpacePVsRead_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-03T22:41:47) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-
-## 8b94e2fcd - 2026-02-03 17:05:39 -0600 - 02/03/2026 17:05:39
-Added in Graphics:
-- FFlagDebugAQSUseShadowSummary_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-03T23:03:33 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from fff75d4732cd7362c577a4d34e84dc783f4edfef to abf9fca29b94a45ba1c1dce02bf6a7ebfc64f4b6 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlipTimeStampDynamicString changed from 02/03/2026 23:01:16 to 02/03/2026 23:04:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlagRepoGitHashFastString changed from fff75d4732cd7362c577a4d34e84dc783f4edfef to abf9fca29b94a45ba1c1dce02bf6a7ebfc64f4b6 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlipTimeStampFastString changed from 02/03/2026 23:01:16 to 02/03/2026 23:04:35 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
