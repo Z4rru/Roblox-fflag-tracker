@@ -1,6 +1,6 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-02-13 03:40:22 PM PST
+- Last Run: 2026-02-13 06:17:15 PM PST
 - Flags Added: 284
 - Flags Changed: 820
 - Flags Removed: 164
@@ -225,7 +225,7 @@ Changed in Other:
 - FStringFlagRepoGitHashFastString changed from f1c1f89417935cf263f4e9e4176de878f5f50a77 to cb2ec3dbbad21021a496756105f031b0381a9f1b | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 02/12/2026 23:27:02 to 02/12/2026 23:32:22 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Network:
-- FStringRbxTransportDummyClientEnabledMinorVersions changed from 706,707,708 to 706,707,708,709,710,711 | Mechanism: Enables a dummy client for testing minor version updates. | Purpose: Allows for smoother updates and testing without affecting all players.
+- FStringRbxTransportDummyClientEnabledMinorVersions changed from 706,707,708 to 706,707,708,709,710,711 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
 - FFlagFixTPContentStreamingLoadContextAssert_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T22:25:55) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Network:
@@ -423,7 +423,7 @@ Changed in Other:
 Removed in Other:
 - DFFlagSLIMLODPacking_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T21:28:25) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagIEAutoSetupHasAccessories_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T21:28:34) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagSwitchPeerMonotonicURE2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T21:26:49) | Mechanism: Implements a new method for peer-to-peer connections in games. | Purpose: Improves connection stability and reduces lag during multiplayer gameplay.
+- FFlagSwitchPeerMonotonicURE2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T21:26:49) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## f02e0c8de - 2026-02-12 16:29:21 -0600 - 02/12/2026 16:29:21
 Added in Other:
@@ -639,7 +639,7 @@ Changed in Other:
 ## c6e494848 - 2026-02-12 15:29:43 -0600 - 02/12/2026 15:29:43
 Added in Other:
 - DFFlagSLIMLODPacking_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T21:28:25 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagSwitchPeerMonotonicURE2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T21:26:49 | Mechanism: Implements a new method for peer-to-peer connections in games. | Purpose: Improves connection stability and reduces lag during multiplayer gameplay.
+- FFlagSwitchPeerMonotonicURE2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T21:26:49 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from ffce3233207baeb5800b78afd08c4a5dfce3a1ea to 600e93921beef560fb4f2d9d4d4b368b60c84154 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 02/12/2026 21:26:50 to 02/12/2026 21:29:13 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -711,7 +711,7 @@ Changed in Other:
 - FStringFlagRepoGitHashFastString changed from cc90bf25f534060af80e13894e98c0bebf4fcff1 to 125fb3ca3272ed3634a58e063374bac443a9d0d4 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 02/12/2026 21:10:26 to 02/12/2026 21:12:24 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- FFlagLuauCodegenBufferBaseFold_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T20:07:28) | Mechanism: Optimizes how Luau code is generated and stored. | Purpose: Enhances game performance by making code execution faster.
+- FFlagLuauCodegenBufferBaseFold_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T20:07:28) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagLuauMathSeedEncode_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T20:06:48) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 2905255fb - 2026-02-12 15:11:30 -0600 - 02/12/2026 15:11:30
@@ -949,7 +949,7 @@ Changed in Other:
 
 ## 20b0f4626 - 2026-02-12 14:09:40 -0600 - 02/12/2026 14:09:40
 Added in Other:
-- FFlagLuauCodegenBufferBaseFold_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T20:07:28 | Mechanism: Optimizes how Luau code is generated and stored. | Purpose: Enhances game performance by making code execution faster.
+- FFlagLuauCodegenBufferBaseFold_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T20:07:28 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagLuauMathSeedEncode_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T20:06:48 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from e02596718430e2b4ca2e23c65e2f6471fc340b7e to 526f5fc4d0ee1dc0af0a869e31a8422df1b853d0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -985,7 +985,7 @@ Changed in Other:
 - FStringFlagRepoGitHashFastString changed from a1b14d6acd0ea0500b55e6e00e90729215fcec6c to 674097d6f55a1b6a7f1eb8acbfd7a0c6fd6c342e | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 02/12/2026 19:46:24 to 02/12/2026 19:57:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Removed in Other:
-- FFlagRemoveCentralOverlayScrimForUnifiedPurchaseModal_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T18:54:11) | Mechanism: Removes a visual overlay in the purchase modal interface. | Purpose: Streamlines the purchasing experience for players, making it clearer and easier.
+- FFlagRemoveCentralOverlayScrimForUnifiedPurchaseModal_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T18:54:11) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## ef91f5b13 - 2026-02-12 13:47:06 -0600 - 02/12/2026 13:47:05
 Added in Other:
@@ -1217,7 +1217,7 @@ Removed in Other:
 
 ## 8870d9859 - 2026-02-12 12:56:42 -0600 - 02/12/2026 12:56:41
 Added in Other:
-- FFlagRemoveCentralOverlayScrimForUnifiedPurchaseModal_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T18:54:11 | Mechanism: Removes a visual overlay in the purchase modal interface. | Purpose: Streamlines the purchasing experience for players, making it clearer and easier.
+- FFlagRemoveCentralOverlayScrimForUnifiedPurchaseModal_Staged = false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-12T18:54:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from 00a020c3ad451a01e8357edce20bf6422dea98b8 to b523f2c53bf13ef069efa7af2557113d0fc4c530 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 02/12/2026 18:51:27 to 02/12/2026 18:55:12 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
@@ -2067,7 +2067,7 @@ Changed in Other:
 - DFStringFlagRepoGitHashDynamicString changed from 118a7f3b4ad1df5e516b9b1b67351e4284ccc730 to 9b47ee2b93c37fa7460a15d1cc90a8ec06aa9183 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - DFStringFlipTimeStampDynamicString changed from 02/11/2026 22:06:35 to 02/11/2026 22:08:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagDisplayMorePageThirdPartyUserName2 changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FFlagEnableKoreaKISACompliance changed from False to True | Mechanism: Ensures compliance with South Korea's internet regulations. | Purpose: Protects player data and enhances trust for users in South Korea.
+- FFlagEnableKoreaKISACompliance changed from False to True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FFlagShowLandingPageThirdPartySwitchAccountButton changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 118a7f3b4ad1df5e516b9b1b67351e4284ccc730 to 9b47ee2b93c37fa7460a15d1cc90a8ec06aa9183 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 02/11/2026 22:06:35 to 02/11/2026 22:08:37 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
