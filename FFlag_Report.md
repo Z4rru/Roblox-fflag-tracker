@@ -1,8 +1,8 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-02-14 10:49:58 AM PST
-- Flags Added: 397
-- Flags Changed: 818
+- Last Run: 2026-02-14 03:32:05 PM PST
+- Flags Added: 395
+- Flags Changed: 820
 - Flags Removed: 253
 
 ## Summary
@@ -10,7 +10,7 @@
 |---|---|---|---|---|
 | Graphics | 19 | 4 | 13 | 36 |
 | Physics | 0 | 0 | 0 | 0 |
-| Network | 10 | 1 | 5 | 16 |
+| Network | 10 | 2 | 6 | 18 |
 | Camera/UI | 29 | 0 | 14 | 43 |
 | Security | 0 | 0 | 0 | 0 |
 | World | 2 | 0 | 1 | 3 |
@@ -18,14 +18,35 @@
 | Hit | 0 | 0 | 0 | 0 |
 | Interpolation | 2 | 0 | 1 | 3 |
 | Body | 0 | 0 | 0 | 0 |
-| Other | 331 | 813 | 217 | 1361 |
+| Other | 329 | 814 | 216 | 1359 |
 
 ## History Summary
 
-- Total Historical Added: 397
-- Total Historical Changed: 818
+- Total Historical Added: 395
+- Total Historical Changed: 820
 - Total Historical Removed: 253
 - Note: Limited history available.
+
+## 24e3e1042 - 2026-02-13 20:28:04 -0600 - 02/13/2026 20:28:04
+Changed in Network:
+- DFFlagRaknetPacketTracing changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from 8d26ed926271c4a927e733af4dd93d743266e143 to 05f027c195a74f2a5254e57bf006e8d0a8ddb8d0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlipTimeStampDynamicString changed from 02/14/2026 02:11:11 to 02/14/2026 02:26:26 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlagRepoGitHashFastString changed from 8d26ed926271c4a927e733af4dd93d743266e143 to 05f027c195a74f2a5254e57bf006e8d0a8ddb8d0 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlipTimeStampFastString changed from 02/14/2026 02:11:11 to 02/14/2026 02:26:26 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Removed in Network:
+- DFFlagRaknetPacketTracing_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-14T01:20:22) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+
+## 5176f2588 - 2026-02-13 20:12:30 -0600 - 02/13/2026 20:12:29
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from f1221c0270541e94c18d9916bbe6314117906c8e to 8d26ed926271c4a927e733af4dd93d743266e143 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlipTimeStampDynamicString changed from 02/14/2026 01:41:19 to 02/14/2026 02:11:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagSwitchPeerMonotonicURE2 changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlagRepoGitHashFastString changed from f1221c0270541e94c18d9916bbe6314117906c8e to 8d26ed926271c4a927e733af4dd93d743266e143 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlipTimeStampFastString changed from 02/14/2026 01:41:19 to 02/14/2026 02:11:11 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Removed in Other:
+- FFlagSwitchPeerMonotonicURE2_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-14T01:08:08) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 0e08deeb4 - 2026-02-13 19:43:27 -0600 - 02/13/2026 19:43:27
 Changed in Other:
@@ -2359,25 +2380,3 @@ Changed in Other:
 - DFStringFlipTimeStampDynamicString changed from 02/12/2026 00:48:55 to 02/12/2026 00:54:00 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from 5f2525f56cbb8154a87c6d40af38f07bc1eab093 to c6f1048e2cf3919c7121148ccf9a9e06d2f92786 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 02/12/2026 00:48:55 to 02/12/2026 00:54:00 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-
-## 20d0b71b9 - 2026-02-11 18:50:11 -0600 - 02/11/2026 18:50:11
-Added in Other:
-- FFlagEnableInspectAndBuyV2RootFlag2_IXP = 1;UIEcosystem.User.Migration;PeoplePageWithNewInspectAndBuy-V2;1860261583;flagbank | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from 29bddd47938bade248e86e7b6f5b31c58fd9055f to 5f2525f56cbb8154a87c6d40af38f07bc1eab093 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlipTimeStampDynamicString changed from 02/12/2026 00:43:20 to 02/12/2026 00:48:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlagRepoGitHashFastString changed from 29bddd47938bade248e86e7b6f5b31c58fd9055f to 5f2525f56cbb8154a87c6d40af38f07bc1eab093 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlipTimeStampFastString changed from 02/12/2026 00:43:20 to 02/12/2026 00:48:55 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Removed in Other:
-- FFlagEnableInspectAndBuyV2RootFlag2_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1661279323;2026-02-12T00:42:00) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-
-## 9c43fe139 - 2026-02-11 18:45:38 -0600 - 02/11/2026 18:45:38
-Added in Other:
-- FFlagEnableInspectAndBuyV2RootFlag2_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;1661279323;2026-02-12T00:42:00 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from a501204ef0434315a381095adbc31a8ca849ea8e to 29bddd47938bade248e86e7b6f5b31c58fd9055f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlipTimeStampDynamicString changed from 02/12/2026 00:41:43 to 02/12/2026 00:43:20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlagRepoGitHashFastString changed from a501204ef0434315a381095adbc31a8ca849ea8e to 29bddd47938bade248e86e7b6f5b31c58fd9055f | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlipTimeStampFastString changed from 02/12/2026 00:41:43 to 02/12/2026 00:43:20 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Removed in Other:
-- FFlagEnableInspectAndBuyV2RootFlag2_IXP removed (was 1;UIEcosystem.User.Migration;PeoplePageWithNewInspectAndBuy-V2;1860261583;flagbank) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
