@@ -1,16 +1,16 @@
 # Roblox Client FFlag Intel Report (350 Days)
 
-- Last Run: 2026-02-25 03:33:44 PM PST
-- Flags Added: 201
-- Flags Changed: 827
-- Flags Removed: 115
+- Last Run: 2026-02-25 06:16:45 PM PST
+- Flags Added: 209
+- Flags Changed: 830
+- Flags Removed: 124
 
 ## Summary
 | Category | Added | Changed | Removed | Total |
 |---|---|---|---|---|
 | Graphics | 10 | 1 | 6 | 17 |
 | Physics | 2 | 0 | 1 | 3 |
-| Network | 10 | 0 | 5 | 15 |
+| Network | 10 | 1 | 6 | 17 |
 | Camera/UI | 4 | 1 | 2 | 7 |
 | Security | 0 | 0 | 0 | 0 |
 | World | 0 | 0 | 0 | 0 |
@@ -18,14 +18,46 @@
 | Hit | 0 | 0 | 0 | 0 |
 | Interpolation | 0 | 0 | 0 | 0 |
 | Body | 2 | 0 | 1 | 3 |
-| Other | 173 | 825 | 100 | 1098 |
+| Other | 181 | 827 | 108 | 1116 |
 
 ## History Summary
 
-- Total Historical Added: 201
-- Total Historical Changed: 827
-- Total Historical Removed: 115
+- Total Historical Added: 209
+- Total Historical Changed: 830
+- Total Historical Removed: 124
 - Note: Limited history available.
+
+## bca2a4ebf - 2026-02-25 03:04:50 -0600 - 02/25/2026 03:04:50
+Added in Other:
+- DFFlagConfigServiceGetConfigAsyncTriggersExpLoad = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFFlagRemovedClumpsSkipTreeTraversal = False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagAXFixWidgetOnlyTabNoItemsFound = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagEnableEdpStoreGridPositionLogging = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagImmutableJoinDictionariesUseTableClone = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagProfileTelemetryUseEventCollector3 = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagRbxStorageAddSessionScopedData = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagReportTypeBandwidthStatsInterval = False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagSBT4896NudgingWithNumpad = True | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Changed in Other:
+- DFStringFlagRepoGitHashDynamicString changed from b55b1042ddb5f458152c7c21e7afd177393aa4d4 to 32431feea461780c6e2a218f253b9f53496115fa | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFStringFlipTimeStampDynamicString changed from 02/24/2026 22:18:10 to 02/25/2026 07:36:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagDeprecatePrecomputeDeformedVertices changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagWrapDeformerContextOutputFileMeshData9 changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlagRepoGitHashFastString changed from b55b1042ddb5f458152c7c21e7afd177393aa4d4 to 32431feea461780c6e2a218f253b9f53496115fa | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FStringFlipTimeStampFastString changed from 02/24/2026 22:18:10 to 02/25/2026 07:36:18 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Changed in Network:
+- FFlagQueueVideoServiceClientUpdates changed from True to False | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Removed in Other:
+- DFFlagRemovedClumpsSkipTreeTraversal_Staged removed (was true;SteadyState;10;30;Revert;2026-02-24T22:07:54) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- DFIntMRSMessageSize_UniverseFilter removed (was 1200;8751492147;4983034985;8937254139) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagAXFixWidgetOnlyTabNoItemsFound_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-24T22:16:27) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagEnableEdpStoreGridPositionLogging_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-24T21:37:10) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagProfileTelemetryUseEventCollector3_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-24T22:03:47) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagRbxStorageAddSessionScopedData_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-24T21:46:15) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagReportTypeBandwidthStatsInterval_Staged removed (was true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-24T21:54:40) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+- FFlagWrapDeformerContextOutputFileMeshData9_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-24T21:37:15) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
+Removed in Network:
+- FFlagQueueVideoServiceClientUpdates_Staged removed (was false;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;2026-02-24T21:49:20) | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 
 ## 912331c37 - 2026-02-24 16:19:49 -0600 - 02/24/2026 16:19:49
 Added in Other:
@@ -1973,12 +2005,3 @@ Changed in Other:
 - DFStringFlipTimeStampDynamicString changed from 02/23/2026 17:45:31 to 02/23/2026 17:49:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlagRepoGitHashFastString changed from a8c4087554567ddf62343dc50fbcc15560776288 to 85f130013a95696c294f3e003a99bc616dc7bdc7 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
 - FStringFlipTimeStampFastString changed from 02/23/2026 17:45:31 to 02/23/2026 17:49:38 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-
-## c30feb782 - 2026-02-23 11:47:54 -0600 - 02/23/2026 11:47:54
-Added in Other:
-- FFlagReportRCCChannelNameVariousPlatforms_Staged = true;SteadyState;10;15;Rollout;100;30;SteadyState;100;15;Promote;true;572533588;2026-02-23T17:44:21 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-Changed in Other:
-- DFStringFlagRepoGitHashDynamicString changed from cb75515bf934da2ed2a8045b644d905f5920a8c7 to a8c4087554567ddf62343dc50fbcc15560776288 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- DFStringFlipTimeStampDynamicString changed from 02/23/2026 17:44:05 to 02/23/2026 17:45:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlagRepoGitHashFastString changed from cb75515bf934da2ed2a8045b644d905f5920a8c7 to a8c4087554567ddf62343dc50fbcc15560776288 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
-- FStringFlipTimeStampFastString changed from 02/23/2026 17:44:05 to 02/23/2026 17:45:31 | Mechanism: N/A (invalid) | Purpose: N/A (invalid)
