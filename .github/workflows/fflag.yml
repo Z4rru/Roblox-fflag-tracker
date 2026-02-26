@@ -2,162 +2,71 @@ name: Roblox FFlag Tracker
 
 on:
   schedule:
-    - cron: "0 9 * * *"    # Daily at 9 AM UTC
-    - cron: "0 */6 * * *"  # Every 6 hours
-  workflow_dispatch:        # Manual trigger
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
   pages: write
 
+concurrency:
+  group: fflag-tracker
+  cancel-in-progress: true
+
 jobs:
-  run-tracker:
+  track:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     env:
       OPENAI_API_KEYS: ${{ secrets.OPENAI_API_KEYS }}
-      GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS }}
+      FFLAG_REPO_CACHE: .fflag-repo-cache
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
+      - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
+          cache: pip
 
-      - name: Cache pip dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-
-      - name: Cache manifest repo
-        uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: .fflag-repo-cache
-          key: ${{ runner.os }}-manifest
-          restore-keys: |
-            ${{ runner.os }}-manifest
+          key: manifest-${{ github.run_id }}
+          restore-keys: manifest-
 
-      - name: Install dependencies
+      - uses: actions/cache@v4
+        with:
+          path: |
+            output/fflag_cache.json
+            output/diff_cache.json
+            output/history.json
+            output/failed_flags.json
+            output/.key_index.json
+          key: fflag-data-${{ github.run_id }}
+          restore-keys: fflag-data-
+
+      - run: pip install -r requirements.txt
+
+      - run: python updateff.py
+
+      - name: Verify output
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Ensure output folder exists
-        run: |
-          mkdir -p output
-          echo "✅ Output folder checked/created."
-
-      - name: Run Roblox FFlag Tracker with key rotation
-        env:
-          SKIP_ASSETS: "true"
-        run: |
-          export FFLAG_REPO_CACHE=./.fflag-repo-cache
-          
-          OPENAI_KEY=$(echo $OPENAI_API_KEYS | tr ',' '\n' | shuf -n1 | xargs)
-          GEMINI_KEY=$(echo $GEMINI_API_KEYS | tr ',' '\n' | shuf -n1 | xargs)
-
-          echo "Using OpenAI key: ${OPENAI_KEY:0:4}****"
-          echo "Using Gemini key: ${GEMINI_KEY:0:4}****"
-
-          export OPENAI_API_KEY=$OPENAI_KEY
-          export GEMINI_API_KEY=$GEMINI_KEY
-
-          python updateff.py
-
-      - name: Check commits JSON files (hybrid)
-        run: |
-          echo "🔍 Checking for commits_*.json files in output/"
-          files=(output/commits_*.json)
-          if [ ! -e "${files[0]}" ]; then
-            echo "❌ No commits_*.json files found!"
-            exit 1
-          fi
-      
-          i=0
-          found_any=false
-          while [ -f "output/commits_${i}.json" ]; do
-            echo "✅ commits_${i}.json found!"
-            ls -lh "output/commits_${i}.json"
-            found_any=true
-            i=$((i+1))
+          for f in index.html summary.json FFlag_Report.json history.json sw.js manifest.json assets/app.js; do
+            test -f "output/$f" && echo "✅ $f" || { echo "❌ Missing $f"; exit 1; }
           done
-      
-          if [ "$found_any" = true ]; then
-            echo "✅ Finished checking all commit chunks (last was commits_$((i-1)).json)"
-          else
-            echo "⚠️ No sequential commits found, but other commits_*.json may exist:"
-            ls -lh output/commits_*.json || true
-          fi
+          echo "📂 Output:"
+          ls -lhR output/
 
-      - name: Generate commits_index.json
-        run: |
-          echo "📝 Generating commits_index.json"
-          ls output/commits_*.json | jq -R -s -c 'split("\n")[:-1]' > output/commits_index.json
-          cat output/commits_index.json
-          echo "✅ commits_index.json generated"
-
-      - name: Create fflag.json for Chart
-        run: |
-          jq '{labels: map(.date), data: map(.added + .changed + .removed)}' output/history.json > output/fflag.json
-          echo "✅ fflag.json created for charting."
-
-      - name: Add favicon.ico if missing
-        run: |
-          if [ ! -f output/favicon.ico ]; then
-            echo "🌐 Downloading default favicon.ico"
-            curl -sL -o output/favicon.ico https://www.roblox.com/favicon.ico
-          fi
-          echo "✅ Favicon ensured"
-
-      - name: Verify index.html exists
-        run: |
-          if [ ! -f output/index.html ]; then
-            echo "❌ output/index.html is missing! Cannot continue."
-            exit 1
-          fi
-          echo "✅ Found output/index.html"
-
-      - name: Inject report into index.html
-        run: |
-          # Insert FFlag_Report.html inside <div id="reportContent">
-          awk '/<div id="reportContent">/ {print; system("cat output/FFlag_Report.html"); next} {print}' output/index.html > output/index.tmp
-          mv output/index.tmp output/index.html
-          echo "✅ Injected FFlag_Report.html inside #reportContent"
-
-      - name: Copy static assets
-        run: |
-          rm -rf output/assets
-          if [ -d assets ]; then
-            cp -r assets output/
-            echo "✅ Copied assets/ → output/assets"
-          else
-            echo "⚠️ Warning: assets/ folder not found"
-          fi
-
-      - name: Copy custom ServiceWorker
-        run: |
-          cp custom-sw/sw.js output/sw.js
-          echo "✅ Custom sw.js copied to output/ (won't be overwritten by updateff)"
-
-      - name: List output folder
-        run: |
-          echo "📂 Contents of output folder:"
-          ls -R output
-
-      - name: Upload output as artifact (backup)
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: fflag-output
-          path: ./output
+          path: output/
+          retention-days: 14
 
-      - name: Publish to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./output
+          publish_dir: output/
