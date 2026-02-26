@@ -7,21 +7,18 @@ import html
 import shutil
 import sys
 import argparse
-from pathlib import Path
-from zoneinfo import ZoneInfo
 import asyncio
 import logging
-import time
-import random
 import re
+import tempfile
+from pathlib import Path
+from zoneinfo import ZoneInfo
 from collections import defaultdict
 from filelock import FileLock
-import requests
 
 try:
     from jsonschema import validate as json_validate, ValidationError
 except ImportError:
-    print("Warning: jsonschema not installed. Install via `pip install jsonschema`.")
     json_validate = None
     ValidationError = Exception
 
@@ -30,12 +27,11 @@ try:
 except ImportError:
     AsyncOpenAI = None
 
-# ============================
-# Settings and Paths
-# ============================
 SCRIPT_DIR = Path(__file__).resolve().parent
 WORKSPACE = Path(os.getenv("GITHUB_WORKSPACE", str(SCRIPT_DIR))).resolve()
 OUTPUT_DIR = WORKSPACE / "output"
+ASSETS_SRC = SCRIPT_DIR / "assets"
+CUSTOM_SW_SRC = SCRIPT_DIR / "custom-sw" / "sw.js"
 OUTPUT_MD = OUTPUT_DIR / "FFlag_Report.md"
 OUTPUT_HTML = OUTPUT_DIR / "FFlag_Report.html"
 OUTPUT_JSON = OUTPUT_DIR / "FFlag_Report.json"
@@ -44,7 +40,9 @@ DIFF_CACHE_FILE = OUTPUT_DIR / "diff_cache.json"
 HISTORY_FILE = OUTPUT_DIR / "history.json"
 FAILED_FLAGS_FILE = OUTPUT_DIR / "failed_flags.json"
 KEY_INDEX_FILE = OUTPUT_DIR / ".key_index.json"
-DEBUG_DIR = OUTPUT_DIR / "debug"
+SUMMARY_FILE = OUTPUT_DIR / "summary.json"
+COMMITS_INDEX_FILE = OUTPUT_DIR / "commits_index.json"
+MANIFEST_FILE = OUTPUT_DIR / "manifest.json"
 REPO_URL = "https://github.com/MaximumADHD/Roblox-FFlag-Tracker.git"
 TARGET_FILE = "PCDesktopClient.json"
 DAYS = 350
@@ -55,62 +53,22 @@ AI_BATCH_DELAY = 1.0
 MAX_RETRIES = 3
 MAX_REPORT_COMMITS = 200
 COMMIT_BATCH_SIZE = 30
-COMMIT_CHUNK_SIZE = 20  # For pre-paginating commits.json
-DEBUG = True
+COMMIT_CHUNK_SIZE = 20
 SUBPROCESS_TIMEOUT = 120
+DEBUG = os.getenv("DEBUG", "true").lower() == "true"
+TIMEZONE = ZoneInfo("Asia/Manila")
 
-# ============================
-# Command-Line Arguments
-# ============================
 parser = argparse.ArgumentParser(description="Roblox FFlag Tracker")
-parser.add_argument("--dry-run", action="store_true", help="Run without AI enrichment")
+parser.add_argument("--dry-run", action="store_true", help="Skip AI enrichment")
+parser.add_argument("--force-refresh", action="store_true", help="Force reclone and re-enrich")
 args = parser.parse_args()
 
-# ============================
-# Logging Utility
-# ============================
 logging.basicConfig(
-    level=logging.INFO if not DEBUG else logging.DEBUG,
+    level=logging.DEBUG if DEBUG else logging.INFO,
     format="[%(levelname)s] %(message)s (%(asctime)s)"
 )
 log = logging.getLogger(__name__)
 
-# ============================
-# API Key Management
-# ============================
-def load_api_keys(env_var: str) -> list[str]:
-    keys_raw = os.getenv(env_var, "")
-    keys = [k.strip() for k in keys_raw.split(",") if k.strip()]
-    if not keys:
-        log.warning(f"⚠ No {env_var} found.")
-    return keys
-
-OPENAI_KEYS = load_api_keys("OPENAI_API_KEYS")
-if not OPENAI_KEYS and not args.dry_run:
-    log.warning("⚠ No OpenAI API keys found. AI enrichment will be skipped.")
-
-def get_next_api_key() -> str | None:
-    if not OPENAI_KEYS:
-        return None
-    lock = FileLock(str(KEY_INDEX_FILE) + ".lock", timeout=10)
-    with lock:
-        index_data = {"openai_idx": 0}
-        if KEY_INDEX_FILE.exists():
-            try:
-                index_data = json.loads(KEY_INDEX_FILE.read_text(encoding="utf-8"))
-            except json.JSONDecodeError:
-                log.warning(f"Corrupted {KEY_INDEX_FILE}. Resetting index.")
-        idx = index_data.get("openai_idx", 0)
-        key = OPENAI_KEYS[idx % len(OPENAI_KEYS)]
-        index_data["openai_idx"] = idx + 1
-        KEY_INDEX_FILE.write_text(json.dumps(index_data, indent=2), encoding="utf-8")
-    display_key = f"{key[:4]}...{key[-4:]}" if len(key) > 8 else "****"
-    log.debug(f"Using OpenAI API key #{idx % len(OPENAI_KEYS) + 1} ({display_key})")
-    return key
-
-# ============================
-# FFlags Categories
-# ============================
 CATEGORIES = {
     "Graphics": ["Graphics", "Lighting", "Render", "GPU", "VSync", "Shadow", "Texture"],
     "Physics": ["Physics", "Solver", "Collision", "Humanoid", "Constraint", "Ragdoll", "Mass", "Gravity", "Force"],
@@ -125,29 +83,75 @@ CATEGORIES = {
     "Other": []
 }
 
-# ============================
-# Utility Functions
-# ============================
-def run_cmd(cmd: str, cwd: Path | None = None) -> str:
+FLAG_INFO = {}
+FAILED_FLAGS = []
+
+
+def atomic_write(path, content, encoding="utf-8"):
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(dir=p.parent, suffix=".tmp")
+    try:
+        with os.fdopen(fd, "w", encoding=encoding) as f:
+            f.write(content)
+        shutil.move(tmp, str(p))
+    except Exception:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+
+
+def safe_read_json(path, default=None):
+    if default is None:
+        default = {}
+    if not Path(path).exists():
+        return default if not isinstance(default, list) else list(default)
+    try:
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        if isinstance(default, list) and not isinstance(data, list):
+            return list(default)
+        if isinstance(default, dict) and not isinstance(data, dict):
+            return dict(default)
+        return data
+    except (json.JSONDecodeError, OSError) as e:
+        log.warning(f"Corrupted {Path(path).name}: {e}")
+        return default if not isinstance(default, list) else list(default)
+
+
+def load_caches():
+    global FLAG_INFO, FAILED_FLAGS
+    FLAG_INFO = safe_read_json(CACHE_FILE, {})
+    FAILED_FLAGS = safe_read_json(FAILED_FLAGS_FILE, [])
+    if args.force_refresh:
+        FLAG_INFO.clear()
+        FAILED_FLAGS.clear()
+        log.info("Force refresh: cleared all caches")
+
+
+def validate_sha(h):
+    return bool(h and re.match(r"^[0-9a-f]{7,40}$", h.strip()))
+
+
+def run_cmd(cmd, cwd=None):
     try:
         result = subprocess.run(
             cmd, shell=True, cwd=cwd, capture_output=True, text=True, timeout=SUBPROCESS_TIMEOUT
         )
         if result.returncode != 0:
-            log.error(f"Command failed (return code {result.returncode}): {cmd}")
+            log.error(f"Command failed ({result.returncode}): {cmd}")
             log.error(result.stderr.strip())
             raise subprocess.CalledProcessError(
                 result.returncode, cmd, output=result.stdout, stderr=result.stderr
             )
         return result.stdout.strip()
     except subprocess.TimeoutExpired:
-        log.error(f"Command timed out after {SUBPROCESS_TIMEOUT} seconds: {cmd}")
-        raise
-    except Exception as e:
-        log.error(f"Cmd error: {e}")
+        log.error(f"Timed out ({SUBPROCESS_TIMEOUT}s): {cmd}")
         raise
 
-def categorize_flag(flag_name: str) -> str:
+
+def categorize_flag(flag_name):
     if not isinstance(flag_name, str):
         return "Other"
     lower = flag_name.lower()
@@ -156,204 +160,172 @@ def categorize_flag(flag_name: str) -> str:
             return cat
     return "Other"
 
-def format_value(v: any) -> str:
+
+def format_value(v):
     if isinstance(v, bool):
         return str(v).capitalize()
     return str(v)
 
+
+def load_api_keys(env_var):
+    keys = [k.strip() for k in os.getenv(env_var, "").split(",") if k.strip()]
+    if not keys:
+        log.warning(f"⚠ No {env_var} found.")
+    return keys
+
+
+OPENAI_KEYS = load_api_keys("OPENAI_API_KEYS")
+if not OPENAI_KEYS and not args.dry_run:
+    log.warning("⚠ No OpenAI API keys. AI enrichment skipped.")
+
+
+def get_next_api_key():
+    if not OPENAI_KEYS:
+        return None
+    lock = FileLock(str(KEY_INDEX_FILE) + ".lock", timeout=10)
+    with lock:
+        index_data = safe_read_json(KEY_INDEX_FILE, {"openai_idx": 0})
+        idx = index_data.get("openai_idx", 0)
+        key = OPENAI_KEYS[idx % len(OPENAI_KEYS)]
+        index_data["openai_idx"] = idx + 1
+        atomic_write(KEY_INDEX_FILE, json.dumps(index_data, indent=2))
+    return key
+
+
 cache_path = Path(os.environ.get("FFLAG_REPO_CACHE", ".fflag-repo-cache"))
-def ensure_assets():
-    """Copy the assets folder into output/assets so it gets published to GitHub Pages."""
-    base_dir = Path(__file__).parent
-    src = base_dir / "assets"
-    dst = base_dir / "output" / "assets"
 
-    if dst.exists():
-        shutil.rmtree(dst)
 
-    if src.exists():
-        shutil.copytree(src, dst)
-        log.info(f"Copied assets/ → {dst}")
-    else:
-        log.warning("assets/ folder not found, skipping copy")
-
-def ensure_manifest_repo(repo_url: str = REPO_URL) -> Path:
-    if not re.match(r"^https://github\.com/[A-Za-z0-9_-]+/[A-Za-z0-9_-]+\.git$", repo_url):
+def ensure_manifest_repo(repo_url=REPO_URL):
+    if not re.match(r"^https://github\.com/[A-Za-z0-9_./-]+\.git$", repo_url):
         raise ValueError(f"Invalid repository URL: {repo_url}")
-    if cache_path.exists() and (cache_path / ".git").exists():
-        log.info(f"Using cached manifest repo at {cache_path}")
+    if not args.force_refresh and cache_path.exists() and (cache_path / ".git").exists():
+        log.info(f"Using cached repo at {cache_path}")
         try:
             if not (cache_path / TARGET_FILE).exists():
-                raise FileNotFoundError(f"{TARGET_FILE} not found in repo")
+                raise FileNotFoundError(f"{TARGET_FILE} not found")
             subprocess.run(
-                ["git", "-C", str(cache_path), "stash", "push", "--include-untracked", "--quiet"],
-                check=False
+                ["git", "-C", str(cache_path), "stash", "push", "--include-untracked", "-q"],
+                check=False, timeout=30
             )
-            subprocess.run(["git", "-C", str(cache_path), "pull", "--ff-only"], check=True)
+            subprocess.run(["git", "-C", str(cache_path), "pull", "--ff-only"], check=True, timeout=60)
             subprocess.run(
                 ["git", "-C", str(cache_path), "stash", "pop"],
-                check=False,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL
+                check=False, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=30
             )
             return cache_path
-        except (subprocess.CalledProcessError, FileNotFoundError):
-            log.warning("Cached repo pull or file check failed, recloning...")
+        except (subprocess.CalledProcessError, FileNotFoundError, subprocess.TimeoutExpired):
+            log.warning("Cached repo update failed, recloning...")
             shutil.rmtree(cache_path, ignore_errors=True)
-    log.info("Cloning fresh manifest repo...")
-    subprocess.run(["git", "clone", "--depth=1000", repo_url, str(cache_path)], check=True)
+    log.info("Cloning manifest repo...")
+    since_date = (datetime.datetime.now() - datetime.timedelta(days=DAYS + 30)).strftime("%Y-%m-%d")
+    subprocess.run(
+        ["git", "clone", f"--shallow-since={since_date}", repo_url, str(cache_path)],
+        check=True, timeout=300
+    )
     if not (cache_path / TARGET_FILE).exists():
         raise FileNotFoundError(f"{TARGET_FILE} not found in cloned repo")
     return cache_path
 
-def get_commits(days: int = DAYS, manifest_repo: Path | None = None) -> list[str]:
+
+def get_commits(days=DAYS, manifest_repo=None):
     since = (datetime.datetime.now() - datetime.timedelta(days=days)).strftime("%Y-%m-%d")
-    commits = run_cmd(f"git log --since='{since}' --pretty=format:%H -- {TARGET_FILE}", cwd=manifest_repo)
-    return commits.splitlines()[:MAX_REPORT_COMMITS] if commits else []
+    raw = run_cmd(f"git log --since='{since}' --pretty=format:%H -- {TARGET_FILE}", cwd=manifest_repo)
+    if not raw:
+        return []
+    commits = [c.strip() for c in raw.splitlines() if validate_sha(c)]
+    return commits[:MAX_REPORT_COMMITS]
 
-# ============================
-# Diff Utilities
-# ============================
-def build_diff_for_commit_old(
-    commit_hash: str, manifest_repo: Path | None = None
-) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
-    """Robust reimplementation of the original build_diff_for_commit_old.
 
-    - Avoids tricky comprehensions that can reference variables outside their
-      comprehension scope (problematic on Python >= 3.12).
-    - Uses explicit for-loops and safe unpacking.
-    - Falls back to line-by-line parsing if JSON load fails.
-    """
+def build_diff_for_commit(commit_hash, manifest_repo=None):
     header = run_cmd(
         f"git show --no-patch --pretty=format:'%h - %ci - %s' {commit_hash}", cwd=manifest_repo
     )
     diff = run_cmd(f"git show {commit_hash} -- {TARGET_FILE}", cwd=manifest_repo)
-
     try:
         prev_content = run_cmd(f"git show {commit_hash}~1:{TARGET_FILE}", cwd=manifest_repo)
         curr_content = run_cmd(f"git show {commit_hash}:{TARGET_FILE}", cwd=manifest_repo)
-
         prev_json = json.loads(prev_content) if prev_content else {}
         curr_json = json.loads(curr_content)
-
-        added: list[tuple[str, any]] = []
-        changed: list[tuple[str, any, any]] = []
-        removed: list[tuple[str, any]] = []
-
-        # Build added and changed lists using explicit loops and local variables
-        for key, new_val in curr_json.items():
+        added = []
+        changed = []
+        removed = []
+        for key in curr_json:
             if key not in prev_json:
-                # New key
-                added.append((key, new_val))
-            else:
-                old_val = prev_json.get(key)
-                if old_val != new_val:
-                    changed.append((key, old_val, new_val))
-
-        # Build removed list explicitly
-        for key, old_val in prev_json.items():
+                added.append((key, curr_json[key]))
+            elif prev_json[key] != curr_json[key]:
+                changed.append((key, prev_json[key], curr_json[key]))
+        for key in prev_json:
             if key not in curr_json:
-                removed.append((key, old_val))
-
+                removed.append((key, prev_json[key]))
         return header, added, changed, removed
-
-    except (json.JSONDecodeError, subprocess.CalledProcessError) as exc:
-        # Fall back to line-by-line diff parsing. Be conservative and explicit
-        log.debug(f"Falling back to line-by-line diff parsing: {exc}")
-        added_dict: dict[str, any] = {}
-        removed_dict: dict[str, any] = {}
-
+    except (json.JSONDecodeError, subprocess.CalledProcessError):
+        log.debug(f"Falling back to line-by-line diff for {commit_hash[:8]}")
+        added_dict = {}
+        removed_dict = {}
         for line in diff.splitlines():
-            # Skip file header lines
             if line.startswith("+++") or line.startswith("---"):
                 continue
-
-            # Added lines
-            if line.startswith("+") and not line.startswith("+++"):
-                snippet = line[1:].strip()
-                if snippet.startswith('"') and ":" in snippet:
-                    try:
-                        # Remove trailing comma if present and parse a one-line object
-                        if snippet.endswith(","):
-                            snippet = snippet[:-1]
-                        parsed = json.loads("{" + snippet + "}")
-                        if isinstance(parsed, dict):
-                            for k, v in parsed.items():
-                                # Only set if key appears valid
-                                added_dict[k] = v
-                    except Exception as e:
-                        log.debug(f"Failed to parse added line: {snippet!r} ({e})")
-
-            # Removed lines
-            elif line.startswith("-") and not line.startswith("---"):
-                snippet = line[1:].strip()
-                if snippet.startswith('"') and ":" in snippet:
-                    try:
-                        if snippet.endswith(","):
-                            snippet = snippet[:-1]
-                        parsed = json.loads("{" + snippet + "}")
-                        if isinstance(parsed, dict):
-                            for k, v in parsed.items():
-                                removed_dict[k] = v
-                    except Exception as e:
-                        log.debug(f"Failed to parse removed line: {snippet!r} ({e})")
-
-        # Convert dicts to final lists with explicit loops (no comprehensions)
-        final_added: list[tuple[str, any]] = []
-        final_changed: list[tuple[str, any, any]] = []
-        final_removed: list[tuple[str, any]] = []
-
-        # Keys present in both removed_dict and added_dict are treated as changes
+            is_add = line.startswith("+") and not line.startswith("+++")
+            is_rem = line.startswith("-") and not line.startswith("---")
+            if not is_add and not is_rem:
+                continue
+            snippet = line[1:].strip()
+            if not (snippet.startswith('"') and ":" in snippet):
+                continue
+            if snippet.endswith(","):
+                snippet = snippet[:-1]
+            try:
+                parsed = json.loads("{" + snippet + "}")
+                target = added_dict if is_add else removed_dict
+                for k, v in parsed.items():
+                    target[k] = v
+            except Exception:
+                pass
+        final_added = []
+        final_changed = []
+        final_removed = []
         for k, new_v in added_dict.items():
             if k in removed_dict:
-                old_v = removed_dict.get(k)
-                # Only include if values actually differ
+                old_v = removed_dict.pop(k)
                 if old_v != new_v:
                     final_changed.append((k, old_v, new_v))
-                # Remove from removed_dict to avoid double-counting
-                removed_dict.pop(k, None)
             else:
-                # Only keep explicit non-None values
-                if new_v is not None:
-                    final_added.append((k, new_v))
-
-        # Remaining keys in removed_dict are true removals
+                final_added.append((k, new_v))
         for k, old_v in removed_dict.items():
-            if old_v is not None:
-                final_removed.append((k, old_v))
-
+            final_removed.append((k, old_v))
         return header, final_added, final_changed, final_removed
 
 
-async def async_build_diff_for_commit(
-    commit_hash: str, diff_cache: dict, manifest_repo: Path | None = None
-) -> tuple[str, list[tuple[str, any]], list[tuple[str, any, any]], list[tuple[str, any]]]:
+async def async_build_diff(commit_hash, diff_cache, manifest_repo=None):
     if commit_hash in diff_cache:
-        cached = diff_cache[commit_hash]
-        added   = [tuple(entry) for entry in cached.get("added", []) if len(entry) == 2]
-        changed = [tuple(entry) for entry in cached.get("changed", []) if len(entry) == 3]
-        removed = [tuple(entry) for entry in cached.get("removed", []) if len(entry) == 2]
-        return cached['header'], added, changed, removed
+        c = diff_cache[commit_hash]
+        return (
+            c["header"],
+            [tuple(e) for e in c.get("added", []) if len(e) == 2],
+            [tuple(e) for e in c.get("changed", []) if len(e) == 3],
+            [tuple(e) for e in c.get("removed", []) if len(e) == 2],
+        )
     header, added, changed, removed = await asyncio.get_running_loop().run_in_executor(
-        None, lambda: build_diff_for_commit_old(commit_hash, manifest_repo)
+        None, lambda: build_diff_for_commit(commit_hash, manifest_repo)
     )
     diff_cache[commit_hash] = {
-        'header': header,
-        'added': [[f, v] for f, v in added],
-        'changed': [[f, o, n] for f, o, n in changed],
-        'removed': [[f, v] for f, v in removed]
+        "header": header,
+        "added": [list(a) for a in added],
+        "changed": [list(c) for c in changed],
+        "removed": [list(r) for r in removed],
     }
     return header, added, changed, removed
 
-async def build_report(
-    commits: list[str], diff_cache: dict, manifest_repo: Path | None = None
-) -> tuple[list, dict, dict]:
+
+async def build_report(commits, diff_cache, manifest_repo=None):
     report = []
     summary = {}
     flag_changes = defaultdict(int)
-    for i in range(0, len(commits), COMMIT_BATCH_SIZE):
-        batch = commits[i:i + COMMIT_BATCH_SIZE]
-        tasks = [async_build_diff_for_commit(c, diff_cache, manifest_repo) for c in batch]
+    total = len(commits)
+    for i in range(0, total, COMMIT_BATCH_SIZE):
+        batch = commits[i : i + COMMIT_BATCH_SIZE]
+        log.info(f"Processing commits {i + 1}–{min(i + len(batch), total)} of {total}")
+        tasks = [async_build_diff(c, diff_cache, manifest_repo) for c in batch]
         results = await asyncio.gather(*tasks, return_exceptions=True)
         for result in results:
             if isinstance(result, Exception):
@@ -380,59 +352,33 @@ async def build_report(
                 report.append((header, changes))
     return report, summary, flag_changes
 
-# ============================
-# History Management
-# ============================
-def update_history(added: int, changed: int, removed: int, last_run: str) -> None:
-    history = []
-    if HISTORY_FILE.exists():
-        try:
-            history = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            log.warning("Corrupted history file. Starting new history.")
-    current_date = last_run.split(' ')[0]
-    if history and history[-1]['date'].split(' ')[0] == current_date:
-        last_entry = history[-1]
-        last_entry['added'] = (last_entry['added'] + added) / 2
-        last_entry['changed'] = (last_entry['changed'] + changed) / 2
-        last_entry['removed'] = (last_entry['removed'] + removed) / 2
-        last_entry['date'] = last_run
+
+def update_history(added, changed, removed, last_run):
+    history = safe_read_json(HISTORY_FILE, [])
+    current_date = last_run.split(" ")[0]
+    entry = {"date": last_run, "added": added, "changed": changed, "removed": removed}
+    if history and history[-1].get("date", "").split(" ")[0] == current_date:
+        history[-1] = entry
     else:
-        history.append({"date": last_run, "added": added, "changed": changed, "removed": removed})
+        history.append(entry)
     history = history[-HISTORY_DAYS:]
-    HISTORY_FILE.write_text(json.dumps(history, indent=2), encoding="utf-8")
+    atomic_write(HISTORY_FILE, json.dumps(history, indent=2))
 
-# ============================
-# AI Enrichment
-# ============================
-try:
-    FLAG_INFO = json.loads(CACHE_FILE.read_text(encoding="utf-8")) if CACHE_FILE.exists() else {}
-except json.JSONDecodeError:
-    log.warning("Corrupted fflag_cache.json. Using empty cache.")
-    FLAG_INFO = {}
-
-try:
-    FAILED_FLAGS = json.loads(FAILED_FLAGS_FILE.read_text(encoding="utf-8")) if FAILED_FLAGS_FILE.exists() else []
-except json.JSONDecodeError:
-    log.warning("Corrupted failed_flags.json. Using empty list.")
-    FAILED_FLAGS = []
 
 FLAG_SCHEMA = {
     "type": "object",
     "patternProperties": {
         "^(FFlag|DFFlag|DFInt|DFLog|SFFlag|FString|FInt|DFString)[A-Za-z0-9_]+$": {
             "type": "object",
-            "properties": {
-                "mechanism": {"type": "string"},
-                "purpose": {"type": "string"}
-            },
-            "required": ["mechanism", "purpose"]
+            "properties": {"mechanism": {"type": "string"}, "purpose": {"type": "string"}},
+            "required": ["mechanism", "purpose"],
         }
     },
-    "additionalProperties": False
+    "additionalProperties": False,
 }
 
-def safe_json_parse(raw: str):
+
+def safe_json_parse(raw):
     try:
         return json.loads(raw)
     except json.JSONDecodeError:
@@ -440,37 +386,37 @@ def safe_json_parse(raw: str):
         cleaned = re.sub(r",\s*([}\]])", r"\1", cleaned)
         try:
             return json.loads(cleaned)
-        except json.JSONDecodeError as e:
-            log.warning(f"JSON still invalid after cleanup: {e}")
+        except json.JSONDecodeError:
             return None
 
-def normalize_ai_response(raw: str, flags: list[str]):
+
+def normalize_ai_response(raw, flags):
     data = safe_json_parse(raw)
     if isinstance(data, list):
-        return {flag: obj for flag, obj in zip(flags, data) if isinstance(obj, dict)}
+        return {f: obj for f, obj in zip(flags, data) if isinstance(obj, dict)}
     return data
 
-def extract_and_validate_json(text: str) -> dict:
+
+def extract_and_validate_json(text):
     data = safe_json_parse(text)
     if data is None:
         raise json.JSONDecodeError("Invalid JSON after repair", text, 0)
     if json_validate:
         try:
             json_validate(instance=data, schema=FLAG_SCHEMA)
-        except ValidationError as ve:
-            log.warning(f"Schema issue: {ve}. Filtering invalid keys.")
-            data = {k: v for k, v in data.items() if re.match(
-                r"^(FFlag|DFFlag|DFInt|DFLog|SFFlag|FString|FInt|DFString)[A-Za-z0-9_]+$",
-                k
-            )}
+        except ValidationError:
+            data = {
+                k: v
+                for k, v in data.items()
+                if re.match(r"^(FFlag|DFFlag|DFInt|DFLog|SFFlag|FString|FInt|DFString)[A-Za-z0-9_]+$", k)
+            }
     return data
 
-async def ai_enrich_flags_batch(batch: list[str]) -> dict:
+
+async def ai_enrich_flags_batch(batch):
     if args.dry_run:
-        log.info("Dry run: Skipping AI enrichment")
         return {f: {"mechanism": "N/A (dry run)", "purpose": "N/A (dry run)"} for f in batch}
     if not OPENAI_KEYS or not AsyncOpenAI:
-        log.warning("No OpenAI API keys or client available. Skipping enrichment.")
         return {}
     system_prompt = (
         "Respond ONLY with valid JSON.\n"
@@ -479,10 +425,8 @@ async def ai_enrich_flags_batch(batch: list[str]) -> dict:
         "- mechanism (short, technical)\n"
         "- purpose (player-facing benefit)\n"
         "Example:\n"
-        "{\n"
-        "  \"FFlagExample\": {\"mechanism\": \"...\", \"purpose\": \"...\"},\n"
-        "  \"DFFlagOther\": {\"mechanism\": \"...\", \"purpose\": \"...\"}\n"
-        "}"
+        '{\n  "FFlagExample": {"mechanism": "...", "purpose": "..."},\n'
+        '  "DFFlagOther": {"mechanism": "...", "purpose": "..."}\n}'
     )
     user_prompt = (
         "Explain these Roblox FFlags in simple layman's terms. "
@@ -498,90 +442,65 @@ async def ai_enrich_flags_batch(batch: list[str]) -> dict:
                 model="gpt-4o-mini",
                 messages=[
                     {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt}
+                    {"role": "user", "content": user_prompt},
                 ],
-                temperature=0.3
+                temperature=0.3,
             )
             text = response.choices[0].message.content.strip()
             parsed = normalize_ai_response(text, batch)
             parsed = extract_and_validate_json(json.dumps(parsed))
-            if not parsed:
-                log.warning("OpenAI returned invalid JSON. Skipping enrichment.")
-                return {f: {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"} for f in batch}
-            return parsed
+            if parsed:
+                return parsed
+            return {f: {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"} for f in batch}
         except RateLimitError as e:
             retry_after = 60
-            if hasattr(e, 'response') and e.response and e.response.headers.get('Retry-After'):
+            if hasattr(e, "response") and e.response and e.response.headers.get("Retry-After"):
                 try:
-                    retry_after = min(int(e.response.headers.get('Retry-After')), 60)
+                    retry_after = min(int(e.response.headers["Retry-After"]), 60)
                 except ValueError:
                     pass
-            log.warning(f"OpenAI rate limit hit on attempt {attempt+1}. Waiting {retry_after}s.")
+            log.warning(f"Rate limit (attempt {attempt + 1}). Waiting {retry_after}s.")
             await asyncio.sleep(retry_after)
-            continue
-        except json.JSONDecodeError as je:
-            log.warning(f"Failed to parse OpenAI response: {je}. Retrying with stricter prompt.")
+        except json.JSONDecodeError:
             system_prompt = "Respond strictly in valid JSON with 'mechanism' and 'purpose' for each Roblox FFlag."
             await asyncio.sleep(1)
-            continue
         except Exception as e:
-            log.error(f"OpenAI batch failed (attempt {attempt+1}): {e}")
-            await asyncio.sleep(2 ** attempt)
-            continue
-    log.warning("OpenAI failed after max retries. Skipping enrichment.")
-    return {f: {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"} for f in batch}
+            log.error(f"AI batch failed (attempt {attempt + 1}): {e}")
+            await asyncio.sleep(2**attempt)
+    return {f: {"mechanism": "N/A (failed)", "purpose": "N/A (failed)"} for f in batch}
 
-async def generate_flag_info_batch(flags: list[str]) -> list[str]:
-    # Retry failed flags first
-    failed_flags = list(set(FAILED_FLAGS))
-    if failed_flags:
-        log.info(f"Retrying {len(failed_flags)} failed flags.")
-        batches = [failed_flags[i:i + AI_BATCH_SIZE] for i in range(0, len(failed_flags), AI_BATCH_SIZE)]
-        failed_this_run = await process_batches(batches)
-        FAILED_FLAGS[:] = failed_this_run
-    else:
-        failed_this_run = []
 
-    new_flags = [f for f in flags if should_enrich_flag(f)]
-    if not new_flags:
-        return failed_this_run
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    batches = [new_flags[i:i + AI_BATCH_SIZE] for i in range(0, len(new_flags), AI_BATCH_SIZE)]
-    failed_this_run += await process_batches(batches)
-    FAILED_FLAGS[:] = list(set(FAILED_FLAGS + failed_this_run))
-    FAILED_FLAGS_FILE.write_text(json.dumps(FAILED_FLAGS, indent=2), encoding="utf-8")
-    CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
-    return failed_this_run
-
-async def process_batches(batches: list[list[str]]) -> list[str]:
+async def process_batches(batches):
     semaphore = asyncio.Semaphore(AI_CONCURRENT_LIMIT)
     failed_flags = []
-    async def limited_task(batch):
+
+    async def limited_task(b):
         async with semaphore:
-            result = await ai_enrich_flags_batch(batch)
+            result = await ai_enrich_flags_batch(b)
             await asyncio.sleep(AI_BATCH_DELAY)
-            return result, batch
-    tasks = [limited_task(batch) for batch in batches]
+            return result, b
+
+    tasks = [limited_task(b) for b in batches]
     results = await asyncio.gather(*tasks, return_exceptions=True)
-    for result in [r for r in results if not isinstance(r, Exception)]:
-        info_batch, batch = result
-        for f in batch:
+    for res in results:
+        if isinstance(res, Exception):
+            log.error(f"Batch enrichment error: {res}")
+            continue
+        info_batch, batch_flags = res
+        for f in batch_flags:
             info = info_batch.get(f, {})
-            if info and "mechanism" in info and "purpose" in info:
-                FLAG_INFO[f] = {"mechanism": info.get("mechanism", "Unknown"),
-                                "purpose": info.get("purpose", "Unknown")}
+            if info and info.get("mechanism") and info.get("purpose") and not info["mechanism"].startswith("N/A"):
+                FLAG_INFO[f] = {"mechanism": info["mechanism"], "purpose": info["purpose"]}
                 if f in FAILED_FLAGS:
                     FAILED_FLAGS.remove(f)
             else:
-                log.warning(f"Skipping invalid or missing info for flag {f}")
-                FLAG_INFO[f] = {"mechanism": "N/A (invalid)", "purpose": "N/A (invalid)"}
-                failed_flags.append(f)
-    for exception in [r for r in results if isinstance(r, Exception)]:
-        log.error(f"Batch enrichment failed: {exception}")
-        failed_flags.extend(batch)
+                FLAG_INFO[f] = {"mechanism": info.get("mechanism", "N/A"), "purpose": info.get("purpose", "N/A")}
+                if f not in failed_flags:
+                    failed_flags.append(f)
     return failed_flags
 
-def should_enrich_flag(flag: str) -> bool:
+
+def should_enrich_flag(flag):
     if args.dry_run:
         return False
     if flag not in FLAG_INFO:
@@ -589,710 +508,410 @@ def should_enrich_flag(flag: str) -> bool:
     info = FLAG_INFO[flag]
     return not (info.get("mechanism") and info.get("purpose") and not info["mechanism"].startswith("N/A"))
 
-def generate_flag_info(flag: str) -> dict:
+
+async def generate_flag_info_batch(flags):
+    global FAILED_FLAGS
+    retryable = list(set(FAILED_FLAGS))
+    if retryable:
+        log.info(f"Retrying {len(retryable)} previously failed flags")
+        batches = [retryable[i : i + AI_BATCH_SIZE] for i in range(0, len(retryable), AI_BATCH_SIZE)]
+        still_failed = await process_batches(batches)
+    else:
+        still_failed = []
+    new_flags = [f for f in flags if should_enrich_flag(f)]
+    if new_flags:
+        log.info(f"Enriching {len(new_flags)} new flags via AI")
+        batches = [new_flags[i : i + AI_BATCH_SIZE] for i in range(0, len(new_flags), AI_BATCH_SIZE)]
+        still_failed += await process_batches(batches)
+    FAILED_FLAGS = list(set(still_failed))
+    atomic_write(FAILED_FLAGS_FILE, json.dumps(FAILED_FLAGS, indent=2))
+    atomic_write(CACHE_FILE, json.dumps(FLAG_INFO, indent=2))
+    return FAILED_FLAGS
+
+
+def get_flag_info(flag):
     return FLAG_INFO.get(flag, {"mechanism": "N/A", "purpose": "N/A"})
 
-# ============================
-# Report Export
-# ============================
-def export_reports(report: list, summary: dict, flag_changes: dict) -> None:
-    last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
 
-    added_total = sum(summary.get((cat, "Added"), 0) for cat in CATEGORIES)
-    changed_total = sum(summary.get((cat, "Changed"), 0) for cat in CATEGORIES)
-    removed_total = sum(summary.get((cat, "Removed"), 0) for cat in CATEGORIES)
-    net_changes = added_total - removed_total
+def compute_stats(summary):
+    added = sum(summary.get((cat, "Added"), 0) for cat in CATEGORIES)
+    changed = sum(summary.get((cat, "Changed"), 0) for cat in CATEGORIES)
+    removed = sum(summary.get((cat, "Removed"), 0) for cat in CATEGORIES)
+    return added, changed, removed
 
-    history = []
-    if HISTORY_FILE.exists():
-        try:
-            history = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            log.warning("Corrupted history file. Using empty history.")
 
-    total_historical_added = sum(entry.get('added', 0) for entry in history)
-    total_historical_changed = sum(entry.get('changed', 0) for entry in history)
-    total_historical_removed = sum(entry.get('removed', 0) for entry in history)
-
-    percent_change = 0.0
-    historical_avg_added = total_historical_added / len(history) if history else 0.0
-    historical_avg_changed = total_historical_changed / len(history) if history else 0.0
-    historical_avg_removed = total_historical_removed / len(history) if history else 0.0
-
+def compute_history_stats(history):
+    ha = sum(e.get("added", 0) for e in history)
+    hc = sum(e.get("changed", 0) for e in history)
+    hr = sum(e.get("removed", 0) for e in history)
+    pct = 0.0
     if len(history) > 1:
         prev = history[-2]
-        prev_total = prev['added'] + prev['changed'] + prev['removed']
-        curr_total = added_total + changed_total + removed_total
-        percent_change = round(((curr_total - prev_total) / prev_total * 100), 2) if prev_total > 0 else 0.0
+        pt = prev.get("added", 0) + prev.get("changed", 0) + prev.get("removed", 0)
+        ct = history[-1].get("added", 0) + history[-1].get("changed", 0) + history[-1].get("removed", 0)
+        pct = round(((ct - pt) / pt * 100), 2) if pt > 0 else 0.0
+    return ha, hc, hr, pct
 
+
+def export_reports(report, summary, flag_changes):
+    last_run = datetime.datetime.now(TIMEZONE).strftime("%Y-%m-%d %I:%M:%S %p %Z")
+    added, changed, removed = compute_stats(summary)
+    net = added - removed
+    history = safe_read_json(HISTORY_FILE, [])
+    hist_a, hist_c, hist_r, pct = compute_history_stats(history)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # ---------------- Markdown Export ----------------
     md = [f"# Roblox Client FFlag Intel Report ({DAYS} Days)\n"]
-    md.append(f"- Last Run: {last_run}")
-    md.append(f"- Flags Added: {added_total}")
-    md.append(f"- Flags Changed: {changed_total}")
-    md.append(f"- Flags Removed: {removed_total}\n")
-    md.append("## Summary\n| Category | Added | Changed | Removed | Total |\n|---|---|---|---|---|")
+    md.append(f"**Last Run:** {last_run}\n")
+    md.append(f"| Metric | Count |\n|---|---|\n| Added | {added} |\n| Changed | {changed} |"
+              f"\n| Removed | {removed} |\n| Net | {net} |\n| % Change | {pct}% |\n")
+    md.append("## Summary\n\n| Category | Added | Changed | Removed | Total |\n|---|---|---|---|---|")
     for cat in CATEGORIES:
         a = summary.get((cat, "Added"), 0)
         c = summary.get((cat, "Changed"), 0)
         r = summary.get((cat, "Removed"), 0)
-        md.append(f"| {cat} | {a} | {c} | {r} | {a+c+r} |")
-
-    md.append("\n## History Summary\n")
-    md.append(f"- Total Historical Added: {total_historical_added}")
-    md.append(f"- Total Historical Changed: {total_historical_changed}")
-    md.append(f"- Total Historical Removed: {total_historical_removed}")
-    if len(history) <= 1:
-        md.append("- Note: Limited history available.")
-
+        md.append(f"| {cat} | {a} | {c} | {r} | {a + c + r} |")
     if not report:
-        md.append(f"\n## No Recent Changes\nNo flag changes in the last {DAYS} days.")
+        md.append(f"\n*No flag changes in the last {DAYS} days.*")
     else:
         for header, changes in report:
-            md.append(f"\n## {header}")
+            md.append(f"\n---\n## {header}\n")
             grouped = {}
-            for typ, cat, flag, *values in changes:
-                grouped.setdefault((typ, cat), []).append((flag, *values))
+            for typ, cat, flag, *vals in changes:
+                grouped.setdefault((typ, cat), []).append((flag, *vals))
             for (typ, cat), items in grouped.items():
-                md.append(f"{typ} in {cat}:")
-                for item in items:
-                    flag = item[0]
-                    values = item[1:]
-                    info = generate_flag_info(flag)
-                    desc = ""
-                    if typ == "Added":
-                        desc = f"= {format_value(values[0])}"
-                    elif typ == "Changed":
-                        desc = f"changed from {format_value(values[0])} to {format_value(values[1])}"
-                    elif typ == "Removed":
-                        desc = f"removed (was {format_value(values[0])})"
-                    md.append(f"- {flag} {desc} | Mechanism: {info['mechanism']} | Purpose: {info['purpose']}")
+                icon = {"Added": "✅", "Changed": "🔄", "Removed": "❌"}.get(typ, "")
+                md.append(f"\n### {icon} {typ} — {cat}\n")
+                if typ == "Changed":
+                    md.append("| Flag | Old | New | Mechanism | Purpose |\n|---|---|---|---|---|")
+                    for item in items:
+                        info = get_flag_info(item[0])
+                        md.append(f"| `{item[0]}` | {format_value(item[1])} | {format_value(item[2])} | {info['mechanism']} | {info['purpose']} |")
+                elif typ == "Added":
+                    md.append("| Flag | Value | Mechanism | Purpose |\n|---|---|---|---|")
+                    for item in items:
+                        info = get_flag_info(item[0])
+                        md.append(f"| `{item[0]}` | {format_value(item[1])} | {info['mechanism']} | {info['purpose']} |")
+                else:
+                    md.append("| Flag | Was | Mechanism | Purpose |\n|---|---|---|---|")
+                    for item in items:
+                        info = get_flag_info(item[0])
+                        md.append(f"| `{item[0]}` | {format_value(item[1])} | {info['mechanism']} | {info['purpose']} |")
+    atomic_write(OUTPUT_MD, "\n".join(md))
 
-    OUTPUT_MD.write_text("\n".join(md), encoding="utf-8")
-
-    # ---------------- HTML Export (INLINE SAFE) ----------------
-    html_lines = ['<h1>Roblox FFlag Report</h1>']
+    hl = ["<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'>"]
+    hl.append("<meta name='viewport' content='width=device-width,initial-scale=1.0'>")
+    hl.append("<title>FFlag Report</title><style>")
+    hl.append("*{box-sizing:border-box}body{font-family:system-ui,-apple-system,sans-serif;margin:0;padding:20px;background:#0f172a;color:#e2e8f0}")
+    hl.append("h1{color:#60a5fa}h2{color:#34d399;border-bottom:1px solid #334155;padding-bottom:8px}h3{color:#fbbf24}")
+    hl.append("details{background:#1e293b;border-radius:8px;padding:12px;margin:8px 0}")
+    hl.append("summary{cursor:pointer;font-weight:600}ul{list-style:none;padding:0}")
+    hl.append("li{padding:6px 0;border-bottom:1px solid #1e293b;font-size:.9rem}")
+    hl.append(".a{color:#34d399}.c{color:#60a5fa}.r{color:#f87171}")
+    hl.append("</style></head><body>")
+    hl.append("<h1>Roblox FFlag Report</h1>")
     if not report:
-        html_lines.append(f"<p>No Recent Changes</p><p>No flag changes in the last {html.escape(str(DAYS))} days.</p>")
+        hl.append(f"<p>No changes in {DAYS} days.</p>")
     else:
         for header, changes in report:
-            html_lines.append(f"<h2>{html.escape(header)}</h2>")
+            hl.append(f"<h2>{html.escape(header)}</h2>")
             grouped = {}
-            for typ, cat, flag, *values in changes:
-                grouped.setdefault((typ, cat), []).append((flag, *values))
+            for typ, cat, flag, *vals in changes:
+                grouped.setdefault((typ, cat), []).append((flag, *vals))
             for (typ, cat), items in grouped.items():
-                html_lines.append(f"<details><summary>{html.escape(typ)} in {html.escape(cat)}</summary><ul>")
+                cls = {"Added": "a", "Changed": "c", "Removed": "r"}.get(typ, "")
+                hl.append(f"<details><summary class='{cls}'>{html.escape(typ)} in {html.escape(cat)} ({len(items)})</summary><ul>")
                 for item in items:
                     flag = item[0]
-                    values = item[1:]
-                    info = generate_flag_info(flag)
+                    info = get_flag_info(flag)
                     if typ == "Added":
-                        desc = f"= {html.escape(format_value(values[0]))}"
+                        desc = f"= {html.escape(format_value(item[1]))}"
                     elif typ == "Changed":
-                        desc = f"changed from {html.escape(format_value(values[0]))} to {html.escape(format_value(values[1]))}"
-                    elif typ == "Removed":
-                        desc = f"removed (was {html.escape(format_value(values[0]))})"
-                    html_lines.append(
-                        f"<li>{html.escape(flag)} {desc} - Mechanism: {html.escape(info['mechanism'])} - Purpose: {html.escape(info['purpose'])}</li>"
-                    )
-                html_lines.append("</ul></details>")
+                        desc = f"{html.escape(format_value(item[1]))} → {html.escape(format_value(item[2]))}"
+                    else:
+                        desc = f"was {html.escape(format_value(item[1]))}"
+                    hl.append(f"<li><strong>{html.escape(flag)}</strong> {desc}<br><small>{html.escape(info['mechanism'])} — {html.escape(info['purpose'])}</small></li>")
+                hl.append("</ul></details>")
+    hl.append("</body></html>")
+    atomic_write(OUTPUT_HTML, "\n".join(hl))
 
-    OUTPUT_HTML.write_text("\n".join(html_lines), encoding="utf-8")
-
-    # ---------------- JSON Export ----------------
     json_data = {
         "last_run": last_run,
-        "added_total": added_total,
-        "changed_total": changed_total,
-        "removed_total": removed_total,
-        "net_changes": net_changes,
-        "percent_change": percent_change,
-        "historical_avg_added": historical_avg_added,
-        "historical_avg_changed": historical_avg_changed,
-        "historical_avg_removed": historical_avg_removed,
-        "total_historical_added": total_historical_added,
-        "total_historical_changed": total_historical_changed,
-        "total_historical_removed": total_historical_removed,
+        "days": DAYS,
+        "added_total": added,
+        "changed_total": changed,
+        "removed_total": removed,
+        "net_changes": net,
+        "percent_change": pct,
+        "total_historical_added": hist_a,
+        "total_historical_changed": hist_c,
+        "total_historical_removed": hist_r,
+        "historical_avg_added": round(hist_a / max(len(history), 1), 2),
+        "historical_avg_changed": round(hist_c / max(len(history), 1), 2),
+        "historical_avg_removed": round(hist_r / max(len(history), 1), 2),
         "summary": {
             cat: {
                 "added": summary.get((cat, "Added"), 0),
                 "changed": summary.get((cat, "Changed"), 0),
-                "removed": summary.get((cat, "Removed"), 0)
-            } for cat in CATEGORIES
+                "removed": summary.get((cat, "Removed"), 0),
+            }
+            for cat in CATEGORIES
         },
         "report": [],
-        "days": DAYS
     }
-
     for header, changes in report:
         grouped = {}
-        for typ, cat, flag, *values in changes:
-            info = generate_flag_info(flag)
+        for typ, cat, flag, *vals in changes:
+            info = get_flag_info(flag)
             entry = {
                 "name": flag,
-                "mechanism": info['mechanism'],
-                "purpose": info['purpose'],
-                "freq": flag_changes.get(flag, 0)
+                "mechanism": info["mechanism"],
+                "purpose": info["purpose"],
+                "freq": flag_changes.get(flag, 0),
             }
             if typ == "Added":
                 entry["old_value"] = None
-                entry["new_value"] = format_value(values[0])
+                entry["new_value"] = format_value(vals[0])
             elif typ == "Changed":
-                entry["old_value"] = format_value(values[0])
-                entry["new_value"] = format_value(values[1])
-            elif typ == "Removed":
-                entry["old_value"] = format_value(values[0])
+                entry["old_value"] = format_value(vals[0])
+                entry["new_value"] = format_value(vals[1])
+            else:
+                entry["old_value"] = format_value(vals[0])
                 entry["new_value"] = None
             grouped.setdefault(f"{typ}_{cat}", []).append(entry)
         json_data["report"].append({"header": header, "grouped": grouped})
-
     json_data["report"] = json_data["report"][-MAX_REPORT_COMMITS:]
-    OUTPUT_JSON.write_text(json.dumps(json_data, indent=2), encoding="utf-8")
+    atomic_write(OUTPUT_JSON, json.dumps(json_data, indent=2))
 
-    # ---------------- Summary + Chunks ----------------
-    summary_data = json_data.copy()
-    commits_data = summary_data.pop("report")
-    SUMMARY_JSON = OUTPUT_DIR / "summary.json"
-    COMMITS_JSON = OUTPUT_DIR / "commits.json"
-    SUMMARY_JSON.write_text(json.dumps(summary_data, indent=2), encoding="utf-8")
+    summary_data = {k: v for k, v in json_data.items() if k != "report"}
+    commits_data = json_data["report"]
+    chunks = []
+    for i in range(0, max(len(commits_data), 1), COMMIT_CHUNK_SIZE):
+        chunk = commits_data[i : i + COMMIT_CHUNK_SIZE]
+        fname = f"commits_{i // COMMIT_CHUNK_SIZE}.json"
+        atomic_write(OUTPUT_DIR / fname, json.dumps(chunk, indent=2))
+        chunks.append(fname)
+    summary_data["num_chunks"] = len(chunks)
+    atomic_write(SUMMARY_FILE, json.dumps(summary_data, indent=2))
 
-    # Pre-paginate commits.json into chunks
-    chunk_files = []
-    for i in range(0, len(commits_data), COMMIT_CHUNK_SIZE):
-        chunk = commits_data[i:i + COMMIT_CHUNK_SIZE]
-        chunk_file = OUTPUT_DIR / f"commits_{i // COMMIT_CHUNK_SIZE}.json"
-        chunk_file.write_text(json.dumps(chunk, indent=2), encoding="utf-8")
-        chunk_files.append(chunk_file.name)
+    index_data = {"total": len(commits_data), "chunk_size": COMMIT_CHUNK_SIZE, "chunks": chunks}
+    atomic_write(COMMITS_INDEX_FILE, json.dumps(index_data, indent=2))
 
-    summary_data['num_chunks'] = (len(commits_data) + COMMIT_CHUNK_SIZE - 1) // COMMIT_CHUNK_SIZE
-    SUMMARY_JSON.write_text(json.dumps(summary_data, indent=2), encoding="utf-8")
+    log.info(f"Reports: {OUTPUT_MD.name}, {OUTPUT_HTML.name}, {OUTPUT_JSON.name}, {SUMMARY_FILE.name}, {len(chunks)} chunks")
 
-    log.info(f"Reports generated: {OUTPUT_MD}, {OUTPUT_HTML}, {OUTPUT_JSON}, {SUMMARY_JSON}, commits_*.json")
 
-# ============================
-# Landing Page
-# ============================
-def ensure_landing_page(added: int, changed: int, removed: int, last_run: str, summary: dict = None) -> None:
-    index_html = OUTPUT_DIR / "index.html"
-    sw_js = OUTPUT_DIR / "sw.js"
-    if not HISTORY_FILE.exists():
-        HISTORY_FILE.write_text("[]", encoding="utf-8")
+def ensure_assets():
+    dst = OUTPUT_DIR / "assets"
+    if dst.exists():
+        shutil.rmtree(dst)
+    if ASSETS_SRC.exists():
+        shutil.copytree(ASSETS_SRC, dst)
+        log.info(f"Copied assets → {dst}")
+    else:
+        dst.mkdir(parents=True, exist_ok=True)
+        log.warning("assets/ source not found, created empty dir")
+
+
+def ensure_service_worker():
+    dst = OUTPUT_DIR / "sw.js"
+    if CUSTOM_SW_SRC.exists():
+        shutil.copy2(CUSTOM_SW_SRC, dst)
+        log.info(f"Copied custom SW → {dst}")
+    else:
+        sw = (
+            'const C="fflag-v2",U=["./","index.html","summary.json","commits_index.json",'
+            '"history.json","assets/app.js","assets/chart.umd.js","assets/hammer.min.js",'
+            '"assets/chartjs-plugin-zoom.js"];'
+            "self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(U)))});"
+            "self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request)"
+            ".then(r=>r||fetch(e.request).then(res=>{if(res.ok){const cl=res.clone();"
+            "caches.open(C).then(c=>c.put(e.request,cl))}return res})"
+            ".catch(()=>caches.match('index.html'))))});"
+            "self.addEventListener('activate',e=>{e.waitUntil(caches.keys()"
+            ".then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))))});"
+        )
+        atomic_write(dst, sw)
+        log.info(f"Generated fallback SW → {dst}")
+
+
+def ensure_manifest():
+    m = {
+        "name": "Roblox FFlag Tracker",
+        "short_name": "FFlags",
+        "start_url": ".",
+        "display": "standalone",
+        "background_color": "#0f172a",
+        "theme_color": "#3b82f6",
+        "description": "Track Roblox client feature flag changes",
+        "icons": [{"src": "assets/favicon.ico", "sizes": "64x64", "type": "image/x-icon"}],
+    }
+    atomic_write(MANIFEST_FILE, json.dumps(m, indent=2))
+
+
+def ensure_landing_page(added, changed, removed, last_run, summary=None):
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    (OUTPUT_DIR / "assets").mkdir(parents=True, exist_ok=True)
-    net_changes = added - removed
-    history = []
-    if HISTORY_FILE.exists():
-        try:
-            history = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            log.warning("Corrupted history file. Using empty history.")
-    total_historical_added = sum(entry.get('added', 0) for entry in history)
-    total_historical_changed = sum(entry.get('changed', 0) for entry in history)
-    total_historical_removed = sum(entry.get('removed', 0) for entry in history)
-    percent_change = 0.0
-    if len(history) > 1:
-        prev = history[-2]
-        prev_total = prev['added'] + prev['changed'] + prev['removed']
-        curr_total = added + changed + removed
-        percent_change = round(((curr_total - prev_total) / prev_total * 100), 2) if prev_total > 0 else 0.0
-    category_options = "\n".join([f'    <option value="{html.escape(cat)}">{html.escape(cat)}</option>' for cat in CATEGORIES])
-    summary_rows = ""
+    net = added - removed
+    history = safe_read_json(HISTORY_FILE, [])
+    hist_a, hist_c, hist_r, pct = compute_history_stats(history)
+    pct_cls = "positive" if pct >= 0 else "negative"
+    cat_opts = "\n".join(f'<option value="{html.escape(c)}">{html.escape(c)}</option>' for c in CATEGORIES)
+    s_rows = ""
     if summary:
         for cat in CATEGORIES:
             a = summary.get((cat, "Added"), 0)
             c = summary.get((cat, "Changed"), 0)
             r = summary.get((cat, "Removed"), 0)
-            summary_rows += f"<tr><td>{html.escape(cat)}</td><td>{a}</td><td>{c}</td><td>{r}</td><td>{a+c+r}</td></tr>\n"
+            t = a + c + r
+            s_rows += f"<tr><td>{html.escape(cat)}</td><td>{a}</td><td>{c}</td><td>{r}</td><td>{t}</td></tr>\n"
     else:
-        summary_rows = "<tr><td colspan='5'>No summary available</td></tr>"
-    html_content = f"""<!DOCTYPE html>
+        s_rows = "<tr><td colspan='5'>No data</td></tr>"
+    page = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self';">
-    <title>Roblox FFlag Tracker</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚩</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {{
-            --primary-green: #34d399;
-            --primary-blue: #60a5fa;
-            --primary-red: #f87171;
-            --primary-yellow: #fbbf24;
-            --historical-green: #10b981;
-            --historical-blue: #3b82f6;
-            --historical-red: #ef4444;
-            --bg-opacity: 0.15;
-            --text-color: #fff;
-            --bg-color: linear-gradient(135deg,#4f46e5,#3b82f6,#06b6d4,#14b8a6);
-            --high-contrast-bg: #000;
-            --high-contrast-text: #fff;
-        }}
-        body {{
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background: var(--bg-color);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: var(--text-color);
-            overflow-x: hidden;
-        }}
-        body.light {{
-            --text-color: #333;
-            --bg-opacity: 0.05;
-            --bg-color: linear-gradient(135deg,#e0f2fe,#bfdbfe,#a5f3fc,#99f6e4);
-        }}
-        body.high-contrast {{
-            --bg-color: var(--high-contrast-bg);
-            --text-color: var(--high-contrast-text);
-            --bg-opacity: 1;
-            background: var(--high-contrast-bg);
-        }}
-        @keyframes gradientBG {{
-            0% {{background-position:0% 50%;}}
-            50% {{background-position:100% 50%;}}
-            100% {{background-position:0% 50%;}}
-        }}
-        @media (prefers-reduced-motion: reduce) {{
-            * {{
-                animation-duration: 0s !important;
-                transition-duration: 0s !important;
-            }}
-            #particleCanvas {{ display: none; }}
-        }}
-        header {{
-            text-align: center;
-            padding: 60px 20px;
-            text-shadow: 0 0 12px rgba(0,0,0,0.3);
-        }}
-        header h1 {{
-            font-size: 3rem;
-            font-weight: 700;
-        }}
-        .stats {{
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: -40px auto 40px;
-            position: relative;
-            z-index: 2;
-        }}
-        .badge {{
-            flex: 1;
-            min-width: 220px;
-            text-align: center;
-            padding: 25px;
-            border-radius: 16px;
-            font-weight: 700;
-            backdrop-filter: blur(10px);
-            background: #ffffff;
-            color: #0b1220;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-        }}
-        body.high-contrast .badge {{
-            background: var(--high-contrast-bg);
-            border: 2px solid var(--high-contrast-text);
-        }}
-        .badge:hover {{
-            transform: translateY(-8px);
-            box-shadow: 0 14px 40px rgba(0,0,0,0.4);
-            border: 2px solid var(--primary-green);
-        }}
-        .added {{
-            border-left: 6px solid var(--primary-green);
-        }}
-        .added::before {{
-            content: "✅ Added: ";
-            font-size: 0.9rem;
-        }}
-        .changed {{
-            border-left: 6px solid var(--primary-blue);
-        }}
-        .changed::before {{
-            content: "🔄 Changed: ";
-            font-size: 0.9rem;
-        }}
-        .removed {{
-            border-left: 6px solid var(--primary-red);
-        }}
-        .removed::before {{
-            content: "❌ Removed: ";
-            font-size: 0.9rem;
-        }}
-        .net {{
-            border-left: 6px solid var(--primary-yellow);
-        }}
-        .net::before {{
-            content: "Net Changes: ";
-            font-size: 0.9rem;
-        }}
-        .percent {{
-            border-left: 6px solid var(--primary-blue);
-        }}
-        .percent::before {{
-            content: "% Change: ";
-            font-size: 0.9rem;
-        }}
-        .percent.positive {{
-            border-left-color: var(--primary-green);
-        }}
-        .percent.negative {{
-            border-left-color: var(--primary-red);
-        }}
-        .historical-added {{
-            border-left: 6px solid var(--historical-green);
-        }}
-        .historical-added::before {{
-            content: "📈 Historical Added: ";
-            font-size: 0.9rem;
-        }}
-        .historical-changed {{
-            border-left: 6px solid var(--historical-blue);
-        }}
-        .historical-changed::before {{
-            content: "📈 Historical Changed: ";
-            font-size: 0.9rem;
-        }}
-        .historical-removed {{
-            border-left: 6px solid var(--historical-red);
-        }}
-        .historical-removed::before {{
-            content: "📉 Historical Removed: ";
-            font-size: 0.9rem;
-        }}
-        .last-run {{
-            text-align: center;
-            margin: 20px 0;
-            font-style: italic;
-            color: #eee;
-        }}
-        body.high-contrast .last-run {{
-            color: var(--high-contrast-text);
-        }}
-        section {{
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }}
-        .report-container {{
-            background: rgba(255,255,255,var(--bg-opacity));
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 12px 36px rgba(0,0,0,0.25);
-            padding: 15px;
-            position: relative;
-            min-height: 75vh;
-        }}
-        body.high-contrast .report-container {{
-            background: var(--high-contrast-bg);
-            border: 2px solid var(--high-contrast-text);
-        }}
-        #loadingSpinner {{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 4px solid rgba(255,255,255,0.3);
-            border-top: 4px solid var(--primary-green);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }}
-        @keyframes spin {{
-            0% {{ transform: rotate(0deg); }}
-            100% {{ transform: rotate(360deg); }}
-        }}
-        #reportContent {{
-            width: 100%;
-            min-height: 75vh;
-            border-radius: 12px;
-        }}
-        canvas#trendChart {{
-            display: block;
-            max-width: 850px;
-            margin: 40px auto;
-            border-radius: 12px;
-        }}
-        input#searchInput {{
-            width: 90%;
-            padding: 12px;
-            margin: 20px auto;
-            display: block;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.3);
-            background: rgba(0,0,0,0.2);
-            color: var(--text-color);
-            font-size: 1rem;
-            backdrop-filter: blur(5px);
-        }}
-        body.high-contrast input#searchInput {{
-            background: var(--high-contrast-bg);
-            border: 1px solid var(--high-contrast-text);
-            color: var(--high-contrast-text);
-        }}
-        select {{
-            padding: 12px;
-            margin: 10px;
-            border-radius: 12px;
-            background: rgba(0,0,0,0.2);
-            color: var(--text-color);
-        }}
-        body.high-contrast select {{
-            background: var(--high-contrast-bg);
-            border: 1px solid var(--high-contrast-text);
-            color: var(--high-contrast-text);
-        }}
-        body.light input#searchInput,
-        body.light select,
-        body.light button {{
-            background: #fff !important;
-            color: #111 !important;
-            border: 1px solid #ccc !important;
-        }}
-        body.light .copy-btn {{
-            background: #fbbf24 !important;
-            color: #111 !important;
-        }}
-        button {{
-            padding: 10px 20px;
-            border-radius: 8px;
-            background: var(--primary-blue);
-            color: white;
-            border: none;
-            cursor: pointer;
-        }}
-        body.high-contrast button {{
-            background: var(--high-contrast-text);
-            color: var(--high-contrast-bg);
-            border: 1px solid var(--high-contrast-text);
-        }}
-        button:hover {{
-            background: var(--primary-green);
-        }}
-        body.high-contrast button:hover {{
-            background: var(--primary-green);
-            color: var(--high-contrast-text);
-        }}
-        .copy-btn {{
-            margin-left: 10px;
-            padding: 5px 10px;
-            font-size: 0.8rem;
-            background: var(--primary-yellow);
-        }}
-        body.high-contrast .copy-btn {{
-            background: var(--high-contrast-text);
-            color: var(--high-contrast-bg);
-        }}
-        .commit-card {{
-            background: rgba(255,255,255,0.2);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }}
-        body.high-contrast .commit-card {{
-            background: var(--high-contrast-bg);
-            border: 2px solid var(--high-contrast-text);
-        }}
-        h3 {{
-            cursor: pointer;
-        }}
-        ul {{
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            list-style-type: none;
-            padding-left: 0;
-        }}
-        footer {{
-            text-align: center;
-            margin-top: 60px;
-            padding: 25px;
-            font-size: 0.9rem;
-            color: #eee;
-        }}
-        body.high-contrast footer {{
-            color: var(--high-contrast-text);
-        }}
-        canvas#particleCanvas {{
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }}
-        body.high-contrast canvas#particleCanvas {{
-            display: none;
-        }}
-        table {{
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 40px;
-        }}
-        th, td {{
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 12px;
-            text-align: left;
-        }}
-        body.high-contrast th, body.high-contrast td {{
-            border: 1px solid var(--high-contrast-text);
-        }}
-        th {{
-            background: rgba(0,0,0,0.2);
-        }}
-        body.high-contrast th {{
-            background: var(--high-contrast-bg);
-            color: var(--high-contrast-text);
-        }}
-        :focus {{
-            outline: 3px solid #ffbf47;
-            outline-offset: 3px;
-        }}
-        button:focus, a:focus {{
-            box-shadow: 0 0 0 3px rgba(96,165,250,0.3);
-        }}
-        .skip-link {{
-            position: absolute;
-            left: -999px;
-            top: auto;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }}
-        .skip-link:focus {{
-            left: 10px;
-            top: 10px;
-            width: auto;
-            height: auto;
-            z-index: 9999;
-        }}
-        .error-message {{
-            color: var(--primary-red);
-            text-align: center;
-            padding: 20px;
-        }}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Live Roblox client feature flag tracker with AI analysis">
+<meta name="theme-color" content="#3b82f6">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self';">
+<title>Roblox FFlag Tracker</title>
+<link rel="icon" href="assets/favicon.ico">
+<link rel="manifest" href="manifest.json">
+<style>
+:root{{--g:#34d399;--b:#60a5fa;--r:#f87171;--y:#fbbf24;--bg:#0f172a;--bg2:#1e293b;--tx:#e2e8f0;--card:rgba(30,41,59,.85);--radius:14px;--shadow:0 8px 32px rgba(0,0,0,.4)}}
+*{{box-sizing:border-box;margin:0;padding:0}}
+html{{scroll-behavior:smooth}}
+body{{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.6}}
+body.light{{--bg:#f1f5f9;--bg2:#fff;--tx:#1e293b;--card:rgba(255,255,255,.9)}}
+body.high-contrast{{--bg:#000;--bg2:#000;--tx:#fff;--card:#000}}
+.skip{{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:999}}
+.skip:focus{{left:10px;top:10px;width:auto;height:auto;padding:12px 20px;background:var(--y);color:#000;border-radius:var(--radius);font-weight:700}}
+:focus-visible{{outline:3px solid var(--y);outline-offset:3px}}
+@media(prefers-reduced-motion:reduce){{*{{animation:none!important;transition:none!important}}#particleCanvas{{display:none}}}}
+@media(prefers-color-scheme:light){{body:not(.dark):not(.high-contrast){{--bg:#f1f5f9;--bg2:#fff;--tx:#1e293b;--card:rgba(255,255,255,.9)}}}}
+canvas#particleCanvas{{position:fixed;inset:0;pointer-events:none;z-index:0}}
+body.high-contrast #particleCanvas{{display:none}}
+header{{text-align:center;padding:clamp(30px,8vw,70px) 20px 40px;position:relative;z-index:1}}
+header h1{{font-size:clamp(1.8rem,5vw,3.2rem);font-weight:800;background:linear-gradient(135deg,var(--b),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}}
+header p.sub{{margin-top:6px;opacity:.7;font-size:.95rem}}
+.toolbar{{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}}
+.toolbar button{{padding:8px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:var(--bg2);color:var(--tx);cursor:pointer;font-size:.85rem;font-weight:600;transition:background .2s,transform .15s}}
+.toolbar button:hover{{background:var(--b);color:#fff;transform:translateY(-1px)}}
+body.high-contrast .toolbar button{{border:2px solid var(--tx)}}
+.stats{{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;max-width:1200px;margin:-10px auto 30px;padding:0 20px;position:relative;z-index:1}}
+.badge{{text-align:center;padding:22px 16px;border-radius:var(--radius);background:var(--card);backdrop-filter:blur(12px);box-shadow:var(--shadow);font-weight:700;font-size:1.5rem;transition:transform .25s,box-shadow .25s;border-left:5px solid var(--b)}}
+.badge:hover{{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.5)}}
+.badge small{{display:block;font-size:.7rem;font-weight:400;opacity:.7;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}}
+.badge.added{{border-color:var(--g)}}.badge.changed{{border-color:var(--b)}}.badge.removed{{border-color:var(--r)}}.badge.net{{border-color:var(--y)}}
+.badge.pct{{border-color:var(--b)}}.badge.positive{{border-color:var(--g)}}.badge.negative{{border-color:var(--r)}}
+.badge.ha{{border-color:#10b981}}.badge.hc{{border-color:#3b82f6}}.badge.hr{{border-color:#ef4444}}
+.last-run{{text-align:center;margin:0 0 24px;font-size:.85rem;opacity:.6}}
+section{{max-width:1200px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}}
+.controls{{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}}
+.controls input,.controls select{{flex:1;min-width:200px;padding:11px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:var(--bg2);color:var(--tx);font-size:.9rem}}
+body.high-contrast .controls input,body.high-contrast .controls select{{border:2px solid var(--tx)}}
+.controls input::placeholder{{color:rgba(255,255,255,.3)}}
+body.light .controls input::placeholder{{color:rgba(0,0,0,.3)}}
+table{{width:100%;border-collapse:collapse;margin-bottom:32px;font-size:.9rem}}
+th,td{{border:1px solid rgba(255,255,255,.08);padding:10px 14px;text-align:left}}
+th{{background:rgba(0,0,0,.25);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.3px}}
+tr:nth-child(even){{background:rgba(255,255,255,.03)}}
+body.high-contrast th,body.high-contrast td{{border:1px solid var(--tx)}}
+.report-container{{background:var(--card);backdrop-filter:blur(12px);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;min-height:60vh;position:relative}}
+body.high-contrast .report-container{{border:2px solid var(--tx)}}
+#loadingSpinner{{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:var(--g);border-radius:50%;animation:spin .8s linear infinite}}
+@keyframes spin{{to{{transform:translate(-50%,-50%) rotate(360deg)}}}}
+#reportContent{{min-height:60vh}}
+.commit-card{{background:rgba(255,255,255,.05);border-radius:10px;padding:16px;margin-bottom:14px}}
+body.high-contrast .commit-card{{border:1px solid var(--tx)}}
+.commit-card h3{{cursor:pointer;font-size:1rem;margin-bottom:8px}}
+.commit-card ul{{list-style:none;overflow:hidden;transition:max-height .3s ease}}
+.commit-card li{{padding:5px 0;font-size:.88rem;border-bottom:1px solid rgba(255,255,255,.05)}}
+.copy-btn{{margin-left:6px;padding:3px 8px;font-size:.75rem;background:var(--y);color:#000;border:none;border-radius:4px;cursor:pointer}}
+.export-bar{{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}}
+.export-bar button{{padding:10px 22px;border-radius:8px;background:var(--b);color:#fff;border:none;cursor:pointer;font-weight:600;transition:background .2s}}
+.export-bar button:hover{{background:var(--g)}}
+body.high-contrast .export-bar button{{border:2px solid var(--tx)}}
+canvas#myChart{{display:block;max-width:900px;margin:40px auto;border-radius:var(--radius)}}
+footer{{text-align:center;padding:30px 20px;font-size:.8rem;opacity:.5;position:relative;z-index:1}}
+.sr-only{{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}}
+.error-message{{color:var(--r);text-align:center;padding:20px;font-size:1.1rem}}
+::-webkit-scrollbar{{width:8px}}::-webkit-scrollbar-track{{background:transparent}}::-webkit-scrollbar-thumb{{background:rgba(255,255,255,.15);border-radius:4px}}
+@media print{{body{{background:#fff;color:#000}}canvas#particleCanvas,.toolbar,.controls,.export-bar,footer{{display:none}}.badge{{box-shadow:none;border:1px solid #ccc}}}}
+@media(max-width:600px){{.stats{{grid-template-columns:repeat(2,1fr);gap:10px}}.badge{{padding:14px 10px;font-size:1.2rem}}.controls{{flex-direction:column}}.controls input,.controls select{{min-width:100%}}}}
+</style>
 </head>
 <body>
-    <a class="skip-link" href="#reportContent">Skip to report</a>
-    <canvas id="particleCanvas"></canvas>
-    <header>
-        <h1>Roblox Client FFlag Tracker</h1>
-        <button id="themeToggle">Toggle Theme</button>
-        <button id="contrastToggle">High Contrast</button>
-    </header>
-    <div class="stats">
-        <div class="badge added" aria-label="Added flags">
-            <span id="flags-added">{html.escape(str(added))}</span>
-        </div>
-        <div class="badge changed" aria-label="Changed flags">
-            <span id="flags-changed">{html.escape(str(changed))}</span>
-        </div>
-        <div class="badge removed" aria-label="Removed flags">
-            <span id="flags-removed">{html.escape(str(removed))}</span>
-        </div>
-        <div class="badge net" aria-label="Net changes">
-            <span id="net-changes">{html.escape(str(net_changes))}</span>
-        </div>
-        <div class="badge percent" aria-label="Percent change">
-            <span id="percent-change">{percent_change:.2f}</span>%
-        </div>
-        <div class="badge historical-added" aria-label="Historical added">
-            <span id="historical-added">{html.escape(str(total_historical_added))}</span>
-        </div>
-        <div class="badge historical-changed" aria-label="Historical changed">
-            <span id="historical-changed">{html.escape(str(total_historical_changed))}</span>
-        </div>
-        <div class="badge historical-removed" aria-label="Historical removed">
-            <span id="historical-removed">{html.escape(str(total_historical_removed))}</span>
-        </div>
-    </div>
-    <p class="last-run">Last Run: <span id="last-run">{html.escape(last_run)}</span></p>
-    <section>
-        <label for="searchInput" class="sr-only">Search flags</label>
-        <input type="text" id="searchInput" placeholder="Search flags..." aria-label="Search flags">
-        <label for="categoryFilter" class="sr-only">Filter by category</label>
-        <select id="categoryFilter" aria-label="Filter by category">
-            <option value="">All Categories</option>
-            {category_options}
-        </select>
-        <label for="sortSelect" class="sr-only">Sort options</label>
-        <select id="sortSelect" aria-label="Sort options">
-            <option value="">Sort by Name</option>
-            <option value="freq">Sort by Frequency</option>
-        </select>
-       <h2>Summary</h2>
-        <table id="summaryTable" aria-label="Summary of flag changes by category">
-          <thead>
-            <tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th><th>Total</th></tr>
-          </thead>
-          <tbody>
-            {summary_rows}
-          </tbody>
-        </table>
-        <h2>📄 Full Markdown Report</h2>
-        <a href="FFlag_Report.md" target="_blank">View Markdown Report</a>
-        <h2>📊 Latest Full Report</h2>
-        <div class="report-container"> 
-            <div id="loadingSpinner" aria-label="Loading report"></div>
-            <div id="reportContent" role="region" aria-live="polite"></div>
-        </div>
-        <button id="exportCSV" aria-label="Export report as CSV">Export CSV</button>
-        <button id="exportJSON" aria-label="Export report as JSON">Export JSON</button>
-        <div id="chart-container">
-            <canvas id="myChart" aria-label="Trend chart of flag changes"></canvas>
-        </div>
-    </section>
-    <footer>Built with ❤️ by FFlag Tracker • Updated automatically</footer>
-    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
-    <script src="assets/app.js" defer></script>
+<a class="skip" href="#reportContent">Skip to report</a>
+<canvas id="particleCanvas" aria-hidden="true"></canvas>
+<header>
+<h1>Roblox FFlag Tracker</h1>
+<p class="sub">Client feature flag intelligence — updated automatically</p>
+<div class="toolbar">
+<button id="themeToggle" aria-label="Toggle dark/light theme">🌓 Theme</button>
+<button id="contrastToggle" aria-label="Toggle high contrast">⬛ Contrast</button>
+</div>
+</header>
+<div class="stats" role="region" aria-label="Summary statistics">
+<div class="badge added" aria-label="{added} flags added"><small>✅ Added</small><span id="flags-added">{added}</span></div>
+<div class="badge changed" aria-label="{changed} flags changed"><small>🔄 Changed</small><span id="flags-changed">{changed}</span></div>
+<div class="badge removed" aria-label="{removed} flags removed"><small>❌ Removed</small><span id="flags-removed">{removed}</span></div>
+<div class="badge net" aria-label="Net changes: {net}"><small>📊 Net</small><span id="net-changes">{net}</span></div>
+<div class="badge pct {pct_cls}" aria-label="Percent change: {pct}%"><small>📈 % Change</small><span id="percent-change">{pct:.2f}</span>%</div>
+<div class="badge ha" aria-label="Historical added: {hist_a}"><small>∑ Added</small><span id="historical-added">{hist_a}</span></div>
+<div class="badge hc" aria-label="Historical changed: {hist_c}"><small>∑ Changed</small><span id="historical-changed">{hist_c}</span></div>
+<div class="badge hr" aria-label="Historical removed: {hist_r}"><small>∑ Removed</small><span id="historical-removed">{hist_r}</span></div>
+</div>
+<p class="last-run">Last updated: <time id="last-run">{html.escape(last_run)}</time></p>
+<section>
+<div class="controls">
+<label for="searchInput" class="sr-only">Search flags</label>
+<input type="search" id="searchInput" placeholder="Search flags…" aria-label="Search flags" autocomplete="off">
+<label for="categoryFilter" class="sr-only">Category</label>
+<select id="categoryFilter" aria-label="Filter by category">
+<option value="">All Categories</option>
+{cat_opts}
+</select>
+<label for="sortSelect" class="sr-only">Sort</label>
+<select id="sortSelect" aria-label="Sort options">
+<option value="">Sort by Name</option>
+<option value="freq">Sort by Frequency</option>
+</select>
+</div>
+<h2>Summary</h2>
+<table id="summaryTable" aria-label="Category breakdown">
+<thead><tr><th>Category</th><th>Added</th><th>Changed</th><th>Removed</th><th>Total</th></tr></thead>
+<tbody>{s_rows}</tbody>
+</table>
+<h2>📄 Reports</h2>
+<p><a href="FFlag_Report.md" style="color:var(--b)">Markdown</a> · <a href="FFlag_Report.html" style="color:var(--b)">Standalone HTML</a> · <a href="FFlag_Report.json" style="color:var(--b)">Full JSON</a></p>
+<h2>📊 Commit History</h2>
+<div class="report-container">
+<div id="loadingSpinner" aria-label="Loading"></div>
+<div id="reportContent" role="region" aria-live="polite"></div>
+</div>
+<div class="export-bar">
+<button id="exportCSV" aria-label="Export CSV">Export CSV</button>
+<button id="exportJSON" aria-label="Export JSON">Export JSON</button>
+</div>
+<div id="chart-container">
+<canvas id="myChart" aria-label="Trend chart"></canvas>
+</div>
+</section>
+<footer>Built with ❤️ by FFlag Tracker · auto-updated</footer>
+<script src="assets/hammer.min.js" defer></script>
+<script src="assets/chart.umd.js" defer></script>
+<script src="assets/chartjs-plugin-zoom.js" defer></script>
+<script src="assets/app.js" defer></script>
 </body>
 </html>"""
-    index_html.write_text(html_content, encoding="utf-8")
-    sw_content = """
-const CACHE_NAME = "fflag-cache-v1";
-const URLS_TO_CACHE = [
-    "./",
-    "index.html",
-    "summary.json",
-    "commits_index.json",
-    "history.json",
-    "assets/app.js"
-];
+    atomic_write(OUTPUT_DIR / "index.html", page)
+    log.info(f"Landing page → {OUTPUT_DIR / 'index.html'}")
 
-self.addEventListener("install", event => {
-    event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => cache.addAll(URLS_TO_CACHE))
-    );
-});
 
-self.addEventListener("fetch", event => {
-    event.respondWith(
-        caches.match(event.request).then(response => response || fetch(event.request))
-    );
-});
-"""
-    sw_js.write_text(sw_content, encoding="utf-8")
-    log.info(f"Landing page written: {index_html}")
-    log.info(f"Service worker written: {sw_js}")
-
-# ============================
-# Publish Helper
-# ============================
 def publish_output_to_github():
-    token = os.getenv('GITHUB_TOKEN')
-    repo = os.getenv('GITHUB_REPO')
-    branch = os.getenv('GITHUB_PAGES_BRANCH', 'gh-pages')
+    token = os.getenv("GITHUB_TOKEN")
+    repo = os.getenv("GITHUB_REPO")
+    branch = os.getenv("GITHUB_PAGES_BRANCH", "gh-pages")
     if not token or not repo:
         log.warning("GITHUB_TOKEN or GITHUB_REPO not set. Skipping publish.")
         return
@@ -1303,86 +922,97 @@ def publish_output_to_github():
         except subprocess.CalledProcessError:
             run_cmd(f"git checkout --orphan {branch}")
         for item in os.listdir(WORKSPACE):
-            if item != '.git':
-                path = WORKSPACE / item
-                if path.is_dir():
-                    shutil.rmtree(path)
-                else:
-                    os.remove(path)
+            if item == ".git":
+                continue
+            p = WORKSPACE / item
+            if p.is_dir():
+                shutil.rmtree(p)
+            else:
+                os.remove(p)
         for item in OUTPUT_DIR.iterdir():
             dest = WORKSPACE / item.name
             if item.is_dir():
                 shutil.copytree(item, dest)
             else:
-                shutil.copy(item, dest)
+                shutil.copy2(item, dest)
         run_cmd("git add .")
         try:
             run_cmd('git commit -m "Publish FFlag Tracker output"')
             run_cmd(f"git push {remote} {branch}")
-            log.info(f"Successfully published to {branch} branch.")
+            log.info(f"Published to {branch}")
         except subprocess.CalledProcessError as e:
-            if "nothing to commit" in e.stderr:
+            if "nothing to commit" in (e.stderr or ""):
                 log.info("No changes to publish.")
             else:
                 raise
     except Exception as e:
         log.error(f"Publish failed: {e}")
 
-# ============================
-# Main Execution
-# ============================
-async def main() -> None:
+
+async def main():
     try:
-        startup_delay = int(os.getenv('STARTUP_DELAY_SECONDS', '0'))
-        await asyncio.sleep(startup_delay)
-        log.info("=" * 80)
-        log.info("Roblox Client FFlag Tracker (Integrated Categories + Interpolation)")
-        log.info("=" * 80)
+        startup_delay = int(os.getenv("STARTUP_DELAY_SECONDS", "0"))
+        if startup_delay:
+            await asyncio.sleep(startup_delay)
+        log.info("=" * 72)
+        log.info("Roblox Client FFlag Tracker")
+        log.info("=" * 72)
+
+        load_caches()
         manifest_repo = ensure_manifest_repo()
         commits = get_commits(DAYS, manifest_repo)
+        log.info(f"Found {len(commits)} commits in last {DAYS} days")
+
         lock = FileLock(str(OUTPUT_DIR / "cache.lock"), timeout=10)
         with lock:
-            diff_cache = {}
-            if DIFF_CACHE_FILE.exists():
-                try:
-                    diff_cache = json.loads(DIFF_CACHE_FILE.read_text(encoding="utf-8"))
-                except json.JSONDecodeError:
-                    log.warning("Corrupted diff_cache.json. Using empty cache.")
-            report = []
-            summary = {}
-            flag_changes = {}
+            diff_cache = safe_read_json(DIFF_CACHE_FILE, {})
+            if args.force_refresh:
+                diff_cache.clear()
+
+            report, summary, flag_changes = [], {}, {}
             if commits:
                 report, summary, flag_changes = await build_report(commits, diff_cache, manifest_repo)
-            DIFF_CACHE_FILE.write_text(json.dumps(diff_cache, indent=2), encoding="utf-8")
-            all_flags = set(flag for _, changes in report for _, _, flag, *_ in changes)
+
+            atomic_write(DIFF_CACHE_FILE, json.dumps(diff_cache, indent=2))
+
+            all_flags = set()
+            for _, changes in report:
+                for _, _, flag, *_ in changes:
+                    all_flags.add(flag)
             if all_flags:
                 await generate_flag_info_batch(list(all_flags))
-            if os.getenv('PRUNE_CACHE', 'true').lower() == 'true':
-                history_commits = get_commits(HISTORY_DAYS, manifest_repo)
-                _, _, flag_changes_history = await build_report(history_commits, diff_cache, manifest_repo)
-                recent_flags = set(flag_changes_history.keys())
-                prune_list = [f for f in list(FLAG_INFO.keys()) if f not in recent_flags]
-                for f in prune_list:
+
+            if os.getenv("PRUNE_CACHE", "true").lower() == "true" and flag_changes:
+                recent_flags = set(flag_changes.keys())
+                pruned = [f for f in list(FLAG_INFO.keys()) if f not in recent_flags]
+                for f in pruned:
                     del FLAG_INFO[f]
-                if prune_list:
-                    log.info(f"Pruned {len(prune_list)} old flags from cache.")
-            CACHE_FILE.write_text(json.dumps(FLAG_INFO, indent=2), encoding="utf-8")
-        last_run = datetime.datetime.now(ZoneInfo("Asia/Manila")).strftime("%Y-%m-%d %I:%M:%S %p %Z")
-        added = sum(summary.get((cat, "Added"), 0) for cat in CATEGORIES)
-        changed = sum(summary.get((cat, "Changed"), 0) for cat in CATEGORIES)
-        removed = sum(summary.get((cat, "Removed"), 0) for cat in CATEGORIES)
+                if pruned:
+                    log.info(f"Pruned {len(pruned)} stale flags from cache")
+
+            atomic_write(CACHE_FILE, json.dumps(FLAG_INFO, indent=2))
+
+        last_run = datetime.datetime.now(TIMEZONE).strftime("%Y-%m-%d %I:%M:%S %p %Z")
+        added, changed, removed = compute_stats(summary)
         update_history(added, changed, removed, last_run)
+
         export_reports(report, summary, flag_changes)
         ensure_landing_page(added, changed, removed, last_run, summary)
-        if os.getenv('SKIP_ASSETS', 'false').lower() != 'true':
+
+        if os.getenv("SKIP_ASSETS", "false").lower() != "true":
             loop = asyncio.get_running_loop()
             await loop.run_in_executor(None, ensure_assets)
-        if os.getenv('PUBLISH_GH', 'false').lower() == 'true':
+            await loop.run_in_executor(None, ensure_service_worker)
+            await loop.run_in_executor(None, ensure_manifest)
+
+        if os.getenv("PUBLISH_GH", "false").lower() == "true":
             publish_output_to_github()
-        log.info("All done! Reports and dashboard ready.")
+
+        log.info(f"✅ Done — {added} added, {changed} changed, {removed} removed")
     except Exception as e:
-        log.error(f"Main execution failed: {e}")
+        log.error(f"Fatal: {e}", exc_info=True)
         sys.exit(1)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
